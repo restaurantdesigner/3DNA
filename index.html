@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3DNA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      font-family: 'Staatliches', sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    section {
+      height: 100vh;
+      position: relative;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      scroll-snap-align: start;
+    }
+    body {
+      scroll-snap-type: y mandatory;
+    }
+    .spacer {
+      height: 20vh;
+    }
+    .video-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+    .content {
+      z-index: 1;
+      padding: 20px;
+    }
+    .logo {
+      width: 40vw;
+      max-width: 300px;
+    }
+    .cta-button {
+      margin-top: 20px;
+      padding: 12px 32px;
+      font-size: 1.2rem;
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .cta-button:hover {
+      background-color: white;
+      color: black;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 40px 20px;
+      background: #f8cfff;
+    }
+    .gallery img {
+      width: 200px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .form-section {
+      background: #fff0fa;
+      color: #222;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    form input, form textarea {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      width: 90%;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    form button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    #lang-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: white;
+      color: black;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+<div id="lang-toggle">EN</div>
+<section id="hero">
+  <video class="video-bg" autoplay muted loop>
+    <source src="img/screen2.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="content">
+    <img src="img/lg.png" alt="3DNA Logo" class="logo">
+    <div class="lang-es">
+      <h1>Estrategias 3D creativas para negocios</h1>
+      <p>Explora experiencias visuales inmersivas</p>
+      <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">EMPEZAR</button>
+    </div>
+    <div class="lang-en" style="display:none">
+      <h1>Creative 3D strategies for business</h1>
+      <p>Explore immersive visual experiences</p>
+      <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">START</button>
+    </div>
+  </div>
+</section>
+<div class="spacer"></div>
+<section id="sec2">
+  <video class="video-bg" autoplay muted loop>
+    <source src="img/screen3.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="content">
+    <h1 class="lang-es">Bienvenido a la experiencia 3DNA</h1>
+    <h1 class="lang-en" style="display:none">Welcome to the 3DNA experience</h1>
+    <button class="cta-button">Entrar a showroom</button>
+  </div>
+</section>
+<div class="spacer"></div>
+<section class="gallery">
+  <img src="https://via.placeholder.com/200x140" alt="Item 1">
+  <img src="https://via.placeholder.com/200x140" alt="Item 2">
+  <img src="https://via.placeholder.com/200x140" alt="Item 3">
+  <img src="https://via.placeholder.com/200x140" alt="Item 4">
+</section>
+<section class="form-section">
+  <h2 class="lang-es">Solicita tu propuesta</h2>
+  <h2 class="lang-en" style="display:none">Request your proposal</h2>
+  <form>
+    <input type="text" placeholder="Nombre / Name">
+    <input type="email" placeholder="Correo / Email">
+    <input type="tel" placeholder="Teléfono / Phone">
+    <textarea placeholder="Mensaje / Message"></textarea>
+    <button type="submit">Enviar / Send</button>
+  </form>
+</section>
+<div class="footer">
+  <p>📍 Salobreña · ✉️ andrei@3dna.es · 🌐 www.3dna.es</p>
+</div>
+<script>
+  const toggle = document.getElementById('lang-toggle');
+  const es = document.querySelectorAll('.lang-es');
+  const en = document.querySelectorAll('.lang-en');
+  let lang = 'es';
+  toggle.onclick = () => {
+    lang = lang === 'es' ? 'en' : 'es';
+    toggle.innerText = lang.toUpperCase() === 'ES' ? 'EN' : 'ES';
+    es.forEach(e => e.style.display = lang === 'es' ? 'block' : 'none');
+    en.forEach(e => e.style.display = lang === 'en' ? 'block' : 'none');
+  };
+</script>
+</body>
+</html>

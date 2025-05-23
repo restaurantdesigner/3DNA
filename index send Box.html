@@ -1,0 +1,618 @@
+<!-- Подключаем EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("BY6cSR7LfHerG691t");
+</script>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+<!-- favicon для PNG -->
+<link rel="icon" type="image/png" href="img/favicon_32x32.png">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generadora Rápida</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+      
+      @keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+#overlay {
+  display: none;
+  z-index: 500;
+}
+
+    .text-info {
+  pointer-events: none;
+}
+  
+      
+
+.invert {
+  filter: invert(1);
+}
+
+
+
+
+  /* Стили для текста */
+.text-info {
+  position: fixed; /* Фиксированное положение */
+  bottom: 190px; /* Отступ снизу, как для кнопки */
+  left: 300px; /* Отступ от левого края */
+  color: #ffffff; /* Белый цвет текста */
+  font-family: 'Staatliches', sans-serif; /* Применяем шрифт */
+  font-size: 0rem; /* Увеличиваем размер шрифта для больших экранов */
+  font-weight: bold; /* Полужирный шрифт */
+  text-align: left; /* Выравнивание по левому краю */
+ /* background-color: rgba(0, 0, 0, 00); /* Прозрачный черный фон для контраста */
+ /* padding: 10px 20px; /* Отступы вокруг текста */
+ /* border-radius: 8px; /* Скругление углов фона */
+ /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для текста */
+  z-index: 1000; /* Убедитесь, что текст будет поверх других элементов */
+line-height: 40px;
+}
+
+/* Медиазапрос для больших экранов */
+@media (min-width: 1024px) {
+  .text-info {
+    font-size: 2.8rem; /* Увеличиваем размер шрифта еще больше для больших экранов */
+    
+  }
+
+  .my-button {
+    font-size: 1.8rem; /* Увеличиваем размер шрифта кнопки */
+    padding: 30px 60px; /* Увеличиваем размер кнопки */
+  }
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+  .text-info {
+    font-size: 2.3rem; /* Уменьшаем размер шрифта на мобильных */
+    bottom: 120px; /* Отступ снизу */
+    left: 10px; /* Уменьшаем отступы */
+line-height: 30px;
+  }
+
+  .my-button {
+    font-size: 2rem; /* Уменьшаем размер шрифта кнопки */
+    padding: 16px 30px; /* Уменьшаем размер кнопки */
+  }
+}
+
+
+
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box; /* Убедимся, что отступы и рамки не влияют на общий размер элементов */
+    }
+
+    body, html {
+      height: 100%; /* Устанавливаем высоту 100% */
+      margin: 0;    /* Убираем отступы по умолчанию */
+      padding: 0;   /* Убираем паддинги по умолчанию */
+      overflow-x: hidden; /* Скрыть горизонтальную прокрутку */
+      overflow-y: hidden; /* Скрыть вертикальную прокрутку */
+    }
+
+    .container {
+      height: 100%;  /* Заполняем всю высоту экрана */
+      display: flex; /* Используем flexbox для центрирования */
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    /* Кнопка в нижнем левом углу экрана */
+    .my-button {
+      position: fixed; /* Фиксированное положение кнопки */
+      bottom: 100px;    /* Отступ снизу */
+      left: 300px;      /* Отступ слева */
+      padding: 24px 46px; /* Отступы внутри кнопки */
+      background-color: transparent; /* Прозрачный фон */
+      color: white; /* Белый цвет текста */
+      font-weight: 600; /* Полужирный шрифт */
+      font-size: 0.875rem; /* Размер шрифта 14px */
+      border: 0.5px solid white; /* Белая обводка */
+      border-radius: 2px; /* Скругление углов */
+      cursor: pointer; /* Курсор на кнопке */
+      transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход для фона и цвета */
+      z-index: 1000; /* Обеспечиваем, что кнопка будет на переднем плане */
+    }
+
+    /* Эффект при наведении */
+    .my-button:hover {
+      background-color: rgba(255, 255, 255, 0.39); /* Белый фон при наведении */
+      color: #f8cfff; /* Синий цвет текста при наведении */
+    }
+
+    /* Для мобильных устройств с меньшими экранами */
+    @media (max-width: 768px) {
+      body, html {
+        height: 100%; /* Убедитесь, что высота 100% */
+      }
+
+      .my-button {
+        width: 90%; /* Уменьшаем кнопку для мобильных */
+        bottom: 10px; /* Отступ снизу */
+        left: 50%; /* Центрируем кнопку */
+        transform: translateX(-50%); /* Центрирование кнопки */
+      }
+    }
+
+    /* Анимация для бегущей строки */
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .animate-marquee {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 70s linear infinite; /* Увеличьте время для более плавного движения */
+    }
+
+    /* Логотип по центру */
+    #logo-container {
+      position: absolute;
+      top: 2px; /* Отступ сверху */
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 48;
+    }
+
+    #logo-container img {
+      max-width: 50px; /* Ограничение ширины логотипа */
+      filter: invert(1); /* Для изменения цвета логотипа на белый */
+    }
+
+    /* Тонкая белая линия под лого */
+    #line {
+      width: 100%;
+      height: 0.2px;
+      background-color: white;
+      margin-top: 20px; /* Расстояние между логотипом и линией */
+      position: absolute;
+      top: 120px; /* Позиция линии */
+      z-index: 49;
+      opacity: 30%;
+    }
+
+    /* Бегущая строка */
+    .marquee-container {
+  position: absolute;
+  top: 85px; /* или убери top и используй только отступ сверху */
+  width: 100%;
+  padding: 0 10px;
+  z-index: 10;
+  opacity: 1;
+}
+
+
+    /* Анимация для появления */
+    @keyframes slideIn {
+      from {
+        right: -100%;
+        opacity: 0;
+      }
+      to {
+        right: 0;
+        opacity: 1;
+      }
+    }
+
+    /* Для плавного появления формы */
+    #form-panel {
+      animation: slideIn 0.8s ease-out forwards;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 400px;
+      background-color: white;
+      padding: 20px;
+      height: 100%;
+      z-index: 9999;
+      opacity: 0;
+      transition: all 0.8s ease-out;
+    }
+
+    /* Для плавного исчезновения фона */
+    .overlay-dark {
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+        
+    }
+
+    /* Когда форма и фон видны */
+    #form-panel.show {
+      right: 0;
+      opacity: 1;
+    }
+
+    .overlay-dark.show {
+      opacity: 1;
+    }
+
+      
+      
+
+    /* Синие чекбоксы */
+input[type="checkbox"].price {
+  accent-color: #3b82f6; /* Tailwind синий: blue-500 */
+}
+  
+      
+      
+      
+      
+      
+
+  </style>
+</head>
+<body class="relative w-full min-h-screen overflow-hidden text-white">
+    
+    
+    
+
+    
+    
+    <!-- ВЕРХНИЙ БЛОК -->
+<!-- ВЕРХНИЙ БЛОК -->
+<header id="top-bar" class="absolute top-0 left-0 w-full z-10 bg-black bg-opacity-30 backdrop-blur-sm">
+  <div class="flex flex-col items-center text-center py-4 px-4"> <!-- отступі свезху и с низу -->
+
+
+    <!-- ЛОГОТИП -->
+    <div class="flex justify-center items-center w-full z-20">
+      <img src="img/lg.png" alt="Logo Generadora" class="h-14 object-contain invert" />
+    </div>
+
+  </div>
+
+  <!-- 🔧 НИЖНЯЯ ГРАНИЦА С БЕГУЩЕЙ СТРОКОЙ -->
+  <div class="w-full relative z-20 border-t border-white border-opacity-30">
+    <div class="overflow-hidden whitespace-nowrap">
+      
+    </div>
+  </div>
+</header>
+
+<div class="marquee-container mt-[4px]">
+  <span class="animate-marquee text-sm uppercase tracking-wide inline-block px-4 py-1">
+    GRANADA Entrega Rápida MALAGA MARBELLA TORREMOLINOS BENALMADENA NERJA ALMUÑÉCAR SALOBREÑA MIJAS FUENGIROLA ESTEPONA VEJER DE LA FRONTERA RONDA ANTEQUERA COSTA DEL SOL COSTA TROPICAL COSTA DE ALMERÍA...
+  </span>
+</div>
+
+
+
+  
+
+ 
+    
+  <div class="absolute w-full h-full z-0" id="video-container">
+  <video autoplay muted loop playsinline class="w-full h-full object-cover">
+    <source src="img/screen2.mp4" type="video/mp4" />
+    <img src="fallback.jpg" alt="Fallback" class="w-full h-full object-cover" />
+  </video>
+  <div id="overlay" class="absolute inset-0 bg-black bg-opacity-50 transition-opacity" style="display: none;"></div>
+</div>
+
+
+  
+  
+  <!-- Контент -->
+  <div class="relative z-20 flex flex-col items-center justify-center text-center min-h-screen px-4">
+    
+    
+    <div class="relative z-20 flex flex-col items-center justify-center text-center min-h-screen px-4">
+  <p class="mt-4 text-base max-w-md pointer-events-none select-none">
+  Desde <strong>19€</strong> al día — entrega urgente 24/7
+</p>
+<h1 class="text-info select-none">
+  GENERADORES ELÉCTRICOS PARA ALQUILER <br>SILENCIOSOS/POTENTES/LISTOS PARA TRABAJAR 3200-7500 W
+</h1>
+<button id="reservarBtn1" onclick="openFormPanel()" class="my-button">
+  RESERVAR AHORA
+</button>
+
+</div>
+
+    
+
+  
+    
+    
+    
+    
+    
+    
+   <!-- Форма -->
+<div id="form-panel" class="hidden fixed top-0 right-0 w-full sm:max-w-md h-full bg-white text-black z-50 flex flex-col">
+
+  <!-- ВЕРХ (фиксированный) -->
+  <div class="shrink-0 sticky top-0 z-10 bg-white p-6 border-b border-gray-200">
+    <button type="button" onclick="closeFormPanel()" class="absolute top-4 right-4 text-3xl font-bold text-gray-500 hover:text-gray-700">
+      &times;
+    </button>
+    <h2 class="text-xl font-bold mb-2 text-center">RESERVA TU GENERADOR</h2>
+    <div class="text-lg font-bold text-center mb-1">Total: <span id="total">0</span>€</div>
+    <div class="text-md font-semibold text-center">Días seleccionados: <span id="dayCount">1</span></div>
+  </div>
+
+  <!-- СРЕДИНА (прокручивается) -->
+  <div class="flex-1 overflow-y-auto p-6">
+    <form id="reservaForm" onsubmit="handleSubmit(event)" oninput="calculateTotal(); actualizarServicios();" class="space-y-4 text-left" autocomplete="on">
+      <input type="hidden" name="order_id" id="orderId">
+
+      <label class="block">Ciudad:
+        <select id="ciudad" name="ciudad" class="border p-1 w-full" onchange="actualizarServicios()">
+          <option value="granada">Granada</option>
+          <option value="malaga">Málaga</option>
+          <option value="marbella">Marbella</option>
+        </select>
+      </label>
+
+      <div>
+        <p class="font-semibold">Elige tu generador:</p>
+        <label><input type="checkbox" class="price" name="generador[]" value="19"> 3200W (19€/día)</label><br>
+        <label><input type="checkbox" class="price" name="generador[]" value="29"> 5500W (29€/día)</label><br>
+        <label><input type="checkbox" class="price" name="generador[]" value="39"> 7500W (39€/día)</label>
+      </div>
+
+      <div>
+        <p class="font-semibold">Accesorios:</p>
+        <label><input type="checkbox" class="price" name="accesorio[]" value="5"> Alargador 10m (+5€)</label><br>
+        <label><input type="checkbox" class="price" name="accesorio[]" value="10"> Alargador 25m (+10€)</label><br>
+        <label><input type="checkbox" class="price" name="accesorio[]" value="12"> Bidón 5L (+12€)</label><br>
+        <label><input type="checkbox" class="price" name="accesorio[]" value="3"> Adaptador (+3€)</label>
+      </div>
+
+      <div id="servicios">
+        <p class="font-semibold">Servicios:</p>
+        <label data-ciudad="granada"><input type="checkbox" class="price" name="servicio[]" value="50"> Entrega en Granada (+50€)</label><br>
+        <label data-ciudad="malaga"><input type="checkbox" class="price" name="servicio[]" value="80"> Entrega en Málaga (+80€)</label><br>
+        <label data-ciudad="marbella"><input type="checkbox" class="price" name="servicio[]" value="150"> Entrega en Marbella (+150€)</label>
+      </div>
+
+      <label>Inicio:<input type="date" id="startDate" name="inicio" class="border p-1 w-full" autocomplete="off"></label>
+      <label>Fin:<input type="date" id="endDate" name="fin" class="border p-1 w-full" autocomplete="off"></label>
+
+      <input type="hidden" name="dias" id="hiddenDays">
+      <input type="hidden" name="total" id="hiddenTotal">
+
+      <label>Nombre:<input type="text" name="nombre" class="border p-1 w-full" required autocomplete="name"></label>
+      <label>Email:<input type="email" name="email" class="border p-1 w-full" required autocomplete="email"></label>
+      <label>Teléfono:<input type="tel" name="telefono" class="border p-1 w-full" required autocomplete="tel" pattern="^(\+34|0034|34)?[6-9]\d{8}$" placeholder="Ej: 612345678"></label>
+      <label>Comentarios:<textarea name="comentario" class="border p-1 w-full"></textarea></label>
+    </form>
+  </div>
+
+  <!-- НИЗ (фиксированный) -->
+  <div class="shrink-0 sticky bottom-0 z-10 bg-white p-4 border-t border-gray-200">
+    <button type="submit" form="reservaForm" class="w-full bg-green-600 text-white py-2 rounded" id="submitBtn">
+      Enviar solicitud
+    </button>
+    <div id="thanks" class="hidden mt-2 text-green-700 font-semibold text-center">¡Gracias! Tu solicitud ha sido enviada.</div>
+  </div>
+
+</div>
+
+
+  <script>
+    function pad(n) { return n < 10 ? '0' + n : n; }
+
+    function closeFormPanel() {
+      document.getElementById('form-panel').classList.remove('show');
+      document.getElementById('overlay').classList.remove('show');
+      document.getElementById('form-panel').classList.add('hidden');
+      document.getElementById('overlay').classList.add('hidden');
+        document.getElementById('overlay').style.display = 'none';
+
+    }
+
+    function setDefaultDates() {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  const afterTomorrow = new Date(today);
+
+  tomorrow.setDate(today.getDate() + 1);
+  afterTomorrow.setDate(today.getDate() + 2);
+
+  document.getElementById('startDate').value = formatDate(tomorrow);
+  document.getElementById('startDate').min = formatDate(tomorrow);
+
+  document.getElementById('endDate').value = formatDate(afterTomorrow);
+  document.getElementById('endDate').min = formatDate(afterTomorrow);
+}
+
+      
+      function controlarRangoDeFechas() {
+  const startInput = document.getElementById('startDate');
+  const endInput = document.getElementById('endDate');
+
+  startInput.addEventListener('change', () => {
+    const start = new Date(startInput.value);
+    const end = new Date(endInput.value);
+
+    if (endInput.value && (start >= end)) {
+      end.setDate(start.getDate() + 1);
+      endInput.value = formatDate(end);
+    }
+    endInput.min = formatDate(new Date(start.getTime() + 24 * 60 * 60 * 1000));
+    calculateTotal();
+  });
+
+  endInput.addEventListener('change', () => {
+    const start = new Date(startInput.value);
+    const end = new Date(endInput.value);
+
+    if (startInput.value && (end <= start)) {
+      start.setDate(end.getDate() - 1);
+      startInput.value = formatDate(start);
+    }
+    startInput.max = formatDate(new Date(end.getTime() - 24 * 60 * 60 * 1000));
+    calculateTotal();
+  });
+}
+
+// Формат даты YYYY-MM-DD
+function formatDate(date) {
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
+      
+      
+
+    function calculateTotal() {
+      let total = 0;
+      let days = 1;
+      const start = document.getElementById('startDate').value;
+      const end = document.getElementById('endDate').value;
+      if (start && end) {
+        const d1 = new Date(start);
+        const d2 = new Date(end);
+        const diff = (d2 - d1) / (1000 * 3600 * 24);
+        if (diff >= 1) days = diff + 1;
+      }
+      document.getElementById('dayCount').innerText = days;
+      document.querySelectorAll('.price:checked').forEach(input => {
+        const price = parseFloat(input.value);
+        if (input.name.includes('generador')) total += price * days;
+        else total += price;
+      });
+      document.getElementById('total').innerText = total;
+      document.getElementById('hiddenDays').value = days;
+      document.getElementById('hiddenTotal').value = total;
+    }
+
+    function actualizarServicios() {
+      const ciudad = document.getElementById('ciudad').value;
+      document.querySelectorAll('#servicios label').forEach(label => {
+        const ciudades = label.getAttribute('data-ciudad');
+        if (!ciudades.includes(ciudad)) {
+          label.style.display = 'none';
+          label.querySelector('input').checked = false;
+        } else {
+          label.style.display = 'block';
+        }
+      });
+    }
+
+    function getCheckedText(name) {
+      return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+        .map(el => el.parentNode.textContent.trim())
+        .join(', ') || '—';
+    }
+
+    function generateOrderId() {
+      return 'ORD-' + Date.now();
+    }
+
+    function openFormPanel() {
+      setDefaultDates();
+      calculateTotal();
+      actualizarServicios();
+      const orderId = generateOrderId();
+      document.getElementById('orderId').value = orderId;
+
+      document.getElementById('form-panel').classList.remove('hidden');
+      document.getElementById('form-panel').classList.add('show');
+      document.getElementById('overlay').classList.remove('hidden');
+      document.getElementById('overlay').classList.add('show');
+        document.getElementById('overlay').style.display = 'block';
+
+    }
+
+    document.getElementById('form-panel').addEventListener('click', function (e) {
+  if (e.target.id === 'overlay') {
+    closeFormPanel();
+  }
+});
+
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+
+      const generadorSelected = form.querySelectorAll('input[name="generador[]"]:checked').length > 0;
+      if (!generadorSelected) {
+        alert("Por favor, elige al menos un generador.");
+        return;
+      }
+
+      const startDate = form.startDate.value;
+      const endDate = form.endDate.value;
+      if (!startDate || !endDate) {
+        alert("Por favor, selecciona las fechas de inicio y fin.");
+        return;
+      }
+
+      const telefono = form.telefono.value;
+      const telefonoPattern = /^(\+34|0034|34)?[6-9]\d{8}$/;
+      if (!telefonoPattern.test(telefono)) {
+        alert("Por favor, introduce un número de teléfono válido (Ej: 612345678, +34612345678).");
+        return;
+      }
+
+      const email = form.email.value;
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailPattern.test(email)) {
+        alert("Por favor, introduce un email válido.");
+        return;
+      }
+
+      form.querySelector('[name="message"]')?.remove();
+
+      if (!form.nombre.value || !form.email.value || !form.telefono.value) {
+        alert('Por favor, completa los campos obligatorios: Nombre, Email y Teléfono.');
+        return;
+      }
+
+      const message = `Pedido ID: ${form.order_id.value}\n\n📍 Ciudad: ${form.ciudad.value}\n⚡ Generador: ${getCheckedText('generador[]')}\n🔌 Accesorios: ${getCheckedText('accesorio[]')}\n🛠 Servicios: ${getCheckedText('servicio[]')}\n\n📅 Desde: ${form.inicio.value} hasta ${form.fin.value} (${form.dias.value} días)\n💰 Total: ${form.total.value} €\n\n👤 Nombre: ${form.nombre.value}\n📧 Email: ${form.email.value}\n📱 Teléfono: ${form.telefono.value}\n\n📝 Comentarios:\n${form.comentario.value}`;
+
+      const hidden = document.createElement('input');
+      hidden.type = 'hidden';
+      hidden.name = 'message';
+      hidden.value = message;
+      form.appendChild(hidden);
+
+      emailjs.sendForm('service_eo8h1od', 'template_2jiijw2', form)
+        .then(() => {
+          document.getElementById('thanks').classList.remove('hidden');
+          setTimeout(() => {
+            document.getElementById('form-panel').classList.add('hidden');
+            document.getElementById('overlay').classList.remove('overlay-dark');
+            document.getElementById('thanks').classList.add('hidden');
+            form.reset();
+            calculateTotal();
+            actualizarServicios();
+          }, 3000);
+        })
+        .catch(err => alert('Error: ' + JSON.stringify(err)));
+    }
+
+    window.onload = () => {
+  setDefaultDates();
+  calculateTotal();
+  actualizarServicios();
+  controlarRangoDeFechas(); // ⬅️ Добавляем вызов
+};
+
+  </script>
+      
+      
+      
+      
+</body>
+</html>
