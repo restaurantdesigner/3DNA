@@ -121,6 +121,55 @@
       cursor: pointer;
       z-index: 10;
     }
+
+header, footer {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  z-index: 999;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  top: 0;
+  justify-content: space-between;
+}
+
+header img {
+  height: 80px;
+}
+
+.lang-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+  direction: ltr;
+}
+
+.lang-select button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: bold;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.lang-select button.active {
+  opacity: 1;
+  transform: scale(1.2);
+  text-decoration: underline;
+}
+
+    
   </style>
 
   <!-- Google Analytics -->
