@@ -49,8 +49,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: stretch;
-  padding: 40px 0;
+  padding-top: 10vh;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -178,16 +177,35 @@ header img {
   text-decoration: underline;
 }
 
-    @media (max-width: 768px) {
-  .text-container {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
+   
   .button-block {
     margin-bottom: 6vh;
   }
 }
+.text-wrapper {
+  margin-top: auto;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  text-align: left;
+}
+    hero-title {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
 
+.hero-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+}
 
 
     
@@ -221,33 +239,27 @@ header img {
   </video>
   <div class="overlay"></div>
   <div class="content">
-  <div class="logo-container" style="width: 100%; display: flex; justify-content: center; margin-bottom: 40px;">
+  <!-- Логотип по центру -->
+  <div class="logo-container" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
     <img src="img/lg.png" alt="3DNA Logo" class="logo" />
   </div>
 
-  <div class="text-container" style="
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: 400px;
-    margin-left: 5vw;
-    flex-grow: 1;
-  ">
-    <h1 style="margin-bottom: 10px;">
+  <!-- Блок с текстом и кнопкой прижат к левому краю -->
+  <div class="text-wrapper">
+    <h1 class="hero-title">
       MARKETING CREATIVO, BRANDING, DISEÑO 3D Y PROMOCIÓN VISUAL
     </h1>
 
-    <p style="margin-bottom: 20px;">
+    <p class="hero-subtitle">
       LANZAMOS TU MARCA CON EXPERIENCIAS INMERSIVAS E IMPACTO REAL
     </p>
 
-    <div class="button-block" style="margin-top: auto; margin-bottom: 10vh;">
-      <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">
-        empezar
-      </button>
-    </div>
+    <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">
+      empezar
+    </button>
   </div>
 </div>
+
 
 
 </section>
