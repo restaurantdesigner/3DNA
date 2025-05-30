@@ -221,13 +221,18 @@ header img {
 
     .site-title {
   font-family: 'Staatliches', sans-serif;
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: white;
   letter-spacing: 1px;
   text-transform: uppercase;
+       margin-left: 5vw; /* Мобильное выравнивание по левому краю текста */
 }
 
-
+@media (min-width: 768px) {
+  .site-title {
+    margin-left: 40px;
+  }
+}
     
   </style>
 
