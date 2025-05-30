@@ -186,13 +186,15 @@ header img {
   .button-block {
     margin-bottom: 6vh;
   }
-}
+
 .text-wrapper {
-  margin-top: auto;
+  margin-top: 12vh;     /* 👈 Добавляем это */
   margin-left: 5vw;
   margin-right: 5vw;
   text-align: left;
+  max-width: 90vw;       /* 👈 Можно добавить, чтобы было как inline */
 }
+
     hero-title {
   font-size: 1.8rem;
   margin-bottom: 10px;
@@ -359,14 +361,11 @@ header img {
   <div class="overlay"></div>
 
   <div class="content">
-    <div style="width: 100%; display: flex; justify-content: center; margin-top: 15vh; margin-bottom: 30px;"></div>
+    <!-- Имитация отступа как у логотипа -->
+    <div style="height: 15vh; margin-bottom: 30px;"></div>
 
-    <div class="text-wrapper" style="
-      margin-left: 5vw;
-      text-align: left;
-      max-width: 90vw;
-      margin-top: 12vh;
-    ">
+    <!-- Текст и кнопка выровнены по левому краю -->
+    <div class="text-wrapper">
       <h1 class="hero-title">EXPERIENCIAS DIGITALES A MEDIDA</h1>
       <p class="hero-subtitle">
         <span id="rotating-text-sec2" class="fade">Entornos virtuales</span>
@@ -377,7 +376,6 @@ header img {
     </div>
   </div>
 </section>
-
 
 
 
