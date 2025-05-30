@@ -60,17 +60,26 @@
       width: 40vw;
       max-width: 300px;
     }
-    .cta-button {
+   .cta-button {
+  margin-top: 20px;
+  padding: 12px 32px;
+  font-size: 1.3rem;
   font-family: 'Staatliches', sans-serif;
-  font-size: 1.3rem; /* аналогично тексту выше */
   letter-spacing: 0.5px;
-  text-transform: uppercase; /* если хочешь капс как у заголовка */
+  text-transform: uppercase;
+  background-color: transparent;
+  color: white;
+  border: 0.5px solid white;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-    .cta-button:hover {
-      background-color: white;
-      color: black;
-    }
+.cta-button:hover {
+  background-color: white;
+  color: black;
+}
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
