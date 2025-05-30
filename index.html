@@ -239,27 +239,38 @@ header img {
     </video>
     <div class="overlay"></div>
     <div class="content">
-      <!-- Логотип по центру -->
-      <div class="logo-container" style="width: 100%; display: flex; justify-content: center; margin-top: 10vh; margin-bottom: 30px;">
+  <!-- Логотип отдельно, с отступом сверху -->
+  <div class="logo-container" style="
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15vh;
+    margin-bottom: 30px;
+  ">
+    <img src="img/lg.png" alt="3DNA Logo" class="logo" />
+  </div>
 
-        <img src="img/lg.png" alt="3DNA Logo" class="logo" />
-      </div>
+  <!-- Текст и кнопка — НЕ зависят от логотипа -->
+  <div class="text-wrapper" style="
+    margin-left: 5vw;
+    text-align: left;
+    max-width: 90vw;
+    margin-top: 5vh;
+  ">
+    <h1 class="hero-title">
+      MARKETING CREATIVO, BRANDING, DISEÑO 3D Y PROMOCIÓN VISUAL
+    </h1>
 
-      <!-- Блок с текстом и кнопкой прижат к левому краю и опущен вниз -->
-      <div class="text-wrapper" style="margin-top: 30vh; margin-left: 5vw; text-align: left; max-width: 90vw;">
-        <h1 class="hero-title">
-          MARKETING CREATIVO, BRANDING, DISEÑO 3D Y PROMOCIÓN VISUAL
-        </h1>
+    <p class="hero-subtitle">
+      LANZAMOS TU MARCA CON EXPERIENCIAS INMERSIVAS E IMPACTO REAL
+    </p>
 
-        <p class="hero-subtitle">
-          LANZAMOS TU MARCA CON EXPERIENCIAS INMERSIVAS E IMPACTO REAL
-        </p>
+    <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">
+      empezar
+    </button>
+  </div>
+</div>
 
-        <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">
-          empezar
-        </button>
-      </div>
-    </div>
 
 
 
