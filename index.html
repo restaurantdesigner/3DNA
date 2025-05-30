@@ -335,17 +335,6 @@ header img {
   <div class="overlay"></div>
 
   <div class="content">
-    <!-- Логотип -->
-    <div class="logo-container" style="
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-top: 15vh;
-      margin-bottom: 30px;
-    ">
-      <img src="img/lg.png" alt="3DNA Logo" class="logo" />
-    </div>
-
     <!-- Текст + кнопка -->
     <div class="text-wrapper" style="
       margin-left: 5vw;
@@ -353,16 +342,19 @@ header img {
       max-width: 90vw;
       margin-top: 12vh;
     ">
-      <h1 class="hero-title">BIENVENIDO A LA EXPERIENCIA 3DNA</h1>
+      <h1 class="hero-title">EXPERIENCIAS DIGITALES A MEDIDA</h1>
 
       <p class="hero-subtitle">
-        <span id="rotating-text-sec2" class="fade">Descubre nuestro showroom digital</span>
+        <span id="rotating-text-sec2" class="fade">Entornos virtuales</span>
       </p>
 
-      <button class="cta-button" onclick="alert('Entrando al showroom...')">Entrar a showroom</button>
+      <button class="cta-button" onclick="alert('Entrando al showroom...')">
+        Entrar a showroom
+      </button>
     </div>
   </div>
 </section>
+
 
 <div class="spacer"></div>
 <section class="gallery">
@@ -426,6 +418,33 @@ header img {
       el.classList.remove("fade-out");
     }, 600); // время исчезновения = как в CSS transition
   }, 3500); // общая пауза между сменами
+
+<script>
+  const phrasesSec2 = [
+    "Entornos virtuales",
+    "Recorridos interactivos",
+    "Experiencias en 360º",
+    "Realidad aumentada aplicada",
+    "Showroom digital sin límites",
+    "Explora tu marca desde adentro"
+  ];
+
+  let currentSec2 = 0;
+  const elSec2 = document.getElementById("rotating-text-sec2");
+
+  setInterval(() => {
+    elSec2.classList.add("fade-out");
+
+    setTimeout(() => {
+      currentSec2 = (currentSec2 + 1) % phrasesSec2.length;
+      elSec2.textContent = phrasesSec2[currentSec2];
+      elSec2.classList.remove("fade-out");
+    }, 600);
+  }, 3500);
+</script>
+
+
+
 </script>
 </body>
 </html>
