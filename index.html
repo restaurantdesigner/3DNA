@@ -207,18 +207,31 @@ header img {
   </video>
   <div class="overlay"></div>
   <div class="content">
-    <img src="img/lg.png" alt="3DNA Logo" class="logo">
-    <div class="lang-es">
-      <h1>Marketing creativo, branding, diseño, promoción y publicidad</h1>
-      <p>Soluciones visuales 3D para marcas que quieren destacar</p>
-      <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">empezar</button>
-    </div>
-    <div class="lang-en" style="display:none">
-      <h1>Creative 3D strategies for business</h1>
-      <p>Explore immersive visual experiences</p>
-      <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">START</button>
-    </div>
+  <div class="logo-container" style="width: 100%; display: flex; justify-content: center;">
+    <img src="img/lg.png" alt="3DNA Logo" class="logo" />
   </div>
+
+  <div class="text-block" style="margin-top: 40px; text-align: left; max-width: 400px;">
+    <h1 style="margin-bottom: 10px;">
+      Marketing creativo, branding, diseño 3D y promoción visual
+    </h1>
+
+    <hr style="border: none; height: 1px; background-color: white; margin: 10px 0; width: 100%;">
+
+    <p style="margin-bottom: 10px;">
+      Lanzamos tu marca con experiencias inmersivas e impacto real
+    </p>
+
+    <hr style="border: none; height: 1px; background-color: white; margin: 10px 0; width: 100%;">
+  </div>
+
+  <div class="button-block" style="margin-top: auto; margin-bottom: 10vh;">
+    <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">
+      empezar
+    </button>
+  </div>
+</div>
+
 </section>
 <div class="spacer"></div>
 <section id="sec2">
