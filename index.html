@@ -335,7 +335,6 @@ header img {
   <div class="overlay"></div>
 
   <div class="content">
-    <!-- Текст + кнопка -->
     <div class="text-wrapper" style="
       margin-left: 5vw;
       text-align: left;
@@ -354,6 +353,7 @@ header img {
     </div>
   </div>
 </section>
+
 
 
 <div class="spacer"></div>
@@ -378,6 +378,7 @@ header img {
   <p>📍 Salobreña · ✉️ andrei@3dna.es · 🌐 www.3dna.es</p>
 </div>
 <script>
+  // Переключение языка
   const toggle = document.getElementById('lang-toggle');
   const es = document.querySelectorAll('.lang-es');
   const en = document.querySelectorAll('.lang-en');
@@ -389,6 +390,7 @@ header img {
     en.forEach(e => e.style.display = lang === 'en' ? 'block' : 'none');
   };
 
+  // Секция #hero — фразы
   const phrases = [
     "Visuales inmersivos",
     "Branding creativo",
@@ -406,20 +408,15 @@ header img {
   const el = document.getElementById("rotating-text");
 
   setInterval(() => {
-    // Плавно скрыть
     el.classList.add("fade-out");
-
     setTimeout(() => {
-      // Сменить текст после исчезновения
       current = (current + 1) % phrases.length;
       el.textContent = phrases[current];
-
-      // Плавно показать
       el.classList.remove("fade-out");
-    }, 600); // время исчезновения = как в CSS transition
-  }, 3500); // общая пауза между сменами
+    }, 600);
+  }, 3500);
 
-<script>
+  // Секция #sec2 — фразы
   const phrasesSec2 = [
     "Entornos virtuales",
     "Recorridos interactivos",
@@ -434,7 +431,6 @@ header img {
 
   setInterval(() => {
     elSec2.classList.add("fade-out");
-
     setTimeout(() => {
       currentSec2 = (currentSec2 + 1) % phrasesSec2.length;
       elSec2.textContent = phrasesSec2[currentSec2];
@@ -443,8 +439,5 @@ header img {
   }, 3500);
 </script>
 
-
-
-</script>
 </body>
 </html>
