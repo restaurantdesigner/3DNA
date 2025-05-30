@@ -233,6 +233,37 @@ header img {
     margin-left: 40px;
   }
 }
+    .site-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5vw;
+}
+
+/* На десктопе отодвигаем чуть меньше, чтобы не было слишком широкого поля */
+@media (min-width: 768px) {
+  .site-title-wrapper {
+    margin-left: 40px;
+  }
+}
+
+.site-title {
+  font-family: 'Staatliches', sans-serif;
+  font-size: 2rem;
+  color: white;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.site-subtitle {
+  font-family: 'Staatliches', sans-serif;
+  font-size: 0.95rem;
+  color: white;
+  opacity: 0.7;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
     
   </style>
 
@@ -246,13 +277,17 @@ header img {
 </script>
 
   <header>
-  <div class="site-title">3DNA</div>
+  <div class="site-title-wrapper">
+    <div class="site-title">3DNA</div>
+    <div class="site-subtitle">Marketing y Publicidad</div>
+  </div>
   <div class="lang-select">
     <button onclick="setLang('es')" id="btn-es">ES</button>
     <button onclick="setLang('en')" id="btn-en">EN</button>
     <button onclick="setLang('ar')" id="btn-ar">AR</button>
   </div>
 </header>
+
 
 
 
