@@ -327,6 +327,42 @@ h1, h2, .hero-title {
   }
 }
 
+
+
+
+#side-panel {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  color: black;
+  z-index: 1000;
+  transition: right 0.4s ease;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+#side-panel.open {
+  right: 0;
+}
+
+#close-panel {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.side-content {
+  margin-top: 60px;
+  font-family: 'Roboto', sans-serif;
+}
+
     
   </style>
 
@@ -517,6 +553,14 @@ h1, h2, .hero-title {
     }, 600);
   }, 3500);
 </script>
+
+<div id="side-panel">
+  <button id="close-panel">&times;</button>
+  <div class="side-content">
+    <h2>¡Bienvenido!</h2>
+    <p>Aquí puedes descubrir más sobre nuestros servicios...</p>
+  </div>
+</div>
 
 </body>
 </html>
