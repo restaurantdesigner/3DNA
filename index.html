@@ -48,13 +48,13 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: flex-start;
-  padding: 20px;
+  align-items: stretch;
+  padding: 40px 0;
   min-height: 100vh;
-  max-width: 100%;
   box-sizing: border-box;
 }
+
 
 
     .logo {
@@ -179,12 +179,15 @@ header img {
 }
 
     @media (max-width: 768px) {
+  .text-container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
   .button-block {
-    margin-top: auto;
-    margin-bottom: 8vh;
-    align-self: flex-start;
+    margin-bottom: 6vh;
   }
 }
+
 
 
     
@@ -218,30 +221,34 @@ header img {
   </video>
   <div class="overlay"></div>
   <div class="content">
-  <div class="logo-container" style="width: 100%; display: flex; justify-content: center;">
+  <div class="logo-container" style="width: 100%; display: flex; justify-content: center; margin-bottom: 40px;">
     <img src="img/lg.png" alt="3DNA Logo" class="logo" />
   </div>
 
-  <div class="text-block" style="margin-top: 40px; text-align: left; max-width: 400px;">
+  <div class="text-container" style="
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 400px;
+    margin-left: 5vw;
+    flex-grow: 1;
+  ">
     <h1 style="margin-bottom: 10px;">
-      Marketing creativo, branding, diseño 3D y promoción visual
+      MARKETING CREATIVO, BRANDING, DISEÑO 3D Y PROMOCIÓN VISUAL
     </h1>
 
-    <hr style="border: none; height: 1px; background-color: white; margin: 10px 0; width: 100%;">
-
-    <p style="margin-bottom: 10px;">
-      Lanzamos tu marca con experiencias inmersivas e impacto real
+    <p style="margin-bottom: 20px;">
+      LANZAMOS TU MARCA CON EXPERIENCIAS INMERSIVAS E IMPACTO REAL
     </p>
 
-    <hr style="border: none; height: 1px; background-color: white; margin: 10px 0; width: 100%;">
-  </div>
-
-  <div class="button-block" style="margin-top: auto; margin-bottom: 10vh;">
-    <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">
-      empezar
-    </button>
+    <div class="button-block" style="margin-top: auto; margin-bottom: 10vh;">
+      <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">
+        empezar
+      </button>
+    </div>
   </div>
 </div>
+
 
 </section>
 <div class="spacer"></div>
