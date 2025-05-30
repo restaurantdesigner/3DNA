@@ -577,17 +577,26 @@ h1, h2, .hero-title {
 
   const panel = document.getElementById('side-panel');
 const closeBtn = document.getElementById('close-panel');
+const backdrop = document.getElementById('panel-backdrop');
+
 document.querySelectorAll('.open-panel').forEach(btn => {
   btn.addEventListener('click', function (e) {
     e.preventDefault();
     panel.classList.add('open');
+    backdrop.classList.add('visible');
   });
 });
 
-
 closeBtn.addEventListener('click', function () {
   panel.classList.remove('open');
+  backdrop.classList.remove('visible');
 });
+
+backdrop.addEventListener('click', function () {
+  panel.classList.remove('open');
+  backdrop.classList.remove('visible');
+});
+
 
 
 
