@@ -211,6 +211,13 @@ header img {
     font-size: 1.3rem;
   }
 }
+.fade {
+  opacity: 1;
+  transition: opacity 0.6s ease-in-out;
+}
+.fade-out {
+  opacity: 0;
+}
 
 
     
@@ -267,9 +274,10 @@ header img {
       MARKETING CREATIVO, BRANDING, DISEÑO 3D Y PROMOCIÓN VISUAL
     </h1>
 
-    <p class="hero-subtitle">
-      LANZAMOS TU MARCA CON EXPERIENCIAS INMERSIVAS E IMPACTO REAL
-    </p>
+<p class="hero-subtitle">
+  <span id="rotating-text" class="fade">LANZAMOS TU MARCA CON EXPERIENCIAS INMERSIVAS E IMPACTO REAL</span>
+</p>
+    
 
     <button class="cta-button" onclick="document.getElementById('sec2').scrollIntoView({behavior:'smooth'})">
       Descúbrelo
@@ -325,6 +333,36 @@ header img {
     es.forEach(e => e.style.display = lang === 'es' ? 'block' : 'none');
     en.forEach(e => e.style.display = lang === 'en' ? 'block' : 'none');
   };
+
+  const phrases = [
+    "Visuales inmersivos",
+    "Branding creativo",
+    "Experiencias que venden",
+    "Diseño 3D que impacta",
+    "Estrategias visuales poderosas",
+    "Comunicación que se siente",
+    "Marcas que cobran vida",
+    "Contenido que atrapa",
+    "Realidad aumentada con propósito",
+    "Estética que conecta"
+  ];
+
+  let current = 0;
+  const el = document.getElementById("rotating-text");
+
+  setInterval(() => {
+    // Плавно скрыть
+    el.classList.add("fade-out");
+
+    setTimeout(() => {
+      // Сменить текст после исчезновения
+      current = (current + 1) % phrases.length;
+      el.textContent = phrases[current];
+
+      // Плавно показать
+      el.classList.remove("fade-out");
+    }, 600); // время исчезновения = как в CSS transition
+  }, 3500); // общая пауза между сменами
 </script>
 </body>
 </html>
