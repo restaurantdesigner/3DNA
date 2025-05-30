@@ -552,6 +552,26 @@ h1, h2, .hero-title {
       elSec2.classList.remove("fade-out");
     }, 600);
   }, 3500);
+
+
+ const panel = document.getElementById('side-panel');
+  const closeBtn = document.getElementById('close-panel');
+  const openBtn = document.querySelector('.cta-button');
+
+  openBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    panel.classList.add('open');
+  });
+
+  closeBtn.addEventListener('click', function () {
+    panel.classList.remove('open');
+  });
+
+
+
+
+
+
 </script>
 
 <div id="side-panel">
