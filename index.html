@@ -559,12 +559,13 @@ h1, h2, .hero-title {
 
   const panel = document.getElementById('side-panel');
 const closeBtn = document.getElementById('close-panel');
-const openBtn = document.querySelector('.open-panel');
-
-openBtn.addEventListener('click', function (e) {
-  e.preventDefault();
-  panel.classList.add('open');
+document.querySelectorAll('.open-panel').forEach(btn => {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    panel.classList.add('open');
+  });
 });
+
 
 closeBtn.addEventListener('click', function () {
   panel.classList.remove('open');
