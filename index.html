@@ -384,14 +384,7 @@ h1, h2, .hero-title {
     
   </style>
 
-  <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QGGREKNJDX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QGGREKNJDX');
-</script>
+ 
 
   <header>
   <div class="site-title-wrapper">
@@ -511,6 +504,20 @@ h1, h2, .hero-title {
 <div class="footer">
   <p>📍 Salobreña · ✉️ andrei@3dna.es · 🌐 www.3dna.es</p>
 </div>
+
+<!-- Затемнение фона -->
+<div id="panel-backdrop"></div>
+
+<!-- Выезжающая панель -->
+<div id="side-panel">
+  <button id="close-panel">&times;</button>
+  
+  <div class="side-content">
+    <h2>¡Bienvenido!</h2>
+    <p>Aquí puedes descubrir más sobre nuestros servicios...</p>
+  </div>
+</div>
+
 <script>
   // Переключение языка
   const toggle = document.getElementById('lang-toggle');
@@ -599,7 +606,14 @@ backdrop.addEventListener('click', function () {
   backdrop.classList.remove('visible');
 });
 
-
+ <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QGGREKNJDX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QGGREKNJDX');
+</script>
 
 
 
@@ -608,17 +622,7 @@ backdrop.addEventListener('click', function () {
 
 </script>
 
-<!-- Затемнение фона -->
-<div id="panel-backdrop"></div>
 
-<!-- Выезжающая панель -->
-<div id="side-panel">
-  <button id="close-panel">&times;</button>
-  <div class="side-content">
-    <h2>¡Bienvenido!</h2>
-    <p>Aquí puedes descubrir más sobre nuestros servicios...</p>
-  </div>
-</div>
 
 
 </body>
