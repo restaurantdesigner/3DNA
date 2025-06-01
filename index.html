@@ -411,6 +411,111 @@ h1, h2, .hero-title {
   }
 }
 
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #f9f9f9;
+  border-top: 1px solid #ccc;
+  padding: 20px;
+  font-size: 0.9rem;
+  z-index: 9999;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+}
+
+.cookie-banner.show {
+  transform: translateY(0%);
+}
+
+.cookie-content {
+  max-width: 960px;
+  margin: 0 auto;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cookie-content a {
+  color: #007aff;
+  text-decoration: none;
+}
+
+.cookie-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cookie-buttons button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+}
+
+#accept-cookies {
+  background: black;
+  color: white;
+}
+
+#config-cookies {
+  background: #eee;
+  color: #333;
+}
+
+#reject-cookies {
+  background: transparent;
+  color: #999;
+  border: 1px solid #ccc;
+}
+
+/* Modal */
+#cookie-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  z-index: 10001;
+  display: none;
+  transition: transform 0.3s ease;
+}
+
+#cookie-modal.show {
+  display: block;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#cookie-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 10000;
+  display: none;
+}
+
+#cookie-overlay.show {
+  display: block;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
 
 
     
@@ -436,6 +541,41 @@ h1, h2, .hero-title {
 
 
 <body>
+<!-- Cookie Banner -->
+<div id="cookie-banner" class="cookie-banner">
+  <div class="cookie-content">
+    <span>
+      Usamos cookies para personalizar el contenido, medir anuncios y mejorar tu experiencia. 
+      Consulta nuestra <a href="/politica-cookies.html" target="_blank">Política de cookies</a>.
+    </span>
+    <div class="cookie-buttons">
+      <button id="accept-cookies">Aceptar todas</button>
+      <button id="config-cookies">Configurar</button>
+      <button id="reject-cookies">Rechazar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Settings Modal -->
+<div id="cookie-modal" class="cookie-modal">
+  <div class="cookie-modal-content">
+    <h2>Configuración de cookies</h2>
+    <p>Selecciona qué tipos de cookies deseas permitir:</p>
+    <label><input type="checkbox" checked disabled> Cookies necesarias (siempre activas)</label><br>
+    <label><input type="checkbox" id="analytics-cookies"> Cookies de análisis</label><br>
+    <label><input type="checkbox" id="ads-cookies"> Cookies de publicidad</label><br><br>
+    <div class="modal-buttons">
+      <button id="save-settings">Guardar</button>
+      <button id="cancel-settings">Cancelar</button>
+    </div>
+  </div>
+</div>
+<div id="cookie-overlay"></div>
+
+
+
+
+
 
   <div id="lang-toggle">EN</div>
   <section id="hero">
@@ -639,6 +779,68 @@ h1, h2, .hero-title {
     backdrop.classList.remove('visible');
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const banner = document.getElementById('cookie-banner');
+  const modal = document.getElementById('cookie-modal');
+  const overlay = document.getElementById('cookie-overlay');
+
+  const accept = document.getElementById('accept-cookies');
+  const config = document.getElementById('config-cookies');
+  const reject = document.getElementById('reject-cookies');
+
+  const save = document.getElementById('save-settings');
+  const cancel = document.getElementById('cancel-settings');
+
+  // Show banner if not decided yet
+  if (!localStorage.getItem('cookiesDecision')) {
+    banner.classList.add('show');
+  }
+
+  accept.onclick = () => {
+    localStorage.setItem('cookiesDecision', JSON.stringify({
+      necessary: true,
+      analytics: true,
+      ads: true
+    }));
+    banner.classList.remove('show');
+  };
+
+  reject.onclick = () => {
+    localStorage.setItem('cookiesDecision', JSON.stringify({
+      necessary: true,
+      analytics: false,
+      ads: false
+    }));
+    banner.classList.remove('show');
+  };
+
+  config.onclick = () => {
+    modal.classList.add('show');
+    overlay.classList.add('show');
+  };
+
+  cancel.onclick = () => {
+    modal.classList.remove('show');
+    overlay.classList.remove('show');
+  };
+
+  save.onclick = () => {
+    const analytics = document.getElementById('analytics-cookies').checked;
+    const ads = document.getElementById('ads-cookies').checked;
+
+    localStorage.setItem('cookiesDecision', JSON.stringify({
+      necessary: true,
+      analytics: analytics,
+      ads: ads
+    }));
+
+    modal.classList.remove('show');
+    overlay.classList.remove('show');
+    banner.classList.remove('show');
+  };
+});
+
 
  </script>
 
