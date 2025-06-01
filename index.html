@@ -921,16 +921,33 @@ document.getElementById('close-policy-modal').addEventListener('click', () => {
 
 
 
- </script>
 
- <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QGGREKNJDX"></script>
-<script>
+
+function loadGoogleAnalytics() {
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-QGGREKNJDX';
+  document.head.appendChild(script);
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-QGGREKNJDX');
-</script>
+}
+
+// Загружаем только если пользователь согласен
+document.addEventListener("DOMContentLoaded", () => {
+  const consent = JSON.parse(localStorage.getItem('cookiesDecision'));
+  if (consent && consent.analytics) {
+    loadGoogleAnalytics();
+  }
+});
+
+
+
+ </script>
+
+ 
 
 
 
