@@ -740,6 +740,47 @@ h1, h2, .hero-title {
   }
 }
 
+.modal-oferta {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  color: #222;
+  padding: 30px 20px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.5;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-family: 'Staatliches', sans-serif;
+  text-transform: uppercase;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
 
 
    
@@ -998,6 +1039,22 @@ h1, h2, .hero-title {
   </div>
 </div>
 
+<!-- Modal: Contrato de Oferta Pública -->
+<div id="modal-oferta" class="modal-oferta" style="display: none;">
+  <div class="modal-content">
+    <button id="close-oferta" class="modal-close">&times;</button>
+    <h2>Contrato de Oferta Pública</h2>
+    <p>Este contrato establece los términos de la oferta pública para nuestros servicios digitales.</p>
+    <p>Incluye procesos de conversión mediante campañas en Instagram, Facebook, Google Ads y métodos de pago en línea como PayPal.</p>
+    <p>Los resultados esperados, precios y condiciones específicas están detalladas en este contrato.</p>
+    <p>Para más información, contáctanos en: <a href="mailto:andrei@3dna.es">andrei@3dna.es</a></p>
+  </div>
+</div>
+
+
+
+
+
 <script>
   // Переключение языка
   const toggle = document.getElementById('lang-toggle');
@@ -1185,12 +1242,36 @@ document.addEventListener("DOMContentLoaded", () => {
     loadGoogleAnalytics();
   }
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const ofertaLinks = document.querySelectorAll('.open-oferta');
+  const modalOferta = document.getElementById('modal-oferta');
+  const closeOferta = document.getElementById('close-oferta');
+
+  ofertaLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      modalOferta.style.display = 'flex';
+    });
+  });
+
+  closeOferta.addEventListener('click', () => {
+    modalOferta.style.display = 'none';
+  });
+
+  // Закрытие по клику вне окна
+  modalOferta.addEventListener('click', (e) => {
+    if (e.target === modalOferta) {
+      modalOferta.style.display = 'none';
+    }
+  });
+});
 
 
 
  </script>
 
  
+
 
 
 
