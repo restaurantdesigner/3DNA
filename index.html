@@ -558,7 +558,85 @@ h1, h2, .hero-title {
   text-decoration: underline;
 }
 
-    
+.cookie-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.cookie-modal.show {
+  display: flex;
+}
+
+.cookie-modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cookie-modal-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.modal-desc {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.cookie-option {
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.3;
+}
+
+.cookie-option input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 10px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-btn, .cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.save-btn {
+  background-color: black;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  color: #333;
+}
+   
+
+
   </style>
 
  
@@ -600,17 +678,42 @@ h1, h2, .hero-title {
 <div id="cookie-modal" class="cookie-modal">
   <div class="cookie-modal-content">
     <h2>Configuración de cookies</h2>
-    <p>Selecciona qué tipos de cookies deseas permitir:</p>
-    <label><input type="checkbox" checked disabled> Cookies necesarias (siempre activas)</label><br>
-    <label><input type="checkbox" id="analytics-cookies"> Cookies de análisis</label><br>
-    <label><input type="checkbox" id="ads-cookies"> Cookies de publicidad</label><br><br>
+    <p class="modal-desc">
+      Selecciona qué tipos de cookies deseas permitir. Puedes cambiar esta configuración en cualquier momento.
+    </p>
+
+    <div class="cookie-option">
+      <label>
+        <input type="checkbox" checked disabled />
+        <strong>Cookies necesarias</strong><br>
+        Estas cookies son esenciales para el funcionamiento del sitio web y no se pueden desactivar.
+      </label>
+    </div>
+
+    <div class="cookie-option">
+      <label>
+        <input type="checkbox" id="analytics-cookies" />
+        <strong>Cookies de análisis</strong><br>
+        Nos permiten recopilar datos para mejorar el rendimiento del sitio.
+      </label>
+    </div>
+
+    <div class="cookie-option">
+      <label>
+        <input type="checkbox" id="ads-cookies" />
+        <strong>Cookies de publicidad</strong><br>
+        Ayudan a mostrar anuncios personalizados según tu comportamiento.
+      </label>
+    </div>
+
     <div class="modal-buttons">
-      <button id="save-settings">Guardar</button>
-      <button id="cancel-settings">Cancelar</button>
+      <button id="save-settings" class="save-btn">Guardar preferencias</button>
+      <button id="cancel-settings" class="cancel-btn">Cancelar</button>
     </div>
   </div>
 </div>
 <div id="cookie-overlay"></div>
+
 
 
 
