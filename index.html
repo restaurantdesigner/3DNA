@@ -517,6 +517,46 @@ h1, h2, .hero-title {
   justify-content: space-between;
 }
 
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  padding: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-scroll {
+  overflow-y: auto;
+  max-height: 60vh;
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.modal a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.modal a:hover {
+  text-decoration: underline;
+}
 
     
   </style>
@@ -546,7 +586,7 @@ h1, h2, .hero-title {
   <div class="cookie-content">
     <span>
       Usamos cookies para personalizar el contenido, medir anuncios y mejorar tu experiencia. 
-      Consulta nuestra <a href="/politica-cookies.html" target="_blank">Política de cookies</a>.
+      Consulta nuestra <a href="#politica-cookies">Política de cookies</a>.
     </span>
     <div class="cookie-buttons">
       <button id="accept-cookies">Aceptar todas</button>
@@ -647,6 +687,31 @@ h1, h2, .hero-title {
   </div>
 </section>
 
+<!-- Политика Cookies — модальное окно -->
+<div id="cookies-policy-modal" class="modal">
+  <div class="modal-content">
+    <h2>Política de Cookies</h2>
+    <div class="modal-scroll">
+      <p>
+        En <strong>3DNA</strong>, utilizamos cookies para ofrecer una mejor experiencia, mejorar nuestros servicios y mostrar publicidad personalizada.<br><br>
+        <strong>¿Qué son las cookies?</strong><br>
+        Las cookies son pequeños archivos de texto que los sitios web colocan en tu dispositivo al visitarlos. Permiten recordar tus preferencias, sesiones activas, y comportamientos con el fin de personalizar y optimizar tu experiencia.<br><br>
+        <strong>¿Qué tipos de cookies usamos?</strong><br>
+        - Cookies necesarias: esenciales para el funcionamiento técnico del sitio. No pueden desactivarse.<br>
+        - Cookies de análisis: nos permiten entender cómo se utiliza el sitio (por ejemplo, mediante Google Analytics).<br>
+        - Cookies de publicidad: nos permiten ofrecerte anuncios relevantes y medir su rendimiento.<br><br>
+        <strong>¿Cómo puedes gestionar las cookies?</strong><br>
+        Puedes aceptar o rechazar cookies desde nuestro banner de consentimiento o configurar tus preferencias manualmente. También puedes configurar tu navegador para rechazarlas o eliminarlas automáticamente.<br><br>
+        <strong>Cambiar tus preferencias</strong><br>
+        Puedes modificar tu decisión en cualquier momento accediendo nuevamente a la configuración de cookies. Además, puedes eliminar el almacenamiento local desde las herramientas del navegador.<br><br>
+        Para más información, contáctanos en <a href="mailto:andrei@3dna.es">andrei@3dna.es</a>.
+      </p>
+    </div>
+    <div style="text-align: right; margin-top: 15px;">
+      <button id="close-policy-modal" style="padding: 10px 20px;">Cerrar</button>
+    </div>
+  </div>
+</div>
 
 
 
@@ -840,6 +905,20 @@ document.addEventListener("DOMContentLoaded", () => {
     banner.classList.remove('show');
   };
 });
+
+// Открытие модального окна политики cookies
+document.querySelectorAll('a[href="#politica-cookies"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('cookies-policy-modal').style.display = 'flex';
+  });
+});
+
+// Закрытие окна
+document.getElementById('close-policy-modal').addEventListener('click', () => {
+  document.getElementById('cookies-policy-modal').style.display = 'none';
+});
+
 
 
  </script>
