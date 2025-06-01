@@ -634,6 +634,67 @@ h1, h2, .hero-title {
   border: 1px solid #ccc;
   color: #333;
 }
+
+.spacer-content {
+  background: white;
+  color: #111;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.spacer-title {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  font-family: 'Staatliches', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.icon-line-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.icon-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 120px;
+}
+
+.icon-block img {
+  width: 60px;
+  height: 60px;
+}
+
+.icon-block span {
+  font-size: 0.8rem;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background: #aaa;
+  max-width: 100px;
+  min-width: 30px;
+}
+
+@media (max-width: 768px) {
+  .line {
+    max-width: 40px;
+  }
+  .icon-block img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
    
 
 
