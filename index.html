@@ -635,65 +635,88 @@ h1, h2, .hero-title {
   color: #333;
 }
 
-.spacer-content {
+.spacer {
+  height: 20vh;
   background: white;
-  color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spacer-inner {
+  width: 100%;
+  max-width: 1000px;
+  padding: 10px 20px;
   text-align: center;
-  padding: 60px 20px;
 }
 
 .spacer-title {
-  font-size: 1.5rem;
-  margin-bottom: 40px;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
   font-family: 'Staatliches', sans-serif;
-  text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .icon-line-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .icon-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  max-width: 120px;
+  flex: 0 0 auto;
+  width: 90px;
 }
 
 .icon-block img {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .icon-block span {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-family: 'Lato', sans-serif;
   text-transform: uppercase;
+  margin-top: 5px;
 }
 
 .line {
-  flex: 1;
+  flex-grow: 1;
   height: 2px;
-  background: #aaa;
+  background: #999;
+  min-width: 20px;
   max-width: 100px;
-  min-width: 30px;
+  transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {
   .line {
-    max-width: 40px;
+    max-width: 30px;
   }
+
+  .icon-block {
+    width: 70px;
+  }
+
   .icon-block img {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon-block span {
+    font-size: 0.65rem;
+  }
+
+  .spacer-title {
+    font-size: 1.1rem;
   }
 }
+
 
    
 
@@ -827,25 +850,28 @@ h1, h2, .hero-title {
 
 
 </section>
-<section class="spacer-content">
-  <h2 class="spacer-title">Nuestra metodología</h2>
-  <div class="icon-line-wrapper">
-    <div class="icon-block">
-      <img src="img/icon1.svg" alt="Paso 1">
-      <span>Descubrimiento</span>
-    </div>
-    <div class="line"></div>
-    <div class="icon-block">
-      <img src="img/icon2.svg" alt="Paso 2">
-      <span>Diseño</span>
-    </div>
-    <div class="line"></div>
-    <div class="icon-block">
-      <img src="img/icon3.svg" alt="Paso 3">
-      <span>Entrega</span>
+<div class="spacer">
+  <div class="spacer-inner">
+    <h2 class="spacer-title">NUESTRA METODOLOGÍA</h2>
+    <div class="icon-line-wrapper">
+      <div class="icon-block">
+        <img src="img/icon1.svg" alt="Descubrimiento">
+        <span>DESCUBRIMIENTO</span>
+      </div>
+      <div class="line"></div>
+      <div class="icon-block">
+        <img src="img/icon2.svg" alt="Diseño">
+        <span>DISEÑO</span>
+      </div>
+      <div class="line"></div>
+      <div class="icon-block">
+        <img src="img/icon3.svg" alt="Entrega">
+        <span>ENTREGA</span>
+      </div>
     </div>
   </div>
-</section>
+</div>
+
 
 
 
