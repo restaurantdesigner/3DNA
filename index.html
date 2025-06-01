@@ -381,6 +381,38 @@ h1, h2, .hero-title {
   font-family: 'Roboto', sans-serif;
 }
 
+#side-panel {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  color: black;
+  z-index: 1001;
+  transition: right 0.4s ease;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+#side-panel.open {
+  right: 0;
+}
+
+/* 👇 Мобильный: 90% ширины */
+@media (max-width: 767px) {
+  #side-panel {
+    width: 90%;
+    right: -90%;
+  }
+
+  #side-panel.open {
+    right: 0;
+  }
+}
+
+
+
     
   </style>
 
