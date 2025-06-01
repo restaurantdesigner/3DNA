@@ -712,37 +712,32 @@ h1, h2, .hero-title {
     font-size: 0.65rem;
   }
 
-  .spacer-title {
-    font-size: 1.1rem;
-  }
-}
-
-.text-wrapper {
-  position: relative; /* Обязательно! */
+ .text-wrapper {
+  position: relative; /* Можно оставить, но больше не обязательно */
 }
 
 .footnote {
-  position: absolute;
-  bottom: 4vh;
-  left: 0;
   font-family: 'Lato', sans-serif;
   font-size: 0.5rem;
   opacity: 0.6;
-  line-height: 1.2;
-  margin-left: 0;
-  padding-left: 0;
+  line-height: 1.4;
   max-width: 80vw;
+  margin-top: 1.2rem;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.footnote + .footnote {
+  margin-top: 0.4rem;
 }
 
 @media (max-width: 768px) {
   .footnote {
     font-size: 0.45rem;
-    bottom: 3vh;
     max-width: 90vw;
+    margin-top: 1rem;
   }
 }
-
-
 
 
    
@@ -867,14 +862,14 @@ h1, h2, .hero-title {
 
   <button class="cta-button open-panel">Descúbrelo</button>
 
-  <!-- Сноски -->
-  <p class="footnote">
-    * El precio del branding creativo comienza desde 370 € + IVA.
-  </p>
-  <p class="footnote">
-    * Proyecto de conversión (Landing → Instagram → Facebook → Google Ads → Pago vía PayPal) desde <strong>890 €</strong>. Consulta condiciones en el 
-    <a href="#modal-oferta" class="open-oferta">Contrato de Oferta Pública</a>.
-  </p>
+<p class="footnote">
+  * El precio del branding creativo comienza desde 370 € + IVA.
+</p>
+<p class="footnote">
+  * Proyecto de conversión (Landing → Instagram → Facebook → Google Ads → Pago vía PayPal) desde <strong>890 €</strong>.
+  Consulta condiciones en el <a href="#modal-oferta" class="open-oferta">Contrato de Oferta Pública</a>.
+</p>
+
 </div>
 
 
