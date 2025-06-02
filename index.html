@@ -1154,31 +1154,31 @@ h1, h2, .hero-title {
 
 
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
+  // --- Панель ---
   const panel = document.getElementById('side-panel');
   const closeBtn = document.getElementById('close-panel');
   const backdrop = document.getElementById('panel-backdrop');
 
   document.querySelectorAll('.open-panel').forEach(btn => {
-    btn.addEventListener('click', function (e) {
+    btn.addEventListener('click', e => {
       e.preventDefault();
       panel.classList.add('open');
       backdrop.classList.add('visible');
     });
   });
 
-  closeBtn.addEventListener('click', function () {
+  closeBtn.addEventListener('click', () => {
     panel.classList.remove('open');
     backdrop.classList.remove('visible');
   });
 
-  backdrop.addEventListener('click', function () {
+  backdrop.addEventListener('click', () => {
     panel.classList.remove('open');
     backdrop.classList.remove('visible');
   });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+  // --- Cookie ---
   const banner = document.getElementById('cookie-banner');
   const modal = document.getElementById('cookie-modal');
   const overlay = document.getElementById('cookie-overlay');
@@ -1190,7 +1190,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const save = document.getElementById('save-settings');
   const cancel = document.getElementById('cancel-settings');
 
-  // Show banner if not decided yet
   if (!localStorage.getItem('cookiesDecision')) {
     banner.classList.add('show');
   }
@@ -1237,45 +1236,14 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.classList.remove('show');
     banner.classList.remove('show');
   };
-});
 
-// Открытие модального окна политики cookies
-document.querySelectorAll('a[href="#politica-cookies"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('cookies-policy-modal').style.display = 'flex';
-  });
-});
-
-// Закрытие окна
-document.getElementById('close-policy-modal').addEventListener('click', () => {
-  document.getElementById('cookies-policy-modal').style.display = 'none';
-});
-
-
-
-
-
-function loadGoogleAnalytics() {
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-QGGREKNJDX';
-  document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QGGREKNJDX');
-}
-
-// Загружаем только если пользователь согласен
-document.addEventListener("DOMContentLoaded", () => {
+  // --- Google Analytics ---
   const consent = JSON.parse(localStorage.getItem('cookiesDecision'));
   if (consent && consent.analytics) {
     loadGoogleAnalytics();
   }
-});
-document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Модалка "Contrato de Oferta Pública" ---
   const ofertaLinks = document.querySelectorAll('.open-oferta');
   const modalOferta = document.getElementById('modal-oferta');
   const closeOferta = document.getElementById('close-oferta');
@@ -1291,7 +1259,6 @@ document.addEventListener('DOMContentLoaded', () => {
     modalOferta.style.display = 'none';
   });
 
-  // Закрытие по клику вне окна
   modalOferta.addEventListener('click', (e) => {
     if (e.target === modalOferta) {
       modalOferta.style.display = 'none';
