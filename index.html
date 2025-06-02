@@ -815,6 +815,14 @@ h1, h2, .hero-title {
   cursor: pointer;
 }
 
+.footnote-block {
+  margin-top: 2vh;      /* расстояние от кнопки */
+  margin-bottom: 6vh;   /* расстояние до низа экрана */
+}
+
+.footnote + .footnote {
+  margin-top: 0.3rem;   /* расстояние между строками */
+}
 
 
 
@@ -947,13 +955,16 @@ h1, h2, .hero-title {
 
   <button class="cta-button open-panel">Descúbrelo</button>
 
-<p class="footnote">
-  * El precio del branding creativo comienza desde 370 € + IVA.
-</p>
-<p class="footnote">
-  * Proyecto de conversión (Landing → Instagram → Facebook → Google Ads → Pago vía PayPal) desde <strong>890 €</strong>.
-  Consulta condiciones en el <a href="#modal-oferta" class="open-oferta">Contrato de Oferta Pública</a>.
-</p>
+
+      <div class="footnote-block">
+        <p class="footnote">
+           * El precio del branding creativo comienza desde 370 € + IVA.
+                </p>
+                         <p class="footnote">
+                                 * Proyecto de conversión (Landing → Instagram → Facebook → Google Ads → Pago vía PayPal) desde <strong>890 €</strong>.
+                                             Consulta condiciones en el <a href="#modal-oferta" class="open-oferta">Contrato de Oferta Pública</a>.
+                                                 </p>
+                                                   </div>  
 
 </div>
 
