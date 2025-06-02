@@ -1289,6 +1289,24 @@ document.addEventListener('DOMContentLoaded', () => {
  </script>
 
  
+<script>
+  document.addEventListener('click', function (e) {
+    if (e.target.matches('.open-oferta')) {
+      e.preventDefault();
+      const modal = document.getElementById('modal-oferta');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    if (e.target.matches('#close-oferta') || e.target.closest('#close-oferta')) {
+      const modal = document.getElementById('modal-oferta');
+      if (modal) modal.style.display = 'none';
+    }
+
+    if (e.target.id === 'modal-oferta') {
+      e.target.style.display = 'none';
+    }
+  });
+</script>
 
 
 
