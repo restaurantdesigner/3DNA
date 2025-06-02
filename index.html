@@ -724,7 +724,7 @@ h1, h2, .hero-title {
 }
 
 .footnote a {
-  color: #66ccff; /* или #00c0ff */
+  color: #66ccff;
   text-decoration: underline;
   font-weight: 500;
 }
@@ -751,6 +751,7 @@ h1, h2, .hero-title {
   display: flex;
   align-items: center;
   justify-content: center;
+  display: none; /* по умолчанию скрыто */
 }
 
 .modal-content {
@@ -782,30 +783,6 @@ h1, h2, .hero-title {
   cursor: pointer;
 }
 
-/* Глобальное переопределение */
-.footnote,
-.footnote a {
-  font-family: 'Lato', sans-serif !important;
-  font-size: 0.5rem !important;
-  line-height: 1.5 !important;
-  opacity: 0.65 !important;
-  text-transform: none !important;
-  white-space: normal !important;
-  word-break: break-word !important;
-  max-width: 85vw !important;
-  margin-top: 1rem !important;
-  color: #66ccff !important;
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-/* Если нужно чуть меньше шрифт на мобильных */
-@media (max-width: 768px) {
-  .footnote {
-    font-size: 0.45rem !important;
-    max-width: 90vw !important;
-  }
-}
 
 
 
