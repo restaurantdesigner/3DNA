@@ -985,7 +985,9 @@ body.modal-open {
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
   min-height: 0;
+  position: relative; /* ← это нужно для sticky-работы */
 }
+
 
 
 
@@ -1020,16 +1022,8 @@ body.modal-open {
   text-align: right;
 }
 
-.sticky-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: white;
-  z-index: 1000;
-  padding: 10px 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+
+
 
 .form-intro h2 {
   margin-bottom: 10px;
@@ -1060,6 +1054,14 @@ body.modal-open {
 
 .form-wrapper {
   padding-top: 120px;
+}
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+  padding: 16px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 
