@@ -975,10 +975,12 @@ body.modal-open {
 .side-content {
   overflow-y: auto;
   flex-grow: 1;
-  padding: 20px;
+  padding: 20px 20px 40px 20px;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
+  min-height: 0;
 }
+
 
 
 /* Кнопка закрытия */
@@ -1669,12 +1671,10 @@ function updateStepProgress() {
   });
 
   const percent = Math.round((completed / sections.length) * 100);
-
   document.getElementById('progress-bar').style.width = `${percent}%`;
   document.getElementById('progress-text').textContent = `${percent}% completado`;
 }
 
-// запуск при загрузке и при изменении
 document.addEventListener("DOMContentLoaded", () => {
   updateStepProgress();
 
