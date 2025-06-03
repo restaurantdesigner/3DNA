@@ -408,33 +408,23 @@ h1, h2, .hero-title {
 
 
 .side-content {
-  height: 100%;
-  overflow-y: auto;        /* ← вертикальная прокрутка включена */
-  overflow-x: hidden;      /* ← горизонтальная прокрутка отключена */
-  padding: 20px;
-  box-sizing: border-box;
-  -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
+  margin-top: 60px;
+  font-family: 'Roboto', sans-serif;
 }
 
 #side-panel {
   position: fixed;
   top: 0;
-  right: 0;
-  width: 100%;
-  max-width: 400px;
-  height: 100vh;
-  background: white;
-  z-index: 9999;
-  overflow: hidden; /* предотвращаем прокрутку всего блока */
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  right: -50%;
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  color: black;
+  z-index: 1001;
+  transition: right 0.4s ease;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+  padding: 20px;
 }
-
-
-body.modal-open {
-  overflow: hidden;
-  position: relative;
-}
-
 
 #side-panel.open {
   right: 0;
@@ -907,7 +897,7 @@ body.modal-open {
   align-items: center;
   gap: 0.2em;
   margin-bottom: 0.2em; /* было 0.5em или 1em — уменьшаем */
-  padding: 0.5em 0.2em; /* можно немного сократить внутренний отступ */
+  padding: 0.5em 0.75em; /* можно немного сократить внутренний отступ */
  
   background: #f9f9f9;
   border-radius: 8px;
@@ -1552,11 +1542,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// при открытии панели
-document.body.classList.add("modal-open");
-
-// при закрытии панели
-document.body.classList.remove("modal-open");
 
 
 
