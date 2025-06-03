@@ -1004,20 +1004,17 @@ body.modal-open {
 
 
 .progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, #66ccff, #f35ca3);
   transition: width 0.3s ease;
+  z-index: 1; /* позади текста */
 }
 
-.progress-text {
-  font-size: 0.8rem;
-  text-align: right;
-  padding: 4px 8px;
-  color: #222;
-  display: block;
-  margin-top: 5px;
-}
+
 
 
 
@@ -1031,14 +1028,13 @@ body.modal-open {
 }
 
 .progress-text {
-  font-size: 0.8rem;
-  text-align: right;
-  padding: 4px 8px;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
   color: #222;
-  margin-top: 5px;
-  display: block;
-  position: relative;
-  z-index: 2; /* на всякий случай */
+  z-index: 2; /* поверх progress-bar */
 }
 
 
