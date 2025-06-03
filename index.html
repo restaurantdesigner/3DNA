@@ -884,6 +884,45 @@ h1, h2, .hero-title {
   background: white;
 }
 
+.form-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr; /* по умолчанию — 1 колонка */
+}
+
+@media (min-width: 600px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr); /* планшеты — 2 колонки */
+  }
+}
+
+@media (min-width: 960px) {
+  .form-grid {
+    grid-template-columns: repeat(3, 1fr); /* десктоп — 3 колонки */
+  }
+
+  .form-grid.four-cols {
+    grid-template-columns: repeat(4, 1fr); /* если нужно 4 в ряд */
+  }
+}
+
+.form-grid label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.75em 1em;
+  background: #f9f9f9;
+  border-radius: 8px;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.form-grid label:hover {
+  border-color: #ccc;
+  background: #f1f1f1;
+}
 
 
 
