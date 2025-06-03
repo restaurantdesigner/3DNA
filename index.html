@@ -986,6 +986,7 @@ body.modal-open {
   -webkit-overflow-scrolling: touch;
   min-height: 0;
   position: relative; /* ← это нужно для sticky-работы */
+   padding-top: 0; /* было 20px */
 }
 
 
@@ -1050,7 +1051,10 @@ body.modal-open {
   font-size: 0.8rem;
   text-align: right;
   padding: 4px 8px;
+  display: block !important; /* ← на всякий случай */
+  color: #222;
 }
+
 
 .form-wrapper {
   padding-top: 120px;
