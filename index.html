@@ -1088,6 +1088,22 @@ body.modal-open {
   }
 }
 
+@media (max-width: 767px) {
+  .sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 999;
+    padding: 10px 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .side-content {
+    padding-top: 80px !important; /* 👈 добавим место для фиксированного header */
+  }
+}
 
 
   </style>
