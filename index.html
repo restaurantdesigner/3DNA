@@ -1003,16 +1003,7 @@ body.modal-open {
 }
 
 
-.progress-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #66ccff, #f35ca3);
-  transition: width 0.3s ease;
-  z-index: 1; /* позади текста */
-}
+
 
 
 
@@ -1055,24 +1046,46 @@ body.modal-open {
   
 }
 
-.progress-text {
-  position: absolute;
-  bottom: -18px; /* немного ниже полосы */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.7rem;
-  color: #555;
-  z-index: 2;
-  font-family: 'Lato', sans-serif;
-  text-transform: uppercase;
+
+
+
+
+
+.progress-wrapper {
+  margin-bottom: 20px;
 }
 
-
+.progress-text {
+  font-size: 0.75rem;
+  text-align: center;
+  color: #555;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 6px; /* 👈 отступ от текста до полосы */
+}
 
 .progress-container {
   position: relative;
-  margin-bottom: 10px;
-  height: 12px; /* 👈 ДОБАВЬ ЭТО */
+  height: 10px;
+  background: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #66ccff, #f35ca3);
+  transition: width 0.3s ease;
+}
+@media (max-width: 767px) {
+  .progress-text {
+    font-size: 0.65rem;
+    margin-bottom: 4px;
+  }
+  .progress-container {
+    height: 8px;
+  }
 }
 
 
