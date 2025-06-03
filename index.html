@@ -1474,8 +1474,7 @@ body.modal-open {
 
 
 
- <script>
-document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
   const panel = document.getElementById('side-panel');
   const closeBtn = document.getElementById('close-panel');
   const backdrop = document.getElementById('panel-backdrop');
@@ -1485,21 +1484,19 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       panel.classList.add('open');
       backdrop.classList.add('visible');
-      document.body.classList.add('modal-open');
+      document.body.classList.add('modal-open'); // ⬅️ блокируем фон
     });
   });
 
   function closePanel() {
     panel.classList.remove('open');
     backdrop.classList.remove('visible');
-    document.body.classList.remove('modal-open');
+    document.body.classList.remove('modal-open'); // ⬅️ возвращаем прокрутку
   }
 
   closeBtn.addEventListener('click', closePanel);
   backdrop.addEventListener('click', closePanel);
 });
-</script>
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
