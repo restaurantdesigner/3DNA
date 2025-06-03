@@ -912,6 +912,10 @@ h1, h2, .hero-title {
   background: #f1f1f1;
 }
 
+body.modal-open {
+  overflow: hidden;
+  position: relative;
+}
 
 
 
@@ -1397,7 +1401,7 @@ h1, h2, .hero-title {
 
 
 
-  document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
   const panel = document.getElementById('side-panel');
   const closeBtn = document.getElementById('close-panel');
   const backdrop = document.getElementById('panel-backdrop');
@@ -1407,19 +1411,20 @@ h1, h2, .hero-title {
       e.preventDefault();
       panel.classList.add('open');
       backdrop.classList.add('visible');
+      document.body.classList.add('modal-open'); // ⬅️ блокируем фон
     });
   });
 
-  closeBtn.addEventListener('click', function () {
+  function closePanel() {
     panel.classList.remove('open');
     backdrop.classList.remove('visible');
-  });
+    document.body.classList.remove('modal-open'); // ⬅️ возвращаем прокрутку
+  }
 
-  backdrop.addEventListener('click', function () {
-    panel.classList.remove('open');
-    backdrop.classList.remove('visible');
-  });
+  closeBtn.addEventListener('click', closePanel);
+  backdrop.addEventListener('click', closePanel);
 });
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const banner = document.getElementById('cookie-banner');
