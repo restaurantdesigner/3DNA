@@ -975,11 +975,11 @@ body.modal-open {
 .side-content {
   overflow-y: auto;
   flex-grow: 1;
-  height: 100%;
   padding: 20px;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
 }
+
 
 /* Кнопка закрытия */
 #close-panel {
@@ -1330,42 +1330,47 @@ body.modal-open {
     <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1em;">
   ¡Dale! Vamos a hablar de tu negocio.
 </p>
+<!-- Прогресс -->
 <div class="progress-container">
-  <div class="progress-bar" id="progress-bar">
+  <div class="progress-bar" id="progress-bar"></div>
 </div>
 <p id="progress-text">0% completado</p>
 
+<!-- Секция 1 -->
 <div class="form-section">
-<h3>¿Qué tipo de negocio tienes?</h3>
-
-
-<div class="form-grid four-cols">
-  <label><input type="checkbox" name="tipo-negocio" value="restaurante"> Restaurante</label>
-  <label><input type="checkbox" name="tipo-negocio" value="hotel"> Hotel / Alojamiento</label>
-  <label><input type="checkbox" name="tipo-negocio" value="gimnasio"> Gimnasio / Fitness</label>
-  <label><input type="checkbox" name="tipo-negocio" value="cafeteria"> Cafetería / Bar</label>
-  <label><input type="checkbox" name="tipo-negocio" value="comercio"> Comercio / Tienda</label>
-  <label><input type="checkbox" name="tipo-negocio" value="otros"> Otro</label>
-</div>
-</div>
-
-<div class="form-section">
-<h3>¿Qué formas de pago te gustaría ofrecer?</h3>
-</div>
-<div class="form-grid four-cols">
-  <label><input type="checkbox"> Tarjeta bancaria</label>
-  <label><input type="checkbox"> Bizum</label>
-  <label><input type="checkbox"> PayPal</label>
-  <label><input type="checkbox"> Transferencia</label>
-  <label><input type="checkbox"> Criptomonedas</label>
-</div>
-
-
-</div>
-
-
+  <h3>¿Qué tipo de negocio tienes?</h3>
+  <div class="form-grid">
+    <label><input type="checkbox" name="negocio" value="restaurante"> Restaurante</label>
+    <label><input type="checkbox" name="negocio" value="hotel"> Hotel</label>
+    <label><input type="checkbox" name="negocio" value="gimnasio"> Gimnasio</label>
+    <label><input type="checkbox" name="negocio" value="cafe"> Café</label>
+    <label><input type="checkbox" name="negocio" value="tienda"> Comercio</label>
   </div>
 </div>
+
+<!-- Секция 2 -->
+<div class="form-section">
+  <h3>¿Qué formas de pago te gustaría ofrecer?</h3>
+  <div class="form-grid">
+    <label><input type="checkbox" name="pago" value="tarjeta"> Tarjeta</label>
+    <label><input type="checkbox" name="pago" value="bizum"> Bizum</label>
+    <label><input type="checkbox" name="pago" value="paypal"> PayPal</label>
+    <label><input type="checkbox" name="pago" value="cripto"> Criptomonedas</label>
+    <label><input type="checkbox" name="pago" value="transferencia"> Transferencia</label>
+  </div>
+</div>
+
+<!-- Секция 3 -->
+<div class="form-section">
+  <h3>¿Dónde quieres promocionar tu negocio?</h3>
+  <div class="form-grid">
+    <label><input type="checkbox" name="ads" value="meta"> Meta Ads</label>
+    <label><input type="checkbox" name="ads" value="google"> Google Ads</label>
+    <label><input type="checkbox" name="ads" value="email"> Email marketing</label>
+    <label><input type="checkbox" name="ads" value="otros"> Otros</label>
+  </div>
+</div>
+
 
 <!-- Modal: Contrato de Oferta Pública -->
 <!-- Modal: Contrato de Oferta Pública -->
