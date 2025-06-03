@@ -1700,7 +1700,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
  </script>
 
- 
+ <script>
+  const otroCheckbox = document.getElementById('otroCheckbox');
+  const otroInputWrapper = document.getElementById('otroInputWrapper');
+
+  otroCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+      otroInputWrapper.style.display = 'block';
+    } else {
+      otroInputWrapper.style.display = 'none';
+    }
+  });
+</script>
+
 
 
 
