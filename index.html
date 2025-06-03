@@ -1029,13 +1029,16 @@ body.modal-open {
 
 .progress-text {
   position: absolute;
-  top: 50%;
-  right: 8px;
-  transform: translateY(-50%);
-  font-size: 0.75rem;
-  color: #222;
-  z-index: 2; /* поверх progress-bar */
+  bottom: -18px; /* немного ниже полосы */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: #555;
+  z-index: 2;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
 }
+
 
 
  {
@@ -1063,12 +1066,10 @@ body.modal-open {
 }
 
 .progress-container {
-  position: relative;
-  height: 12px;
-  background: #eee;
-  border-radius: 6px;
-  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 24px;
 }
+
 
 
   </style>
