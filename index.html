@@ -1002,14 +1002,7 @@ body.modal-open {
   cursor: pointer;
 }
 
-.progress-container {
-  width: 100%;
-  height: 12px;
-  background: #eee;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  overflow: hidden;
-}
+
 .progress-bar {
   height: 100%;
   width: 0%;
@@ -1036,12 +1029,17 @@ body.modal-open {
   color: #222;
 }
 
-.progress-container {
-  width: 100%;
-  background: #eee;
-  border-radius: 6px;
-  overflow: hidden;
+.progress-text {
+  font-size: 0.8rem;
+  text-align: right;
+  padding: 4px 8px;
+  color: #222;
+  margin-top: 5px;
+  display: block;
+  position: relative;
+  z-index: 2; /* на всякий случай */
 }
+
 
 .progress-bar {
   height: 10px;
