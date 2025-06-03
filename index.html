@@ -917,6 +917,79 @@ body.modal-open {
   position: relative;
 }
 
+/* Блокировка фоновой прокрутки */
+body.modal-open {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Затемнение заднего плана */
+#panel-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+#panel-backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Панель */
+#side-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 90%;
+  height: 100vh;
+  background-color: white;
+  color: black;
+  z-index: 1001;
+  transition: right 0.4s ease;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#side-panel.open {
+  right: 0;
+}
+
+@media (min-width: 768px) {
+  #side-panel {
+    width: 50%;
+    right: -50%;
+  }
+
+  #side-panel.open {
+    right: 0;
+  }
+}
+
+/* Контент внутри панели */
+.side-content {
+  overflow-y: auto;
+  flex-grow: 1;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Кнопка закрытия */
+#close-panel {
+  background: none;
+  border: none;
+  font-size: 24px;
+  align-self: flex-end;
+  margin: 10px;
+  cursor: pointer;
+}
 
 
 
