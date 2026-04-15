@@ -654,7 +654,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   scroller.addEventListener("touchmove", (e) => {
     moveDrag(e.touches[0].pageX);
-  }, { passive: true });
+    if (isDragging) e.preventDefault();
+  }, { passive: false });
 
   scroller.addEventListener("touchend", stopDrag, { passive: true });
 
