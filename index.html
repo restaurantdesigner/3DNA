@@ -1,0 +1,1726 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3DNA - Visual Marketing Branding y Experiencias Inmersivas 3D </title>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+
+
+  <!-- favicon PNG -->
+<link rel="icon" type="image/png" href="img/favicon_32x322.png">
+ 
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+ 
+ 
+ 
+ 
+ 
+ 
+   <link rel="stylesheet" href="assets/css/main.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+<script>
+(() => {
+  const isNestedDetailPage = /\/(?:healthcare|packages)\/[^/]+\.html$/i.test(window.location.pathname);
+
+  const fixRelativePaths = (root, prefix) => {
+    const skip = /^(?:[a-z]+:|#|\/\/)/i;
+    root.querySelectorAll("[href], [src]").forEach((node) => {
+      if (node.hasAttribute("href")) {
+        const href = node.getAttribute("href");
+        if (href && !skip.test(href)) {
+          node.setAttribute("href", `${prefix}${href}`);
+        }
+      }
+      if (node.hasAttribute("src")) {
+        const src = node.getAttribute("src");
+        if (src && !skip.test(src)) {
+          node.setAttribute("src", `${prefix}${src}`);
+        }
+      }
+    });
+  };
+
+  const sharedHeaderHtml = `
+<div class="utility-bar" aria-label="Utility navigation">
+  <div class="container">
+    <nav class="utility-nav">
+      <a class="utility-link" href="https://wa.me/34722878642" target="_blank" rel="noopener">
+        <span class="utility-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 14.95L2 22l5.2-1.25A10 10 0 1 0 12 2zm5.54 14.1c-.23.66-1.35 1.2-1.86 1.28-.48.08-1.08.12-1.74-.1-.4-.13-.92-.3-1.57-.58-2.77-1.2-4.58-4.14-4.72-4.34-.14-.2-1.12-1.49-1.12-2.84 0-1.35.7-2.01.95-2.29.25-.27.55-.34.73-.34h.53c.17 0 .4-.07.62.47.22.54.75 1.87.82 2 .07.13.11.3.02.48-.09.18-.14.3-.27.45-.14.16-.29.35-.41.48-.14.14-.28.3-.12.57.16.27.7 1.15 1.5 1.86 1.03.9 1.9 1.18 2.16 1.31.27.14.43.12.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.61-.13.25.08 1.58.74 1.84.87.27.13.45.2.52.32.07.12.07.73-.16 1.39z"/></svg>
+        </span>
+        <span class="utility-text">WhatsApp</span>
+      </a>
+      <a class="utility-link" href="#contacto">
+        <span class="utility-text">Contacto</span>
+      </a>
+      <a class="utility-link" href="#legal">
+        <span class="utility-text">Legal</span>
+      </a>
+    </nav>
+  </div>
+</div>
+
+<header class="topbar" id="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="#hero" aria-label="3DNA Home">
+      <div class="brand-title">3dna.es</div>
+      <div class="brand-subtitle">Marketing y Publicidad</div>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="#hero">Inicio</a>
+
+      <div class="nav-dropdown" id="showroomDropdown">
+        <a href="#sec2" class="nav-parent" aria-haspopup="true" aria-expanded="false">
+          Showroom <span class="nav-arrow" aria-hidden="true">▼</span>
+        </a>
+
+        <div class="nav-menu" role="menu" aria-label="Showroom submenu">
+          <a role="menuitem" href="#sec2">Gimnasios</a>
+          <a role="menuitem" href="#sec3">Restaurantes</a>
+          <a role="menuitem" href="#sec4">Centros medicos</a>
+        </div>
+      </div>
+
+      <a href="#contacto">Contacto</a>
+      <a href="#legal" class="nav-legal">Legal</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="topbar-cta open-panel" type="button">Solicitar propuesta</button>
+
+      <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+        <div class="burger-lines" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-head">
+      <div class="mobile-menu-title">MENU</div>
+      <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">×</button>
+    </div>
+
+    <a href="#hero" class="m-link">Inicio</a>
+    <a href="#sec2" class="m-link">Showroom</a>
+    <a href="#contacto" class="m-link">Contacto</a>
+    <a href="#legal" class="m-link">Legal</a>
+
+    <button class="m-cta open-panel" type="button">Solicitar propuesta</button>
+  </div>
+</div>
+
+<div class="mobile-menu-backdrop" id="mobileBackdrop"></div>`;
+
+  const host = document.getElementById("site-header");
+  if (!host) return;
+
+  host.innerHTML = sharedHeaderHtml;
+  if (isNestedDetailPage) {
+    fixRelativePaths(host, "../");
+  }
+})();
+</script>
+
+
+
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" class="cookie-banner">
+  <div class="cookie-content">
+    <span>
+      Usamos cookies para personalizar el contenido, medir anuncios y mejorar tu experiencia. 
+      Consulta nuestra <a href="#politica-cookies">Politica de cookies</a>.
+    </span>
+    <div class="cookie-buttons">
+      <button id="accept-cookies">Aceptar todas</button>
+      <button id="config-cookies">Configurar</button>
+      <button id="reject-cookies">Rechazar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Settings Modal -->
+<div id="cookie-modal" class="cookie-modal">
+  <div class="cookie-modal-content">
+    <h2>Configuracion de cookies</h2>
+    <p class="modal-desc">
+      Selecciona que tipos de cookies deseas permitir. Puedes cambiar esta configuracion en cualquier momento.
+    </p>
+
+    <div class="cookie-option">
+      <label>
+        <input type="checkbox" checked disabled />
+        <strong>Cookies necesarias</strong><br>
+        Estas cookies son esenciales para el funcionamiento del sitio web y no se pueden desactivar.
+      </label>
+    </div>
+
+    <div class="cookie-option">
+      <label>
+        <input type="checkbox" id="analytics-cookies" />
+        <strong>Cookies de analisis</strong><br>
+        Nos permiten recopilar datos para mejorar el rendimiento del sitio.
+      </label>
+    </div>
+
+    <div class="cookie-option">
+      <label>
+        <input type="checkbox" id="ads-cookies" />
+        <strong>Cookies de publicidad</strong><br>
+        Ayudan a mostrar anuncios personalizados segun tu comportamiento.
+      </label>
+    </div>
+
+    <div class="modal-buttons">
+      <button id="save-settings" class="save-btn">Guardar preferencias</button>
+      <button id="cancel-settings" class="cancel-btn">Cancelar</button>
+    </div>
+  </div>
+</div>
+<div id="cookie-overlay"></div>
+
+
+
+
+
+
+
+ 
+  <section id="hero">
+  <video
+  class="video-bg"
+  autoplay
+  muted
+  loop
+  playsinline
+  poster="img/sc1.jpg"
+>
+  <source src="img/screen1.mp4" type="video/mp4">
+</video>
+
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    <div class="logo-container">
+      <img src="img/lg (1).png" alt="3DNA Logo" class="logo" />
+    </div>
+
+    <div class="align-container">
+      <div class="hero-copy">
+        <h1 class="hero-title">Diseño 3D para comercio · Implementación de AI y Web</h1>
+
+        <p class="hero-subtitle">
+          <span id="rotating-text" class="fade">
+            LANZAMOS TU MARCA CON EXPERIENCIAS INMERSIVAS E IMPACTO REAL
+          </span>
+        </p>
+
+        <button class="cta-button open-panel" type="button">Descubrelo</button>
+
+        <div class="footnote-block">
+          <p class="footnote">* El precio del branding creativo comienza desde 370 EUR + IVA.</p>
+          <p class="footnote">
+            * Proyecto de conversion (Landing -> Instagram -> Facebook -> Google Ads -> Pago via PayPal) desde
+            <strong>890 EUR</strong>. Consulta condiciones en el
+            <a href="#modal-oferta" class="open-oferta">Contrato de Oferta Publica</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<div class="spacer spacer-reviews" id="reviews">
+  <div class="spacer-inner">
+    <div class="reviews-marquee" aria-label="Reviews">
+      <div class="reviews-track">
+
+        <!-- ===== SET 1 (f1–f10) ===== -->
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f2.png" alt="Carlos M." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Carlos M.</div>
+              <div class="review-role">Gimnasio · Málaga</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“El showroom 3D nos ayudó a cerrar acuerdos antes de la obra. La gente entiende el concepto en segundos.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f1.png" alt="Lucía R." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Lucía R.</div>
+              <div class="review-role">Cafetería · Granada</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“Landing + pagos listos y diseño con estilo. Ahora la conversión es real, no solo ‘bonito’.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f3.png" alt="Javier S." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Javier S.</div>
+              <div class="review-role">Restaurante · Sevilla</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“La visualización 3D nos ahorró dinero. Tomamos decisiones correctas antes de gastar en obra.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f4.png" alt="Ana P." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Ana P.</div>
+              <div class="review-role">Clínica · Almería</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“La propuesta fue clara y el proceso rápido. La identidad visual quedó premium.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f5.png" alt="Miguel T." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Miguel T.</div>
+              <div class="review-role">Hotel · Costa Tropical</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“El recorrido 360 hace que el cliente ‘entre’ al espacio. Es otra liga.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f6.png" alt="Sofía L." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Sofía L.</div>
+              <div class="review-role">Tienda · Marbella</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“Diseño comercial con intención. Se nota que está pensado para vender.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f7.png" alt="David N." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">David N.</div>
+              <div class="review-role">Estudio · Madrid</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“Integración técnica impecable. Todo fluye: anuncios → landing → pago.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f8.png" alt="Elena G." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Elena G.</div>
+              <div class="review-role">Bar · Valencia</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“El ambiente 3D nos ayudó a definir iluminación y materiales sin dudas.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f9.png" alt="Raúl V." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Raúl V.</div>
+              <div class="review-role">Gimnasio · Barcelona</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“Una experiencia que engancha. La gente se queda más tiempo explorando.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f10.png" alt="Marina K." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Marina K.</div>
+              <div class="review-role">Brand · Online</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“Branding + web + narrativa visual. Se siente moderno y coherente.”</p>
+        </article>
+
+
+        <!-- ===== SET 2 (f11–f20) ===== -->
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f11.png" alt="Pablo G." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Pablo G.</div>
+              <div class="review-role">Restaurante · Madrid</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“El 3D nos dio claridad total: distribución, luz y materiales. Decidimos rápido y sin dudas.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f12.png" alt="Marta S." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Marta S.</div>
+              <div class="review-role">Clínica · Granada</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“La web quedó limpia, premium y con pagos listos. Por fin se siente ‘marca seria’.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f13.png" alt="Iván D." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Iván D.</div>
+              <div class="review-role">Gimnasio · Valencia</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“El showroom hace el trabajo por nosotros: enseñas y la gente entiende. Eso es conversión.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f14.png" alt="Sara A." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Sara A.</div>
+              <div class="review-role">Cafetería · Málaga</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“Nos guiaron con criterio. El diseño no es decoración: ahora el espacio vende más.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f15.png" alt="Hugo R." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Hugo R.</div>
+              <div class="review-role">Hotel · Marbella</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“La presentación 360 elevó el nivel. Clientes y socios lo vieron como algo ‘top’.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f16.png" alt="Noelia K." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Noelia K.</div>
+              <div class="review-role">Tienda · Barcelona</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“Todo tiene coherencia: colores, tipografía, ritmo. Se nota diseño de alto nivel.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f17.png" alt="Álvaro F." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Álvaro F.</div>
+              <div class="review-role">Bar · Sevilla</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“Metimos anuncios y por primera vez el embudo funcionó de verdad: clic → confianza → pago.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f18.png" alt="Carla M." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Carla M.</div>
+              <div class="review-role">Brand · Online</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“Antes era ‘bonito’. Ahora es un sistema que vende. Ese cambio se nota.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f19.png" alt="Diego P." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Diego P.</div>
+              <div class="review-role">Estudio · Alicante</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“La entrega fue rápida y sin líos. Muy fino en detalle y en ejecución.”</p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-head">
+            <img class="avatar" src="img/f20.png" alt="Nuria V." loading="lazy">
+            <div class="review-meta">
+              <div class="review-name">Nuria V.</div>
+              <div class="review-role">Clínica · Córdoba</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">“La sensación final es confianza. Y cuando hay confianza, la venta es natural.”</p>
+        </article>
+
+        <!-- ===== DUPLICATE FOR SEAMLESS LOOP (copy everything once more) ===== -->
+        <!-- Просто скопируй весь блок SET 1 + SET 2 еще раз (без правок) -->
+        <!-- Это делает анимацию абсолютно бесшовной -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<section id="sec2">
+  <div class="sec2-grid tri-split">
+
+    <!-- CENTER -->
+    <div class="sec2-center">
+      <video class="video-bg" autoplay muted loop playsinline preload="none" poster="img/sc2.jpg">
+        <source src="img/screen2.mp4" type="video/mp4">
+      </video>
+      <div class="overlay"></div>
+
+      <div class="content">
+        <div class="align-container">
+          <div class="hero-copy sec2-copy">
+            <h1 class="hero-title">Diseno 3D para gimnasios que atraen y retienen clientes</h1>
+
+            <p class="hero-subtitle">
+              <span id="rotating-text-sec2" class="fade">Entornos virtuales</span>
+            </p>
+
+            <button class="cta-button" onclick="alert('Entrando al showroom...')">
+              ENTRAR A SHOWROOM
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEFT -->
+    <div class="sec2-side sec2-left">
+      <video class="side-video" autoplay muted loop playsinline preload="none" poster="img/sc3.jpg">
+        <source src="img/screen3.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- RIGHT (PANORAMA) -->
+    <div class="sec2-side sec2-right">
+      <div id="pano-right"></div>
+
+      <div class="pano-badge" aria-hidden="true">
+        <img src="img/logo25.png" alt="" class="pano-badge__icon">
+        <span class="pano-badge__text">Panorama 360 -> arrastra</span>
+      </div>
+
+      <div class="pano-ui">
+        <button class="pano-btn" data-scene="s1">01</button>
+        <button class="pano-btn" data-scene="s2">02</button>
+        <button class="pano-btn" data-scene="s3">03</button>
+        <button class="pano-btn" data-scene="s4">04</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+<div class="spacer">
+  <div class="spacer-inner">
+
+    <div class="services-marquee">
+      <div class="services-track">
+
+        <!-- 1-й набор -->
+        <span class="service-item">Branding 3D</span>
+        <span class="service-item">Experiencias 360º</span>
+        <span class="service-item">Showroom digital</span>
+        <span class="service-item">Diseño comercial</span>
+        <span class="service-item">Visualización 3D</span>
+        <span class="service-item">Recorridos interactivos</span>
+        <span class="service-item">Espacios virtuales</span>
+        <span class="service-item">Experiencias inmersivas</span>
+        <span class="service-item">Landing pages</span>
+        <span class="service-item">Embudo de ventas</span>
+        <span class="service-item">Botones de venta</span>
+        <span class="service-item">Pagos online</span>
+        <span class="service-item">Integración Stripe</span>
+        <span class="service-item">PayPal y Bizum</span>
+        <span class="service-item">Meta Ads</span>
+        <span class="service-item">Google Ads</span>
+        <span class="service-item">Automatización comercial</span>
+        <span class="service-item">AI para negocio</span>
+
+        <!-- 2-й набор (дубликат для бесшовности) -->
+        <span class="service-item">Branding 3D</span>
+        <span class="service-item">Experiencias 360º</span>
+        <span class="service-item">Showroom digital</span>
+        <span class="service-item">Diseño comercial</span>
+        <span class="service-item">Visualización 3D</span>
+        <span class="service-item">Recorridos interactivos</span>
+        <span class="service-item">Espacios virtuales</span>
+        <span class="service-item">Experiencias inmersivas</span>
+        <span class="service-item">Landing pages</span>
+        <span class="service-item">Embudo de ventas</span>
+        <span class="service-item">Botones de venta</span>
+        <span class="service-item">Pagos online</span>
+        <span class="service-item">Integración Stripe</span>
+        <span class="service-item">PayPal y Bizum</span>
+        <span class="service-item">Meta Ads</span>
+        <span class="service-item">Google Ads</span>
+        <span class="service-item">Automatización comercial</span>
+        <span class="service-item">AI para negocio</span>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<section id="sec3">
+  <div class="sec2-grid tri-split">
+
+    <!-- CENTER -->
+    <div class="sec2-center">
+      <video class="video-bg" autoplay muted loop playsinline preload="none" poster="img/sc4.jpg">
+        <source src="img/screen4.mp4" type="video/mp4">
+      </video>
+      <div class="overlay"></div>
+
+      <div class="content">
+        <div class="align-container">
+          <div class="hero-copy sec2-copy">
+            <h1 class="hero-title">
+              Diseno 3D atmosferico y vibrante para restaurantes, bares y cafeterias
+            </h1>
+
+            <p class="hero-subtitle">
+              <span id="rotating-text-sec3" class="fade">Entornos virtuales</span>
+            </p>
+
+            <button class="cta-button">
+              ENTRAR A SHOWROOM
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEFT -->
+    <div class="sec2-side sec2-left">
+      <video class="side-video" autoplay muted loop playsinline preload="none" poster="img/sc5.jpg">
+        <source src="img/screen5.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="sec2-side sec2-right">
+      <video class="side-video" autoplay muted loop playsinline preload="none" poster="img/sc6.jpg">
+        <source src="img/screen6_1.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<div class="spacer">
+  <div class="spacer-inner">
+   
+
+    <!-- LOGO CAROUSEL -->
+    <div class="logo-marquee">
+      <div class="logo-marquee__track">
+        <!-- 20 логотипов -->
+        <img src="img/logo1.png" alt="logo">
+        <img src="img/logo2.png" alt="logo">
+        <img src="img/logo3.png" alt="logo">
+        <img src="img/logo4.png" alt="logo">
+        <img src="img/logo5.jpg" alt="logo">
+        <img src="img/logo6.jpg" alt="logo">
+        <img src="img/logo8.png" alt="logo">
+        <img src="img/logo9.png" alt="logo">
+        <img src="img/logo10.png" alt="logo">
+        <img src="img/logo11.jpg" alt="logo">
+        <img src="img/logo12.jpg" alt="logo">
+        <img src="img/logo13.jpg" alt="logo">
+        <img src="img/logo14.png" alt="logo">
+        <img src="img/logo15.png" alt="logo">
+        <img src="img/logo16.jpg" alt="logo">
+        <img src="img/logo17.jpg" alt="logo">
+        <img src="img/logo18.png" alt="logo">
+        <img src="img/logo19.png" alt="logo">
+        <img src="img/logo20.png" alt="logo">
+        <img src="img/logo21.png" alt="logo">
+        <img src="img/logo22.png" alt="logo">
+        <img src="img/logo23.jpg" alt="logo">
+        <img src="img/logo24.jpg" alt="logo">
+
+
+
+        <!-- дубликат для бесшовности -->
+       <img src="img/logo1.png" alt="logo">
+        <img src="img/logo2.png" alt="logo">
+        <img src="img/logo3.png" alt="logo">
+        <img src="img/logo4.png" alt="logo">
+        <img src="img/logo5.jpg" alt="logo">
+        <img src="img/logo6.jpg" alt="logo">
+        <img src="img/logo8.png" alt="logo">
+        <img src="img/logo9.png" alt="logo">
+        <img src="img/logo10.png" alt="logo">
+        <img src="img/logo11.jpg" alt="logo">
+        <img src="img/logo12.jpg" alt="logo">
+        <img src="img/logo13.jpg" alt="logo">
+        <img src="img/logo14.png" alt="logo">
+        <img src="img/logo15.png" alt="logo">
+        <img src="img/logo16.jpg" alt="logo">
+        <img src="img/logo17.jpg" alt="logo">
+        <img src="img/logo18.png" alt="logo">
+        <img src="img/logo19.png" alt="logo">
+        <img src="img/logo20.png" alt="logo">
+        <img src="img/logo21.png" alt="logo">
+        <img src="img/logo22.png" alt="logo">
+        <img src="img/logo23.jpg" alt="logo">
+        <img src="img/logo24.jpg" alt="logo">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<section id="sec4">
+  <div class="sec2-grid tri-split">
+
+    <!-- CENTER -->
+    <div class="sec2-center">
+      <video class="video-bg" autoplay muted loop playsinline preload="none" poster="img/sc7.jpg">
+        <source src="img/screen7.mp4" type="video/mp4">
+      </video>
+      <div class="overlay"></div>
+
+      <div class="content">
+        <div class="align-container">
+          <div class="hero-copy sec2-copy">
+            <h1 class="hero-title">Diseno 3D para clinicas y centros medicos</h1>
+
+            <p class="hero-subtitle">
+              Confianza, claridad y experiencia del paciente -> desde el primer segundo
+            </p>
+
+            <button class="cta-button open-panel">SOLICITAR PROPUESTA</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEFT -->
+    <div class="sec2-side sec2-left">
+      <video class="side-video" autoplay muted loop playsinline preload="none" poster="img/sc8.jpg">
+        <source src="img/screen8.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- RIGHT (IFRAME) -->
+    <div class="sec2-side sec2-right">
+      <iframe
+        class="seekbeak-frame"
+        src="https://app.seekbeak.com/v/Xw1LLaRg1L8"
+        title="SeekBeak Tour"
+        loading="lazy"
+        allow="fullscreen; xr-spatial-tracking; gyroscope; accelerometer; autoplay"
+        allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<div class="spacer"></div>
+
+<section id="sec5">
+  
+    <div class="sec2-grid tri-split">
+
+      <!-- CENTER (video) -->
+      <div class="sec2-center">
+        <video class="video-bg" autoplay muted loop playsinline preload="none" poster="img/sc10.jpg">
+          <source src="img/screen10.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+
+        <div class="content">
+          
+        </div>
+      </div>
+
+      <!-- LEFT (Commercial 3D / Planning) -->
+<div class="sec2-side sec2-left">
+  <div class="services-panel services-panel--dark">
+
+    <div class="services-card services-card--pro">
+      <div class="services-kicker">3D Commercial Planning</div>
+
+      <div class="services-title services-title--pro">
+        Planificacion 3D para tomar decisiones rapidas y vender el proyecto antes de construir
+      </div>
+
+      <ul class="services-list services-list--pro">
+        <li><strong>Distribucion & flujo</strong> -> zoning, recorridos, visibilidad, puntos de venta.</li>
+        <li><strong>Visualizacion 3D</strong> -> renders de concepto, materiales, luz y atmosfera.</li>
+        <li><strong>Panoramas 360</strong> -> escena inmersiva para marketing, web y redes.</li>
+        <li><strong>Walkthrough / Tour</strong> -> ?paso a paso? para socios, clientes e inversores.</li>
+        <li><strong>Documentacion para inversion</strong> -> dossier visual, narrativa y comparativas.</li>
+        <li><strong>Prototipado rapido</strong> -> variantes A/B (layout, branding, iluminacion) en dias.</li>
+      </ul>
+
+      <div class="services-metrics">
+        <div class="metric">
+          <div class="metric-num">+40%</div>
+          <div class="metric-label">claridad del concepto</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">x3</div>
+          <div class="metric-label">velocidad de decision</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">360</div>
+          <div class="metric-label">presentacion inmersiva</div>
+        </div>
+      </div>
+
+      <div class="services-note services-note--pro">
+        Entregables: renders, panoramas 360, video walkthrough, pack de inversion (PDF) y assets para web/ads.
+      </div>
+
+      <a class="services-cta services-cta--pro open-panel" href="#">
+        SOLICITAR PROPUESTA
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
+      <!-- RIGHT (services) -->
+      <div class="sec2-side sec2-right">
+        <div class="services-panel">
+          <div class="services-card">
+            <div class="services-title">Web & Conversion</div>
+            <ul class="services-list">
+              <li>Landing pages enfocadas en venta</li>
+              <li>Botones de conversion + embudo</li>
+              <li>Pagos online: Stripe / PayPal / Bizum</li>
+              <li>Automatizacion: formularios, email, bots</li>
+            </ul>
+
+            <a class="services-cta open-panel" href="#">HABLAMOS</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- Cookies policy modal -->
+<div id="cookies-policy-modal" class="modal">
+  <div class="modal-content">
+    <h2>Politica de Cookies</h2>
+    <div class="modal-scroll">
+      <p>
+        En <strong>3DNA</strong>, utilizamos cookies para ofrecer una mejor experiencia, mejorar nuestros servicios y mostrar publicidad personalizada.<br><br>
+        <strong>Que son las cookies?</strong><br>
+        Las cookies son pequenos archivos de texto que los sitios web colocan en tu dispositivo al visitarlos. Permiten recordar tus preferencias, sesiones activas, y comportamientos con el fin de personalizar y optimizar tu experiencia.<br><br>
+        <strong>Que tipos de cookies usamos?</strong><br>
+        - Cookies necesarias: esenciales para el funcionamiento tecnico del sitio. No pueden desactivarse.<br>
+        - Cookies de analisis: nos permiten entender como se utiliza el sitio (por ejemplo, mediante Google Analytics).<br>
+        - Cookies de publicidad: nos permiten ofrecerte anuncios relevantes y medir su rendimiento.<br><br>
+        <strong>Como puedes gestionar las cookies?</strong><br>
+        Puedes aceptar o rechazar cookies desde nuestro banner de consentimiento o configurar tus preferencias manualmente. Tambien puedes configurar tu navegador para rechazarlas o eliminarlas automaticamente.<br><br>
+        <strong>Cambiar tus preferencias</strong><br>
+        Puedes modificar tu decision en cualquier momento accediendo nuevamente a la configuracion de cookies. Ademas, puedes eliminar el almacenamiento local desde las herramientas del navegador.<br><br>
+        Para mas informacion, contactanos en <a href="mailto:andrei@3dna.es">andrei@3dna.es</a>.
+      </p>
+    </div>
+    <div style="text-align: right; margin-top: 15px;">
+      <button id="close-policy-modal" style="padding: 10px 20px;">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="footer">
+  <p>Salobrena | andrei@3dna.es | www.3dna.es</p>
+</div>
+
+<!-- Panel backdrop -->
+<div id="panel-backdrop"></div>
+
+<!-- Side panel -->
+<div id="side-panel">
+  <button id="close-panel">&times;</button>
+  
+  <div class="side-content">
+     <h2>BIEVENIDO</h2>
+
+    <p>La construccion de un negocio hoy comienza con la construccion de una infraestructura digital.  
+    Y la infraestructura digital comienza con una marca.</p>
+
+    <p>Antes bastaba con una tarjeta de visita o una recomendacion verbal.  
+    Hoy, todo comienza en una pantalla.  
+    En los primeros segundos. En la sensacion que queda despues de visitar tu web.</p>
+
+    <p>Hoy en dia, un negocio no es solo un producto.  
+    Es un recorrido.  
+    Un camino por el que debe transitar el cliente: ver -> entender -> interesarse -> confiar -> pagar.</p>
+
+    <p>Para que ese camino sea rapido y sin obstaculos, hace falta estructura.  
+    Hace falta una infraestructura digital donde todo esta alineado con intencion y claridad.  
+    Donde el usuario no duda. Donde simplemente avanza.</p>
+
+    <p>Una pagina que funciona.  
+    Un embudo que guia.  
+    Un sistema de pago que simplemente funciona.  
+    Y un bot que lo explica todo por ti, claro y sin pausa.</p>
+
+    <p><strong>Metodos de pago disponibles:</strong><br>
+    Tarjeta bancaria (Visa, Mastercard, Stripe, Redsys),  
+    PayPal,  
+    Bizum,  
+    transferencia bancaria,  
+    pagos recurrentes o por suscripcion,  
+    pago contra reembolso (en ciertos casos),  
+    y criptomonedas (Bitcoin, USDT, Ethereum y mas).</p>
+
+    <p>Tambien utilizamos canales publicitarios como Meta Ads (Facebook e Instagram) y Google Ads para generar trafico constante y cualificado hacia tu pagina.</p>
+
+    <p>La infraestructura digital no es solo tener una web.  
+    Es coherencia. Es estilo. Es velocidad. Es confianza.  
+    Es decir "somos fiables" sin decir una palabra, a traves de los colores, el diseno y la experiencia.</p>
+
+    <p>Una marca no es un logo.  
+    Es lo que siente tu cliente despues de verte.</p>
+
+    <p>Da nueva vida a tu negocio.  
+    Renueva tu lenguaje visual.  
+    Haz que tu marca hable por ti, no t? por ella.  
+    Deja que la interfaz venda.  
+    Deja que el sistema funcione.  
+    Deja que tu cliente se convenza solo, y compre.</p>
+
+    <p>El brillo digital no es una moda.  
+    Es la base de una venta fluida  
+    y del crecimiento real.</p>
+    <div class="sticky-header"></div>
+  <div class="form-intro">
+    <h2>Dale! Vamos a hablar de tu negocio.</h2>
+  </div>
+  <div class="progress-wrapper">
+  <div class="progress-text" id="progress-text">0% completado</div>
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+</div>
+
+
+
+<!-- Step 1 -->
+<div class="form-section">
+  <h3>Que tipo de negocio tienes?</h3>
+  <div class="form-grid">
+    <label><input type="checkbox" name="negocio" value="restaurante"> Restaurante</label>
+    <label><input type="checkbox" name="negocio" value="hotel"> Hotel</label>
+    <label><input type="checkbox" name="negocio" value="gimnasio"> Gimnasio</label>
+    <label><input type="checkbox" name="negocio" value="cafe"> Cafe</label>
+    <label><input type="checkbox" name="negocio" value="tienda"> Comercio</label>
+    <label><input type="checkbox" name="negocio" value="peluqueria"> Peluqueria</label>
+    <label><input type="checkbox" name="negocio" value="lavanderia"> Lavanderia</label>
+    <label><input type="checkbox" name="negocio" value="clinica"> Clinica / Salud</label>
+    <label><input type="checkbox" name="negocio" value="agencia"> Agencia creativa</label>
+    <label><input type="checkbox" name="negocio" value="online"> Tienda online</label>
+    <label>
+      <input type="checkbox" id="otroCheckbox" name="negocio" value="otro"> Otro
+    </label>
+    <div id="otroInputWrapper" style="display:none; margin-top: 10px;">
+      <input type="text" name="negocio_otro" placeholder="Especifica tu negocio" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+    </div>
+  </div>
+</div>
+
+
+<!-- Step 2 -->
+<div class="form-section">
+  <h3>Que formas de pago te gustaria ofrecer?</h3>
+  <div class="form-grid">
+    <label><input type="checkbox" name="pago" value="tarjeta"> Tarjeta</label>
+    <label><input type="checkbox" name="pago" value="bizum"> Bizum</label>
+    <label><input type="checkbox" name="pago" value="paypal"> PayPal</label>
+    <label><input type="checkbox" name="pago" value="cripto"> Criptomonedas</label>
+    <label><input type="checkbox" name="pago" value="transferencia"> Transferencia</label>
+  </div>
+</div>
+
+<!-- Step 3 -->
+<div class="form-section">
+  <h3>Donde quieres promocionar tu negocio?</h3>
+  <div class="form-grid">
+    <label><input type="checkbox" name="ads" value="meta"> Meta Ads</label>
+    <label><input type="checkbox" name="ads" value="google"> Google Ads</label>
+    <label><input type="checkbox" name="ads" value="email"> Email marketing</label>
+    <label><input type="checkbox" name="ads" value="otros"> Otros</label>
+  </div>
+</div>
+
+
+<!-- Modal: Contrato de Oferta Publica -->
+<!-- Modal: Contrato de Oferta Publica -->
+<div id="modal-oferta" class="modal-oferta" style="display: none;">
+  <div class="modal-content" style="overflow-y: auto; max-height: 90vh; padding: 1rem;">
+    <button id="close-oferta" class="modal-close" style="position: absolute; top: 1rem; right: 1rem;">&times;</button>
+    <h2>Contrato de Oferta Publica</h2>
+    <p><strong>Version:</strong> 1.0 | <strong>Fecha de entrada en vigor:</strong> [dd/mm/aaaa]</p>
+
+    <h3>1. Objeto del Contrato</h3>
+    <p>El presente documento constituye una Oferta Publica con caracter vinculante, emitida por el titular de un sistema digital automatizado (en adelante, el Proveedor), y tiene como finalidad ofrecer acceso al uso de una estructura de conversion (embudo o funnel), la cual puede incluir formularios, paginas, flujos automatizados, integraciones con sistemas de pago, entre otros.</p>
+    <p>La aceptacion y el uso de esta estructura implica que el Usuario acepta de forma expresa todos los terminos aque establecidos.</p>
+
+    <h3>2. Garantia de Funcionalidad</h3>
+    <ul>
+      <li>El Proveedor garantiza que el embudo digital ha sido disenado, probado y activado en condiciones normales de funcionamiento.</li>
+      <li>La estructura se considera parte central de la identidad digital del Usuario, actuando como puente entre campanas y sistemas de pago.</li>
+      <li>Se garantiza el correcto funcionamiento de formularios, redirecciones, contenido, automatizaciones e integraciones externas (EmailJS, Telegram, Zapier, etc.).</li>
+      <li>Se garantiza la capacidad de aceptar pagos electronicos y transferirlos a la cuenta proporcionada por el Usuario (ej. PayPal), siempre que el sistema externo esta configurado y disponible.</li>
+      <li>No se garantiza volumen de ventas, trafico, conversion o exito comercial. La garantia es exclusivamente tecnica.</li>
+    </ul>
+
+    <h3>3. Condiciones de Uso</h3>
+    <ul>
+      <li>El Usuario puede utilizar el funnel dentro de los parametros tecnicos definidos.</li>
+      <li>El Proveedor podra suspender o modificar el acceso por uso indebido, razones tecnicas o contractuales.</li>
+      <li>El acceso puede ser gratuito, condicional o sujeto a acuerdos economicos.</li>
+    </ul>
+
+    <h3>4. Limitacion de Responsabilidad</h3>
+    <p><strong>El Proveedor no se hace responsable por:</strong></p>
+    <ul>
+      <li>Perdidas economicas o beneficios no obtenidos.</li>
+      <li>Fallos de terceros (PayPal, hosting, DNS, etc.).</li>
+      <li>Contenido ilegal o fraudulento anadido por el Usuario.</li>
+      <li>Obligaciones fiscales o legales del Usuario.</li>
+    </ul>
+
+    <h3>5. Propiedad Intelectual</h3>
+    <ul>
+      <li>Todo el contenido tecnico y visual es propiedad del Proveedor.</li>
+      <li>El Usuario obtiene solo un derecho de uso limitado, no exclusivo y no transferible.</li>
+    </ul>
+
+    <h3>6. Duracion y Terminacion</h3>
+    <ul>
+      <li>Este contrato entra en vigor con el primer uso del sistema.</li>
+      <li>Vigencia indefinida, salvo notificacion expresa.</li>
+      <li>El Proveedor podra interrumpir el acceso sin previo aviso.</li>
+    </ul>
+
+    <h3>7. Legislacion y Jurisdiccion</h3>
+    <p>Este contrato se rige por la legislacion espanola. En caso de disputa, las partes se someten a los tribunales del domicilio del Proveedor.</p>
+
+    <h3>8. Disposiciones Finales</h3>
+    <ul>
+      <li>Este contrato podra ser actualizado sin notificacion previa.</li>
+      <li>En caso de traduccion, prevalece la version en espanol.</li>
+    </ul>
+
+    
+
+    <hr style="margin: 2rem 0;">
+
+    <p><strong>Contacto legal:</strong> <a href="mailto:andrei@3dna.es">andrei@3dna.es</a></p>
+    <p><strong>Titular del sistema:</strong> Andrei Yafimenka</p>
+    <p><strong>NIF:</strong> Y9459881H</p>
+  </div>
+</div>
+
+
+
+
+
+
+
+<script>
+  
+
+ const phrases = [
+  "Diseno 3D de espacios comerciales",
+  "Restaurantes disenados para atraer y vender",
+  "Clubes deportivos con enfoque en experiencia y rendimiento",
+  "Diseno 3D para centros medicos y clinicas",
+  "Museos y galerias con narrativa espacial inmersiva",
+  "Visualizacion 3D para tomar decisiones seguras",
+  "Espacios que comunican marca y funcionalidad",
+  "Experiencias espaciales que convierten en ventas",
+  "Landing pages y pagos online integrados",
+  "El futuro de los espacios es 3D. Empieza hoy"
+];
+
+  let current = 0;
+  const el = document.getElementById("rotating-text");
+
+  if (el) {
+    setInterval(() => {
+      el.classList.add("fade-out");
+      setTimeout(() => {
+        current = (current + 1) % phrases.length;
+        el.textContent = phrases[current];
+        el.classList.remove("fade-out");
+      }, 600);
+    }, 3500);
+  }
+
+  // Rotating phrases for #sec2
+  const phrasesSec2 = [
+  "Panoramas 360 del gimnasio (antes de construir)",
+  "Zonas Instagrammables que atraen y venden",
+  "Escenarios de iluminacion: energia / relax / noche",
+  "Recorridos interactivos por salas y zonas premium",
+  "Diseno de flujo: entrada -> vestuarios -> maquinas",
+  "Visualizacion 3D de branding en el espacio",
+  "Showroom digital para inversores y socios"
+];
+
+
+  let currentSec2 = 0;
+  const elSec2 = document.getElementById("rotating-text-sec2");
+
+  if (elSec2) {
+    setInterval(() => {
+      elSec2.classList.add("fade-out");
+      setTimeout(() => {
+        currentSec2 = (currentSec2 + 1) % phrasesSec2.length;
+        elSec2.textContent = phrasesSec2[currentSec2];
+        elSec2.classList.remove("fade-out");
+      }, 600);
+    }, 3500);
+  }
+
+
+
+
+ document.addEventListener("DOMContentLoaded", () => {
+  const panel = document.getElementById('side-panel');
+  const closeBtn = document.getElementById('close-panel');
+  const backdrop = document.getElementById('panel-backdrop');
+
+  document.querySelectorAll('.open-panel').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      panel.classList.add('open');
+      backdrop.classList.add('visible');
+      document.body.classList.add('modal-open'); // lock body scroll
+    });
+  });
+
+  function closePanel() {
+    panel.classList.remove('open');
+    backdrop.classList.remove('visible');
+    document.body.classList.remove('modal-open'); // unlock body scroll
+  }
+
+  closeBtn.addEventListener('click', closePanel);
+  backdrop.addEventListener('click', closePanel);
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const banner = document.getElementById('cookie-banner');
+  const modal = document.getElementById('cookie-modal');
+  const overlay = document.getElementById('cookie-overlay');
+
+  const accept = document.getElementById('accept-cookies');
+  const config = document.getElementById('config-cookies');
+  const reject = document.getElementById('reject-cookies');
+
+  const save = document.getElementById('save-settings');
+  const cancel = document.getElementById('cancel-settings');
+
+  // Show banner if not decided yet
+  if (!localStorage.getItem('cookiesDecision')) {
+    banner.classList.add('show');
+  }
+
+  accept.onclick = () => {
+    localStorage.setItem('cookiesDecision', JSON.stringify({
+      necessary: true,
+      analytics: true,
+      ads: true
+    }));
+    banner.classList.remove('show');
+  };
+
+  reject.onclick = () => {
+    localStorage.setItem('cookiesDecision', JSON.stringify({
+      necessary: true,
+      analytics: false,
+      ads: false
+    }));
+    banner.classList.remove('show');
+  };
+
+  config.onclick = () => {
+    modal.classList.add('show');
+    overlay.classList.add('show');
+  };
+
+  cancel.onclick = () => {
+    modal.classList.remove('show');
+    overlay.classList.remove('show');
+  };
+
+  save.onclick = () => {
+    const analytics = document.getElementById('analytics-cookies').checked;
+    const ads = document.getElementById('ads-cookies').checked;
+
+    localStorage.setItem('cookiesDecision', JSON.stringify({
+      necessary: true,
+      analytics: analytics,
+      ads: ads
+    }));
+
+    modal.classList.remove('show');
+    overlay.classList.remove('show');
+    banner.classList.remove('show');
+  };
+});
+
+// Open cookies policy modal
+document.querySelectorAll('a[href="#politica-cookies"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('cookies-policy-modal').style.display = 'flex';
+  });
+});
+
+// Close cookies policy modal
+document.getElementById('close-policy-modal').addEventListener('click', () => {
+  document.getElementById('cookies-policy-modal').style.display = 'none';
+});
+
+
+
+
+
+function loadGoogleAnalytics() {
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-QGGREKNJDX';
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QGGREKNJDX');
+}
+
+// Load analytics only after consent
+document.addEventListener("DOMContentLoaded", () => {
+  const consent = JSON.parse(localStorage.getItem('cookiesDecision'));
+  if (consent && consent.analytics) {
+    loadGoogleAnalytics();
+  }
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const ofertaLinks = document.querySelectorAll('.open-oferta');
+  const modalOferta = document.getElementById('modal-oferta');
+  const closeOferta = document.getElementById('close-oferta');
+
+  ofertaLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      modalOferta.style.display = 'flex';
+    });
+  });
+
+  closeOferta.addEventListener('click', () => {
+    modalOferta.style.display = 'none';
+  });
+
+  // Close modal on backdrop click
+  modalOferta.addEventListener('click', (e) => {
+    if (e.target === modalOferta) {
+      modalOferta.style.display = 'none';
+    }
+  });
+});
+
+function updateStepProgress() {
+  const sections = document.querySelectorAll('.form-section');
+  let completed = 0;
+
+  sections.forEach(section => {
+    const checked = section.querySelectorAll('input[type="checkbox"]:checked').length;
+    if (checked > 0) completed++;
+  });
+
+  const percent = Math.round((completed / sections.length) * 100);
+  document.getElementById('progress-bar').style.width = `${percent}%`;
+  document.getElementById('progress-text').textContent = `${percent}% completado`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateStepProgress();
+
+  document.querySelectorAll('.form-section input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', updateStepProgress);
+  });
+});
+
+
+
+
+ </script>
+
+ <script>
+  const otroCheckbox = document.getElementById('otroCheckbox');
+  const otroInputWrapper = document.getElementById('otroInputWrapper');
+
+  otroCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+      otroInputWrapper.style.display = 'block';
+    } else {
+      otroInputWrapper.style.display = 'none';
+    }
+  });
+</script>
+
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const burger = document.getElementById("burger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileClose = document.getElementById("mobileClose");
+  const mobileBackdrop = document.getElementById("mobileBackdrop");
+
+  function openMobileMenu() {
+    document.body.classList.add("mobile-open");
+    burger?.setAttribute("aria-expanded", "true");
+    mobileMenu?.setAttribute("aria-hidden", "false");
+
+    // ????? ????? ???? -> ???? (? ???? ????????? ??? ??????????)
+    setTimeout(() => mobileClose?.focus(), 0);
+  }
+
+  function closeMobileMenu() {
+    // ??????? ??????? ????? ?? ????????? ????
+    burger?.focus();
+
+    document.body.classList.remove("mobile-open");
+    burger?.setAttribute("aria-expanded", "false");
+
+    // aria-hidden ?????? ???? ?????, ????? ????? ??? ?? ?????? ????
+    setTimeout(() => {
+      mobileMenu?.setAttribute("aria-hidden", "true");
+    }, 0);
+  }
+
+  burger?.addEventListener("click", openMobileMenu);
+  mobileClose?.addEventListener("click", closeMobileMenu);
+  mobileBackdrop?.addEventListener("click", closeMobileMenu);
+
+  document.querySelectorAll(".m-link").forEach(a => {
+    a.addEventListener("click", closeMobileMenu);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMobileMenu();
+  });
+});
+
+
+</script>
+
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const handle = document.querySelector(".pano-handle");
+  if (!handle) return;
+
+  let dragging = false;
+  let lastY = 0;
+
+  // Desktop
+  handle.addEventListener("mousedown", e => {
+    dragging = true;
+    lastY = e.clientY;
+    e.preventDefault();
+  });
+
+  window.addEventListener("mousemove", e => {
+    if (!dragging) return;
+    const dy = lastY - e.clientY;
+    window.scrollBy(0, dy);
+    lastY = e.clientY;
+  });
+
+  window.addEventListener("mouseup", () => {
+    dragging = false;
+  });
+
+  // Mobile
+  handle.addEventListener("touchstart", e => {
+    dragging = true;
+    lastY = e.touches[0].clientY;
+  }, { passive:true });
+
+  handle.addEventListener("touchmove", e => {
+    if (!dragging) return;
+    const y = e.touches[0].clientY;
+    const dy = lastY - y;
+    window.scrollBy(0, dy);
+    lastY = y;
+  }, { passive:true });
+
+  handle.addEventListener("touchend", () => {
+    dragging = false;
+  });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // ????? ????? -> ??????, ????? -> ?????? (sec3-right ???? ???? ????????)
+  const videos = document.querySelectorAll('video.video-bg, video.side-video');
+
+
+  function enable(video){
+    video.classList.add('video-hover-active');
+    video.play().catch(()=>{});
+  }
+
+  function disable(video){
+    video.classList.remove('video-hover-active');
+    video.pause();
+    try { video.currentTime = 0; } catch(e){}
+  }
+
+  videos.forEach(video => {
+    // ????????? ????????? -> ??????????? -> ?/?
+    disable(video);
+
+    const parent = video.parentElement;
+
+    // Desktop hover
+    parent.addEventListener('mouseenter', () => enable(video));
+    parent.addEventListener('mouseleave', () => disable(video));
+
+    // Mobile touch
+    parent.addEventListener('touchstart', () => enable(video), { passive:true });
+    parent.addEventListener('touchend',   () => disable(video), { passive:true });
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const el = document.getElementById("pano-right");
+  if (!el || typeof pannellum === "undefined") {
+    console.error("Pannellum not loaded or #pano-right missing");
+    return;
+  }
+
+  const viewer = pannellum.viewer("pano-right", {
+    default: {
+      firstScene: "s1",
+      sceneFadeDuration: 800,
+      autoLoad: true,
+      showControls: false,
+      mouseZoom: false
+    },
+    scenes: {
+      s1: { type: "equirectangular", panorama: "img/pano4.jpg", autoRotate: -8 },
+      s2: { type: "equirectangular", panorama: "img/pano3.jpg", autoRotate: -8 },
+      s3: { type: "equirectangular", panorama: "img/pano1.jpg", autoRotate: -8 },
+      s4: { type: "equirectangular", panorama: "img/pano2.jpg", autoRotate: -8 }
+    }
+  });
+
+  // ?????? ????
+  document.querySelectorAll(".pano-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sceneId = btn.getAttribute("data-scene");
+      if (sceneId) viewer.loadScene(sceneId);
+
+      // ????????? ???????? ??????
+      document.querySelectorAll(".pano-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+
+  // ???????? ?????? ?? ?????????
+  const firstBtn = document.querySelector('.pano-btn[data-scene="s1"]');
+  if (firstBtn) firstBtn.classList.add("active");
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const v = document.querySelector("#sec3 .sec2-right video");
+  if (!v) return;
+
+  // ????? ??????? (?? ?????? ???? ??????/????? ??????)
+  v.classList.add("video-hover-active");
+
+  // ??????? ?????????
+  v.muted = true;
+  v.playsInline = true;
+
+  const tryPlay = () => v.play().catch(()=>{});
+
+  // ?????? ??????? ????????? ???????? -> ????????? ????? ??????? ?????
+  tryPlay();
+  ["touchstart","click","scroll"].forEach(evt =>
+    window.addEventListener(evt, tryPlay, { once:true, passive:true })
+  );
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const dd = document.getElementById("showroomDropdown");
+  if (!dd) return;
+
+  const parent = dd.querySelector(".nav-parent");
+  const menu = dd.querySelector(".nav-menu");
+  if (!parent || !menu) return;
+
+  // ???????/??????? ?? ????? ?? Showroom
+  parent.addEventListener("click", (e) => {
+    e.preventDefault();      // ?? ?????: ?? ??????? ?? #sec2
+    e.stopPropagation();
+    dd.classList.toggle("open");
+  });
+
+  // ??????? ??? ????? ??? ????
+  document.addEventListener("click", () => {
+    dd.classList.remove("open");
+  });
+
+  // ????? ???? ?????? ???? ?? ???????? ?? ????????
+  menu.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dd.classList.remove("open"); // ????????? -> ???? ??????? ?? ??????
+  });
+
+  // ESC ?????????
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") dd.classList.remove("open");
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const scroller = document.querySelector("#reviews .reviews-marquee");
+  const track = document.querySelector("#reviews .reviews-track");
+  if (!scroller || !track) return;
+
+  const DRAG_SENSITIVITY = 0.45;
+  const AUTO_SPEED_PX_PER_SEC = 18;
+  const AUTO_RESUME_DELAY_MS = 1200;
+
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let virtualScrollLeft = 0;
+  let lastInteractionAt = 0;
+  let lastTs = performance.now();
+
+  if (!track.dataset.looped) {
+    track.innerHTML = track.innerHTML + track.innerHTML;
+    track.dataset.looped = "1";
+  }
+
+  const halfWidth = () => track.scrollWidth / 2;
+
+  const normalizeScroll = () => {
+    const hw = halfWidth();
+    if (!hw) return;
+    if (virtualScrollLeft >= hw) virtualScrollLeft -= hw;
+    if (virtualScrollLeft < 0) virtualScrollLeft += hw;
+    scroller.scrollLeft = virtualScrollLeft;
+  };
+
+  const startDrag = (pageX) => {
+    isDragging = true;
+    lastInteractionAt = Date.now();
+    startX = pageX;
+    startScrollLeft = scroller.scrollLeft;
+    virtualScrollLeft = scroller.scrollLeft;
+    scroller.classList.add("is-dragging");
+  };
+
+  const moveDrag = (pageX) => {
+    if (!isDragging) return;
+    const dx = pageX - startX;
+    virtualScrollLeft = startScrollLeft - (dx * DRAG_SENSITIVITY);
+    scroller.scrollLeft = virtualScrollLeft;
+    normalizeScroll();
+  };
+
+  const stopDrag = () => {
+    isDragging = false;
+    lastInteractionAt = Date.now();
+    scroller.classList.remove("is-dragging");
+  };
+
+  const tick = (ts) => {
+    const dt = (ts - lastTs) / 1000;
+    lastTs = ts;
+
+    const autoAllowed = !isDragging && (Date.now() - lastInteractionAt > AUTO_RESUME_DELAY_MS);
+    if (autoAllowed) {
+      virtualScrollLeft += AUTO_SPEED_PX_PER_SEC * dt;
+      scroller.scrollLeft = virtualScrollLeft;
+      normalizeScroll();
+    }
+
+    requestAnimationFrame(tick);
+  };
+
+  requestAnimationFrame(tick);
+
+  scroller.addEventListener("mousedown", (e) => {
+    startDrag(e.pageX);
+    e.preventDefault();
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    moveDrag(e.pageX);
+  });
+
+  window.addEventListener("mouseup", stopDrag);
+
+  scroller.addEventListener("touchstart", (e) => {
+    startDrag(e.touches[0].pageX);
+  }, { passive: true });
+
+  scroller.addEventListener("touchmove", (e) => {
+    moveDrag(e.touches[0].pageX);
+  }, { passive: true });
+
+  scroller.addEventListener("touchend", stopDrag, { passive: true });
+
+  virtualScrollLeft = scroller.scrollLeft;
+  normalizeScroll();
+});
+</script>
+
+
+</body>
+</html>
+
+
+ 
+ 
+
+
+
+

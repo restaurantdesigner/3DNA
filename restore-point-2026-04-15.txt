@@ -1,0 +1,8 @@
+This is a restore point for the current state of the project (index.html, assets/js/main.js, and related files) as of April 15, 2026.
+
+To restore, copy these files back into the project.
+
+- index.html: current user-edited version
+- assets/js/main.js: current user-edited version
+
+Backup created automatically by request.
