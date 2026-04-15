@@ -740,6 +740,138 @@ body.modal-open{
   color: #fff;
 }
 
+/* =========================
+   ABOUT / PRESENTATION
+   ========================= */
+.about-section{
+  background: #fff;
+  color: #1a1a1a;
+  overflow: hidden;          /* clip sticky child */
+}
+
+.about-wrap{
+  display: grid;
+  grid-template-columns: 42% 1fr;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 80px var(--page-pad);
+  gap: 56px;
+  align-items: start;
+}
+
+/* ---------- left: video stays in place ---------- */
+.about-media{
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  align-self: stretch;
+}
+
+.about-media video{
+  position: sticky;
+  top: 100px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 6px;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: filter .5s ease;
+}
+
+.about-media video.video-hover-active{
+  filter: grayscale(0);
+}
+
+/* ---------- right: scrollable text ---------- */
+.about-body{
+  padding: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+}
+
+.about-body .about-heading{
+  font-family: var(--ff-heading, 'Sora', sans-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 20px;
+  color: #111;
+}
+
+.about-body h3{
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 32px 0 10px;
+  color: #111;
+}
+
+.about-body p{
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #444;
+  margin: 0 0 16px;
+}
+
+.about-body strong{
+  color: #111;
+}
+
+.about-body .cta-button{
+  margin-top: 24px;
+}
+
+@media (max-width: 767px){
+  .about-section{
+    overflow: visible;
+  }
+
+  .about-wrap{
+    grid-template-columns: 1fr;
+    padding: 32px 16px;
+    gap: 24px;
+  }
+
+  .about-media{
+    position: relative;
+    top: auto;
+    align-self: auto;
+    height: 50vh;
+    border-radius: 10px;
+  }
+
+  .about-media video{
+    position: relative;
+    top: auto;
+    height: 100%;
+    border-radius: 10px;
+  }
+
+  .about-body{
+    align-self: auto;
+    padding: 0;
+  }
+
+  .about-body .about-heading{
+    font-size: 1.5rem;
+    margin: 0 0 14px;
+  }
+
+  .about-body h3{
+    font-size: 1rem;
+    margin: 22px 0 8px;
+  }
+
+  .about-body p{
+    font-size: .93rem;
+    line-height: 1.65;
+  }
+}
+
+
 .sec2-grid{
   height: 100vh;
   width: 100%;
@@ -1538,72 +1670,54 @@ body.modal-open{
 
   @media (max-width: 767px){
 /* 2) логотип не должен съедать половину экрана */
- 
 
-
-
+  #hero .logo-container{
+    margin-top: 80px;
+    padding-top: 0;
+  }
 
   /* 4) заголовок/подзаголовок чуть компактнее */
   #hero .hero-title{
-    font-size: clamp(28px, 8vw, 38px);
-    line-height: 1.05;
+    font-size: clamp(22px, 7vw, 32px);
+    line-height: 1.1;
     max-width: 20ch;
   }
 
   #hero .hero-subtitle{
-    font-size: 14px;
-    margin-bottom: 16px;
+    font-size: 13px;
+    margin-bottom: 12px;
     max-width: 32ch;
     text-transform: none;
   }
 
   /* 5) кнопка компактнее */
   #hero .cta-button{
-    font-size: 14px;
-    padding: 12px 18px;
+    font-size: 13px;
+    padding: 10px 16px;
     border-radius: 999px;
+    margin-top: 10px;
   }
 
- 
+  #hero .hero-copy{
+    padding-bottom: 0;
+  }
+
+  #hero .footnote-block{
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin-top: 16px;
+  }
+
+  #hero .align-container{
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  #hero .footnote{
+    font-size: .55rem;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  #hero .hero-title{
-    font-size: clamp(28px, 8vw, 38px);
-    line-height: 1.05;
-    max-width: 20ch;
-  }
-
-  #hero .hero-subtitle{
-    font-size: 14px;
-    margin-bottom: 16px;
-    max-width: 32ch;
-    text-transform: none;
-  }
-
-  #hero .cta-button{
-    font-size: 14px;
-    padding: 12px 18px;
-    border-radius: 999px;
-  }
-
-
-/* =========================================================
-   HERO — FINAL, CLEAN, MOBILE-SAFE
-   Fixes: logo drifting up on mobile, vh jumps, safe-area
-   ========================================================= */
 
 /* Section size — stable on mobile */
 #hero{
@@ -1704,7 +1818,43 @@ margin-top: 120px;
 
 @media (max-width: 767px){
   #hero .logo-container{
-    margin-top: 120px; /* подбираешь руками */
+    margin-top: 80px;
+  }
+
+  #hero .hero-copy{
+    padding-bottom: 0;
+  }
+
+  #hero .footnote-block{
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin-top: 14px;
+  }
+
+  #hero .align-container{
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+
+  #hero .hero-title{
+    font-size: clamp(22px, 7vw, 30px);
+    line-height: 1.1;
+  }
+
+  #hero .hero-subtitle{
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  #hero .cta-button{
+    font-size: 13px;
+    padding: 10px 16px;
+    margin-top: 8px;
+  }
+
+  #hero .footnote{
+    font-size: .52rem;
   }
 }
 

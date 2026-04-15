@@ -1,6 +1,9 @@
-// Вставка хедера (sharedHeaderHtml) как было в index.html
-document.addEventListener("DOMContentLoaded", () => {
+// =============================================
+// 1. HEADER INJECTION (runs immediately)
+// =============================================
+(() => {
   const isNestedDetailPage = /\/(?:healthcare|packages)\/[^/]+\.html$/i.test(window.location.pathname);
+
   const fixRelativePaths = (root, prefix) => {
     const skip = /^(?:[a-z]+:|#|\/\/)/i;
     root.querySelectorAll("[href], [src]").forEach((node) => {
@@ -51,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="nav-dropdown" id="showroomDropdown">
         <a href="#sec2" class="nav-parent" aria-haspopup="true" aria-expanded="false">
-          Showroom <span class="nav-arrow" aria-hidden="true">▼</span>
+          Showroom <span class="nav-arrow" aria-hidden="true">&#9660;</span>
         </a>
 
         <div class="nav-menu" role="menu" aria-label="Showroom submenu">
@@ -81,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <div class="mobile-menu-inner">
     <div class="mobile-menu-head">
       <div class="mobile-menu-title">MENU</div>
-      <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">×</button>
+      <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">\u00d7</button>
     </div>
 
     <a href="#hero" class="m-link">Inicio</a>
@@ -102,441 +105,439 @@ document.addEventListener("DOMContentLoaded", () => {
   if (isNestedDetailPage) {
     fixRelativePaths(host, "../");
   }
-});
-// Cookies
-    document.addEventListener("DOMContentLoaded", () => {
-      const banner = document.getElementById('cookie-banner');
-      const modal = document.getElementById('cookie-modal');
-      const overlay = document.getElementById('cookie-overlay');
-
-      const accept = document.getElementById('accept-cookies');
-      const config = document.getElementById('config-cookies');
-      const reject = document.getElementById('reject-cookies');
-
-      const save = document.getElementById('save-settings');
-      const cancel = document.getElementById('cancel-settings');
-
-      if (!localStorage.getItem('cookiesDecision')) {
-        banner.classList.add('show');
-      }
-
-      accept.onclick = () => {
-        localStorage.setItem('cookiesDecision', JSON.stringify({ necessary:true, analytics:true, ads:true }));
-        banner.classList.remove('show');
-      };
-
-      reject.onclick = () => {
-        localStorage.setItem('cookiesDecision', JSON.stringify({ necessary:true, analytics:false, ads:false }));
-        banner.classList.remove('show');
-      };
-
-      config.onclick = () => {
-        modal.classList.add('show');
-        overlay.classList.add('show');
-      };
-
-      cancel.onclick = () => {
-        modal.classList.remove('show');
-        overlay.classList.remove('show');
-      };
-
-      save.onclick = () => {
-        const analytics = document.getElementById('analytics-cookies').checked;
-        const ads = document.getElementById('ads-cookies').checked;
-
-        localStorage.setItem('cookiesDecision', JSON.stringify({ necessary:true, analytics, ads }));
-        modal.classList.remove('show');
-        overlay.classList.remove('show');
-        banner.classList.remove('show');
-      };
-    });
-
-    // Mobile menu
-    document.addEventListener("DOMContentLoaded", () => {
-      const burger = document.getElementById("burger");
-      const mobileMenu = document.getElementById("mobileMenu");
-      const mobileClose = document.getElementById("mobileClose");
-      const mobileBackdrop = document.getElementById("mobileBackdrop");
-
-      function openMobileMenu() {
-        document.body.classList.add("mobile-open");
-        burger.setAttribute("aria-expanded", "true");
-        mobileMenu.setAttribute("aria-hidden", "false");
-        setTimeout(() => mobileClose.focus(), 0);
-      }
-
-      function closeMobileMenu() {
-        burger.focus();
-        document.body.classList.remove("mobile-open");
-        burger.setAttribute("aria-expanded", "false");
-        setTimeout(() => mobileMenu.setAttribute("aria-hidden", "true"), 0);
-      }
-
-      burger.addEventListener("click", openMobileMenu);
-      mobileClose.addEventListener("click", closeMobileMenu);
-      mobileBackdrop.addEventListener("click", closeMobileMenu);
-
-      document.querySelectorAll(".m-link").forEach(a => {
-        a.addEventListener("click", closeMobileMenu);
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeMobileMenu();
-      });
-    });
-
-// HERO hover: color + play/pause (desktop only)
-document.addEventListener("DOMContentLoaded", () => {
-  const topbar = document.getElementById("topbar");
-  if (topbar) {
-    const syncTopbarState = () => {
-      topbar.classList.toggle("is-scrolled", window.scrollY > 24);
-    };
-    syncTopbarState();
-    window.addEventListener("scroll", syncTopbarState, { passive: true });
-  }
-
-  const hero = document.getElementById("hero");
-  const video = hero?.querySelector(".video-bg");
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-  if (!hero || !video || !canHover) return;
-
-  hero.addEventListener("mouseenter", () => {
-    hero.classList.add("is-hovered");
-    video.play().catch(()=>{});
-  });
-
-  hero.addEventListener("mouseleave", () => {
-    hero.classList.remove("is-hovered");
-    video.pause();
-  });
-});
+})();
 
 
-// Desktop hover: sec2 videos отдельно (контейнер → play/pause + color)
-document.addEventListener("DOMContentLoaded", () => {
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  if (!canHover) return;
-
-  const blocks = [
-    { wrap: document.querySelector("#sec2 .sec2-left"),  vid: document.querySelector("#sec2 .sec2-left video") },
-    { wrap: document.querySelector("#sec2 .sec2-center"), vid: document.querySelector("#sec2 .sec2-center video") }
-  ].filter(x => x.wrap && x.vid);
-
-  // старт: все видео в паузе
-  blocks.forEach(({vid}) => { try { vid.pause(); } catch(e){} });
-
-  blocks.forEach(({wrap, vid}) => {
-    wrap.addEventListener("mouseenter", () => {
-      vid.classList.add("is-hovered");
-      vid.play().catch(()=>{});
-    });
-
-    wrap.addEventListener("mouseleave", () => {
-      vid.classList.remove("is-hovered");
-      vid.pause();
-    });
-  });
-});
-
-
-
-
-
-
-
-// Rotating text (hero + sec2)
-function startRotator(elId, list, interval = 3500, fadeMs = 600) {
-  const el = document.getElementById(elId);
-  if (!el) return;
-
-  let i = 0;
-  setInterval(() => {
-    el.classList.add("fade-out");
-    setTimeout(() => {
-      i = (i + 1) % list.length;
-      el.textContent = list[i];
-      el.classList.remove("fade-out");
-    }, fadeMs);
-  }, interval);
-}
-
-// фразы для HERO
-startRotator("rotating-text", [
-  "Diseño 3D de espacios comerciales",
-  "Restaurantes diseñados para atraer y vender",
+// =============================================
+// 2. ROTATING TEXT (hero + sec2)
+// =============================================
+const phrases = [
+  "Diseno 3D de espacios comerciales",
+  "Restaurantes disenados para atraer y vender",
   "Clubes deportivos con enfoque en experiencia y rendimiento",
-  "Diseño 3D para centros médicos y clínicas",
-  "Museos y galerías con narrativa espacial inmersiva",
-  "Visualización 3D para tomar decisiones seguras",
+  "Diseno 3D para centros medicos y clinicas",
+  "Museos y galerias con narrativa espacial inmersiva",
+  "Visualizacion 3D para tomar decisiones seguras",
   "Espacios que comunican marca y funcionalidad",
   "Experiencias espaciales que convierten en ventas",
   "Landing pages y pagos online integrados",
   "El futuro de los espacios es 3D. Empieza hoy"
-]);
+];
 
-// фразы для SEC2 (можешь любые)
-startRotator("rotating-text-sec2", [
-  "Visualización 3D para captar clientes nuevos",
-  "Recorridos inmersivos antes de construir",
-  "Diseño que vende membresías desde la primera visita",
-  "Showroom 3D para decisiones rápidas"
-], 3200);
+let current = 0;
+const el = document.getElementById("rotating-text");
+
+if (el) {
+  setInterval(() => {
+    el.classList.add("fade-out");
+    setTimeout(() => {
+      current = (current + 1) % phrases.length;
+      el.textContent = phrases[current];
+      el.classList.remove("fade-out");
+    }, 600);
+  }, 3500);
+}
+
+const phrasesSec2 = [
+  "Panoramas 360 del gimnasio (antes de construir)",
+  "Zonas Instagrammables que atraen y venden",
+  "Escenarios de iluminacion: energia / relax / noche",
+  "Recorridos interactivos por salas y zonas premium",
+  "Diseno de flujo: entrada -> vestuarios -> maquinas",
+  "Visualizacion 3D de branding en el espacio",
+  "Showroom digital para inversores y socios"
+];
+
+let currentSec2 = 0;
+const elSec2 = document.getElementById("rotating-text-sec2");
+
+if (elSec2) {
+  setInterval(() => {
+    elSec2.classList.add("fade-out");
+    setTimeout(() => {
+      currentSec2 = (currentSec2 + 1) % phrasesSec2.length;
+      elSec2.textContent = phrasesSec2[currentSec2];
+      elSec2.classList.remove("fade-out");
+    }, 600);
+  }, 3500);
+}
 
 
-
-
-
-
+// =============================================
+// 3. SIDE PANEL (open/close)
+// =============================================
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("lead-form");
-  if (!form) return;
+  const panel = document.getElementById('side-panel');
+  const closeBtn = document.getElementById('close-panel');
+  const backdrop = document.getElementById('panel-backdrop');
 
-  function getCheckedValues(name){
-    return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
-  }
-
-  function updateProgress(){
-    const requiredFilled =
-      (form.nombre?.value || "").trim() &&
-      (form.email?.value || "").trim() &&
-      (form.whatsapp?.value || "").trim() &&
-      document.getElementById("gdprConsent")?.checked &&
-      document.getElementById("readConfirm")?.checked;
-
-    const hasNegocio = getCheckedValues("negocio").length > 0;
-    const hasServicios = getCheckedValues("servicios").length > 0;
-
-    const steps = [requiredFilled, hasNegocio, hasServicios];
-    const done = steps.filter(Boolean).length;
-    const percent = Math.round((done / steps.length) * 100);
-
-    const bar = document.getElementById("progress-bar");
-    const txt = document.getElementById("progress-text");
-    if (bar) bar.style.width = percent + "%";
-    if (txt) txt.textContent = `${percent}% completado`;
-  }
-
-  // ✅ Otro: negocio
-  const negocioOtroCheckbox = document.getElementById("negocioOtroCheckbox");
-  const negocioOtroWrapper  = document.getElementById("negocioOtroWrapper");
-  if (negocioOtroCheckbox && negocioOtroWrapper){
-    negocioOtroCheckbox.addEventListener("change", () => {
-      negocioOtroWrapper.style.display = negocioOtroCheckbox.checked ? "block" : "none";
-      if (!negocioOtroCheckbox.checked){
-        const inp = negocioOtroWrapper.querySelector('input[name="negocio_otro"]');
-        if (inp) inp.value = "";
-      }
-      updateProgress();
+  document.querySelectorAll('.open-panel').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      panel.classList.add('open');
+      backdrop.classList.add('visible');
+      document.body.classList.add('modal-open');
     });
+  });
+
+  function closePanel() {
+    panel.classList.remove('open');
+    backdrop.classList.remove('visible');
+    document.body.classList.remove('modal-open');
   }
 
-  // ✅ Otro: espacio
-  const espacioOtroCheckbox = document.getElementById("espacioOtroCheckbox");
-  const espacioOtroWrapper  = document.getElementById("espacioOtroWrapper");
-  if (espacioOtroCheckbox && espacioOtroWrapper){
-    espacioOtroCheckbox.addEventListener("change", () => {
-      espacioOtroWrapper.style.display = espacioOtroCheckbox.checked ? "block" : "none";
-      if (!espacioOtroCheckbox.checked){
-        const inp = espacioOtroWrapper.querySelector('input[name="espacio_otro"]');
-        if (inp) inp.value = "";
-      }
-      updateProgress();
-    });
-  }
-
-  // ✅ Otro: servicios
-  const serviciosOtroCheckbox = document.getElementById("serviciosOtroCheckbox");
-  const serviciosOtroWrapper  = document.getElementById("serviciosOtroWrapper");
-  if (serviciosOtroCheckbox && serviciosOtroWrapper){
-    serviciosOtroCheckbox.addEventListener("change", () => {
-      serviciosOtroWrapper.style.display = serviciosOtroCheckbox.checked ? "block" : "none";
-      if (!serviciosOtroCheckbox.checked){
-        const inp = serviciosOtroWrapper.querySelector('input[name="servicios_otro"]');
-        if (inp) inp.value = "";
-      }
-      updateProgress();
-    });
-  }
-
-  form.addEventListener("input", updateProgress);
-  form.addEventListener("change", updateProgress);
-  updateProgress();
+  closeBtn.addEventListener('click', closePanel);
+  backdrop.addEventListener('click', closePanel);
 });
 
 
+// =============================================
+// 4. COOKIES BANNER
+// =============================================
 document.addEventListener("DOMContentLoaded", () => {
-  // На мобилке панораму не грузим
-  if (window.matchMedia("(max-width: 767px)").matches) return;
+  const banner = document.getElementById('cookie-banner');
+  const modal = document.getElementById('cookie-modal');
+  const overlay = document.getElementById('cookie-overlay');
 
+  const accept = document.getElementById('accept-cookies');
+  const config = document.getElementById('config-cookies');
+  const reject = document.getElementById('reject-cookies');
+
+  const save = document.getElementById('save-settings');
+  const cancel = document.getElementById('cancel-settings');
+
+  if (!localStorage.getItem('cookiesDecision')) {
+    banner.classList.add('show');
+  }
+
+  accept.onclick = () => {
+    localStorage.setItem('cookiesDecision', JSON.stringify({
+      necessary: true, analytics: true, ads: true
+    }));
+    banner.classList.remove('show');
+  };
+
+  reject.onclick = () => {
+    localStorage.setItem('cookiesDecision', JSON.stringify({
+      necessary: true, analytics: false, ads: false
+    }));
+    banner.classList.remove('show');
+  };
+
+  config.onclick = () => {
+    modal.classList.add('show');
+    overlay.classList.add('show');
+  };
+
+  cancel.onclick = () => {
+    modal.classList.remove('show');
+    overlay.classList.remove('show');
+  };
+
+  save.onclick = () => {
+    const analytics = document.getElementById('analytics-cookies').checked;
+    const ads = document.getElementById('ads-cookies').checked;
+
+    localStorage.setItem('cookiesDecision', JSON.stringify({
+      necessary: true, analytics: analytics, ads: ads
+    }));
+
+    modal.classList.remove('show');
+    overlay.classList.remove('show');
+    banner.classList.remove('show');
+  };
+});
+
+
+// =============================================
+// 5. COOKIES POLICY MODAL
+// =============================================
+document.querySelectorAll('a[href="#politica-cookies"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('cookies-policy-modal').style.display = 'flex';
+  });
+});
+
+document.getElementById('close-policy-modal')?.addEventListener('click', () => {
+  document.getElementById('cookies-policy-modal').style.display = 'none';
+});
+
+
+// =============================================
+// 6. GOOGLE ANALYTICS (after consent)
+// =============================================
+function loadGoogleAnalytics() {
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-QGGREKNJDX';
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QGGREKNJDX');
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const consent = JSON.parse(localStorage.getItem('cookiesDecision'));
+  if (consent && consent.analytics) {
+    loadGoogleAnalytics();
+  }
+});
+
+
+// =============================================
+// 7. OFERTA MODAL
+// =============================================
+document.addEventListener('DOMContentLoaded', () => {
+  const ofertaLinks = document.querySelectorAll('.open-oferta');
+  const modalOferta = document.getElementById('modal-oferta');
+  const closeOferta = document.getElementById('close-oferta');
+
+  ofertaLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      modalOferta.style.display = 'flex';
+    });
+  });
+
+  closeOferta?.addEventListener('click', () => {
+    modalOferta.style.display = 'none';
+  });
+
+  modalOferta?.addEventListener('click', (e) => {
+    if (e.target === modalOferta) {
+      modalOferta.style.display = 'none';
+    }
+  });
+});
+
+
+// =============================================
+// 8. FORM PROGRESS BAR
+// =============================================
+function updateStepProgress() {
+  const sections = document.querySelectorAll('.form-section');
+  let completed = 0;
+
+  sections.forEach(section => {
+    const checked = section.querySelectorAll('input[type="checkbox"]:checked').length;
+    if (checked > 0) completed++;
+  });
+
+  const percent = Math.round((completed / sections.length) * 100);
+  const bar = document.getElementById('progress-bar');
+  const txt = document.getElementById('progress-text');
+  if (bar) bar.style.width = `${percent}%`;
+  if (txt) txt.textContent = `${percent}% completado`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateStepProgress();
+
+  document.querySelectorAll('.form-section input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', updateStepProgress);
+  });
+});
+
+
+// =============================================
+// 9. OTRO CHECKBOX TOGGLE
+// =============================================
+{
+  const otroCheckbox = document.getElementById('otroCheckbox');
+  const otroInputWrapper = document.getElementById('otroInputWrapper');
+
+  if (otroCheckbox && otroInputWrapper) {
+    otroCheckbox.addEventListener('change', function () {
+      otroInputWrapper.style.display = this.checked ? 'block' : 'none';
+    });
+  }
+}
+
+
+// =============================================
+// 10. MOBILE MENU (burger)
+// =============================================
+document.addEventListener("DOMContentLoaded", () => {
+  const burger = document.getElementById("burger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileClose = document.getElementById("mobileClose");
+  const mobileBackdrop = document.getElementById("mobileBackdrop");
+
+  function openMobileMenu() {
+    document.body.classList.add("mobile-open");
+    burger?.setAttribute("aria-expanded", "true");
+    mobileMenu?.setAttribute("aria-hidden", "false");
+    setTimeout(() => mobileClose?.focus(), 0);
+  }
+
+  function closeMobileMenu() {
+    burger?.focus();
+    document.body.classList.remove("mobile-open");
+    burger?.setAttribute("aria-expanded", "false");
+    setTimeout(() => {
+      mobileMenu?.setAttribute("aria-hidden", "true");
+    }, 0);
+  }
+
+  burger?.addEventListener("click", openMobileMenu);
+  mobileClose?.addEventListener("click", closeMobileMenu);
+  mobileBackdrop?.addEventListener("click", closeMobileMenu);
+
+  document.querySelectorAll(".m-link").forEach(a => {
+    a.addEventListener("click", closeMobileMenu);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMobileMenu();
+  });
+});
+
+
+// =============================================
+// 11. PANO HANDLE DRAG
+// =============================================
+document.addEventListener("DOMContentLoaded", () => {
+  const handle = document.querySelector(".pano-handle");
+  if (!handle) return;
+
+  let dragging = false;
+  let lastY = 0;
+
+  handle.addEventListener("mousedown", e => {
+    dragging = true;
+    lastY = e.clientY;
+    e.preventDefault();
+  });
+
+  window.addEventListener("mousemove", e => {
+    if (!dragging) return;
+    const dy = lastY - e.clientY;
+    window.scrollBy(0, dy);
+    lastY = e.clientY;
+  });
+
+  window.addEventListener("mouseup", () => { dragging = false; });
+
+  handle.addEventListener("touchstart", e => {
+    dragging = true;
+    lastY = e.touches[0].clientY;
+  }, { passive:true });
+
+  handle.addEventListener("touchmove", e => {
+    if (!dragging) return;
+    const y = e.touches[0].clientY;
+    const dy = lastY - y;
+    window.scrollBy(0, dy);
+    lastY = y;
+  }, { passive:true });
+
+  handle.addEventListener("touchend", () => { dragging = false; });
+});
+
+
+// =============================================
+// 12. VIDEO HOVER (enable/disable all videos)
+// =============================================
+document.addEventListener("DOMContentLoaded", () => {
+  const videos = document.querySelectorAll('video.video-bg, video.side-video');
+
+  function enable(video){
+    video.classList.add('video-hover-active');
+    if (!video.closest('.about-media')) video.play().catch(()=>{});
+  }
+
+  function disable(video){
+    video.classList.remove('video-hover-active');
+    if (!video.closest('.about-media')) {
+      video.pause();
+      try { video.currentTime = 0; } catch(e){}
+    }
+  }
+
+  videos.forEach(video => {
+    if (video.closest('.about-media')) {
+      video.play().catch(()=>{});
+    } else {
+      disable(video);
+    }
+    const parent = video.parentElement;
+
+    parent.addEventListener('mouseenter', () => enable(video));
+    parent.addEventListener('mouseleave', () => disable(video));
+
+    parent.addEventListener('touchstart', () => enable(video), { passive:true });
+    parent.addEventListener('touchend',   () => disable(video), { passive:true });
+  });
+});
+
+
+// =============================================
+// 13. PANNELLUM PANORAMA VIEWER
+// =============================================
+document.addEventListener("DOMContentLoaded", () => {
   const panoEl = document.getElementById("pano-right");
-  if (!panoEl || typeof pannellum === "undefined") return;
+  if (!panoEl || typeof pannellum === "undefined") {
+    console.error("Pannellum not loaded or #pano-right missing");
+    return;
+  }
 
   const viewer = pannellum.viewer("pano-right", {
     default: {
       firstScene: "s1",
+      sceneFadeDuration: 800,
       autoLoad: true,
       showControls: false,
-      sceneFadeDuration: 700,
-      autoRotate: 0.8,
-      autoRotateInactivityDelay: 3000
+      mouseZoom: false
     },
     scenes: {
-      s1: { type: "equirectangular", panorama: "img/pano1.jpg" },
-      s2: { type: "equirectangular", panorama: "img/pano2.jpg" },
-      s3: { type: "equirectangular", panorama: "img/pano3.jpg" },
-      s4: { type: "equirectangular", panorama: "img/pano4.jpg" }
+      s1: { type: "equirectangular", panorama: "img/pano4.jpg", autoRotate: -8 },
+      s2: { type: "equirectangular", panorama: "img/pano3.jpg", autoRotate: -8 },
+      s3: { type: "equirectangular", panorama: "img/pano1.jpg", autoRotate: -8 },
+      s4: { type: "equirectangular", panorama: "img/pano2.jpg", autoRotate: -8 }
     }
   });
 
   document.querySelectorAll(".pano-btn").forEach(btn => {
-    btn.addEventListener("click", () => viewer.loadScene(btn.dataset.scene));
+    btn.addEventListener("click", () => {
+      const sceneId = btn.getAttribute("data-scene");
+      if (sceneId) viewer.loadScene(sceneId);
+
+      document.querySelectorAll(".pano-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
   });
+
+  const firstBtn = document.querySelector('.pano-btn[data-scene="s1"]');
+  if (firstBtn) firstBtn.classList.add("active");
 });
 
+
+// =============================================
+// 14. SEC3 RIGHT VIDEO AUTOPLAY
+// =============================================
 document.addEventListener("DOMContentLoaded", () => {
-  const backdrop = document.getElementById("panel-backdrop");
-  const panel = document.getElementById("side-panel");
-  const closeBtn = document.getElementById("close-panel");
+  const v = document.querySelector("#sec3 .sec2-right video");
+  if (!v) return;
 
-  function openPanel(){
-    document.body.classList.add("panel-open");
-    panel?.setAttribute("aria-hidden","false");
-    backdrop?.setAttribute("aria-hidden","false");
-    document.documentElement.style.overflow = "hidden"; // чтобы фон не скроллился
-  }
-  function closePanel(){
-    document.body.classList.remove("panel-open");
-    panel?.setAttribute("aria-hidden","true");
-    backdrop?.setAttribute("aria-hidden","true");
-    document.documentElement.style.overflow = "";
-  }
+  v.classList.add("video-hover-active");
+  v.muted = true;
+  v.playsInline = true;
 
-  document.querySelectorAll(".open-panel").forEach(btn => {
-    btn.addEventListener("click", openPanel);
-  });
+  const tryPlay = () => v.play().catch(()=>{});
 
-  closeBtn?.addEventListener("click", closePanel);
-  backdrop?.addEventListener("click", closePanel);
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closePanel();
-  });
+  tryPlay();
+  ["touchstart","click","scroll"].forEach(evt =>
+    window.addEventListener(evt, tryPlay, { once:true, passive:true })
+  );
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("lead-form");
-  if (!form) return;
 
-  // всем label внутри form-grid, где есть checkbox — добавляем класс
-  form.querySelectorAll(".form-grid label").forEach(label => {
-    if (label.querySelector('input[type="checkbox"]')) {
-      label.classList.add("checkline");
-    }
-  });
-});
-
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-  const SUPABASE_URL = "https://pmzeozpcrpjrfoowwofe.supabase.co";
-  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtemVvenBjcnBqcmZvb3d3b2ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczOTU0MTEsImV4cCI6MjA4Mjk3MTQxMX0.auE0KvzZovJ0cZhzNkF1c_-2MgcujSAXlRVYf7sOBwI";
-
-  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-  const form = document.getElementById("lead-form");
-  const statusEl = document.getElementById("formStatus");
-  const submitBtn = document.getElementById("submitBtn");
-
-  function checkedValues(name){
-    return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
-  }
-
-  function val(name){
-    const el = form.querySelector(`[name="${name}"]`);
-    return (el?.value || "").trim();
-  }
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    statusEl.textContent = "";
-    submitBtn.disabled = true;
-
-    // 1) собираем данные (под твою форму)
-  const lead = {
-  source: "landing",
-  status: "new",
-
-  name: val("nombre"),
-  email: val("email"),
-  whatsapp: val("whatsapp"),
-  city: val("zona"),
-  link: val("link"),
-
-  consent_gdpr: document.getElementById("gdprConsent")?.checked ?? false,
-  consent_read: document.getElementById("readConfirm")?.checked ?? false,
-
-  // ✅ ВОТ ЭТО ЗАПОЛНИТ КОЛОНКИ text[]
-  negocio: checkedValues("negocio"),
-  espacio: checkedValues("espacio"),
-  objetivo: checkedValues("objetivo"),
-  servicios: checkedValues("servicios"),
-  pago: checkedValues("pago"),
-  ads: checkedValues("ads"),
-  estado: checkedValues("estado"),
-
-  // ✅ поля "Otro"
-  negocio_otro: val("negocio_otro"),
-  espacio_otro: val("espacio_otro"),
-  servicios_otro: val("servicios_otro"),
-
-  // ✅ проект
-  metros: val("metros"),
-  zonas: val("zonas"),
-  plazo: val("plazo"),
-  presupuesto: val("presupuesto"),
-  comentario: (form.querySelector(`[name="comentario"]`)?.value || "").trim(),
-
-  // ✅ при желании оставь полный JSON
-  payload: {
-    page_url: location.href,
-    user_agent: navigator.userAgent
-  }
-};
-
-
-    // 2) минимальная валидация (чтобы не писать мусор)
-    if (!lead.name || !lead.email || !lead.whatsapp) {
-      statusEl.textContent = "⚠️ Rellena nombre, email y WhatsApp.";
-      submitBtn.disabled = false;
-      return;
-    }
-    if (!lead.consent_gdpr || !lead.consent_read) {
-      statusEl.textContent = "⚠️ Debes aceptar GDPR y confirmar lectura.";
-      submitBtn.disabled = false;
-      return;
-    }
-
-    // 3) INSERT в Supabase
-    const { error } = await supabase.from("leads").insert([lead]);
-
-    if (error) {
-      console.error(error);
-      statusEl.textContent = "❌ Error guardando en la base de datos. Reintenta.";
-      submitBtn.disabled = false;
-      return;
-    }
-
-    statusEl.textContent = "✅ Enviado. ¡Gracias!";
-
-    // 4) (опционально) открыть WhatsApp, если хочешь
-    // const msg = `Hola! Soy ${lead.name}. Mi email: ${lead.email}.`;
-    // window.open(`https://wa.me/34722878642?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
-
-    form.reset();
-    submitBtn.disabled = false;
-  });
-
+// =============================================
+// 15. SHOWROOM DROPDOWN TOGGLE
+// =============================================
 document.addEventListener("DOMContentLoaded", () => {
   const dd = document.getElementById("showroomDropdown");
   if (!dd) return;
@@ -545,171 +546,118 @@ document.addEventListener("DOMContentLoaded", () => {
   const menu = dd.querySelector(".nav-menu");
   if (!parent || !menu) return;
 
-  // ✅ Включаем клик-тоггл ТОЛЬКО на тач/мобилках
-  const isTouch = window.matchMedia("(hover: none) or (pointer: coarse)").matches;
-
-  function setOpen(state){
-    dd.classList.toggle("open", state);
-    parent.setAttribute("aria-expanded", state ? "true" : "false");
-  }
-
-  // На десктопе — hover, клик ведёт по ссылке как обычно
-  if (!isTouch) {
-    setOpen(false);
-    return;
-  }
-
-  // На мобилке — клик открывает/закрывает (и НЕ прыгает к #sec2)
   parent.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setOpen(!dd.classList.contains("open"));
+    dd.classList.toggle("open");
   });
 
-  // Клик вне — закрыть
-  document.addEventListener("click", () => setOpen(false));
+  document.addEventListener("click", () => {
+    dd.classList.remove("open");
+  });
 
-  // Клик по пункту меню — закрыть (и перейти по ссылке)
   menu.addEventListener("click", (e) => {
     e.stopPropagation();
-    setOpen(false);
+    dd.classList.remove("open");
   });
 
-  // Esc — закрыть
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setOpen(false);
-  });
-
-  // Если повернули экран/ресайз — пересчитать режим
-  window.addEventListener("resize", () => {
-    const nowTouch = window.matchMedia("(hover: none) or (pointer: coarse)").matches;
-    if (!nowTouch) setOpen(false);
+    if (e.key === "Escape") dd.classList.remove("open");
   });
 });
 
+
+// =============================================
+// 16. REVIEWS MARQUEE (auto-scroll + drag)
+// =============================================
 document.addEventListener("DOMContentLoaded", () => {
-  const marquee = document.querySelector("#reviews .reviews-marquee");
-  const track   = document.querySelector("#reviews .reviews-track");
-  if (!marquee || !track) return;
+  const scroller = document.querySelector("#reviews .reviews-marquee");
+  const track = document.querySelector("#reviews .reviews-track");
+  if (!scroller || !track) return;
 
-  // 1) ДЕЛАЕМ БЕСШОВНЫЙ ЛУП АВТОМАТИЧЕСКИ:
-  // если ты не добавил дубль вручную — мы продублируем сами.
-  // (Если дубль уже есть — всё равно норм, но лучше оставить только один набор в HTML.)
-  const originalHTML = track.innerHTML.trim();
-  if (!track.dataset.looped) {
-    track.innerHTML = originalHTML + originalHTML;
-    track.dataset.looped = "1";
-  }
-
-  // 2) НАСТРОЙКИ АВТОПРОКРУТКИ
-  const SPEED_PX_PER_SEC = 22;     // скорость “медленно едет”
-  const PAUSE_AFTER_DRAG_MS = 900; // пауза после ручного вмешательства
+  const DRAG_SENSITIVITY = 0.45;
+  const AUTO_SPEED_PX_PER_SEC = 18;
+  const AUTO_RESUME_DELAY_MS = 1200;
 
   let isDragging = false;
   let startX = 0;
   let startScrollLeft = 0;
-  let lastUserActionAt = 0;
+  let virtualScrollLeft = 0;
+  let lastInteractionAt = 0;
+  let lastTs = performance.now();
 
-  // Для requestAnimationFrame
-  let lastT = performance.now();
-
-  // Половина трека = длина одного набора карточек
-  function getHalfWidth() {
-    return track.scrollWidth / 2;
+  if (!track.dataset.looped) {
+    track.innerHTML = track.innerHTML + track.innerHTML;
+    track.dataset.looped = "1";
   }
 
-  // держим scrollLeft внутри [0 .. halfWidth)
-  function normalizeScroll() {
-    const half = getHalfWidth();
-    if (half <= 0) return;
+  const halfWidth = () => track.scrollWidth / 2;
 
-    // если ушли вправо за половину — вернём назад на half
-    if (marquee.scrollLeft >= half) {
-      marquee.scrollLeft -= half;
-    }
-    // если ушли влево — добавим half
-    if (marquee.scrollLeft < 0) {
-      marquee.scrollLeft += half;
-    }
-  }
+  const normalizeScroll = () => {
+    const hw = halfWidth();
+    if (!hw) return;
+    if (virtualScrollLeft >= hw) virtualScrollLeft -= hw;
+    if (virtualScrollLeft < 0) virtualScrollLeft += hw;
+    scroller.scrollLeft = virtualScrollLeft;
+  };
 
-  // 3) AUTO LOOP
-  function tick(t) {
-    const dt = (t - lastT) / 1000;
-    lastT = t;
+  const startDrag = (pageX) => {
+    isDragging = true;
+    lastInteractionAt = Date.now();
+    startX = pageX;
+    startScrollLeft = scroller.scrollLeft;
+    virtualScrollLeft = scroller.scrollLeft;
+    scroller.classList.add("is-dragging");
+  };
 
-    const now = Date.now();
-    const canAuto = !isDragging && (now - lastUserActionAt > PAUSE_AFTER_DRAG_MS);
+  const moveDrag = (pageX) => {
+    if (!isDragging) return;
+    const dx = pageX - startX;
+    virtualScrollLeft = startScrollLeft - (dx * DRAG_SENSITIVITY);
+    scroller.scrollLeft = virtualScrollLeft;
+    normalizeScroll();
+  };
 
-    if (canAuto) {
-      marquee.scrollLeft += SPEED_PX_PER_SEC * dt;
+  const stopDrag = () => {
+    isDragging = false;
+    lastInteractionAt = Date.now();
+    scroller.classList.remove("is-dragging");
+  };
+
+  const tick = (ts) => {
+    const dt = (ts - lastTs) / 1000;
+    lastTs = ts;
+
+    const autoAllowed = !isDragging && (Date.now() - lastInteractionAt > AUTO_RESUME_DELAY_MS);
+    if (autoAllowed) {
+      virtualScrollLeft += AUTO_SPEED_PX_PER_SEC * dt;
+      scroller.scrollLeft = virtualScrollLeft;
       normalizeScroll();
     }
 
     requestAnimationFrame(tick);
-  }
+  };
+
   requestAnimationFrame(tick);
 
-  // 4) DRAG (mouse)
-  marquee.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    lastUserActionAt = Date.now();
-    startX = e.pageX;
-    startScrollLeft = marquee.scrollLeft;
-    marquee.style.cursor = "grabbing";
+  scroller.addEventListener("mousedown", (e) => {
+    startDrag(e.pageX);
     e.preventDefault();
   });
 
-  window.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    const dx = (e.pageX - startX);
-    marquee.scrollLeft = startScrollLeft - dx;
-    normalizeScroll();
-  });
+  window.addEventListener("mousemove", (e) => { moveDrag(e.pageX); });
+  window.addEventListener("mouseup", stopDrag);
 
-  window.addEventListener("mouseup", () => {
-    if (!isDragging) return;
-    isDragging = false;
-    lastUserActionAt = Date.now();
-    marquee.style.cursor = "grab";
-  });
-
-  // 5) SWIPE (touch)
-  marquee.addEventListener("touchstart", (e) => {
-    isDragging = true;
-    lastUserActionAt = Date.now();
-    startX = e.touches[0].pageX;
-    startScrollLeft = marquee.scrollLeft;
+  scroller.addEventListener("touchstart", (e) => {
+    startDrag(e.touches[0].pageX);
   }, { passive: true });
 
-  marquee.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
-    const dx = (e.touches[0].pageX - startX);
-    marquee.scrollLeft = startScrollLeft - dx;
-    normalizeScroll();
+  scroller.addEventListener("touchmove", (e) => {
+    moveDrag(e.touches[0].pageX);
   }, { passive: true });
 
-  marquee.addEventListener("touchend", () => {
-    isDragging = false;
-    lastUserActionAt = Date.now();
-  }, { passive: true });
+  scroller.addEventListener("touchend", stopDrag, { passive: true });
 
-  // 6) Wheel horizontal support (trackpads)
-  marquee.addEventListener("wheel", (e) => {
-    // если человек скроллит трекпадом по горизонтали/вертикали — даём сдвигать отзывы
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      marquee.scrollLeft += e.deltaX;
-      lastUserActionAt = Date.now();
-      normalizeScroll();
-      e.preventDefault();
-    }
-  }, { passive: false });
-
-  // 7) Если изменился размер окна — починим позицию
-  window.addEventListener("resize", () => {
-    normalizeScroll();
-  });
-
-  // стартовая нормализация
+  virtualScrollLeft = scroller.scrollLeft;
   normalizeScroll();
 });
