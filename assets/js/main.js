@@ -42,8 +42,8 @@
 <header class="topbar" id="topbar">
   <div class="container topbar-inner">
     <a class="brand" href="#hero" aria-label="3DNA Home">
-      <div class="brand-title">3dna.es</div>
-      <div class="brand-subtitle">Marketing y Publicidad</div>
+      <div class="brand-title"><img src="img/logo.png" alt="3DNA" /></div>
+      
     </a>
 
     <nav class="nav-desktop" aria-label="Primary">
@@ -161,6 +161,33 @@ if (elSec2) {
   }, 3500);
 }
 
+const heroTitlePairs = [
+  ["Marketing Digital", "Publicidad"],
+  ["Diseno 3D para comercio", "Implementacion de AI y Web"],
+  ["Web de alto impacto", "Pagos y automatizacion"],
+  ["Experiencias inmersivas", "Que venden mas"],
+  ["Diseno comercial", "Orientado a conversion"]
+];
+
+let heroTitleIndex = 0;
+const heroTitleLine1 = document.getElementById("hero-title-line-1");
+const heroTitleLine2 = document.getElementById("hero-title-line-2");
+
+if (heroTitleLine1 && heroTitleLine2) {
+  setInterval(() => {
+    heroTitleLine1.classList.add("fade-out");
+    heroTitleLine2.classList.add("fade-out");
+
+    setTimeout(() => {
+      heroTitleIndex = (heroTitleIndex + 1) % heroTitlePairs.length;
+      heroTitleLine1.textContent = heroTitlePairs[heroTitleIndex][0];
+      heroTitleLine2.textContent = heroTitlePairs[heroTitleIndex][1];
+      heroTitleLine1.classList.remove("fade-out");
+      heroTitleLine2.classList.remove("fade-out");
+    }, 600);
+  }, 3800);
+}
+
 
 // =============================================
 // 3. SIDE PANEL (open/close)
@@ -205,22 +232,46 @@ document.addEventListener("DOMContentLoaded", () => {
   const save = document.getElementById('save-settings');
   const cancel = document.getElementById('cancel-settings');
 
+  if (!banner || !modal || !overlay || !accept || !config || !reject || !save || !cancel) {
+    return;
+  }
+
+  const showBanner = () => {
+    banner.classList.remove('cookie-banner--hidden');
+    requestAnimationFrame(() => {
+      banner.classList.add('show');
+      banner.setAttribute('aria-hidden', 'false');
+    });
+  };
+
+  const hideBanner = () => {
+    banner.classList.remove('show');
+    banner.setAttribute('aria-hidden', 'true');
+    window.setTimeout(() => {
+      if (!banner.classList.contains('show')) {
+        banner.classList.add('cookie-banner--hidden');
+      }
+    }, 420);
+  };
+
   if (!localStorage.getItem('cookiesDecision')) {
-    banner.classList.add('show');
+    showBanner();
+  } else {
+    hideBanner();
   }
 
   accept.onclick = () => {
     localStorage.setItem('cookiesDecision', JSON.stringify({
       necessary: true, analytics: true, ads: true
     }));
-    banner.classList.remove('show');
+    hideBanner();
   };
 
   reject.onclick = () => {
     localStorage.setItem('cookiesDecision', JSON.stringify({
       necessary: true, analytics: false, ads: false
     }));
-    banner.classList.remove('show');
+    hideBanner();
   };
 
   config.onclick = () => {
@@ -243,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.classList.remove('show');
     overlay.classList.remove('show');
-    banner.classList.remove('show');
+    hideBanner();
   };
 });
 
@@ -260,6 +311,23 @@ document.querySelectorAll('a[href="#politica-cookies"]').forEach(link => {
 
 document.getElementById('close-policy-modal')?.addEventListener('click', () => {
   document.getElementById('cookies-policy-modal').style.display = 'none';
+});
+
+document.querySelectorAll('.open-privacy-policy').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('privacy-policy-modal').style.display = 'flex';
+  });
+});
+
+document.getElementById('close-privacy-modal')?.addEventListener('click', () => {
+  document.getElementById('privacy-policy-modal').style.display = 'none';
+});
+
+document.getElementById('privacy-policy-modal')?.addEventListener('click', (e) => {
+  if (e.target === document.getElementById('privacy-policy-modal')) {
+    document.getElementById('privacy-policy-modal').style.display = 'none';
+  }
 });
 
 
@@ -317,15 +385,48 @@ document.addEventListener('DOMContentLoaded', () => {
 // 8. FORM PROGRESS BAR
 // =============================================
 function updateStepProgress() {
-  const sections = document.querySelectorAll('.form-section');
+  const allSections = document.querySelectorAll('.form-section');
+  const progressSections = document.querySelectorAll('.form-section:not([data-optional="true"])');
   let completed = 0;
 
-  sections.forEach(section => {
-    const checked = section.querySelectorAll('input[type="checkbox"]:checked').length;
-    if (checked > 0) completed++;
+  allSections.forEach(section => {
+    const checkboxGroupName = section.dataset.checkboxGroup;
+    const requiredFields = section.querySelectorAll('.form-select[required], .form-input[required], .form-textarea[required]');
+    const controls = section.querySelectorAll('.form-select, .form-input, .form-textarea');
+    const checkboxFields = checkboxGroupName
+      ? section.querySelectorAll(`.form-check-input[name="${checkboxGroupName}"]`)
+      : [];
+
+    controls.forEach((field) => {
+      const isFilled = String(field.value || '').trim() !== '';
+      field.classList.toggle('is-filled', isFilled);
+    });
+
+    checkboxFields.forEach((field) => {
+      const option = field.closest('.form-check-option');
+      option?.classList.toggle('is-filled', field.checked);
+    });
+
+    const isCheckboxGroupComplete = checkboxFields.length > 0
+      ? Array.from(checkboxFields).some((field) => field.checked)
+      : false;
+
+    const isSectionComplete = checkboxFields.length > 0
+      ? isCheckboxGroupComplete
+      : requiredFields.length > 0
+        ? Array.from(requiredFields).every((field) => String(field.value || '').trim() !== '')
+        : Array.from(controls).some((field) => String(field.value || '').trim() !== '');
+
+    section.classList.toggle('is-complete', isSectionComplete);
   });
 
-  const percent = Math.round((completed / sections.length) * 100);
+  progressSections.forEach(section => {
+    if (section.classList.contains('is-complete')) completed++;
+  });
+
+  const percent = progressSections.length > 0
+    ? Math.round((completed / progressSections.length) * 100)
+    : 0;
   const bar = document.getElementById('progress-bar');
   const txt = document.getElementById('progress-text');
   if (bar) bar.style.width = `${percent}%`;
@@ -335,29 +436,225 @@ function updateStepProgress() {
 document.addEventListener("DOMContentLoaded", () => {
   updateStepProgress();
 
-  document.querySelectorAll('.form-section input[type="checkbox"]').forEach(cb => {
-    cb.addEventListener('change', updateStepProgress);
+  document.querySelectorAll('.form-section .form-select, .form-section .form-input, .form-section .form-textarea, .form-section .form-check-input').forEach(field => {
+    field.addEventListener('change', updateStepProgress);
+    field.addEventListener('input', updateStepProgress);
   });
 });
 
 
 // =============================================
-// 9. OTRO CHECKBOX TOGGLE
+// 9. FORM SUBMIT VALIDATION
+// =============================================
+document.addEventListener("DOMContentLoaded", () => {
+  const submitBtn = document.querySelector('.form-submit');
+  const progressWrapper = document.querySelector('.progress-wrapper');
+  if (!submitBtn) return;
+
+  const getRequiredFields = () => Array.from(
+    document.querySelectorAll('.form-section:not([data-optional="true"]) .form-select[required], .form-section:not([data-optional="true"]) .form-input[required], .form-section:not([data-optional="true"]) .form-textarea[required]')
+  );
+
+  const clearErrors = () => {
+    document.querySelectorAll('.is-invalid').forEach((field) => field.classList.remove('is-invalid'));
+    document.querySelectorAll('.form-check-option.is-invalid').forEach((field) => field.classList.remove('is-invalid'));
+    document.querySelectorAll('.form-section.has-error').forEach((section) => section.classList.remove('has-error'));
+  };
+
+  const upsertMessage = (text, type) => {
+    let message = document.getElementById('form-status-message');
+    if (!message) {
+      message = document.createElement('p');
+      message.id = 'form-status-message';
+      message.className = 'form-status-message';
+      if (progressWrapper) {
+        progressWrapper.appendChild(message);
+      } else {
+        submitBtn.insertAdjacentElement('afterend', message);
+      }
+    }
+    message.textContent = text;
+    message.classList.remove('is-error', 'is-success');
+    message.classList.add(type === 'success' ? 'is-success' : 'is-error');
+  };
+
+  submitBtn.addEventListener('click', async () => {
+    clearErrors();
+    updateStepProgress();
+
+    const requiredFields = getRequiredFields();
+    const invalidFields = requiredFields.filter((field) => String(field.value || '').trim() === '');
+    const invalidSections = [];
+
+    document.querySelectorAll('.form-section[data-checkbox-group]').forEach((section) => {
+      const groupName = section.dataset.checkboxGroup;
+      const checkboxes = Array.from(section.querySelectorAll(`.form-check-input[name="${groupName}"]`));
+      const hasChecked = checkboxes.some((field) => field.checked);
+
+      if (!hasChecked) {
+        invalidSections.push(section);
+        checkboxes.forEach((field) => field.closest('.form-check-option')?.classList.add('is-invalid'));
+      }
+    });
+
+    if (invalidFields.length > 0 || invalidSections.length > 0) {
+      invalidFields.forEach((field) => {
+        field.classList.add('is-invalid');
+        const section = field.closest('.form-section');
+        if (section) section.classList.add('has-error');
+      });
+
+      invalidSections.forEach((section) => section.classList.add('has-error'));
+
+      const firstInvalidField = invalidFields[0];
+      const firstInvalidSection = invalidSections[0];
+
+      if (firstInvalidField) {
+        firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstInvalidField.focus({ preventScroll: true });
+      } else if (firstInvalidSection) {
+        firstInvalidSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      upsertMessage('Completa todos los campos obligatorios para continuar.', 'error');
+      return;
+    }
+
+    const payload = {};
+    document.querySelectorAll('.form-select, .form-input, .form-textarea').forEach((field) => {
+      const key = field.name || field.id;
+      if (!key) return;
+      payload[key] = String(field.value || '').trim();
+    });
+
+    document.querySelectorAll('.form-check-input').forEach((field) => {
+      if (!field.name) return;
+      if (!payload[field.name]) payload[field.name] = [];
+      if (field.checked) payload[field.name].push(field.value);
+    });
+
+    const now = new Date();
+    const formVersion = '3dna-form-v2026.04.29';
+    const fechaLocal = now.toLocaleString('es-ES', {
+      dateStyle: 'short',
+      timeStyle: 'medium',
+      hour12: false,
+      timeZone: 'Europe/Madrid'
+    });
+    const fechaISO = now.toISOString();
+
+    let clientIp = 'No disponible';
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 1500);
+      const ipResponse = await fetch('https://api.ipify.org?format=json', {
+        method: 'GET',
+        cache: 'no-store',
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+
+      if (ipResponse.ok) {
+        const ipData = await ipResponse.json();
+        if (ipData && ipData.ip) {
+          clientIp = String(ipData.ip).trim();
+        }
+      }
+    } catch (_error) {
+      clientIp = 'No disponible';
+    }
+
+    const aceptoPrivacidad = Array.isArray(payload.consentimiento)
+      && payload.consentimiento.includes('aceptado')
+      ? 'Si'
+      : 'No';
+
+    payload.acepto_politica_privacidad = aceptoPrivacidad;
+    payload.fecha_envio_local = fechaLocal;
+    payload.fecha_envio_iso = fechaISO;
+    payload.ip_cliente = clientIp;
+    payload.version_formulario = formVersion;
+
+    const submitLog = {
+      ip: clientIp,
+      timestamp: fechaISO,
+      formVersion: formVersion
+    };
+
+    try {
+      const storageKey = 'threeDNA_submission_logs';
+      const prevLogs = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      const nextLogs = Array.isArray(prevLogs) ? prevLogs : [];
+      nextLogs.push(submitLog);
+      localStorage.setItem(storageKey, JSON.stringify(nextLogs.slice(-50)));
+    } catch (_error) {
+      // Ignore storage failures (private mode/quota), log still continues in email payload.
+    }
+
+    console.log('Formulario completo. Payload listo para enviar:', payload);
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    try {
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ payload, submitLog })
+      });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(result.error || 'Error al enviar la solicitud.');
+      }
+
+      document.querySelectorAll('.form-section').forEach((section) => {
+        section.hidden = true;
+      });
+      submitBtn.hidden = true;
+      if (progressWrapper) progressWrapper.hidden = true;
+
+      const successState = document.getElementById('form-success-state');
+      if (successState) {
+        successState.hidden = false;
+        successState.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      upsertMessage('Solicitud enviada correctamente. Te contactaremos muy pronto.', 'success');
+    } catch (error) {
+      console.error('Error enviando formulario:', error);
+      upsertMessage('No pudimos enviar tu solicitud ahora. Intentalo de nuevo en unos minutos.', 'error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Analizar mi negocio';
+    }
+  });
+});
+
+
+// =============================================
+// 10. OTRO CHECKBOX TOGGLE
 // =============================================
 {
-  const otroCheckbox = document.getElementById('otroCheckbox');
+  const negocioSelect = document.getElementById('negocio-select');
   const otroInputWrapper = document.getElementById('otroInputWrapper');
 
-  if (otroCheckbox && otroInputWrapper) {
-    otroCheckbox.addEventListener('change', function () {
-      otroInputWrapper.style.display = this.checked ? 'block' : 'none';
-    });
+  if (negocioSelect && otroInputWrapper) {
+    const toggleOtroInput = () => {
+      const isOtro = negocioSelect.value === 'otro';
+      otroInputWrapper.style.display = isOtro ? 'block' : 'none';
+    };
+
+    negocioSelect.addEventListener('change', toggleOtroInput);
+    toggleOtroInput();
   }
 }
 
 
 // =============================================
-// 10. MOBILE MENU (burger)
+// 11. MOBILE MENU (burger)
 // =============================================
 document.addEventListener("DOMContentLoaded", () => {
   const burger = document.getElementById("burger");

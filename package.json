@@ -1,0 +1,18 @@
+{
+  "name": "3dna-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "3DNA landing + lead form backend",
+  "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.1"
+  }
+}
