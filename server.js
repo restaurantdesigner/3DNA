@@ -13,7 +13,7 @@ const RATE_LIMIT_MAX = 5;
 const rateLimitStore = new Map();
 const RESEND_TO = 'andrei@3dna.es';
 
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json());
 app.use(express.static(rootDir));
 
 app.get('/health', (req, res) => {
@@ -116,14 +116,14 @@ app.post('/api/lead', async (req, res) => {
   try {
     const payload = req.body?.payload;
     if (!payload || typeof payload !== 'object') {
-      return res.status(400).json({ error: 'Payload invalido.' });
+      return res.status(400).json({ ok: false });
     }
 
     const ip = getClientIp(req);
     const limitState = checkRateLimit(ip);
     if (limitState.limited) {
       return res.status(429).json({
-        error: 'Demasiadas solicitudes. Intentalo de nuevo en unos minutos.',
+        ok: false,
         retryAfterSec: limitState.retryAfterSec
       });
     }
@@ -174,7 +174,7 @@ app.post('/api/lead', async (req, res) => {
     return res.json({ ok: true });
   } catch (error) {
     console.error('POST /api/lead failed:', error);
-    return res.status(500).json({ error: 'No se pudo enviar la solicitud.' });
+    return res.status(500).json({ ok: false });
   }
 });
 
