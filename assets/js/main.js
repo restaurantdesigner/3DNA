@@ -449,6 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = document.querySelector('.form-submit');
   const progressWrapper = document.querySelector('.progress-wrapper');
+  const API_BASE_URL = 'https://threedna-site.onrender.com';
   if (!submitBtn) return;
 
   const getRequiredFields = () => Array.from(
@@ -601,7 +602,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.textContent = 'Enviando...';
 
     try {
-      const response = await fetch('/api/lead', {
+      const response = await fetch(`${API_BASE_URL}/api/lead`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
