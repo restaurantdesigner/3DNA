@@ -1206,7 +1206,7 @@
   <h3>12. Tus datos</h3>
   <div class="form-grid">
     <input class="form-input" type="text" name="nombre" placeholder="Nombre" required>
-    <input class="form-input" type="email" name="email" placeholder="Email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Introduce un email valido (ejemplo@dominio.com)">
+    <input class="form-input" type="email" name="email" placeholder="Email" required pattern="(?!.*@(?:ail\.com|gmil\.com|gnail\.com|hotnail\.com|outlok\.com|yaho\.com)$)[^\s@]+@[^\s@]+\.[^\s@]{2,}" title="Introduce un email valido (ejemplo@dominio.com)" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false">
     <input class="form-input" type="tel" name="whatsapp" placeholder="WhatsApp" required pattern="\+[1-9][0-9]{7,14}" inputmode="tel" title="Usa formato internacional E.164, por ejemplo: +34600111222">
   </div>
 </div>

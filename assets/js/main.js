@@ -486,8 +486,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const isValidEmail = (value) => {
     const email = String(value || '').trim().toLowerCase();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const blockedDomains = new Set([
+      'ail.com',
+      'gmil.com',
+      'gnail.com',
+      'hotnail.com',
+      'outlok.com',
+      'yaho.com'
+    ]);
     if (!emailPattern.test(email)) return false;
     if (email.includes('xn--')) return false;
+    const domain = email.split('@')[1] || '';
+    if (blockedDomains.has(domain)) return false;
     return true;
   };
 
@@ -550,10 +560,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const phoneInput = document.querySelector('.form-input[name="whatsapp"]');
     const invalidContactFields = [];
 
-    if (!isValidEmail(payload.email)) {
+    const emailFailsNativeValidation = emailInput
+      ? (typeof emailInput.checkValidity === 'function' && !emailInput.checkValidity())
+      : false;
+
+    if (emailFailsNativeValidation || !isValidEmail(payload.email)) {
       if (emailInput) {
         emailInput.classList.add('is-invalid');
         emailInput.closest('.form-section')?.classList.add('has-error');
+        if (emailFailsNativeValidation && typeof emailInput.reportValidity === 'function') {
+          emailInput.reportValidity();
+        }
       }
       invalidContactFields.push(emailInput);
     }

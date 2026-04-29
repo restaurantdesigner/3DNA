@@ -123,8 +123,18 @@ function createResendClient() {
 function isValidEmail(value) {
   const email = String(value || '').trim().toLowerCase();
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const blockedDomains = new Set([
+    'ail.com',
+    'gmil.com',
+    'gnail.com',
+    'hotnail.com',
+    'outlok.com',
+    'yaho.com'
+  ]);
   if (!emailPattern.test(email)) return false;
   if (email.includes('xn--')) return false;
+  const domain = email.split('@')[1] || '';
+  if (blockedDomains.has(domain)) return false;
   return true;
 }
 
