@@ -127,6 +127,16 @@ function buildEmailText(payload, audit) {
       }
     }
 
+    // "Enlace" is an extension of presencia, not a separate answer.
+    if (key === 'presencia') {
+      const enlaceExtra = String(payload.enlace_negocio || '').trim();
+      const presenciaBase = String(payload.presencia || '').trim();
+
+      if (enlaceExtra) {
+        value = `${presenciaBase} (${enlaceExtra})`;
+      }
+    }
+
     lines.push(`${index + 1}. ${label}: ${value}`);
   });
 
