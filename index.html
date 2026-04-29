@@ -1206,8 +1206,8 @@
   <h3>12. Tus datos</h3>
   <div class="form-grid">
     <input class="form-input" type="text" name="nombre" placeholder="Nombre" required>
-    <input class="form-input" type="email" name="email" placeholder="Email" required>
-    <input class="form-input" type="tel" name="whatsapp" placeholder="WhatsApp" required>
+    <input class="form-input" type="email" name="email" placeholder="Email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Introduce un email valido (ejemplo@dominio.com)">
+    <input class="form-input" type="tel" name="whatsapp" placeholder="WhatsApp" required pattern="[0-9+ ]{9,15}" inputmode="tel" title="Introduce un telefono valido (9-15 digitos)">
   </div>
 </div>
 

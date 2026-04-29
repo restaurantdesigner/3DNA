@@ -120,6 +120,42 @@ function createResendClient() {
   return new Resend(process.env.RESEND_API_KEY);
 }
 
+function isValidEmail(value) {
+  const email = String(value || '').trim().toLowerCase();
+  if (!email) return false;
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!emailPattern.test(email)) return false;
+
+  const blockedDomains = new Set([
+    'example.com',
+    'test.com',
+    'fake.com',
+    'mailinator.com',
+    'yopmail.com',
+    'guerrillamail.com',
+    '10minutemail.com',
+    'temp-mail.org'
+  ]);
+
+  const domain = email.split('@')[1] || '';
+  return Boolean(domain) && !blockedDomains.has(domain);
+}
+
+function isValidPhone(value) {
+  const phone = String(value || '').trim();
+  if (!phone) return false;
+
+  const phonePattern = /^\+?[\d\s().-]{8,22}$/;
+  if (!phonePattern.test(phone)) return false;
+
+  const digits = phone.replace(/\D/g, '');
+  if (digits.length < 9 || digits.length > 15) return false;
+  if (/^(\d)\1{8,}$/.test(digits)) return false;
+
+  return true;
+}
+
 app.post('/api/lead', async (req, res) => {
   try {
     const payload = req.body?.payload;
@@ -145,6 +181,10 @@ app.post('/api/lead', async (req, res) => {
         spamTrap: true
       });
       return res.json({ ok: true });
+    }
+
+    if (!isValidEmail(payload.email) || !isValidPhone(payload.whatsapp)) {
+      return res.status(400).json({ ok: false });
     }
 
     const nowIso = new Date().toISOString();

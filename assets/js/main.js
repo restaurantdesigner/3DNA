@@ -483,6 +483,44 @@ document.addEventListener("DOMContentLoaded", () => {
     message.classList.add(type === 'success' ? 'is-success' : 'is-error');
   };
 
+  const blockedEmailDomains = new Set([
+    'example.com',
+    'test.com',
+    'fake.com',
+    'mailinator.com',
+    'yopmail.com',
+    'guerrillamail.com',
+    '10minutemail.com',
+    'temp-mail.org'
+  ]);
+
+  const isValidEmail = (value) => {
+    const email = String(value || '').trim().toLowerCase();
+    if (!email) return false;
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(email)) return false;
+
+    const domain = email.split('@')[1] || '';
+    if (!domain || blockedEmailDomains.has(domain)) return false;
+
+    return true;
+  };
+
+  const isValidPhone = (value) => {
+    const phone = String(value || '').trim();
+    if (!phone) return false;
+
+    const phonePattern = /^\+?[\d\s().-]{8,22}$/;
+    if (!phonePattern.test(phone)) return false;
+
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length < 9 || digits.length > 15) return false;
+    if (/^(\d)\1{8,}$/.test(digits)) return false;
+
+    return true;
+  };
+
   submitBtn.addEventListener('click', async () => {
     clearErrors();
     updateStepProgress();
@@ -531,6 +569,37 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!key) return;
       payload[key] = String(field.value || '').trim();
     });
+
+    const emailInput = document.querySelector('.form-input[name="email"]');
+    const phoneInput = document.querySelector('.form-input[name="whatsapp"]');
+    const invalidContactFields = [];
+
+    if (!isValidEmail(payload.email)) {
+      if (emailInput) {
+        emailInput.classList.add('is-invalid');
+        emailInput.closest('.form-section')?.classList.add('has-error');
+      }
+      invalidContactFields.push(emailInput);
+    }
+
+    if (!isValidPhone(payload.whatsapp)) {
+      if (phoneInput) {
+        phoneInput.classList.add('is-invalid');
+        phoneInput.closest('.form-section')?.classList.add('has-error');
+      }
+      invalidContactFields.push(phoneInput);
+    }
+
+    if (invalidContactFields.length > 0) {
+      const firstInvalid = invalidContactFields.find(Boolean);
+      if (firstInvalid) {
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstInvalid.focus({ preventScroll: true });
+      }
+
+      upsertMessage('Revisa email y WhatsApp: introduce un correo real y un telefono valido.', 'error');
+      return;
+    }
 
     document.querySelectorAll('.form-check-input').forEach((field) => {
       if (!field.name) return;
