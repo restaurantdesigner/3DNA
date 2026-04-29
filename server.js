@@ -47,7 +47,6 @@ const FORM_ANSWER_ORDER = [
   ['construir', 'Que quieres construir'],
   ['negocio', 'Tu negocio es'],
   ['presencia', 'Presencia digital hoy'],
-  ['enlace_negocio', 'Enlace del negocio'],
   ['objetivo', 'Objetivo'],
   ['necesitas', 'Que necesitas exactamente'],
   ['pago', 'Como quieres recibir pagos'],
