@@ -26,17 +26,14 @@
 <div class="utility-bar" aria-label="Utility navigation">
   <div class="container">
     <nav class="utility-nav">
-      <a class="utility-link" href="https://wa.me/34722878642" target="_blank" rel="noopener">
-        <span class="utility-ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 14.95L2 22l5.2-1.25A10 10 0 1 0 12 2zm5.54 14.1c-.23.66-1.35 1.2-1.86 1.28-.48.08-1.08.12-1.74-.1-.4-.13-.92-.3-1.57-.58-2.77-1.2-4.58-4.14-4.72-4.34-.14-.2-1.12-1.49-1.12-2.84 0-1.35.7-2.01.95-2.29.25-.27.55-.34.73-.34h.53c.17 0 .4-.07.62.47.22.54.75 1.87.82 2 .07.13.11.3.02.48-.09.18-.14.3-.27.45-.14.16-.29.35-.41.48-.14.14-.28.3-.12.57.16.27.7 1.15 1.5 1.86 1.03.9 1.9 1.18 2.16 1.31.27.14.43.12.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.61-.13.25.08 1.58.74 1.84.87.27.13.45.2.52.32.07.12.07.73-.16 1.39z"/></svg>
-        </span>
-        <span class="utility-text">WhatsApp</span>
+      <a class="utility-link" href="#sec2">
+        <span class="utility-text">3D</span>
       </a>
-      <a class="utility-link" href="#contacto">
-        <span class="utility-text">Contacto</span>
+      <a class="utility-link" href="#sec5">
+        <span class="utility-text">WEB</span>
       </a>
-      <a class="utility-link" href="#legal">
-        <span class="utility-text">Legal</span>
+      <a class="utility-link" href="#sec5">
+        <span class="utility-text">AI</span>
       </a>
     </nav>
   </div>
@@ -51,21 +48,22 @@
 
     <nav class="nav-desktop" aria-label="Primary">
       <a href="#hero">Inicio</a>
+      <a href="#about">Sobre nosotros</a>
+      <a href="#sec2">Servicios</a>
 
       <div class="nav-dropdown" id="showroomDropdown">
-        <a href="#sec2" class="nav-parent" aria-haspopup="true" aria-expanded="false">
-          Showroom <span class="nav-arrow" aria-hidden="true">&#9660;</span>
+        <a href="#sec3" class="nav-parent" aria-haspopup="true" aria-expanded="false">
+          Experiencias <span class="nav-arrow" aria-hidden="true">&#9660;</span>
         </a>
 
         <div class="nav-menu" role="menu" aria-label="Showroom submenu">
-          <a role="menuitem" href="#sec2">Gimnasios</a>
           <a role="menuitem" href="#sec3">Restaurantes</a>
+          <a role="menuitem" href="#sec2">Gimnasios</a>
           <a role="menuitem" href="#sec4">Centros medicos</a>
         </div>
       </div>
 
       <a href="#contacto">Contacto</a>
-      <a href="#legal" class="nav-legal">Legal</a>
     </nav>
 
     <div class="topbar-actions">
@@ -88,9 +86,10 @@
     </div>
 
     <a href="#hero" class="m-link">Inicio</a>
-    <a href="#sec2" class="m-link">Showroom</a>
+    <a href="#about" class="m-link">Sobre nosotros</a>
+    <a href="#sec2" class="m-link">Servicios</a>
+    <a href="#sec3" class="m-link">Showroom</a>
     <a href="#contacto" class="m-link">Contacto</a>
-    <a href="#legal" class="m-link">Legal</a>
 
     <button class="m-cta open-panel" type="button">Solicitar propuesta</button>
   </div>
@@ -480,7 +479,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const panoEl = document.getElementById("pano-right");
   if (!panoEl || typeof pannellum === "undefined") {
-    console.error("Pannellum not loaded or #pano-right missing");
     return;
   }
 
