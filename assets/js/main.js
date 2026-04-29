@@ -483,42 +483,18 @@ document.addEventListener("DOMContentLoaded", () => {
     message.classList.add(type === 'success' ? 'is-success' : 'is-error');
   };
 
-  const blockedEmailDomains = new Set([
-    'example.com',
-    'test.com',
-    'fake.com',
-    'mailinator.com',
-    'yopmail.com',
-    'guerrillamail.com',
-    '10minutemail.com',
-    'temp-mail.org'
-  ]);
-
   const isValidEmail = (value) => {
     const email = String(value || '').trim().toLowerCase();
-    if (!email) return false;
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) return false;
-
-    const domain = email.split('@')[1] || '';
-    if (!domain || blockedEmailDomains.has(domain)) return false;
-
+    if (email.includes('xn--')) return false;
     return true;
   };
 
   const isValidPhone = (value) => {
-    const phone = String(value || '').trim();
-    if (!phone) return false;
-
-    const phonePattern = /^\+?[\d\s().-]{8,22}$/;
-    if (!phonePattern.test(phone)) return false;
-
-    const digits = phone.replace(/\D/g, '');
-    if (digits.length < 9 || digits.length > 15) return false;
-    if (/^(\d)\1{8,}$/.test(digits)) return false;
-
-    return true;
+    const cleaned = String(value || '').replace(/\s|-/g, '');
+    const e164Pattern = /^\+[1-9]\d{7,14}$/;
+    return e164Pattern.test(cleaned);
   };
 
   submitBtn.addEventListener('click', async () => {
