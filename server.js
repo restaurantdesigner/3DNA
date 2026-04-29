@@ -1,5 +1,5 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const fs = require('fs/promises');
 const path = require('path');
 require('dotenv').config();
@@ -11,6 +11,7 @@ const logFile = path.join(logDir, 'submissions.log');
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
 const rateLimitStore = new Map();
+const RESEND_TO = 'andrei@3dna.es';
 
 app.use(express.json({ limit: '1mb' }));
 app.use(express.static(rootDir));
@@ -54,8 +55,28 @@ function checkRateLimit(ip) {
 }
 
 function buildEmailText(payload, audit) {
+  const formAnswers = Object.entries(payload).filter(([key]) => {
+    return ![
+      'nombre',
+      'email',
+      'whatsapp',
+      'acepto_politica_privacidad',
+      'fecha_envio_local',
+      'fecha_envio_iso',
+      'ip_cliente',
+      'version_formulario',
+      'company_website'
+    ].includes(key);
+  });
+
   const lines = [
     'Nueva solicitud desde el formulario 3DNA',
+    '',
+    `Nombre: ${payload.nombre || '-'}`,
+    `Email: ${payload.email || '-'}`,
+    `WhatsApp: ${payload.whatsapp || '-'}`,
+    `Consentimiento: ${payload.acepto_politica_privacidad || 'No'}`,
+    `Fecha: ${payload.fecha_envio_local || payload.fecha_envio_iso || audit.timestamp}`,
     '',
     `Acepto la politica de privacidad: ${payload.acepto_politica_privacidad || 'No'}`,
     `Fecha y hora (Europe/Madrid): ${payload.fecha_envio_local || '-'}`,
@@ -68,10 +89,10 @@ function buildEmailText(payload, audit) {
     `- timestamp: ${audit.timestamp}`,
     `- version_form: ${audit.formVersion}`,
     '',
-    'Datos del formulario:'
+    'Respuestas del formulario:'
   ];
 
-  Object.entries(payload).forEach(([key, value]) => {
+  formAnswers.forEach(([key, value]) => {
     lines.push(toLine(key, value));
   });
 
@@ -83,19 +104,12 @@ async function appendAuditLog(entry) {
   await fs.appendFile(logFile, `${JSON.stringify(entry)}\n`, 'utf8');
 }
 
-function createTransporter() {
-  const port = Number(process.env.SMTP_PORT || 587);
-  const secure = String(process.env.SMTP_SECURE || 'false').toLowerCase() === 'true';
+function createResendClient() {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY is required');
+  }
 
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port,
-    secure,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
-    }
-  });
+  return new Resend(process.env.RESEND_API_KEY);
 }
 
 app.post('/api/lead', async (req, res) => {
@@ -132,19 +146,23 @@ app.post('/api/lead', async (req, res) => {
       formVersion: payload.version_formulario || 'unknown'
     };
 
-    const transporter = createTransporter();
-    const to = process.env.MAIL_TO || 'andrei@3dna.es';
-    const from = process.env.MAIL_FROM || to;
+    const resend = createResendClient();
+    const to = RESEND_TO;
+    const from = process.env.MAIL_FROM || '3DNA Leads <onboarding@resend.dev>';
     const subject = `Nueva solicitud 3DNA - ${payload.nombre || 'Sin nombre'}`;
     const text = buildEmailText(payload, audit);
 
-    await transporter.sendMail({
+    const sendResult = await resend.emails.send({
       from,
       to,
-      replyTo: payload.email || undefined,
+      reply_to: payload.email || undefined,
       subject,
       text
     });
+
+    if (sendResult?.error) {
+      throw new Error(sendResult.error.message || 'Resend send failed');
+    }
 
     await appendAuditLog({
       ...audit,
