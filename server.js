@@ -178,7 +178,7 @@ app.post('/api/lead', async (req, res) => {
   }
 });
 
-const port = Number(process.env.PORT || 3000);
-app.listen(port, () => {
-  console.log(`3DNA server running on http://localhost:${port}`);
+const PORT = Number(process.env.PORT || 3000);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`3DNA server running on port ${PORT}`);
 });
