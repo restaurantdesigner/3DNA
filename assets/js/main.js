@@ -452,6 +452,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const API_BASE_URL = 'https://threedna-site.onrender.com';
   if (!submitBtn) return;
 
+  const formControls = Array.from(
+    document.querySelectorAll('.form-section .form-select, .form-section .form-input, .form-section .form-textarea, .form-section .form-check-input')
+  );
+
+  const setFormBusy = (busy) => {
+    formControls.forEach((field) => {
+      if (busy) {
+        field.dataset.prevDisabled = field.disabled ? '1' : '0';
+        field.disabled = true;
+        field.setAttribute('aria-disabled', 'true');
+        return;
+      }
+
+      const wasDisabled = field.dataset.prevDisabled === '1';
+      field.disabled = wasDisabled;
+      field.removeAttribute('aria-disabled');
+      delete field.dataset.prevDisabled;
+    });
+
+    submitBtn.disabled = busy;
+    submitBtn.setAttribute('aria-busy', busy ? 'true' : 'false');
+    submitBtn.textContent = busy ? 'Procesando...' : 'Analizar mi negocio';
+  };
+
   const getRequiredFields = () => Array.from(
     document.querySelectorAll('.form-section:not([data-optional="true"]) .form-select[required], .form-section:not([data-optional="true"]) .form-input[required], .form-section:not([data-optional="true"]) .form-textarea[required]')
   );
@@ -518,7 +542,7 @@ document.addEventListener("DOMContentLoaded", () => {
   submitBtn.addEventListener('click', async () => {
     if (isSubmitting) return;
     isSubmitting = true;
-    submitBtn.disabled = true;
+    setFormBusy(true);
 
     clearErrors();
     updateStepProgress();
@@ -559,7 +583,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       upsertMessage('Completa todos los campos obligatorios para continuar.', 'error');
       isSubmitting = false;
-      submitBtn.disabled = false;
+      setFormBusy(false);
       return;
     }
 
@@ -606,7 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       upsertMessage('Revisa email y WhatsApp: introduce un correo real y un telefono valido.', 'error');
       isSubmitting = false;
-      submitBtn.disabled = false;
+      setFormBusy(false);
       return;
     }
 
@@ -676,8 +700,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log('Formulario completo. Payload listo para enviar:', payload);
 
-    submitBtn.textContent = 'Enviando...';
-
     try {
       const response = await fetch(`${API_BASE_URL}/api/lead`, {
         method: 'POST',
@@ -716,8 +738,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     } finally {
       isSubmitting = false;
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Analizar mi negocio';
+      setFormBusy(false);
     }
   });
 });

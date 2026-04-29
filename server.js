@@ -43,6 +43,31 @@ function toLine(key, value) {
   return `- ${key}: ${value ? String(value) : '-'}`;
 }
 
+const FORM_ANSWER_ORDER = [
+  ['construir', 'Que quieres construir'],
+  ['negocio', 'Tu negocio es'],
+  ['negocio_otro', 'Negocio (otro)'],
+  ['presencia', 'Presencia digital hoy'],
+  ['enlace_negocio', 'Enlace del negocio'],
+  ['objetivo', 'Objetivo'],
+  ['necesitas', 'Que necesitas exactamente'],
+  ['pago', 'Como quieres recibir pagos'],
+  ['crecer', 'Donde quieres crecer'],
+  ['inversion', 'Inversion prevista'],
+  ['cuando', 'Cuando empezamos'],
+  ['situacion', 'Tu situacion'],
+  ['detalles', 'Detalles adicionales'],
+  ['consentimiento', 'Consentimiento (checkbox)']
+];
+
+function formatAnswerValue(value) {
+  if (Array.isArray(value)) {
+    return value.length ? value.join(', ') : '-';
+  }
+  const normalized = String(value || '').trim();
+  return normalized || '-';
+}
+
 function checkRateLimit(ip) {
   const now = Date.now();
   const entry = rateLimitStore.get(ip) || [];
@@ -63,20 +88,6 @@ function checkRateLimit(ip) {
 }
 
 function buildEmailText(payload, audit) {
-  const formAnswers = Object.entries(payload).filter(([key]) => {
-    return ![
-      'nombre',
-      'email',
-      'whatsapp',
-      'acepto_politica_privacidad',
-      'fecha_envio_local',
-      'fecha_envio_iso',
-      'ip_cliente',
-      'version_formulario',
-      'company_website'
-    ].includes(key);
-  });
-
   const lines = [
     'Nueva solicitud desde el formulario 3DNA',
     '',
@@ -97,11 +108,12 @@ function buildEmailText(payload, audit) {
     `- timestamp: ${audit.timestamp}`,
     `- version_form: ${audit.formVersion}`,
     '',
-    'Respuestas del formulario:'
+    'Respuestas del formulario (ordenadas):'
   ];
 
-  formAnswers.forEach(([key, value]) => {
-    lines.push(toLine(key, value));
+  FORM_ANSWER_ORDER.forEach(([key, label], index) => {
+    const value = formatAnswerValue(payload[key]);
+    lines.push(`${index + 1}. ${label}: ${value}`);
   });
 
   return lines.join('\n');
