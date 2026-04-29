@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const { Resend } = require('resend');
 const fs = require('fs/promises');
 const path = require('path');
@@ -12,7 +13,14 @@ const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
 const rateLimitStore = new Map();
 const RESEND_TO = 'andrei@3dna.es';
+const corsOptions = {
+  origin: ['https://3dna.es', 'https://www.3dna.es'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
+};
 
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json());
 app.use(express.static(rootDir));
 
