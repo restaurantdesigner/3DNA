@@ -16,8 +16,8 @@ const RESEND_TO = 'andrei@3dna.es';
 app.use(express.json({ limit: '1mb' }));
 app.use(express.static(rootDir));
 
-app.get('/health', (_req, res) => {
-  res.json({ ok: true });
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
 });
 
 function getClientIp(req) {

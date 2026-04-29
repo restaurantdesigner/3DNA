@@ -461,7 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.form-section.has-error').forEach((section) => section.classList.remove('has-error'));
   };
 
-  const upsertMessage = (text, type) => {
+  const upsertMessage = (text, type, useHtml = false) => {
     let message = document.getElementById('form-status-message');
     if (!message) {
       message = document.createElement('p');
@@ -473,7 +473,11 @@ document.addEventListener("DOMContentLoaded", () => {
         submitBtn.insertAdjacentElement('afterend', message);
       }
     }
-    message.textContent = text;
+    if (useHtml) {
+      message.innerHTML = text;
+    } else {
+      message.textContent = text;
+    }
     message.classList.remove('is-error', 'is-success');
     message.classList.add(type === 'success' ? 'is-success' : 'is-error');
   };
@@ -625,7 +629,13 @@ document.addEventListener("DOMContentLoaded", () => {
       upsertMessage('Solicitud enviada correctamente. Te contactaremos muy pronto.', 'success');
     } catch (error) {
       console.error('Error enviando formulario:', error);
-      upsertMessage('No pudimos enviar tu solicitud ahora. Intentalo de nuevo en unos minutos.', 'error');
+      upsertMessage(
+        'No pudimos procesar tu solicitud en este momento.<br><br>'
+          + '<a href="mailto:andrei@3dna.es">📩 Enviar email</a><br>'
+          + '<a href="https://wa.me/34722878642" target="_blank" rel="noopener noreferrer">💬 Escribir por WhatsApp</a>',
+        'error',
+        true
+      );
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Analizar mi negocio';
