@@ -5543,3 +5543,12 @@ section,
 
 
 
+
+/* Form success image */
+.form-success-img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 20px;
+  border-radius: 12px;
+}
