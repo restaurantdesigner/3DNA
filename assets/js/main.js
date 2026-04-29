@@ -507,7 +507,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return e164Pattern.test(cleaned);
   };
 
+  let isSubmitting = false;
+
   submitBtn.addEventListener('click', async () => {
+    if (isSubmitting) return;
+    isSubmitting = true;
+    submitBtn.disabled = true;
+
     clearErrors();
     updateStepProgress();
 
@@ -546,6 +552,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       upsertMessage('Completa todos los campos obligatorios para continuar.', 'error');
+      isSubmitting = false;
+      submitBtn.disabled = false;
       return;
     }
 
@@ -591,6 +599,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       upsertMessage('Revisa email y WhatsApp: introduce un correo real y un telefono valido.', 'error');
+      isSubmitting = false;
+      submitBtn.disabled = false;
       return;
     }
 
@@ -660,7 +670,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log('Formulario completo. Payload listo para enviar:', payload);
 
-    submitBtn.disabled = true;
     submitBtn.textContent = 'Enviando...';
 
     try {
@@ -700,6 +709,7 @@ document.addEventListener("DOMContentLoaded", () => {
         true
       );
     } finally {
+      isSubmitting = false;
       submitBtn.disabled = false;
       submitBtn.textContent = 'Analizar mi negocio';
     }
