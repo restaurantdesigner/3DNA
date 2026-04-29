@@ -46,7 +46,6 @@ function toLine(key, value) {
 const FORM_ANSWER_ORDER = [
   ['construir', 'Que quieres construir'],
   ['negocio', 'Tu negocio es'],
-  ['negocio_otro', 'Negocio (otro)'],
   ['presencia', 'Presencia digital hoy'],
   ['enlace_negocio', 'Enlace del negocio'],
   ['objetivo', 'Objetivo'],

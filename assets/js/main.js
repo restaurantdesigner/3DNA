@@ -450,7 +450,51 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = document.querySelector('.form-submit');
   const progressWrapper = document.querySelector('.progress-wrapper');
   const API_BASE_URL = 'https://threedna-site.onrender.com';
+  const SUBMISSION_STATE_KEY = 'threeDNA_form_submission_state';
+  const SUBMISSION_STATE_TTL_MS = 24 * 60 * 60 * 1000;
   if (!submitBtn) return;
+
+  const showSubmittedState = () => {
+    document.querySelectorAll('.form-section').forEach((section) => {
+      section.hidden = true;
+    });
+    submitBtn.hidden = true;
+    if (progressWrapper) progressWrapper.hidden = true;
+
+    const successState = document.getElementById('form-success-state');
+    if (successState) {
+      successState.hidden = false;
+    }
+  };
+
+  const persistSubmissionState = () => {
+    try {
+      const state = { submittedAt: Date.now() };
+      localStorage.setItem(SUBMISSION_STATE_KEY, JSON.stringify(state));
+    } catch (_error) {
+      // Ignore localStorage failures.
+    }
+  };
+
+  const restoreSubmissionState = () => {
+    try {
+      const raw = localStorage.getItem(SUBMISSION_STATE_KEY);
+      if (!raw) return;
+
+      const state = JSON.parse(raw);
+      const submittedAt = Number(state?.submittedAt || 0);
+      const isFresh = Number.isFinite(submittedAt) && (Date.now() - submittedAt < SUBMISSION_STATE_TTL_MS);
+
+      if (isFresh) {
+        showSubmittedState();
+        upsertMessage('Solicitud enviada correctamente. Te contactaremos muy pronto.', 'success');
+      } else {
+        localStorage.removeItem(SUBMISSION_STATE_KEY);
+      }
+    } catch (_error) {
+      localStorage.removeItem(SUBMISSION_STATE_KEY);
+    }
+  };
 
   const formControls = Array.from(
     document.querySelectorAll('.form-section .form-select, .form-section .form-input, .form-section .form-textarea, .form-section .form-check-input')
@@ -538,6 +582,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   let isSubmitting = false;
+
+  restoreSubmissionState();
 
   submitBtn.addEventListener('click', async () => {
     if (isSubmitting) return;
@@ -714,17 +760,11 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(result.error || 'Error al enviar la solicitud.');
       }
 
-      document.querySelectorAll('.form-section').forEach((section) => {
-        section.hidden = true;
-      });
-      submitBtn.hidden = true;
-      if (progressWrapper) progressWrapper.hidden = true;
+      persistSubmissionState();
+      showSubmittedState();
 
       const successState = document.getElementById('form-success-state');
-      if (successState) {
-        successState.hidden = false;
-        successState.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      successState?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
       upsertMessage('Solicitud enviada correctamente. Te contactaremos muy pronto.', 'success');
     } catch (error) {
