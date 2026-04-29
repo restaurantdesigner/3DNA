@@ -487,6 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = String(value || '').trim().toLowerCase();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const blockedDomains = new Set([
+      'gmai.com',
       'ail.com',
       'gmil.com',
       'gnail.com',
@@ -504,7 +505,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const isValidPhone = (value) => {
     const cleaned = String(value || '').replace(/\s|-/g, '');
     const e164Pattern = /^\+[1-9]\d{7,14}$/;
-    return e164Pattern.test(cleaned);
+    if (!e164Pattern.test(cleaned)) return false;
+    // Keep worldwide numbers, but apply realistic length for Spain (+34 + 9 digits).
+    if (cleaned.startsWith('+34')) {
+      return /^\+34\d{9}$/.test(cleaned);
+    }
+    return true;
   };
 
   let isSubmitting = false;
