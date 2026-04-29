@@ -111,7 +111,22 @@ function buildEmailText(payload, audit) {
   ];
 
   FORM_ANSWER_ORDER.forEach(([key, label], index) => {
-    const value = formatAnswerValue(payload[key]);
+    let value = formatAnswerValue(payload[key]);
+
+    // "Negocio (otro)" is an extension of the same question, not a separate answer.
+    if (key === 'negocio') {
+      const negocioExtra = String(payload.negocio_otro || '').trim();
+      const negocioBase = String(payload.negocio || '').trim();
+
+      if (negocioExtra) {
+        if (negocioBase && negocioBase !== 'otro') {
+          value = `${negocioBase} (${negocioExtra})`;
+        } else {
+          value = `otro (${negocioExtra})`;
+        }
+      }
+    }
+
     lines.push(`${index + 1}. ${label}: ${value}`);
   });
 
