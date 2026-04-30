@@ -1414,6 +1414,14 @@ body.modal-open{
   filter: grayscale(0) brightness(.48) !important;
 }
 
+/* Mobile: hero video in color from the start */
+@media (max-width: 767px){
+  #hero .video-bg{
+    filter: grayscale(0) !important;
+  }
+}
+
+
 /* ===== VIDEO HOVER BEHAVIOR ===== */
 .video-bg,
 .side-video{
