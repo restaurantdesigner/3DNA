@@ -362,20 +362,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalOferta = document.getElementById('modal-oferta');
   const closeOferta = document.getElementById('close-oferta');
 
+  if (!modalOferta) return;
+
+  const openOferta = () => {
+    modalOferta.style.display = 'flex';
+    document.body.classList.add('modal-open');
+  };
+
+  const hideOferta = () => {
+    modalOferta.style.display = 'none';
+    document.body.classList.remove('modal-open');
+  };
+
   ofertaLinks.forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
-      modalOferta.style.display = 'flex';
+      e.stopPropagation();
+      openOferta();
     });
   });
 
   closeOferta?.addEventListener('click', () => {
-    modalOferta.style.display = 'none';
+    hideOferta();
   });
 
   modalOferta?.addEventListener('click', (e) => {
     if (e.target === modalOferta) {
-      modalOferta.style.display = 'none';
+      hideOferta();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOferta.style.display === 'flex') {
+      hideOferta();
     }
   });
 });
