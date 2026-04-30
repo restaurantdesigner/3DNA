@@ -170,6 +170,14 @@ section#sec2{
 
 
 
+/* Mobile: hero video non-interactive */
+@media (max-width: 767px){
+  #hero .video-bg{
+    pointer-events: none;
+  }
+}
+
+
 /* =========================
    SPACER / METHODOLOGY
    ========================= */
