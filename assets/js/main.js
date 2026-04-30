@@ -374,15 +374,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('modal-open');
   };
 
+  const bindTap = (el, handler) => {
+    if (!el) return;
+    el.addEventListener('click', handler);
+    el.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      handler(e);
+    }, { passive: false });
+  };
+
   ofertaLinks.forEach(link => {
-    link.addEventListener('click', e => {
+    bindTap(link, (e) => {
       e.preventDefault();
       e.stopPropagation();
       openOferta();
     });
   });
 
-  closeOferta?.addEventListener('click', () => {
+  bindTap(closeOferta, () => {
     hideOferta();
   });
 
