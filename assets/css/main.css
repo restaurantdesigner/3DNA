@@ -1246,6 +1246,74 @@ body.modal-open{
   }
 }
 
+/* ===== SEC2 QUAD GRID (desktop 2x2, mobile 1x4) ===== */
+#sec2{
+  height: auto;
+  display: block;
+  padding: 1mm;
+  box-sizing: border-box;
+}
+
+.quad-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.5mm;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.quad-tile{
+  display: flex;
+  align-items: flex-start;
+  padding: 14px;
+  font-family: 'Staatliches', sans-serif;
+  font-size: clamp(26px, 3vw, 44px);
+  color: #fff;
+  overflow: hidden;
+}
+
+#sec2 .quad-copy{
+  width: min(92%, 520px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+#sec2 .quad-copy > p{
+  margin: 0;
+}
+
+#sec2 .quad-copy > p:first-child{
+  margin-bottom: 8px !important;
+}
+
+@media (max-width: 1200px){
+  #sec2 .quad-tile p[style*="font-size:clamp(1.2rem,3vw,2.2rem)"]{
+    font-size: clamp(0.95rem, 1.7vw, 1.45rem) !important;
+  }
+
+  #sec2 .quad-tile p[style*="font-size:clamp(0.7rem,1.4vw,1rem)"]{
+    font-size: clamp(0.58rem, 1.05vw, 0.82rem) !important;
+  }
+
+  #sec2 .quad-tile p[style*="font-size:clamp(0.65rem,1.2vw,0.9rem)"]{
+    font-size: clamp(0.54rem, 0.92vw, 0.72rem) !important;
+  }
+}
+
+@media (max-width: 767px){
+  .quad-grid{
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    aspect-ratio: auto;
+  }
+  .quad-tile{
+    aspect-ratio: 1 / 1;
+  }
+}
+
 
 
 /* ===== GENERIC MODAL (for cookies policy) ===== */

@@ -3910,7 +3910,7 @@ Pagos online y Stripe listos para vender
             </p>
 
             <button class="cta-button" onclick="alert('Entrando al showroom...')">
-              ENTRAR A SHOWROOM
+              ENTRAR A 
             </button>
           </div>
         </div>

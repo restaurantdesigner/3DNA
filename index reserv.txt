@@ -3655,7 +3655,7 @@ Pagos online y Stripe listos para vender
     <!-- DROPDOWN -->
     <div class="nav-dropdown">
   <a href="#sec2" class="nav-parent" aria-haspopup="true">
-    Showroom <span class="nav-arrow">▾</span>
+    Experiencias <span class="nav-arrow">▾</span>
   </a>
 
   <div class="nav-menu" role="menu">
