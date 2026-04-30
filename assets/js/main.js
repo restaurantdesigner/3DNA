@@ -461,6 +461,11 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.hidden = true;
     if (progressWrapper) progressWrapper.hidden = true;
 
+    const formIntro = document.querySelector('.form-intro');
+    if (formIntro) {
+      formIntro.hidden = true;
+    }
+
     const successState = document.getElementById('form-success-state');
     if (successState) {
       successState.hidden = false;

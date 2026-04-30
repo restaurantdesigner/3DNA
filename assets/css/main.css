@@ -5556,7 +5556,7 @@ section,
 
 /* Success screen — premium branded confirmation */
 .form-success-state {
-  background: #f4f8fc;
+  background: #ffffff;
   border-radius: 16px;
   padding: 32px 18px 40px;
   animation: fsReveal 0.55s ease both;
