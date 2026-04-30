@@ -175,6 +175,10 @@ section#sec2{
   #hero .video-bg{
     pointer-events: none;
   }
+
+  #hero .hero-subtitle{
+    display: none;
+  }
 }
 
 
@@ -5753,6 +5757,20 @@ section,
   .form-success-state {
     border-radius: 18px;
     padding: 24px 18px 28px;
+  }
+}
+
+/* Mobile-only: raise hero CTA while keeping footnote in current place */
+@media (max-width: 767px) {
+  #hero .hero-title {
+    transform: translateY(-100%) !important;
+  }
+
+  #hero .cta-button {
+    transform: translateY(-50%) !important;
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 

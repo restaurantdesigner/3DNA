@@ -1337,6 +1337,30 @@
 
 
 <script src="assets/js/main.js?v=20260430b"></script>
+<script>
+(function () {
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+  if (!isMobile) return;
+
+  const heroVideo = document.querySelector("#hero .video-bg");
+  if (!heroVideo) return;
+
+  const tryPlay = function () {
+    const playPromise = heroVideo.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(function () {
+        // Mobile browsers may delay autoplay; next lifecycle events retry.
+      });
+    }
+  };
+
+  tryPlay();
+  heroVideo.addEventListener("loadedmetadata", tryPlay, { once: true });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") tryPlay();
+  });
+})();
+</script>
 </body>
 </html>
 
