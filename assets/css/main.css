@@ -5836,10 +5836,12 @@ section,
   }
 
   #hero .cta-button {
-    transform: translateY(-50%) !important;
+    transform: none !important;
     display: block;
     margin-left: auto !important;
     margin-right: auto !important;
+    margin-top: 6px;
+    margin-bottom: 34px;
     position: relative;
     z-index: 20;
     pointer-events: auto;
@@ -5865,10 +5867,12 @@ section,
 
   #hero .footnote .open-oferta {
     position: relative;
-    z-index: 9;
+    z-index: 30;
     pointer-events: auto;
     display: inline-block;
-    padding: 6px 2px;
+    padding: 12px 8px;
+    min-height: 44px;
+    line-height: 1.35;
   }
 }
 
