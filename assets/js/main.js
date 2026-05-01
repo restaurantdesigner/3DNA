@@ -2,7 +2,15 @@
 // 1. HEADER INJECTION (runs immediately)
 // =============================================
 (() => {
+  const pathname = window.location.pathname;
+  const isHomePage = pathname === "/" || pathname.endsWith("/index.html");
   const isNestedDetailPage = /\/(?:healthcare|packages)\/[^/]+\.html$/i.test(window.location.pathname);
+  const pagePrefix = isNestedDetailPage ? "../" : (isHomePage ? "" : "/");
+
+  const homeLink = (hash) => {
+    if (isHomePage) return hash;
+    return `${pagePrefix}index.html${hash}`;
+  };
 
   const fixRelativePaths = (root, prefix) => {
     const skip = /^(?:[a-z]+:|#|\/\/)/i;
@@ -26,13 +34,13 @@
 <div class="utility-bar" aria-label="Utility navigation">
   <div class="container">
     <nav class="utility-nav">
-      <a class="utility-link" href="#sec2">
+      <a class="utility-link" href="${homeLink("#sec2")}">
         <span class="utility-text">3D</span>
       </a>
-      <a class="utility-link" href="#sec5">
+      <a class="utility-link" href="${homeLink("#sec5")}">
         <span class="utility-text">WEB</span>
       </a>
-      <a class="utility-link" href="#sec5">
+      <a class="utility-link" href="${homeLink("#sec5")}">
         <span class="utility-text">AI</span>
       </a>
     </nav>
@@ -41,29 +49,29 @@
 
 <header class="topbar" id="topbar">
   <div class="container topbar-inner">
-    <a class="brand" href="#hero" aria-label="3DNA Home">
-      <div class="brand-title"><img src="img/logo.png" alt="3DNA" /></div>
+    <a class="brand" href="${homeLink("#hero")}" aria-label="3DNA Home">
+      <div class="brand-title"><img src="${pagePrefix}img/logo.png" alt="3DNA" /></div>
       
     </a>
 
     <nav class="nav-desktop" aria-label="Primary">
-      <a href="#hero">Inicio</a>
-      <a href="#about">Sobre nosotros</a>
-      <a href="#sec2">Servicios</a>
+      <a href="${homeLink("#hero")}">Inicio</a>
+      <a href="${homeLink("#about")}">Sobre nosotros</a>
+      <a href="${homeLink("#sec2")}">Servicios</a>
 
       <div class="nav-dropdown" id="showroomDropdown">
-        <a href="#sec3" class="nav-parent" aria-haspopup="true" aria-expanded="false">
+        <a href="${homeLink("#sec3")}" class="nav-parent" aria-haspopup="true" aria-expanded="false">
           Experiencias <span class="nav-arrow" aria-hidden="true">&#9660;</span>
         </a>
 
         <div class="nav-menu" role="menu" aria-label="Showroom submenu">
-          <a role="menuitem" href="#sec3">Restaurantes</a>
-          <a role="menuitem" href="#sec2">Gimnasios</a>
-          <a role="menuitem" href="#sec4">Centros medicos</a>
+          <a role="menuitem" href="${homeLink("#sec3")}">Restaurantes</a>
+          <a role="menuitem" href="${homeLink("#sec2")}">Gimnasios</a>
+          <a role="menuitem" href="${homeLink("#sec4")}">Centros medicos</a>
         </div>
       </div>
 
-      <a href="#contacto">Contacto</a>
+      <a href="${homeLink("#contacto")}">Contacto</a>
     </nav>
 
     <div class="topbar-actions">
@@ -85,11 +93,11 @@
       <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">\u00d7</button>
     </div>
 
-    <a href="#hero" class="m-link">Inicio</a>
-    <a href="#about" class="m-link">Sobre nosotros</a>
-    <a href="#sec2" class="m-link">Servicios</a>
-    <a href="#sec3" class="m-link">Showroom</a>
-    <a href="#contacto" class="m-link">Contacto</a>
+    <a href="${homeLink("#hero")}" class="m-link">Inicio</a>
+    <a href="${homeLink("#about")}" class="m-link">Sobre nosotros</a>
+    <a href="${homeLink("#sec2")}" class="m-link">Servicios</a>
+    <a href="${homeLink("#sec3")}" class="m-link">Showroom</a>
+    <a href="${homeLink("#contacto")}" class="m-link">Contacto</a>
 
     <button class="m-cta open-panel" type="button">Solicitar propuesta</button>
   </div>
@@ -104,6 +112,74 @@
   if (isNestedDetailPage) {
     fixRelativePaths(host, "../");
   }
+})();
+
+// =============================================
+// 1b. FOOTER INJECTION
+// =============================================
+(() => {
+  const pathname = window.location.pathname;
+  const isHomePage = pathname === "/" || pathname.endsWith("/index.html");
+  const isNestedDetailPage = /\/(?:healthcare|packages)\/[^/]+\.html$/i.test(pathname);
+  const prefix = isNestedDetailPage ? "../" : (isHomePage ? "" : "/");
+
+  const footerHtml = `
+<footer class="site-footer" id="site-footer-el">
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="${prefix}index.html" aria-label="3DNA Home">
+          <img src="${prefix}img/logo.png" alt="3DNA" class="footer-logo" />
+        </a>
+        <p class="footer-tagline">Visual Marketing &amp; Experiencias Inmersivas 3D</p>
+      </div>
+
+      <div class="footer-cols">
+
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="${prefix}index.html#sec2">Diseño 3D</a></li>
+            <li><a href="${prefix}index.html#sec5">Webs y Landing Pages</a></li>
+            <li><a href="${prefix}index.html#sec2">Embudos de venta</a></li>
+            <li><a href="${prefix}index.html#sec2">IA aplicada</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="${prefix}oferta-publica.html">Oferta Pública</a></li>
+            <li><a href="${prefix}politica-cookies.html">Política de Cookies</a></li>
+            <li><a href="${prefix}aviso-legal.html">Aviso Legal</a></li>
+            <li><a href="${prefix}politica-privacidad.html">Política de Privacidad</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:andrei@3dna.es?subject=Consulta%20desde%203dna.es&body=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20vuestros%20servicios.">Email: andrei@3dna.es</a></li>
+            <li><a href="https://wa.me/34722878642?text=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20vuestros%20servicios." target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li><span>Salobreña, Granada</span></li>
+            <li><a href="https://www.3dna.es">www.3dna.es</a></li>
+            <li class="footer-cta-row"><button type="button" class="open-panel footer-cta-btn">Solicitar propuesta</button></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© ${new Date().getFullYear()} 3DNA · Todos los derechos reservados</span>
+      <span>Diseño &amp; Desarrollo: 3DNA Studio</span>
+    </div>
+  </div>
+</footer>`;
+
+  const mount = document.getElementById("site-footer");
+  if (mount) mount.outerHTML = footerHtml;
 })();
 
 
@@ -316,6 +392,42 @@ onFormPanelLifecycle(() => {
 // =============================================
 // 4. COOKIES BANNER
 // =============================================
+const COOKIE_CONSENT_KEY = 'cookiesDecision';
+const COOKIE_CONSENT_VERSION = '2026-05-01';
+
+function readCookieConsent() {
+  try {
+    const raw = localStorage.getItem(COOKIE_CONSENT_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') return null;
+    return parsed;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function writeCookieConsent(decision) {
+  const payload = {
+    necessary: true,
+    analytics: !!decision.analytics,
+    ads: !!decision.ads,
+    source: decision.source || 'banner',
+    version: COOKIE_CONSENT_VERSION,
+    updatedAt: new Date().toISOString()
+  };
+
+  localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(payload));
+  document.cookie = `cookie_consent=${encodeURIComponent(JSON.stringify(payload))}; path=/; max-age=31536000; SameSite=Lax`;
+  document.dispatchEvent(new CustomEvent('cookie:consent-changed', { detail: payload }));
+  return payload;
+}
+
+function hasAnalyticsConsent() {
+  const consent = readCookieConsent();
+  return !!(consent && consent.analytics === true);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const banner = document.getElementById('cookie-banner');
   const modal = document.getElementById('cookie-modal');
@@ -350,27 +462,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 420);
   };
 
-  if (!localStorage.getItem('cookiesDecision')) {
+  if (!readCookieConsent()) {
     showBanner();
   } else {
     hideBanner();
   }
 
   accept.onclick = () => {
-    localStorage.setItem('cookiesDecision', JSON.stringify({
-      necessary: true, analytics: true, ads: true
-    }));
+    writeCookieConsent({ analytics: true, ads: true, source: 'accept' });
+    loadGoogleAnalytics();
     hideBanner();
   };
 
   reject.onclick = () => {
-    localStorage.setItem('cookiesDecision', JSON.stringify({
-      necessary: true, analytics: false, ads: false
-    }));
+    writeCookieConsent({ analytics: false, ads: false, source: 'reject' });
     hideBanner();
   };
 
   config.onclick = () => {
+    const consent = readCookieConsent();
+    const analyticsCheckbox = document.getElementById('analytics-cookies');
+    const adsCheckbox = document.getElementById('ads-cookies');
+    if (analyticsCheckbox && consent) analyticsCheckbox.checked = !!consent.analytics;
+    if (adsCheckbox && consent) adsCheckbox.checked = !!consent.ads;
+
     modal.classList.add('show');
     overlay.classList.add('show');
   };
@@ -384,9 +499,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const analytics = document.getElementById('analytics-cookies').checked;
     const ads = document.getElementById('ads-cookies').checked;
 
-    localStorage.setItem('cookiesDecision', JSON.stringify({
-      necessary: true, analytics: analytics, ads: ads
-    }));
+    writeCookieConsent({ analytics, ads, source: 'config' });
+    if (analytics) {
+      loadGoogleAnalytics();
+    }
 
     modal.classList.remove('show');
     overlay.classList.remove('show');
@@ -431,6 +547,9 @@ document.getElementById('privacy-policy-modal')?.addEventListener('click', (e) =
 // 6. GOOGLE ANALYTICS (after consent)
 // =============================================
 function loadGoogleAnalytics() {
+  if (window.__gaLoaded) return;
+  window.__gaLoaded = true;
+
   const script = document.createElement('script');
   script.async = true;
   script.src = 'https://www.googletagmanager.com/gtag/js?id=G-QGGREKNJDX';
@@ -443,8 +562,7 @@ function loadGoogleAnalytics() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const consent = JSON.parse(localStorage.getItem('cookiesDecision'));
-  if (consent && consent.analytics) {
+  if (hasAnalyticsConsent()) {
     loadGoogleAnalytics();
   }
 });

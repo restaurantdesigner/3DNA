@@ -4,107 +4,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Oferta Publica | 3DNA</title>
+  <link rel="icon" type="image/png" href="img/favicon_32x322.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Lato&family=Ultra&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260501o">
   <style>
-    :root {
-      --bg: #f5f7fb;
-      --card: #ffffff;
-      --text: #14181f;
-      --muted: #5b6474;
-      --line: #d8deea;
-      --accent: #0b6bff;
-    }
-
-    * { box-sizing: border-box; }
-
+    /* Override index-page-specific resets for this document page */
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #eef2f9 0%, var(--bg) 100%);
-      line-height: 1.6;
+      scroll-snap-type: none !important;
+      background: linear-gradient(180deg, #eef2f9 0%, #f5f7fb 100%) !important;
+      color: #14181f !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
     }
 
-    .wrap {
+    .oferta-wrap {
       width: min(960px, 100% - 32px);
-      margin: 26px auto 52px;
+      margin: 0 auto;
+      padding: 110px 0 52px;
     }
 
-    .head {
+    .oferta-actions {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .home-link {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .actions {
-      display: flex;
+      justify-content: flex-end;
       gap: 10px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
 
-    .btn {
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--text);
+    .oferta-btn {
+      border: 1px solid #d8deea;
+      background: #0b6bff;
+      color: #fff;
       border-radius: 999px;
-      padding: 8px 14px;
+      padding: 10px 18px;
       font-size: 14px;
       cursor: pointer;
-      text-decoration: none;
       font-weight: 600;
+      font-family: inherit;
     }
 
-    .btn-primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
+    .oferta-card {
+      background: #fff;
+      border: 1px solid #d8deea;
       border-radius: 16px;
-      box-shadow: 0 10px 28px rgba(18, 30, 60, .08);
-      padding: 24px;
+      box-shadow: 0 10px 28px rgba(18,30,60,.08);
+      padding: 32px;
+      line-height: 1.7;
+      color: #14181f;
     }
 
-    h2 { margin-top: 0; line-height: 1.25; }
-    h3 { margin-top: 24px; }
-
-    .meta {
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 10px;
-    }
+    .oferta-card h2 { margin-top: 0; line-height: 1.25; font-family: 'Staatliches', sans-serif; font-size: 1.8rem; letter-spacing: 1px; }
+    .oferta-card h3 { margin-top: 28px; font-family: 'Staatliches', sans-serif; font-size: 1.2rem; letter-spacing: .8px; }
+    .oferta-card p  { margin-top: 14px; font-size: .92rem; }
+    .oferta-card .meta { color: #5b6474; font-size: .82rem; margin-top: 6px; }
 
     @media print {
-      body { background: #fff; }
-      .head { display: none; }
-      .wrap { width: 100%; margin: 0; }
-      .card { border: 0; box-shadow: none; padding: 0; }
-      a { color: #000; text-decoration: none; }
+      .site-footer, #site-header, .oferta-actions { display: none !important; }
+      body { background: #fff !important; }
+      .oferta-wrap { padding-top: 0; }
+      .oferta-card { border: 0; box-shadow: none; padding: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="head">
-      <a class="home-link" href="/">Volver a 3DNA</a>
-      <div class="actions">
-        <button type="button" class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
-      </div>
+  <div id="site-header"></div>
+
+  <div class="oferta-wrap">
+
+    <div class="oferta-actions">
+      <button type="button" class="oferta-btn" onclick="window.print()">Imprimir / Guardar PDF</button>
     </div>
 
-    <article class="card">
-      <h2>Contrato de Oferta Pública y Condiciones Generales de Uso del Sistema Digital</h2>
+    <article class="oferta-card">
+    <h2>Contrato de Oferta Publica y Condiciones Generales de Uso del Sistema Digital</h2>
     <p><strong>Versión</strong> 1.0 | <strong>Fecha de entrada en vigor:</strong> 30/04/2026</p>
 
     <p>El presente documento constituye una oferta pública vinculante que regula el acceso, uso y funcionamiento de un sistema digital automatizado de captación, conversión y gestión de usuarios (en adelante, el “Sistema”), ofrecido por el titular del mismo (en adelante, el “Proveedor”), y aceptado por cualquier persona física o jurídica (en adelante, el “Usuario”) que acceda, interactúe o utilice total o parcialmente dicho Sistema, independientemente del medio, canal o dispositivo empleado.</p>
@@ -151,5 +125,8 @@
       <p class="meta"><strong>Enlace permanente para documentos:</strong> https://3dna.es/oferta-publica.html</p>
     </article>
   </div>
+
+  <div id="site-footer"></div>
+  <script src="assets/js/main.js?v=20260501q"></script>
 </body>
 </html>
