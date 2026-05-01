@@ -397,6 +397,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!modalOferta) return;
 
+  // Keep oferta modal outside side-panel DOM to avoid nested modal stacking bugs on iOS.
+  if (modalOferta.parentElement !== document.body) {
+    document.body.appendChild(modalOferta);
+  }
+
   const openOferta = () => {
     // Force-reset other full-screen layers so oferta cannot inherit stale blockers.
     panel?.classList.remove('open');
