@@ -1232,113 +1232,94 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // =============================================
-// 16. REVIEWS MARQUEE (auto-scroll + drag)
+// 16. REVIEWS MARQUEE (CSS animation + drag)
 // =============================================
 document.addEventListener("DOMContentLoaded", () => {
-  const scroller = document.querySelector("#reviews .reviews-marquee");
+  const marquee = document.querySelector("#reviews .reviews-marquee");
   const track = document.querySelector("#reviews .reviews-track");
-  if (!scroller || !track) return;
+  if (!marquee || !track) return;
 
-  const isMobile = window.matchMedia("(max-width: 767px)").matches;
-  const DRAG_SENSITIVITY = 1;
-  const AUTO_SPEED_PX_PER_SEC = isMobile ? 9 : 12;
-  const AUTO_RESUME_DELAY_MS = 1200;
-  const DRAG_START_THRESHOLD_PX = 3;
-
-  let isPointerDown = false;
-  let isDragging = false;
-  let activePointerId = null;
-  let startX = 0;
-  let startScrollLeft = 0;
-  let lastInteractionAt = 0;
-  let lastTs = performance.now();
-
+  // Duplicate content for seamless infinite loop
   if (!track.dataset.looped) {
     track.innerHTML = track.innerHTML + track.innerHTML;
     track.dataset.looped = "1";
   }
 
-  const halfWidth = () => track.scrollWidth / 2;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragStartTrackX = 0;
+  let isHorizontalDrag = null; // null = undecided
 
-  const normalizeScroll = () => {
-    const hw = halfWidth();
-    if (!hw) return;
-    if (scroller.scrollLeft >= hw) scroller.scrollLeft -= hw;
-    if (scroller.scrollLeft < 0) scroller.scrollLeft += hw;
-  };
+  function getTrackX() {
+    const matrix = new DOMMatrixReadOnly(window.getComputedStyle(track).transform);
+    return matrix.m41;
+  }
 
-  const startDrag = (clientX, pointerId = null) => {
-    isPointerDown = true;
-    activePointerId = pointerId;
+  function modPositive(a, n) { return ((a % n) + n) % n; }
+
+  function beginDrag(clientX, clientY, pointerId) {
+    dragStartX = clientX;
+    dragStartY = clientY;
+    dragStartTrackX = getTrackX();
+    isDragging = true;
+    isHorizontalDrag = null;
+    marquee.setPointerCapture(pointerId);
+  }
+
+  function moveDrag(clientX, clientY) {
+    if (!isDragging) return;
+    const dx = clientX - dragStartX;
+    const dy = clientY - dragStartY;
+
+    if (isHorizontalDrag === null) {
+      if (Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
+      isHorizontalDrag = Math.abs(dx) >= Math.abs(dy);
+    }
+
+    if (!isHorizontalDrag) return; // vertical = let page scroll
+
+    // Freeze animation at current visual position
+    if (track.style.animationPlayState !== "paused") {
+      track.style.transform = `translateX(${dragStartTrackX}px)`;
+      track.style.animationPlayState = "paused";
+      marquee.classList.add("is-dragging");
+    }
+
+    track.style.transform = `translateX(${dragStartTrackX + dx}px)`;
+  }
+
+  function endDrag(clientX) {
+    if (!isDragging) return;
     isDragging = false;
-    lastInteractionAt = Date.now();
-    startX = clientX;
-    startScrollLeft = scroller.scrollLeft;
-  };
+    isHorizontalDrag = null;
+    marquee.classList.remove("is-dragging");
 
-  const moveDrag = (clientX) => {
-    if (!isPointerDown) return;
-
-    const dx = clientX - startX;
-    if (!isDragging && Math.abs(dx) < DRAG_START_THRESHOLD_PX) {
-      return;
+    if (track.style.animationPlayState === "paused") {
+      const currentX = dragStartTrackX + (clientX - dragStartX);
+      const halfW = track.scrollWidth / 2;
+      // Normalize to [-halfW, 0)
+      const normalizedX = -modPositive(-currentX, halfW);
+      const fraction = -normalizedX / halfW; // 0..1
+      const durationS = parseFloat(window.getComputedStyle(track).animationDuration) || 80;
+      track.style.transform = "";
+      track.style.animationDelay = `${-fraction * durationS}s`;
+      track.style.animationPlayState = "";
     }
+  }
 
-    if (!isDragging) {
-      isDragging = true;
-      scroller.classList.add("is-dragging");
-    }
-
-    scroller.scrollLeft = startScrollLeft - (dx * DRAG_SENSITIVITY);
-    normalizeScroll();
-    lastInteractionAt = Date.now();
-  };
-
-  const stopDrag = () => {
-    if (!isPointerDown && !isDragging) return;
-    isPointerDown = false;
-    isDragging = false;
-    activePointerId = null;
-    lastInteractionAt = Date.now();
-    scroller.classList.remove("is-dragging");
-  };
-
-  const tick = (ts) => {
-    const dt = (ts - lastTs) / 1000;
-    lastTs = ts;
-
-    const autoAllowed = !isPointerDown && !isDragging && (Date.now() - lastInteractionAt > AUTO_RESUME_DELAY_MS);
-    if (autoAllowed) {
-      scroller.scrollLeft += AUTO_SPEED_PX_PER_SEC * dt;
-      normalizeScroll();
-    }
-
-    requestAnimationFrame(tick);
-  };
-
-  requestAnimationFrame(tick);
-
-  scroller.addEventListener("pointerdown", (e) => {
+  marquee.addEventListener("pointerdown", (e) => {
     if (e.pointerType === "mouse" && e.button !== 0) return;
-    startDrag(e.clientX, e.pointerId);
-    scroller.setPointerCapture(e.pointerId);
+    beginDrag(e.clientX, e.clientY, e.pointerId);
   });
 
-  scroller.addEventListener("pointermove", (e) => {
-    if (activePointerId !== null && e.pointerId !== activePointerId) return;
-    moveDrag(e.clientX);
-    if (isDragging) e.preventDefault();
-  });
+  marquee.addEventListener("pointermove", (e) => {
+    moveDrag(e.clientX, e.clientY);
+    if (isHorizontalDrag) e.preventDefault();
+  }, { passive: false });
 
-  scroller.addEventListener("pointerup", (e) => {
-    if (activePointerId !== null && e.pointerId !== activePointerId) return;
-    stopDrag();
-  });
-
-  scroller.addEventListener("pointercancel", stopDrag);
-  scroller.addEventListener("lostpointercapture", stopDrag);
-  scroller.addEventListener("dragstart", (e) => e.preventDefault());
-  scroller.addEventListener("scroll", normalizeScroll, { passive: true });
-
-  normalizeScroll();
+  marquee.addEventListener("pointerup", (e) => endDrag(e.clientX));
+  marquee.addEventListener("pointercancel", (e) => endDrag(e.clientX));
+  marquee.addEventListener("lostpointercapture", (e) => { if (isDragging) endDrag(e.clientX); });
+  marquee.addEventListener("dragstart", (e) => e.preventDefault());
 });

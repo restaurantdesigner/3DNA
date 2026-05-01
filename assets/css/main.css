@@ -2683,8 +2683,7 @@ margin-top: 120px;
 .reviews-marquee{
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: hidden;
   position: relative;
   --reviews-fade: clamp(20px, 4vw, 56px);
   -webkit-mask-image: linear-gradient(
@@ -2702,10 +2701,7 @@ margin-top: 120px;
     transparent 100%
   );
   cursor: grab;
-  touch-action: pan-x;
-  -webkit-overflow-scrolling: touch;
   user-select: none;
-  scroll-behavior: auto;
 }
 
 .reviews-marquee.is-dragging{
@@ -2717,14 +2713,14 @@ margin-top: 120px;
   gap: 18px;
   width: max-content;
   padding: 8px 0;
-
-  animation: none;
-  will-change: auto;
+  animation: reviews-scroll 80s linear infinite;
+  will-change: transform;
 }
 
-/* horizontal scrollbar is hidden; drag/swipe handles navigation */
-.reviews-marquee::-webkit-scrollbar{ display: none; }
-.reviews-marquee{ scrollbar-width: none; }
+@keyframes reviews-scroll{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
 /* review card */
 .review-card{
@@ -3149,39 +3145,15 @@ margin-top: 120px;
 }
 
 
-/* ===== REVIEWS: MOBILE = SWIPE CAROUSEL ===== */
+/* ===== REVIEWS: MOBILE ===== */
 @media (max-width: 767px){
-
-  /* отключаем бегущую анимацию на мобиле */
   .reviews-track{
-    animation: none !important;
-    transform: none !important;
-  }
-
-  .reviews-marquee{
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: auto;
-    padding: 6px 0 14px;
-  }
-
-  /* трек становится обычной лентой */
-  .reviews-track{
-    display: flex;
     gap: 14px;
-    width: max-content;
-    padding: 0 16px;
+    animation-duration: 50s;
   }
-
-  /* каждая карточка */
   .review-card{
-    flex: 0 0 86vw;
+    width: 260px;
   }
-
-  /* убираем скроллбар (опционально) */
-  .reviews-marquee::-webkit-scrollbar{ display:none; }
-  .reviews-marquee{ scrollbar-width: none; }
 }
 
 @media (max-width: 767px){
