@@ -239,7 +239,7 @@ if (elSec2) {
 
 const heroTitlePairs = [
   ["Marketing Digital", "Publicidad"],
-  ["Diseno 3D para comercio", "Implementacion de AI y Web"],
+  ["Diseno 3D para comercio", "Implementacion de AI "],
   ["Web de alto impacto", "Pagos y automatizacion"],
   ["Experiencias inmersivas", "Que venden mas"],
   ["Diseno comercial", "Orientado a conversion"]
