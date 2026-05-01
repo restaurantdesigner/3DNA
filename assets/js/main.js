@@ -197,13 +197,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.getElementById('close-panel');
   const backdrop = document.getElementById('panel-backdrop');
 
-  document.querySelectorAll('.open-panel').forEach(btn => {
-    btn.addEventListener('click', function (e) {
+  if (!panel || !closeBtn || !backdrop) return;
+
+  const openPanel = (e) => {
+    if (e) {
       e.preventDefault();
-      panel.classList.add('open');
-      backdrop.classList.add('visible');
-      document.body.classList.add('modal-open');
-    });
+      e.stopPropagation();
+    }
+    panel.classList.add('open');
+    backdrop.classList.add('visible');
+    document.body.classList.add('modal-open');
+  };
+
+  document.querySelectorAll('.open-panel').forEach(btn => {
+    btn.addEventListener('click', openPanel);
+    btn.addEventListener('touchend', openPanel, { passive: false });
+    btn.addEventListener('pointerup', openPanel);
   });
 
   function closePanel() {
