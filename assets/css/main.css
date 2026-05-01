@@ -167,6 +167,16 @@ section#sec2{
 }
 .footnote + .footnote{ margin-top:.15rem; }
 .footnote a{ color:#66ccff; text-decoration:underline; font-weight:500; }
+.footnote .oferta-inline-btn{
+  border: 0;
+  background: transparent;
+  color:#66ccff;
+  text-decoration:underline;
+  font-weight:500;
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+}
 
 
 
@@ -5849,13 +5859,16 @@ section,
   }
 
   #hero .footnote-block {
+    position: relative;
+    bottom: auto;
     left: 0;
     right: 0;
     max-width: 100% !important;
     display: flex;
     justify-content: center;
     text-align: center;
-    z-index: 8;
+    margin-top: 6px !important;
+    z-index: 30;
     pointer-events: auto;
   }
 
@@ -5873,6 +5886,9 @@ section,
     padding: 12px 8px;
     min-height: 44px;
     line-height: 1.35;
+    appearance: none;
+    -webkit-appearance: none;
+    touch-action: manipulation;
   }
 }
 

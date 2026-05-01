@@ -196,10 +196,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const panel = document.getElementById('side-panel');
   const closeBtn = document.getElementById('close-panel');
   const backdrop = document.getElementById('panel-backdrop');
+  let lastPanelOpenTs = 0;
 
   if (!panel || !closeBtn || !backdrop) return;
 
   const openPanel = (e) => {
+    const now = Date.now();
+    if (now - lastPanelOpenTs < 320) return;
+    lastPanelOpenTs = now;
+
     if (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -210,9 +215,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   document.querySelectorAll('.open-panel').forEach(btn => {
+    if (window.PointerEvent) {
+      btn.addEventListener('pointerdown', openPanel, { passive: false });
+    }
     btn.addEventListener('click', openPanel);
-    btn.addEventListener('touchend', openPanel, { passive: false });
-    btn.addEventListener('pointerup', openPanel);
   });
 
   function closePanel() {
@@ -370,6 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const ofertaLinks = document.querySelectorAll('.open-oferta');
   const modalOferta = document.getElementById('modal-oferta');
   const closeOferta = document.getElementById('close-oferta');
+  let lastOfertaOpenTs = 0;
 
   if (!modalOferta) return;
 
@@ -385,15 +392,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const bindTap = (el, handler) => {
     if (!el) return;
+    if (window.PointerEvent) {
+      el.addEventListener('pointerdown', handler, { passive: false });
+    }
     el.addEventListener('click', handler);
-    el.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      handler(e);
-    }, { passive: false });
   };
 
   ofertaLinks.forEach(link => {
     bindTap(link, (e) => {
+      const now = Date.now();
+      if (now - lastOfertaOpenTs < 320) return;
+      lastOfertaOpenTs = now;
+
       e.preventDefault();
       e.stopPropagation();
       openOferta();
