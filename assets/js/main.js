@@ -387,58 +387,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const ofertaLinks = document.querySelectorAll('.open-oferta');
   const modalOferta = document.getElementById('modal-oferta');
   const closeOferta = document.getElementById('close-oferta');
+  let blockBackdropClose = false;
 
   if (!modalOferta) return;
 
   const openOferta = () => {
-    modalOferta.style.display = 'flex';
+    modalOferta.classList.add('is-open');
+    modalOferta.style.display = '';
     document.body.classList.add('modal-open');
+
+    blockBackdropClose = true;
+    window.setTimeout(() => {
+      blockBackdropClose = false;
+    }, 220);
   };
 
   const hideOferta = () => {
+    modalOferta.classList.remove('is-open');
     modalOferta.style.display = 'none';
     document.body.classList.remove('modal-open');
   };
 
-  const bindTap = (el, handler) => {
-    if (!el) return;
-    let touchTriggered = false;
-
-    el.addEventListener('touchend', (e) => {
-      touchTriggered = true;
-      e.preventDefault();
-      handler(e);
-    }, { passive: false });
-
-    el.addEventListener('click', (e) => {
-      if (touchTriggered) {
-        touchTriggered = false;
-        return;
-      }
-      handler(e);
-    });
-  };
-
   ofertaLinks.forEach(link => {
-    bindTap(link, (e) => {
+    link.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       openOferta();
     });
   });
 
-  bindTap(closeOferta, () => {
+  closeOferta?.addEventListener('click', () => {
     hideOferta();
   });
 
   modalOferta?.addEventListener('click', (e) => {
+    if (blockBackdropClose) return;
     if (e.target === modalOferta) {
       hideOferta();
     }
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOferta.style.display === 'flex') {
+    if (e.key === 'Escape' && modalOferta.classList.contains('is-open')) {
       hideOferta();
     }
   });

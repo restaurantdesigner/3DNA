@@ -1381,6 +1381,10 @@ body.modal-open{
   z-index: 10060;
 }
 
+.modal-oferta.is-open{
+  display: flex;
+}
+
 
 .modal-oferta .modal-oferta-content {
   position: relative;
