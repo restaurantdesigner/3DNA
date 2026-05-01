@@ -1143,44 +1143,55 @@ body.modal-open{
 
   .about-wrap{
     grid-template-columns: 1fr;
-    padding: 32px 16px;
+    padding: 0 2px 32px;
     gap: 24px;
+  }
+
+  .about-body{
+    align-self: auto;
+    padding: 0 14px;
   }
 
   .about-media{
     position: relative;
     top: auto;
     align-self: auto;
-    height: 50vh;
-    border-radius: 10px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
   }
 
   .about-media video{
     position: relative;
     top: auto;
     height: 100%;
-    border-radius: 10px;
-  }
-
-  .about-body{
-    align-self: auto;
-    padding: 0;
+    border-radius: 0;
   }
 
   .about-body .about-heading{
-    font-size: 1.5rem;
-    margin: 0 0 14px;
+    font-size: 1.3rem;
+    margin: 0 0 8px;
   }
 
   .about-body h3{
-    font-size: 1rem;
-    margin: 22px 0 8px;
+    font-size: .88rem;
+    margin: 14px 0 4px;
   }
 
   .about-body p{
-    font-size: .93rem;
-    line-height: 1.65;
+    font-size: .82rem;
+    line-height: 1.5;
+    margin: 0 0 6px;
   }
+
+  /* keep only first paragraph after each h3; hide second */
+  .about-body h3 + p + p { display: none; }
+  /* hide "Trabajo con:" label + the big list paragraph */
+  .about-body p:nth-last-of-type(1),
+  .about-body p:nth-last-of-type(2) { display: none; }
 }
 
 
