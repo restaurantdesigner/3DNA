@@ -3159,10 +3159,9 @@ margin-top: 120px;
   }
 
   .reviews-marquee{
-    overflow-x: auto;              /* ✅ скролл по X */
+    overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory; /* ✅ "перелистывание" */
     scroll-behavior: auto;
     padding: 6px 0 14px;
   }
@@ -3172,13 +3171,12 @@ margin-top: 120px;
     display: flex;
     gap: 14px;
     width: max-content;
-    padding: 0 16px;              /* ✅ воздух слева/справа как на мобиле */
+    padding: 0 16px;
   }
 
-  /* каждая карточка = один экран (почти) */
+  /* каждая карточка */
   .review-card{
-    flex: 0 0 86vw;               /* ширина карточки для свайпа */
-    scroll-snap-align: center;
+    flex: 0 0 86vw;
   }
 
   /* убираем скроллбар (опционально) */
