@@ -2702,6 +2702,7 @@ margin-top: 120px;
   );
   cursor: grab;
   user-select: none;
+  touch-action: pan-y;
 }
 
 .reviews-marquee.is-dragging{
@@ -2713,13 +2714,7 @@ margin-top: 120px;
   gap: 18px;
   width: max-content;
   padding: 8px 0;
-  animation: reviews-scroll 80s linear infinite;
   will-change: transform;
-}
-
-@keyframes reviews-scroll{
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
 }
 
 /* review card */
@@ -3149,7 +3144,6 @@ margin-top: 120px;
 @media (max-width: 767px){
   .reviews-track{
     gap: 14px;
-    animation-duration: 50s;
   }
   .review-card{
     width: 260px;

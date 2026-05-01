@@ -1232,7 +1232,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // =============================================
-// 16. REVIEWS MARQUEE (CSS animation + drag)
+// 16. REVIEWS MARQUEE (RAF auto-scroll + drag)
 // =============================================
 document.addEventListener("DOMContentLoaded", () => {
   const marquee = document.querySelector("#reviews .reviews-marquee");
@@ -1241,85 +1241,90 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Duplicate content for seamless infinite loop
   if (!track.dataset.looped) {
-    track.innerHTML = track.innerHTML + track.innerHTML;
+    track.innerHTML += track.innerHTML;
     track.dataset.looped = "1";
   }
 
+  // Remove any CSS animation — JS controls position entirely
+  track.style.animation = "none";
+
+  const SPEED = 30; // px/s
+
+  let offset = 0;       // current translateX (always negative or 0)
+  let halfW = 0;
+  let lastTs = null;
+
+  // Drag state
   let isDragging = false;
-  let dragStartX = 0;
-  let dragStartY = 0;
-  let dragStartTrackX = 0;
-  let isHorizontalDrag = null; // null = undecided
+  let startX = 0;
+  let startY = 0;
+  let direction = null; // 'h' | 'v' | null
+  let dragDelta = 0;    // live horizontal delta during drag
 
-  function getTrackX() {
-    const matrix = new DOMMatrixReadOnly(window.getComputedStyle(track).transform);
-    return matrix.m41;
-  }
+  function tick(ts) {
+    if (lastTs === null) lastTs = ts;
+    const dt = Math.min((ts - lastTs) / 1000, 0.05);
+    lastTs = ts;
 
-  function modPositive(a, n) { return ((a % n) + n) % n; }
+    halfW = track.scrollWidth / 2;
 
-  function beginDrag(clientX, clientY, pointerId) {
-    dragStartX = clientX;
-    dragStartY = clientY;
-    dragStartTrackX = getTrackX();
-    isDragging = true;
-    isHorizontalDrag = null;
-    marquee.setPointerCapture(pointerId);
-  }
-
-  function moveDrag(clientX, clientY) {
-    if (!isDragging) return;
-    const dx = clientX - dragStartX;
-    const dy = clientY - dragStartY;
-
-    if (isHorizontalDrag === null) {
-      if (Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
-      isHorizontalDrag = Math.abs(dx) >= Math.abs(dy);
+    if (!isDragging) {
+      offset -= SPEED * dt;
     }
 
-    if (!isHorizontalDrag) return; // vertical = let page scroll
-
-    // Freeze animation at current visual position
-    if (track.style.animationPlayState !== "paused") {
-      track.style.transform = `translateX(${dragStartTrackX}px)`;
-      track.style.animationPlayState = "paused";
-      marquee.classList.add("is-dragging");
+    // Normalize: keep offset in [-halfW, 0)
+    if (halfW > 0) {
+      while (offset <= -halfW) offset += halfW;
+      while (offset > 0)       offset -= halfW;
     }
 
-    track.style.transform = `translateX(${dragStartTrackX + dx}px)`;
+    track.style.transform = `translateX(${offset + dragDelta}px)`;
+    requestAnimationFrame(tick);
   }
 
-  function endDrag(clientX) {
-    if (!isDragging) return;
-    isDragging = false;
-    isHorizontalDrag = null;
-    marquee.classList.remove("is-dragging");
+  requestAnimationFrame(tick);
 
-    if (track.style.animationPlayState === "paused") {
-      const currentX = dragStartTrackX + (clientX - dragStartX);
-      const halfW = track.scrollWidth / 2;
-      // Normalize to [-halfW, 0)
-      const normalizedX = -modPositive(-currentX, halfW);
-      const fraction = -normalizedX / halfW; // 0..1
-      const durationS = parseFloat(window.getComputedStyle(track).animationDuration) || 80;
-      track.style.transform = "";
-      track.style.animationDelay = `${-fraction * durationS}s`;
-      track.style.animationPlayState = "";
-    }
-  }
-
+  // ---- Drag ----
   marquee.addEventListener("pointerdown", (e) => {
     if (e.pointerType === "mouse" && e.button !== 0) return;
-    beginDrag(e.clientX, e.clientY, e.pointerId);
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    direction = null;
+    dragDelta = 0;
+    marquee.setPointerCapture(e.pointerId);
   });
 
   marquee.addEventListener("pointermove", (e) => {
-    moveDrag(e.clientX, e.clientY);
-    if (isHorizontalDrag) e.preventDefault();
+    if (!isDragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+
+    if (direction === null) {
+      if (Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
+      direction = Math.abs(dx) >= Math.abs(dy) ? "h" : "v";
+      if (direction === "v") { isDragging = false; return; }
+    }
+
+    if (direction !== "h") return;
+    e.preventDefault();
+
+    dragDelta = dx;
+    marquee.classList.add("is-dragging");
   }, { passive: false });
 
-  marquee.addEventListener("pointerup", (e) => endDrag(e.clientX));
-  marquee.addEventListener("pointercancel", (e) => endDrag(e.clientX));
-  marquee.addEventListener("lostpointercapture", (e) => { if (isDragging) endDrag(e.clientX); });
+  function endDrag() {
+    if (!isDragging) return;
+    isDragging = false;
+    direction = null;
+    // Absorb drag into offset so animation continues from here
+    offset += dragDelta;
+    dragDelta = 0;
+    marquee.classList.remove("is-dragging");
+  }
+
+  marquee.addEventListener("pointerup", endDrag);
+  marquee.addEventListener("pointercancel", endDrag);
+  marquee.addEventListener("lostpointercapture", endDrag);
   marquee.addEventListener("dragstart", (e) => e.preventDefault());
 });
