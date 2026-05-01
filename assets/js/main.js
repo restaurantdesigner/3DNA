@@ -1050,7 +1050,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // =============================================
-// 15. SHOWROOM DROPDOWN TOGGLE
+// 15A. IOS INTERACTION LAYER SANITIZER
+// =============================================
+document.addEventListener("DOMContentLoaded", () => {
+  const panel = document.getElementById("side-panel");
+  const panelBackdrop = document.getElementById("panel-backdrop");
+  const cookieModal = document.getElementById("cookie-modal");
+  const cookieOverlay = document.getElementById("cookie-overlay");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileBackdrop = document.getElementById("mobileBackdrop");
+  const ofertaModal = document.getElementById("modal-oferta");
+
+  const sanitizeLayers = () => {
+    if (panel && !panel.classList.contains("open")) {
+      panelBackdrop?.classList.remove("visible");
+    }
+
+    if (!cookieModal?.classList.contains("show")) {
+      cookieOverlay?.classList.remove("show");
+    }
+
+    if (!document.body.classList.contains("mobile-open")) {
+      mobileMenu?.setAttribute("aria-hidden", "true");
+    }
+
+    // Keep body lock only while at least one modal/menu is actually open.
+    const hasActiveLayer = Boolean(
+      panel?.classList.contains("open") ||
+      cookieModal?.classList.contains("show") ||
+      ofertaModal?.style.display === "flex" ||
+      document.body.classList.contains("mobile-open")
+    );
+
+    if (!hasActiveLayer) {
+      document.body.classList.remove("modal-open");
+    }
+  };
+
+  sanitizeLayers();
+  window.addEventListener("pageshow", sanitizeLayers);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") sanitizeLayers();
+  });
+  window.addEventListener("focus", sanitizeLayers);
+});
+
+
+// =============================================
+// 16. SHOWROOM DROPDOWN TOGGLE
 // =============================================
 document.addEventListener("DOMContentLoaded", () => {
   const dd = document.getElementById("showroomDropdown");

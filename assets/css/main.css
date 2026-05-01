@@ -5896,12 +5896,24 @@ section,
 .mobile-menu-backdrop,
 #panel-backdrop,
 #cookie-overlay {
+  display: none !important;
   pointer-events: none !important;
 }
 
 body.mobile-open .mobile-menu-backdrop,
 #panel-backdrop.visible,
 #cookie-overlay.show {
+  display: block !important;
   pointer-events: auto !important;
+}
+
+/* Global touch stability for iPhone Safari */
+a,
+button,
+[role="button"],
+input,
+select,
+textarea {
+  touch-action: manipulation;
 }
 
