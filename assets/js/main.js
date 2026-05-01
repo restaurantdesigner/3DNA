@@ -1156,12 +1156,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector("#reviews .reviews-track");
   if (!scroller || !track) return;
 
-  const DRAG_SENSITIVITY = 0.45;
-  const AUTO_SPEED_PX_PER_SEC = 18;
-  const AUTO_RESUME_DELAY_MS = 1200;
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+  const DRAG_SENSITIVITY = 1;
+  const AUTO_SPEED_PX_PER_SEC = isMobile ? 10 : 14;
+  const AUTO_RESUME_DELAY_MS = 2200;
+  const DRAG_THRESHOLD_PX = 6;
 
   let isDragging = false;
   let startX = 0;
+  let startY = 0;
+  let touchTracking = false;
   let startScrollLeft = 0;
   let virtualScrollLeft = 0;
   let lastInteractionAt = 0;
@@ -1182,17 +1186,39 @@ document.addEventListener("DOMContentLoaded", () => {
     scroller.scrollLeft = virtualScrollLeft;
   };
 
-  const startDrag = (pageX) => {
-    isDragging = true;
+  const startDrag = (pageX, pageY = 0, isTouch = false) => {
+    touchTracking = isTouch;
+    isDragging = !isTouch;
     lastInteractionAt = Date.now();
     startX = pageX;
+    startY = pageY;
     startScrollLeft = scroller.scrollLeft;
     virtualScrollLeft = scroller.scrollLeft;
     scroller.classList.add("is-dragging");
   };
 
-  const moveDrag = (pageX) => {
+  const moveDrag = (pageX, pageY = 0, isTouch = false) => {
+    if (!isDragging && !touchTracking) return;
+
+    if (isTouch && !isDragging) {
+      const dx = pageX - startX;
+      const dy = pageY - startY;
+
+      if (Math.abs(dx) < DRAG_THRESHOLD_PX && Math.abs(dy) < DRAG_THRESHOLD_PX) {
+        return;
+      }
+
+      if (Math.abs(dy) > Math.abs(dx)) {
+        touchTracking = false;
+        scroller.classList.remove("is-dragging");
+        return;
+      }
+
+      isDragging = true;
+    }
+
     if (!isDragging) return;
+
     const dx = pageX - startX;
     virtualScrollLeft = startScrollLeft - (dx * DRAG_SENSITIVITY);
     scroller.scrollLeft = virtualScrollLeft;
@@ -1200,7 +1226,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const stopDrag = () => {
+    if (!isDragging && !touchTracking) return;
     isDragging = false;
+    touchTracking = false;
     lastInteractionAt = Date.now();
     scroller.classList.remove("is-dragging");
   };
@@ -1222,7 +1250,7 @@ document.addEventListener("DOMContentLoaded", () => {
   requestAnimationFrame(tick);
 
   scroller.addEventListener("mousedown", (e) => {
-    startDrag(e.pageX);
+    startDrag(e.pageX, 0, false);
     e.preventDefault();
   });
 
@@ -1230,11 +1258,13 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("mouseup", stopDrag);
 
   scroller.addEventListener("touchstart", (e) => {
-    startDrag(e.touches[0].pageX);
+    const t = e.touches[0];
+    startDrag(t.pageX, t.pageY, true);
   }, { passive: true });
 
   scroller.addEventListener("touchmove", (e) => {
-    moveDrag(e.touches[0].pageX);
+    const t = e.touches[0];
+    moveDrag(t.pageX, t.pageY, true);
     if (isDragging) e.preventDefault();
   }, { passive: false });
 

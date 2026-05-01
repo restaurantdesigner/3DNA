@@ -2701,7 +2701,7 @@ margin-top: 120px;
     transparent 100%
   );
   cursor: grab;
-  touch-action: pan-x;
+  touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
   user-select: none;
 }
