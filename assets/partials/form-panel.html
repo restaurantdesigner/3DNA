@@ -1,0 +1,348 @@
+﻿<div id="side-panel">
+  <button id="close-panel">&times;</button>
+  
+  <div class="side-content">
+    <div class="sticky-header"></div>
+  <div class="form-intro">
+    <h2>3DNA.es - donde nace tu negocio digital.</h2>
+  </div>
+  <div class="progress-wrapper">
+  <div class="progress-text" id="progress-text">0% completado</div>
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+</div>
+
+
+
+<!-- Step 1 -->
+<div class="form-section" data-checkbox-group="construir">
+  <h3>1. ¿Qué quieres construir?</h3>
+  <div class="form-grid form-grid--checks">
+    <label class="form-check-option">
+      <input type="checkbox" name="construir" value="3d" class="form-check-input">
+      <span>Experiencia 3D</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="construir" value="web" class="form-check-input">
+      <span>Página web</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="construir" value="ia" class="form-check-input">
+      <span>Sistema automatizado (IA)</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="construir" value="ecosistema" class="form-check-input">
+      <span>Todo el ecosistema</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="construir" value="noclaro" class="form-check-input">
+      <span>No lo tengo claro</span>
+    </label>
+  </div>
+</div>
+
+<!-- Step 2 -->
+<div class="form-section">
+  <h3>2. Tu negocio es...</h3>
+  <div class="form-grid">
+    <select id="negocio-select" name="negocio" class="form-select" required>
+      <option value="">Selecciona una opción</option>
+      <option value="restaurante">Restaurante</option>
+      <option value="hotel">Hotel</option>
+      <option value="gimnasio">Gimnasio</option>
+      <option value="cafe">Café</option>
+      <option value="comercio">Comercio</option>
+      <option value="clinica">Clínica</option>
+      <option value="agencia">Agencia</option>
+      <option value="online">Tienda online</option>
+      <option value="otro">Otro</option>
+    </select>
+    <div id="otroInputWrapper" style="display:none; margin-top: 10px;">
+      <input class="form-input" type="text" name="negocio_otro" placeholder="Especifica tu negocio">
+    </div>
+  </div>
+</div>
+
+<!-- Step 3 -->
+<div class="form-section">
+  <h3>3. Tu presencia digital hoy</h3>
+  <div class="form-grid">
+    <select id="presencia-select" name="presencia" class="form-select" required>
+      <option value="">Selecciona una opción</option>
+      <option value="noexiste">No existe</option>
+      <option value="redes">Solo redes sociales</option>
+      <option value="web">Tengo web</option>
+      <option value="vendo">Ya vendo online</option>
+    </select>
+    <input class="form-input" type="url" name="enlace_negocio" placeholder="(Opcional) Web, Instagram, etc.">
+  </div>
+</div>
+
+<!-- Step 4 -->
+<div class="form-section">
+  <h3>4. Tu objetivo</h3>
+  <div class="form-grid">
+    <select id="objetivo-select" name="objetivo" class="form-select" required>
+      <option value="">Selecciona una opción</option>
+      <option value="clientes">Más clientes</option>
+      <option value="ventas">Más ventas</option>
+      <option value="imagen">Mejor imagen</option>
+      <option value="automatizar">Automatizar</option>
+      <option value="cero">Lanzar desde cero</option>
+    </select>
+  </div>
+</div>
+
+<!-- Step 5 -->
+<div class="form-section">
+  <h3>5. ¿Qué necesitas exactamente?</h3>
+  <div class="form-grid">
+    <select id="necesitas-select" name="necesitas" class="form-select" required>
+      <option value="">Selecciona una opción</option>
+      <option value="diseno">Diseño</option>
+      <option value="desarrollo">Desarrollo</option>
+      <option value="ventas">Sistema de ventas</option>
+      <option value="todo">Todo</option>
+    </select>
+  </div>
+</div>
+
+<!-- Step 6 -->
+<div class="form-section" data-checkbox-group="pago">
+  <h3>6. ¿Cómo quieres recibir pagos de tus clientes?</h3>
+  <div class="form-grid form-grid--checks">
+    <label class="form-check-option">
+      <input type="checkbox" name="pago" value="stripe" class="form-check-input">
+      <span>Stripe</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="pago" value="tarjeta" class="form-check-input">
+      <span>Tarjeta</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="pago" value="bizum" class="form-check-input">
+      <span>Bizum</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="pago" value="paypal" class="form-check-input">
+      <span>PayPal</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="pago" value="transferencia" class="form-check-input">
+      <span>Transferencia</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="pago" value="cripto" class="form-check-input">
+      <span>Cripto</span>
+    </label>
+  </div>
+</div>
+
+<!-- Step 7 -->
+<div class="form-section" data-checkbox-group="crecer">
+  <h3>7. ¿Dónde quieres crecer?</h3>
+  <div class="form-grid form-grid--checks">
+    <label class="form-check-option">
+      <input type="checkbox" name="crecer" value="meta" class="form-check-input">
+      <span>Meta Ads</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="crecer" value="google" class="form-check-input">
+      <span>Google</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="crecer" value="email" class="form-check-input">
+      <span>Email</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="crecer" value="redes" class="form-check-input">
+      <span>Redes sociales</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="crecer" value="noselo" class="form-check-input">
+      <span>No lo sé</span>
+    </label>
+  </div>
+</div>
+
+<!-- Step 8 -->
+<div class="form-section">
+  <h3>8. Inversión prevista</h3>
+  <div class="form-grid">
+    <select id="inversion-select" name="inversion" class="form-select" required>
+      <option value="">Selecciona una opción</option>
+      <option value="lt500">&lt; 500€</option>
+      <option value="500-1000">500€ - 1.000€</option>
+      <option value="1000-3000">1.000€ - 3.000€</option>
+      <option value="gt3000">3.000€+</option>
+    </select>
+  </div>
+</div>
+
+<!-- Step 9 -->
+<div class="form-section">
+  <h3>9. ¿Cuándo empezamos?</h3>
+  <div class="form-grid">
+    <select id="cuando-select" name="cuando" class="form-select" required>
+      <option value="">Selecciona una opción</option>
+      <option value="ahora">Ahora</option>
+      <option value="2semanas">En 2 semanas</option>
+      <option value="1mes">En 1 mes</option>
+      <option value="explorando">Explorando</option>
+    </select>
+  </div>
+</div>
+
+<!-- Step 10 -->
+<div class="form-section" data-checkbox-group="situacion">
+  <h3>10. Tu situación</h3>
+  <div class="form-grid form-grid--checks">
+    <label class="form-check-option">
+      <input type="checkbox" name="situacion" value="cero" class="form-check-input">
+      <span>Empiezo desde cero</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="situacion" value="negocio" class="form-check-input">
+      <span>Ya tengo negocio</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="situacion" value="mejorar" class="form-check-input">
+      <span>Quiero mejorar lo que tengo</span>
+    </label>
+    <label class="form-check-option">
+      <input type="checkbox" name="situacion" value="explorando" class="form-check-input">
+      <span>Estoy explorando ideas</span>
+    </label>
+  </div>
+</div>
+
+<!-- Step 11 optional -->
+<div class="form-section" data-optional="true">
+  <h3>11. Añadir detalles (opcional)</h3>
+  <div class="form-grid">
+    <input class="form-input" type="text" name="detalles" placeholder="Opcional: puedes explicar tu idea si quieres">
+  </div>
+</div>
+
+<!-- Step 12 -->
+<div class="form-section">
+  <h3>12. Tus datos</h3>
+  <div class="form-grid">
+    <input class="form-input" type="text" name="nombre" placeholder="Nombre" required>
+    <input class="form-input" type="email" name="email" placeholder="Email" required pattern="(?!.*@(?:ail\.com|gmil\.com|gnail\.com|hotnail\.com|outlok\.com|yaho\.com)$)[^\s@]+@[^\s@]+\.[^\s@]{2,}" title="Introduce un email valido (ejemplo@dominio.com)" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false">
+    <input class="form-input" type="tel" name="whatsapp" placeholder="WhatsApp" required pattern="\+[1-9][0-9]{7,14}" inputmode="tel" title="Usa formato internacional E.164, por ejemplo: +34600111222">
+  </div>
+</div>
+
+<!-- Step 13 -->
+<div class="form-section form-section--consent" data-checkbox-group="consentimiento">
+  <h3>13. Consentimiento</h3>
+  <div class="form-grid">
+    <label class="form-consent-option form-check-option">
+      <input type="checkbox" name="consentimiento" value="aceptado" class="form-check-input">
+      <span>Acepto el tratamiento de mis datos personales para recibir respuesta sobre mi solicitud y confirmo que he leido la <a href="#politica-privacidad" class="open-privacy-policy">Politica de Privacidad</a>.</span>
+    </label>
+  </div>
+</div>
+
+<div class="hp-wrap" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+  <label for="company-website">Website</label>
+  <input id="company-website" class="form-input form-honeypot" type="text" name="company_website" tabindex="-1" autocomplete="off">
+</div>
+
+<button class="form-submit" type="button">Analizar mi negocio</button>
+
+<div class="form-success-state" id="form-success-state" hidden>
+  <div class="fs-inner">
+
+    <h2 class="fs-title">Tu proyecto ya está en marcha.</h2>
+
+    <img src="img/grasias.png" alt="Gracias" class="form-success-img">
+
+    <p class="fs-subtitle">
+      Has dado el primer paso hacia un negocio digital más claro, más sólido y preparado para vender.
+    </p>
+
+    <p class="fs-body">
+      Gracias por completar el briefing.
+      Ahora analizaremos tu objetivo, tu situación actual y las oportunidades más rápidas de crecimiento para tu negocio.
+    </p>
+    <p class="fs-body">
+      En breve recibirás una respuesta personalizada por email o WhatsApp con una recomendación concreta, clara y sin ruido técnico.
+    </p>
+
+    <ul class="fs-checklist">
+      <li>Analizaremos tu proyecto.</li>
+      <li>Detectaremos oportunidades rápidas de crecimiento.</li>
+      <li>Te enviaremos una dirección concreta para avanzar.</li>
+    </ul>
+
+    <p class="fs-closing">
+      La mayoría se queda pensando.<br>
+      <strong>Tú ya estás avanzando.</strong>
+    </p>
+
+  </div>
+</div>
+
+
+<!-- Modal: Contrato de Oferta Publica -->
+<!-- Modal: Contrato de Oferta Publica -->
+<div id="modal-oferta" class="modal-oferta">
+  <div class="modal-oferta-content">
+    <div class="modal-oferta-header">
+      <button id="close-oferta" class="modal-close">&times;</button>
+    </div>
+    <div class="modal-oferta-body">
+    <h2>Contrato de Oferta Pública y Condiciones Generales de Uso del Sistema Digital</h2>
+    <p><strong>Versión</strong> 1.0 | <strong>Fecha de entrada en vigor:</strong> 30/04/2026</p>
+    <p><strong>Enlace permanente:</strong> <a href="/oferta-publica.html" target="_blank" rel="noopener noreferrer">https://3dna.es/oferta-publica.html</a></p>
+
+    <p>El presente documento constituye una oferta pública vinculante que regula el acceso, uso y funcionamiento de un sistema digital automatizado de captación, conversión y gestión de usuarios (en adelante, el “Sistema”), ofrecido por el titular del mismo (en adelante, el “Proveedor”), y aceptado por cualquier persona física o jurídica (en adelante, el “Usuario”) que acceda, interactúe o utilice total o parcialmente dicho Sistema, independientemente del medio, canal o dispositivo empleado.</p>
+
+    <p>El acceso, navegación, uso, interacción, envío de datos, realización de pagos o cualquier otra acción vinculada al Sistema implicará la aceptación plena, expresa e irrevocable de las presentes condiciones, sin necesidad de firma adicional, entendiéndose que el Usuario ha leído, comprendido y aceptado íntegramente el contenido del presente documento.</p>
+
+    <p>El objeto del presente contrato es la puesta a disposición del Usuario de una infraestructura digital que puede incluir, entre otros elementos, páginas web, formularios, sistemas de automatización, integraciones con plataformas externas, herramientas de comunicación, sistemas de pago, almacenamiento de datos y cualquier otra funcionalidad necesaria para la captación, procesamiento y conversión de usuarios finales, todo ello en un entorno tecnológico dinámico, sujeto a actualizaciones, mejoras y modificaciones continuas.</p>
+
+    <p>El Usuario reconoce expresamente que el Sistema constituye una herramienta tecnológica de carácter instrumental, cuya finalidad es facilitar procesos digitales orientados a la captación, conversión y mejora del rendimiento comercial, sin que en ningún caso pueda interpretarse como garantía de resultados económicos, financieros o comerciales, ni como asesoramiento profesional de carácter legal, técnico, financiero, arquitectónico o de ingeniería.</p>
+
+    <p>Asimismo, el Usuario reconoce y acepta expresamente que la actividad del Proveedor se encuentra registrada oficialmente en el ámbito del marketing digital, publicidad y servicios electrónicos, incluyendo actividades relacionadas con profesionales de la publicidad, relaciones públicas y explotación electrónica por terceros, conforme a la normativa fiscal aplicable.</p>
+
+    <p>En consecuencia, todas las soluciones, estructuras, diseños, representaciones visuales, modelos 3D, sistemas digitales y propuestas desarrolladas por el Proveedor deberán interpretarse exclusivamente dentro de dicho marco de actividad económica, quedando expresamente excluida cualquier consideración de los mismos como proyectos técnicos, arquitectónicos, de ingeniería, documentación constructiva o desarrollo de software personalizado bajo especificaciones del Usuario.</p>
+
+    <p>Cualquier modelo, visualización, simulación, recorrido virtual, estructura digital o propuesta de distribución tiene carácter exclusivamente conceptual, estratégico y orientado a marketing, siendo su finalidad la mejora de la percepción, la captación de clientes, la generación de contenido y la optimización de la conversión, no constituyendo en ningún caso documentación válida para ejecución de obra, obtención de licencias, certificaciones o implementación técnica directa.</p>
+
+    <p>El Usuario acepta que cualquier uso, interpretación o aplicación de dichos elementos fuera del ámbito del marketing y la publicidad será bajo su exclusiva responsabilidad, renunciando expresamente a cualquier reclamación derivada de expectativas técnicas, constructivas o profesionales no contempladas en la naturaleza del servicio.</p>
+
+    <p>El Proveedor declara que el Sistema ha sido desarrollado, probado e implementado conforme a estándares técnicos razonables en el momento de su puesta en funcionamiento, si bien el Usuario acepta que, debido a la naturaleza de los entornos digitales, el funcionamiento del Sistema puede verse afectado por factores externos ajenos al control del Proveedor, incluyendo, entre otros, fallos en servicios de terceros, interrupciones de red, actualizaciones de software, incompatibilidades técnicas o incidencias imprevistas.</p>
+
+    <p>En consecuencia, el Usuario acepta que el acceso y uso del Sistema se realiza “tal cual” y “según disponibilidad”, sin garantías explícitas o implícitas adicionales más allá de las estrictamente establecidas en la legislación aplicable, quedando excluidas, en la máxima medida permitida por la ley, cualquier garantía de continuidad, disponibilidad ininterrumpida, ausencia de errores o adecuación a fines específicos.</p>
+
+    <p>El Sistema podrá integrar servicios de terceros tales como, a título meramente enunciativo y no limitativo, plataformas de pago, servicios de mensajería, automatización, hosting, almacenamiento o APIs externas, sobre las cuales el Proveedor no ejerce control directo, por lo que el Usuario acepta que cualquier fallo, interrupción, limitación o modificación en dichos servicios podrá afectar al funcionamiento global del Sistema sin que ello genere responsabilidad alguna para el Proveedor.</p>
+
+    <p>El Usuario será el único responsable del uso que realice del Sistema, incluyendo la veracidad de los datos proporcionados, el cumplimiento de la normativa aplicable en materia de protección de datos, comercio electrónico y cualquier otra legislación relevante en su jurisdicción, así como de las decisiones comerciales, estratégicas o financieras que adopte en base al mismo.</p>
+
+    <p>En ningún caso el Proveedor será responsable por daños directos o indirectos, pérdidas económicas, lucro cesante, pérdida de oportunidades de negocio, daño reputacional, pérdida de datos o cualquier otra consecuencia derivada del uso o imposibilidad de uso del Sistema, incluso en el caso de haber sido informado previamente de la posibilidad de tales daños, limitándose en todo caso la responsabilidad máxima del Proveedor, en aquellos supuestos en los que legalmente no pueda excluirse, al importe efectivamente abonado por el Usuario por el acceso al Sistema.</p>
+
+    <p>Todos los pagos realizados en relación con el acceso o uso del Sistema tendrán carácter definitivo y no reembolsable, salvo disposición legal imperativa en contrario, reconociendo el Usuario que adquiere acceso a un servicio digital de naturaleza intangible cuya ejecución comienza de forma inmediata tras su activación.</p>
+
+    <p>El Proveedor se reserva el derecho de modificar, suspender, limitar o cancelar el acceso al Sistema en cualquier momento y sin necesidad de previo aviso, especialmente en casos de uso indebido, incumplimiento de las presentes condiciones, riesgos técnicos o de seguridad, o por razones operativas, estratégicas o legales, sin que ello genere derecho a compensación alguna.</p>
+
+    <p>Todos los elementos que componen el Sistema, incluyendo, entre otros, código, diseño, estructura, lógica, contenido, materiales visuales, modelos 3D y funcionalidades, son propiedad exclusiva del Proveedor o de sus licenciantes, quedando prohibida su reproducción, distribución, transformación, ingeniería inversa o explotación sin autorización expresa.</p>
+
+    <p>El presente contrato se regirá e interpretará conforme a la legislación vigente en España y, en lo que resulte aplicable, al marco normativo de la Unión Europea, sometiéndose cualquier controversia a los juzgados y tribunales competentes del territorio español, salvo disposición imperativa en contrario.</p>
+
+    <p>En caso de que alguna de las disposiciones del presente documento sea declarada nula, inválida o inaplicable, dicha circunstancia no afectará a la validez del resto del contrato, que continuará en pleno vigor y efecto.</p>
+
+    <p>El uso continuado del Sistema tras cualquier modificación del presente documento implicará la aceptación de los cambios introducidos.</p>
+
+    <h3>Identificación del Proveedor</h3>
+    <p>El presente servicio es ofrecido por:</p>
+    <p>ANDREI YAFIMENKA, con NIE Y9459881H, con actividad registrada en España en el ámbito de marketing digital y publicidad, actuando como profesional autónomo (en adelante, el “Proveedor”), con domicilio en Salobreña, Granada (España).</p>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>

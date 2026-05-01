@@ -190,14 +190,69 @@ if (heroTitleLine1 && heroTitleLine2) {
 
 
 // =============================================
+// 2.5 GLOBAL SCROLL LOCK (mobile-safe)
+// =============================================
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  let lockY = 0;
+
+  const lock = () => {
+    if (body.dataset.scrollLocked === '1') return;
+    lockY = window.scrollY || window.pageYOffset || 0;
+    body.dataset.scrollLocked = '1';
+    body.style.position = 'fixed';
+    body.style.top = `-${lockY}px`;
+    body.style.left = '0';
+    body.style.right = '0';
+    body.style.width = '100%';
+  };
+
+  const unlock = () => {
+    if (body.dataset.scrollLocked !== '1') return;
+    body.dataset.scrollLocked = '0';
+    body.style.position = '';
+    body.style.top = '';
+    body.style.left = '';
+    body.style.right = '';
+    body.style.width = '';
+    window.scrollTo(0, lockY);
+  };
+
+  const syncLockState = () => {
+    if (body.classList.contains('modal-open')) {
+      lock();
+      return;
+    }
+    unlock();
+  };
+
+  syncLockState();
+
+  const classObserver = new MutationObserver(syncLockState);
+  classObserver.observe(body, { attributes: true, attributeFilter: ['class'] });
+});
+
+const onFormPanelLifecycle = (handler) => {
+  document.addEventListener('DOMContentLoaded', handler);
+  document.addEventListener('form-panel:ready', handler);
+
+  if (window.__formPanelLoaded && document.readyState !== 'loading') {
+    handler();
+  }
+};
+
+
+// =============================================
 // 3. SIDE PANEL (open/close)
 // =============================================
-document.addEventListener("DOMContentLoaded", () => {
+onFormPanelLifecycle(() => {
   const panel = document.getElementById('side-panel');
   const closeBtn = document.getElementById('close-panel');
   const backdrop = document.getElementById('panel-backdrop');
 
   if (!panel || !closeBtn || !backdrop) return;
+  if (panel.dataset.panelInit === '1') return;
+  panel.dataset.panelInit = '1';
 
   const bindTap = (el, handler) => {
     if (!el) return;
@@ -241,7 +296,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   bindTap(closeBtn, closePanel);
-  bindTap(backdrop, closePanel);
+  bindTap(backdrop, (e) => {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    closePanel();
+  });
+
+  backdrop.addEventListener('touchmove', (e) => {
+    if (document.body.classList.contains('panel-open')) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 });
 
 
@@ -385,7 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // =============================================
 // 7. OFERTA MODAL
 // =============================================
-document.addEventListener('DOMContentLoaded', () => {
+onFormPanelLifecycle(() => {
   const ofertaLinks = document.querySelectorAll('.open-oferta');
   const modalOferta = document.getElementById('modal-oferta');
   const closeOferta = document.getElementById('close-oferta');
@@ -396,6 +464,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let blockBackdropClose = false;
 
   if (!modalOferta) return;
+  if (modalOferta.dataset.ofertaInit === '1') return;
+  modalOferta.dataset.ofertaInit = '1';
 
   // Keep oferta modal outside side-panel DOM to avoid nested modal stacking bugs on iOS.
   if (modalOferta.parentElement !== document.body) {
@@ -516,7 +586,11 @@ function updateStepProgress() {
   if (txt) txt.textContent = `${percent}% completado`;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+onFormPanelLifecycle(() => {
+  if (document.body.dataset.formProgressInit === '1') return;
+  if (!document.querySelector('.form-section')) return;
+  document.body.dataset.formProgressInit = '1';
+
   updateStepProgress();
 
   document.querySelectorAll('.form-section .form-select, .form-section .form-input, .form-section .form-textarea, .form-section .form-check-input').forEach(field => {
@@ -529,13 +603,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // =============================================
 // 9. FORM SUBMIT VALIDATION
 // =============================================
-document.addEventListener("DOMContentLoaded", () => {
+onFormPanelLifecycle(() => {
   const submitBtn = document.querySelector('.form-submit');
   const progressWrapper = document.querySelector('.progress-wrapper');
   const API_BASE_URL = 'https://threedna-site.onrender.com';
   const SUBMISSION_STATE_KEY = 'threeDNA_form_submission_state';
   const SUBMISSION_STATE_TTL_MS = 24 * 60 * 60 * 1000;
   if (!submitBtn) return;
+  if (submitBtn.dataset.submitInit === '1') return;
+  submitBtn.dataset.submitInit = '1';
 
   const showSubmittedState = () => {
     document.querySelectorAll('.form-section').forEach((section) => {
@@ -875,11 +951,14 @@ document.addEventListener("DOMContentLoaded", () => {
 // =============================================
 // 10. OTRO CHECKBOX TOGGLE
 // =============================================
-{
+onFormPanelLifecycle(() => {
   const negocioSelect = document.getElementById('negocio-select');
   const otroInputWrapper = document.getElementById('otroInputWrapper');
 
   if (negocioSelect && otroInputWrapper) {
+    if (negocioSelect.dataset.otroInit === '1') return;
+    negocioSelect.dataset.otroInit = '1';
+
     const toggleOtroInput = () => {
       const isOtro = negocioSelect.value === 'otro';
       otroInputWrapper.style.display = isOtro ? 'block' : 'none';
@@ -888,7 +967,7 @@ document.addEventListener("DOMContentLoaded", () => {
     negocioSelect.addEventListener('change', toggleOtroInput);
     toggleOtroInput();
   }
-}
+});
 
 
 // =============================================
@@ -1071,8 +1150,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // =============================================
 // 15A. IOS INTERACTION LAYER SANITIZER
 // =============================================
-document.addEventListener("DOMContentLoaded", () => {
+onFormPanelLifecycle(() => {
   const panel = document.getElementById("side-panel");
+  if (!panel) return;
+  if (document.body.dataset.layerSanitizerInit === '1') return;
+  document.body.dataset.layerSanitizerInit = '1';
+
   const panelBackdrop = document.getElementById("panel-backdrop");
   const cookieModal = document.getElementById("cookie-modal");
   const cookieOverlay = document.getElementById("cookie-overlay");
