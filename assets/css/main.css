@@ -2701,9 +2701,10 @@ margin-top: 120px;
     transparent 100%
   );
   cursor: grab;
-  touch-action: pan-y;
+  touch-action: none;
   -webkit-overflow-scrolling: touch;
   user-select: none;
+  scroll-behavior: auto;
 }
 
 .reviews-marquee.is-dragging{

@@ -1158,16 +1158,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isMobile = window.matchMedia("(max-width: 767px)").matches;
   const DRAG_SENSITIVITY = 1;
-  const AUTO_SPEED_PX_PER_SEC = isMobile ? 10 : 14;
-  const AUTO_RESUME_DELAY_MS = 2200;
-  const DRAG_THRESHOLD_PX = 6;
+  const AUTO_SPEED_PX_PER_SEC = isMobile ? 9 : 12;
+  const AUTO_RESUME_DELAY_MS = 1200;
+  const DRAG_START_THRESHOLD_PX = 3;
 
+  let isPointerDown = false;
   let isDragging = false;
+  let activePointerId = null;
   let startX = 0;
-  let startY = 0;
-  let touchTracking = false;
   let startScrollLeft = 0;
-  let virtualScrollLeft = 0;
   let lastInteractionAt = 0;
   let lastTs = performance.now();
 
@@ -1181,54 +1180,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const normalizeScroll = () => {
     const hw = halfWidth();
     if (!hw) return;
-    if (virtualScrollLeft >= hw) virtualScrollLeft -= hw;
-    if (virtualScrollLeft < 0) virtualScrollLeft += hw;
-    scroller.scrollLeft = virtualScrollLeft;
+    if (scroller.scrollLeft >= hw) scroller.scrollLeft -= hw;
+    if (scroller.scrollLeft < 0) scroller.scrollLeft += hw;
   };
 
-  const startDrag = (pageX, pageY = 0, isTouch = false) => {
-    touchTracking = isTouch;
-    isDragging = !isTouch;
+  const startDrag = (clientX, pointerId = null) => {
+    isPointerDown = true;
+    activePointerId = pointerId;
+    isDragging = false;
     lastInteractionAt = Date.now();
-    startX = pageX;
-    startY = pageY;
+    startX = clientX;
     startScrollLeft = scroller.scrollLeft;
-    virtualScrollLeft = scroller.scrollLeft;
-    scroller.classList.add("is-dragging");
   };
 
-  const moveDrag = (pageX, pageY = 0, isTouch = false) => {
-    if (!isDragging && !touchTracking) return;
+  const moveDrag = (clientX) => {
+    if (!isPointerDown) return;
 
-    if (isTouch && !isDragging) {
-      const dx = pageX - startX;
-      const dy = pageY - startY;
-
-      if (Math.abs(dx) < DRAG_THRESHOLD_PX && Math.abs(dy) < DRAG_THRESHOLD_PX) {
-        return;
-      }
-
-      if (Math.abs(dy) > Math.abs(dx)) {
-        touchTracking = false;
-        scroller.classList.remove("is-dragging");
-        return;
-      }
-
-      isDragging = true;
+    const dx = clientX - startX;
+    if (!isDragging && Math.abs(dx) < DRAG_START_THRESHOLD_PX) {
+      return;
     }
 
-    if (!isDragging) return;
+    if (!isDragging) {
+      isDragging = true;
+      scroller.classList.add("is-dragging");
+    }
 
-    const dx = pageX - startX;
-    virtualScrollLeft = startScrollLeft - (dx * DRAG_SENSITIVITY);
-    scroller.scrollLeft = virtualScrollLeft;
+    scroller.scrollLeft = startScrollLeft - (dx * DRAG_SENSITIVITY);
     normalizeScroll();
+    lastInteractionAt = Date.now();
   };
 
   const stopDrag = () => {
-    if (!isDragging && !touchTracking) return;
+    if (!isPointerDown && !isDragging) return;
+    isPointerDown = false;
     isDragging = false;
-    touchTracking = false;
+    activePointerId = null;
     lastInteractionAt = Date.now();
     scroller.classList.remove("is-dragging");
   };
@@ -1237,10 +1224,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const dt = (ts - lastTs) / 1000;
     lastTs = ts;
 
-    const autoAllowed = !isDragging && (Date.now() - lastInteractionAt > AUTO_RESUME_DELAY_MS);
+    const autoAllowed = !isPointerDown && !isDragging && (Date.now() - lastInteractionAt > AUTO_RESUME_DELAY_MS);
     if (autoAllowed) {
-      virtualScrollLeft += AUTO_SPEED_PX_PER_SEC * dt;
-      scroller.scrollLeft = virtualScrollLeft;
+      scroller.scrollLeft += AUTO_SPEED_PX_PER_SEC * dt;
       normalizeScroll();
     }
 
@@ -1249,27 +1235,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   requestAnimationFrame(tick);
 
-  scroller.addEventListener("mousedown", (e) => {
-    startDrag(e.pageX, 0, false);
-    e.preventDefault();
+  scroller.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    startDrag(e.clientX, e.pointerId);
+    scroller.setPointerCapture(e.pointerId);
   });
 
-  window.addEventListener("mousemove", (e) => { moveDrag(e.pageX); });
-  window.addEventListener("mouseup", stopDrag);
-
-  scroller.addEventListener("touchstart", (e) => {
-    const t = e.touches[0];
-    startDrag(t.pageX, t.pageY, true);
-  }, { passive: true });
-
-  scroller.addEventListener("touchmove", (e) => {
-    const t = e.touches[0];
-    moveDrag(t.pageX, t.pageY, true);
+  scroller.addEventListener("pointermove", (e) => {
+    if (activePointerId !== null && e.pointerId !== activePointerId) return;
+    moveDrag(e.clientX);
     if (isDragging) e.preventDefault();
-  }, { passive: false });
+  });
 
-  scroller.addEventListener("touchend", stopDrag, { passive: true });
+  scroller.addEventListener("pointerup", (e) => {
+    if (activePointerId !== null && e.pointerId !== activePointerId) return;
+    stopDrag();
+  });
 
-  virtualScrollLeft = scroller.scrollLeft;
+  scroller.addEventListener("pointercancel", stopDrag);
+  scroller.addEventListener("lostpointercapture", stopDrag);
+  scroller.addEventListener("dragstart", (e) => e.preventDefault());
+  scroller.addEventListener("scroll", normalizeScroll, { passive: true });
+
   normalizeScroll();
 });
