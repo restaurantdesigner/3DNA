@@ -225,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     panel.classList.add('open');
     backdrop.classList.add('visible');
+    document.body.classList.add('panel-open');
     document.body.classList.add('modal-open');
   };
 
@@ -235,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function closePanel() {
     panel.classList.remove('open');
     backdrop.classList.remove('visible');
+    document.body.classList.remove('panel-open');
     document.body.classList.remove('modal-open');
   }
 
@@ -387,11 +389,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const ofertaLinks = document.querySelectorAll('.open-oferta');
   const modalOferta = document.getElementById('modal-oferta');
   const closeOferta = document.getElementById('close-oferta');
+  const panel = document.getElementById('side-panel');
+  const panelBackdrop = document.getElementById('panel-backdrop');
+  const cookieModal = document.getElementById('cookie-modal');
+  const cookieOverlay = document.getElementById('cookie-overlay');
   let blockBackdropClose = false;
 
   if (!modalOferta) return;
 
   const openOferta = () => {
+    // Force-reset other full-screen layers so oferta cannot inherit stale blockers.
+    panel?.classList.remove('open');
+    panelBackdrop?.classList.remove('visible');
+    cookieModal?.classList.remove('show');
+    cookieOverlay?.classList.remove('show');
+    document.body.classList.remove('panel-open');
+    document.body.classList.remove('mobile-open');
+
     modalOferta.classList.add('is-open');
     modalOferta.style.display = '';
     document.body.classList.add('modal-open');
@@ -405,7 +419,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const hideOferta = () => {
     modalOferta.classList.remove('is-open');
     modalOferta.style.display = 'none';
-    document.body.classList.remove('modal-open');
+
+    // Keep lock only if another layer is actually open.
+    const hasActiveLayer = Boolean(
+      panel?.classList.contains('open') ||
+      cookieModal?.classList.contains('show') ||
+      document.body.classList.contains('mobile-open')
+    );
+
+    if (!hasActiveLayer) {
+      document.body.classList.remove('modal-open');
+    }
   };
 
   ofertaLinks.forEach(link => {
@@ -1054,6 +1078,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sanitizeLayers = () => {
     if (panel && !panel.classList.contains("open")) {
       panelBackdrop?.classList.remove("visible");
+      document.body.classList.remove("panel-open");
     }
 
     if (!cookieModal?.classList.contains("show")) {

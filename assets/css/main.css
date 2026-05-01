@@ -5905,7 +5905,7 @@ section,
 }
 
 body.mobile-open .mobile-menu-backdrop,
-#panel-backdrop.visible,
+body.panel-open #panel-backdrop.visible,
 #cookie-overlay.show {
   display: block !important;
   pointer-events: auto !important;
