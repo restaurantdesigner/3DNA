@@ -5892,3 +5892,16 @@ section,
   }
 }
 
+/* iOS safety: hidden overlays must never capture taps */
+.mobile-menu-backdrop,
+#panel-backdrop,
+#cookie-overlay {
+  pointer-events: none !important;
+}
+
+body.mobile-open .mobile-menu-backdrop,
+#panel-backdrop.visible,
+#cookie-overlay.show {
+  pointer-events: auto !important;
+}
+
