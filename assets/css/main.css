@@ -6539,7 +6539,7 @@ section,
 
 /* Mobile-only: raise hero CTA while keeping footnote in current place */
 @media (max-width: 767px) {
-  #hero .hero-title {
+  #hero .hero-title.hero-title--split {
     transform: translateY(-100%) !important;
     transform-origin: center bottom;
     display: grid;
@@ -6549,9 +6549,23 @@ section,
     line-height: 1.05;
   }
 
-  #hero .hero-title-line {
+  #hero .hero-title.hero-title--split .hero-title-line {
     white-space: nowrap;
     line-height: 1.05;
+  }
+
+  .page-hero .hero-title {
+    transform: none !important;
+    display: block;
+    min-height: 0;
+  }
+
+  .page-hero .hero-title-line,
+  .page-hero .hero-subtitle,
+  .page-hero .page-back {
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   #hero .cta-button {
@@ -6839,58 +6853,12 @@ a.quad-tile:hover .quad-tile-video {
   object-fit: cover;
   z-index: 0;
 }
-.page-hero .video-bg.video-vertical {
-  left: 50%;
-  right: auto;
-  width: min(62vw, 700px);
-  max-width: 100%;
-  transform: translateX(-50%);
-  object-fit: cover;
-}
 .page-hero-overlay,
 .page-hero .overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, var(--overlay));
   z-index: -1;
-}
-.page-hero-copy {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 40px var(--page-pad, 20px);
-  max-width: 840px;
-}
-.page-hero-copy .page-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.65);
-  text-decoration: none;
-  margin-bottom: 24px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-.page-hero-copy .page-back:hover { color: #fff; }
-.page-hero-copy .page-back::before { content: '← '; }
-.page-hero-copy h1 {
-  font-family: 'Ultra', serif;
-  font-weight: 400;
-  font-size: clamp(2rem, 6vw, 4.5rem);
-  color: #fff;
-  line-height: 1.1;
-  margin: 0 0 18px;
-}
-.page-hero-copy .hero-sub {
-  font-family: 'Lato', sans-serif;
-  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
-  color: rgba(255, 255, 255, 0.82);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin: 0 0 32px;
 }
 
 .page-hero .align-container {
@@ -6923,12 +6891,6 @@ a.quad-tile:hover .quad-tile-video {
 
 .page-hero .page-back:hover {
   color: #fff;
-}
-
-@media (max-width: 767px) {
-  .page-hero .video-bg.video-vertical {
-    width: min(88vw, 520px);
-  }
 }
 
 /* =============================================

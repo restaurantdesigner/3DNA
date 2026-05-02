@@ -1184,6 +1184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // =============================================
 document.addEventListener("DOMContentLoaded", () => {
   const videos = document.querySelectorAll('video.video-bg, video.side-video');
+  const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
   function enable(video){
     video.classList.add('video-hover-active');
@@ -1199,18 +1200,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   videos.forEach(video => {
+    video.muted = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('loop', '');
+
+    if (isMobile) {
+      // On mobile, videos should start and keep looping without requiring touch.
+      video.preload = 'auto';
+      video.play().catch(()=>{});
+      return;
+    }
+
     if (video.closest('.about-media')) {
       video.play().catch(()=>{});
     } else {
       disable(video);
     }
+
     const parent = video.parentElement;
+    if (!parent) return;
 
     parent.addEventListener('mouseenter', () => enable(video));
     parent.addEventListener('mouseleave', () => disable(video));
-
-    parent.addEventListener('touchstart', () => enable(video), { passive:true });
-    parent.addEventListener('touchend',   () => disable(video), { passive:true });
   });
 });
 
