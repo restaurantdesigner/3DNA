@@ -1309,6 +1309,16 @@ body.modal-open{
   overflow: hidden;
 }
 
+#sec2 .quad-grid{
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: none;
+  aspect-ratio: auto;
+}
+
+#sec2 .quad-tile{
+  aspect-ratio: 1 / 1;
+}
+
 #sec2 .quad-copy{
   width: min(92%, 520px);
   display: flex;
@@ -1348,6 +1358,9 @@ body.modal-open{
     grid-template-columns: 1fr;
     grid-template-rows: none;
     aspect-ratio: auto;
+  }
+  #sec2 .quad-grid{
+    grid-template-columns: 1fr;
   }
   .quad-tile{
     aspect-ratio: 1 / 1;
@@ -6754,5 +6767,193 @@ textarea {
     align-items: flex-start;
     gap: 4px;
   }
+}
+
+/* =============================================
+   QUAD-TILE HOVER (service pages links)
+   ============================================= */
+a.quad-tile {
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  transition: box-shadow 0.22s ease;
+  display: flex;
+  outline: 3px solid transparent;
+  outline-offset: -3px;
+  overflow: hidden;
+}
+a.quad-tile:hover {
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,0.75);
+  z-index: 2;
+}
+.quad-tile--cta {
+  cursor: pointer;
+  transition: box-shadow 0.22s ease;
+  outline: 3px solid transparent;
+  outline-offset: -3px;
+}
+.quad-tile--cta:hover {
+  box-shadow: inset 0 0 0 4px rgba(0,0,0,0.18);
+}
+
+/* Spotlight video inside tile */
+.quad-tile-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.45);
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+  transition: filter 0.4s ease;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+a.quad-tile:hover .quad-tile-video {
+  filter: grayscale(0) brightness(0.5);
+}
+.quad-copy {
+  position: relative;
+  z-index: 1;
+}
+
+/* =============================================
+   SERVICE PAGE HERO
+   ============================================= */
+.page-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.page-hero .video-bg,
+.page-hero .img-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+.page-hero-copy {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px var(--page-pad, 20px);
+  max-width: 840px;
+}
+.page-hero-copy .page-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.page-hero-copy .page-back:hover { color: #fff; }
+.page-hero-copy .page-back::before { content: '← '; }
+.page-hero-copy h1 {
+  font-family: 'Ultra', serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 18px;
+}
+.page-hero-copy .hero-sub {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.82);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 0 0 32px;
+}
+
+/* =============================================
+   SERVICE PAGE CONTENT
+   ============================================= */
+.page-content {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 80px var(--page-pad, 20px);
+}
+.page-content h2 {
+  font-family: 'Ultra', serif;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  color: #111;
+  margin: 0 0 20px;
+}
+.page-content h3 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+  color: #555;
+  margin: 36px 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.page-content p {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  color: #444;
+  line-height: 1.75;
+  margin: 0 0 16px;
+}
+.page-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+  margin: 40px 0;
+}
+.page-feature-card {
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 26px 22px;
+}
+.page-feature-card h4 {
+  font-family: 'Ultra', serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: #111;
+  margin: 0 0 8px;
+}
+.page-feature-card p {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  color: #555;
+  line-height: 1.55;
+  margin: 0;
+}
+.page-accent {
+  border-left: 4px solid #e8006e;
+  padding-left: 20px;
+  margin: 32px 0;
+}
+.page-accent p {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  color: #222;
+  font-style: italic;
+  margin: 0;
+}
+@media (max-width: 767px) {
+  .page-hero { min-height: 55vh; }
+  .page-content { padding: 50px var(--page-pad, 14px); }
 }
 

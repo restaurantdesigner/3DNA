@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diseño 3D para Gimnasios · 3DNA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/favicon_32x322.png">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260502a">
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <!-- ===== PAGE HERO ===== -->
+  <!-- Cover: replace background with <video class="video-bg"> or <img class="img-bg"> when ready -->
+  <section class="page-hero" style="background: #1a1a1a;">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-copy">
+      <a class="page-back" href="index.html#sec2">Volver a servicios</a>
+      <h1>Diseño 3D para Gimnasios</h1>
+      <p class="hero-sub">Espacios que motivan, fidelizan y se expanden en franquicia</p>
+      <button class="cta-button open-panel" type="button">Solicitar propuesta</button>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <div id="panel-backdrop"></div>
+  <div id="form-panel-root"></div>
+  <script>
+  (function () {
+    const mount = document.getElementById('form-panel-root');
+    if (!mount) return;
+    fetch('assets/partials/form-panel.html?v=20260501m', { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error('Failed'); return r.text(); })
+      .then(html => {
+        mount.innerHTML = html;
+        window.__formPanelLoaded = true;
+        document.dispatchEvent(new Event('form-panel:ready'));
+      })
+      .catch(console.error);
+  })();
+  </script>
+  <script src="assets/js/main.js?v=20260501q"></script>
+</body>
+</html>
