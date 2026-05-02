@@ -570,12 +570,6 @@
         <p style="font-family:'Lato',sans-serif; font-size:clamp(0.65rem,1.2vw,0.9rem); color:#fff; letter-spacing:0.4px; margin:0; text-transform:uppercase;">Planificación 3D, zonas Instagram y diseño pensado para marca y expansión en franquicia</p>
       </div>
     </a>
-    <div class="quad-tile quad-tile--cta open-panel" style="background:#fff; cursor:pointer; justify-content:center; align-items:center; flex-direction:column; text-align:center; gap:10px;">
-      <div class="quad-copy">
-        <p style="font-family:'Ultra',serif; font-size:clamp(1.2rem,3vw,2.2rem); font-weight:400; color:#111; line-height:1.1; margin:0;">Tu marca, visible antes de abrir</p>
-        <p style="font-family:'Lato',sans-serif; font-size:clamp(0.65rem,1.2vw,0.9rem); color:#333; letter-spacing:0.4px; margin:0; text-transform:uppercase;">Genera expectativa, atrae inversores y llena agenda desde el primer día</p>
-      </div>
-    </div>
     <a class="quad-tile" id="tile-clinicas" href="clinicas-3d.html" style="background:#52bfff; justify-content:center; align-items:center; flex-direction:column; text-align:center; gap:10px;">
       <video class="quad-tile-video" src="img/screen7.mp4" muted loop playsinline preload="metadata"></video>
       <div class="quad-copy">
@@ -583,6 +577,12 @@
         <p style="font-family:'Lato',sans-serif; font-size:clamp(0.65rem,1.2vw,0.9rem); color:#fff; letter-spacing:0.4px; margin:0; text-transform:uppercase;">Planificacion 3D, recorrido del paciente y presentacion del proyecto para inversores antes de construir</p>
       </div>
     </a>
+    <div class="quad-tile quad-tile--cta open-panel" style="background:#fff; cursor:pointer; justify-content:center; align-items:center; flex-direction:column; text-align:center; gap:10px;">
+      <div class="quad-copy">
+        <p style="font-family:'Ultra',serif; font-size:clamp(1.2rem,3vw,2.2rem); font-weight:400; color:#111; line-height:1.1; margin:0;">Tu marca, visible antes de abrir</p>
+        <p style="font-family:'Lato',sans-serif; font-size:clamp(0.65rem,1.2vw,0.9rem); color:#333; letter-spacing:0.4px; margin:0; text-transform:uppercase;">Genera expectativa, atrae inversores y llena agenda desde el primer día</p>
+      </div>
+    </div>
     <div class="quad-tile quad-tile--cta open-panel" style="background:#fff; cursor:pointer; justify-content:center; align-items:center; flex-direction:column; text-align:center; gap:10px;">
       <div class="quad-copy">
         <p style="font-family:'Ultra',serif; font-size:clamp(1.2rem,3vw,2.2rem); font-weight:400; color:#111; line-height:1.1; margin:0;">Decisiones más rápidas, menos riesgo</p>
@@ -925,6 +925,19 @@
 
   tile.addEventListener('mouseleave', function () {
     video.pause();
+  });
+})();
+</script>
+
+<!-- Mobile: autoplay all tile videos -->
+<script>
+(function () {
+  if (!window.matchMedia('(max-width: 767px)').matches) return;
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.quad-tile-video').forEach(function (v) {
+      v.setAttribute('preload', 'auto');
+      v.play().catch(function () {});
+    });
   });
 })();
 </script>

@@ -350,6 +350,16 @@ onFormPanelLifecycle(() => {
   };
 
   const openPanel = (e) => {
+    const trigger = e && e.currentTarget;
+    if (
+      trigger &&
+      trigger.classList &&
+      trigger.classList.contains('quad-tile--cta') &&
+      window.matchMedia('(max-width: 767px)').matches
+    ) {
+      return;
+    }
+
     if (e) {
       e.preventDefault();
       e.stopPropagation();
