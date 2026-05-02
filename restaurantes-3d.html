@@ -8,6 +8,77 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="img/favicon_32x322.png">
   <link rel="stylesheet" href="assets/css/main.css?v=20260502a">
+  <style>
+    .resto-tile {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      overflow: hidden;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+    @media (max-width: 767px) {
+      .resto-tile {
+        aspect-ratio: 9 / 16;
+        padding: 24px;
+      }
+    }
+    .resto-tile-label {
+      position: relative;
+      z-index: 2;
+    }
+    .resto-tile-label .tile-num {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin: 0 0 6px;
+    }
+    .resto-tile-label .tile-title {
+      font-family: 'Ultra', serif;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 3.5vw, 3rem);
+      color: #fff;
+      line-height: 1.1;
+      margin: 0 0 8px;
+    }
+    .resto-tile-label .tile-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(0.75rem, 1.4vw, 1rem);
+      color: rgba(255,255,255,0.75);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0;
+    }
+    .resto-tile-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+      z-index: 1;
+    }
+    .resto-spacer-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: #aaa;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .resto-spacer-line::before,
+    .resto-spacer-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #ddd;
+    }
+  </style>
 </head>
 
 <body>
@@ -32,6 +103,96 @@
       </div>
     </div>
   </section>
+
+  <!-- ===== PROYECTOS ===== -->
+
+  <div class="spacer">
+    <div class="spacer-inner">
+      <div class="services-marquee">
+        <div class="services-track">
+          <span class="service-item">Diseño 3D de restaurantes antes de construir</span>
+          <span class="service-item">Recorrido virtual que vende antes de abrir</span>
+          <span class="service-item">Contenido 3D para inversores y redes sociales</span>
+          <span class="service-item">Planificacion de espacios orientada a resultados</span>
+          <span class="service-item">Motor de captacion desde el primer dia</span>
+          <span class="service-item">Diseño 3D de restaurantes antes de construir</span>
+          <span class="service-item">Recorrido virtual que vende antes de abrir</span>
+          <span class="service-item">Contenido 3D para inversores y redes sociales</span>
+          <span class="service-item">Planificacion de espacios orientada a resultados</span>
+          <span class="service-item">Motor de captacion desde el primer dia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resto-tile" style="background:#e8006e;">
+    <div class="resto-tile-overlay"></div>
+    <div class="resto-tile-label">
+      <p class="tile-num">Proyecto 01</p>
+      <p class="tile-title">Restaurante · Madrid</p>
+      <p class="tile-desc">Diseño de sala + recorrido virtual + contenido para redes</p>
+    </div>
+  </div>
+
+  <div class="spacer">
+    <div class="spacer-inner">
+      <div class="resto-spacer-line">Proyecto 02</div>
+    </div>
+  </div>
+
+  <div class="resto-tile" style="background:#13a67a;">
+    <div class="resto-tile-overlay"></div>
+    <div class="resto-tile-label">
+      <p class="tile-num">Proyecto 02</p>
+      <p class="tile-title">Restaurante · Barcelona</p>
+      <p class="tile-desc">Planificacion 3D + calculo de espacios + presentacion para inversores</p>
+    </div>
+  </div>
+
+  <div class="spacer">
+    <div class="spacer-inner">
+      <div class="resto-spacer-line">Proyecto 03</div>
+    </div>
+  </div>
+
+  <div class="resto-tile" style="background:#52bfff;">
+    <div class="resto-tile-overlay"></div>
+    <div class="resto-tile-label">
+      <p class="tile-num">Proyecto 03</p>
+      <p class="tile-title">Restaurante · Valencia</p>
+      <p class="tile-desc">Identidad visual 3D + embudo de captacion previo a apertura</p>
+    </div>
+  </div>
+
+  <div class="spacer">
+    <div class="spacer-inner">
+      <div class="resto-spacer-line">Proyecto 04</div>
+    </div>
+  </div>
+
+  <div class="resto-tile" style="background:#e8006e;">
+    <div class="resto-tile-overlay"></div>
+    <div class="resto-tile-label">
+      <p class="tile-num">Proyecto 04</p>
+      <p class="tile-title">Restaurante · Sevilla</p>
+      <p class="tile-desc">Visualizacion completa + contenido para Meta Ads y web</p>
+    </div>
+  </div>
+
+  <div class="spacer">
+    <div class="spacer-inner">
+      <div class="resto-spacer-line">Proyecto 05</div>
+    </div>
+  </div>
+
+  <div class="resto-tile" style="background:#1a1a2e;">
+    <div class="resto-tile-overlay"></div>
+    <div class="resto-tile-label">
+      <p class="tile-num">Proyecto 05</p>
+      <p class="tile-title">Restaurante · Bilbao</p>
+      <p class="tile-desc">Diseño de experiencia + zonas fotografiables + estrategia de lanzamiento</p>
+    </div>
+  </div>
 
   <div id="site-footer"></div>
 
