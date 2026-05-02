@@ -6966,3 +6966,237 @@ a.quad-tile:hover .quad-tile-video {
   .page-content { padding: 50px var(--page-pad, 14px); }
 }
 
+/* =============================================
+   ECOSISTEMAS DIGITALES PAGE
+   ============================================= */
+.ed-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--page-pad, 28px);
+}
+
+.ed-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin: 0 0 14px;
+}
+
+.ed-heading {
+  font-family: 'Ultra', serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 28px;
+}
+
+.ed-body {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: rgba(255,255,255,0.78);
+  line-height: 1.7;
+  max-width: 720px;
+  margin: 0 0 16px;
+}
+
+.ed-highlight {
+  font-family: 'Ultra', serif;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  color: #e8006e;
+  margin: 20px 0 0;
+}
+
+/* Products grid */
+.ed-products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.ed-product {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 28px 24px;
+  transition: border-color 0.2s;
+}
+
+.ed-product:hover {
+  border-color: rgba(232,0,110,0.4);
+}
+
+.ed-product--featured {
+  grid-column: span 3;
+  background: rgba(232,0,110,0.10);
+  border-color: rgba(232,0,110,0.35);
+}
+
+.ed-product-icon {
+  font-size: 2rem;
+  margin-bottom: 14px;
+}
+
+.ed-product-title {
+  font-family: 'Ultra', serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  color: #fff;
+  margin: 0 0 10px;
+}
+
+.ed-product-sub {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+.ed-product-checks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ed-product-checks li {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
+  padding-left: 18px;
+  position: relative;
+}
+
+.ed-product-checks li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  color: #e8006e;
+  font-size: 0.75rem;
+  top: 1px;
+}
+
+.ed-product-tag {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  color: #e8006e;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* Steps */
+.ed-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+
+.ed-step {
+  flex: 1 1 130px;
+  text-align: center;
+  padding: 24px 16px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.ed-step-arrow {
+  align-self: center;
+  font-size: 1.4rem;
+  color: rgba(232,0,110,0.7);
+  padding: 0 4px;
+  flex: 0 0 auto;
+}
+
+.ed-step-num {
+  font-family: 'Ultra', serif;
+  font-size: 2.2rem;
+  color: rgba(232,0,110,0.55);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.ed-step-title {
+  font-family: 'Ultra', serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.ed-step-body {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* For-list */
+.ed-forlist {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.ed-forlist li {
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+
+.ed-forlist li::before {
+  content: '✔  ';
+  color: #e8006e;
+  font-weight: 700;
+}
+
+/* CTA final */
+.ed-cta-heading {
+  font-family: 'Ultra', serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: #fff;
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .ed-products {
+    grid-template-columns: 1fr;
+  }
+  .ed-product--featured {
+    grid-column: span 1;
+  }
+  .ed-steps {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .ed-step-arrow {
+    align-self: center;
+    transform: rotate(90deg);
+  }
+  .ed-forlist {
+    grid-template-columns: 1fr;
+  }
+}
+
