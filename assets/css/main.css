@@ -1,4 +1,14 @@
-﻿/* =========================
+﻿@media (min-width: 900px) {
+  .resto-tile {
+    height: 100vh;
+    max-height: 100vh;
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
+/* =========================
    GLOBAL / RESET
    ========================= */
 :root{
