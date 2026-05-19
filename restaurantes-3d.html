@@ -29,6 +29,23 @@
     .resto-tile-label {
       position: relative;
       z-index: 2;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    .resto-tile-label:hover {
+      transform: translateY(-6px);
+    }
+    .resto-tile-label:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.12);
+    }
+    .resto-tile-label .tile-num,
+    .resto-tile-label .tile-title,
+    .resto-tile-label .tile-desc {
+      text-decoration: none;
     }
     .resto-tile-label .tile-num {
       font-family: 'Lato', sans-serif;
@@ -130,11 +147,11 @@
       <source src="img/rest/rest1.mp4" type="video/mp4">
     </video>
     <div class="resto-tile-overlay"></div>
-    <div class="resto-tile-label">
+    <a class="resto-tile-label" href="proyecto01-restaurante.html">
       <p class="tile-num">Proyecto 01</p>
-      <p class="tile-title">Restaurante · Madrid</p>
-      <p class="tile-desc">Diseño de sala + recorrido virtual + contenido para redes</p>
-    </div>
+      <p class="tile-title">Bubble Tea Boutique · Pequeños espacios. Grandes beneficios</p>
+      <p class="tile-desc">Branding, diseño y contenido creados para convertir visitas en clientes.</p>
+    </a>
   </div>
 
   <div class="spacer">

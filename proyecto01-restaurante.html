@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurante · Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/favicon_32x322.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260502a">
+  <style>
+    .resto-tile { position: relative; width: 100%; aspect-ratio: 1 / 1; display: flex; align-items: flex-end; justify-content: flex-start; overflow: hidden; padding: 40px; box-sizing: border-box; }
+    @media (max-width: 767px) { .resto-tile { aspect-ratio: 9 / 16; padding: 24px; } }
+    .resto-tile-label { position: relative; z-index: 2; }
+    .resto-tile-label .tile-num { font-family: 'Lato', sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin: 0 0 6px; }
+    .resto-tile-label .tile-title { font-family: 'Ultra', serif; font-weight: 400; font-size: clamp(1.4rem, 3.5vw, 3rem); color: #fff; line-height: 1.1; margin: 0 0 8px; }
+    .resto-tile-label .tile-desc { font-family: 'Lato', sans-serif; font-size: clamp(0.75rem, 1.4vw, 1rem); color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.5px; margin: 0; }
+    .hero-strap { font-family: 'Lato', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.75); margin: 0 0 14px; }
+    .resto-tile-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%); z-index: 1; }
+    .project-pano-wrap { position: relative; width: 100%; height: min(85vh, 900px); min-height: 420px; overflow: hidden; background: #111; }
+    #project-pano { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+    #project-pano-section .pano-badge { left: 50%; top: auto; bottom: 24px; transform: translateX(-50%); }
+    @media (max-width: 767px) {
+      .project-pano-wrap { height: 62vh; min-height: 300px; }
+      #project-pano-section .pano-badge { left: 14px; bottom: 16px; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== STATIC HEADER (copied from main.js sharedHeaderHtml) ===== -->
+  <div class="utility-bar" aria-label="Utility navigation">
+    <div class="container">
+      <nav class="utility-nav">
+        <a class="utility-link" href="index.html#sec2">
+          <span class="utility-text">3D</span>
+        </a>
+        <a class="utility-link" href="index.html#sec5">
+          <span class="utility-text">WEB</span>
+        </a>
+        <a class="utility-link" href="index.html#sec5">
+          <span class="utility-text">AI</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="topbar" id="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html#hero" aria-label="3DNA Home">
+        <div class="brand-title"><img src="img/logo.png" alt="3DNA" /></div>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="index.html#hero">Inicio</a>
+        <a href="index.html#about">Sobre nosotros</a>
+        <a href="index.html#sec2">Servicios</a>
+
+        <div class="nav-dropdown" id="showroomDropdown">
+          <a href="index.html#sec3" class="nav-parent" aria-haspopup="true" aria-expanded="false">
+            Experiencias <span class="nav-arrow" aria-hidden="true">&#9660;</span>
+          </a>
+
+          <div class="nav-menu" role="menu" aria-label="Showroom submenu">
+            <a role="menuitem" href="index.html#sec3">Restaurantes</a>
+            <a role="menuitem" href="index.html#sec2">Gimnasios</a>
+            <a role="menuitem" href="index.html#sec4">Centros medicos</a>
+          </div>
+        </div>
+
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="topbar-cta open-panel" type="button">Solicitar propuesta</button>
+
+        <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+          <div class="burger-lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-head">
+        <div class="mobile-menu-title">MENU</div>
+        <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">×</button>
+      </div>
+
+      <a href="index.html#hero" class="m-link">Inicio</a>
+      <a href="index.html#about" class="m-link">Sobre nosotros</a>
+      <a href="index.html#sec2" class="m-link">Servicios</a>
+      <a href="index.html#sec3" class="m-link">Showroom</a>
+      <a href="index.html#contacto" class="m-link">Contacto</a>
+
+      <button class="m-cta open-panel" type="button">Solicitar propuesta</button>
+    </div>
+  </div>
+
+  <div class="mobile-menu-backdrop" id="mobileBackdrop"></div>
+
+  <!-- ===== PROYECTO 01 TILE ===== -->
+  <div class="resto-tile" style="background:#e8006e;">
+    <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+      <source src="img/rest/rest1.mp4" type="video/mp4">
+    </video>
+    <div class="resto-tile-overlay"></div>
+    <div class="resto-tile-label">
+      <p class="tile-title">Bubble Tea Boutique · Pequeños espacios. Grandes beneficios</p>
+      <p class="tile-desc">Branding, diseño y contenido creados para convertir visitas en clientes.</p>
+      <button class="cta-button open-panel" type="button">Solicitar propuesta</button>
+    </div>
+  </div>
+
+  <div class="spacer">
+    <div class="spacer-inner">
+      <div class="resto-spacer-line">Proyecto 02</div>
+    </div>
+  </div>
+
+  <section id="project-about" class="about-section project-about">
+    <div class="about-wrap">
+
+      <div class="about-media">
+        <img src="img/rest/me.png" alt="Foto del proyecto Bubble Tea Boutique" style="width:100%; height:auto; display:block; object-fit:cover;" />
+      </div>
+
+      <div class="about-body">
+        <h2 class="about-heading" style="font-family: 'Ultra', serif !important; font-weight: 400 !important; color: #03acb8 !important;">Bubble Tea Boutique</h2>
+        <p>Pequeños espacios. Grandes beneficios.</p>
+        <p>Este pequeño espacio de 87 m² demuestra cómo una superficie compacta puede convertirse en un verdadero generador de beneficios, contenido y presencia de marca.</p>
+
+        <p>Un proyecto creado para mostrar cómo un espacio reducido puede transformarse en una marca con identidad propia, alto valor visual y fuerte potencial comercial.</p>
+
+        <h3>Diseño pensado para atraer clientes</h3>
+        <p>Bubble Tea Boutique combina arquitectura comercial, branding y narrativa visual para transformar cada metro cuadrado en una experiencia atractiva, compartible y rentable. El espacio no solo funciona como local: funciona como una herramienta de marketing diseñada para captar atención y generar flujo constante de clientes.</p>
+
+        <h3>Branding y experiencia visual</h3>
+        <p>El proyecto incluye desarrollo de naming, logotipo, paleta cromática, selección de materiales, iluminación y dirección estética. Cada elemento está diseñado para construir una imagen coherente, reconocible y preparada para redes sociales y campañas visuales.</p>
+
+        <h3>Un espacio creado para generar contenido</h3>
+        <p>Cada rincón está pensado para producir fotografías, vídeos y recorridos visuales capaces de atraer atención incluso antes de la apertura del local. El diseño se convierte en contenido, y el contenido en visibilidad, posicionamiento y alcance orgánico.</p>
+
+        <h3>Arquitectura comercial con enfoque estratégico</h3>
+        <p>Más que decoración, el objetivo es crear una experiencia capaz de transmitir propuesta de valor, confianza y personalidad de marca desde el primer vistazo. Un espacio pequeño puede generar un gran impacto cuando diseño, identidad y estrategia trabajan juntos.</p>
+
+        <button class="cta-button open-panel" type="button">Solicitar propuesta</button>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="spacer">
+    <div class="spacer-inner">
+      <p class="spacer-message">Recorrido en vídeo</p>
+      <p class="spacer-slogan">Convierte tu espacio en contenido que atrae clientes antes de abrir las puertas.</p>
+    </div>
+  </div>
+
+  <section id="project-video" class="about-section project-video">
+    <div class="about-wrap project-video-wrap">
+      <div class="about-media">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="img/rest/1/rest1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="about-body">
+        <h2 class="about-heading project-video-mobile-heading">Recorrido en vídeo</h2>
+        <p>Un recorrido visual permite mostrar el espacio antes incluso de la apertura del negocio. Este tipo de contenido ayuda a presentar la experiencia, la atmósfera y la identidad de marca de una forma mucho más emocional y atractiva que las imágenes estáticas.</p>
+        <p>El vídeo puede utilizarse en redes sociales, campañas publicitarias, páginas web y presentaciones comerciales, generando mayor atención, confianza y expectativa alrededor del proyecto.</p>
+        <p>Además de reforzar la imagen de marca, el recorrido visual se convierte en una herramienta de marketing capaz de atraer nuevos clientes, aumentar la visibilidad online y diferenciar el negocio frente a la competencia.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="spacer">
+    <div class="spacer-inner">
+      <p class="spacer-message">Vista 360°</p>
+      <p class="spacer-slogan">Explora el espacio desde cualquier ángulo y transmite la experiencia antes de la visita.</p>
+    </div>
+  </div>
+
+  <section id="project-pano-section" class="project-pano-section" aria-label="Panorama 360 del proyecto">
+    <div class="project-pano-wrap">
+      <div id="project-pano"></div>
+      <div class="pano-badge" aria-hidden="true">
+        <img src="img/logo.png" alt="" class="pano-badge__icon">
+        <span class="pano-badge__text">Panorama 360 · arrastra</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer" id="site-footer-el">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" aria-label="3DNA Home">
+            <img src="img/logo.png" alt="3DNA" class="footer-logo" />
+          </a>
+          <p class="footer-tagline">Visual Marketing &amp; Experiencias Inmersivas 3D</p>
+        </div>
+
+        <div class="footer-cols">
+
+          <div class="footer-col">
+            <h4>Servicios</h4>
+            <ul>
+              <li><a href="index.html#sec2">Diseño 3D</a></li>
+              <li><a href="index.html#sec5">Webs y Landing Pages</a></li>
+              <li><a href="index.html#sec2">Embudos de venta</a></li>
+              <li><a href="index.html#sec2">IA aplicada</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="oferta-publica.html">Oferta Pública</a></li>
+              <li><a href="politica-cookies.html">Política de Cookies</a></li>
+              <li><a href="aviso-legal.html">Aviso Legal</a></li>
+              <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contacto</h4>
+            <ul>
+              <li><a href="mailto:andrei@3dna.es?subject=Consulta%20desde%203dna.es&body=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20vuestros%20servicios.">Email: andrei@3dna.es</a></li>
+              <li><a href="https://wa.me/34722878642?text=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20vuestros%20servicios." target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+              <li><span>Salobreña, Granada</span></li>
+              <li><a href="https://www.3dna.es">www.3dna.es</a></li>
+              <li class="footer-cta-row"><button type="button" class="open-panel footer-cta-btn">Solicitar propuesta</button></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 3DNA · Todos los derechos reservados</span>
+        <span>Diseño &amp; Desarrollo: 3DNA Studio</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="panel-backdrop"></div>
+  <div id="form-panel-root"></div>
+
+  <script>
+  (function () {
+    const mount = document.getElementById('form-panel-root');
+    if (!mount) return;
+    fetch('assets/partials/form-panel.html?v=20260501m', { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error('Failed'); return r.text(); })
+      .then(html => {
+        mount.innerHTML = html;
+        window.__formPanelLoaded = true;
+        document.dispatchEvent(new Event('form-panel:ready'));
+      })
+      .catch(console.error);
+  })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+  <script src="assets/js/main.js?v=20260501q"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const panoEl = document.getElementById('project-pano');
+    if (!panoEl || typeof pannellum === 'undefined') return;
+
+    pannellum.viewer('project-pano', {
+      type: 'equirectangular',
+      panorama: 'img/rest/pano.jpg',
+      autoLoad: true,
+      autoRotate: -8,
+      showControls: false,
+      mouseZoom: true,
+      compass: false,
+      hfov: 100
+    });
+  });
+  </script>
+</body>
+</html>
