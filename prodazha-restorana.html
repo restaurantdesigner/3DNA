@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Продаж ресторану · Вишневе · 3DNA</title>
+  <meta name="description" content="Презентаційна сторінка продажу ресторану в місті Вишневе, Київська область: 518 м2, близько 200 посадкових місць, відеотур і комерційні показники." />
+  <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/favicon_32x322.png">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260502a">
+  <style>
+    :root {
+      --sale-dark: #3a2a21;
+      --sale-deep: #2f211b;
+      --sale-cream: #f4eadb;
+      --sale-paper: #fff8ee;
+      --sale-gold: #c18a4a;
+      --sale-caramel: #8a5a34;
+      --sale-ink: #2b211c;
+      --sale-muted: rgba(255,255,255,.72);
+    }
+
+    body {
+      background: var(--sale-dark);
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      scroll-snap-type: none;
+    }
+
+    .sale-page section {
+      height: auto;
+      min-height: 0;
+      display: block;
+      text-align: left;
+      scroll-snap-align: none;
+    }
+
+    .sale-page .sale-hero {
+      position: relative;
+      margin-top: 0;
+      height: 100vh;
+      min-height: 100vh;
+      display: flex !important;
+      align-items: flex-end;
+      overflow: hidden;
+      padding: calc(var(--utility-h, 40px) + var(--topbar-h, 76px) + 32px) 0 42px;
+      background: var(--sale-deep);
+    }
+
+    .sale-hero video,
+    .sale-video-card video,
+    .sale-feature-video video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sale-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(47,33,27,.86) 0%, rgba(72,48,35,.46) 48%, rgba(72,48,35,.2) 100%),
+        linear-gradient(0deg, rgba(47,33,27,.84) 0%, transparent 44%);
+      z-index: 1;
+    }
+
+    .sale-container {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sale-eyebrow {
+      margin: 0 0 18px;
+      color: var(--sale-gold);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .sale-title {
+      max-width: 850px;
+      margin: 0;
+      font-family: 'Ultra', serif;
+      font-size: clamp(3.1rem, 8vw, 7.6rem);
+      font-weight: 400;
+      line-height: .92;
+      letter-spacing: -.04em;
+    }
+
+    .sale-lead {
+      max-width: 760px;
+      margin: 26px 0 0;
+      color: var(--sale-muted);
+      font-size: clamp(1.05rem, 2vw, 1.45rem);
+      line-height: 1.55;
+    }
+
+    .sale-hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      max-width: 980px;
+      margin-top: 44px;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+
+    .sale-stat {
+      padding: 22px 20px;
+      background: rgba(70,45,30,.5);
+      backdrop-filter: blur(8px);
+    }
+
+    .sale-stat strong {
+      display: block;
+      color: #fff;
+      font-size: clamp(1.7rem, 4vw, 3.2rem);
+      line-height: 1;
+    }
+
+    .sale-stat span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255,255,255,.65);
+      font-size: .78rem;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .sale-section {
+      padding: clamp(62px, 9vw, 120px) 0;
+      background: var(--sale-dark);
+    }
+
+    .sale-section--light {
+      background: var(--sale-cream);
+      color: var(--sale-ink);
+    }
+
+    .sale-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: clamp(32px, 6vw, 82px);
+      align-items: center;
+    }
+
+    .sale-kicker {
+      margin: 0 0 14px;
+      color: var(--sale-gold);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: 2.6px;
+      text-transform: uppercase;
+    }
+
+    .sale-heading {
+      margin: 0 0 22px;
+      font-family: 'Ultra', serif;
+      font-size: clamp(2.2rem, 5vw, 5rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -.035em;
+    }
+
+    .sale-text {
+      margin: 0 0 18px;
+      color: inherit;
+      font-size: clamp(1rem, 1.35vw, 1.15rem);
+      line-height: 1.75;
+      opacity: .78;
+    }
+
+    .sale-section--light .sale-text {
+      opacity: .7;
+    }
+
+    .sale-points {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .sale-point {
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 20px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .sale-section--light .sale-point {
+      border-color: rgba(92,61,39,.18);
+      background: rgba(255,248,238,.62);
+    }
+
+    .sale-point strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .sale-point span {
+      color: inherit;
+      font-size: .92rem;
+      line-height: 1.55;
+      opacity: .68;
+    }
+
+    .sale-plan {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid rgba(92,61,39,.18);
+      background: var(--sale-paper);
+      box-shadow: 0 28px 80px rgba(92,61,39,.16);
+    }
+
+    .sale-plan img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .sale-plan figcaption {
+      padding: 14px 18px;
+      color: rgba(60,42,31,.66);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .sale-feature-video {
+      position: relative;
+      min-height: 620px;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #5a4030;
+      box-shadow: 0 30px 90px rgba(92,61,39,.24);
+    }
+
+    .sale-feature-video::after,
+    .sale-video-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(47,33,27,.68), transparent 54%);
+      pointer-events: none;
+    }
+
+    .sale-chart-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .sale-chart-card {
+      min-height: 260px;
+      padding: 24px;
+      border: 1px solid rgba(92,61,39,.14);
+      background: var(--sale-paper);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sale-chart-card h3 {
+      margin: 0;
+      color: var(--sale-ink);
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .sale-ring {
+      width: 148px;
+      height: 148px;
+      margin: 24px auto;
+      border-radius: 50%;
+      background: conic-gradient(var(--sale-gold) 0 78%, #eadfce 78% 100%);
+      display: grid;
+      place-items: center;
+    }
+
+    .sale-ring::before {
+      content: "200";
+      width: 104px;
+      height: 104px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--sale-paper);
+      color: var(--sale-ink);
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .sale-bars {
+      display: grid;
+      gap: 13px;
+      margin: 24px 0;
+    }
+
+    .sale-bar {
+      height: 14px;
+      background: #eadfce;
+      overflow: hidden;
+    }
+
+    .sale-bar span {
+      display: block;
+      height: 100%;
+      background: var(--sale-gold);
+    }
+
+    .sale-meter {
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      min-height: 148px;
+      margin: 24px 0;
+    }
+
+    .sale-meter span {
+      flex: 1;
+      background: linear-gradient(180deg, var(--sale-gold), var(--sale-caramel));
+    }
+
+    .sale-chart-note {
+      margin: 0;
+      color: #555;
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+
+    .sale-finance-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .sale-scenario-card {
+      padding: 24px;
+      border: 1px solid rgba(92,61,39,.14);
+      background: var(--sale-paper);
+    }
+
+    .sale-scenario-card--accent {
+      background: linear-gradient(135deg, #6f4628, #3a2a21);
+      color: #fff;
+      border-color: #6f4628;
+    }
+
+    .sale-scenario-card h3 {
+      margin: 0 0 18px;
+      color: inherit;
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .sale-scenario-number {
+      margin: 0 0 8px;
+      color: var(--sale-gold);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 900;
+      line-height: .95;
+    }
+
+    .sale-scenario-meta {
+      margin: 0 0 18px;
+      color: inherit;
+      font-size: .95rem;
+      line-height: 1.55;
+      opacity: .72;
+    }
+
+    .sale-scenario-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .sale-scenario-list p {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 0;
+      padding-top: 10px;
+      border-top: 1px solid rgba(92,61,39,.12);
+      color: inherit;
+      font-size: .9rem;
+    }
+
+    .sale-scenario-card--accent .sale-scenario-list p {
+      border-top-color: rgba(255,255,255,.14);
+    }
+
+    .sale-scenario-list span {
+      opacity: .68;
+    }
+
+    .sale-scenario-list strong {
+      white-space: nowrap;
+    }
+
+    .sale-finance-table-wrap {
+      margin-top: 28px;
+      overflow-x: auto;
+      border: 1px solid rgba(92,61,39,.16);
+      background: var(--sale-paper);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .sale-finance-table {
+      width: 100%;
+      min-width: 880px;
+      border-collapse: collapse;
+      color: var(--sale-ink);
+      font-size: .92rem;
+    }
+
+    .sale-finance-table th,
+    .sale-finance-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(92,61,39,.13);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .sale-finance-table th:first-child,
+    .sale-finance-table td:first-child {
+      text-align: left;
+      white-space: normal;
+      min-width: 250px;
+    }
+
+    .sale-finance-table thead th {
+      background: #6f4628;
+      color: #fff;
+      font-size: .76rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .sale-finance-table tbody tr:nth-child(even) {
+      background: rgba(193,138,74,.08);
+    }
+
+    .sale-finance-table .sale-table-group td {
+      padding-top: 18px;
+      border-top: 2px solid rgba(92,61,39,.32);
+    }
+
+    .sale-finance-table .sale-table-strong td {
+      font-weight: 900;
+      background: rgba(214,173,98,.14);
+    }
+
+    .sale-strip {
+      background: linear-gradient(180deg, #efe1ce 0%, #d8c3a8 100%);
+      color: var(--sale-ink);
+    }
+
+    .sale-strip-head {
+      padding: 72px 0 34px;
+    }
+
+    .sale-video-card {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #5b3d2b;
+      color: var(--sale-paper);
+    }
+
+    .sale-video-card--wide {
+      aspect-ratio: 16 / 9;
+      min-height: min(100vh, 980px);
+    }
+
+    .sale-video-card--portrait {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(214,173,98,.22), transparent 32%),
+        #4a3023;
+    }
+
+    .sale-video-card--portrait video {
+      position: relative;
+      width: min(520px, 100%);
+      height: 100vh;
+      max-height: 980px;
+      object-fit: cover;
+      box-shadow: 0 0 0 1px rgba(255,248,238,.32), 0 40px 110px rgba(92,61,39,.42);
+    }
+
+    .sale-video-card--split {
+      display: grid;
+      grid-template-columns: minmax(0, 52%) minmax(0, 48%);
+      align-items: stretch;
+      min-height: 100vh;
+      background: var(--sale-paper);
+      color: var(--sale-ink);
+    }
+
+    .sale-video-card--split::after {
+      display: none;
+    }
+
+    .sale-split-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(42px, 7vw, 96px);
+      background: linear-gradient(135deg, var(--sale-paper), #ead8bd);
+    }
+
+    .sale-split-copy small {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--sale-caramel);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .sale-split-copy h3 {
+      margin: 0;
+      font-family: 'Ultra', serif;
+      max-width: 720px;
+      font-size: clamp(2rem, 4.2vw, 4.4rem);
+      font-weight: 400;
+      line-height: .98;
+      color: var(--sale-ink);
+      overflow-wrap: break-word;
+    }
+
+    .sale-split-copy p {
+      max-width: 620px;
+      margin: 18px 0 0;
+      color: rgba(43,33,28,.74);
+      font-size: clamp(1rem, 1.5vw, 1.18rem);
+      line-height: 1.72;
+    }
+
+    .sale-split-media {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #5b3d2b;
+    }
+
+    .sale-video-card--split .sale-split-media video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      box-shadow: none;
+    }
+
+    .sale-split-title-nowrap {
+      white-space: normal;
+      font-size: clamp(2rem, 2.7vw, 2.9rem);
+    }
+
+    .sale-split-title-nowrap .no-break {
+      white-space: nowrap;
+    }
+
+    .sale-video-card--media-left {
+      grid-template-columns: minmax(0, 45%) minmax(0, 55%);
+    }
+
+    .sale-video-card--media-left .sale-split-media {
+      order: 1;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(193,138,74,.22), transparent 34%),
+        #4a3023;
+    }
+
+    .sale-video-card--media-left .sale-split-copy {
+      order: 2;
+    }
+
+    .sale-video-card--media-left .sale-split-media video {
+      inset: auto;
+      width: min(520px, 100%);
+      height: 100vh;
+      max-height: 980px;
+      object-fit: cover;
+      box-shadow: 0 0 0 1px rgba(255,248,238,.32), 0 40px 110px rgba(92,61,39,.42);
+    }
+
+    .sale-video-caption {
+      position: absolute;
+      left: clamp(18px, 5vw, 72px);
+      right: clamp(18px, 5vw, 72px);
+      bottom: clamp(24px, 6vw, 70px);
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .sale-video-caption small {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--sale-gold);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .sale-video-caption h3 {
+      margin: 0;
+      font-family: 'Ultra', serif;
+      font-size: clamp(2rem, 5vw, 5.2rem);
+      font-weight: 400;
+      line-height: .98;
+    }
+
+    .sale-video-caption p {
+      max-width: 560px;
+      margin: 16px 0 0;
+      color: rgba(255,248,238,.78);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .sale-gallery-section {
+      padding: 2px 0 0;
+      background: var(--sale-paper);
+      color: var(--sale-ink);
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+    }
+
+    .sale-photo-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      padding: clamp(74px, 10vw, 130px) 0;
+      background: #5b3d2b;
+      color: var(--sale-paper);
+    }
+
+    .sale-photo-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .sale-photo-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(47,33,27,.82) 0%, rgba(72,48,35,.42) 50%, rgba(72,48,35,.18) 100%),
+        linear-gradient(0deg, rgba(47,33,27,.78) 0%, transparent 54%);
+      z-index: 1;
+    }
+
+    .sale-gallery-head {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+    }
+
+    .sale-gallery-head small {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--sale-caramel);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .sale-gallery-head h3 {
+      margin: 0;
+      font-family: 'Ultra', serif;
+      font-size: clamp(2.3rem, 6vw, 5.7rem);
+      font-weight: 400;
+      line-height: .98;
+    }
+
+    .sale-gallery-head p {
+      max-width: 680px;
+      margin: 18px 0 0;
+      color: rgba(255,248,238,.78);
+      font-size: clamp(1rem, 1.45vw, 1.16rem);
+      line-height: 1.68;
+    }
+
+    .sale-photo-mosaic {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-auto-rows: minmax(115px, 12vw);
+      grid-auto-flow: dense;
+      gap: 2px;
+      background: rgba(92,61,39,.28);
+      overflow: hidden;
+    }
+
+    .sale-photo-tile {
+      position: relative;
+      min-height: 100%;
+      overflow: hidden;
+      background: #d8c3a8;
+    }
+
+    .sale-photo-tile img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .45s ease, filter .45s ease;
+    }
+
+    .sale-photo-tile:hover img {
+      transform: scale(1.035);
+      filter: saturate(1.06) contrast(1.04);
+    }
+
+    .sale-photo-tile--hero { grid-column: span 6; grid-row: span 4; }
+    .sale-photo-tile--wide { grid-column: span 6; grid-row: span 2; }
+    .sale-photo-tile--tall { grid-column: span 3; grid-row: span 4; }
+    .sale-photo-tile--medium { grid-column: span 3; grid-row: span 2; }
+    .sale-photo-tile--small { grid-column: span 3; grid-row: span 2; }
+
+    .sale-engineering-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      padding: clamp(74px, 10vw, 128px) 0;
+      background: #5b3d2b;
+      color: var(--sale-paper);
+    }
+
+    .sale-engineering-hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .sale-engineering-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(47,33,27,.88) 0%, rgba(72,48,35,.56) 48%, rgba(72,48,35,.24) 100%),
+        linear-gradient(0deg, rgba(47,33,27,.82) 0%, transparent 54%);
+      z-index: 1;
+    }
+
+    .sale-engineering-layout {
+      position: relative;
+      z-index: 2;
+      display: block;
+    }
+
+    .sale-engineering-copy {
+      max-width: 780px;
+    }
+
+    .sale-engineering-copy small {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--sale-gold);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .sale-engineering-copy h3 {
+      margin: 0;
+      font-family: 'Ultra', serif;
+      font-size: clamp(2.4rem, 6vw, 6rem);
+      font-weight: 400;
+      line-height: .98;
+    }
+
+    .sale-engineering-copy p {
+      max-width: 690px;
+      margin: 18px 0 0;
+      color: rgba(255,248,238,.8);
+      font-size: clamp(1rem, 1.45vw, 1.16rem);
+      line-height: 1.7;
+    }
+
+    .sale-engineering-photos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2px;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      background: rgba(92,61,39,.28);
+    }
+
+    .sale-engineering-photos img {
+      width: 100%;
+      height: min(62vh, 620px);
+      display: block;
+      object-fit: cover;
+    }
+
+    .sale-final {
+      padding: clamp(70px, 10vw, 130px) 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #6f4628, var(--sale-dark));
+      text-align: center;
+    }
+
+    .sale-final .sale-heading,
+    .sale-final .sale-text {
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .sale-final .cta-button {
+      border-color: var(--sale-gold);
+      color: #fff;
+    }
+
+    .sale-final .cta-button:hover {
+      background: var(--sale-gold);
+      border-color: var(--sale-gold);
+      color: var(--sale-ink);
+    }
+
+    .sale-final .sale-phone-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      width: fit-content;
+      margin: 0 !important;
+    }
+
+    .sale-final-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    .sale-final-note {
+      max-width: 560px;
+      margin: 18px auto 0;
+      color: rgba(255,248,238,.62);
+      font-size: .92rem;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .sale-page .sale-hero {
+        padding-top: calc(var(--utility-h, 40px) + var(--topbar-h, 76px) + 24px);
+      }
+
+      .sale-grid,
+      .sale-chart-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sale-hero-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 100%;
+        margin-top: 26px;
+      }
+
+      .sale-points {
+        grid-template-columns: 1fr;
+      }
+
+      .sale-finance-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .sale-plan {
+        width: 100%;
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      .sale-feature-video {
+        min-height: 56vh;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sale-page .sale-hero {
+        height: 100svh;
+        min-height: 100svh;
+        align-items: flex-end;
+        padding-top: calc(var(--utility-h, 40px) + var(--topbar-h, 76px) + 16px);
+        padding-bottom: 28px;
+      }
+
+      .sale-container {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .sale-eyebrow {
+        margin-bottom: 10px;
+        font-size: .58rem;
+        letter-spacing: 1.8px;
+      }
+
+      .sale-title {
+        max-width: 340px;
+        font-size: clamp(2.35rem, 14vw, 3.75rem);
+        line-height: .9;
+      }
+
+      .sale-lead {
+        max-width: 330px;
+        margin-top: 14px;
+        font-size: .86rem;
+        line-height: 1.45;
+      }
+
+      .sale-hero-stats {
+        margin-top: 18px;
+      }
+
+      .sale-stat {
+        min-width: 0;
+        padding: 12px 10px;
+      }
+
+      .sale-stat strong {
+        font-size: clamp(1.25rem, 7vw, 1.85rem);
+      }
+
+      .sale-stat span {
+        margin-top: 5px;
+        font-size: .55rem;
+        letter-spacing: .7px;
+        line-height: 1.25;
+      }
+
+      .sale-section {
+        padding: 46px 0;
+      }
+
+      .sale-heading {
+        font-size: clamp(2rem, 12vw, 3.15rem);
+      }
+
+      .sale-text {
+        font-size: .95rem;
+        line-height: 1.62;
+      }
+
+      .sale-plan figcaption {
+        padding: 11px 12px;
+        font-size: .62rem;
+      }
+
+      .sale-chart-card {
+        min-height: 0;
+        padding: 18px;
+      }
+
+      .sale-scenario-card {
+        padding: 18px;
+      }
+
+      .sale-finance-table {
+        min-width: 760px;
+        font-size: .78rem;
+      }
+
+      .sale-finance-table th,
+      .sale-finance-table td {
+        padding: 10px 11px;
+      }
+
+      .sale-strip-head {
+        padding: 46px 0 24px;
+      }
+
+      .sale-video-card,
+      .sale-video-card--wide,
+      .sale-video-card--portrait {
+        min-height: 76vh;
+      }
+
+      .sale-video-card--portrait video {
+        height: 76vh;
+      }
+
+      .sale-video-card--split {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .sale-split-copy {
+        padding: 46px 18px 32px;
+      }
+
+      .sale-split-copy h3 {
+        font-size: clamp(2rem, 12vw, 3.2rem);
+      }
+
+      .sale-split-title-nowrap {
+        white-space: normal;
+      }
+
+      .sale-split-copy p {
+        font-size: .95rem;
+        line-height: 1.58;
+      }
+
+      .sale-split-media {
+        min-height: 68vh;
+      }
+
+      .sale-video-card--media-left .sale-split-media,
+      .sale-video-card--media-left .sale-split-copy {
+        order: initial;
+      }
+
+      .sale-video-card--media-left .sale-split-media video {
+        height: 68vh;
+      }
+
+      .sale-video-caption {
+        left: 16px;
+        right: 16px;
+        bottom: 22px;
+      }
+
+      .sale-video-caption h3 {
+        font-size: clamp(1.8rem, 12vw, 3.2rem);
+      }
+
+      .sale-video-caption p {
+        font-size: .9rem;
+        line-height: 1.5;
+      }
+
+      .sale-gallery-section {
+        padding: 2px 0 0;
+      }
+
+      .sale-photo-hero {
+        min-height: 84vh;
+        padding: 58px 0 42px;
+      }
+
+      .sale-gallery-head {
+        margin-bottom: 22px;
+      }
+
+      .sale-gallery-head h3 {
+        font-size: clamp(2rem, 12vw, 3.25rem);
+      }
+
+      .sale-photo-mosaic {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: 128px;
+        gap: 2px;
+      }
+
+      .sale-photo-tile--hero,
+      .sale-photo-tile--wide,
+      .sale-photo-tile--tall,
+      .sale-photo-tile--medium,
+      .sale-photo-tile--small {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      .sale-photo-tile--hero,
+      .sale-photo-tile--tall {
+        grid-row: span 3;
+      }
+
+      .sale-engineering-hero {
+        min-height: auto;
+        padding: 58px 0 42px;
+      }
+
+      .sale-engineering-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .sale-engineering-copy h3 {
+        font-size: clamp(2rem, 12vw, 3.35rem);
+      }
+
+      .sale-engineering-photos {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .sale-title {
+        font-size: clamp(2.1rem, 13vw, 3.2rem);
+      }
+
+      .sale-lead {
+        font-size: .78rem;
+      }
+
+      .sale-hero-stats {
+        margin-top: 14px;
+      }
+
+      .sale-stat {
+        padding: 10px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="sale-page">
+    <section class="sale-hero" aria-label="Головний екран презентації ресторану">
+      <video autoplay muted loop playsinline poster="img/rest/me.png">
+        <source src="img/kolrest1.mp4" type="video/mp4">
+      </video>
+
+      <div class="sale-container">
+        <p class="sale-eyebrow">Комерційна презентація об'єкта</p>
+        <h1 class="sale-title">Продаж ресторану</h1>
+        <p class="sale-lead">Місто Вишневе, Київська область. Готовий простір для ресторану, банкетів, сімейних свят і подієвого формату.</p>
+
+        <div class="sale-hero-stats" aria-label="Ключові характеристики ресторану">
+          <div class="sale-stat">
+            <strong>518 м2</strong>
+            <span>загальна площа</span>
+          </div>
+          <div class="sale-stat">
+            <strong>200</strong>
+            <span>потенційних посадкових місць</span>
+          </div>
+          <div class="sale-stat">
+            <strong>Київська</strong>
+            <span>область</span>
+          </div>
+          <div class="sale-stat">
+            <strong>готовий</strong>
+            <span>ресторанний об'єкт</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sale-section sale-section--light" id="concept">
+      <div class="sale-container sale-grid">
+        <div>
+          <p class="sale-kicker">01 · Об'єкт</p>
+          <h2 class="sale-heading">Великий ресторан із зрозумілим комерційним потенціалом</h2>
+          <p class="sale-text">Ресторан площею 518 м2 розташований на двох поверхах і має сильний потенціал для розвитку повноцінного ресторанного бізнесу. Об'єкт знаходиться у прохідній зоні, тому може працювати як на гостей, які приходять у зал, так і на замовлення з доставкою.</p>
+          <p class="sale-text">Формат дозволяє поєднувати щоденну посадку, банкети, сімейні свята, корпоративні події та приватні заходи. Простір може вміщувати до 200 посадкових місць, що відкриває можливість працювати з різними сценаріями доходу протягом тижня.</p>
+        </div>
+
+        <figure class="sale-plan">
+          <img src="img/photo.jpg" alt="План ресторану площею 518 м2" loading="lazy">
+          <figcaption>План ресторану · 518 м2</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="sale-section" id="video-overview">
+      <div class="sale-container sale-grid">
+        <div class="sale-feature-video">
+          <video autoplay muted loop playsinline poster="img/rest/me.png">
+            <source src="img/kolrest2.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div>
+          <p class="sale-kicker">02 · Потенціал формату</p>
+          <h2 class="sale-heading">Готова база для ресторану, банкетів і доставки</h2>
+          <p class="sale-text">Цей об'єкт можна використовувати не лише як класичний ресторан. Його площа, два поверхи та місткість до 200 гостей дозволяють поєднати кілька джерел доходу: щоденну посадку, банкетні події, корпоративи, сімейні свята, доставку та попередні замовлення.</p>
+          <p class="sale-text">Вигода такої угоди в тому, що покупець отримує не порожнє приміщення, а масштабну ресторанну основу з уже зрозумілою логікою використання. Прохідна зона дає потік гостей, велика площа дає варіативність форматів, а фінансова модель нижче показує, яких показників потрібно досягати для окупності та беззбиткової роботи.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sale-section sale-section--light" id="numbers">
+      <div class="sale-container">
+        <p class="sale-kicker">03 · Фінансова модель</p>
+        <h2 class="sale-heading">Три сценарії: окупність 3 роки, 5 років і точка беззбитковості</h2>
+        <p class="sale-text">Фінансовий блок показує, який місячний оборот, кількість чеків, середній чек і рівень витрат потрібні для різних сценаріїв роботи ресторану. У моделі закладена собівартість кухні та бару 30%, валова маржа 70% і фіксована оренда 213 000 грн.</p>
+
+        <div class="sale-finance-summary">
+          <article class="sale-scenario-card sale-scenario-card--accent">
+            <h3>Окупність 3 роки</h3>
+            <p class="sale-scenario-number">612 000</p>
+            <p class="sale-scenario-meta">грн прибутку на місяць при обороті 3 705 000 грн.</p>
+            <div class="sale-scenario-list">
+              <p><span>Чеків / місяць</span><strong>5 700</strong></p>
+              <p><span>Чеків / день</span><strong>190</strong></p>
+              <p><span>Середній чек</span><strong>650 грн</strong></p>
+              <p><span>Прибуток до обороту</span><strong>17%</strong></p>
+            </div>
+          </article>
+
+          <article class="sale-scenario-card">
+            <h3>Окупність 5 років</h3>
+            <p class="sale-scenario-number">339 000</p>
+            <p class="sale-scenario-meta">грн прибутку на місяць при обороті 3 072 000 грн.</p>
+            <div class="sale-scenario-list">
+              <p><span>Чеків / місяць</span><strong>4 800</strong></p>
+              <p><span>Чеків / день</span><strong>160</strong></p>
+              <p><span>Середній чек</span><strong>640 грн</strong></p>
+              <p><span>Прибуток до обороту</span><strong>11%</strong></p>
+            </div>
+          </article>
+
+          <article class="sale-scenario-card">
+            <h3>Точка беззбитковості</h3>
+            <p class="sale-scenario-number">1 800 000</p>
+            <p class="sale-scenario-meta">грн обороту на місяць, коли прибуток дорівнює нулю.</p>
+            <div class="sale-scenario-list">
+              <p><span>Чеків / місяць</span><strong>3 000</strong></p>
+              <p><span>Чеків / день</span><strong>100</strong></p>
+              <p><span>Середній чек</span><strong>600 грн</strong></p>
+              <p><span>Виручка / день</span><strong>60 000 грн</strong></p>
+            </div>
+          </article>
+        </div>
+
+        <div class="sale-finance-table-wrap" aria-label="Детальна фінансова таблиця ресторану">
+          <table class="sale-finance-table">
+            <thead>
+              <tr>
+                <th>Показник</th>
+                <th>Окупність 3 роки</th>
+                <th>Окупність 5 років</th>
+                <th>Точка беззбитковості</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Загальна виручка від реалізації</td><td>3 705 000</td><td>3 072 000</td><td>1 800 000</td></tr>
+              <tr><td>Собівартість кухні та бару</td><td>1 100 000</td><td>910 000</td><td>540 000</td></tr>
+              <tr><td>Собівартість кухні та бару до обороту</td><td>30%</td><td>30%</td><td>30%</td></tr>
+              <tr><td>Валовий прибуток / маржа</td><td>2 605 000</td><td>2 162 000</td><td>1 260 000</td></tr>
+              <tr><td>Податки</td><td>150 000</td><td>140 000</td><td>100 000</td></tr>
+              <tr><td>Оренда</td><td>213 000</td><td>213 000</td><td>213 000</td></tr>
+              <tr><td>Комунальні витрати</td><td>180 000</td><td>170 000</td><td>130 000</td></tr>
+              <tr><td>Зарплата</td><td>850 000</td><td>800 000</td><td>517 000</td></tr>
+              <tr><td>Операційні витрати</td><td>600 000</td><td>500 000</td><td>300 000</td></tr>
+              <tr><td>Усього витрат</td><td>1 993 000</td><td>1 823 000</td><td>1 260 000</td></tr>
+              <tr class="sale-table-strong"><td>Прибуток</td><td>612 000</td><td>339 000</td><td>0</td></tr>
+              <tr class="sale-table-group"><td>Прибуток до обороту</td><td>17%</td><td>11%</td><td>0%</td></tr>
+              <tr><td>Витрати до обороту</td><td>54%</td><td>59%</td><td>70%</td></tr>
+              <tr><td>Собівартість до обороту</td><td>30%</td><td>30%</td><td>30%</td></tr>
+              <tr><td>Валовий прибуток</td><td>70%</td><td>70%</td><td>70%</td></tr>
+              <tr class="sale-table-group"><td>Кількість чеків / місяць</td><td>5 700</td><td>4 800</td><td>3 000</td></tr>
+              <tr><td>Кількість чеків / день</td><td>190</td><td>160</td><td>100</td></tr>
+              <tr><td>Середній чек</td><td>650</td><td>640</td><td>600</td></tr>
+              <tr><td>Середня виручка / день</td><td>123 500</td><td>102 400</td><td>60 000</td></tr>
+              <tr class="sale-table-group"><td>Зарплата до витрат</td><td>43%</td><td>44%</td><td>41%</td></tr>
+              <tr><td>Зарплата до обороту</td><td>23%</td><td>26%</td><td>29%</td></tr>
+              <tr class="sale-table-group"><td>Точка беззбитковості / місяць</td><td>2 834 574</td><td>2 590 313</td><td>1 800 000</td></tr>
+              <tr><td>Точка беззбитковості / день</td><td>94 486</td><td>86 344</td><td>60 000</td></tr>
+              <tr><td>Оренда до обороту</td><td>6%</td><td>7%</td><td>12%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="sale-strip" id="video-strip">
+      <div class="sale-container sale-strip-head">
+        <p class="sale-kicker">04 · Професійна кухня</p>
+        <h2 class="sale-heading">Повністю обладнана кухня для ресторану, банкетів і виробництва</h2>
+        <p class="sale-text">Кухня готова до повноцінної роботи з першого дня: сучасне обладнання, робочі зони, потужність для щоденного сервісу і запас для масштабування. Вона може обслуговувати не тільки зал ресторану, а й доставку, банкети, кейтеринг, виробництво напівфабрикатів та заготовок.</p>
+        <p class="sale-text">Це важлива перевага об'єкта: покупець отримує не просто ресторанну площу, а готову виробничу базу. Заходь і працюй: запускай меню, готуй заготовки, приймай банкети, розвивай доставку і використовуй кухню як окремий центр прибутку.</p>
+      </div>
+
+      <article class="sale-video-card sale-video-card--wide">
+        <video autoplay muted loop playsinline poster="img/rest/me.png">
+          <source src="img/kolrest3.mp4" type="video/mp4">
+        </video>
+        <div class="sale-video-caption">
+          <small>Кухня · готова до запуску</small>
+          <h3>Заходь і працюй</h3>
+          <p>Повністю укомплектований простір для щоденного ресторанного сервісу, банкетів, доставки та виробництва заготовок.</p>
+        </div>
+      </article>
+
+      <article class="sale-video-card sale-video-card--split">
+        <div class="sale-split-copy">
+          <small>Виробничий потенціал</small>
+          <h3 class="sale-split-title-nowrap">Заготовки і<br><span class="no-break">напівфабрикати</span></h3>
+          <p>Кухню можна використовувати як базу для окремого виробництва: соуси, напівфабрикати, банкетні заготовки та доставка.</p>
+          <p>Ресторан обладнаний холодильними та морозильними камерами, електроплитами, холодильними столами, робочими поверхнями, зонами підготовки і всім необхідним для повного циклу роботи кухні.</p>
+        </div>
+        <div class="sale-split-media">
+          <video autoplay muted loop playsinline poster="img/rest/me.png">
+            <source src="img/kolrest4.mp4" type="video/mp4">
+          </video>
+        </div>
+      </article>
+
+      <article class="sale-video-card sale-video-card--split sale-video-card--media-left">
+        <div class="sale-split-media">
+          <video autoplay muted loop playsinline poster="img/rest/me.png">
+            <source src="img/kolrest5.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="sale-split-copy">
+          <small>Локація і трафік</small>
+          <h3>Серце нового житлового кварталу</h3>
+          <p>Місце розташування ресторану має суттєвий потенціал, тому що об'єкт знаходиться в самому серці житлового кварталу нової забудови. Постійний потік мешканців, гостей району та щоденних маршрутів створює природний трафік без великих додаткових зусиль.</p>
+          <p>Поруч є велика парковка, що важливо для банкетів, сімейних подій, доставки та гостей, які приїжджають на автомобілі. Також є можливість організувати велику літню площадку на весняно-літній період і розглянути потенціал прибудови для розширення формату.</p>
+        </div>
+      </article>
+
+      <article class="sale-photo-hero">
+        <img src="img/kol/IMG_8999.jpg" alt="Обладнання ресторану">
+        <div class="sale-container">
+          <div class="sale-gallery-head">
+            <small>Обладнання і процеси</small>
+            <h3>Все для повної роботи</h3>
+            <p>Сучасне обладнання дозволяє організувати стабільний потік замовлень, швидку підготовку страв і контроль якості.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="sale-gallery-section">
+        <div class="sale-photo-mosaic" aria-label="Фотографії обладнання та інтер'єру ресторану">
+          <figure class="sale-photo-tile sale-photo-tile--hero"><img src="img/kol/IMG_8999.jpg" alt="Обладнання ресторану" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--wide"><img src="img/kol/IMG_9011.jpg" alt="Інтер'єр ресторану" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--medium"><img src="img/kol/IMG_9019.jpg" alt="Робоча зона ресторану" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--small"><img src="img/kol/IMG_9020.jpg" alt="Деталі обладнання" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--tall"><img src="img/kol/IMG_9024.jpg" alt="Кухонна зона" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--wide"><img src="img/kol/IMG_9025.jpg" alt="Зона ресторану" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--small"><img src="img/kol/IMG_9028.jpg" alt="Фрагмент інтер'єру" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--medium"><img src="img/kol/IMG_9031.jpg" alt="Обладнаний простір" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--wide"><img src="img/kol/IMG_9035.jpg" alt="Інтер'єр та обладнання" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--small"><img src="img/kol/IMG_9037.jpg" alt="Деталь ресторану" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--tall"><img src="img/kol/IMG_9047.jpg" alt="Ресторанна зона" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--medium"><img src="img/kol/IMG_9054.jpg" alt="Простір для роботи" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--small"><img src="img/kol/IMG_9056.jpg" alt="Елемент обладнання" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--wide"><img src="img/kol/IMG_9060.jpg" alt="Ресторанне обладнання" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--medium"><img src="img/kol/IMG_9063.jpg" alt="Кухонний простір" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--small"><img src="img/kol/IMG_9074.jpg" alt="Деталі кухні" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--wide"><img src="img/kol/IMG_9077.jpg" alt="Інтер'єр ресторану" loading="lazy"></figure>
+          <figure class="sale-photo-tile sale-photo-tile--medium"><img src="img/kol/IMG_9083.jpg" alt="Готовий простір ресторану" loading="lazy"></figure>
+        </div>
+      </article>
+
+      <article class="sale-engineering-hero">
+        <video autoplay muted loop playsinline poster="img/kol/photo.jpg">
+          <source src="img/kol/kol.mp4" type="video/mp4">
+        </video>
+        <div class="sale-container">
+          <div class="sale-engineering-layout">
+            <div class="sale-engineering-copy">
+              <small>Інженерні системи</small>
+              <h3>Потужна вентиляція для стабільної роботи</h3>
+              <p>Об'єкт оснащений потужною системою вентиляції, яка забезпечує притік свіжого повітря, ефективний забір запахів із кухні та комфортну атмосферу для гостей і персоналу.</p>
+              <p>Якісна вентиляція та продумані інженерні системи є великим плюсом для ресторану: вони допомагають уникнути багатьох технічних проблем, зменшують ризики простоїв і забезпечують стабільну роботу на довгі роки.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+      <div class="sale-engineering-photos" aria-label="Фото інженерних систем ресторану">
+        <img src="img/kol/photo1.jpg" alt="Інженерні системи ресторану" loading="lazy">
+        <img src="img/kol/photo2.jpg" alt="Вентиляція ресторану" loading="lazy">
+      </div>
+    </section>
+
+    <section class="sale-final" id="contact">
+      <div class="sale-container">
+        <p class="sale-kicker">05 · Фінальний крок</p>
+        <h2 class="sale-heading">Ресторан, який можна запускати і масштабувати</h2>
+        <p class="sale-text">Це не просто приміщення під ресторан. Це готова база з двома поверхами, кухнею, інженерними системами, посадкою до 200 гостей, потенціалом доставки, банкетів, виробництва заготовок і літньої площадки.</p>
+        <p class="sale-text">Об'єкт поєднує локацію, площу, обладнання і зрозумілу фінансову модель. Для покупця це можливість зайти в проєкт, де вже є фундамент для стабільного ресторанного бізнесу.</p>
+        <div class="sale-final-actions">
+          <a class="cta-button sale-phone-link" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BE%D1%82%D1%80%D0%B8%D0%BC%D0%B0%D1%82%D0%B8%20%D0%B4%D0%BE%D0%B4%D0%B0%D1%82%D0%BA%D0%BE%D0%B2%D1%83%20%D1%96%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D1%96%D1%8E%20%D0%BF%D1%80%D0%BE%20%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD." target="_blank" rel="noopener noreferrer">Написати у WhatsApp</a>
+        </div>
+        <p class="sale-final-note">Натисніть кнопку, щоб одразу написати у WhatsApp і обговорити деталі об'єкта.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <div id="panel-backdrop"></div>
+  <div id="form-panel-root"></div>
+  <script>
+  (function () {
+    const mount = document.getElementById('form-panel-root');
+    if (!mount) return;
+    fetch('assets/partials/form-panel.html?v=20260501m', { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error('Failed'); return r.text(); })
+      .then(html => {
+        mount.innerHTML = html;
+        window.__formPanelLoaded = true;
+        document.dispatchEvent(new Event('form-panel:ready'));
+      })
+      .catch(console.error);
+  })();
+  </script>
+  <script src="assets/js/main.js?v=20260501q"></script>
+</body>
+</html>
