@@ -928,12 +928,14 @@
 
       .sale-page .sale-hero {
         margin-top: 0;
-        height: 100svh;
-        min-height: 100svh;
-        max-height: 100svh;
-        align-items: flex-end;
+        height: 100svh !important;
+        height: 100dvh !important;
+        min-height: 100svh !important;
+        min-height: 100dvh !important;
+        max-height: none;
+        display: block !important;
         box-sizing: border-box;
-        padding: calc(var(--sale-mobile-header-h) + 14px) 0 max(16px, env(safe-area-inset-bottom));
+        padding: 0;
       }
 
       .sale-hero-video--desktop {
@@ -942,6 +944,19 @@
 
       .sale-hero-video--mobile {
         display: block;
+      }
+
+      .sale-hero .sale-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: calc(var(--sale-mobile-header-h) + 12px);
+        bottom: max(14px, env(safe-area-inset-bottom));
+        width: min(100% - 24px, 430px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        z-index: 2;
       }
 
       .sale-container {
@@ -1145,14 +1160,13 @@
 
       .sale-page .sale-hero {
         margin-top: 0;
-        height: 100vh;
-        height: 100dvh;
-        min-height: 100vh;
-        min-height: 100dvh;
-        max-height: 100dvh;
-        align-items: flex-end;
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 100vh !important;
+        min-height: 100dvh !important;
+        max-height: none;
         box-sizing: border-box;
-        padding: calc(var(--sale-mobile-header-h) + 14px) 0 max(16px, env(safe-area-inset-bottom));
+        padding: 0 !important;
       }
 
       .sale-hero video {
@@ -1521,11 +1535,22 @@
 
     if (desktopHeroVideo && mobileHeroVideo) {
       if (useMobileHero) {
+        const forceSrc = 'img/kol/kol9.mp4';
+        [desktopHeroVideo, mobileHeroVideo].forEach(video => {
+          const source = video.querySelector('source');
+          if (source && source.getAttribute('src') !== forceSrc) {
+            source.setAttribute('src', forceSrc);
+          }
+          source?.removeAttribute('data-src');
+          video.poster = 'img/optimized/posters/kol9.jpg';
+          video.load();
+        });
         desktopHeroVideo.style.display = 'none';
         desktopHeroVideo.pause();
         mobileHeroVideo.style.display = 'block';
         mobileHeroVideo.play().catch(() => {});
       } else {
+        desktopHeroVideo.style.display = 'block';
         mobileHeroVideo.style.display = 'none';
       }
     }
