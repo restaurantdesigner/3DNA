@@ -918,19 +918,18 @@
     }
 
     @media (max-width: 640px) {
-      .sale-page-body .utility-bar,
-      .sale-page-body header.topbar,
-      body:has(.sale-page) .utility-bar,
-      body:has(.sale-page) header.topbar {
-        display: none !important;
+      .sale-page-body {
+        --sale-mobile-header-h: calc(var(--utility-h, 40px) + var(--topbar-h, 76px));
       }
 
       .sale-page .sale-hero {
-        height: 100svh;
-        min-height: 100svh;
+        margin-top: var(--sale-mobile-header-h);
+        height: calc(100svh - var(--sale-mobile-header-h));
+        min-height: calc(100svh - var(--sale-mobile-header-h));
+        max-height: calc(100svh - var(--sale-mobile-header-h));
         align-items: flex-end;
         box-sizing: border-box;
-        padding: 18px 0 max(18px, env(safe-area-inset-bottom));
+        padding: 14px 0 max(16px, env(safe-area-inset-bottom));
       }
 
       .sale-container {
@@ -1133,14 +1132,15 @@
       }
 
       .sale-page .sale-hero {
-        margin-top: 0;
-        height: 100vh;
-        height: 100dvh;
-        min-height: 100vh;
-        min-height: 100dvh;
+        margin-top: var(--sale-mobile-header-h);
+        height: calc(100vh - var(--sale-mobile-header-h));
+        height: calc(100dvh - var(--sale-mobile-header-h));
+        min-height: calc(100vh - var(--sale-mobile-header-h));
+        min-height: calc(100dvh - var(--sale-mobile-header-h));
+        max-height: calc(100dvh - var(--sale-mobile-header-h));
         align-items: flex-end;
         box-sizing: border-box;
-        padding: 18px 0 max(18px, env(safe-area-inset-bottom));
+        padding: 14px 0 max(16px, env(safe-area-inset-bottom));
       }
 
       .sale-hero video {
@@ -1161,27 +1161,27 @@
 
       .sale-hero .sale-title {
         max-width: 310px;
-        font-size: clamp(2.15rem, 13vw, 3.35rem);
+        font-size: clamp(2rem, 12vw, 3.15rem);
       }
 
       .sale-hero .sale-lead {
         max-width: 330px;
-        margin-top: 12px;
-        font-size: .82rem;
-        line-height: 1.42;
+        margin-top: 10px;
+        font-size: .78rem;
+        line-height: 1.36;
       }
 
       .sale-hero .sale-hero-stats {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-top: 14px;
+        margin-top: 12px;
       }
 
       .sale-hero .sale-stat {
-        padding: 10px 8px;
+        padding: 9px 8px;
       }
 
       .sale-hero .sale-stat strong {
-        font-size: clamp(1.15rem, 6vw, 1.65rem);
+        font-size: clamp(1.08rem, 5.6vw, 1.55rem);
       }
 
       .sale-hero .sale-stat span {
