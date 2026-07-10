@@ -918,12 +918,19 @@
     }
 
     @media (max-width: 640px) {
+      .sale-page-body .utility-bar,
+      .sale-page-body header.topbar,
+      body:has(.sale-page) .utility-bar,
+      body:has(.sale-page) header.topbar {
+        display: none !important;
+      }
+
       .sale-page .sale-hero {
         height: 100svh;
         min-height: 100svh;
         align-items: flex-end;
-        padding-top: calc(var(--utility-h, 40px) + var(--topbar-h, 76px) + 16px);
-        padding-bottom: 28px;
+        box-sizing: border-box;
+        padding: 18px 0 max(18px, env(safe-area-inset-bottom));
       }
 
       .sale-container {
@@ -1132,7 +1139,8 @@
         min-height: 100vh;
         min-height: 100dvh;
         align-items: flex-end;
-        padding: calc(var(--utility-h, 40px) + var(--topbar-h, 76px) + 10px) 0 max(18px, env(safe-area-inset-bottom));
+        box-sizing: border-box;
+        padding: 18px 0 max(18px, env(safe-area-inset-bottom));
       }
 
       .sale-hero video {
@@ -1200,7 +1208,7 @@
     }
   </style>
 </head>
-<body>
+<body class="sale-page-body">
   <div id="site-header"></div>
 
   <main class="sale-page">
