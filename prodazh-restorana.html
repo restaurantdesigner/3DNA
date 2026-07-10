@@ -58,6 +58,10 @@
       object-fit: cover;
     }
 
+    .sale-hero-video--mobile {
+      display: none;
+    }
+
     .sale-hero::after {
       content: "";
       position: absolute;
@@ -917,19 +921,27 @@
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 767px) {
       .sale-page-body {
         --sale-mobile-header-h: calc(var(--utility-h, 40px) + var(--topbar-h, 76px));
       }
 
       .sale-page .sale-hero {
-        margin-top: var(--sale-mobile-header-h);
-        height: calc(100svh - var(--sale-mobile-header-h));
-        min-height: calc(100svh - var(--sale-mobile-header-h));
-        max-height: calc(100svh - var(--sale-mobile-header-h));
+        margin-top: 0;
+        height: 100svh;
+        min-height: 100svh;
+        max-height: 100svh;
         align-items: flex-end;
         box-sizing: border-box;
-        padding: 14px 0 max(16px, env(safe-area-inset-bottom));
+        padding: calc(var(--sale-mobile-header-h) + 14px) 0 max(16px, env(safe-area-inset-bottom));
+      }
+
+      .sale-hero-video--desktop {
+        display: none;
+      }
+
+      .sale-hero-video--mobile {
+        display: block;
       }
 
       .sale-container {
@@ -1132,15 +1144,15 @@
       }
 
       .sale-page .sale-hero {
-        margin-top: var(--sale-mobile-header-h);
-        height: calc(100vh - var(--sale-mobile-header-h));
-        height: calc(100dvh - var(--sale-mobile-header-h));
-        min-height: calc(100vh - var(--sale-mobile-header-h));
-        min-height: calc(100dvh - var(--sale-mobile-header-h));
-        max-height: calc(100dvh - var(--sale-mobile-header-h));
+        margin-top: 0;
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
+        min-height: 100dvh;
+        max-height: 100dvh;
         align-items: flex-end;
         box-sizing: border-box;
-        padding: 14px 0 max(16px, env(safe-area-inset-bottom));
+        padding: calc(var(--sale-mobile-header-h) + 14px) 0 max(16px, env(safe-area-inset-bottom));
       }
 
       .sale-hero video {
@@ -1213,8 +1225,11 @@
 
   <main class="sale-page">
     <section class="sale-hero" aria-label="Головний екран презентації ресторану">
-      <video class="js-lazy-video" autoplay muted loop playsinline preload="none" poster="img/optimized/posters/kolrest1.jpg" data-mobile-src="img/kol/kol9.mp4" data-mobile-poster="img/optimized/posters/kol9.jpg">
+      <video class="sale-hero-video--desktop js-lazy-video" autoplay muted loop playsinline preload="none" poster="img/optimized/posters/kolrest1.jpg">
         <source data-src="img/kolrest1.mp4" type="video/mp4">
+      </video>
+      <video class="sale-hero-video--mobile" autoplay muted loop playsinline preload="metadata" poster="img/optimized/posters/kol9.jpg">
+        <source src="img/kol/kol9.mp4" type="video/mp4">
       </video>
 
       <div class="sale-container">
