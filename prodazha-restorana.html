@@ -1126,11 +1126,13 @@
       }
 
       .sale-page .sale-hero {
-        margin-top: calc(var(--utility-h, 40px) + var(--topbar-h, 76px));
-        height: calc(100svh - (var(--utility-h, 40px) + var(--topbar-h, 76px)));
-        min-height: calc(100svh - (var(--utility-h, 40px) + var(--topbar-h, 76px)));
+        margin-top: 0;
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
+        min-height: 100dvh;
         align-items: flex-end;
-        padding: 0 0 max(18px, env(safe-area-inset-bottom));
+        padding: calc(var(--utility-h, 40px) + var(--topbar-h, 76px) + 10px) 0 max(18px, env(safe-area-inset-bottom));
       }
 
       .sale-hero video {
