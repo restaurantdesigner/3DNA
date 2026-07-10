@@ -1125,196 +1125,57 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      /* Mobile story mode: one visual block equals one full screen. */
-      .sale-page .sale-hero,
-      .sale-section,
-      #video-overview,
-      .sale-video-card,
-      .sale-video-card--wide,
-      .sale-video-card--portrait,
-      .sale-video-card--split,
-      .sale-photo-hero,
-      .sale-engineering-hero,
-      .sale-final {
-        min-height: 100svh;
-      }
-
-      .sale-section {
-        display: flex;
-        align-items: center;
-      }
-
-      .sale-section > .sale-container {
-        width: min(100% - 24px, 1180px);
-      }
-
-      .sale-strip-head {
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-top: 42px;
-        padding-bottom: 42px;
-      }
-
-      #video-overview {
-        position: relative;
-        display: flex;
+      .sale-page .sale-hero {
+        margin-top: calc(var(--utility-h, 40px) + var(--topbar-h, 76px));
+        height: calc(100svh - (var(--utility-h, 40px) + var(--topbar-h, 76px)));
+        min-height: calc(100svh - (var(--utility-h, 40px) + var(--topbar-h, 76px)));
         align-items: flex-end;
-        overflow: hidden;
-        padding: 0;
-        color: var(--sale-paper);
-        background: #5b3d2b;
+        padding: 0 0 max(18px, env(safe-area-inset-bottom));
       }
 
-      #video-overview .sale-grid {
-        display: block;
-        width: 100%;
-      }
-
-      #video-overview .sale-feature-video {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        min-height: 100%;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      #video-overview .sale-feature-video::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(0deg, rgba(47,33,27,.88) 0%, rgba(47,33,27,.56) 52%, rgba(47,33,27,.22) 100%);
-        z-index: 1;
-      }
-
-      #video-overview .sale-grid > div:last-child {
-        position: relative;
-        z-index: 2;
-        width: min(100% - 32px, 520px);
-        margin: 0 auto;
-        padding: 0 0 34px;
-      }
-
-      #video-overview .sale-text {
-        color: rgba(255,248,238,.82);
-        opacity: 1;
-      }
-
-      .sale-video-card,
-      .sale-video-card--wide,
-      .sale-video-card--portrait {
-        min-height: 100svh;
-      }
-
-      .sale-video-card--portrait {
-        display: block;
-      }
-
-      .sale-video-card--portrait video,
-      .sale-video-card--wide video {
-        position: absolute;
-        inset: 0;
+      .sale-hero video {
         width: 100%;
         height: 100%;
-        max-height: none;
         object-fit: cover;
-        box-shadow: none;
+        object-position: center center;
       }
 
-      .sale-video-caption {
-        left: 16px;
-        right: 16px;
-        bottom: 28px;
-        max-width: none;
-      }
-
-      .sale-video-card--split {
-        position: relative;
-        display: flex;
-        align-items: flex-end;
-        overflow: hidden;
-        min-height: 100svh;
-        color: var(--sale-paper);
-        background: #5b3d2b;
-      }
-
-      .sale-video-card--split::after {
-        display: block;
-        content: "";
-        position: absolute;
-        inset: 0;
+      .sale-hero::after {
         background:
-          linear-gradient(0deg, rgba(47,33,27,.9) 0%, rgba(47,33,27,.58) 58%, rgba(47,33,27,.22) 100%);
-        z-index: 1;
+          linear-gradient(0deg, rgba(47,33,27,.9) 0%, rgba(47,33,27,.54) 54%, rgba(47,33,27,.22) 100%);
       }
 
-      .sale-video-card--split .sale-split-media {
-        position: absolute;
-        inset: 0;
-        min-height: 100%;
-        width: 100%;
-        background: #5b3d2b;
+      .sale-hero .sale-container {
+        width: min(100% - 24px, 430px);
       }
 
-      .sale-video-card--split .sale-split-media video,
-      .sale-video-card--media-left .sale-split-media video {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        max-height: none;
-        object-fit: cover;
-        box-shadow: none;
+      .sale-hero .sale-title {
+        max-width: 310px;
+        font-size: clamp(2.15rem, 13vw, 3.35rem);
       }
 
-      .sale-video-card--split .sale-split-copy {
-        position: relative;
-        z-index: 2;
-        width: min(100% - 32px, 520px);
-        margin: 0 auto;
-        padding: 0 0 34px;
-        background: transparent;
+      .sale-hero .sale-lead {
+        max-width: 330px;
+        margin-top: 12px;
+        font-size: .82rem;
+        line-height: 1.42;
       }
 
-      .sale-video-card--split .sale-split-copy small {
-        color: var(--sale-gold);
+      .sale-hero .sale-hero-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 14px;
       }
 
-      .sale-video-card--split .sale-split-copy h3 {
-        color: var(--sale-paper);
-        font-size: clamp(2rem, 11vw, 3.35rem);
+      .sale-hero .sale-stat {
+        padding: 10px 8px;
       }
 
-      .sale-video-card--split .sale-split-copy p {
-        color: rgba(255,248,238,.82);
+      .sale-hero .sale-stat strong {
+        font-size: clamp(1.15rem, 6vw, 1.65rem);
       }
 
-      .sale-photo-hero,
-      .sale-engineering-hero {
-        min-height: 100svh;
-        align-items: flex-end;
-        padding: 0 0 38px;
-      }
-
-      .sale-gallery-head,
-      .sale-engineering-copy {
-        width: min(100% - 32px, 540px);
-        margin: 0 auto;
-      }
-
-      .sale-engineering-hero {
-        display: flex;
-      }
-
-      .sale-engineering-layout {
-        display: block;
-      }
-
-      .sale-engineering-photos img {
-        height: 44vh;
+      .sale-hero .sale-stat span {
+        font-size: .5rem;
       }
     }
 
