@@ -1513,16 +1513,22 @@
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     const lazyVideos = Array.from(document.querySelectorAll('video.js-lazy-video'));
-    const isMobileVideo = window.matchMedia('(max-width: 767px)').matches;
-    lazyVideos.forEach(video => {
-      if (isMobileVideo && video.dataset.mobilePoster) {
-        video.poster = video.dataset.mobilePoster;
+    const desktopHeroVideo = document.querySelector('.sale-hero-video--desktop');
+    const mobileHeroVideo = document.querySelector('.sale-hero-video--mobile');
+    const isPhoneUa = /iPhone|Android.+Mobile|Windows Phone|Mobile/i.test(navigator.userAgent || '');
+    const isPhoneViewport = window.matchMedia('(max-width: 767px)').matches;
+    const useMobileHero = isPhoneUa || isPhoneViewport;
+
+    if (desktopHeroVideo && mobileHeroVideo) {
+      if (useMobileHero) {
+        desktopHeroVideo.style.display = 'none';
+        desktopHeroVideo.pause();
+        mobileHeroVideo.style.display = 'block';
+        mobileHeroVideo.play().catch(() => {});
+      } else {
+        mobileHeroVideo.style.display = 'none';
       }
-      if (isMobileVideo && video.dataset.mobileSrc) {
-        const source = video.querySelector('source[data-src]');
-        if (source) source.dataset.src = video.dataset.mobileSrc;
-      }
-    });
+    }
 
     const loadVideo = (video) => {
       if (video.dataset.loaded === 'true') return;
