@@ -1205,8 +1205,7 @@
 
   <main class="sale-page">
     <section class="sale-hero" aria-label="Головний екран презентації ресторану">
-      <video class="js-lazy-video" autoplay muted loop playsinline preload="none" poster="img/optimized/posters/kolrest1.jpg" data-mobile-poster="img/optimized/posters/kol9.jpg">
-        <source media="(max-width: 640px)" data-src="img/kol/kol9.mp4" type="video/mp4">
+      <video class="js-lazy-video" autoplay muted loop playsinline preload="none" poster="img/optimized/posters/kolrest1.jpg" data-mobile-src="img/kol/kol9.mp4" data-mobile-poster="img/optimized/posters/kol9.jpg">
         <source data-src="img/kolrest1.mp4" type="video/mp4">
       </video>
 
@@ -1491,10 +1490,14 @@
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     const lazyVideos = Array.from(document.querySelectorAll('video.js-lazy-video'));
-    const isMobileVideo = window.matchMedia('(max-width: 640px)').matches;
+    const isMobileVideo = window.matchMedia('(max-width: 767px)').matches;
     lazyVideos.forEach(video => {
       if (isMobileVideo && video.dataset.mobilePoster) {
         video.poster = video.dataset.mobilePoster;
+      }
+      if (isMobileVideo && video.dataset.mobileSrc) {
+        const source = video.querySelector('source[data-src]');
+        if (source) source.dataset.src = video.dataset.mobileSrc;
       }
     });
 
