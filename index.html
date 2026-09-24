@@ -21,6 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -30,7 +31,7 @@
  
  
  
-  <link rel="stylesheet" href="assets/css/main.css?v=20260502a">
+  <link rel="stylesheet" href="assets/css/main.css?v=20260924b">
 
 
 
@@ -114,6 +115,39 @@
 
  
   <section id="hero">
+  <!-- Mobile-only first screen (hidden on >=768px, see main.css "MOBILE-ONLY HERO") -->
+  <div class="hero-mobile">
+    <video class="hero-mobile__video" autoplay muted loop playsinline preload="none"
+      poster="img/optimized/posters/heromobile.jpg" data-src="img/heromobile-720.mp4"></video>
+    <script>
+      // Mobile hero video: loaded only while the screen is <=767px (also after resize/rotate)
+      (function () {
+        var v = document.currentScript.previousElementSibling;
+        var mq = window.matchMedia('(max-width: 767px)');
+        var play = function () { if (mq.matches && v.paused) v.play().catch(function () {}); };
+        v.muted = true;
+        v.addEventListener('canplay', play);
+        window.addEventListener('load', play);
+        document.addEventListener('touchstart', play, { once: true, passive: true });
+        function sync() {
+          if (!mq.matches) { v.pause(); return; }
+          if (!v.getAttribute('src')) v.src = v.dataset.src;
+          play();
+        }
+        mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync);
+        sync();
+      })();
+    </script>
+    <div class="hero-mobile__copy">
+      <p class="hero-mobile__title">
+        <span class="hm-l1">Diseño 3D para</span>
+        <span class="hm-l2">Comercio</span>
+        <span class="hm-l3">Implementación de AI</span>
+      </p>
+      <p class="hero-mobile__sub">Restaurantes diseñados<br>para atraer y vender</p>
+      <button class="hero-mobile__cta open-panel" type="button">Solicitar propuesta</button>
+    </div>
+  </div>
   <video
   class="video-bg"
   autoplay
@@ -122,8 +156,23 @@
   playsinline
   poster="img/sc1.jpg"
 >
-  <source src="img/screen1.mp4" type="video/mp4">
+  <source data-src="img/screen1.mp4" type="video/mp4">
 </video>
+<script>
+  // Desktop hero video: not loaded on phones (they use .hero-mobile); loads if the screen widens later
+  (function () {
+    var v = document.currentScript.previousElementSibling;
+    var src = v.querySelector('source');
+    var mq = window.matchMedia('(max-width: 767px)');
+    function sync() {
+      if (mq.matches || src.getAttribute('src')) return;
+      src.src = src.dataset.src;
+      v.load();
+    }
+    mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync);
+    sync();
+  })();
+</script>
 
 
   <div class="overlay"></div>

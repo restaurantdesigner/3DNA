@@ -7474,3 +7474,100 @@ a.quad-tile:hover .quad-tile-video {
     padding: 48px 20px 32px;
   }
 }
+
+/* =========================
+   MOBILE-ONLY HERO (index)
+   Background: img/heromobile.mp4 (loaded only on phones)
+   ========================= */
+#hero .hero-mobile{ display:none; }
+
+@media (max-width: 767px){
+  section#hero{
+    height: 100svh !important;
+    min-height: 100svh !important;
+    padding: 0 !important;
+  }
+  #hero > .video-bg,
+  #hero > .overlay,
+  #hero > .align-container{
+    display: none !important;
+  }
+
+  #hero .hero-mobile{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    padding: 0 22px calc(17svh + env(safe-area-inset-bottom));
+    text-align: left;
+    background-color: #111;
+    overflow: hidden;
+  }
+  #hero .hero-mobile__video{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 0;
+    filter: none !important;
+    pointer-events: none;
+  }
+  #hero .hero-mobile::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,.45) 75%, rgba(0,0,0,.2) 100%);
+    pointer-events: none;
+  }
+  #hero .hero-mobile__copy{
+    position: relative;
+    z-index: 2;
+  }
+
+  #hero .hero-mobile__title{
+    margin: 0;
+    font-family: "Anton", "Impact", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: .95;
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(0,0,0,.45);
+  }
+  #hero .hero-mobile__title span{ display: block; }
+  #hero .hm-l1{ font-size: min(11.6vw, 52px); }
+  #hero .hm-l2{ font-size: min(21vw, 94px); line-height: .9; color: #ff6a00; }
+  #hero .hm-l3{ font-size: min(7.6vw, 34px); letter-spacing: .02em; margin-top: .15em; }
+
+  #hero .hero-mobile__sub{
+    margin: 12px 0 0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: min(3.4vw, 15px);
+    line-height: 1.45;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 1px 10px rgba(0,0,0,.6);
+  }
+
+  #hero .hero-mobile__cta{
+    margin-top: 16px;
+    padding: 11px 26px;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    background: #0b0b0b;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+}
