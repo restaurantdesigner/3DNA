@@ -8,7 +8,9 @@
     "node": ">=20"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build:i18n": "node scripts/build-i18n.js",
+    "build:og": "node scripts/build-og-images.js"
   },
   "dependencies": {
     "cors": "^2.8.6",

@@ -1,11 +1,38 @@
 // =============================================
+// 0. ANALYTICS HOOK (no tracking by itself)
+// =============================================
+// window.track(name, params) always fires a "3dna:track" DOM event. It is only
+// forwarded to Google Analytics when GA was loaded after cookie consent
+// (see loadGoogleAnalytics). Elements with data-track="event_name" are tracked
+// on click; data-track-location is sent as "location".
+(() => {
+  window.track = (name, params = {}) => {
+    document.dispatchEvent(new CustomEvent("3dna:track", { detail: { name, params } }));
+    if (window.__gaLoaded && Array.isArray(window.dataLayer)) {
+      // gtag() expects an Arguments object
+      (function () { window.dataLayer.push(arguments); })("event", name, params);
+    }
+  };
+  document.addEventListener("click", (event) => {
+    const el = event.target.closest && event.target.closest("[data-track]");
+    if (!el) return;
+    const params = {};
+    if (el.dataset.trackLocation) params.location = el.dataset.trackLocation;
+    if (document.documentElement.lang) params.language = document.documentElement.lang;
+    window.track(el.dataset.track, params);
+  });
+})();
+
+// =============================================
 // 1. HEADER INJECTION (runs immediately)
 // =============================================
 (() => {
   const pathname = window.location.pathname;
-  const isHomePage = pathname === "/" || pathname.endsWith("/index.html");
+  // Localized home pages live at /en/, /es/, /ru/, /uk/ (see scripts/build-i18n.js)
+  const isLocaleHome = /^\/(?:en|es|ru|uk)\/(?:index\.html)?$/.test(pathname);
+  const isHomePage = isLocaleHome || pathname === "/" || pathname.endsWith("/index.html");
   const isNestedDetailPage = /\/(?:healthcare|packages)\/[^/]+\.html$/i.test(window.location.pathname);
-  const pagePrefix = isNestedDetailPage ? "../" : (isHomePage ? "" : "/");
+  const pagePrefix = isNestedDetailPage ? "../" : (isLocaleHome ? "/" : (isHomePage ? "" : "/"));
 
   const homeLink = (hash) => {
     if (isHomePage) return hash;
@@ -108,7 +135,33 @@
   const host = document.getElementById("site-header");
   if (!host) return;
 
-  host.innerHTML = sharedHeaderHtml;
+  // Localized home pages ship their header in the HTML (built by scripts/build-i18n.js).
+  const prerenderedHeader = host.querySelector("#topbar.topbar--overlay");
+  if (!prerenderedHeader) host.innerHTML = sharedHeaderHtml;
+
+  if (prerenderedHeader) {
+    document.documentElement.classList.add("has-overlay-header");
+
+    // A manual language choice is saved and always wins over detection.
+    // The equivalent place on the page (#hash) is kept when switching.
+    host.querySelectorAll(".lang-switch a[data-lang]").forEach((link) => {
+      link.addEventListener("click", () => {
+        const lang = link.dataset.lang;
+        if (window.I18nDetect) window.I18nDetect.save(lang);
+        if (window.track) window.track("language_selected", { language: lang });
+        if (window.location.hash) link.setAttribute("href", `/${lang}/${window.location.hash}`);
+      });
+    });
+    const topbar = document.getElementById("topbar");
+    const hero = document.querySelector(".sector-hero");
+    // Header turns solid once the hero has scrolled out from under it
+    if (topbar && hero && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(([entry]) => {
+        topbar.classList.toggle("is-solid", !entry.isIntersecting);
+      }, { rootMargin: `-${topbar.offsetHeight || 72}px 0px 0px 0px` });
+      io.observe(hero);
+    }
+  }
   if (isNestedDetailPage) {
     fixRelativePaths(host, "../");
   }
@@ -119,9 +172,11 @@
 // =============================================
 (() => {
   const pathname = window.location.pathname;
-  const isHomePage = pathname === "/" || pathname.endsWith("/index.html");
+  const isLocaleHome = /^\/(?:en|es|ru|uk)\/(?:index\.html)?$/.test(pathname);
+  const isHomePage = isLocaleHome || pathname === "/" || pathname.endsWith("/index.html");
   const isNestedDetailPage = /\/(?:healthcare|packages)\/[^/]+\.html$/i.test(pathname);
-  const prefix = isNestedDetailPage ? "../" : (isHomePage ? "" : "/");
+  const prefix = isNestedDetailPage ? "../" : (isLocaleHome ? "/" : (isHomePage ? "" : "/"));
+  const homeHref = isLocaleHome ? "" : `${prefix}index.html`;
 
   const footerHtml = `
 <footer class="site-footer" id="site-footer-el">
@@ -129,7 +184,7 @@
     <div class="footer-top">
 
       <div class="footer-brand">
-        <a href="${prefix}index.html" aria-label="3DNA Home">
+        <a href="${homeHref || "#hero"}" aria-label="3DNA Home">
           <img src="${prefix}img/logo.png" alt="3DNA" class="footer-logo" />
         </a>
         <p class="footer-tagline">Visual Marketing &amp; Experiencias Inmersivas 3D</p>
@@ -140,10 +195,10 @@
         <div class="footer-col">
           <h4>Servicios</h4>
           <ul>
-            <li><a href="${prefix}index.html#sec2">Diseño 3D</a></li>
-            <li><a href="${prefix}index.html#sec5">Webs y Landing Pages</a></li>
-            <li><a href="${prefix}index.html#sec2">Embudos de venta</a></li>
-            <li><a href="${prefix}index.html#sec2">IA aplicada</a></li>
+            <li><a href="${homeHref}#sec2">Diseño 3D</a></li>
+            <li><a href="${homeHref}#sec5">Webs y Landing Pages</a></li>
+            <li><a href="${homeHref}#sec2">Embudos de venta</a></li>
+            <li><a href="${homeHref}#sec2">IA aplicada</a></li>
           </ul>
         </div>
 
@@ -1191,6 +1246,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!video.closest('.about-media')) video.play().catch(()=>{});
   }
 
+  // Play only while on screen, so below-the-fold videos don't download during page load
+  function playWhenVisible(video){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) { video.play().catch(()=>{}); return; }
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) video.play().catch(()=>{});
+      else video.pause();
+    }, { rootMargin: '200px 0px' }).observe(video);
+  }
+
   function disable(video){
     video.classList.remove('video-hover-active');
     if (!video.closest('.about-media')) {
@@ -1205,14 +1270,13 @@ document.addEventListener("DOMContentLoaded", () => {
     video.setAttribute('loop', '');
 
     if (isMobile) {
-      // On mobile, videos should start and keep looping without requiring touch.
-      video.preload = 'auto';
-      video.play().catch(()=>{});
+      // On mobile, videos loop without requiring touch (only while on screen).
+      playWhenVisible(video);
       return;
     }
 
     if (video.closest('.about-media')) {
-      video.play().catch(()=>{});
+      playWhenVisible(video);
     } else {
       disable(video);
     }
@@ -1244,10 +1308,10 @@ document.addEventListener("DOMContentLoaded", () => {
       mouseZoom: false
     },
     scenes: {
-      s1: { type: "equirectangular", panorama: "img/pano4.jpg", autoRotate: -8 },
-      s2: { type: "equirectangular", panorama: "img/pano3.jpg", autoRotate: -8 },
-      s3: { type: "equirectangular", panorama: "img/pano1.jpg", autoRotate: -8 },
-      s4: { type: "equirectangular", panorama: "img/pano2.jpg", autoRotate: -8 }
+      s1: { type: "equirectangular", panorama: "/img/pano4.jpg", autoRotate: -8 },
+      s2: { type: "equirectangular", panorama: "/img/pano3.jpg", autoRotate: -8 },
+      s3: { type: "equirectangular", panorama: "/img/pano1.jpg", autoRotate: -8 },
+      s4: { type: "equirectangular", panorama: "/img/pano2.jpg", autoRotate: -8 }
     }
   });
 

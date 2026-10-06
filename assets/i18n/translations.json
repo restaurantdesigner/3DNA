@@ -1,0 +1,178 @@
+{
+  "en": {
+    "languageName": "English",
+    "meta": {
+      "title": "Commercial Interior Design Studio | 3DNA",
+      "description": "3DNA designs commercial interiors for restaurants, fitness spaces, healthcare facilities and workplaces, combining strategy, space planning, 3D visualization and commercial design experience.",
+      "ogLocale": "en_US",
+      "ogImageAlt": "Commercial interior by 3DNA with the words: Spaces designed to work."
+    },
+    "schema": {
+      "organizationDescription": "Commercial interior design studio creating restaurants, fitness spaces, healthcare environments and workplaces."
+    },
+    "a11y": {
+      "skipToContent": "Skip to content",
+      "home": "3DNA home",
+      "primaryNav": "Primary"
+    },
+    "nav": {
+      "projects": "Projects",
+      "process": "Process",
+      "about": "About",
+      "cta": "Start a project",
+      "menu": "Menu",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "language": "Language"
+    },
+    "hero": {
+      "eyebrow": "Commercial interior design",
+      "headline": ["Spaces", "designed to", "work."],
+      "headlineText": "Spaces designed to work.",
+      "subheadline": "For people. For business. For growth.",
+      "body": "We design commercial interiors that combine strategy, space planning, strong visual identity and immersive 3D visualization — creating environments that work better for people and perform better for business.",
+      "ctaPrimary": "Start a project",
+      "ctaSecondary": "View projects",
+      "servicesLabel": "Services",
+      "services": ["Restaurant design", "Space planning", "3D visualization"]
+    },
+    "sectors": [
+      { "id": "restaurants", "index": "01", "title": "Restaurants", "slug": "restaurants" },
+      { "id": "fitness", "index": "02", "title": "Fitness", "slug": "fitness" },
+      { "id": "healthcare", "index": "03", "title": "Healthcare", "slug": "healthcare" },
+      { "id": "workplaces", "index": "04", "title": "Workplaces", "slug": "workplaces" }
+    ]
+  },
+  "es": {
+    "languageName": "Español",
+    "meta": {
+      "title": "Diseño de Interiores Comerciales | 3DNA",
+      "description": "3DNA diseña interiores comerciales para restaurantes, espacios fitness, centros sanitarios y oficinas, combinando estrategia, planificación del espacio, visualización 3D y experiencia en diseño comercial.",
+      "ogLocale": "es_ES",
+      "ogImageAlt": "Interior comercial de 3DNA con el texto: Espacios diseñados para funcionar."
+    },
+    "schema": {
+      "organizationDescription": "Estudio de diseño de interiores comerciales para restaurantes, espacios fitness, entornos sanitarios y oficinas."
+    },
+    "a11y": {
+      "skipToContent": "Saltar al contenido",
+      "home": "Inicio de 3DNA",
+      "primaryNav": "Principal"
+    },
+    "nav": {
+      "projects": "Proyectos",
+      "process": "Proceso",
+      "about": "Nosotros",
+      "cta": "Iniciar un proyecto",
+      "menu": "Menú",
+      "openMenu": "Abrir menú",
+      "closeMenu": "Cerrar menú",
+      "language": "Idioma"
+    },
+    "hero": {
+      "eyebrow": "Diseño de interiores comerciales",
+      "headline": ["Espacios", "diseñados para", "funcionar."],
+      "headlineText": "Espacios diseñados para funcionar.",
+      "subheadline": "Para las personas. Para el negocio. Para crecer.",
+      "body": "Diseñamos interiores comerciales que combinan estrategia, planificación del espacio, una identidad visual sólida y visualización 3D inmersiva, creando espacios que funcionan mejor para las personas y ofrecen mejores resultados para el negocio.",
+      "ctaPrimary": "Iniciar un proyecto",
+      "ctaSecondary": "Ver proyectos",
+      "servicesLabel": "Servicios",
+      "services": ["Diseño de restaurantes", "Planificación del espacio", "Visualización 3D"]
+    },
+    "sectors": [
+      { "id": "restaurants", "index": "01", "title": "Restaurantes", "slug": "restaurantes" },
+      { "id": "fitness", "index": "02", "title": "Fitness", "slug": "fitness" },
+      { "id": "healthcare", "index": "03", "title": "Salud", "slug": "salud" },
+      { "id": "workplaces", "index": "04", "title": "Oficinas", "slug": "oficinas" }
+    ]
+  },
+  "ru": {
+    "languageName": "Русский",
+    "meta": {
+      "title": "Дизайн коммерческих интерьеров | 3DNA",
+      "description": "3DNA проектирует коммерческие интерьеры для ресторанов, фитнес-пространств, медицинских учреждений и офисов, объединяя стратегию, планирование пространства и 3D-визуализацию.",
+      "ogLocale": "ru_RU",
+      "ogImageAlt": "Коммерческий интерьер 3DNA с текстом: Пространства, которые работают."
+    },
+    "schema": {
+      "organizationDescription": "Студия дизайна коммерческих интерьеров: рестораны, фитнес-пространства, медицинские учреждения и офисы."
+    },
+    "a11y": {
+      "skipToContent": "Перейти к содержанию",
+      "home": "Главная 3DNA",
+      "primaryNav": "Основная навигация"
+    },
+    "nav": {
+      "projects": "Проекты",
+      "process": "Процесс",
+      "about": "О нас",
+      "cta": "Начать проект",
+      "menu": "Меню",
+      "openMenu": "Открыть меню",
+      "closeMenu": "Закрыть меню",
+      "language": "Язык"
+    },
+    "hero": {
+      "eyebrow": "Дизайн коммерческих интерьеров",
+      "headline": ["Пространства,", "которые", "работают."],
+      "headlineText": "Пространства, которые работают.",
+      "subheadline": "Для людей. Для бизнеса. Для роста.",
+      "body": "Мы создаём коммерческие интерьеры, объединяя стратегию, планирование пространства, сильную визуальную идентичность и иммерсивную 3D-визуализацию — чтобы пространство было удобнее для людей и эффективнее для бизнеса.",
+      "ctaPrimary": "Начать проект",
+      "ctaSecondary": "Смотреть проекты",
+      "servicesLabel": "Услуги",
+      "services": ["Дизайн ресторанов", "Планирование пространства", "3D-визуализация"]
+    },
+    "sectors": [
+      { "id": "restaurants", "index": "01", "title": "Рестораны", "slug": "restaurants" },
+      { "id": "fitness", "index": "02", "title": "Фитнес", "slug": "fitness" },
+      { "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare" },
+      { "id": "workplaces", "index": "04", "title": "Офисы", "slug": "workplaces" }
+    ]
+  },
+  "uk": {
+    "languageName": "Українська",
+    "meta": {
+      "title": "Дизайн комерційних інтер'єрів | 3DNA",
+      "description": "3DNA проєктує комерційні інтер'єри для ресторанів, фітнес-просторів, медичних закладів та офісів, поєднуючи стратегію, планування простору та 3D-візуалізацію.",
+      "ogLocale": "uk_UA",
+      "ogImageAlt": "Комерційний інтер'єр 3DNA з текстом: Простори, які працюють."
+    },
+    "schema": {
+      "organizationDescription": "Студія дизайну комерційних інтер'єрів: ресторани, фітнес-простори, медичні заклади та офіси."
+    },
+    "a11y": {
+      "skipToContent": "Перейти до вмісту",
+      "home": "Головна 3DNA",
+      "primaryNav": "Основна навігація"
+    },
+    "nav": {
+      "projects": "Проєкти",
+      "process": "Процес",
+      "about": "Про нас",
+      "cta": "Розпочати проєкт",
+      "menu": "Меню",
+      "openMenu": "Відкрити меню",
+      "closeMenu": "Закрити меню",
+      "language": "Мова"
+    },
+    "hero": {
+      "eyebrow": "Дизайн комерційних інтер'єрів",
+      "headline": ["Простори,", "які", "працюють."],
+      "headlineText": "Простори, які працюють.",
+      "subheadline": "Для людей. Для бізнесу. Для зростання.",
+      "body": "Ми створюємо комерційні інтер'єри, поєднуючи стратегію, планування простору, сильну візуальну ідентичність та імерсивну 3D-візуалізацію — щоб простір краще працював для людей і приносив більше користі бізнесу.",
+      "ctaPrimary": "Розпочати проєкт",
+      "ctaSecondary": "Переглянути проєкти",
+      "servicesLabel": "Послуги",
+      "services": ["Дизайн ресторанів", "Планування простору", "3D-візуалізація"]
+    },
+    "sectors": [
+      { "id": "restaurants", "index": "01", "title": "Ресторани", "slug": "restaurants" },
+      { "id": "fitness", "index": "02", "title": "Фітнес", "slug": "fitness" },
+      { "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare" },
+      { "id": "workplaces", "index": "04", "title": "Офіси", "slug": "workplaces" }
+    ]
+  }
+}

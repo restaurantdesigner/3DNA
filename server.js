@@ -22,6 +22,33 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.use(express.json());
+
+// Root picks a locale and redirects to /en/, /es/, /ru/ or /uk/.
+// Locale pages are plain static files and never redirect, so there is no loop.
+const i18nDetect = require('./assets/js/i18n-detect.js');
+
+function readCookie(req, name) {
+  const match = (req.headers.cookie || '').match(new RegExp(`(?:^|;\\s*)${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
+// Country only from headers set by a CDN/host in front of the app (if any).
+function readCountry(req) {
+  return req.headers['cf-ipcountry'] || req.headers['x-vercel-ip-country'] || req.headers['x-country-code'] || null;
+}
+
+app.get(['/', '/index.html'], (req, res) => {
+  const lang = i18nDetect.detect({
+    saved: readCookie(req, i18nDetect.STORAGE_KEY),
+    languages: i18nDetect.parseAcceptLanguage(req.headers['accept-language']),
+    country: readCountry(req)
+  });
+  const query = req.originalUrl.includes('?') ? req.originalUrl.slice(req.originalUrl.indexOf('?')) : '';
+  res.set('Vary', 'Accept-Language, Cookie');
+  res.set('Cache-Control', 'no-store');
+  res.redirect(302, `/${lang}/${query}`);
+});
+
 app.use(express.static(rootDir));
 
 app.get('/health', (req, res) => {

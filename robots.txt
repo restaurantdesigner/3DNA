@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Build sources and old copies of the home page (not public content)
+Disallow: /templates/
+Disallow: /scripts/
+Disallow: /backup-20260414-233441/
+Disallow: /index.before-clean-20260414.html
+Disallow: /index.before-restore-20260414.html
+Disallow: /index.mojibake.bak.html
+Disallow: /index.recovered.html
+
+Sitemap: https://3dna.es/sitemap.xml
