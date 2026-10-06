@@ -36,6 +36,15 @@
       "servicesLabel": "Services",
       "services": ["Restaurant design", "Space planning", "3D visualization"]
     },
+    "transform": {
+      "eyebrow": "Your space can work better",
+      "heading": ["Sometimes your business doesn’t need a complete restart.", "It needs the right", "transformation."],
+      "headingText": "Sometimes your business doesn’t need a complete restart. It needs the right transformation.",
+      "body1": "If your space feels outdated, no longer reflects your brand, or simply isn’t performing the way it should, it may be time to rethink it.",
+      "body2": "I help businesses transform existing interiors into stronger, more relevant and more effective spaces — improving atmosphere, functionality, customer experience and commercial performance.",
+      "closing": "If you feel your business is ready for the next level, let’s talk.",
+      "cta": "Let’s improve your space"
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Restaurants", "slug": "restaurants",
@@ -89,6 +98,15 @@
       "ctaSecondary": "Ver proyectos",
       "servicesLabel": "Servicios",
       "services": ["Diseño de restaurantes", "Planificación del espacio", "Visualización 3D"]
+    },
+    "transform": {
+      "eyebrow": "Tu espacio puede funcionar mejor",
+      "heading": ["A veces tu negocio no necesita empezar de cero.", "Necesita la", "transformación adecuada."],
+      "headingText": "A veces tu negocio no necesita empezar de cero. Necesita la transformación adecuada.",
+      "body1": "Si tu espacio se ha quedado anticuado, ya no refleja tu marca o simplemente no rinde como debería, puede que sea el momento de replantearlo.",
+      "body2": "Ayudo a las empresas a transformar sus interiores existentes en espacios más sólidos, actuales y eficaces, mejorando la atmósfera, la funcionalidad, la experiencia del cliente y el rendimiento comercial.",
+      "closing": "Si sientes que tu negocio está listo para el siguiente nivel, hablemos.",
+      "cta": "Mejoremos tu espacio"
     },
     "sectors": [
       {
@@ -144,6 +162,15 @@
       "servicesLabel": "Услуги",
       "services": ["Дизайн ресторанов", "Планирование пространства", "3D-визуализация"]
     },
+    "transform": {
+      "eyebrow": "Ваше пространство может работать лучше",
+      "heading": ["Иногда бизнесу не нужно начинать всё заново.", "Ему нужна правильная", "трансформация."],
+      "headingText": "Иногда бизнесу не нужно начинать всё заново. Ему нужна правильная трансформация.",
+      "body1": "Если ваше пространство устарело, больше не отражает ваш бренд или просто не приносит нужного результата, возможно, пора его переосмыслить.",
+      "body2": "Я помогаю компаниям превращать существующие интерьеры в более сильные, актуальные и эффективные пространства — улучшая атмосферу, функциональность, клиентский опыт и коммерческие показатели.",
+      "closing": "Если вы чувствуете, что ваш бизнес готов к следующему уровню, давайте поговорим.",
+      "cta": "Улучшим ваше пространство"
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Рестораны", "slug": "restaurants",
@@ -197,6 +224,15 @@
       "ctaSecondary": "Переглянути проєкти",
       "servicesLabel": "Послуги",
       "services": ["Дизайн ресторанів", "Планування простору", "3D-візуалізація"]
+    },
+    "transform": {
+      "eyebrow": "Ваш простір може працювати краще",
+      "heading": ["Іноді бізнесу не потрібно починати все спочатку.", "Йому потрібна правильна", "трансформація."],
+      "headingText": "Іноді бізнесу не потрібно починати все спочатку. Йому потрібна правильна трансформація.",
+      "body1": "Якщо ваш простір застарів, більше не відображає ваш бренд або просто не дає потрібного результату, можливо, час його переосмислити.",
+      "body2": "Я допомагаю компаніям перетворювати наявні інтер'єри на сильніші, актуальніші та ефективніші простори — покращуючи атмосферу, функціональність, клієнтський досвід і комерційні показники.",
+      "closing": "Якщо ви відчуваєте, що ваш бізнес готовий до наступного рівня, давайте поговоримо.",
+      "cta": "Покращимо ваш простір"
     },
     "sectors": [
       {

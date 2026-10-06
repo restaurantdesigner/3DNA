@@ -49,7 +49,7 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261007m">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261007p">
 </head>
 
 <body>
@@ -553,6 +553,40 @@
 
 
 
+<!-- ===== TRANSFORMATION (personal conversion section) =====
+     Split layout: vertical 9:16 video + copy. Text from "transform" in
+     assets/i18n/translations.json. The video is decorative (muted, no essential
+     content); it is lazy-loaded by the SECTOR SECTIONS module in main.js.
+     The CTA opens the proposal form (open-panel); without JS it falls back to email. -->
+<section class="transform" id="transform" data-track-view="transformation_section_viewed"
+  aria-labelledby="transform-title">
+  <div class="transform__grid">
+    <div class="transform__media" aria-hidden="true">
+      <video class="transform__video" muted loop playsinline preload="none" tabindex="-1"
+        width="496" height="864"
+        poster="/images/business-transformation-poster.webp"
+        data-src="/videos/business-transformation.mp4"></video>
+    </div>
+
+    <div class="transform__content">
+      <p class="transform__eyebrow">Your space can work better</p>
+      <h2 class="transform__title" id="transform-title" aria-label="Sometimes your business doesn’t need a complete restart. It needs the right transformation.">
+        <span class="transform__lead-in" aria-hidden="true">Sometimes your business doesn’t need a complete restart.</span>
+        <span class="transform__turn" aria-hidden="true">It needs the right <em>transformation.</em></span>
+      </h2>
+      <p class="transform__text">If your space feels outdated, no longer reflects your brand, or simply isn’t performing the way it should, it may be time to rethink it.</p>
+      <p class="transform__text">I help businesses transform existing interiors into stronger, more relevant and more effective spaces — improving atmosphere, functionality, customer experience and commercial performance.</p>
+      <p class="transform__closing">If you feel your business is ready for the next level, let’s talk.</p>
+      <a class="transform__cta open-panel" href="mailto:andrei@3dna.es"
+        data-track="start_project_clicked" data-track-location="transformation">
+        Let’s improve your space <span class="transform__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- ===== ABOUT / PRESENTATION ===== -->
 <section id="about" class="about-section">
   <div class="about-wrap">
@@ -980,7 +1014,7 @@
     });
 })();
 </script>
-<script src="/assets/js/main.js?v=20261007d"></script>
+<script src="/assets/js/main.js?v=20261007e"></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
 (function () {

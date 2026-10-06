@@ -44,7 +44,7 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261007m">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261007p">
 </head>
 
 <body>
@@ -548,6 +548,40 @@
 
 
 
+<!-- ===== TRANSFORMATION (personal conversion section) =====
+     Split layout: vertical 9:16 video + copy. Text from "transform" in
+     assets/i18n/translations.json. The video is decorative (muted, no essential
+     content); it is lazy-loaded by the SECTOR SECTIONS module in main.js.
+     The CTA opens the proposal form (open-panel); without JS it falls back to email. -->
+<section class="transform" id="transform" data-track-view="transformation_section_viewed"
+  aria-labelledby="transform-title">
+  <div class="transform__grid">
+    <div class="transform__media" aria-hidden="true">
+      <video class="transform__video" muted loop playsinline preload="none" tabindex="-1"
+        width="496" height="864"
+        poster="/images/business-transformation-poster.webp"
+        data-src="/videos/business-transformation.mp4"></video>
+    </div>
+
+    <div class="transform__content">
+      <p class="transform__eyebrow">Ваш простір може працювати краще</p>
+      <h2 class="transform__title" id="transform-title" aria-label="Іноді бізнесу не потрібно починати все спочатку. Йому потрібна правильна трансформація.">
+        <span class="transform__lead-in" aria-hidden="true">Іноді бізнесу не потрібно починати все спочатку.</span>
+        <span class="transform__turn" aria-hidden="true">Йому потрібна правильна <em>трансформація.</em></span>
+      </h2>
+      <p class="transform__text">Якщо ваш простір застарів, більше не відображає ваш бренд або просто не дає потрібного результату, можливо, час його переосмислити.</p>
+      <p class="transform__text">Я допомагаю компаніям перетворювати наявні інтер'єри на сильніші, актуальніші та ефективніші простори — покращуючи атмосферу, функціональність, клієнтський досвід і комерційні показники.</p>
+      <p class="transform__closing">Якщо ви відчуваєте, що ваш бізнес готовий до наступного рівня, давайте поговоримо.</p>
+      <a class="transform__cta open-panel" href="mailto:andrei@3dna.es"
+        data-track="start_project_clicked" data-track-location="transformation">
+        Покращимо ваш простір <span class="transform__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- ===== ABOUT / PRESENTATION ===== -->
 <section id="about" class="about-section">
   <div class="about-wrap">
@@ -975,7 +1009,7 @@
     });
 })();
 </script>
-<script src="/assets/js/main.js?v=20261007d"></script>
+<script src="/assets/js/main.js?v=20261007e"></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
 (function () {

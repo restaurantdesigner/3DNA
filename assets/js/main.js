@@ -20,7 +20,7 @@
     if (el.dataset.trackLocation) params.location = el.dataset.trackLocation;
     if (document.documentElement.lang) params.language = document.documentElement.lang;
     window.track(el.dataset.track, params);
-  });
+  }, true); // capture: the proposal-form handler stops propagation
 })();
 
 // =============================================
@@ -1533,13 +1533,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =============================================
-// SECTOR SECTIONS (.sector: 01 Restaurants, later 02–04)
+// SECTOR SECTIONS (.sector: 01 Restaurants, later 02–04; also .transform)
 // =============================================
 // - background video loads only near the viewport and pauses when away
 // - reduced motion: no video (poster stays), no reveal animation
 // - one "<sector>_section_viewed" analytics hook per page view (data-track-view)
 (() => {
-  const sections = document.querySelectorAll(".sector");
+  const sections = document.querySelectorAll(".sector, .transform");
   if (!sections.length) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasIO = "IntersectionObserver" in window;
@@ -1553,7 +1553,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   sections.forEach((section) => {
-    const video = section.querySelector(".sector__video");
+    const video = section.querySelector("video[data-src]");
     if (video) video.addEventListener("error", () => video.remove(), true);
 
     if (!hasIO) {
