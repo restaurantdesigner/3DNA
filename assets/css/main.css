@@ -8162,3 +8162,48 @@ section.sector{
   .sector.reveal-pending .sector__content > *{ opacity: 1; transform: none; transition: none; }
   .sector__cta, .sector__arrow{ transition: none; }
 }
+
+/* =========================
+   MOBILE: brighter, cleaner background videos (hero + sector chapters)
+   Desktop is unchanged. Darkness stays only behind the copy (lower-left);
+   a soft text-shadow carries the rest of the readability.
+   ========================= */
+@media (max-width: 767px){
+  /* hero footage is moody: full suggested lift (max ~5% highlight clipping) */
+  .sector-hero__video{ filter: brightness(1.18) contrast(1.06) saturate(1.08) !important; }
+  /* restaurant footage ends very bright: gentler lift so lamps don't blow out */
+  .sector__video{ filter: brightness(1.12) contrast(.98) saturate(1.06) !important; }
+
+  .sector-hero__overlay{
+    background:
+      radial-gradient(140% 80% at 0% 100%, rgba(0,0,0,.52) 0%, rgba(0,0,0,.32) 50%, rgba(0,0,0,0) 100%),
+      linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.03) 45%, rgba(0,0,0,.22) 100%);
+  }
+  .sector__overlay{
+    background:
+      radial-gradient(140% 80% at 0% 100%, rgba(0,0,0,.52) 0%, rgba(0,0,0,.32) 50%, rgba(0,0,0,0) 100%),
+      linear-gradient(180deg, rgba(0,0,0,.06) 0%, rgba(0,0,0,.02) 50%, rgba(0,0,0,.20) 100%);
+  }
+
+  .sector-hero__title,
+  .sector-hero__lead,
+  .sector__title{ text-shadow: 0 2px 12px rgba(0,0,0,.28); }
+  /* small copy gets the same soft shadow as the sector chapters */
+  .sector-hero__eyebrow,
+  .sector-hero__text,
+  .sector-hero__services,
+  .sector-hero__marker{ text-shadow: 0 1px 14px rgba(0,0,0,.45), 0 0 2px rgba(0,0,0,.3); }
+  /* lighter overlay -> small labels at (near) full white instead of tinted */
+  .sector-hero__eyebrow,
+  .sector-hero__marker,
+  .sector__label{ color: rgba(255,255,255,.96); }
+  .sector-hero__services,
+  .sector__services{ color: rgba(255,255,255,.88); }
+  /* the chapter label sits highest, over the brightest part of the restaurant frame */
+  .sector__label{ text-shadow: 0 1px 10px rgba(0,0,0,.6), 0 0 3px rgba(0,0,0,.45); }
+
+  /* static stills (reduced motion / video failure) are not filtered by CSS,
+     so phones get copies rendered with the same filter values */
+  section#hero.sector-hero{ background-image: url("../../images/hero-poster-mobile.webp"); }
+  section.sector{ background-image: var(--sector-poster-mobile, var(--sector-poster, none)); }
+}
