@@ -1531,3 +1531,54 @@ document.addEventListener("DOMContentLoaded", () => {
   marquee.addEventListener("lostpointercapture", endDrag);
   marquee.addEventListener("dragstart", (e) => e.preventDefault());
 });
+
+// =============================================
+// SECTOR SECTIONS (.sector: 01 Restaurants, later 02–04)
+// =============================================
+// - background video loads only near the viewport and pauses when away
+// - reduced motion: no video (poster stays), no reveal animation
+// - one "<sector>_section_viewed" analytics hook per page view (data-track-view)
+(() => {
+  const sections = document.querySelectorAll(".sector");
+  if (!sections.length) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const hasIO = "IntersectionObserver" in window;
+
+  const startVideo = (video) => {
+    if (!video.getAttribute("src")) {
+      video.muted = true;
+      video.src = video.dataset.src;
+    }
+    video.play().catch(() => {});
+  };
+
+  sections.forEach((section) => {
+    const video = section.querySelector(".sector__video");
+    if (video) video.addEventListener("error", () => video.remove(), true);
+
+    if (!hasIO) {
+      section.classList.add("is-inview");
+      if (video && !reduceMotion) startVideo(video);
+      return;
+    }
+
+    if (video && !reduceMotion) {
+      // Wait for the page (hero video included) to finish loading first
+      const watch = () => new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) startVideo(video);
+        else if (video.getAttribute("src")) video.pause();
+      }, { rootMargin: "200px 0px" }).observe(video);
+      if (document.readyState === "complete") watch();
+      else window.addEventListener("load", watch, { once: true });
+    }
+
+    if (!reduceMotion) section.classList.add("reveal-pending");
+    const viewEvent = section.dataset.trackView;
+    new IntersectionObserver(([entry], observer) => {
+      if (!entry.isIntersecting) return;
+      section.classList.add("is-inview");
+      if (viewEvent && window.track) window.track(viewEvent, { language: document.documentElement.lang });
+      observer.disconnect();
+    }, { threshold: 0.3 }).observe(section);
+  });
+})();

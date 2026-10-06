@@ -49,7 +49,7 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261007c">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261007h">
 </head>
 
 <body>
@@ -506,6 +506,53 @@
 
 
 
+<!-- ===== SECTOR 01: RESTAURANTS =====
+     Reusable sector chapter (.sector). Text comes from sectors[0] in
+     assets/i18n/translations.json. To swap the media, change --sector-poster
+     (static image: reduced motion / video failure) and the video's poster
+     (its first frame) and data-src.
+     Video loading, reveal and view tracking: "SECTOR SECTIONS" in main.js. -->
+<section class="sector" id="sector-restaurants" data-sector="restaurants"
+  data-track-view="restaurant_section_viewed" aria-labelledby="sector-restaurants-title"
+  style="--sector-poster: url('/images/sector-restaurants-still.webp')">
+  <div class="sector__media" aria-hidden="true">
+    <video class="sector__video" muted loop playsinline preload="none" tabindex="-1"
+      width="1280" height="720"
+      poster="/images/sector-restaurants-poster.webp"
+      data-src="/videos/sector-restaurants.mp4?v=2"></video>
+  </div>
+  <div class="sector__overlay" aria-hidden="true"></div>
+
+  <div class="sector__inner">
+    <div class="sector__content">
+      <p class="sector__label">
+        <span class="sector__index">01</span>
+        <span class="sector__slash" aria-hidden="true">/</span>
+        <span>Restaurants</span>
+      </p>
+      <h2 class="sector__title" id="sector-restaurants-title" aria-label="Restaurants designed around experience.">
+        <span class="sector__line" aria-hidden="true">Restaurants</span>
+        <span class="sector__line" aria-hidden="true">designed around</span>
+        <span class="sector__line" aria-hidden="true"><em>experience.</em></span>
+      </h2>
+      <p class="sector__text">From space planning and circulation to atmosphere, lighting and guest flow, we create restaurant interiors that feel right, operate efficiently and support the business behind them.</p>
+      <a class="sector__cta" href="/restaurantes-3d.html"
+        data-track="view_projects_clicked" data-track-location="sector_restaurants">
+        View restaurant projects <span class="sector__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <ul class="sector__services" aria-label="Services">
+        <li>Space planning</li>
+        <li>Concept design</li>
+        <li>3D visualization</li>
+        <li>Lighting</li>
+        <li>FF&amp;E</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- ===== ABOUT / PRESENTATION ===== -->
 <section id="about" class="about-section">
   <div class="about-wrap">
@@ -933,7 +980,7 @@
     });
 })();
 </script>
-<script src="/assets/js/main.js?v=20261007b"></script>
+<script src="/assets/js/main.js?v=20261007d"></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
 (function () {

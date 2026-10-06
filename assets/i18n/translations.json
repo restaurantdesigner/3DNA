@@ -37,7 +37,17 @@
       "services": ["Restaurant design", "Space planning", "3D visualization"]
     },
     "sectors": [
-      { "id": "restaurants", "index": "01", "title": "Restaurants", "slug": "restaurants" },
+      {
+        "id": "restaurants", "index": "01", "title": "Restaurants", "slug": "restaurants",
+        "section": {
+          "heading": ["Restaurants", "designed around", "experience."],
+          "headingText": "Restaurants designed around experience.",
+          "body": "From space planning and circulation to atmosphere, lighting and guest flow, we create restaurant interiors that feel right, operate efficiently and support the business behind them.",
+          "cta": "View restaurant projects",
+          "ctaHref": "/restaurantes-3d.html",
+          "services": ["Space planning", "Concept design", "3D visualization", "Lighting", "FF&E"]
+        }
+      },
       { "id": "fitness", "index": "02", "title": "Fitness", "slug": "fitness" },
       { "id": "healthcare", "index": "03", "title": "Healthcare", "slug": "healthcare" },
       { "id": "workplaces", "index": "04", "title": "Workplaces", "slug": "workplaces" }
@@ -81,7 +91,17 @@
       "services": ["Diseño de restaurantes", "Planificación del espacio", "Visualización 3D"]
     },
     "sectors": [
-      { "id": "restaurants", "index": "01", "title": "Restaurantes", "slug": "restaurantes" },
+      {
+        "id": "restaurants", "index": "01", "title": "Restaurantes", "slug": "restaurantes",
+        "section": {
+          "heading": ["Restaurantes", "diseñados para", "la experiencia."],
+          "headingText": "Restaurantes diseñados para la experiencia.",
+          "body": "Desde la planificación del espacio y la circulación hasta la atmósfera, la iluminación y el recorrido del cliente, creamos interiores de restaurante que transmiten la sensación adecuada, funcionan con eficiencia y respaldan el negocio que hay detrás.",
+          "cta": "Ver proyectos de restaurantes",
+          "ctaHref": "/restaurantes-3d.html",
+          "services": ["Planificación del espacio", "Diseño de concepto", "Visualización 3D", "Iluminación", "FF&E"]
+        }
+      },
       { "id": "fitness", "index": "02", "title": "Fitness", "slug": "fitness" },
       { "id": "healthcare", "index": "03", "title": "Salud", "slug": "salud" },
       { "id": "workplaces", "index": "04", "title": "Oficinas", "slug": "oficinas" }
@@ -125,7 +145,17 @@
       "services": ["Дизайн ресторанов", "Планирование пространства", "3D-визуализация"]
     },
     "sectors": [
-      { "id": "restaurants", "index": "01", "title": "Рестораны", "slug": "restaurants" },
+      {
+        "id": "restaurants", "index": "01", "title": "Рестораны", "slug": "restaurants",
+        "section": {
+          "heading": ["Рестораны,", "созданные", "для впечатлений."],
+          "headingText": "Рестораны, созданные для впечатлений.",
+          "body": "От планировки и маршрутов движения до атмосферы, освещения и пути гостя — мы создаём интерьеры ресторанов, в которых приятно находиться, которые эффективно работают и поддерживают бизнес.",
+          "cta": "Смотреть проекты ресторанов",
+          "ctaHref": "/restaurantes-3d.html",
+          "services": ["Планировка", "Концепт-дизайн", "3D-визуализация", "Освещение", "FF&E"]
+        }
+      },
       { "id": "fitness", "index": "02", "title": "Фитнес", "slug": "fitness" },
       { "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare" },
       { "id": "workplaces", "index": "04", "title": "Офисы", "slug": "workplaces" }
@@ -169,7 +199,17 @@
       "services": ["Дизайн ресторанів", "Планування простору", "3D-візуалізація"]
     },
     "sectors": [
-      { "id": "restaurants", "index": "01", "title": "Ресторани", "slug": "restaurants" },
+      {
+        "id": "restaurants", "index": "01", "title": "Ресторани", "slug": "restaurants",
+        "section": {
+          "heading": ["Ресторани,", "створені", "для вражень."],
+          "headingText": "Ресторани, створені для вражень.",
+          "body": "Від планування та маршрутів руху до атмосфери, освітлення й шляху гостя — ми створюємо інтер'єри ресторанів, у яких приємно перебувати, які ефективно працюють і підтримують бізнес.",
+          "cta": "Переглянути проєкти ресторанів",
+          "ctaHref": "/restaurantes-3d.html",
+          "services": ["Планування", "Концепт-дизайн", "3D-візуалізація", "Освітлення", "FF&E"]
+        }
+      },
       { "id": "fitness", "index": "02", "title": "Фітнес", "slug": "fitness" },
       { "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare" },
       { "id": "workplaces", "index": "04", "title": "Офіси", "slug": "workplaces" }

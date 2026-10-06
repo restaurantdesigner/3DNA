@@ -17,7 +17,7 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261007c">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261007h">
 </head>
 
 <body>
@@ -470,6 +470,53 @@
 
 
 
+<!-- ===== SECTOR 01: RESTAURANTS =====
+     Reusable sector chapter (.sector). Text comes from sectors[0] in
+     assets/i18n/translations.json. To swap the media, change --sector-poster
+     (static image: reduced motion / video failure) and the video's poster
+     (its first frame) and data-src.
+     Video loading, reveal and view tracking: "SECTOR SECTIONS" in main.js. -->
+<section class="sector" id="sector-restaurants" data-sector="restaurants"
+  data-track-view="restaurant_section_viewed" aria-labelledby="sector-restaurants-title"
+  style="--sector-poster: url('/images/sector-restaurants-still.webp')">
+  <div class="sector__media" aria-hidden="true">
+    <video class="sector__video" muted loop playsinline preload="none" tabindex="-1"
+      width="1280" height="720"
+      poster="/images/sector-restaurants-poster.webp"
+      data-src="/videos/sector-restaurants.mp4?v=2"></video>
+  </div>
+  <div class="sector__overlay" aria-hidden="true"></div>
+
+  <div class="sector__inner">
+    <div class="sector__content">
+      <p class="sector__label">
+        <span class="sector__index">{{sectors.0.index}}</span>
+        <span class="sector__slash" aria-hidden="true">/</span>
+        <span>{{sectors.0.title}}</span>
+      </p>
+      <h2 class="sector__title" id="sector-restaurants-title" aria-label="{{sectors.0.section.headingText}}">
+        <span class="sector__line" aria-hidden="true">{{sectors.0.section.heading.0}}</span>
+        <span class="sector__line" aria-hidden="true">{{sectors.0.section.heading.1}}</span>
+        <span class="sector__line" aria-hidden="true"><em>{{sectors.0.section.heading.2}}</em></span>
+      </h2>
+      <p class="sector__text">{{sectors.0.section.body}}</p>
+      <a class="sector__cta" href="{{sectors.0.section.ctaHref}}"
+        data-track="view_projects_clicked" data-track-location="sector_restaurants">
+        {{sectors.0.section.cta}} <span class="sector__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <ul class="sector__services" aria-label="{{hero.servicesLabel}}">
+        <li>{{sectors.0.section.services.0}}</li>
+        <li>{{sectors.0.section.services.1}}</li>
+        <li>{{sectors.0.section.services.2}}</li>
+        <li>{{sectors.0.section.services.3}}</li>
+        <li>{{sectors.0.section.services.4}}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- ===== ABOUT / PRESENTATION ===== -->
 <section id="about" class="about-section">
   <div class="about-wrap">
@@ -897,7 +944,7 @@
     });
 })();
 </script>
-<script src="/assets/js/main.js?v=20261007b"></script>
+<script src="/assets/js/main.js?v=20261007d"></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
 (function () {
