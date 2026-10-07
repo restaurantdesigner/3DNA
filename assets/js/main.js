@@ -79,7 +79,7 @@ window.saveLanguageChoice = (lang) => {
 <div class="utility-bar" aria-label="Utility navigation">
   <div class="container">
     <nav class="utility-nav">
-      <a class="utility-link" href="${homeLink("#sec2")}">
+      <a class="utility-link" href="${homeLink("#servicios")}">
         <span class="utility-text">3D</span>
       </a>
       <a class="utility-link" href="${homeLink("#sec5")}">
@@ -102,7 +102,7 @@ window.saveLanguageChoice = (lang) => {
     <nav class="nav-desktop" aria-label="Primary">
       <a href="${homeLink("#hero")}">Inicio</a>
       <a href="${homeLink("#transform")}">Sobre nosotros</a>
-      <a href="${homeLink("#sec2")}">Servicios</a>
+      <a href="${homeLink("#servicios")}">Servicios</a>
 
       <div class="nav-dropdown" id="showroomDropdown">
         <a href="${homeLink("#sec3")}" class="nav-parent" aria-haspopup="true" aria-expanded="false">
@@ -111,7 +111,7 @@ window.saveLanguageChoice = (lang) => {
 
         <div class="nav-menu" role="menu" aria-label="Showroom submenu">
           <a role="menuitem" href="${homeLink("#sec3")}">Restaurantes</a>
-          <a role="menuitem" href="${homeLink("#sec2")}">Gimnasios</a>
+          <a role="menuitem" href="${homeLink("#sector-fitness")}">Gimnasios</a>
           <a role="menuitem" href="${homeLink("#sec4")}">Centros medicos</a>
         </div>
       </div>
@@ -140,7 +140,7 @@ window.saveLanguageChoice = (lang) => {
 
     <nav class="mobile-menu-nav" aria-label="Principal">
       <a href="${homeLink("#hero")}" class="m-link">Inicio</a>
-      <a href="${homeLink("#sec2")}" class="m-link">Proyectos</a>
+      <a href="${homeLink("#sector-restaurants")}" class="m-link">Proyectos</a>
       <a href="${homeLink("#sector-fitness")}" class="m-link">Proceso</a>
       <a href="${homeLink("#transform")}" class="m-link">Nosotros</a>
       <a href="#site-footer" class="m-link">Contacto</a>
@@ -226,10 +226,10 @@ window.saveLanguageChoice = (lang) => {
         <div class="footer-col">
           <h4>Servicios</h4>
           <ul>
-            <li><a href="${homeHref}#sec2">Diseño 3D</a></li>
+            <li><a href="${homeHref}#servicios">Diseño 3D</a></li>
             <li><a href="${homeHref}#sec5">Webs y Landing Pages</a></li>
-            <li><a href="${homeHref}#sec2">Embudos de venta</a></li>
-            <li><a href="${homeHref}#sec2">IA aplicada</a></li>
+            <li><a href="${homeHref}#servicios">Embudos de venta</a></li>
+            <li><a href="${homeHref}#servicios">IA aplicada</a></li>
           </ul>
         </div>
 

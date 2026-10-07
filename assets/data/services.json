@@ -1,0 +1,10 @@
+{
+  "_comment": "Homepage service levels (\"Servicios\" section). Edit prices, order and the 'from' flag here; names, descriptions, inclusions, CTA labels and WhatsApp messages per language live in assets/i18n/translations.json under pricing.items.<id>. Prices are indicative starting points, not fixed quotes.",
+  "currency": "EUR",
+  "services": [
+    { "id": "design-review", "price": 99, "from": false },
+    { "id": "concept-starter", "price": 490, "from": true },
+    { "id": "design-sprint", "price": 1500, "from": true },
+    { "id": "full-commercial-design", "price": 5000, "from": true, "emphasis": true }
+  ]
+}

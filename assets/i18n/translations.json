@@ -193,6 +193,72 @@
         "facility": "Facility"
       }
     },
+    "howItWorks": {
+      "eyebrow": "How it works",
+      "heading": ["Start small.", "Scale when you need to."],
+      "headingText": "Start small. Scale when you need to.",
+      "intro": "Not every project needs to start with a full design. You can begin with a professional review and move step by step towards a complete commercial interior project.",
+      "stepsLabel": "Four-step process",
+      "steps": [
+        {
+          "title": "Send me your space",
+          "text": "Plans, photos, measurements and a short note on what you want to improve."
+        },
+        {
+          "title": "We analyse",
+          "text": "I review layout, flow, experience, functionality and commercial potential."
+        },
+        {
+          "title": "We design",
+          "text": "We define the right level of intervention: from a quick review to a complete project."
+        },
+        {
+          "title": "See it and decide",
+          "text": "You see the result before investing in construction, furniture or implementation."
+        }
+      ]
+    },
+    "pricing": {
+      "eyebrow": "Services",
+      "heading": "Choose how far you want to go.",
+      "intro": "From a quick review to a complete commercial interior design project.",
+      "from": "From",
+      "includes": "What’s included",
+      "bestFor": "Best for",
+      "note": "Prices are indicative and depend on the size, complexity and scope of the project.",
+      "whatsappMessage": "Hello, I’m interested in the {name} service ({price}).",
+      "items": {
+        "design-review": {
+          "name": "Design Review",
+          "description": "A professional review of your current space or proposal.",
+          "includes": ["review of plans or photos", "layout analysis", "identification of the main issues", "comments on circulation and experience", "specific recommendations for improvement", "short video or report with professional feedback"],
+          "bestFor": "Owners who want a second opinion before investing.",
+          "cta": "Review my space",
+          "whatsappMessage": "Hello, I’d like to request the €99 Design Review."
+        },
+        "concept-starter": {
+          "name": "Concept Starter",
+          "description": "A clear direction for transforming your space.",
+          "includes": ["initial analysis", "zoning proposal", "conceptual layout", "mood / design direction", "materials and atmosphere", "visual references", "1 concept view or key visualization", "design recommendations"],
+          "bestFor": "Businesses that need to define a direction before developing the full project.",
+          "cta": "Create my concept"
+        },
+        "design-sprint": {
+          "name": "Design Sprint",
+          "description": "A complete commercial concept, ready to visualize.",
+          "includes": ["space planning", "zoning", "circulation", "furniture strategy", "interior concept", "materials", "conceptual lighting", "spatial identity", "3D visualization", "several key views", "one main round of revisions"],
+          "bestFor": "Restaurants, gyms, clinics and offices that need to validate the design before building.",
+          "cta": "Design my space"
+        },
+        "full-commercial-design": {
+          "name": "Full Commercial Design",
+          "description": "End-to-end commercial design, from strategy to final presentation.",
+          "includes": ["full analysis of the business and the space", "space planning and zoning", "layout development", "customer / user experience", "circulation", "interior concept", "materials and finishes", "lighting", "FF&E / furniture and equipment", "conceptual signage", "full 3D visualization", "walkthroughs / animations where applicable", "design documentation", "coordination of revisions", "final package ready to move to implementation"],
+          "bestFor": "Businesses that want to develop a complete, coherent commercial project.",
+          "cta": "Start a project"
+        }
+      }
+    },
     "naming": {
       "eyebrow": "Naming opportunities",
       "heading": ["Spaces that", "can support", "fundraising."],
@@ -493,6 +559,72 @@
         "furniture": "Mobiliario",
         "system": "Sistema",
         "facility": "Instalación"
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "Cómo funciona",
+      "heading": ["Empieza pequeño.", "Escala cuando lo necesites."],
+      "headingText": "Empieza pequeño. Escala cuando lo necesites.",
+      "intro": "No todos los proyectos necesitan empezar con un diseño completo. Puedes comenzar con una revisión profesional y avanzar paso a paso hasta un proyecto comercial integral.",
+      "stepsLabel": "Proceso en cuatro pasos",
+      "steps": [
+        {
+          "title": "Envíame tu espacio",
+          "text": "Planos, fotos, medidas y una breve explicación de lo que quieres mejorar."
+        },
+        {
+          "title": "Analizamos",
+          "text": "Reviso distribución, flujo, experiencia, funcionalidad y potencial comercial."
+        },
+        {
+          "title": "Diseñamos",
+          "text": "Definimos el nivel de intervención adecuado: desde una revisión rápida hasta un proyecto completo."
+        },
+        {
+          "title": "Visualizas y decides",
+          "text": "Ves el resultado antes de invertir en obra, mobiliario o implementación."
+        }
+      ]
+    },
+    "pricing": {
+      "eyebrow": "Servicios",
+      "heading": "Elige hasta dónde quieres llegar.",
+      "intro": "Desde una revisión rápida hasta un proyecto completo de diseño de interiores comerciales.",
+      "from": "Desde",
+      "includes": "Qué incluye",
+      "bestFor": "Ideal para",
+      "note": "Los precios son orientativos y dependen del tamaño, complejidad y alcance del proyecto.",
+      "whatsappMessage": "Hola, me interesa el servicio {name} ({price}).",
+      "items": {
+        "design-review": {
+          "name": "Design Review",
+          "description": "Una revisión profesional de tu espacio actual o propuesta.",
+          "includes": ["revisión de planos o fotografías", "análisis de distribución", "detección de errores principales", "comentarios sobre circulación y experiencia", "recomendaciones concretas de mejora", "vídeo o informe breve con feedback profesional"],
+          "bestFor": "Propietarios que quieren una segunda opinión antes de invertir.",
+          "cta": "Revisar mi espacio",
+          "whatsappMessage": "Hola, quiero solicitar una revisión de diseño de €99."
+        },
+        "concept-starter": {
+          "name": "Concept Starter",
+          "description": "Una dirección clara para transformar tu espacio.",
+          "includes": ["análisis inicial", "propuesta de zoning", "distribución conceptual", "mood / dirección de diseño", "materiales y atmósfera", "referencias visuales", "1 vista conceptual o visualización clave", "recomendaciones de diseño"],
+          "bestFor": "Negocios que necesitan definir una dirección antes de desarrollar el proyecto completo.",
+          "cta": "Crear mi concepto"
+        },
+        "design-sprint": {
+          "name": "Design Sprint",
+          "description": "Un concepto comercial completo y listo para visualizar.",
+          "includes": ["planificación del espacio", "zoning", "circulación", "estrategia de mobiliario", "concepto de interior", "materiales", "iluminación conceptual", "identidad espacial", "visualización 3D", "varias vistas clave", "una ronda principal de revisión"],
+          "bestFor": "Restaurantes, gimnasios, clínicas y oficinas que necesitan validar el diseño antes de ejecutar.",
+          "cta": "Diseñar mi espacio"
+        },
+        "full-commercial-design": {
+          "name": "Full Commercial Design",
+          "description": "Diseño comercial integral desde la estrategia hasta la presentación final.",
+          "includes": ["análisis completo del negocio y del espacio", "planificación y zoning", "desarrollo de layout", "experiencia del cliente / usuario", "circulación", "concepto de interior", "materiales y acabados", "iluminación", "FF&E / mobiliario y equipamiento", "señalética conceptual", "visualización 3D completa", "recorridos / animaciones si aplica", "documentación de diseño", "coordinación de revisiones", "paquete final preparado para avanzar a implementación"],
+          "bestFor": "Negocios que quieren desarrollar un proyecto comercial completo y coherente.",
+          "cta": "Empezar un proyecto"
+        }
       }
     },
     "naming": {
@@ -797,6 +929,72 @@
         "facility": "Оснащение"
       }
     },
+    "howItWorks": {
+      "eyebrow": "Как это работает",
+      "heading": ["Начните с малого.", "Масштабируйте, когда нужно."],
+      "headingText": "Начните с малого. Масштабируйте, когда нужно.",
+      "intro": "Не каждому проекту нужен полный дизайн с самого начала. Можно начать с профессионального разбора и шаг за шагом прийти к комплексному коммерческому проекту.",
+      "stepsLabel": "Процесс в четыре шага",
+      "steps": [
+        {
+          "title": "Пришлите ваше пространство",
+          "text": "Планы, фото, размеры и короткое описание того, что вы хотите улучшить."
+        },
+        {
+          "title": "Анализируем",
+          "text": "Я оцениваю планировку, потоки, опыт посетителей, функциональность и коммерческий потенциал."
+        },
+        {
+          "title": "Проектируем",
+          "text": "Определяем нужный уровень вмешательства: от быстрого разбора до полного проекта."
+        },
+        {
+          "title": "Смотрите и решаете",
+          "text": "Вы видите результат до того, как вкладываться в ремонт, мебель или реализацию."
+        }
+      ]
+    },
+    "pricing": {
+      "eyebrow": "Услуги",
+      "heading": "Выберите, как далеко хотите зайти.",
+      "intro": "От быстрого разбора до полного проекта коммерческого интерьера.",
+      "from": "от",
+      "includes": "Что входит",
+      "bestFor": "Подходит для",
+      "note": "Цены ориентировочные и зависят от площади, сложности и объёма проекта.",
+      "whatsappMessage": "Здравствуйте, меня интересует услуга {name} ({price}).",
+      "items": {
+        "design-review": {
+          "name": "Design Review",
+          "description": "Профессиональный разбор вашего текущего пространства или проекта.",
+          "includes": ["разбор планов или фотографий", "анализ планировки", "выявление основных ошибок", "комментарии по потокам и опыту посетителей", "конкретные рекомендации по улучшению", "короткое видео или отчёт с профессиональной обратной связью"],
+          "bestFor": "Владельцам, которым нужно второе мнение перед вложениями.",
+          "cta": "Разобрать моё пространство",
+          "whatsappMessage": "Здравствуйте, я хотел(а) бы заказать Design Review за €99."
+        },
+        "concept-starter": {
+          "name": "Concept Starter",
+          "description": "Чёткое направление для преобразования вашего пространства.",
+          "includes": ["первичный анализ", "предложение по зонированию", "концептуальная планировка", "настроение / направление дизайна", "материалы и атмосфера", "визуальные референсы", "1 концептуальный вид или ключевая визуализация", "рекомендации по дизайну"],
+          "bestFor": "Бизнесу, которому нужно определить направление до разработки полного проекта.",
+          "cta": "Создать мой концепт"
+        },
+        "design-sprint": {
+          "name": "Design Sprint",
+          "description": "Полный коммерческий концепт, готовый к визуализации.",
+          "includes": ["планирование пространства", "зонирование", "потоки", "стратегия мебели", "концепция интерьера", "материалы", "концептуальное освещение", "пространственная идентичность", "3D-визуализация", "несколько ключевых видов", "один основной раунд правок"],
+          "bestFor": "Ресторанам, спортзалам, клиникам и офисам, которым нужно проверить дизайн до реализации.",
+          "cta": "Спроектировать пространство"
+        },
+        "full-commercial-design": {
+          "name": "Full Commercial Design",
+          "description": "Комплексный коммерческий дизайн — от стратегии до финальной презентации.",
+          "includes": ["полный анализ бизнеса и пространства", "планирование и зонирование", "разработка планировки", "опыт клиента / пользователя", "потоки", "концепция интерьера", "материалы и отделка", "освещение", "FF&E / мебель и оборудование", "концептуальная навигация", "полная 3D-визуализация", "проходы / анимации при необходимости", "проектная документация", "координация правок", "финальный пакет, готовый к реализации"],
+          "bestFor": "Бизнесу, который хочет разработать полный и целостный коммерческий проект.",
+          "cta": "Начать проект"
+        }
+      }
+    },
     "naming": {
       "eyebrow": "Именные пространства",
       "heading": ["Пространства,", "которые привлекают", "поддержку."],
@@ -1097,6 +1295,72 @@
         "furniture": "Меблі",
         "system": "Система",
         "facility": "Оснащення"
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "Як це працює",
+      "heading": ["Почніть з малого.", "Масштабуйте, коли потрібно."],
+      "headingText": "Почніть з малого. Масштабуйте, коли потрібно.",
+      "intro": "Не кожному проєкту потрібен повний дизайн від самого початку. Можна почати з професійного розбору й крок за кроком дійти до комплексного комерційного проєкту.",
+      "stepsLabel": "Процес у чотири кроки",
+      "steps": [
+        {
+          "title": "Надішліть ваш простір",
+          "text": "Плани, фото, розміри та короткий опис того, що ви хочете покращити."
+        },
+        {
+          "title": "Аналізуємо",
+          "text": "Я оцінюю планування, потоки, досвід відвідувачів, функціональність і комерційний потенціал."
+        },
+        {
+          "title": "Проєктуємо",
+          "text": "Визначаємо потрібний рівень втручання: від швидкого розбору до повного проєкту."
+        },
+        {
+          "title": "Бачите й вирішуєте",
+          "text": "Ви бачите результат до того, як вкладати в ремонт, меблі чи реалізацію."
+        }
+      ]
+    },
+    "pricing": {
+      "eyebrow": "Послуги",
+      "heading": "Оберіть, як далеко хочете зайти.",
+      "intro": "Від швидкого розбору до повного проєкту комерційного інтер’єру.",
+      "from": "від",
+      "includes": "Що входить",
+      "bestFor": "Підходить для",
+      "note": "Ціни орієнтовні й залежать від площі, складності та обсягу проєкту.",
+      "whatsappMessage": "Вітаю, мене цікавить послуга {name} ({price}).",
+      "items": {
+        "design-review": {
+          "name": "Design Review",
+          "description": "Професійний розбір вашого поточного простору або проєкту.",
+          "includes": ["розбір планів або фотографій", "аналіз планування", "виявлення основних помилок", "коментарі щодо потоків і досвіду відвідувачів", "конкретні рекомендації щодо покращення", "коротке відео або звіт із професійним відгуком"],
+          "bestFor": "Власникам, яким потрібна друга думка перед вкладеннями.",
+          "cta": "Розібрати мій простір",
+          "whatsappMessage": "Вітаю, я хотів(ла) б замовити Design Review за €99."
+        },
+        "concept-starter": {
+          "name": "Concept Starter",
+          "description": "Чіткий напрям для перетворення вашого простору.",
+          "includes": ["первинний аналіз", "пропозиція зонування", "концептуальне планування", "настрій / напрям дизайну", "матеріали й атмосфера", "візуальні референси", "1 концептуальний вигляд або ключова візуалізація", "рекомендації щодо дизайну"],
+          "bestFor": "Бізнесу, якому потрібно визначити напрям до розробки повного проєкту.",
+          "cta": "Створити мій концепт"
+        },
+        "design-sprint": {
+          "name": "Design Sprint",
+          "description": "Повний комерційний концепт, готовий до візуалізації.",
+          "includes": ["планування простору", "зонування", "потоки", "стратегія меблів", "концепція інтер’єру", "матеріали", "концептуальне освітлення", "просторова ідентичність", "3D-візуалізація", "кілька ключових видів", "один основний раунд правок"],
+          "bestFor": "Ресторанам, спортзалам, клінікам та офісам, яким потрібно перевірити дизайн до реалізації.",
+          "cta": "Спроєктувати простір"
+        },
+        "full-commercial-design": {
+          "name": "Full Commercial Design",
+          "description": "Комплексний комерційний дизайн — від стратегії до фінальної презентації.",
+          "includes": ["повний аналіз бізнесу та простору", "планування й зонування", "розробка планування", "досвід клієнта / користувача", "потоки", "концепція інтер’єру", "матеріали та оздоблення", "освітлення", "FF&E / меблі та обладнання", "концептуальна навігація", "повна 3D-візуалізація", "проходи / анімації за потреби", "проєктна документація", "координація правок", "фінальний пакет, готовий до реалізації"],
+          "bestFor": "Бізнесу, який хоче розробити повний і цілісний комерційний проєкт.",
+          "cta": "Почати проєкт"
+        }
       }
     },
     "naming": {

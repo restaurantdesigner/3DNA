@@ -51,6 +51,9 @@ const formPartialFile = (lang) => (lang === "es" ? "form-panel.html" : `form-pan
 const translations = JSON.parse(read("assets/i18n/translations.json"));
 const gym = JSON.parse(read("assets/data/gym-zones.json"));
 const fitnessPlanner = require("./fitness-planner.js").createFitnessPlanner(gym, translations);
+const servicesPricing = require("./services-pricing.js").createServicesPricing(
+  JSON.parse(read("assets/data/services.json")), translations,
+  { whatsappNumber: translations.es.contact.whatsappNumber });
 const hospitalNaming = require("./healthcare-naming.js").createHealthcareNaming(
   JSON.parse(read("assets/data/hospital-naming.json")), translations,
   { whatsappNumber: translations.es.contact.whatsappNumber });
@@ -210,6 +213,8 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "fitness.zoneDetails") return fitnessPlanner.zoneDetails(lang);
     if (key === "fitness.planSvg") return fitnessPlanner.planSvg(lang);
     if (key === "fitness.dataJson") return jsonForScript(fitnessPlanner.clientData(lang));
+    if (key === "howItWorks.stepsHtml") return servicesPricing.steps(lang);
+    if (key === "pricing.cardsHtml") return servicesPricing.cards(lang);
     if (key === "naming.list") return hospitalNaming.list(lang);
     if (key === "naming.details") return hospitalNaming.details(lang);
     if (key === "naming.planSvg") return hospitalNaming.planSvg(lang);

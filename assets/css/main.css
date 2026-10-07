@@ -9542,3 +9542,197 @@ section.hnaming{
   .hn-spot__tip, .hn-spot__dot, .hn-spot, .hn-zone{ transition: none; }
   .hnaming__app.is-sheet-open .hnaming__panel{ animation: none; }
 }
+
+/* =========================
+   HOW IT WORKS + SERVICES (homepage, after the logos spacer)
+   Editorial, studio-like: warm white, thin rules, strong type, no card chrome.
+   ========================= */
+section.hiw,
+section.pricing{
+  --p-gutter: 6vw;
+  --p-ink: #161513;
+  --p-muted: #6b6258;
+  --p-rule: rgba(22,21,19,.14);
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: visible;
+  text-align: left;
+  color: var(--p-ink);
+  background: #fbfaf7;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  scroll-snap-align: none;
+}
+section.hiw{ padding: clamp(88px, 11vh, 128px) var(--p-gutter) clamp(56px, 7vh, 80px); }
+section.pricing{ padding: clamp(40px, 5vh, 64px) var(--p-gutter) clamp(72px, 10vh, 112px); scroll-margin-top: 64px; }
+
+/* ---------- shared heading pattern ---------- */
+.hiw__head, .pricing__head{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+  gap: 18px 6vw;
+  align-items: end;
+  margin-bottom: clamp(36px, 5vh, 56px);
+}
+.hiw__eyebrow, .pricing__eyebrow{
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 11px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase;
+  color: #8a6a3a;
+}
+.hiw__title, .pricing__title{
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: clamp(44px, 4.6vw, 76px);
+  line-height: .98;
+  letter-spacing: -.04em;
+  text-transform: none;
+  color: var(--p-ink);
+  text-shadow: none;
+}
+.hiw__line{ display: block; }
+.hiw__title em{ font-family: "DM Serif Text", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -.015em; }
+.hiw__intro, .pricing__intro{ margin: 0; font-size: 17px; line-height: 1.55; color: #3d3934; }
+
+/* ---------- how it works: four numbered steps ---------- */
+.hiw__steps{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 clamp(20px, 3vw, 48px);
+  margin: 0; padding: 0; list-style: none;
+  counter-reset: none;
+}
+.hiw__step{ padding-top: 18px; border-top: 1px solid var(--p-rule); }
+.hiw__num{ display: block; font-family: "DM Serif Text", Georgia, serif; font-size: 30px; line-height: 1; color: #8a6a3a; }
+.hiw__step-title{
+  margin: 18px 0 0;
+  font-size: 12px; font-weight: 600; line-height: 1.4; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--p-ink);
+}
+.hiw__step-text{ margin: 10px 0 0; max-width: 34ch; font-size: 15px; line-height: 1.55; color: #3d3934; }
+
+/* ---------- services ---------- */
+.pricing__grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--p-ink);
+}
+.svc{
+  display: flex; flex-direction: column;
+  min-width: 0;
+  padding: 26px clamp(18px, 1.8vw, 28px) 4px;
+  border-left: 1px solid var(--p-rule);
+}
+.svc:first-child{ padding-left: 0; border-left: 0; }
+.svc:last-child{ padding-right: 0; }
+.svc__index{ margin: 0; font-size: 11px; font-weight: 600; letter-spacing: .2em; color: var(--p-muted); }
+.svc__name{
+  margin: 14px 0 0;
+  font-size: 13px; font-weight: 600; line-height: 1.3; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--p-ink);
+}
+.svc__price{ display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; margin: 18px 0 0; min-height: 1em; }
+.svc__from{ font-size: 13px; font-weight: 500; color: var(--p-muted); }
+.svc__amount{
+  font-size: clamp(40px, 3.6vw, 58px); font-weight: 500; line-height: 1; letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums; color: var(--p-ink);
+}
+.svc--emphasis .svc__amount{ font-family: "DM Serif Text", Georgia, serif; font-weight: 400; letter-spacing: -.02em; }
+.svc__desc{ margin: 16px 0 0; min-height: 3.1em; font-size: 15px; line-height: 1.55; color: #3d3934; }
+
+.svc__includes{ margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--p-rule); }
+.svc__includes summary{
+  list-style: none; cursor: default;
+  font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--p-muted);
+}
+.svc__includes summary::-webkit-details-marker{ display: none; }
+.svc__includes ul{ margin: 12px 0 0; padding: 0; list-style: none; }
+.svc__includes li{
+  position: relative;
+  padding: 4px 0 4px 18px;
+  font-size: 14px; line-height: 1.45; color: #2b2825;
+}
+.svc__includes li::before{ content: "—"; position: absolute; left: 0; top: 4px; color: #b3a99d; }
+
+.svc__best{ margin: auto 0 24px; padding-top: 20px; font-size: 14px; line-height: 1.5; color: #3d3934; }
+.svc__label{ display: block; margin-bottom: 6px; font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--p-muted); }
+
+.svc__cta{
+  align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--p-ink);
+  color: var(--p-ink) !important; text-decoration: none;
+  font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  transition: gap .2s ease, opacity .2s ease;
+}
+.svc__cta:hover{ gap: 14px; }
+.svc--emphasis .svc__cta{
+  align-self: stretch; justify-content: center;
+  padding: 0 18px; min-height: 50px;
+  border: 0; background: var(--p-ink); color: #fff !important;
+}
+.svc--emphasis .svc__cta:hover{ background: #2a2724; }
+
+.pricing__note{ margin: 48px 0 0; padding-top: 16px; border-top: 1px solid var(--p-rule); font-size: 13px; line-height: 1.5; color: var(--p-muted); }
+.hiw a:focus-visible, .pricing a:focus-visible, .pricing summary:focus-visible{ outline: 2px solid #8a6a3a; outline-offset: 3px; }
+
+/* ---------- two columns ---------- */
+@media (max-width: 1180px){
+  .pricing__grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .svc{ padding: 26px 28px 40px; }
+  .svc:nth-child(odd){ padding-left: 0; border-left: 0; }
+  .svc:nth-child(even){ padding-right: 0; }
+  .svc:nth-child(n+3){ border-top: 1px solid var(--p-rule); }
+  .hiw__steps{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 40px; }
+}
+
+/* ---------- phones ---------- */
+@media (max-width: 760px){
+  section.hiw, section.pricing{ --p-gutter: 22px; }
+  section.hiw{ padding-top: 72px; padding-bottom: 48px; }
+  section.pricing{ padding-top: 24px; padding-bottom: 64px; }
+  .hiw__head, .pricing__head{ grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; }
+  .hiw__title, .pricing__title{ font-size: clamp(34px, 9.6vw, 46px); }
+  html[lang="ru"] .hiw__title, html[lang="uk"] .hiw__title,
+  html[lang="ru"] .pricing__title, html[lang="uk"] .pricing__title{ font-size: clamp(30px, 8.4vw, 40px); }
+  .hiw__intro, .pricing__intro{ font-size: 16px; line-height: 1.5; }
+
+  /* steps: compact list, number beside the text */
+  .hiw__steps{ grid-template-columns: 1fr; gap: 0; }
+  .hiw__step{ display: grid; grid-template-columns: 44px 1fr; gap: 0 10px; padding: 16px 0; }
+  .hiw__num{ grid-row: span 2; font-size: 24px; }
+  .hiw__step-title{ margin: 2px 0 0; }
+  .hiw__step-text{ margin-top: 6px; font-size: 14px; }
+
+  /* services stacked; inclusions collapse behind "Qué incluye" */
+  .pricing__grid{ grid-template-columns: 1fr; }
+  .svc, .svc:nth-child(odd), .svc:nth-child(even){ padding: 22px 0 28px; border-left: 0; }
+  .svc + .svc{ border-top: 1px solid var(--p-rule); }
+  .svc__name{ margin-top: 10px; }
+  .svc__price{ margin-top: 12px; }
+  .svc__amount{ font-size: 44px; }
+  .svc__desc{ min-height: 0; margin-top: 10px; }
+  .svc__includes{ margin-top: 16px; padding-top: 0; border-top: 0; }
+  .svc__includes summary{
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 44px; padding: 0;
+    border-top: 1px solid var(--p-rule); border-bottom: 1px solid var(--p-rule);
+    font-size: 11px; color: var(--p-ink);
+  }
+  .svc__includes summary::after{ content: "+"; font-size: 18px; font-weight: 400; letter-spacing: 0; }
+  .svc__includes[open] summary::after{ content: "\2212"; }
+  .svc__includes ul{ margin-top: 8px; }
+  .svc__best{ margin: 0 0 18px; padding-top: 14px; font-size: 14px; }
+  .svc__label{ display: inline; margin: 0 6px 0 0; }
+  .pricing__note{ margin-top: 12px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .svc__cta{ transition: none; }
+}
