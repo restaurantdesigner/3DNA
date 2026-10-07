@@ -9343,6 +9343,7 @@ section.pricing{ padding: clamp(40px, 5vh, 64px) var(--p-gutter) clamp(72px, 10v
   font-variant-numeric: tabular-nums; color: var(--p-ink);
 }
 .svc--emphasis .svc__amount{ font-family: "DM Serif Text", Georgia, serif; font-weight: 400; letter-spacing: -.02em; }
+.svc__tax{ margin: 4px 0 0; font-size: 13px; font-weight: 400; line-height: 1.4; letter-spacing: 0; text-transform: none; color: var(--p-muted); } /* VAT note right under the price; muted colour keeps it secondary but readable (AA) */
 .svc__desc{ margin: 16px 0 0; min-height: 3.1em; font-size: 15px; line-height: 1.55; color: #3d3934; }
 
 .svc__includes{ margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--p-rule); }

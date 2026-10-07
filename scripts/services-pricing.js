@@ -55,6 +55,7 @@ function createServicesPricing(data, translations, { whatsappNumber }) {
         `      <p class="svc__index" aria-hidden="true">${String(i + 1).padStart(2, "0")}</p>`,
         `      <h3 class="svc__name" id="svc-${s.id}-name">${escapeHtml(item.name)}</h3>`,
         `      <p class="svc__price">${s.from ? `<span class="svc__from">${escapeHtml(p.from)}</span> ` : ""}<span class="svc__amount">${formatEuro(s.price, lang)}</span></p>`,
+        `      <p class="svc__tax">${escapeHtml(p.vatNote)}</p>`,
         `      <p class="svc__desc">${escapeHtml(item.description)}</p>`,
         `      <details class="svc__includes" open>`,
         `        <summary>${escapeHtml(p.includes)}</summary>`,
