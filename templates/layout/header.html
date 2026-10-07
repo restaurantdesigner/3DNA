@@ -1,0 +1,58 @@
+  <!-- ===== SHARED HEADER (templates/layout/header.html) =====
+       The only header on the site. Written into every page by
+       scripts/build-i18n.js between the 3dna:header markers; edit it here,
+       never in a page. assets/js/main.js only wires up behaviour (solid on
+       pages without a video hero, mobile menu, language choice). -->
+  <a class="skip-link" href="#main">{{a11y.skipToContent}}</a>
+  <div id="site-header">
+<header class="topbar topbar--overlay" id="topbar">
+  <div class="container topbar-inner">
+    <a class="brand brand--logo" href="/{{lang}}/#hero" aria-label="{{a11y.home}}">
+      <div class="brand-title"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></div>
+    </a>
+
+    <nav class="nav-desktop" aria-label="{{a11y.primaryNav}}">
+      <a href="/{{lang}}/#sector-restaurants">{{nav.projects}}</a>
+      <a href="/{{lang}}/#process">{{nav.process}}</a>
+      <a href="/{{lang}}/#transform">{{nav.about}}</a>
+    </nav>
+
+    <div class="topbar-actions">
+{{header.langSwitchBar}}
+      <button class="topbar-cta open-panel" type="button" data-track="start_project_clicked" data-track-location="header">{{nav.cta}} <span aria-hidden="true">&rarr;</span></button>
+
+      <button class="burger" id="burger" type="button" aria-label="{{nav.openMenu}}" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="burger-lines" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Sidebar menu: logo · 5 links · language · one WhatsApp action -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="{{nav.menu}}" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-head">
+      <a class="mobile-menu-brand m-link" href="/{{lang}}/#hero" aria-label="{{a11y.home}}"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
+      <button class="mobile-close" id="mobileClose" type="button" aria-label="{{nav.closeMenu}}">&times;</button>
+    </div>
+
+    <nav class="mobile-menu-nav" aria-label="{{nav.menu}}">
+      <a href="/{{lang}}/#hero" class="m-link">{{nav.home}}</a>
+      <a href="/{{lang}}/#sector-restaurants" class="m-link">{{nav.projects}}</a>
+      <a href="/{{lang}}/#process" class="m-link">{{nav.process}}</a>
+      <a href="/{{lang}}/#transform" class="m-link">{{nav.about}}</a>
+      <a href="#site-footer" class="m-link">{{nav.contact}}</a>
+    </nav>
+
+    <div class="mobile-menu-foot">
+{{header.langSwitchMenu}}
+      <a class="m-whatsapp" href="{{contact.whatsappHref}}" target="_blank" rel="noopener noreferrer"
+        data-track="whatsapp_clicked" data-track-location="menu">{{nav.whatsapp}} <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-menu-backdrop" id="mobileBackdrop"></div>
+  </div>

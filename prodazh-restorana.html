@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="img/favicon_32x322.png">
-  <link rel="stylesheet" href="assets/css/main.css?v=20260502a">
+  <link rel="stylesheet" href="assets/css/main.css?v=20261011b">
   <style>
     :root {
       --sale-dark: #3a2a21;
@@ -1235,9 +1235,72 @@
   </style>
 </head>
 <body class="sale-page-body">
-  <div id="site-header"></div>
+  <!-- 3dna:header -->
+  <!-- ===== SHARED HEADER (templates/layout/header.html) =====
+       The only header on the site. Written into every page by
+       scripts/build-i18n.js between the 3dna:header markers; edit it here,
+       never in a page. assets/js/main.js only wires up behaviour (solid on
+       pages without a video hero, mobile menu, language choice). -->
+  <a class="skip-link" href="#main">Перейти до вмісту</a>
+  <div id="site-header">
+<header class="topbar topbar--overlay" id="topbar">
+  <div class="container topbar-inner">
+    <a class="brand brand--logo" href="/uk/#hero" aria-label="Головна 3DNA">
+      <div class="brand-title"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></div>
+    </a>
 
-  <main class="sale-page">
+    <nav class="nav-desktop" aria-label="Основна навігація">
+      <a href="/uk/#sector-restaurants">Проєкти</a>
+      <a href="/uk/#process">Процес</a>
+      <a href="/uk/#transform">Про нас</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <nav class="lang-switch lang-switch--bar" aria-label="Мова">
+        <a href="/en/" hreflang="en" lang="en" data-lang="en" aria-label="English">EN</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español">ES</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/ru/" hreflang="ru" lang="ru" data-lang="ru" aria-label="Русский">RU</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/uk/" hreflang="uk" lang="uk" data-lang="uk" aria-label="Українська" aria-current="page">UK</a>
+      </nav>
+      <button class="topbar-cta open-panel" type="button" data-track="start_project_clicked" data-track-location="header">Розпочати проєкт <span aria-hidden="true">&rarr;</span></button>
+
+      <button class="burger" id="burger" type="button" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="burger-lines" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Sidebar menu: logo · 5 links · language · one WhatsApp action -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Меню" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-head">
+      <a class="mobile-menu-brand m-link" href="/uk/#hero" aria-label="Головна 3DNA"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
+      <button class="mobile-close" id="mobileClose" type="button" aria-label="Закрити меню">&times;</button>
+    </div>
+
+    <nav class="mobile-menu-nav" aria-label="Меню">
+      <a href="/uk/#hero" class="m-link">Головна</a>
+      <a href="/uk/#sector-restaurants" class="m-link">Проєкти</a>
+      <a href="/uk/#process" class="m-link">Процес</a>
+      <a href="/uk/#transform" class="m-link">Про нас</a>
+      <a href="#site-footer" class="m-link">Контакти</a>
+    </nav>
+
+    <div class="mobile-menu-foot">
+      <nav class="lang-switch lang-switch--menu" aria-label="Мова">
+        <a href="/en/" hreflang="en" lang="en" data-lang="en" aria-label="English">EN</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español">ES</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/ru/" hreflang="ru" lang="ru" data-lang="ru" aria-label="Русский">RU</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/uk/" hreflang="uk" lang="uk" data-lang="uk" aria-label="Українська" aria-current="page">UK</a>
+      </nav>
+      <a class="m-whatsapp" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D0%BF%D1%80%D0%BE%D1%94%D0%BA%D1%82%20%D0%BA%D0%BE%D0%BC%D0%B5%D1%80%D1%86%D1%96%D0%B9%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%96%D0%BD%D1%82%D0%B5%D1%80%E2%80%99%D1%94%D1%80%D1%83." target="_blank" rel="noopener noreferrer"
+        data-track="whatsapp_clicked" data-track-location="menu">WhatsApp <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-menu-backdrop" id="mobileBackdrop"></div>
+  </div>
+<!-- /3dna:header -->
+
+  <main class="sale-page" id="main" tabindex="-1">
     <section class="sale-hero" aria-label="Головний екран презентації ресторану">
       <video class="sale-hero-video--desktop js-lazy-video" autoplay muted loop playsinline preload="none" poster="img/optimized/posters/kolrest1.jpg">
         <source data-src="img/kolrest1.mp4" type="video/mp4">
@@ -1506,24 +1569,86 @@
     </section>
   </main>
 
-  <div id="site-footer"></div>
+  <!-- 3dna:footer -->
+  <!-- ===== SHARED FOOTER (templates/layout/footer.html) =====
+       The only footer on the site, plus the shared "Start a project" panel.
+       Written into every page by scripts/build-i18n.js between the
+       3dna:footer markers; edit it here, never in a page. -->
+<footer class="site-footer" id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
 
-  <div id="panel-backdrop"></div>
-  <div id="form-panel-root"></div>
-  <script>
-  (function () {
-    const mount = document.getElementById('form-panel-root');
-    if (!mount) return;
-    fetch('assets/partials/form-panel.html?v=20260501m', { cache: 'no-store' })
-      .then(r => { if (!r.ok) throw new Error('Failed'); return r.text(); })
-      .then(html => {
-        mount.innerHTML = html;
-        window.__formPanelLoaded = true;
-        document.dispatchEvent(new Event('form-panel:ready'));
-      })
-      .catch(console.error);
-  })();
-  </script>
+      <div class="footer-brand">
+        <a href="/uk/#hero" aria-label="Головна 3DNA">
+          <img src="/img/logo.png" alt="3DNA" class="footer-logo" width="1536" height="1024" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-tagline">Візуальний маркетинг та іммерсивний 3D</p>
+      </div>
+
+      <div class="footer-cols">
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Послуги</h2>
+          <ul>
+            <li><a href="/uk/#servicios">3D-дизайн</a></li>
+            <li><a href="/uk/#servicios">Сайти та лендинги</a></li>
+            <li><a href="/uk/#servicios">Воронки продажів</a></li>
+            <li><a href="/uk/#servicios">Прикладний ШІ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Правова інформація</h2>
+          <ul>
+            <li><a href="/oferta-publica.html">Публічна оферта</a></li>
+            <li><a href="/politica-cookies.html">Політика cookie</a></li>
+            <li><a href="/aviso-legal.html">Правове повідомлення</a></li>
+            <li><a href="/politica-privacidad.html">Політика конфіденційності</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Контакти</h2>
+          <ul>
+            <li><a href="mailto:andrei@3dna.es?subject=%D0%97%D0%B0%D0%BF%D0%B8%D1%82%20%D1%96%D0%B7%20%D1%81%D0%B0%D0%B9%D1%82%D1%83%203dna.es&amp;body=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B4%D1%96%D0%B7%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D1%8F%20%D0%B1%D1%96%D0%BB%D1%8C%D1%88%D0%B5%20%D0%BF%D1%80%D0%BE%20%D0%B2%D0%B0%D1%88%D1%96%20%D0%BF%D0%BE%D1%81%D0%BB%D1%83%D0%B3%D0%B8.">Email: andrei@3dna.es</a></li>
+            <li><a href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D0%BF%D1%80%D0%BE%D1%94%D0%BA%D1%82%20%D0%BA%D0%BE%D0%BC%D0%B5%D1%80%D1%86%D1%96%D0%B9%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%96%D0%BD%D1%82%D0%B5%D1%80%E2%80%99%D1%94%D1%80%D1%83." target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="footer">WhatsApp</a></li>
+            <li><span>Салобренья, Гранада (Іспанія)</span></li>
+            <li><a href="https://www.3dna.es">www.3dna.es</a></li>
+            <li class="footer-cta-row"><button type="button" class="open-panel footer-cta-btn" data-track="start_project_clicked" data-track-location="footer">Запросити пропозицію</button></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 3DNA · Усі права захищено</span>
+      <span>Дизайн і розробка: 3DNA Studio</span>
+    </div>
+  </div>
+</footer>
+
+<!-- "Start a project" side panel (localized partial, loaded on demand) -->
+<div id="panel-backdrop"></div>
+<div id="form-panel-root"></div>
+<script>
+(function () {
+  const mount = document.getElementById('form-panel-root');
+  if (!mount) return;
+  fetch('/assets/partials/form-panel.uk.html?v=20261011a', { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error('Failed to load form panel partial.');
+      return response.text();
+    })
+    .then((html) => {
+      mount.innerHTML = html;
+      window.__formPanelLoaded = true;
+      document.dispatchEvent(new Event('form-panel:ready'));
+    })
+    .catch((error) => { console.error(error); });
+})();
+</script>
+<!-- /3dna:footer -->
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     const lazyVideos = Array.from(document.querySelectorAll('video.js-lazy-video'));
@@ -1581,6 +1706,6 @@
     }
   });
   </script>
-  <script src="assets/js/main.js?v=20260501q"></script>
+  <script src="assets/js/main.js?v=20261011a"></script>
 </body>
 </html>

@@ -53,25 +53,28 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261010a">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261011b">
 </head>
 
 <body>
+<!-- 3dna:header -->
+  <!-- ===== SHARED HEADER (templates/layout/header.html) =====
+       The only header on the site. Written into every page by
+       scripts/build-i18n.js between the 3dna:header markers; edit it here,
+       never in a page. assets/js/main.js only wires up behaviour (solid on
+       pages without a video hero, mobile menu, language choice). -->
   <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- Home navigation is rendered at build time (crawlable, interactive immediately);
-       assets/js/main.js only wires it up. Other pages still get the injected header. -->
   <div id="site-header">
 <header class="topbar topbar--overlay" id="topbar">
   <div class="container topbar-inner">
-    <a class="brand brand--logo" href="#hero" aria-label="3DNA home">
+    <a class="brand brand--logo" href="/en/#hero" aria-label="3DNA home">
       <div class="brand-title"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></div>
     </a>
 
     <nav class="nav-desktop" aria-label="Primary">
-      <a href="#sector-restaurants">Projects</a>
-      <a href="#sector-fitness">Process</a>
-      <a href="#transform">About</a>
+      <a href="/en/#sector-restaurants">Projects</a>
+      <a href="/en/#process">Process</a>
+      <a href="/en/#transform">About</a>
     </nav>
 
     <div class="topbar-actions">
@@ -93,15 +96,15 @@
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
   <div class="mobile-menu-inner">
     <div class="mobile-menu-head">
-      <a class="mobile-menu-brand m-link" href="#hero" aria-label="3DNA home"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
+      <a class="mobile-menu-brand m-link" href="/en/#hero" aria-label="3DNA home"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
       <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">&times;</button>
     </div>
 
-    <nav class="mobile-menu-nav" aria-label="Primary">
-      <a href="#hero" class="m-link">Home</a>
-      <a href="#sector-restaurants" class="m-link">Projects</a>
-      <a href="#sector-fitness" class="m-link">Process</a>
-      <a href="#transform" class="m-link">About</a>
+    <nav class="mobile-menu-nav" aria-label="Menu">
+      <a href="/en/#hero" class="m-link">Home</a>
+      <a href="/en/#sector-restaurants" class="m-link">Projects</a>
+      <a href="/en/#process" class="m-link">Process</a>
+      <a href="/en/#transform" class="m-link">About</a>
       <a href="#site-footer" class="m-link">Contact</a>
     </nav>
 
@@ -117,6 +120,7 @@
 
 <div class="mobile-menu-backdrop" id="mobileBackdrop"></div>
   </div>
+<!-- /3dna:header -->
 
 
 
@@ -244,7 +248,7 @@
           <button class="sector-btn sector-btn--primary open-panel" type="button" data-track="start_project_clicked" data-track-location="hero">
             Start a project <span aria-hidden="true">&rarr;</span>
           </button>
-          <a class="sector-btn sector-btn--ghost" href="#sec3" data-track="view_projects_clicked" data-track-location="hero">View projects</a>
+          <a class="sector-btn sector-btn--ghost" href="#sector-restaurants" data-track="view_projects_clicked" data-track-location="hero">View projects</a>
         </div>
       </div>
 
@@ -1421,7 +1425,7 @@
 <!-- ===== HOW IT WORKS + SERVICES (after the logos spacer) =====
      Text: "howItWorks" and "pricing" in assets/i18n/translations.json.
      Prices / order: assets/data/services.json. Rendered by scripts/services-pricing.js. -->
-<section class="hiw" id="como-funciona" aria-labelledby="hiw-title">
+<section class="hiw" id="process" aria-labelledby="hiw-title">
   <div class="hiw__head">
     <p class="hiw__eyebrow">How it works</p>
     <h2 class="hiw__title" id="hiw-title" aria-label="Start small. Scale when you need to.">
@@ -1580,94 +1584,75 @@
 
 
 
-<div class="spacer">
-  <div class="spacer-inner">
-
-    <div class="services-marquee">
-      <div class="services-track">
-
-        <!-- 1-й набор -->
-        <span class="service-item">Branding 3D que atrae miradas y clientes</span>
-<span class="service-item">Experiencias 360º que convierten visitas en ventas</span>
-<span class="service-item">Showrooms digitales diseñados para vender</span>
-<span class="service-item">Diseño comercial enfocado en resultados reales</span>
-<span class="service-item">Visualización 3D que impulsa decisiones</span>
-<span class="service-item">Recorridos virtuales que generan confianza inmediata</span>
-<span class="service-item">Espacios virtuales que venden antes de existir</span>
-<span class="service-item">Experiencias inmersivas que dejan huella</span>
-
-<span class="service-item">Landing pages que captan y convierten</span>
-<span class="service-item">Embudos de venta que trabajan 24/7</span>
-<span class="service-item">Sistemas de compra optimizados para vender más</span>
-<span class="service-item">Pagos online rápidos, seguros y sin fricción</span>
-<span class="service-item">Integración Stripe lista para cobrar</span>
-<span class="service-item">PayPal y Bizum conectados y funcionando</span>
-<span class="service-item">Campañas Meta Ads que generan clientes reales</span>
-<span class="service-item">Google Ads optimizado para ROI positivo</span>
-<span class="service-item">Automatización para escalar sin límites</span>
-<span class="service-item">Inteligencia Artificial aplicada a ventas</span>
-        <!-- 2-й набор (дубликат для бесшовности) -->
-       <span class="service-item">Branding 3D que atrae miradas y clientes</span>
-<span class="service-item">Experiencias 360º que convierten visitas en ventas</span>
-<span class="service-item">Showrooms digitales diseñados para vender</span>
-<span class="service-item">Diseño comercial enfocado en resultados reales</span>
-<span class="service-item">Visualización 3D que impulsa decisiones</span>
-<span class="service-item">Recorridos virtuales que generan confianza inmediata</span>
-<span class="service-item">Espacios virtuales que venden antes de existir</span>
-<span class="service-item">Experiencias inmersivas que dejan huella</span>
-
-<span class="service-item">Landing pages que captan y convierten</span>
-<span class="service-item">Embudos de venta que trabajan 24/7</span>
-<span class="service-item">Sistemas de compra optimizados para vender más</span>
-<span class="service-item">Pagos online rápidos, seguros y sin fricción</span>
-<span class="service-item">Integración Stripe lista para cobrar</span>
-<span class="service-item">PayPal y Bizum conectados y funcionando</span>
-<span class="service-item">Campañas Meta Ads que generan clientes reales</span>
-<span class="service-item">Google Ads optimizado para ROI positivo</span>
-<span class="service-item">Automatización para escalar sin límites</span>
-<span class="service-item">Inteligencia Artificial aplicada a ventas</span>
-
-      </div>
-    </div>
-
+<!-- ===== STATEMENT BANNER (replaces the old services text ticker) =====
+     One message over a slow looping 3D render (forward + reverse, so it loops
+     without a jump). Lazy-loaded by the SECTOR SECTIONS module in main.js;
+     reduced motion keeps the still. Text: "banner" in translations.json. -->
+<section class="vbanner" id="banner" aria-labelledby="vbanner-title"
+  style="--vbanner-poster: url('/images/banner-restaurant-render.webp')">
+  <div class="vbanner__media" aria-hidden="true">
+    <video class="vbanner__video" muted loop playsinline preload="none" tabindex="-1"
+      width="1280" height="720"
+      poster="/images/banner-restaurant-render.webp"
+      data-src="/videos/banner-restaurant-render.mp4"></video>
   </div>
-</div>
-
-
-<section id="sec3">
-  <div class="quad-grid">
-    
-   <a class="quad-tile" href="/curso-diseno-3d.html" style="background:#e8006e; justify-content:center; align-items:center; flex-direction:column; text-align:center; gap:10px;">
-  <div class="quad-copy">
-
-    <p style="font-family:'Ultra',serif; font-size:clamp(1.2rem,3vw,2.2rem); font-weight:400; color:#fff; line-height:1.1; margin:0;">
-      Curso: Diseño 3D que vende
-    </p>
-
-    <p style="font-family:'Lato',sans-serif; font-size:clamp(0.7rem,1.4vw,1rem); color:#fff; letter-spacing:0.5px; margin:0; text-transform:uppercase;">
-      Aprende a crear espacios que atraen clientes
-    </p>
-
-    <p style="font-family:'Lato',sans-serif; font-size:clamp(0.65rem,1.2vw,0.9rem); color:#fff; letter-spacing:0.4px; margin:0; text-transform:uppercase;">
-      Restaurantes, gimnasios y centros médicos diseñados como herramientas de captación y conversión
-    </p>
-
-  </div>
-</a>
-    
-    
+  <div class="vbanner__shade" aria-hidden="true"></div>
+  <div class="vbanner__inner">
+    <h2 class="vbanner__title" id="vbanner-title" aria-label="Your space starts working before it’s built.">
+      <span class="vbanner__line" aria-hidden="true">Your space starts working</span>
+      <span class="vbanner__line" aria-hidden="true"><em>before it’s built.</em></span>
+    </h2>
+    <p class="vbanner__text">3D visualization, strategy and commercial design for better decisions.</p>
   </div>
 </section>
 
-<div class="spacer">
-  <div class="spacer-inner">
-    <p class="spacer-message">
-      Un buen espacio no es un gasto<br>
-      Es un activo que<br> genera clientes
-    </p>
+<!-- ===== MORE THAN A PROJECT: the project becomes content =====
+     Split layout: 16:9 showreel (render -> wireframe -> phone/laptop content) +
+     short copy. Lazy-loaded by the SECTOR SECTIONS module in main.js; reduced
+     motion keeps the poster. Text: "projectContent" in translations.json. -->
+<section class="pcontent" id="proyecto-contenido" data-track-view="project_content_viewed" aria-labelledby="pcontent-title">
+  <div class="pcontent__grid">
+    <div class="pcontent__media" aria-hidden="true">
+      <video class="pcontent__video" muted loop playsinline preload="none" tabindex="-1"
+        width="854" height="480"
+        poster="/images/project-content-poster.webp"
+        data-src="/videos/project-content-showreel.mp4"></video>
+    </div>
+    <div class="pcontent__content">
+      <p class="pcontent__eyebrow">More than a project</p>
+      <h2 class="pcontent__title" id="pcontent-title" aria-label="The project becomes content.">
+        <span class="pcontent__line" aria-hidden="true">The project</span>
+        <span class="pcontent__line" aria-hidden="true">becomes</span>
+        <span class="pcontent__line" aria-hidden="true"><em>content.</em></span>
+      </h2>
+      <p class="pcontent__text">The same renders, walkthroughs and 3D views we use to design also work to communicate: social media, website, investor presentations and pre-opening campaigns.</p>
+    </div>
   </div>
+</section>
+
+<!-- ===== FINALE: wide showreel (no copy) =====
+     Full page width at the video's natural 16:9 height, directly after the
+     project-content section. Decorative (aria-hidden), no text. Lazy-loaded by
+     the SECTOR SECTIONS module in main.js (loads ~200px before it scrolls in,
+     pauses when off screen); reduced motion shows the poster only. -->
+<div class="fsvideo" id="showreel-final" aria-hidden="true">
+  <video class="fsvideo__video" muted loop playsinline preload="none" tabindex="-1"
+    width="854" height="480"
+    poster="/images/final-fullscreen-poster.webp"
+    data-src="/videos/final-fullscreen-showreel.mp4"></video>
 </div>
 
+<!-- ===== CLOSING STATEMENT (after the full-screen finale, before the footer) =====
+     Two lines + one quiet line on the footer colour, so it flows into the
+     footer. No buttons: the global WhatsApp button stays available.
+     Text: "closing" in translations.json. -->
+<section class="closing" id="cierre" aria-labelledby="closing-title">
+  <h2 class="closing__title" id="closing-title" aria-label="Your business changes. Your space should too.">
+    <span class="closing__line" aria-hidden="true">Your business changes.</span>
+    <span class="closing__line" aria-hidden="true"><em>Your space should too.</em></span>
+  </h2>
+  <p class="closing__text">If it feels like the right time, let’s talk.</p>
+</section>
 
 </main>
 
@@ -1806,20 +1791,73 @@
 
 
 
-<div id="site-footer"></div>
+<!-- 3dna:footer -->
+  <!-- ===== SHARED FOOTER (templates/layout/footer.html) =====
+       The only footer on the site, plus the shared "Start a project" panel.
+       Written into every page by scripts/build-i18n.js between the
+       3dna:footer markers; edit it here, never in a page. -->
+<footer class="site-footer" id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
 
-<!-- Panel backdrop -->
+      <div class="footer-brand">
+        <a href="/en/#hero" aria-label="3DNA home">
+          <img src="/img/logo.png" alt="3DNA" class="footer-logo" width="1536" height="1024" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-tagline">Visual Marketing &amp; Immersive 3D Experiences</p>
+      </div>
+
+      <div class="footer-cols">
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Services</h2>
+          <ul>
+            <li><a href="/en/#servicios">3D design</a></li>
+            <li><a href="/en/#servicios">Websites &amp; Landing Pages</a></li>
+            <li><a href="/en/#servicios">Sales funnels</a></li>
+            <li><a href="/en/#servicios">Applied AI</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Legal</h2>
+          <ul>
+            <li><a href="/oferta-publica.html">Public Offer</a></li>
+            <li><a href="/politica-cookies.html">Cookie Policy</a></li>
+            <li><a href="/aviso-legal.html">Legal Notice</a></li>
+            <li><a href="/politica-privacidad.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Contact</h2>
+          <ul>
+            <li><a href="mailto:andrei@3dna.es?subject=Enquiry%20from%203dna.es&amp;body=Hello%2C%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20services.">Email: andrei@3dna.es</a></li>
+            <li><a href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20commercial%20interior%20design%20project." target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="footer">WhatsApp</a></li>
+            <li><span>Salobreña, Granada (Spain)</span></li>
+            <li><a href="https://www.3dna.es">www.3dna.es</a></li>
+            <li class="footer-cta-row"><button type="button" class="open-panel footer-cta-btn" data-track="start_project_clicked" data-track-location="footer">Request a proposal</button></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 3DNA · All rights reserved</span>
+      <span>Design &amp; Development: 3DNA Studio</span>
+    </div>
+  </div>
+</footer>
+
+<!-- "Start a project" side panel (localized partial, loaded on demand) -->
 <div id="panel-backdrop"></div>
-
-<!-- Side panel (loaded from partial) -->
 <div id="form-panel-root"></div>
 <script>
 (function () {
   const mount = document.getElementById('form-panel-root');
   if (!mount) return;
-
-  const src = '/assets/partials/form-panel.en.html?v=20261007a';
-  fetch(src, { cache: 'no-store' })
+  fetch('/assets/partials/form-panel.en.html?v=20261011a', { cache: 'no-store' })
     .then((response) => {
       if (!response.ok) throw new Error('Failed to load form panel partial.');
       return response.text();
@@ -1829,12 +1867,11 @@
       window.__formPanelLoaded = true;
       document.dispatchEvent(new Event('form-panel:ready'));
     })
-    .catch((error) => {
-      console.error(error);
-    });
+    .catch((error) => { console.error(error); });
 })();
 </script>
-<script src="/assets/js/main.js?v=20261010a"></script>
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=20261011a"></script>
 <script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
 <script src="/assets/js/healthcare-3d/naming-app.js?v=20261009a" defer></script>
 <!-- Spotlight video tile: restaurantes -->

@@ -1,0 +1,78 @@
+  <!-- ===== SHARED FOOTER (templates/layout/footer.html) =====
+       The only footer on the site, plus the shared "Start a project" panel.
+       Written into every page by scripts/build-i18n.js between the
+       3dna:footer markers; edit it here, never in a page. -->
+<footer class="site-footer" id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="/{{lang}}/#hero" aria-label="{{a11y.home}}">
+          <img src="/img/logo.png" alt="3DNA" class="footer-logo" width="1536" height="1024" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-tagline">{{footer.tagline}}</p>
+      </div>
+
+      <div class="footer-cols">
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">{{footer.services}}</h2>
+          <ul>
+            <li><a href="/{{lang}}/#servicios">{{footer.servicesItems.0}}</a></li>
+            <li><a href="/{{lang}}/#servicios">{{footer.servicesItems.1}}</a></li>
+            <li><a href="/{{lang}}/#servicios">{{footer.servicesItems.2}}</a></li>
+            <li><a href="/{{lang}}/#servicios">{{footer.servicesItems.3}}</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">{{footer.legal}}</h2>
+          <ul>
+            <li><a href="/oferta-publica.html">{{footer.legalItems.0}}</a></li>
+            <li><a href="/politica-cookies.html">{{footer.legalItems.1}}</a></li>
+            <li><a href="/aviso-legal.html">{{footer.legalItems.2}}</a></li>
+            <li><a href="/politica-privacidad.html">{{footer.legalItems.3}}</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">{{footer.contact}}</h2>
+          <ul>
+            <li><a href="{{footer.mailtoHref}}">{{footer.email}}: andrei@3dna.es</a></li>
+            <li><a href="{{contact.whatsappHref}}" target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="footer">WhatsApp</a></li>
+            <li><span>{{footer.location}}</span></li>
+            <li><a href="https://www.3dna.es">www.3dna.es</a></li>
+            <li class="footer-cta-row"><button type="button" class="open-panel footer-cta-btn" data-track="start_project_clicked" data-track-location="footer">{{footer.cta}}</button></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {{footer.year}} 3DNA · {{footer.rights}}</span>
+      <span>{{footer.credit}}</span>
+    </div>
+  </div>
+</footer>
+
+<!-- "Start a project" side panel (localized partial, loaded on demand) -->
+<div id="panel-backdrop"></div>
+<div id="form-panel-root"></div>
+<script>
+(function () {
+  const mount = document.getElementById('form-panel-root');
+  if (!mount) return;
+  fetch('/assets/partials/{{form.partialFile}}?v={{form.partialVersion}}', { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error('Failed to load form panel partial.');
+      return response.text();
+    })
+    .then((html) => {
+      mount.innerHTML = html;
+      window.__formPanelLoaded = true;
+      document.dispatchEvent(new Event('form-panel:ready'));
+    })
+    .catch((error) => { console.error(error); });
+})();
+</script>

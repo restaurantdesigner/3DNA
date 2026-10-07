@@ -48,25 +48,28 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261010a">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261011b">
 </head>
 
 <body>
+<!-- 3dna:header -->
+  <!-- ===== SHARED HEADER (templates/layout/header.html) =====
+       The only header on the site. Written into every page by
+       scripts/build-i18n.js between the 3dna:header markers; edit it here,
+       never in a page. assets/js/main.js only wires up behaviour (solid on
+       pages without a video hero, mobile menu, language choice). -->
   <a class="skip-link" href="#main">Перейти до вмісту</a>
-
-  <!-- Home navigation is rendered at build time (crawlable, interactive immediately);
-       assets/js/main.js only wires it up. Other pages still get the injected header. -->
   <div id="site-header">
 <header class="topbar topbar--overlay" id="topbar">
   <div class="container topbar-inner">
-    <a class="brand brand--logo" href="#hero" aria-label="Головна 3DNA">
+    <a class="brand brand--logo" href="/uk/#hero" aria-label="Головна 3DNA">
       <div class="brand-title"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></div>
     </a>
 
     <nav class="nav-desktop" aria-label="Основна навігація">
-      <a href="#sector-restaurants">Проєкти</a>
-      <a href="#sector-fitness">Процес</a>
-      <a href="#transform">Про нас</a>
+      <a href="/uk/#sector-restaurants">Проєкти</a>
+      <a href="/uk/#process">Процес</a>
+      <a href="/uk/#transform">Про нас</a>
     </nav>
 
     <div class="topbar-actions">
@@ -88,15 +91,15 @@
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Меню" aria-hidden="true">
   <div class="mobile-menu-inner">
     <div class="mobile-menu-head">
-      <a class="mobile-menu-brand m-link" href="#hero" aria-label="Головна 3DNA"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
+      <a class="mobile-menu-brand m-link" href="/uk/#hero" aria-label="Головна 3DNA"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
       <button class="mobile-close" id="mobileClose" type="button" aria-label="Закрити меню">&times;</button>
     </div>
 
-    <nav class="mobile-menu-nav" aria-label="Основна навігація">
-      <a href="#hero" class="m-link">Головна</a>
-      <a href="#sector-restaurants" class="m-link">Проєкти</a>
-      <a href="#sector-fitness" class="m-link">Процес</a>
-      <a href="#transform" class="m-link">Про нас</a>
+    <nav class="mobile-menu-nav" aria-label="Меню">
+      <a href="/uk/#hero" class="m-link">Головна</a>
+      <a href="/uk/#sector-restaurants" class="m-link">Проєкти</a>
+      <a href="/uk/#process" class="m-link">Процес</a>
+      <a href="/uk/#transform" class="m-link">Про нас</a>
       <a href="#site-footer" class="m-link">Контакти</a>
     </nav>
 
@@ -112,6 +115,7 @@
 
 <div class="mobile-menu-backdrop" id="mobileBackdrop"></div>
   </div>
+<!-- /3dna:header -->
 
 
 
@@ -239,7 +243,7 @@
           <button class="sector-btn sector-btn--primary open-panel" type="button" data-track="start_project_clicked" data-track-location="hero">
             Розпочати проєкт <span aria-hidden="true">&rarr;</span>
           </button>
-          <a class="sector-btn sector-btn--ghost" href="#sec3" data-track="view_projects_clicked" data-track-location="hero">Переглянути проєкти</a>
+          <a class="sector-btn sector-btn--ghost" href="#sector-restaurants" data-track="view_projects_clicked" data-track-location="hero">Переглянути проєкти</a>
         </div>
       </div>
 
@@ -1416,7 +1420,7 @@
 <!-- ===== HOW IT WORKS + SERVICES (after the logos spacer) =====
      Text: "howItWorks" and "pricing" in assets/i18n/translations.json.
      Prices / order: assets/data/services.json. Rendered by scripts/services-pricing.js. -->
-<section class="hiw" id="como-funciona" aria-labelledby="hiw-title">
+<section class="hiw" id="process" aria-labelledby="hiw-title">
   <div class="hiw__head">
     <p class="hiw__eyebrow">Як це працює</p>
     <h2 class="hiw__title" id="hiw-title" aria-label="Почніть з малого. Масштабуйте, коли потрібно.">
@@ -1575,94 +1579,75 @@
 
 
 
-<div class="spacer">
-  <div class="spacer-inner">
-
-    <div class="services-marquee">
-      <div class="services-track">
-
-        <!-- 1-й набор -->
-        <span class="service-item">Branding 3D que atrae miradas y clientes</span>
-<span class="service-item">Experiencias 360º que convierten visitas en ventas</span>
-<span class="service-item">Showrooms digitales diseñados para vender</span>
-<span class="service-item">Diseño comercial enfocado en resultados reales</span>
-<span class="service-item">Visualización 3D que impulsa decisiones</span>
-<span class="service-item">Recorridos virtuales que generan confianza inmediata</span>
-<span class="service-item">Espacios virtuales que venden antes de existir</span>
-<span class="service-item">Experiencias inmersivas que dejan huella</span>
-
-<span class="service-item">Landing pages que captan y convierten</span>
-<span class="service-item">Embudos de venta que trabajan 24/7</span>
-<span class="service-item">Sistemas de compra optimizados para vender más</span>
-<span class="service-item">Pagos online rápidos, seguros y sin fricción</span>
-<span class="service-item">Integración Stripe lista para cobrar</span>
-<span class="service-item">PayPal y Bizum conectados y funcionando</span>
-<span class="service-item">Campañas Meta Ads que generan clientes reales</span>
-<span class="service-item">Google Ads optimizado para ROI positivo</span>
-<span class="service-item">Automatización para escalar sin límites</span>
-<span class="service-item">Inteligencia Artificial aplicada a ventas</span>
-        <!-- 2-й набор (дубликат для бесшовности) -->
-       <span class="service-item">Branding 3D que atrae miradas y clientes</span>
-<span class="service-item">Experiencias 360º que convierten visitas en ventas</span>
-<span class="service-item">Showrooms digitales diseñados para vender</span>
-<span class="service-item">Diseño comercial enfocado en resultados reales</span>
-<span class="service-item">Visualización 3D que impulsa decisiones</span>
-<span class="service-item">Recorridos virtuales que generan confianza inmediata</span>
-<span class="service-item">Espacios virtuales que venden antes de existir</span>
-<span class="service-item">Experiencias inmersivas que dejan huella</span>
-
-<span class="service-item">Landing pages que captan y convierten</span>
-<span class="service-item">Embudos de venta que trabajan 24/7</span>
-<span class="service-item">Sistemas de compra optimizados para vender más</span>
-<span class="service-item">Pagos online rápidos, seguros y sin fricción</span>
-<span class="service-item">Integración Stripe lista para cobrar</span>
-<span class="service-item">PayPal y Bizum conectados y funcionando</span>
-<span class="service-item">Campañas Meta Ads que generan clientes reales</span>
-<span class="service-item">Google Ads optimizado para ROI positivo</span>
-<span class="service-item">Automatización para escalar sin límites</span>
-<span class="service-item">Inteligencia Artificial aplicada a ventas</span>
-
-      </div>
-    </div>
-
+<!-- ===== STATEMENT BANNER (replaces the old services text ticker) =====
+     One message over a slow looping 3D render (forward + reverse, so it loops
+     without a jump). Lazy-loaded by the SECTOR SECTIONS module in main.js;
+     reduced motion keeps the still. Text: "banner" in translations.json. -->
+<section class="vbanner" id="banner" aria-labelledby="vbanner-title"
+  style="--vbanner-poster: url('/images/banner-restaurant-render.webp')">
+  <div class="vbanner__media" aria-hidden="true">
+    <video class="vbanner__video" muted loop playsinline preload="none" tabindex="-1"
+      width="1280" height="720"
+      poster="/images/banner-restaurant-render.webp"
+      data-src="/videos/banner-restaurant-render.mp4"></video>
   </div>
-</div>
-
-
-<section id="sec3">
-  <div class="quad-grid">
-    
-   <a class="quad-tile" href="/curso-diseno-3d.html" style="background:#e8006e; justify-content:center; align-items:center; flex-direction:column; text-align:center; gap:10px;">
-  <div class="quad-copy">
-
-    <p style="font-family:'Ultra',serif; font-size:clamp(1.2rem,3vw,2.2rem); font-weight:400; color:#fff; line-height:1.1; margin:0;">
-      Curso: Diseño 3D que vende
-    </p>
-
-    <p style="font-family:'Lato',sans-serif; font-size:clamp(0.7rem,1.4vw,1rem); color:#fff; letter-spacing:0.5px; margin:0; text-transform:uppercase;">
-      Aprende a crear espacios que atraen clientes
-    </p>
-
-    <p style="font-family:'Lato',sans-serif; font-size:clamp(0.65rem,1.2vw,0.9rem); color:#fff; letter-spacing:0.4px; margin:0; text-transform:uppercase;">
-      Restaurantes, gimnasios y centros médicos diseñados como herramientas de captación y conversión
-    </p>
-
-  </div>
-</a>
-    
-    
+  <div class="vbanner__shade" aria-hidden="true"></div>
+  <div class="vbanner__inner">
+    <h2 class="vbanner__title" id="vbanner-title" aria-label="Ваш простір починає працювати ще до будівництва.">
+      <span class="vbanner__line" aria-hidden="true">Ваш простір починає працювати</span>
+      <span class="vbanner__line" aria-hidden="true"><em>ще до будівництва.</em></span>
+    </h2>
+    <p class="vbanner__text">3D-візуалізація, стратегія та комерційний дизайн для точніших рішень.</p>
   </div>
 </section>
 
-<div class="spacer">
-  <div class="spacer-inner">
-    <p class="spacer-message">
-      Un buen espacio no es un gasto<br>
-      Es un activo que<br> genera clientes
-    </p>
+<!-- ===== MORE THAN A PROJECT: the project becomes content =====
+     Split layout: 16:9 showreel (render -> wireframe -> phone/laptop content) +
+     short copy. Lazy-loaded by the SECTOR SECTIONS module in main.js; reduced
+     motion keeps the poster. Text: "projectContent" in translations.json. -->
+<section class="pcontent" id="proyecto-contenido" data-track-view="project_content_viewed" aria-labelledby="pcontent-title">
+  <div class="pcontent__grid">
+    <div class="pcontent__media" aria-hidden="true">
+      <video class="pcontent__video" muted loop playsinline preload="none" tabindex="-1"
+        width="854" height="480"
+        poster="/images/project-content-poster.webp"
+        data-src="/videos/project-content-showreel.mp4"></video>
+    </div>
+    <div class="pcontent__content">
+      <p class="pcontent__eyebrow">Більше, ніж проєкт</p>
+      <h2 class="pcontent__title" id="pcontent-title" aria-label="Проєкт стає контентом.">
+        <span class="pcontent__line" aria-hidden="true">Проєкт</span>
+        <span class="pcontent__line" aria-hidden="true">стає</span>
+        <span class="pcontent__line" aria-hidden="true"><em>контентом.</em></span>
+      </h2>
+      <p class="pcontent__text">Ті самі рендери, відеопроходи та 3D-види, які ми використовуємо під час проєктування, працюють і на просування: соцмережі, сайт, презентації для інвесторів і кампанії до відкриття.</p>
+    </div>
   </div>
+</section>
+
+<!-- ===== FINALE: wide showreel (no copy) =====
+     Full page width at the video's natural 16:9 height, directly after the
+     project-content section. Decorative (aria-hidden), no text. Lazy-loaded by
+     the SECTOR SECTIONS module in main.js (loads ~200px before it scrolls in,
+     pauses when off screen); reduced motion shows the poster only. -->
+<div class="fsvideo" id="showreel-final" aria-hidden="true">
+  <video class="fsvideo__video" muted loop playsinline preload="none" tabindex="-1"
+    width="854" height="480"
+    poster="/images/final-fullscreen-poster.webp"
+    data-src="/videos/final-fullscreen-showreel.mp4"></video>
 </div>
 
+<!-- ===== CLOSING STATEMENT (after the full-screen finale, before the footer) =====
+     Two lines + one quiet line on the footer colour, so it flows into the
+     footer. No buttons: the global WhatsApp button stays available.
+     Text: "closing" in translations.json. -->
+<section class="closing" id="cierre" aria-labelledby="closing-title">
+  <h2 class="closing__title" id="closing-title" aria-label="Ваш бізнес змінюється. Ваш простір теж має змінюватися.">
+    <span class="closing__line" aria-hidden="true">Ваш бізнес змінюється.</span>
+    <span class="closing__line" aria-hidden="true"><em>Ваш простір теж має змінюватися.</em></span>
+  </h2>
+  <p class="closing__text">Якщо відчуваєте, що настав час, поговорімо.</p>
+</section>
 
 </main>
 
@@ -1801,20 +1786,73 @@
 
 
 
-<div id="site-footer"></div>
+<!-- 3dna:footer -->
+  <!-- ===== SHARED FOOTER (templates/layout/footer.html) =====
+       The only footer on the site, plus the shared "Start a project" panel.
+       Written into every page by scripts/build-i18n.js between the
+       3dna:footer markers; edit it here, never in a page. -->
+<footer class="site-footer" id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
 
-<!-- Panel backdrop -->
+      <div class="footer-brand">
+        <a href="/uk/#hero" aria-label="Головна 3DNA">
+          <img src="/img/logo.png" alt="3DNA" class="footer-logo" width="1536" height="1024" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-tagline">Візуальний маркетинг та іммерсивний 3D</p>
+      </div>
+
+      <div class="footer-cols">
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Послуги</h2>
+          <ul>
+            <li><a href="/uk/#servicios">3D-дизайн</a></li>
+            <li><a href="/uk/#servicios">Сайти та лендинги</a></li>
+            <li><a href="/uk/#servicios">Воронки продажів</a></li>
+            <li><a href="/uk/#servicios">Прикладний ШІ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Правова інформація</h2>
+          <ul>
+            <li><a href="/oferta-publica.html">Публічна оферта</a></li>
+            <li><a href="/politica-cookies.html">Політика cookie</a></li>
+            <li><a href="/aviso-legal.html">Правове повідомлення</a></li>
+            <li><a href="/politica-privacidad.html">Політика конфіденційності</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Контакти</h2>
+          <ul>
+            <li><a href="mailto:andrei@3dna.es?subject=%D0%97%D0%B0%D0%BF%D0%B8%D1%82%20%D1%96%D0%B7%20%D1%81%D0%B0%D0%B9%D1%82%D1%83%203dna.es&amp;body=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B4%D1%96%D0%B7%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D1%8F%20%D0%B1%D1%96%D0%BB%D1%8C%D1%88%D0%B5%20%D0%BF%D1%80%D0%BE%20%D0%B2%D0%B0%D1%88%D1%96%20%D0%BF%D0%BE%D1%81%D0%BB%D1%83%D0%B3%D0%B8.">Email: andrei@3dna.es</a></li>
+            <li><a href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D0%BF%D1%80%D0%BE%D1%94%D0%BA%D1%82%20%D0%BA%D0%BE%D0%BC%D0%B5%D1%80%D1%86%D1%96%D0%B9%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%96%D0%BD%D1%82%D0%B5%D1%80%E2%80%99%D1%94%D1%80%D1%83." target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="footer">WhatsApp</a></li>
+            <li><span>Салобренья, Гранада (Іспанія)</span></li>
+            <li><a href="https://www.3dna.es">www.3dna.es</a></li>
+            <li class="footer-cta-row"><button type="button" class="open-panel footer-cta-btn" data-track="start_project_clicked" data-track-location="footer">Запросити пропозицію</button></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 3DNA · Усі права захищено</span>
+      <span>Дизайн і розробка: 3DNA Studio</span>
+    </div>
+  </div>
+</footer>
+
+<!-- "Start a project" side panel (localized partial, loaded on demand) -->
 <div id="panel-backdrop"></div>
-
-<!-- Side panel (loaded from partial) -->
 <div id="form-panel-root"></div>
 <script>
 (function () {
   const mount = document.getElementById('form-panel-root');
   if (!mount) return;
-
-  const src = '/assets/partials/form-panel.uk.html?v=20261007a';
-  fetch(src, { cache: 'no-store' })
+  fetch('/assets/partials/form-panel.uk.html?v=20261011a', { cache: 'no-store' })
     .then((response) => {
       if (!response.ok) throw new Error('Failed to load form panel partial.');
       return response.text();
@@ -1824,12 +1862,11 @@
       window.__formPanelLoaded = true;
       document.dispatchEvent(new Event('form-panel:ready'));
     })
-    .catch((error) => {
-      console.error(error);
-    });
+    .catch((error) => { console.error(error); });
 })();
 </script>
-<script src="/assets/js/main.js?v=20261010a"></script>
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=20261011a"></script>
 <script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
 <script src="/assets/js/healthcare-3d/naming-app.js?v=20261009a" defer></script>
 <!-- Spotlight video tile: restaurantes -->

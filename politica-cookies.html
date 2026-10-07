@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Lato&family=Ultra&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=20260501o">
+  <link rel="stylesheet" href="assets/css/main.css?v=20261011b">
   <style>
     body {
       scroll-snap-type: none !important;
@@ -36,9 +36,72 @@
   </style>
 </head>
 <body>
-  <div id="site-header"></div>
+  <!-- 3dna:header -->
+  <!-- ===== SHARED HEADER (templates/layout/header.html) =====
+       The only header on the site. Written into every page by
+       scripts/build-i18n.js between the 3dna:header markers; edit it here,
+       never in a page. assets/js/main.js only wires up behaviour (solid on
+       pages without a video hero, mobile menu, language choice). -->
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <div id="site-header">
+<header class="topbar topbar--overlay" id="topbar">
+  <div class="container topbar-inner">
+    <a class="brand brand--logo" href="/es/#hero" aria-label="Inicio de 3DNA">
+      <div class="brand-title"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></div>
+    </a>
 
-  <main class="legal-wrap">
+    <nav class="nav-desktop" aria-label="Principal">
+      <a href="/es/#sector-restaurants">Proyectos</a>
+      <a href="/es/#process">Proceso</a>
+      <a href="/es/#transform">Nosotros</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <nav class="lang-switch lang-switch--bar" aria-label="Idioma">
+        <a href="/en/" hreflang="en" lang="en" data-lang="en" aria-label="English">EN</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español" aria-current="page">ES</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/ru/" hreflang="ru" lang="ru" data-lang="ru" aria-label="Русский">RU</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/uk/" hreflang="uk" lang="uk" data-lang="uk" aria-label="Українська">UK</a>
+      </nav>
+      <button class="topbar-cta open-panel" type="button" data-track="start_project_clicked" data-track-location="header">Iniciar un proyecto <span aria-hidden="true">&rarr;</span></button>
+
+      <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="burger-lines" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Sidebar menu: logo · 5 links · language · one WhatsApp action -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-head">
+      <a class="mobile-menu-brand m-link" href="/es/#hero" aria-label="Inicio de 3DNA"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
+      <button class="mobile-close" id="mobileClose" type="button" aria-label="Cerrar menú">&times;</button>
+    </div>
+
+    <nav class="mobile-menu-nav" aria-label="Menú">
+      <a href="/es/#hero" class="m-link">Inicio</a>
+      <a href="/es/#sector-restaurants" class="m-link">Proyectos</a>
+      <a href="/es/#process" class="m-link">Proceso</a>
+      <a href="/es/#transform" class="m-link">Nosotros</a>
+      <a href="#site-footer" class="m-link">Contacto</a>
+    </nav>
+
+    <div class="mobile-menu-foot">
+      <nav class="lang-switch lang-switch--menu" aria-label="Idioma">
+        <a href="/en/" hreflang="en" lang="en" data-lang="en" aria-label="English">EN</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español" aria-current="page">ES</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/ru/" hreflang="ru" lang="ru" data-lang="ru" aria-label="Русский">RU</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/uk/" hreflang="uk" lang="uk" data-lang="uk" aria-label="Українська">UK</a>
+      </nav>
+      <a class="m-whatsapp" href="https://wa.me/34722878642?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20de%20interiores%20comerciales." target="_blank" rel="noopener noreferrer"
+        data-track="whatsapp_clicked" data-track-location="menu">WhatsApp <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-menu-backdrop" id="mobileBackdrop"></div>
+  </div>
+<!-- /3dna:header -->
+
+  <main class="legal-wrap" id="main" tabindex="-1">
     <article class="legal-card">
       <h1>Politica de Cookies</h1>
       <p class="meta"><strong>Ultima actualizacion:</strong> 1 de mayo de 2026</p>
@@ -107,7 +170,86 @@
     </article>
   </main>
 
-  <div id="site-footer"></div>
-  <script src="assets/js/main.js?v=20260501q"></script>
+  <!-- 3dna:footer -->
+  <!-- ===== SHARED FOOTER (templates/layout/footer.html) =====
+       The only footer on the site, plus the shared "Start a project" panel.
+       Written into every page by scripts/build-i18n.js between the
+       3dna:footer markers; edit it here, never in a page. -->
+<footer class="site-footer" id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="/es/#hero" aria-label="Inicio de 3DNA">
+          <img src="/img/logo.png" alt="3DNA" class="footer-logo" width="1536" height="1024" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-tagline">Visual Marketing &amp; Experiencias Inmersivas 3D</p>
+      </div>
+
+      <div class="footer-cols">
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Servicios</h2>
+          <ul>
+            <li><a href="/es/#servicios">Diseño 3D</a></li>
+            <li><a href="/es/#servicios">Webs y Landing Pages</a></li>
+            <li><a href="/es/#servicios">Embudos de venta</a></li>
+            <li><a href="/es/#servicios">IA aplicada</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Legal</h2>
+          <ul>
+            <li><a href="/oferta-publica.html">Oferta Pública</a></li>
+            <li><a href="/politica-cookies.html">Política de Cookies</a></li>
+            <li><a href="/aviso-legal.html">Aviso Legal</a></li>
+            <li><a href="/politica-privacidad.html">Política de Privacidad</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Contacto</h2>
+          <ul>
+            <li><a href="mailto:andrei@3dna.es?subject=Consulta%20desde%203dna.es&amp;body=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20vuestros%20servicios.">Email: andrei@3dna.es</a></li>
+            <li><a href="https://wa.me/34722878642?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20de%20interiores%20comerciales." target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="footer">WhatsApp</a></li>
+            <li><span>Salobreña, Granada</span></li>
+            <li><a href="https://www.3dna.es">www.3dna.es</a></li>
+            <li class="footer-cta-row"><button type="button" class="open-panel footer-cta-btn" data-track="start_project_clicked" data-track-location="footer">Solicitar propuesta</button></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 3DNA · Todos los derechos reservados</span>
+      <span>Diseño &amp; Desarrollo: 3DNA Studio</span>
+    </div>
+  </div>
+</footer>
+
+<!-- "Start a project" side panel (localized partial, loaded on demand) -->
+<div id="panel-backdrop"></div>
+<div id="form-panel-root"></div>
+<script>
+(function () {
+  const mount = document.getElementById('form-panel-root');
+  if (!mount) return;
+  fetch('/assets/partials/form-panel.html?v=20261011a', { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error('Failed to load form panel partial.');
+      return response.text();
+    })
+    .then((html) => {
+      mount.innerHTML = html;
+      window.__formPanelLoaded = true;
+      document.dispatchEvent(new Event('form-panel:ready'));
+    })
+    .catch((error) => { console.error(error); });
+})();
+</script>
+<!-- /3dna:footer -->
+  <script src="assets/js/main.js?v=20261011a"></script>
 </body>
 </html>

@@ -29,6 +29,7 @@ const SWITCHER_ORDER = ["en", "es", "ru", "uk"];
 
 // Existing single-language pages that are public and linked from the site.
 // They have no translations yet, so they go into the sitemap without hreflang.
+const DEFAULT_LANG_LEGACY = "es";
 const LEGACY_PAGES = [
   "restaurantes-3d.html",
   "gimnasios-3d.html",
@@ -46,6 +47,9 @@ const root = path.join(__dirname, "..");
 const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8").replace(/^﻿/, "");
 const template = read("templates/home.html");
 const formTemplate = read("templates/form-panel.html");
+// Shared layout: the ONLY header and footer on the site (see applyLayout below)
+const layoutHeader = read("templates/layout/header.html");
+const layoutFooter = read("templates/layout/footer.html");
 // Spanish keeps the original path, which the legacy (Spanish) pages already load
 const formPartialFile = (lang) => (lang === "es" ? "form-panel.html" : `form-panel.${lang}.html`);
 const translations = JSON.parse(read("assets/i18n/translations.json"));
@@ -209,6 +213,14 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "header.langSwitchMenu") return languageSwitcher(lang, "menu");
     if (key === "contact.whatsappHref") return escapeHtml(whatsappHref(lang));
     if (key === "form.partialFile") return formPartialFile(lang);
+    if (key === "form.partialVersion") return FORM_PARTIAL_VERSION;
+    if (key === "layout.header") return renderPartial(lang, layoutHeader);
+    if (key === "layout.footer") return renderPartial(lang, layoutFooter);
+    if (key === "footer.year") return String(new Date().getFullYear());
+    if (key === "footer.mailtoHref") {
+      const f = translations[lang].footer;
+      return escapeHtml(`mailto:${PUBLIC_EMAIL}?subject=${encodeURIComponent(f.emailSubject)}&body=${encodeURIComponent(f.emailBody)}`);
+    }
     if (key === "fitness.zoneNav") return fitnessPlanner.zoneNav(lang);
     if (key === "fitness.zoneDetails") return fitnessPlanner.zoneDetails(lang);
     if (key === "fitness.planSvg") return fitnessPlanner.planSvg(lang);
@@ -226,6 +238,41 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     return escapeHtml(value);
   });
   return "﻿" + out;
+}
+
+// A partial rendered with the page language (no BOM: it is embedded in a page)
+const renderPartial = (lang, tpl) => render(lang, {}, tpl).replace(/^\uFEFF/, "").replace(/\n+$/, "");
+const FORM_PARTIAL_VERSION = "20261011a";
+
+// ---------------------------------------------------------------- shared layout
+// Every standalone page (root *.html other than the generated index.html and the
+// old index.* copies) carries two marker pairs:
+//   <!-- 3dna:header --> ... <!-- /3dna:header -->
+//   <!-- 3dna:footer --> ... <!-- /3dna:footer -->
+// Each build rewrites what is between them from templates/layout/*.html in the
+// page's <html lang> (falls back to Spanish). Pages never contain their own
+// header/footer markup.
+const LAYOUT_MARKERS = {
+  header: [/<!-- 3dna:header -->[\s\S]*?<!-- \/3dna:header -->/, layoutHeader],
+  footer: [/<!-- 3dna:footer -->[\s\S]*?<!-- \/3dna:footer -->/, layoutFooter]
+};
+function applyLayout(html, lang) {
+  let out = html;
+  for (const [name, [re, tpl]] of Object.entries(LAYOUT_MARKERS)) {
+    if (!re.test(out)) throw new Error(`missing 3dna:${name} markers`);
+    const block = `<!-- 3dna:${name} -->\n${renderPartial(lang, tpl)}\n<!-- /3dna:${name} -->`;
+    out = out.replace(re, () => block);
+  }
+  return out;
+}
+const ASSET_VERSIONS = {
+  "main.css": (template.match(/main\.css\?v=([\w.-]+)/) || [])[1],
+  "main.js": (template.match(/main\.js\?v=([\w.-]+)/) || [])[1]
+};
+function layoutPages() {
+  return fs.readdirSync(root).filter((name) =>
+    name.endsWith(".html") && name !== "index.html" && !name.startsWith("index.") &&
+    fs.readFileSync(path.join(root, name), "utf8").includes("<!-- 3dna:header -->"));
 }
 
 function write(relPath, content) {
@@ -314,5 +361,20 @@ const robotsTxt = () =>
 for (const lang of SUPPORTED) write(`${lang}/index.html`, render(lang));
 for (const lang of SUPPORTED) write(`assets/partials/${formPartialFile(lang)}`, render(lang, {}, formTemplate));
 write("index.html", render(DEFAULT_LANG, { isRoot: true }));
+for (const page of layoutPages()) {
+  const file = path.join(root, page);
+  const raw = fs.readFileSync(file, "utf8");
+  const bom = raw.startsWith("\uFEFF") ? "\uFEFF" : "";
+  const crlf = raw.includes("\r\n");
+  const html = raw.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n");
+  const pageLang = (html.match(/<html[^>]*\blang="([a-z]{2})/i) || [])[1];
+  const lang = SUPPORTED.includes(pageLang) ? pageLang : DEFAULT_LANG_LEGACY;
+  let out = applyLayout(html, lang);
+  // same cache-busting versions as the home pages, so a page never pairs the
+  // shared markup with an older cached main.js / main.css
+  out = out.replace(/(main\.(?:css|js))\?v=[\w.-]+/g, (m, file) => `${file}?v=${ASSET_VERSIONS[file]}`);
+  if (crlf) out = out.replace(/\n/g, "\r\n");
+  if (bom + out !== raw) write(page, bom + out);
+}
 write("sitemap.xml", sitemapXml());
 write("robots.txt", robotsTxt());

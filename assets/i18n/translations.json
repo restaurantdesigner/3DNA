@@ -193,6 +193,37 @@
         "facility": "Facility"
       }
     },
+    "projectContent": {
+      "eyebrow": "More than a project",
+      "heading": ["The project", "becomes", "content."],
+      "headingText": "The project becomes content.",
+      "body": "The same renders, walkthroughs and 3D views we use to design also work to communicate: social media, website, investor presentations and pre-opening campaigns."
+    },
+    "footer": {
+      "tagline": "Visual Marketing & Immersive 3D Experiences",
+      "services": "Services",
+      "servicesItems": ["3D design", "Websites & Landing Pages", "Sales funnels", "Applied AI"],
+      "legal": "Legal",
+      "legalItems": ["Public Offer", "Cookie Policy", "Legal Notice", "Privacy Policy"],
+      "contact": "Contact",
+      "email": "Email",
+      "location": "Salobreña, Granada (Spain)",
+      "cta": "Request a proposal",
+      "rights": "All rights reserved",
+      "credit": "Design & Development: 3DNA Studio",
+      "emailSubject": "Enquiry from 3dna.es",
+      "emailBody": "Hello, I’d like to know more about your services."
+    },
+    "closing": {
+      "heading": ["Your business changes.", "Your space should too."],
+      "headingText": "Your business changes. Your space should too.",
+      "text": "If it feels like the right time, let’s talk."
+    },
+    "banner": {
+      "heading": ["Your space starts working", "before it’s built."],
+      "headingText": "Your space starts working before it’s built.",
+      "text": "3D visualization, strategy and commercial design for better decisions."
+    },
     "howItWorks": {
       "eyebrow": "How it works",
       "heading": ["Start small.", "Scale when you need to."],
@@ -560,6 +591,37 @@
         "system": "Sistema",
         "facility": "Instalación"
       }
+    },
+    "projectContent": {
+      "eyebrow": "Más que un proyecto",
+      "heading": ["El proyecto", "se convierte en", "contenido."],
+      "headingText": "El proyecto se convierte en contenido.",
+      "body": "Los mismos renders, recorridos y vistas 3D que usamos para diseñar sirven también para comunicar: redes sociales, web, presentaciones a inversores y campañas antes de abrir."
+    },
+    "footer": {
+      "tagline": "Visual Marketing & Experiencias Inmersivas 3D",
+      "services": "Servicios",
+      "servicesItems": ["Diseño 3D", "Webs y Landing Pages", "Embudos de venta", "IA aplicada"],
+      "legal": "Legal",
+      "legalItems": ["Oferta Pública", "Política de Cookies", "Aviso Legal", "Política de Privacidad"],
+      "contact": "Contacto",
+      "email": "Email",
+      "location": "Salobreña, Granada",
+      "cta": "Solicitar propuesta",
+      "rights": "Todos los derechos reservados",
+      "credit": "Diseño & Desarrollo: 3DNA Studio",
+      "emailSubject": "Consulta desde 3dna.es",
+      "emailBody": "Hola, me interesa saber más sobre vuestros servicios."
+    },
+    "closing": {
+      "heading": ["Tu negocio cambia.", "Tu espacio también debería hacerlo."],
+      "headingText": "Tu negocio cambia. Tu espacio también debería hacerlo.",
+      "text": "Si sientes que ha llegado el momento, hablemos."
+    },
+    "banner": {
+      "heading": ["Tu espacio empieza a funcionar", "antes de construirse."],
+      "headingText": "Tu espacio empieza a funcionar antes de construirse.",
+      "text": "Visualización 3D, estrategia y diseño comercial para tomar mejores decisiones."
     },
     "howItWorks": {
       "eyebrow": "Cómo funciona",
@@ -929,6 +991,37 @@
         "facility": "Оснащение"
       }
     },
+    "projectContent": {
+      "eyebrow": "Больше, чем проект",
+      "heading": ["Проект", "становится", "контентом."],
+      "headingText": "Проект становится контентом.",
+      "body": "Те же рендеры, видеопроходы и 3D-виды, которые мы используем при проектировании, работают и на продвижение: соцсети, сайт, презентации для инвесторов и кампании до открытия."
+    },
+    "footer": {
+      "tagline": "Визуальный маркетинг и иммерсивный 3D",
+      "services": "Услуги",
+      "servicesItems": ["3D-дизайн", "Сайты и лендинги", "Воронки продаж", "Прикладной ИИ"],
+      "legal": "Правовая информация",
+      "legalItems": ["Публичная оферта", "Политика cookie", "Правовое уведомление", "Политика конфиденциальности"],
+      "contact": "Контакты",
+      "email": "Email",
+      "location": "Салобренья, Гранада (Испания)",
+      "cta": "Запросить предложение",
+      "rights": "Все права защищены",
+      "credit": "Дизайн и разработка: 3DNA Studio",
+      "emailSubject": "Запрос с сайта 3dna.es",
+      "emailBody": "Здравствуйте, хочу узнать больше о ваших услугах."
+    },
+    "closing": {
+      "heading": ["Ваш бизнес меняется.", "Ваше пространство тоже должно меняться."],
+      "headingText": "Ваш бизнес меняется. Ваше пространство тоже должно меняться.",
+      "text": "Если чувствуете, что пришло время, давайте поговорим."
+    },
+    "banner": {
+      "heading": ["Ваше пространство начинает работать", "ещё до строительства."],
+      "headingText": "Ваше пространство начинает работать ещё до строительства.",
+      "text": "3D-визуализация, стратегия и коммерческий дизайн для более точных решений."
+    },
     "howItWorks": {
       "eyebrow": "Как это работает",
       "heading": ["Начните с малого.", "Масштабируйте, когда нужно."],
@@ -1296,6 +1389,37 @@
         "system": "Система",
         "facility": "Оснащення"
       }
+    },
+    "projectContent": {
+      "eyebrow": "Більше, ніж проєкт",
+      "heading": ["Проєкт", "стає", "контентом."],
+      "headingText": "Проєкт стає контентом.",
+      "body": "Ті самі рендери, відеопроходи та 3D-види, які ми використовуємо під час проєктування, працюють і на просування: соцмережі, сайт, презентації для інвесторів і кампанії до відкриття."
+    },
+    "footer": {
+      "tagline": "Візуальний маркетинг та іммерсивний 3D",
+      "services": "Послуги",
+      "servicesItems": ["3D-дизайн", "Сайти та лендинги", "Воронки продажів", "Прикладний ШІ"],
+      "legal": "Правова інформація",
+      "legalItems": ["Публічна оферта", "Політика cookie", "Правове повідомлення", "Політика конфіденційності"],
+      "contact": "Контакти",
+      "email": "Email",
+      "location": "Салобренья, Гранада (Іспанія)",
+      "cta": "Запросити пропозицію",
+      "rights": "Усі права захищено",
+      "credit": "Дизайн і розробка: 3DNA Studio",
+      "emailSubject": "Запит із сайту 3dna.es",
+      "emailBody": "Вітаю, хочу дізнатися більше про ваші послуги."
+    },
+    "closing": {
+      "heading": ["Ваш бізнес змінюється.", "Ваш простір теж має змінюватися."],
+      "headingText": "Ваш бізнес змінюється. Ваш простір теж має змінюватися.",
+      "text": "Якщо відчуваєте, що настав час, поговорімо."
+    },
+    "banner": {
+      "heading": ["Ваш простір починає працювати", "ще до будівництва."],
+      "headingText": "Ваш простір починає працювати ще до будівництва.",
+      "text": "3D-візуалізація, стратегія та комерційний дизайн для точніших рішень."
     },
     "howItWorks": {
       "eyebrow": "Як це працює",

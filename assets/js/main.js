@@ -2,9 +2,11 @@
 // 0a. WHATSAPP LINK (one number site-wide; message follows the page language)
 // =============================================
 // Locale home pages get the exact link from the build (window.I18N.whatsappHref,
-// text from assets/i18n/translations.json). Other pages are Spanish.
+// text from assets/i18n/translations.json); other pages read it from the shared
+// header's WhatsApp link (same build, page language). Spanish as a last resort.
 window.whatsappHref = () =>
   (window.I18N && window.I18N.whatsappHref) ||
+  (document.querySelector(".mobile-menu .m-whatsapp") || {}).href ||
   "https://wa.me/34722878642?text=" +
     encodeURIComponent("Hola, me gustaría hablar sobre un proyecto de diseño de interiores comerciales.");
 
@@ -42,232 +44,50 @@ window.saveLanguageChoice = (lang) => {
 })();
 
 // =============================================
-// 1. HEADER INJECTION (runs immediately)
+// 1. SHARED HEADER (behaviour only)
 // =============================================
+// Header and footer markup live in templates/layout/*.html and are written
+// into every page by scripts/build-i18n.js. Here: solid vs. transparent mode
+// and the language choice.
 (() => {
-  const pathname = window.location.pathname;
-  // Localized home pages live at /en/, /es/, /ru/, /uk/ (see scripts/build-i18n.js)
-  const isLocaleHome = /^\/(?:en|es|ru|uk)\/(?:index\.html)?$/.test(pathname);
-  const isHomePage = isLocaleHome || pathname === "/" || pathname.endsWith("/index.html");
-  const isNestedDetailPage = /\/(?:healthcare|packages)\/[^/]+\.html$/i.test(window.location.pathname);
-  const pagePrefix = isNestedDetailPage ? "../" : (isLocaleHome ? "/" : (isHomePage ? "" : "/"));
+  const topbar = document.getElementById("topbar");
+  if (!topbar) return;
+  const root = document.documentElement;
+  root.classList.add("has-overlay-header");
 
-  const homeLink = (hash) => {
-    if (isHomePage) return hash;
-    return `${pagePrefix}index.html${hash}`;
-  };
-
-  const fixRelativePaths = (root, prefix) => {
-    const skip = /^(?:[a-z]+:|#|\/\/)/i;
-    root.querySelectorAll("[href], [src]").forEach((node) => {
-      if (node.hasAttribute("href")) {
-        const href = node.getAttribute("href");
-        if (href && !skip.test(href)) {
-          node.setAttribute("href", `${prefix}${href}`);
-        }
-      }
-      if (node.hasAttribute("src")) {
-        const src = node.getAttribute("src");
-        if (src && !skip.test(src)) {
-          node.setAttribute("src", `${prefix}${src}`);
-        }
-      }
-    });
-  };
-
-  const sharedHeaderHtml = `
-<div class="utility-bar" aria-label="Utility navigation">
-  <div class="container">
-    <nav class="utility-nav">
-      <a class="utility-link" href="${homeLink("#servicios")}">
-        <span class="utility-text">3D</span>
-      </a>
-      <a class="utility-link" href="${homeLink("#sec5")}">
-        <span class="utility-text">WEB</span>
-      </a>
-      <a class="utility-link" href="${homeLink("#sec5")}">
-        <span class="utility-text">AI</span>
-      </a>
-    </nav>
-  </div>
-</div>
-
-<header class="topbar" id="topbar">
-  <div class="container topbar-inner">
-    <a class="brand" href="${homeLink("#hero")}" aria-label="3DNA Home">
-      <div class="brand-title"><img src="${pagePrefix}img/logo.png" alt="3DNA" /></div>
-      
-    </a>
-
-    <nav class="nav-desktop" aria-label="Primary">
-      <a href="${homeLink("#hero")}">Inicio</a>
-      <a href="${homeLink("#transform")}">Sobre nosotros</a>
-      <a href="${homeLink("#servicios")}">Servicios</a>
-
-      <div class="nav-dropdown" id="showroomDropdown">
-        <a href="${homeLink("#sec3")}" class="nav-parent" aria-haspopup="true" aria-expanded="false">
-          Experiencias <span class="nav-arrow" aria-hidden="true">&#9660;</span>
-        </a>
-
-        <div class="nav-menu" role="menu" aria-label="Showroom submenu">
-          <a role="menuitem" href="${homeLink("#sec3")}">Restaurantes</a>
-          <a role="menuitem" href="${homeLink("#sector-fitness")}">Gimnasios</a>
-          <a role="menuitem" href="${homeLink("#sec4")}">Centros medicos</a>
-        </div>
-      </div>
-
-      <a href="${homeLink("#contacto")}">Contacto</a>
-    </nav>
-
-    <div class="topbar-actions">
-      <button class="topbar-cta open-panel" type="button">Solicitar propuesta</button>
-
-      <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
-        <div class="burger-lines" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </div>
-      </button>
-    </div>
-  </div>
-</header>
-
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú" aria-hidden="true">
-  <div class="mobile-menu-inner">
-    <div class="mobile-menu-head">
-      <a class="mobile-menu-brand m-link" href="${homeLink("#hero")}" aria-label="Inicio de 3DNA"><img src="${pagePrefix}img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
-      <button class="mobile-close" id="mobileClose" type="button" aria-label="Cerrar menú">\u00d7</button>
-    </div>
-
-    <nav class="mobile-menu-nav" aria-label="Principal">
-      <a href="${homeLink("#hero")}" class="m-link">Inicio</a>
-      <a href="${homeLink("#sector-restaurants")}" class="m-link">Proyectos</a>
-      <a href="${homeLink("#sector-fitness")}" class="m-link">Proceso</a>
-      <a href="${homeLink("#transform")}" class="m-link">Nosotros</a>
-      <a href="#site-footer" class="m-link">Contacto</a>
-    </nav>
-
-    <div class="mobile-menu-foot">
-      <nav class="lang-switch lang-switch--menu" aria-label="Idioma">
-        <a href="/en/" hreflang="en" lang="en" data-lang="en" aria-label="English">EN</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español" aria-current="page">ES</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/ru/" hreflang="ru" lang="ru" data-lang="ru" aria-label="Русский">RU</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/uk/" hreflang="uk" lang="uk" data-lang="uk" aria-label="Українська">UK</a>
-      </nav>
-      <a class="m-whatsapp" href="${window.whatsappHref()}" target="_blank" rel="noopener noreferrer"
-        data-track="whatsapp_clicked" data-track-location="menu">WhatsApp <span aria-hidden="true">&rarr;</span></a>
-    </div>
-  </div>
-</div>
-
-<div class="mobile-menu-backdrop" id="mobileBackdrop"></div>`;
-
-  const host = document.getElementById("site-header");
-  if (!host) return;
-
-  // Localized home pages ship their header in the HTML (built by scripts/build-i18n.js).
-  const prerenderedHeader = host.querySelector("#topbar.topbar--overlay");
-  if (!prerenderedHeader) host.innerHTML = sharedHeaderHtml;
-
-  if (prerenderedHeader) {
-    document.documentElement.classList.add("has-overlay-header");
-
-    // A manual language choice is saved and always wins over detection.
-    // The equivalent place on the page (#hash) is kept when switching.
-    host.querySelectorAll(".lang-switch a[data-lang]").forEach((link) => {
-      link.addEventListener("click", () => {
-        const lang = link.dataset.lang;
-        window.saveLanguageChoice(lang);
-        if (window.track) window.track("language_selected", { language: lang });
-        if (window.location.hash) link.setAttribute("href", `/${lang}/${window.location.hash}`);
-      });
-    });
-    const topbar = document.getElementById("topbar");
-    const hero = document.querySelector(".sector-hero");
-    // Header turns solid once the hero has scrolled out from under it
-    if (topbar && hero && "IntersectionObserver" in window) {
-      const io = new IntersectionObserver(([entry]) => {
-        topbar.classList.toggle("is-solid", !entry.isIntersecting);
-      }, { rootMargin: `-${topbar.offsetHeight || 72}px 0px 0px 0px` });
-      io.observe(hero);
+  // Pages with a full-bleed video hero: transparent header over the hero that
+  // turns solid once the hero has scrolled away. Every other page: solid.
+  const hero = document.querySelector(".sector-hero");
+  if (hero && "IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      topbar.classList.toggle("is-solid", !entry.isIntersecting);
+    }, { rootMargin: `-${topbar.offsetHeight || 72}px 0px 0px 0px` }).observe(hero);
+  } else {
+    topbar.classList.add("is-solid");
+    root.classList.add("has-solid-header");
+    // Pages that don't leave room for the fixed bar themselves get it here
+    // (pages with a #hero get it from CSS; legal pages already pad their main).
+    const main = document.getElementById("main");
+    const first = main && main.firstElementChild;
+    const barH = parseFloat(getComputedStyle(root).getPropertyValue("--layout-header-h")) || 68;
+    if (first && first.id !== "hero" && first.getBoundingClientRect().top + window.scrollY < barH) {
+      main.style.paddingTop = `${barH}px`;
     }
   }
-  if (!prerenderedHeader) {
-    host.querySelectorAll(".lang-switch a[data-lang]").forEach((link) => {
-      link.addEventListener("click", () => window.saveLanguageChoice(link.dataset.lang));
+
+  // A manual language choice is saved and always wins over detection. On the
+  // localized home pages the equivalent place (#hash) is kept; other pages
+  // exist in one language only, so they switch to that language's home.
+  const isLocaleHome = /^\/(?:en|es|ru|uk)\/(?:index\.html)?$/.test(window.location.pathname);
+  document.querySelectorAll(".lang-switch a[data-lang]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const lang = link.dataset.lang;
+      window.saveLanguageChoice(lang);
+      if (window.track) window.track("language_selected", { language: lang });
+      if (isLocaleHome && window.location.hash) link.setAttribute("href", `/${lang}/${window.location.hash}`);
     });
-  }
-  if (isNestedDetailPage) {
-    fixRelativePaths(host, "../");
-  }
+  });
 })();
-
-// =============================================
-// 1b. FOOTER INJECTION
-// =============================================
-(() => {
-  const pathname = window.location.pathname;
-  const isLocaleHome = /^\/(?:en|es|ru|uk)\/(?:index\.html)?$/.test(pathname);
-  const isHomePage = isLocaleHome || pathname === "/" || pathname.endsWith("/index.html");
-  const isNestedDetailPage = /\/(?:healthcare|packages)\/[^/]+\.html$/i.test(pathname);
-  const prefix = isNestedDetailPage ? "../" : (isLocaleHome ? "/" : (isHomePage ? "" : "/"));
-  const homeHref = isLocaleHome ? "" : `${prefix}index.html`;
-
-  const footerHtml = `
-<footer class="site-footer" id="site-footer-el">
-  <div class="footer-inner">
-    <div class="footer-top">
-
-      <div class="footer-brand">
-        <a href="${homeHref || "#hero"}" aria-label="3DNA Home">
-          <img src="${prefix}img/logo.png" alt="3DNA" class="footer-logo" />
-        </a>
-        <p class="footer-tagline">Visual Marketing &amp; Experiencias Inmersivas 3D</p>
-      </div>
-
-      <div class="footer-cols">
-
-        <div class="footer-col">
-          <h4>Servicios</h4>
-          <ul>
-            <li><a href="${homeHref}#servicios">Diseño 3D</a></li>
-            <li><a href="${homeHref}#sec5">Webs y Landing Pages</a></li>
-            <li><a href="${homeHref}#servicios">Embudos de venta</a></li>
-            <li><a href="${homeHref}#servicios">IA aplicada</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="${prefix}oferta-publica.html">Oferta Pública</a></li>
-            <li><a href="${prefix}politica-cookies.html">Política de Cookies</a></li>
-            <li><a href="${prefix}aviso-legal.html">Aviso Legal</a></li>
-            <li><a href="${prefix}politica-privacidad.html">Política de Privacidad</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Contacto</h4>
-          <ul>
-            <li><a href="mailto:andrei@3dna.es?subject=Consulta%20desde%203dna.es&body=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20vuestros%20servicios.">Email: andrei@3dna.es</a></li>
-            <li><a href="${window.whatsappHref()}" target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="footer">WhatsApp</a></li>
-            <li><span>Salobreña, Granada</span></li>
-            <li><a href="https://www.3dna.es">www.3dna.es</a></li>
-            <li class="footer-cta-row"><button type="button" class="open-panel footer-cta-btn">Solicitar propuesta</button></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <span>© ${new Date().getFullYear()} 3DNA · Todos los derechos reservados</span>
-      <span>Diseño &amp; Desarrollo: 3DNA Studio</span>
-    </div>
-  </div>
-</footer>`;
-
-  const mount = document.getElementById("site-footer");
-  if (mount) mount.outerHTML = footerHtml;
-})();
-
 
 // =============================================
 // 2. ROTATING TEXT (hero + sec2)
@@ -1053,26 +873,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // =============================================
-// 14. SEC3 RIGHT VIDEO AUTOPLAY
-// =============================================
-document.addEventListener("DOMContentLoaded", () => {
-  const v = document.querySelector("#sec3 .sec2-right video");
-  if (!v) return;
-
-  v.classList.add("video-hover-active");
-  v.muted = true;
-  v.playsInline = true;
-
-  const tryPlay = () => v.play().catch(()=>{});
-
-  tryPlay();
-  ["touchstart","click","scroll"].forEach(evt =>
-    window.addEventListener(evt, tryPlay, { once:true, passive:true })
-  );
-});
-
-
-// =============================================
 // 15A. IOS INTERACTION LAYER SANITIZER
 // =============================================
 onFormPanelLifecycle(() => {
@@ -1121,38 +921,6 @@ onFormPanelLifecycle(() => {
     if (document.visibilityState === "visible") sanitizeLayers();
   });
   window.addEventListener("focus", sanitizeLayers);
-});
-
-
-// =============================================
-// 16. SHOWROOM DROPDOWN TOGGLE
-// =============================================
-document.addEventListener("DOMContentLoaded", () => {
-  const dd = document.getElementById("showroomDropdown");
-  if (!dd) return;
-
-  const parent = dd.querySelector(".nav-parent");
-  const menu = dd.querySelector(".nav-menu");
-  if (!parent || !menu) return;
-
-  parent.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dd.classList.toggle("open");
-  });
-
-  document.addEventListener("click", () => {
-    dd.classList.remove("open");
-  });
-
-  menu.addEventListener("click", (e) => {
-    e.stopPropagation();
-    dd.classList.remove("open");
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") dd.classList.remove("open");
-  });
 });
 
 
@@ -1261,7 +1029,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // - reduced motion: no video (poster stays), no reveal animation
 // - one "<sector>_section_viewed" analytics hook per page view (data-track-view)
 (() => {
-  const sections = document.querySelectorAll(".sector, .transform, .fit247");
+  const sections = document.querySelectorAll(".sector, .transform, .fit247, .vbanner, .pcontent, .fsvideo");
   if (!sections.length) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasIO = "IntersectionObserver" in window;
@@ -1360,10 +1128,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const queue = () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; sync(); }); } };
   new MutationObserver(queue).observe(root, { attributes: true, attributeFilter: ["class"], childList: true, subtree: true });
 
-  const footer = document.getElementById("site-footer") || document.querySelector("footer");
-  if (footer && "IntersectionObserver" in window) {
-    new IntersectionObserver(([entry]) => { footerVisible = entry.isIntersecting; sync(); },
-      { threshold: 0.15 }).observe(footer);
+  const closers = [document.getElementById("site-footer") || document.querySelector("footer")].filter(Boolean);
+  if (closers.length && "IntersectionObserver" in window) {
+    const seen = new Set();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => (entry.isIntersecting ? seen.add(entry.target) : seen.delete(entry.target)));
+      footerVisible = seen.size > 0;
+      sync();
+    }, { threshold: 0.15 });
+    closers.forEach((el) => io.observe(el));
   }
   sync();
+})();
+
+// =============================================
+// AI ASSISTANT AVATAR (ishare.ai / Pickaxe chat button, all pages)
+// =============================================
+// The widget loads its round button picture from its own settings; this
+// swaps it for the 3DNA portrait. The original picture stays hidden (CSS)
+// until swapped, so it never flashes. Changing the picture in the ishare.ai
+// dashboard would make this unnecessary.
+(function () {
+  const AVATAR = "/images/ai-assistant-avatar.webp";
+  const SELECTOR = '.pickaxe-embed img[alt="FAB Icon"]';
+  function swap() {
+    // swapped pictures get alt="3DNA", so only fresh widget pictures match
+    document.querySelectorAll(SELECTOR).forEach((img) => {
+      img.dataset.avatar3dna = "1";
+      img.src = AVATAR;
+      img.alt = "3DNA";
+    });
+  }
+  const watch = () => {
+    swap();
+    new MutationObserver(() => {
+      if (document.querySelector(SELECTOR)) swap();
+    }).observe(document.body, { childList: true, subtree: true });
+  };
+  if (document.body) watch();
+  else document.addEventListener("DOMContentLoaded", watch, { once: true });
 })();
