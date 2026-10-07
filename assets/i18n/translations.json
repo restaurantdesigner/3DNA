@@ -199,6 +199,73 @@
       "headingText": "The project becomes content.",
       "body": "The same renders, walkthroughs and 3D views we use to design also work to communicate: social media, website, investor presentations and pre-opening campaigns."
     },
+    "restaurantsPage": {
+      "slug": "restaurants",
+      "meta": {
+        "title": "Restaurant Interior Design | Commercial Interiors | 3DNA",
+        "description": "Restaurant interior design: layout, circulation, lighting, ergonomics and 3D visualization to avoid costly mistakes before construction."
+      },
+      "context": {
+        "back": "Back to Home",
+        "current": "Restaurants",
+        "label": "Breadcrumb"
+      },
+      "videoLabel": "Video: {label}",
+      "placeholder": "Video coming soon",
+      "sound": { "enable": "Enable sound", "disable": "Disable sound" },
+      "stories": {
+        "costly-mistakes": {
+          "label": "Costly mistakes",
+          "headline": "Avoid costly mistakes before they happen.",
+          "description": "Design, visualize and validate your restaurant before you invest in construction.",
+          "tags": "Layout · Flow · Lighting · Experience · 3D"
+        },
+        "layout": {
+          "label": "Layout",
+          "headline": "More seats don’t always mean more revenue.",
+          "description": "A good layout balances capacity, circulation, staff efficiency and guest comfort."
+        },
+        "lighting": {
+          "label": "Lighting",
+          "headline": "Bad lighting can ruin a good interior.",
+          "description": "Lighting defines atmosphere, comfort and how the space feels throughout the day."
+        },
+        "ergonomics": {
+          "label": "Ergonomics",
+          "headline": "Beautiful furniture can still be uncomfortable.",
+          "description": "Correct heights, proportions and distances make the space work better for guests and staff."
+        },
+        "flow": {
+          "label": "Flow",
+          "headline": "Guests should never feel the service route.",
+          "description": "Staff circulation and guest circulation need to work together without conflict."
+        },
+        "facade": {
+          "label": "Facade",
+          "headline": "The experience starts before guests walk in.",
+          "description": "The facade, lighting and shopfront decide whether people stop and step inside. It is the restaurant’s first impression."
+        },
+        "transformation": {
+          "label": "Transformation",
+          "headline": "The right transformation changes more than the look.",
+          "description": "It changes how the restaurant feels, works and performs."
+        },
+        "visualization": {
+          "label": "Visualization",
+          "headline": "See it before you build it.",
+          "description": "3D visualization lets you test layout, lighting, atmosphere and key decisions before construction begins."
+        }
+      },
+      "midCta": {
+        "heading": "Seeing any of these problems in your restaurant?",
+        "action": "Let’s talk"
+      },
+      "finalCta": {
+        "heading": "Want to improve your restaurant?",
+        "text": "Let’s design a space that works better.",
+        "action": "Start a project"
+      }
+    },
     "footer": {
       "tagline": "Visual Marketing & Immersive 3D Experiences",
       "services": "Services",
@@ -597,6 +664,73 @@
       "heading": ["El proyecto", "se convierte en", "contenido."],
       "headingText": "El proyecto se convierte en contenido.",
       "body": "Los mismos renders, recorridos y vistas 3D que usamos para diseñar sirven también para comunicar: redes sociales, web, presentaciones a inversores y campañas antes de abrir."
+    },
+    "restaurantsPage": {
+      "slug": "restaurantes",
+      "meta": {
+        "title": "Diseño de Restaurantes | Interiores Comerciales | 3DNA",
+        "description": "Diseño de interiores para restaurantes: distribución, circulación, iluminación, ergonomía y visualización 3D para evitar errores costosos antes de la obra."
+      },
+      "context": {
+        "back": "Volver al inicio",
+        "current": "Restaurantes",
+        "label": "Ruta de navegación"
+      },
+      "videoLabel": "Vídeo: {label}",
+      "placeholder": "Vídeo próximamente",
+      "sound": { "enable": "Activar sonido", "disable": "Desactivar sonido" },
+      "stories": {
+        "costly-mistakes": {
+          "label": "Errores costosos",
+          "headline": "Evita errores costosos antes de que ocurran.",
+          "description": "Diseña, visualiza y valida tu restaurante antes de invertir en obra.",
+          "tags": "Distribución · Flujo · Iluminación · Experiencia · 3D"
+        },
+        "layout": {
+          "label": "Distribución",
+          "headline": "Más mesas no siempre significan más ingresos.",
+          "description": "Una buena distribución equilibra capacidad, circulación, eficiencia del equipo y comodidad del cliente."
+        },
+        "lighting": {
+          "label": "Iluminación",
+          "headline": "Una mala iluminación puede arruinar un buen interior.",
+          "description": "La luz define la atmósfera, el confort y cómo se vive el espacio durante todo el día."
+        },
+        "ergonomics": {
+          "label": "Ergonomía",
+          "headline": "Un mobiliario bonito también puede ser incómodo.",
+          "description": "Alturas, proporciones y distancias correctas hacen que el espacio funcione mejor."
+        },
+        "flow": {
+          "label": "Circulación",
+          "headline": "El cliente no debería sentir el recorrido del servicio.",
+          "description": "La circulación del personal y la de los clientes deben funcionar juntas sin conflictos."
+        },
+        "facade": {
+          "label": "Fachada",
+          "headline": "La experiencia empieza antes de entrar.",
+          "description": "La fachada, la luz y el escaparate deciden si alguien se detiene y entra. Es la primera impresión del restaurante."
+        },
+        "transformation": {
+          "label": "Transformación",
+          "headline": "La transformación adecuada cambia mucho más que la imagen.",
+          "description": "Cambia cómo se siente, cómo funciona y cómo rinde el restaurante."
+        },
+        "visualization": {
+          "label": "Visualización",
+          "headline": "Ve el resultado antes de construir.",
+          "description": "La visualización 3D permite probar distribución, iluminación, atmósfera y decisiones clave antes de empezar la obra."
+        }
+      },
+      "midCta": {
+        "heading": "¿Estás viendo alguno de estos problemas en tu restaurante?",
+        "action": "Hablemos"
+      },
+      "finalCta": {
+        "heading": "¿Quieres mejorar tu restaurante?",
+        "text": "Diseñemos un espacio que funcione mejor.",
+        "action": "Empezar un proyecto"
+      }
     },
     "footer": {
       "tagline": "Visual Marketing & Experiencias Inmersivas 3D",
@@ -997,6 +1131,73 @@
       "headingText": "Проект становится контентом.",
       "body": "Те же рендеры, видеопроходы и 3D-виды, которые мы используем при проектировании, работают и на продвижение: соцсети, сайт, презентации для инвесторов и кампании до открытия."
     },
+    "restaurantsPage": {
+      "slug": "restaurants",
+      "meta": {
+        "title": "Дизайн интерьеров ресторанов | 3DNA",
+        "description": "Дизайн интерьеров ресторанов: планировка, потоки, освещение, эргономика и 3D-визуализация, чтобы избежать дорогих ошибок до начала работ."
+      },
+      "context": {
+        "back": "На главную",
+        "current": "Рестораны",
+        "label": "Навигационная цепочка"
+      },
+      "videoLabel": "Видео: {label}",
+      "placeholder": "Видео скоро появится",
+      "sound": { "enable": "Включить звук", "disable": "Выключить звук" },
+      "stories": {
+        "costly-mistakes": {
+          "label": "Дорогие ошибки",
+          "headline": "Избегайте дорогостоящих ошибок до того, как они произойдут.",
+          "description": "Спроектируйте, визуализируйте и проверьте ресторан до того, как инвестировать в реализацию.",
+          "tags": "Планировка · Потоки · Свет · Опыт гостей · 3D"
+        },
+        "layout": {
+          "label": "Планировка",
+          "headline": "Больше столов не всегда означает больше выручки.",
+          "description": "Хорошая планировка балансирует количество посадочных мест, потоки, работу персонала и комфорт гостей."
+        },
+        "lighting": {
+          "label": "Освещение",
+          "headline": "Плохой свет может испортить хороший интерьер.",
+          "description": "Освещение формирует атмосферу, комфорт и восприятие пространства в течение всего дня."
+        },
+        "ergonomics": {
+          "label": "Эргономика",
+          "headline": "Красивая мебель тоже может быть неудобной.",
+          "description": "Правильные высоты, пропорции и расстояния делают пространство удобнее для гостей и персонала."
+        },
+        "flow": {
+          "label": "Потоки",
+          "headline": "Гость не должен чувствовать маршрут обслуживания.",
+          "description": "Потоки персонала и гостей должны работать вместе и не мешать друг другу."
+        },
+        "facade": {
+          "label": "Фасад",
+          "headline": "Впечатление начинается ещё до входа.",
+          "description": "Фасад, свет и витрина решают, остановится ли человек и зайдёт ли внутрь. Это первое впечатление о ресторане."
+        },
+        "transformation": {
+          "label": "Трансформация",
+          "headline": "Правильная трансформация меняет не только внешний вид.",
+          "description": "Она меняет то, как ресторан ощущается, работает и показывает результат."
+        },
+        "visualization": {
+          "label": "Визуализация",
+          "headline": "Увидьте результат до начала строительства.",
+          "description": "3D-визуализация позволяет проверить планировку, свет, атмосферу и ключевые решения до начала реализации."
+        }
+      },
+      "midCta": {
+        "heading": "Узнаёте одну из этих проблем в своём ресторане?",
+        "action": "Давайте обсудим"
+      },
+      "finalCta": {
+        "heading": "Хотите улучшить свой ресторан?",
+        "text": "Давайте создадим пространство, которое работает лучше.",
+        "action": "Начать проект"
+      }
+    },
     "footer": {
       "tagline": "Визуальный маркетинг и иммерсивный 3D",
       "services": "Услуги",
@@ -1395,6 +1596,73 @@
       "heading": ["Проєкт", "стає", "контентом."],
       "headingText": "Проєкт стає контентом.",
       "body": "Ті самі рендери, відеопроходи та 3D-види, які ми використовуємо під час проєктування, працюють і на просування: соцмережі, сайт, презентації для інвесторів і кампанії до відкриття."
+    },
+    "restaurantsPage": {
+      "slug": "restaurants",
+      "meta": {
+        "title": "Дизайн інтер’єрів ресторанів | 3DNA",
+        "description": "Дизайн інтер’єрів ресторанів: планування, потоки, освітлення, ергономіка та 3D-візуалізація, щоб уникнути дорогих помилок до початку робіт."
+      },
+      "context": {
+        "back": "На головну",
+        "current": "Ресторани",
+        "label": "Навігаційний ланцюжок"
+      },
+      "videoLabel": "Відео: {label}",
+      "placeholder": "Відео незабаром",
+      "sound": { "enable": "Увімкнути звук", "disable": "Вимкнути звук" },
+      "stories": {
+        "costly-mistakes": {
+          "label": "Дорогі помилки",
+          "headline": "Уникайте дорогих помилок ще до того, як вони стануться.",
+          "description": "Спроєктуйте, візуалізуйте та перевірте ресторан до того, як інвестувати в реалізацію.",
+          "tags": "Планування · Потоки · Світло · Досвід гостей · 3D"
+        },
+        "layout": {
+          "label": "Планування",
+          "headline": "Більше столів не завжди означає більше прибутку.",
+          "description": "Гарне планування балансує кількість місць, потоки, ефективність персоналу та комфорт гостей."
+        },
+        "lighting": {
+          "label": "Освітлення",
+          "headline": "Погане освітлення може зіпсувати гарний інтер’єр.",
+          "description": "Світло формує атмосферу, комфорт і сприйняття простору протягом дня."
+        },
+        "ergonomics": {
+          "label": "Ергономіка",
+          "headline": "Красиві меблі теж можуть бути незручними.",
+          "description": "Правильні висоти, пропорції та відстані роблять простір зручнішим для гостей і персоналу."
+        },
+        "flow": {
+          "label": "Потоки",
+          "headline": "Гість не повинен відчувати маршрут обслуговування.",
+          "description": "Потоки персоналу та гостей повинні працювати разом без конфліктів."
+        },
+        "facade": {
+          "label": "Фасад",
+          "headline": "Враження починається ще до входу.",
+          "description": "Фасад, світло та вітрина вирішують, чи зупиниться людина й зайде всередину. Це перше враження про ресторан."
+        },
+        "transformation": {
+          "label": "Трансформація",
+          "headline": "Правильна трансформація змінює не лише вигляд.",
+          "description": "Вона змінює те, як ресторан відчувається, працює та показує результат."
+        },
+        "visualization": {
+          "label": "Візуалізація",
+          "headline": "Побачте результат до початку будівництва.",
+          "description": "3D-візуалізація дозволяє перевірити планування, освітлення, атмосферу та ключові рішення до початку реалізації."
+        }
+      },
+      "midCta": {
+        "heading": "Впізнаєте одну з цих проблем у своєму ресторані?",
+        "action": "Давайте поговоримо"
+      },
+      "finalCta": {
+        "heading": "Хочете покращити свій ресторан?",
+        "text": "Давайте створимо простір, який працює краще.",
+        "action": "Розпочати проєкт"
+      }
     },
     "footer": {
       "tagline": "Візуальний маркетинг та іммерсивний 3D",

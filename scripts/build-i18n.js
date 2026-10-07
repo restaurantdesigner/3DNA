@@ -8,6 +8,7 @@
  *
  * Output (plain static files: GitHub Pages and the Express server serve them as-is)
  *   /en/index.html /es/index.html /ru/index.html /uk/index.html
+ *   /<lang>/<restaurantsPage.slug>/index.html   Restaurants page (templates/restaurants.html)
  *   /index.html     entry point: English content + language redirect for visitors
  *   /sitemap.xml    every /<lang>/**\/index.html found + LEGACY_PAGES
  *   /robots.txt
@@ -36,7 +37,6 @@ const LEGACY_PAGES = [
   "clinicas-3d.html",
   "ecosistemas-digitales.html",
   "proyecto01-restaurante.html",
-  "prodazh-restorana.html",
   "oferta-publica.html",
   "aviso-legal.html",
   "politica-privacidad.html",
@@ -50,6 +50,8 @@ const formTemplate = read("templates/form-panel.html");
 // Shared layout: the ONLY header and footer on the site (see applyLayout below)
 const layoutHeader = read("templates/layout/header.html");
 const layoutFooter = read("templates/layout/footer.html");
+const restaurantsTemplate = read("templates/restaurants.html");
+const restaurantStories = JSON.parse(read("assets/data/restaurant-stories.json"));
 // Spanish keeps the original path, which the legacy (Spanish) pages already load
 const formPartialFile = (lang) => (lang === "es" ? "form-panel.html" : `form-panel.${lang}.html`);
 const translations = JSON.parse(read("assets/i18n/translations.json"));
@@ -78,26 +80,39 @@ const whatsappHref = (lang) => {
   return `https://wa.me/${c.whatsappNumber}?text=${encodeURIComponent(c.whatsappMessage)}`;
 };
 
+const restaurantsPage = require("./restaurants-page.js").createRestaurantsPage(
+  restaurantStories, translations, { whatsappHref: (lang) => whatsappHref(lang) });
+
+// Localized sub-pages: key -> path under /<lang>/ (slug comes from translations)
+const PAGES = {
+  restaurants: {
+    template: () => restaurantsTemplate,
+    subPath: (lang) => `${translations[lang].restaurantsPage.slug}/`,
+    meta: (lang) => translations[lang].restaurantsPage.meta
+  }
+};
+const pageSubPath = (options, lang) => (options && options.page ? PAGES[options.page].subPath(lang) : "");
+
 const fileVersion = (rel) =>
   crypto.createHash("sha1").update(fs.readFileSync(path.join(root, rel))).digest("hex").slice(0, 8);
 
 const jsonForScript = (data) => JSON.stringify(data).replace(/</g, "\\u003c");
 
 // ---------------------------------------------------------------- SEO: metadata
-function alternateLinks(subPath = "") {
-  const links = SUPPORTED.map((code) => `  <link rel="alternate" hreflang="${code}" href="${localeUrl(code, subPath)}">`);
-  links.push(`  <link rel="alternate" hreflang="x-default" href="${localeUrl(DEFAULT_LANG, subPath)}">`);
+function alternateLinks(subPathFor = () => "") {
+  const links = SUPPORTED.map((code) => `  <link rel="alternate" hreflang="${code}" href="${localeUrl(code, subPathFor(code))}">`);
+  links.push(`  <link rel="alternate" hreflang="x-default" href="${localeUrl(DEFAULT_LANG, subPathFor(DEFAULT_LANG))}">`);
   return links;
 }
 
-function socialMeta(lang, t) {
+function socialMeta(lang, t, meta = t.meta, url = localeUrl(lang)) {
   const image = absolute(OG_IMAGE.path(lang));
   const lines = [
     `  <meta property="og:type" content="website">`,
     `  <meta property="og:site_name" content="${SITE_NAME}">`,
-    `  <meta property="og:title" content="${escapeHtml(t.meta.title)}">`,
-    `  <meta property="og:description" content="${escapeHtml(t.meta.description)}">`,
-    `  <meta property="og:url" content="${localeUrl(lang)}">`,
+    `  <meta property="og:title" content="${escapeHtml(meta.title)}">`,
+    `  <meta property="og:description" content="${escapeHtml(meta.description)}">`,
+    `  <meta property="og:url" content="${url}">`,
     `  <meta property="og:image" content="${image}">`,
     `  <meta property="og:image:width" content="${OG_IMAGE.width}">`,
     `  <meta property="og:image:height" content="${OG_IMAGE.height}">`,
@@ -107,8 +122,8 @@ function socialMeta(lang, t) {
       (code) => `  <meta property="og:locale:alternate" content="${translations[code].meta.ogLocale}">`
     ),
     `  <meta name="twitter:card" content="summary_large_image">`,
-    `  <meta name="twitter:title" content="${escapeHtml(t.meta.title)}">`,
-    `  <meta name="twitter:description" content="${escapeHtml(t.meta.description)}">`,
+    `  <meta name="twitter:title" content="${escapeHtml(meta.title)}">`,
+    `  <meta name="twitter:description" content="${escapeHtml(meta.description)}">`,
     `  <meta name="twitter:image" content="${image}">`,
     `  <meta name="twitter:image:alt" content="${escapeHtml(t.meta.ogImageAlt)}">`
   ];
@@ -118,7 +133,7 @@ function socialMeta(lang, t) {
 // ---------------------------------------------------------------- SEO: JSON-LD
 // Only confirmed public facts. No address, phone, social profiles or Person
 // until they are published on the site.
-function structuredData(lang, t) {
+function structuredData(lang, t, meta = t.meta, url = localeUrl(lang)) {
   const graph = [
     {
       "@type": "Organization",
@@ -139,10 +154,10 @@ function structuredData(lang, t) {
     },
     {
       "@type": "WebPage",
-      "@id": `${localeUrl(lang)}#webpage`,
-      url: localeUrl(lang),
-      name: t.meta.title,
-      description: t.meta.description,
+      "@id": `${url}#webpage`,
+      url,
+      name: meta.title,
+      description: meta.description,
       inLanguage: lang,
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": `${SITE_URL}/#organization` },
@@ -152,18 +167,22 @@ function structuredData(lang, t) {
   return `  <script type="application/ld+json">${jsonForScript({ "@context": "https://schema.org", "@graph": graph })}</script>`;
 }
 
-function headTags(lang, { isRoot }) {
+function headTags(lang, options = {}) {
+  const { isRoot } = options;
   const t = translations[lang];
+  const subPathFor = (code) => pageSubPath(options, code);
+  const meta = options.page ? PAGES[options.page].meta(lang) : t.meta;
+  const url = localeUrl(lang, subPathFor(lang));
   const detectSrc = `/assets/js/i18n-detect.js?v=${fileVersion("assets/js/i18n-detect.js")}`;
   // Only what client JS needs; all visible text is rendered into the HTML here.
   const clientI18n = { lang, languages: SUPPORTED, whatsappHref: whatsappHref(lang) };
 
   const lines = [
-    `  <meta name="description" content="${escapeHtml(t.meta.description)}">`,
-    `  <link rel="canonical" href="${localeUrl(lang)}">`,
-    ...alternateLinks(),
-    ...socialMeta(lang, t),
-    structuredData(lang, t),
+    `  <meta name="description" content="${escapeHtml(meta.description)}">`,
+    `  <link rel="canonical" href="${url}">`,
+    ...alternateLinks(subPathFor),
+    ...socialMeta(lang, t, meta, url),
+    structuredData(lang, t, meta, url),
     `  <script>window.I18N = ${jsonForScript(clientI18n)};</script>`
   ];
 
@@ -187,12 +206,12 @@ function headTags(lang, { isRoot }) {
 }
 
 // ---------------------------------------------------------------- header: language switcher
-function languageSwitcher(lang, variant) {
+function languageSwitcher(lang, variant, subPathFor = () => "") {
   const t = translations[lang];
   const links = SWITCHER_ORDER.filter((code) => SUPPORTED.includes(code)).map((code) => {
     const current = code === lang ? ' aria-current="page"' : "";
     const name = escapeHtml(translations[code].languageName);
-    return `<a href="/${code}/" hreflang="${code}" lang="${code}" data-lang="${code}" aria-label="${name}"${current}>${code.toUpperCase()}</a>`;
+    return `<a href="/${code}/${subPathFor(code)}" hreflang="${code}" lang="${code}" data-lang="${code}" aria-label="${name}"${current}>${code.toUpperCase()}</a>`;
   });
   return [
     `      <nav class="lang-switch lang-switch--${variant}" aria-label="${escapeHtml(t.nav.language)}">`,
@@ -209,13 +228,14 @@ function render(lang, options = { isRoot: false }, tpl = template) {
   const out = tpl.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (match, key) => {
     if (key === "lang") return lang;
     if (key === "head.i18n") return headTags(lang, options);
-    if (key === "header.langSwitchBar") return languageSwitcher(lang, "bar");
-    if (key === "header.langSwitchMenu") return languageSwitcher(lang, "menu");
+    if (key === "header.langSwitchBar") return languageSwitcher(lang, "bar", (code) => pageSubPath(options, code));
+    if (key === "header.langSwitchMenu") return languageSwitcher(lang, "menu", (code) => pageSubPath(options, code));
     if (key === "contact.whatsappHref") return escapeHtml(whatsappHref(lang));
     if (key === "form.partialFile") return formPartialFile(lang);
     if (key === "form.partialVersion") return FORM_PARTIAL_VERSION;
-    if (key === "layout.header") return renderPartial(lang, layoutHeader);
-    if (key === "layout.footer") return renderPartial(lang, layoutFooter);
+    if (key === "layout.header") return renderPartial(lang, layoutHeader, options);
+    if (key === "layout.footer") return renderPartial(lang, layoutFooter, options);
+    if (key === "restaurants.storiesHtml") return restaurantsPage.storiesHtml(lang);
     if (key === "footer.year") return String(new Date().getFullYear());
     if (key === "footer.mailtoHref") {
       const f = translations[lang].footer;
@@ -241,7 +261,7 @@ function render(lang, options = { isRoot: false }, tpl = template) {
 }
 
 // A partial rendered with the page language (no BOM: it is embedded in a page)
-const renderPartial = (lang, tpl) => render(lang, {}, tpl).replace(/^\uFEFF/, "").replace(/\n+$/, "");
+const renderPartial = (lang, tpl, options = {}) => render(lang, { page: options.page }, tpl).replace(/^\uFEFF/, "").replace(/\n+$/, "");
 const FORM_PARTIAL_VERSION = "20261011a";
 
 // ---------------------------------------------------------------- shared layout
@@ -287,14 +307,20 @@ function write(relPath, content) {
 // are picked up automatically). A page is listed with hreflang alternates for
 // the languages where the same sub-path exists.
 function localizedPaths() {
-  const found = new Map(); // subPath -> Set(lang)
+  // a localized sub-page has a different slug per language (es: restaurantes/)
+  const pageKey = (lang, sub) => {
+    for (const [key, page] of Object.entries(PAGES)) if (page.subPath(lang) === sub) return key;
+    return sub;
+  };
+  const found = new Map(); // page key -> Map(lang -> subPath)
   for (const lang of SUPPORTED) {
     const walk = (dir, sub) => {
       for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
         if (entry.isDirectory()) walk(path.join(dir, entry.name), `${sub}${entry.name}/`);
         else if (entry.name === "index.html") {
-          if (!found.has(sub)) found.set(sub, new Set());
-          found.get(sub).add(lang);
+          const key = pageKey(lang, sub);
+          if (!found.has(key)) found.set(key, new Map());
+          found.get(key).set(lang, sub);
         }
       }
     };
@@ -307,14 +333,14 @@ function localizedPaths() {
 function sitemapXml() {
   const lastmod = (rel) => fs.statSync(path.join(root, rel)).mtime.toISOString().slice(0, 10);
   const urls = [];
-  for (const [subPath, langs] of localizedPaths()) {
+  for (const [, langs] of localizedPaths()) {
     const alternates = [...langs].map(
-      (code) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${localeUrl(code, subPath)}"/>`
+      ([code, sub]) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${localeUrl(code, sub)}"/>`
     );
     if (langs.has(DEFAULT_LANG)) {
-      alternates.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${localeUrl(DEFAULT_LANG, subPath)}"/>`);
+      alternates.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${localeUrl(DEFAULT_LANG, langs.get(DEFAULT_LANG))}"/>`);
     }
-    for (const lang of langs) {
+    for (const [lang, subPath] of langs) {
       urls.push(
         [
           "  <url>",
@@ -361,6 +387,13 @@ const robotsTxt = () =>
 for (const lang of SUPPORTED) write(`${lang}/index.html`, render(lang));
 for (const lang of SUPPORTED) write(`assets/partials/${formPartialFile(lang)}`, render(lang, {}, formTemplate));
 write("index.html", render(DEFAULT_LANG, { isRoot: true }));
+for (const [key, page] of Object.entries(PAGES)) {
+  for (const lang of SUPPORTED) {
+    const html = render(lang, { page: key }, page.template())
+      .replace(/(main\.(?:css|js))\?v=[\w.-]+/g, (m, file) => `${file}?v=${ASSET_VERSIONS[file]}`);
+    write(`${lang}/${page.subPath(lang)}index.html`, html);
+  }
+}
 for (const page of layoutPages()) {
   const file = path.join(root, page);
   const raw = fs.readFileSync(file, "utf8");

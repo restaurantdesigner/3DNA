@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Built by scripts/build-i18n.js from templates/restaurants.html +
+       assets/data/restaurant-stories.json + assets/i18n/translations.json -->
+  <title>{{restaurantsPage.meta.title}}</title>
+{{head.i18n}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <!-- First story poster is the largest early image -->
+  <link rel="preload" as="image" href="/images/restaurants/01-costly-mistakes.webp" type="image/webp" fetchpriority="high">
+
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261011b">
+</head>
+
+<body>
+<!-- 3dna:header -->
+{{layout.header}}
+<!-- /3dna:header -->
+
+<main id="main" tabindex="-1" class="rpage">
+  <nav class="rpage-context" aria-label="{{restaurantsPage.context.label}}">
+    <a class="rpage-context__back" href="/{{lang}}/"><span aria-hidden="true">&larr;</span> {{restaurantsPage.context.back}}</a>
+    <span class="rpage-context__current" aria-current="page">{{restaurantsPage.context.current}}</span>
+  </nav>
+
+{{restaurants.storiesHtml}}
+
+  <section class="rfinal" aria-labelledby="rfinal-title">
+    <h2 class="rfinal__title" id="rfinal-title">{{restaurantsPage.finalCta.heading}}</h2>
+    <p class="rfinal__text">{{restaurantsPage.finalCta.text}}</p>
+    <button type="button" class="rfinal__cta open-panel" data-track="start_project_clicked" data-track-location="restaurants_final">{{restaurantsPage.finalCta.action}} <span aria-hidden="true">&rarr;</span></button>
+  </section>
+</main>
+
+<!-- 3dna:footer -->
+{{layout.footer}}
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=20261011a"></script>
+<!-- ishare.ai Agent -->
+<script src="https://ishare.ai/api/embed/bundle.js" defer></script>
+</body>
+</html>

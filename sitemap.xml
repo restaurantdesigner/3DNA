@@ -37,6 +37,42 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/"/>
   </url>
   <url>
+    <loc>https://3dna.es/en/restaurants/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
+  </url>
+  <url>
+    <loc>https://3dna.es/es/restaurantes/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/restaurants/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/restaurants/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
+  </url>
+  <url>
     <loc>https://3dna.es/restaurantes-3d.html</loc>
     <lastmod>2026-10-07</lastmod>
   </url>
@@ -54,10 +90,6 @@
   </url>
   <url>
     <loc>https://3dna.es/proyecto01-restaurante.html</loc>
-    <lastmod>2026-10-07</lastmod>
-  </url>
-  <url>
-    <loc>https://3dna.es/prodazh-restorana.html</loc>
     <lastmod>2026-10-07</lastmod>
   </url>
   <url>

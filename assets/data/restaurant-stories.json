@@ -1,0 +1,15 @@
+{
+  "_comment": "Restaurants page stories (one vertical 9:16 video each), in page order. To add a story: append an entry here and its text under restaurantsPage.stories.<id> in assets/i18n/translations.json (EN/ES/RU/UK), then run npm run build:i18n. A story without 'video' shows a 9:16 placeholder; with a video, the frame takes the video's own proportions (width/height), so nothing is cropped. Desktop layout alternates automatically (odd = text left, even = video left); 'alignment' (\"text-left\" | \"video-left\") overrides it only if ever needed. 'midCtaAfter' is the story id after which the subtle mid-page CTA appears. An entry with \"type\": \"wide\" is a full-width video break (natural aspect ratio, no text, not counted in the left/right alternation); \"sound\": true adds a mute/unmute button (the file must contain audio).",
+  "midCtaAfter": "ergonomics",
+  "stories": [
+    { "id": "costly-mistakes", "number": "01", "video": "/videos/restaurants/01-costly-mistakes.mp4", "poster": "/images/restaurants/01-costly-mistakes.webp", "width": 480, "height": 854 },
+    { "id": "layout", "number": "02", "video": "/videos/restaurants/02-layout.mp4", "poster": "/images/restaurants/02-layout.webp", "width": 480, "height": 854 },
+    { "id": "lighting", "number": "03", "video": "/videos/restaurants/03-lighting.mp4", "poster": "/images/restaurants/03-lighting.webp", "width": 480, "height": 854 },
+    { "type": "wide", "id": "full-width-01", "video": "/videos/restaurants/full-width-01.mp4", "poster": "/images/restaurants/full-width-01.webp", "width": 1280, "height": 720, "sound": true },
+    { "id": "ergonomics", "number": "04", "video": "/videos/restaurants/04-ergonomics.mp4", "poster": "/images/restaurants/04-ergonomics.webp", "width": 480, "height": 854 },
+    { "id": "flow", "number": "05", "video": "/videos/restaurants/05-flow.mp4", "poster": "/images/restaurants/05-flow.webp", "width": 480, "height": 854 },
+    { "id": "facade", "number": "06", "video": "/videos/restaurants/06-facade.mp4", "poster": "/images/restaurants/06-facade.webp", "width": 720, "height": 1280 },
+    { "id": "transformation", "number": "07", "video": "/videos/restaurants/07-transformation.mp4", "poster": "/images/restaurants/07-transformation.webp", "width": 828, "height": 1108 },
+    { "id": "visualization", "number": "08", "video": "/videos/restaurants/08-visualization.mp4", "poster": "/images/restaurants/08-visualization.webp", "width": 720, "height": 1280 }
+  ]
+}

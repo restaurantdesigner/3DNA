@@ -1029,7 +1029,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // - reduced motion: no video (poster stays), no reveal animation
 // - one "<sector>_section_viewed" analytics hook per page view (data-track-view)
 (() => {
-  const sections = document.querySelectorAll(".sector, .transform, .fit247, .vbanner, .pcontent, .fsvideo");
+  const sections = document.querySelectorAll(".sector, .transform, .fit247, .vbanner, .pcontent, .fsvideo, .rstory, .rwide");
   if (!sections.length) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasIO = "IntersectionObserver" in window;
@@ -1167,4 +1167,31 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   if (document.body) watch();
   else document.addEventListener("DOMContentLoaded", watch, { once: true });
+})();
+
+// =============================================
+// VIDEO SOUND TOGGLE (Restaurants page: full-width video with "sound": true)
+// =============================================
+// The video always starts muted (so autoplay is allowed); sound only comes on
+// after the visitor presses the button. Toggling never restarts playback.
+(function () {
+  document.querySelectorAll(".rwide__sound").forEach((btn) => {
+    const video = btn.closest(".rwide")?.querySelector("video");
+    if (!video) return;
+    const render = () => {
+      const on = !video.muted;
+      btn.setAttribute("aria-pressed", String(on));
+      btn.setAttribute("aria-label", on ? btn.dataset.labelDisable : btn.dataset.labelEnable);
+    };
+    btn.addEventListener("click", () => {
+      // not loaded yet (e.g. reduced motion): this explicit press loads it
+      if (!video.getAttribute("src") && video.dataset.src) video.src = video.dataset.src;
+      video.muted = !video.muted;
+      if (video.paused) video.play().catch(() => {});
+      render();
+      if (window.track) window.track("video_sound_toggled", { sound: video.muted ? "off" : "on", language: document.documentElement.lang });
+    });
+    video.addEventListener("volumechange", render);
+    render();
+  });
 })();
