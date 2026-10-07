@@ -1131,7 +1131,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     root.classList.contains("modal-open") ||
                     root.classList.contains("mobile-open");
     const banner = document.querySelector("#cookie-consent.is-visible");
-    const chat = document.querySelector("button.pxe-fixed");
+    const chat = document.querySelector("button.pxe-fixed, button.ai-launch");
     a.classList.toggle("is-hidden", blocked);
     a.classList.toggle("is-muted", !blocked && (footerVisible || !!banner));
     a.classList.toggle("is-stacked", !!(chat && chat.getBoundingClientRect().width));
@@ -1207,4 +1207,61 @@ document.addEventListener("DOMContentLoaded", () => {
     video.addEventListener("volumechange", render);
     render();
   });
+})();
+
+// =============================================
+// AI CHAT (on demand) — ishare.ai / Pickaxe widget
+// =============================================
+// The widget bundle loads Stripe (fraud-prevention cookies __stripe_mid /
+// __stripe_sid) as soon as it runs, so it is NOT loaded with the page. Pages
+// that offer the chat carry its deployment marker (<div id="deployment-…">);
+// they get a lightweight launcher that looks like the widget's button. Only a
+// click loads the bundle, waits for the real button and opens the chat.
+(function () {
+ // the marker sits after main.js in some pages: wait for the full DOM
+ const init = () => {
+  const marker = document.querySelector('div[id^="deployment-"]');
+  if (!marker) return;
+  const BUNDLE = "https://ishare.ai/api/embed/bundle.js";
+  const labels = { es: "Abrir el asistente de IA", en: "Open the AI assistant", ru: "Открыть ИИ-ассистента", uk: "Відкрити ШІ-асистента" };
+  const lang = (document.documentElement.lang || "es").slice(0, 2);
+
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "ai-launch";
+  btn.setAttribute("aria-label", labels[lang] || labels.es);
+  btn.innerHTML = '<img src="/images/ai-assistant-avatar.webp" alt="" width="60" height="60" decoding="async">';
+  document.body.appendChild(btn);
+
+  let requested = false;
+  btn.addEventListener("click", () => {
+    if (requested) return;
+    requested = true;
+    btn.classList.add("is-loading");
+    btn.setAttribute("aria-busy", "true");
+    const openReal = (real) => {
+      btn.remove();
+      // the widget's own button opens the chat
+      requestAnimationFrame(() => real.click());
+    };
+    const found = document.querySelector("button.pxe-fixed");
+    if (found) { openReal(found); return; }
+    const obs = new MutationObserver(() => {
+      const real = document.querySelector("button.pxe-fixed");
+      if (real) { obs.disconnect(); clearTimeout(timer); openReal(real); }
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
+    const timer = setTimeout(() => { // service unreachable: allow another try
+      obs.disconnect(); requested = false;
+      btn.classList.remove("is-loading"); btn.removeAttribute("aria-busy");
+    }, 15000);
+    const s = document.createElement("script");
+    s.src = BUNDLE;
+    s.async = true;
+    document.body.appendChild(s);
+    if (window.track) window.track("ai_chat_opened", { language: document.documentElement.lang });
+  });
+ };
+ if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
+ else init();
 })();
