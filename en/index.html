@@ -48,7 +48,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261008i">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261009a">
 </head>
 
 <body>
@@ -1117,6 +1117,238 @@
   </div>
 </section>
 
+
+<!-- ===== HOSPITAL NAMING OPPORTUNITIES (interactive 3D, after 03 Healthcare) =====
+     Prices / status / layout: assets/data/hospital-naming.json. Text: "naming" in
+     assets/i18n/translations.json. The list, the details and the SVG plan below are
+     plain HTML (keyboard, crawlers, no-WebGL); the 3D scene is lazy-loaded by
+     assets/js/healthcare-3d/naming-app.js when the section approaches the viewport. -->
+<section class="hnaming" id="healthcare-naming" data-track-view="naming_section_viewed"
+  aria-labelledby="hnaming-title">
+  <div class="hnaming__head">
+    <p class="hnaming__eyebrow">Naming opportunities</p>
+    <h2 class="hnaming__title" id="hnaming-title" aria-label="Spaces that can support fundraising.">
+      <span class="hnaming__line" aria-hidden="true">Spaces that</span>
+      <span class="hnaming__line" aria-hidden="true">can support</span>
+      <span class="hnaming__line" aria-hidden="true"><em>fundraising.</em></span>
+    </h2>
+    <p class="hnaming__intro">Explore patient rooms, clinical areas and public spaces available for naming and recognition.</p>
+  </div>
+
+  <div class="hnaming__app" data-naming-app>
+    <div class="hnaming__stage">
+      <div class="hnaming__viewport" data-naming-viewport>
+        <div class="hnaming__poster" data-naming-poster>
+<svg class="hn-plan" viewBox="-0.5 -0.5 45 29" role="img" aria-label="Interactive 3D model of a hospital floor with naming opportunities."><rect class="hn-plan__service" x="0.06" y="0.06" width="21.88" height="3.88"/><g class="hn-plan__zone"><rect x="0.06" y="4.06" width="13.88" height="7.88"/><text x="0.4" y="4.95" font-size="0.55">Patient Rooms</text></g><g class="hn-plan__zone"><rect x="14.06" y="4.06" width="7.88" height="7.88"/><text x="14.4" y="4.95" font-size="0.55">Consultation Rooms</text></g><g class="hn-plan__zone"><rect x="22.06" y="0.06" width="7.88" height="11.88"/><text x="22.4" y="0.95" font-size="0.55">Diagnostic Imaging</text></g><g class="hn-plan__zone"><rect x="30.06" y="0.06" width="6.88" height="11.88"/><text x="30.4" y="0.95" font-size="0.55">MRI Suite</text></g><g class="hn-plan__zone"><rect x="37.06" y="0.06" width="6.88" height="5.88"/><text x="37.4" y="0.95" font-size="0.51">Trauma / Resuscitation</text></g><g class="hn-plan__zone"><rect x="37.06" y="6.06" width="6.88" height="5.88"/><text x="37.4" y="6.95" font-size="0.43">Preparation &amp; Recovery</text></g><g class="hn-plan__zone"><rect x="0.06" y="12.06" width="43.88" height="2.88"/><text x="0.4" y="12.95" font-size="0.55">Corridor / Wayfinding Spine</text></g><g class="hn-plan__zone"><rect x="0.06" y="15.06" width="9.88" height="12.88"/><text x="0.4" y="15.95" font-size="0.55">Waiting Area</text></g><g class="hn-plan__zone"><rect x="10.06" y="15.06" width="15.88" height="12.88"/><text x="10.4" y="15.95" font-size="0.55">Main Entrance / Lobby</text></g><g class="hn-plan__zone"><rect x="26.06" y="15.06" width="2.88" height="12.88"/><text x="26.4" y="15.95" font-size="0.17">Donor Wall / Recognition Area</text></g><g class="hn-plan__zone"><rect x="29.06" y="15.06" width="7.38" height="12.88"/><text x="29.4" y="15.95" font-size="0.55">Family Lounge</text></g><g class="hn-plan__zone"><rect x="36.56" y="15.06" width="7.38" height="12.88"/><text x="36.9" y="15.95" font-size="0.48">Education / Learning Room</text></g><g class="hn-plan__spot" data-opp="main-lobby"><circle cx="18" cy="22.5" r="0.7"/><circle class="hn-plan__dot" cx="18" cy="22.5" r="0.28"/></g><g class="hn-plan__spot" data-opp="mri-suite"><circle cx="35.6" cy="7.4" r="0.7"/><circle class="hn-plan__dot" cx="35.6" cy="7.4" r="0.28"/></g><g class="hn-plan__spot" data-opp="trauma-room"><circle cx="40.5" cy="3" r="0.7"/><circle class="hn-plan__dot" cx="40.5" cy="3" r="0.28"/></g><g class="hn-plan__spot" data-opp="imaging-area"><circle cx="26" cy="6" r="0.7"/><circle class="hn-plan__dot" cx="26" cy="6" r="0.28"/></g><g class="hn-plan__spot" data-opp="family-lounge"><circle cx="32.75" cy="21.5" r="0.7"/><circle class="hn-plan__dot" cx="32.75" cy="21.5" r="0.28"/></g><g class="hn-plan__spot" data-opp="patient-room"><circle cx="1.75" cy="8" r="0.7"/><circle class="hn-plan__dot" cx="1.75" cy="8" r="0.28"/></g><g class="hn-plan__spot" data-opp="consultation-room"><circle cx="16" cy="8" r="0.7"/><circle class="hn-plan__dot" cx="16" cy="8" r="0.28"/></g><g class="hn-plan__spot" data-opp="education-room"><circle cx="40.25" cy="21.5" r="0.7"/><circle class="hn-plan__dot" cx="40.25" cy="21.5" r="0.28"/></g><g class="hn-plan__spot" data-opp="waiting-area"><circle cx="5" cy="21.5" r="0.7"/><circle class="hn-plan__dot" cx="5" cy="21.5" r="0.28"/></g><g class="hn-plan__spot" data-opp="donor-wall"><circle cx="27.5" cy="21.5" r="0.7"/><circle class="hn-plan__dot" cx="27.5" cy="21.5" r="0.28"/></g></svg>
+        </div>
+        <p class="hnaming__loading" data-naming-loading hidden>Loading 3D model…</p>
+        <div class="hnaming__spots" data-naming-spots aria-hidden="true"></div>
+        <button type="button" class="hnaming__reset" data-naming-reset>Reset view</button>
+      </div>
+      <p class="hnaming__hint" data-naming-hint hidden>Drag to orbit, scroll or pinch to zoom, right-click or two fingers to pan.</p>
+      <ol class="hnaming__list" aria-label="Naming opportunities">
+        <li><button type="button" class="hnaming__opp" data-opp="main-lobby" aria-controls="hn-opp-main-lobby" aria-pressed="false">
+          <span class="hnaming__opp-name">Main Lobby</span>
+          <span class="hnaming__opp-price">$1,000,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="mri-suite" aria-controls="hn-opp-mri-suite" aria-pressed="false">
+          <span class="hnaming__opp-name">MRI Suite</span>
+          <span class="hnaming__opp-price">$750,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="trauma-room" aria-controls="hn-opp-trauma-room" aria-pressed="false">
+          <span class="hnaming__opp-name">Trauma / Resuscitation Room</span>
+          <span class="hnaming__opp-price">$500,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="imaging-area" aria-controls="hn-opp-imaging-area" aria-pressed="false">
+          <span class="hnaming__opp-name">Diagnostic Imaging Area</span>
+          <span class="hnaming__opp-price">$350,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="family-lounge" aria-controls="hn-opp-family-lounge" aria-pressed="false">
+          <span class="hnaming__opp-name">Family Lounge</span>
+          <span class="hnaming__opp-price">$250,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="patient-room" aria-controls="hn-opp-patient-room" aria-pressed="false">
+          <span class="hnaming__opp-name">Patient Room</span>
+          <span class="hnaming__opp-price">$100,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="consultation-room" aria-controls="hn-opp-consultation-room" aria-pressed="false">
+          <span class="hnaming__opp-name">Consultation Room</span>
+          <span class="hnaming__opp-price">$75,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="education-room" aria-controls="hn-opp-education-room" aria-pressed="false">
+          <span class="hnaming__opp-name">Education / Learning Room</span>
+          <span class="hnaming__opp-price">$150,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="waiting-area" aria-controls="hn-opp-waiting-area" aria-pressed="false">
+          <span class="hnaming__opp-name">Waiting Area</span>
+          <span class="hnaming__opp-price">$200,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="donor-wall" aria-controls="hn-opp-donor-wall" aria-pressed="false">
+          <span class="hnaming__opp-name">Donor Recognition Wall</span>
+          <span class="hnaming__opp-price">$50,000</span>
+        </button></li>
+      </ol>
+    </div>
+
+    <aside class="hnaming__panel" data-naming-panel aria-label="Opportunity" aria-live="polite">
+      <button type="button" class="hnaming__sheet-close" data-naming-close aria-label="Close">&times;</button>
+      <div class="hnaming__details">
+      <article class="hn-opp hn-opp--overview" id="hn-opp-overview" data-opp="overview">
+        <p class="hn-opp__kicker">Overview</p>
+        <dl class="hn-opp__facts">
+          <div><dt>Opportunities</dt><dd>10</dd></div>
+          <div><dt>Total value</dt><dd>$3,425,000</dd></div>
+        </dl>
+        <p class="hn-opp__desc">Select a space on the model or in the list to see its naming value and how the donor is recognized.</p>
+      </article>
+      <article class="hn-opp" id="hn-opp-main-lobby" data-opp="main-lobby" aria-labelledby="hn-opp-main-lobby-title">
+        <p class="hn-opp__kicker">Opportunity</p>
+        <h3 class="hn-opp__title" id="hn-opp-main-lobby-title">Main Lobby</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Naming value</dt><dd>$1,000,000</dd></div>
+          <div><dt>Area</dt><dd>Main Entrance / Lobby</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Description</h4>
+        <p class="hn-opp__desc">A high-visibility public space experienced by patients, visitors and staff.</p>
+        <h4 class="hn-opp__subtitle">Status</h4>
+        <p class="hn-opp__status hn-opp__status--available">Available</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20the%20%E2%80%9CMain%20Lobby%E2%80%9D%20naming%20opportunity%20(%241%2C000%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="main-lobby">Discuss this opportunity <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-mri-suite" data-opp="mri-suite" aria-labelledby="hn-opp-mri-suite-title">
+        <p class="hn-opp__kicker">Opportunity</p>
+        <h3 class="hn-opp__title" id="hn-opp-mri-suite-title">MRI Suite</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Naming value</dt><dd>$750,000</dd></div>
+          <div><dt>Area</dt><dd>MRI Suite</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Description</h4>
+        <p class="hn-opp__desc">An advanced diagnostic room associated with technology and clinical precision.</p>
+        <h4 class="hn-opp__subtitle">Status</h4>
+        <p class="hn-opp__status hn-opp__status--available">Available</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20the%20%E2%80%9CMRI%20Suite%E2%80%9D%20naming%20opportunity%20(%24750%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="mri-suite">Discuss this opportunity <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-trauma-room" data-opp="trauma-room" aria-labelledby="hn-opp-trauma-room-title">
+        <p class="hn-opp__kicker">Opportunity</p>
+        <h3 class="hn-opp__title" id="hn-opp-trauma-room-title">Trauma / Resuscitation Room</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Naming value</dt><dd>$500,000</dd></div>
+          <div><dt>Area</dt><dd>Trauma / Resuscitation</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Description</h4>
+        <p class="hn-opp__desc">Where the most critical emergencies are treated: recognition tied directly to saving lives.</p>
+        <h4 class="hn-opp__subtitle">Status</h4>
+        <p class="hn-opp__status hn-opp__status--available">Available</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20the%20%E2%80%9CTrauma%20%2F%20Resuscitation%20Room%E2%80%9D%20naming%20opportunity%20(%24500%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="trauma-room">Discuss this opportunity <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-imaging-area" data-opp="imaging-area" aria-labelledby="hn-opp-imaging-area-title">
+        <p class="hn-opp__kicker">Opportunity</p>
+        <h3 class="hn-opp__title" id="hn-opp-imaging-area-title">Diagnostic Imaging Area</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Naming value</dt><dd>$350,000</dd></div>
+          <div><dt>Area</dt><dd>Diagnostic Imaging</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Description</h4>
+        <p class="hn-opp__desc">Radiology and ultrasound in a calm setting designed to reduce patient anxiety.</p>
+        <h4 class="hn-opp__subtitle">Status</h4>
+        <p class="hn-opp__status hn-opp__status--available">Available</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20the%20%E2%80%9CDiagnostic%20Imaging%20Area%E2%80%9D%20naming%20opportunity%20(%24350%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="imaging-area">Discuss this opportunity <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-family-lounge" data-opp="family-lounge" aria-labelledby="hn-opp-family-lounge-title">
+        <p class="hn-opp__kicker">Opportunity</p>
+        <h3 class="hn-opp__title" id="hn-opp-family-lounge-title">Family Lounge</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Naming value</dt><dd>$250,000</dd></div>
+          <div><dt>Area</dt><dd>Family Lounge</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Description</h4>
+        <p class="hn-opp__desc">A quiet place where families can wait, rest and receive updates.</p>
+        <h4 class="hn-opp__subtitle">Status</h4>
+        <p class="hn-opp__status hn-opp__status--available">Available</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20the%20%E2%80%9CFamily%20Lounge%E2%80%9D%20naming%20opportunity%20(%24250%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="family-lounge">Discuss this opportunity <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-patient-room" data-opp="patient-room" aria-labelledby="hn-opp-patient-room-title">
+        <p class="hn-opp__kicker">Opportunity</p>
+        <h3 class="hn-opp__title" id="hn-opp-patient-room-title">Patient Room</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Naming value</dt><dd>$100,000</dd></div>
+          <div><dt>Area</dt><dd>Patient Rooms</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Description</h4>
+        <p class="hn-opp__desc">A private room where patients recover; recognition accompanies every stay.</p>
+        <h4 class="hn-opp__subtitle">Status</h4>
+        <p class="hn-opp__status hn-opp__status--available">Available</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20the%20%E2%80%9CPatient%20Room%E2%80%9D%20naming%20opportunity%20(%24100%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="patient-room">Discuss this opportunity <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-consultation-room" data-opp="consultation-room" aria-labelledby="hn-opp-consultation-room-title">
+        <p class="hn-opp__kicker">Opportunity</p>
+        <h3 class="hn-opp__title" id="hn-opp-consultation-room-title">Consultation Room</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Naming value</dt><dd>$75,000</dd></div>
+          <div><dt>Area</dt><dd>Consultation Rooms</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Description</h4>
+        <p class="hn-opp__desc">A bright room where the relationship between patient and clinician begins.</p>
+        <h4 class="hn-opp__subtitle">Status</h4>
+        <p class="hn-opp__status hn-opp__status--available">Available</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20the%20%E2%80%9CConsultation%20Room%E2%80%9D%20naming%20opportunity%20(%2475%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="consultation-room">Discuss this opportunity <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-education-room" data-opp="education-room" aria-labelledby="hn-opp-education-room-title">
+        <p class="hn-opp__kicker">Opportunity</p>
+        <h3 class="hn-opp__title" id="hn-opp-education-room-title">Education / Learning Room</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Naming value</dt><dd>$150,000</dd></div>
+          <div><dt>Area</dt><dd>Education / Learning Room</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Description</h4>
+        <p class="hn-opp__desc">A space to train clinicians and educate patients and families.</p>
+        <h4 class="hn-opp__subtitle">Status</h4>
+        <p class="hn-opp__status hn-opp__status--available">Available</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20the%20%E2%80%9CEducation%20%2F%20Learning%20Room%E2%80%9D%20naming%20opportunity%20(%24150%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="education-room">Discuss this opportunity <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-waiting-area" data-opp="waiting-area" aria-labelledby="hn-opp-waiting-area-title">
+        <p class="hn-opp__kicker">Opportunity</p>
+        <h3 class="hn-opp__title" id="hn-opp-waiting-area-title">Waiting Area</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Naming value</dt><dd>$200,000</dd></div>
+          <div><dt>Area</dt><dd>Waiting Area</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Description</h4>
+        <p class="hn-opp__desc">A comfortable, light-filled waiting area that welcomes every visitor.</p>
+        <h4 class="hn-opp__subtitle">Status</h4>
+        <p class="hn-opp__status hn-opp__status--available">Available</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20the%20%E2%80%9CWaiting%20Area%E2%80%9D%20naming%20opportunity%20(%24200%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="waiting-area">Discuss this opportunity <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-donor-wall" data-opp="donor-wall" aria-labelledby="hn-opp-donor-wall-title">
+        <p class="hn-opp__kicker">Opportunity</p>
+        <h3 class="hn-opp__title" id="hn-opp-donor-wall-title">Donor Recognition Wall</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Naming value</dt><dd>$50,000</dd></div>
+          <div><dt>Area</dt><dd>Donor Wall / Recognition Area</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Description</h4>
+        <p class="hn-opp__desc">A plaque on the lobby recognition wall, seen by every visitor.</p>
+        <h4 class="hn-opp__subtitle">Status</h4>
+        <p class="hn-opp__status hn-opp__status--available">Available</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20the%20%E2%80%9CDonor%20Recognition%20Wall%E2%80%9D%20naming%20opportunity%20(%2450%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="donor-wall">Discuss this opportunity <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      </div>
+      <p class="hnaming__note">Demonstration amounts in USD. Actual values are defined with each institution.</p>
+    </aside>
+  </div>
+
+  <script type="application/json" id="naming-data">{"model":{"enabled":false,"url":"/models/healthcare/hospital-naming.glb"},"floor":{"width":44,"depth":28},"serviceAreas":[{"id":"nurse-station","rect":{"x":0,"z":0,"w":22,"d":4}}],"zones":[{"id":"patientrooms","mesh":"ZONE_PatientRooms","rect":{"x":0,"z":4,"w":14,"d":8},"finish":"warm","name":"Patient Rooms"},{"id":"consultation","mesh":"ZONE_Consultation","rect":{"x":14,"z":4,"w":8,"d":8},"finish":"warm","name":"Consultation Rooms"},{"id":"imaging","mesh":"ZONE_Imaging","rect":{"x":22,"z":0,"w":8,"d":12},"finish":"clinical","name":"Diagnostic Imaging"},{"id":"mri","mesh":"ZONE_MRI","rect":{"x":30,"z":0,"w":7,"d":12},"finish":"clinical","name":"MRI Suite"},{"id":"trauma","mesh":"ZONE_Trauma","rect":{"x":37,"z":0,"w":7,"d":6},"finish":"clinical","name":"Trauma / Resuscitation"},{"id":"recovery","mesh":"ZONE_Recovery","rect":{"x":37,"z":6,"w":7,"d":6},"finish":"clinical","name":"Preparation & Recovery"},{"id":"corridor","mesh":"ZONE_Corridor","rect":{"x":0,"z":12,"w":44,"d":3},"finish":"corridor","name":"Corridor / Wayfinding Spine"},{"id":"waiting","mesh":"ZONE_Waiting","rect":{"x":0,"z":15,"w":10,"d":13},"finish":"wood","name":"Waiting Area"},{"id":"lobby","mesh":"ZONE_Lobby","rect":{"x":10,"z":15,"w":16,"d":13},"finish":"stone","name":"Main Entrance / Lobby"},{"id":"donorwall","mesh":"ZONE_DonorWall","rect":{"x":26,"z":15,"w":3,"d":13},"finish":"stone","name":"Donor Wall / Recognition Area"},{"id":"familylounge","mesh":"ZONE_FamilyLounge","rect":{"x":29,"z":15,"w":7.5,"d":13},"finish":"wood","name":"Family Lounge"},{"id":"education","mesh":"ZONE_Education","rect":{"x":36.5,"z":15,"w":7.5,"d":13},"finish":"wood","name":"Education / Learning Room"}],"opportunities":[{"id":"main-lobby","zone":"lobby","meshId":"NAMING_MainLobby","status":"available","rect":{"x":10,"z":15,"w":16,"d":13},"hotspot":{"x":18,"z":22.5},"name":"Main Lobby","price":"$1,000,000"},{"id":"mri-suite","zone":"mri","meshId":"NAMING_MRI","status":"available","rect":{"x":30,"z":0,"w":7,"d":12},"hotspot":{"x":35.6,"z":7.4},"name":"MRI Suite","price":"$750,000"},{"id":"trauma-room","zone":"trauma","meshId":"NAMING_Trauma","status":"available","rect":{"x":37,"z":0,"w":7,"d":6},"hotspot":{"x":40.5,"z":3},"name":"Trauma / Resuscitation Room","price":"$500,000"},{"id":"imaging-area","zone":"imaging","meshId":"NAMING_Imaging","status":"available","rect":{"x":22,"z":0,"w":8,"d":12},"hotspot":{"x":26,"z":6},"name":"Diagnostic Imaging Area","price":"$350,000"},{"id":"family-lounge","zone":"familylounge","meshId":"NAMING_FamilyLounge","status":"available","rect":{"x":29,"z":15,"w":7.5,"d":13},"hotspot":{"x":32.75,"z":21.5},"name":"Family Lounge","price":"$250,000"},{"id":"patient-room","zone":"patientrooms","meshId":"NAMING_PatientRoom01","status":"available","rect":{"x":0,"z":4,"w":3.5,"d":8},"hotspot":{"x":1.75,"z":8},"name":"Patient Room","price":"$100,000"},{"id":"consultation-room","zone":"consultation","meshId":"NAMING_Consultation01","status":"available","rect":{"x":14,"z":4,"w":4,"d":8},"hotspot":{"x":16,"z":8},"name":"Consultation Room","price":"$75,000"},{"id":"education-room","zone":"education","meshId":"NAMING_Education","status":"available","rect":{"x":36.5,"z":15,"w":7.5,"d":13},"hotspot":{"x":40.25,"z":21.5},"name":"Education / Learning Room","price":"$150,000"},{"id":"waiting-area","zone":"waiting","meshId":"NAMING_Waiting","status":"available","rect":{"x":0,"z":15,"w":10,"d":13},"hotspot":{"x":5,"z":21.5},"name":"Waiting Area","price":"$200,000"},{"id":"donor-wall","zone":"donorwall","meshId":"NAMING_DonorWall","status":"available","rect":{"x":26,"z":17.5,"w":3,"d":8},"hotspot":{"x":27.5,"z":21.5},"name":"Donor Recognition Wall","price":"$50,000"}]}</script>
+</section>
+
 <div class="spacer spacer-logos">
   <div class="spacer-inner">
    
@@ -1488,6 +1720,7 @@
 </script>
 <script src="/assets/js/main.js?v=20261008e"></script>
 <script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
+<script src="/assets/js/healthcare-3d/naming-app.js?v=20261009a" defer></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
 (function () {

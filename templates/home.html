@@ -21,7 +21,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261008i">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261009a">
 </head>
 
 <body>
@@ -723,6 +723,50 @@
   </div>
 </section>
 
+
+<!-- ===== HOSPITAL NAMING OPPORTUNITIES (interactive 3D, after 03 Healthcare) =====
+     Prices / status / layout: assets/data/hospital-naming.json. Text: "naming" in
+     assets/i18n/translations.json. The list, the details and the SVG plan below are
+     plain HTML (keyboard, crawlers, no-WebGL); the 3D scene is lazy-loaded by
+     assets/js/healthcare-3d/naming-app.js when the section approaches the viewport. -->
+<section class="hnaming" id="healthcare-naming" data-track-view="naming_section_viewed"
+  aria-labelledby="hnaming-title">
+  <div class="hnaming__head">
+    <p class="hnaming__eyebrow">{{naming.eyebrow}}</p>
+    <h2 class="hnaming__title" id="hnaming-title" aria-label="{{naming.headingText}}">
+      <span class="hnaming__line" aria-hidden="true">{{naming.heading.0}}</span>
+      <span class="hnaming__line" aria-hidden="true">{{naming.heading.1}}</span>
+      <span class="hnaming__line" aria-hidden="true"><em>{{naming.heading.2}}</em></span>
+    </h2>
+    <p class="hnaming__intro">{{naming.intro}}</p>
+  </div>
+
+  <div class="hnaming__app" data-naming-app>
+    <div class="hnaming__stage">
+      <div class="hnaming__viewport" data-naming-viewport>
+        <div class="hnaming__poster" data-naming-poster>
+{{naming.planSvg}}
+        </div>
+        <p class="hnaming__loading" data-naming-loading hidden>{{naming.ui.loading}}</p>
+        <div class="hnaming__spots" data-naming-spots aria-hidden="true"></div>
+        <button type="button" class="hnaming__reset" data-naming-reset>{{naming.ui.resetView}}</button>
+      </div>
+      <p class="hnaming__hint" data-naming-hint hidden>{{naming.ui.hint}}</p>
+{{naming.list}}
+    </div>
+
+    <aside class="hnaming__panel" data-naming-panel aria-label="{{naming.ui.opportunity}}" aria-live="polite">
+      <button type="button" class="hnaming__sheet-close" data-naming-close aria-label="{{naming.ui.close}}">&times;</button>
+      <div class="hnaming__details">
+{{naming.details}}
+      </div>
+      <p class="hnaming__note">{{naming.ui.note}}</p>
+    </aside>
+  </div>
+
+  <script type="application/json" id="naming-data">{{naming.dataJson}}</script>
+</section>
+
 <div class="spacer spacer-logos">
   <div class="spacer-inner">
    
@@ -1094,6 +1138,7 @@
 </script>
 <script src="/assets/js/main.js?v=20261008e"></script>
 <script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
+<script src="/assets/js/healthcare-3d/naming-app.js?v=20261009a" defer></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
 (function () {

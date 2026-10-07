@@ -1,0 +1,38 @@
+{
+  "_comment": "Hospital naming opportunities (homepage, after 03 Healthcare). Prices are PLACEHOLDER demonstration amounts. Edit prices / status / order here; names, areas and descriptions per language live in assets/i18n/translations.json under naming.opportunities and naming.zones. Units: metres. x = left to right, z = back (0) to front entrance.",
+  "model": {
+    "enabled": false,
+    "url": "/models/healthcare/hospital-naming.glb"
+  },
+  "currency": "USD",
+  "floor": { "width": 44, "depth": 28 },
+  "zones": [
+    { "id": "patientrooms", "mesh": "ZONE_PatientRooms", "rect": { "x": 0, "z": 4, "w": 14, "d": 8 }, "finish": "warm" },
+    { "id": "consultation", "mesh": "ZONE_Consultation", "rect": { "x": 14, "z": 4, "w": 8, "d": 8 }, "finish": "warm" },
+    { "id": "imaging", "mesh": "ZONE_Imaging", "rect": { "x": 22, "z": 0, "w": 8, "d": 12 }, "finish": "clinical" },
+    { "id": "mri", "mesh": "ZONE_MRI", "rect": { "x": 30, "z": 0, "w": 7, "d": 12 }, "finish": "clinical" },
+    { "id": "trauma", "mesh": "ZONE_Trauma", "rect": { "x": 37, "z": 0, "w": 7, "d": 6 }, "finish": "clinical" },
+    { "id": "recovery", "mesh": "ZONE_Recovery", "rect": { "x": 37, "z": 6, "w": 7, "d": 6 }, "finish": "clinical" },
+    { "id": "corridor", "mesh": "ZONE_Corridor", "rect": { "x": 0, "z": 12, "w": 44, "d": 3 }, "finish": "corridor" },
+    { "id": "waiting", "mesh": "ZONE_Waiting", "rect": { "x": 0, "z": 15, "w": 10, "d": 13 }, "finish": "wood" },
+    { "id": "lobby", "mesh": "ZONE_Lobby", "rect": { "x": 10, "z": 15, "w": 16, "d": 13 }, "finish": "stone" },
+    { "id": "donorwall", "mesh": "ZONE_DonorWall", "rect": { "x": 26, "z": 15, "w": 3, "d": 13 }, "finish": "stone" },
+    { "id": "familylounge", "mesh": "ZONE_FamilyLounge", "rect": { "x": 29, "z": 15, "w": 7.5, "d": 13 }, "finish": "wood" },
+    { "id": "education", "mesh": "ZONE_Education", "rect": { "x": 36.5, "z": 15, "w": 7.5, "d": 13 }, "finish": "wood" }
+  ],
+  "serviceAreas": [
+    { "id": "nurse-station", "rect": { "x": 0, "z": 0, "w": 22, "d": 4 } }
+  ],
+  "namingOpportunities": [
+    { "id": "main-lobby", "zone": "lobby", "price": 1000000, "currency": "USD", "status": "available", "meshId": "NAMING_MainLobby", "hotspot": { "x": 18, "z": 22.5 } },
+    { "id": "mri-suite", "zone": "mri", "price": 750000, "currency": "USD", "status": "available", "meshId": "NAMING_MRI", "hotspot": { "x": 35.6, "z": 7.4 } },
+    { "id": "trauma-room", "zone": "trauma", "price": 500000, "currency": "USD", "status": "available", "meshId": "NAMING_Trauma" },
+    { "id": "imaging-area", "zone": "imaging", "price": 350000, "currency": "USD", "status": "available", "meshId": "NAMING_Imaging" },
+    { "id": "family-lounge", "zone": "familylounge", "price": 250000, "currency": "USD", "status": "available", "meshId": "NAMING_FamilyLounge" },
+    { "id": "patient-room", "zone": "patientrooms", "price": 100000, "currency": "USD", "status": "available", "meshId": "NAMING_PatientRoom01", "rect": { "x": 0, "z": 4, "w": 3.5, "d": 8 } },
+    { "id": "consultation-room", "zone": "consultation", "price": 75000, "currency": "USD", "status": "available", "meshId": "NAMING_Consultation01", "rect": { "x": 14, "z": 4, "w": 4, "d": 8 } },
+    { "id": "education-room", "zone": "education", "price": 150000, "currency": "USD", "status": "available", "meshId": "NAMING_Education" },
+    { "id": "waiting-area", "zone": "waiting", "price": 200000, "currency": "USD", "status": "available", "meshId": "NAMING_Waiting" },
+    { "id": "donor-wall", "zone": "donorwall", "price": 50000, "currency": "USD", "status": "available", "meshId": "NAMING_DonorWall", "rect": { "x": 26, "z": 17.5, "w": 3, "d": 8 } }
+  ]
+}

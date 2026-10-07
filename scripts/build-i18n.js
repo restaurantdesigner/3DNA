@@ -51,6 +51,9 @@ const formPartialFile = (lang) => (lang === "es" ? "form-panel.html" : `form-pan
 const translations = JSON.parse(read("assets/i18n/translations.json"));
 const gym = JSON.parse(read("assets/data/gym-zones.json"));
 const fitnessPlanner = require("./fitness-planner.js").createFitnessPlanner(gym, translations);
+const hospitalNaming = require("./healthcare-naming.js").createHealthcareNaming(
+  JSON.parse(read("assets/data/hospital-naming.json")), translations,
+  { whatsappNumber: translations.es.contact.whatsappNumber });
 
 // ---------------------------------------------------------------- helpers
 const escapeHtml = (value) =>
@@ -207,6 +210,10 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "fitness.zoneDetails") return fitnessPlanner.zoneDetails(lang);
     if (key === "fitness.planSvg") return fitnessPlanner.planSvg(lang);
     if (key === "fitness.dataJson") return jsonForScript(fitnessPlanner.clientData(lang));
+    if (key === "naming.list") return hospitalNaming.list(lang);
+    if (key === "naming.details") return hospitalNaming.details(lang);
+    if (key === "naming.planSvg") return hospitalNaming.planSvg(lang);
+    if (key === "naming.dataJson") return jsonForScript(hospitalNaming.clientData(lang));
     const value = lookup(dict, key);
     if (value == null || typeof value === "object") {
       throw new Error(`Missing translation "${key}" for "${lang}"`);

@@ -48,7 +48,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261008i">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261009a">
 </head>
 
 <body>
@@ -1117,6 +1117,238 @@
   </div>
 </section>
 
+
+<!-- ===== HOSPITAL NAMING OPPORTUNITIES (interactive 3D, after 03 Healthcare) =====
+     Prices / status / layout: assets/data/hospital-naming.json. Text: "naming" in
+     assets/i18n/translations.json. The list, the details and the SVG plan below are
+     plain HTML (keyboard, crawlers, no-WebGL); the 3D scene is lazy-loaded by
+     assets/js/healthcare-3d/naming-app.js when the section approaches the viewport. -->
+<section class="hnaming" id="healthcare-naming" data-track-view="naming_section_viewed"
+  aria-labelledby="hnaming-title">
+  <div class="hnaming__head">
+    <p class="hnaming__eyebrow">Іменні простори</p>
+    <h2 class="hnaming__title" id="hnaming-title" aria-label="Простори, які залучають підтримку.">
+      <span class="hnaming__line" aria-hidden="true">Простори,</span>
+      <span class="hnaming__line" aria-hidden="true">які залучають</span>
+      <span class="hnaming__line" aria-hidden="true"><em>підтримку.</em></span>
+    </h2>
+    <p class="hnaming__intro">Досліджуйте палати, клінічні зони та громадські простори, доступні для іменного визнання та неймінгу.</p>
+  </div>
+
+  <div class="hnaming__app" data-naming-app>
+    <div class="hnaming__stage">
+      <div class="hnaming__viewport" data-naming-viewport>
+        <div class="hnaming__poster" data-naming-poster>
+<svg class="hn-plan" viewBox="-0.5 -0.5 45 29" role="img" aria-label="Інтерактивна 3D-модель поверху лікарні з іменними просторами."><rect class="hn-plan__service" x="0.06" y="0.06" width="21.88" height="3.88"/><g class="hn-plan__zone"><rect x="0.06" y="4.06" width="13.88" height="7.88"/><text x="0.4" y="4.95" font-size="0.55">Палати пацієнтів</text></g><g class="hn-plan__zone"><rect x="14.06" y="4.06" width="7.88" height="7.88"/><text x="14.4" y="4.95" font-size="0.55">Кабінети консультацій</text></g><g class="hn-plan__zone"><rect x="22.06" y="0.06" width="7.88" height="11.88"/><text x="22.4" y="0.95" font-size="0.55">Променева діагностика</text></g><g class="hn-plan__zone"><rect x="30.06" y="0.06" width="6.88" height="11.88"/><text x="30.4" y="0.95" font-size="0.55">Кабінет МРТ</text></g><g class="hn-plan__zone"><rect x="37.06" y="0.06" width="6.88" height="5.88"/><text x="37.4" y="0.95" font-size="0.43">Травматологія / реанімація</text></g><g class="hn-plan__zone"><rect x="37.06" y="6.06" width="6.88" height="5.88"/><text x="37.4" y="6.95" font-size="0.45">Підготовка та відновлення</text></g><g class="hn-plan__zone"><rect x="0.06" y="12.06" width="43.88" height="2.88"/><text x="0.4" y="12.95" font-size="0.55">Коридор / навігаційна вісь</text></g><g class="hn-plan__zone"><rect x="0.06" y="15.06" width="9.88" height="12.88"/><text x="0.4" y="15.95" font-size="0.55">Зона очікування</text></g><g class="hn-plan__zone"><rect x="10.06" y="15.06" width="15.88" height="12.88"/><text x="10.4" y="15.95" font-size="0.55">Головний вхід / хол</text></g><g class="hn-plan__zone"><rect x="26.06" y="15.06" width="2.88" height="12.88"/><text x="26.4" y="15.95" font-size="0.17">Стіна донорів / зона визнання</text></g><g class="hn-plan__zone"><rect x="29.06" y="15.06" width="7.38" height="12.88"/><text x="29.4" y="15.95" font-size="0.55">Кімната для родин</text></g><g class="hn-plan__zone"><rect x="36.56" y="15.06" width="7.38" height="12.88"/><text x="36.9" y="15.95" font-size="0.55">Навчальний клас</text></g><g class="hn-plan__spot" data-opp="main-lobby"><circle cx="18" cy="22.5" r="0.7"/><circle class="hn-plan__dot" cx="18" cy="22.5" r="0.28"/></g><g class="hn-plan__spot" data-opp="mri-suite"><circle cx="35.6" cy="7.4" r="0.7"/><circle class="hn-plan__dot" cx="35.6" cy="7.4" r="0.28"/></g><g class="hn-plan__spot" data-opp="trauma-room"><circle cx="40.5" cy="3" r="0.7"/><circle class="hn-plan__dot" cx="40.5" cy="3" r="0.28"/></g><g class="hn-plan__spot" data-opp="imaging-area"><circle cx="26" cy="6" r="0.7"/><circle class="hn-plan__dot" cx="26" cy="6" r="0.28"/></g><g class="hn-plan__spot" data-opp="family-lounge"><circle cx="32.75" cy="21.5" r="0.7"/><circle class="hn-plan__dot" cx="32.75" cy="21.5" r="0.28"/></g><g class="hn-plan__spot" data-opp="patient-room"><circle cx="1.75" cy="8" r="0.7"/><circle class="hn-plan__dot" cx="1.75" cy="8" r="0.28"/></g><g class="hn-plan__spot" data-opp="consultation-room"><circle cx="16" cy="8" r="0.7"/><circle class="hn-plan__dot" cx="16" cy="8" r="0.28"/></g><g class="hn-plan__spot" data-opp="education-room"><circle cx="40.25" cy="21.5" r="0.7"/><circle class="hn-plan__dot" cx="40.25" cy="21.5" r="0.28"/></g><g class="hn-plan__spot" data-opp="waiting-area"><circle cx="5" cy="21.5" r="0.7"/><circle class="hn-plan__dot" cx="5" cy="21.5" r="0.28"/></g><g class="hn-plan__spot" data-opp="donor-wall"><circle cx="27.5" cy="21.5" r="0.7"/><circle class="hn-plan__dot" cx="27.5" cy="21.5" r="0.28"/></g></svg>
+        </div>
+        <p class="hnaming__loading" data-naming-loading hidden>Завантаження 3D-моделі…</p>
+        <div class="hnaming__spots" data-naming-spots aria-hidden="true"></div>
+        <button type="button" class="hnaming__reset" data-naming-reset>Скинути вигляд</button>
+      </div>
+      <p class="hnaming__hint" data-naming-hint hidden>Перетягуйте для обертання, коліщатко або щипок для масштабу, права кнопка або два пальці для зсуву.</p>
+      <ol class="hnaming__list" aria-label="Іменні простори">
+        <li><button type="button" class="hnaming__opp" data-opp="main-lobby" aria-controls="hn-opp-main-lobby" aria-pressed="false">
+          <span class="hnaming__opp-name">Головний хол</span>
+          <span class="hnaming__opp-price">$1,000,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="mri-suite" aria-controls="hn-opp-mri-suite" aria-pressed="false">
+          <span class="hnaming__opp-name">Кабінет МРТ</span>
+          <span class="hnaming__opp-price">$750,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="trauma-room" aria-controls="hn-opp-trauma-room" aria-pressed="false">
+          <span class="hnaming__opp-name">Травматологія / реанімація</span>
+          <span class="hnaming__opp-price">$500,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="imaging-area" aria-controls="hn-opp-imaging-area" aria-pressed="false">
+          <span class="hnaming__opp-name">Відділення променевої діагностики</span>
+          <span class="hnaming__opp-price">$350,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="family-lounge" aria-controls="hn-opp-family-lounge" aria-pressed="false">
+          <span class="hnaming__opp-name">Кімната для родин</span>
+          <span class="hnaming__opp-price">$250,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="patient-room" aria-controls="hn-opp-patient-room" aria-pressed="false">
+          <span class="hnaming__opp-name">Палата пацієнта</span>
+          <span class="hnaming__opp-price">$100,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="consultation-room" aria-controls="hn-opp-consultation-room" aria-pressed="false">
+          <span class="hnaming__opp-name">Кабінет консультацій</span>
+          <span class="hnaming__opp-price">$75,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="education-room" aria-controls="hn-opp-education-room" aria-pressed="false">
+          <span class="hnaming__opp-name">Навчальний клас</span>
+          <span class="hnaming__opp-price">$150,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="waiting-area" aria-controls="hn-opp-waiting-area" aria-pressed="false">
+          <span class="hnaming__opp-name">Зона очікування</span>
+          <span class="hnaming__opp-price">$200,000</span>
+        </button></li>
+        <li><button type="button" class="hnaming__opp" data-opp="donor-wall" aria-controls="hn-opp-donor-wall" aria-pressed="false">
+          <span class="hnaming__opp-name">Стіна донорів</span>
+          <span class="hnaming__opp-price">$50,000</span>
+        </button></li>
+      </ol>
+    </div>
+
+    <aside class="hnaming__panel" data-naming-panel aria-label="Простір" aria-live="polite">
+      <button type="button" class="hnaming__sheet-close" data-naming-close aria-label="Закрити">&times;</button>
+      <div class="hnaming__details">
+      <article class="hn-opp hn-opp--overview" id="hn-opp-overview" data-opp="overview">
+        <p class="hn-opp__kicker">Огляд</p>
+        <dl class="hn-opp__facts">
+          <div><dt>Можливостей</dt><dd>10</dd></div>
+          <div><dt>Загальна вартість</dt><dd>$3,425,000</dd></div>
+        </dl>
+        <p class="hn-opp__desc">Виберіть простір на моделі або у списку, щоб побачити вартість найменування та формат визнання донора.</p>
+      </article>
+      <article class="hn-opp" id="hn-opp-main-lobby" data-opp="main-lobby" aria-labelledby="hn-opp-main-lobby-title">
+        <p class="hn-opp__kicker">Простір</p>
+        <h3 class="hn-opp__title" id="hn-opp-main-lobby-title">Головний хол</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Вартість найменування</dt><dd>$1,000,000</dd></div>
+          <div><dt>Зона</dt><dd>Головний вхід / хол</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Опис</h4>
+        <p class="hn-opp__desc">Громадський простір з максимальною видимістю: щодня через нього проходять пацієнти, відвідувачі та персонал.</p>
+        <h4 class="hn-opp__subtitle">Статус</h4>
+        <p class="hn-opp__status hn-opp__status--available">Доступно</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D1%96%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%C2%AB%D0%93%D0%BE%D0%BB%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9%20%D1%85%D0%BE%D0%BB%C2%BB%20(%241%2C000%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="main-lobby">Обговорити цю можливість <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-mri-suite" data-opp="mri-suite" aria-labelledby="hn-opp-mri-suite-title">
+        <p class="hn-opp__kicker">Простір</p>
+        <h3 class="hn-opp__title" id="hn-opp-mri-suite-title">Кабінет МРТ</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Вартість найменування</dt><dd>$750,000</dd></div>
+          <div><dt>Зона</dt><dd>Кабінет МРТ</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Опис</h4>
+        <p class="hn-opp__desc">Кабінет високотехнологічної діагностики, що асоціюється з технологіями та клінічною точністю.</p>
+        <h4 class="hn-opp__subtitle">Статус</h4>
+        <p class="hn-opp__status hn-opp__status--available">Доступно</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D1%96%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%C2%AB%D0%9A%D0%B0%D0%B1%D1%96%D0%BD%D0%B5%D1%82%20%D0%9C%D0%A0%D0%A2%C2%BB%20(%24750%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="mri-suite">Обговорити цю можливість <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-trauma-room" data-opp="trauma-room" aria-labelledby="hn-opp-trauma-room-title">
+        <p class="hn-opp__kicker">Простір</p>
+        <h3 class="hn-opp__title" id="hn-opp-trauma-room-title">Травматологія / реанімація</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Вартість найменування</dt><dd>$500,000</dd></div>
+          <div><dt>Зона</dt><dd>Травматологія / реанімація</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Опис</h4>
+        <p class="hn-opp__desc">Тут надають допомогу в найкритичніших випадках: визнання, безпосередньо пов’язане з порятунком життів.</p>
+        <h4 class="hn-opp__subtitle">Статус</h4>
+        <p class="hn-opp__status hn-opp__status--available">Доступно</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D1%96%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%C2%AB%D0%A2%D1%80%D0%B0%D0%B2%D0%BC%D0%B0%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D1%96%D1%8F%20%2F%20%D1%80%D0%B5%D0%B0%D0%BD%D1%96%D0%BC%D0%B0%D1%86%D1%96%D1%8F%C2%BB%20(%24500%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="trauma-room">Обговорити цю можливість <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-imaging-area" data-opp="imaging-area" aria-labelledby="hn-opp-imaging-area-title">
+        <p class="hn-opp__kicker">Простір</p>
+        <h3 class="hn-opp__title" id="hn-opp-imaging-area-title">Відділення променевої діагностики</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Вартість найменування</dt><dd>$350,000</dd></div>
+          <div><dt>Зона</dt><dd>Променева діагностика</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Опис</h4>
+        <p class="hn-opp__desc">Рентген і УЗД у спокійній обстановці, що знижує тривожність пацієнтів.</p>
+        <h4 class="hn-opp__subtitle">Статус</h4>
+        <p class="hn-opp__status hn-opp__status--available">Доступно</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D1%96%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%C2%AB%D0%92%D1%96%D0%B4%D0%B4%D1%96%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%20%D0%BF%D1%80%D0%BE%D0%BC%D0%B5%D0%BD%D0%B5%D0%B2%D0%BE%D1%97%20%D0%B4%D1%96%D0%B0%D0%B3%D0%BD%D0%BE%D1%81%D1%82%D0%B8%D0%BA%D0%B8%C2%BB%20(%24350%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="imaging-area">Обговорити цю можливість <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-family-lounge" data-opp="family-lounge" aria-labelledby="hn-opp-family-lounge-title">
+        <p class="hn-opp__kicker">Простір</p>
+        <h3 class="hn-opp__title" id="hn-opp-family-lounge-title">Кімната для родин</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Вартість найменування</dt><dd>$250,000</dd></div>
+          <div><dt>Зона</dt><dd>Кімната для родин</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Опис</h4>
+        <p class="hn-opp__desc">Тихе місце, де рідні можуть чекати, відпочивати й отримувати інформацію.</p>
+        <h4 class="hn-opp__subtitle">Статус</h4>
+        <p class="hn-opp__status hn-opp__status--available">Доступно</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D1%96%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%C2%AB%D0%9A%D1%96%D0%BC%D0%BD%D0%B0%D1%82%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D1%80%D0%BE%D0%B4%D0%B8%D0%BD%C2%BB%20(%24250%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="family-lounge">Обговорити цю можливість <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-patient-room" data-opp="patient-room" aria-labelledby="hn-opp-patient-room-title">
+        <p class="hn-opp__kicker">Простір</p>
+        <h3 class="hn-opp__title" id="hn-opp-patient-room-title">Палата пацієнта</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Вартість найменування</dt><dd>$100,000</dd></div>
+          <div><dt>Зона</dt><dd>Палати пацієнтів</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Опис</h4>
+        <p class="hn-opp__desc">Окрема палата, де пацієнт одужує; визнання супроводжує кожне перебування.</p>
+        <h4 class="hn-opp__subtitle">Статус</h4>
+        <p class="hn-opp__status hn-opp__status--available">Доступно</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D1%96%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%C2%AB%D0%9F%D0%B0%D0%BB%D0%B0%D1%82%D0%B0%20%D0%BF%D0%B0%D1%86%D1%96%D1%94%D0%BD%D1%82%D0%B0%C2%BB%20(%24100%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="patient-room">Обговорити цю можливість <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-consultation-room" data-opp="consultation-room" aria-labelledby="hn-opp-consultation-room-title">
+        <p class="hn-opp__kicker">Простір</p>
+        <h3 class="hn-opp__title" id="hn-opp-consultation-room-title">Кабінет консультацій</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Вартість найменування</dt><dd>$75,000</dd></div>
+          <div><dt>Зона</dt><dd>Кабінети консультацій</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Опис</h4>
+        <p class="hn-opp__desc">Світлий кабінет, де починаються стосунки пацієнта й лікаря.</p>
+        <h4 class="hn-opp__subtitle">Статус</h4>
+        <p class="hn-opp__status hn-opp__status--available">Доступно</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D1%96%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%C2%AB%D0%9A%D0%B0%D0%B1%D1%96%D0%BD%D0%B5%D1%82%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D1%96%D0%B9%C2%BB%20(%2475%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="consultation-room">Обговорити цю можливість <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-education-room" data-opp="education-room" aria-labelledby="hn-opp-education-room-title">
+        <p class="hn-opp__kicker">Простір</p>
+        <h3 class="hn-opp__title" id="hn-opp-education-room-title">Навчальний клас</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Вартість найменування</dt><dd>$150,000</dd></div>
+          <div><dt>Зона</dt><dd>Навчальний клас</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Опис</h4>
+        <p class="hn-opp__desc">Простір для навчання медичного персоналу, пацієнтів та їхніх родин.</p>
+        <h4 class="hn-opp__subtitle">Статус</h4>
+        <p class="hn-opp__status hn-opp__status--available">Доступно</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D1%96%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%C2%AB%D0%9D%D0%B0%D0%B2%D1%87%D0%B0%D0%BB%D1%8C%D0%BD%D0%B8%D0%B9%20%D0%BA%D0%BB%D0%B0%D1%81%C2%BB%20(%24150%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="education-room">Обговорити цю можливість <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-waiting-area" data-opp="waiting-area" aria-labelledby="hn-opp-waiting-area-title">
+        <p class="hn-opp__kicker">Простір</p>
+        <h3 class="hn-opp__title" id="hn-opp-waiting-area-title">Зона очікування</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Вартість найменування</dt><dd>$200,000</dd></div>
+          <div><dt>Зона</dt><dd>Зона очікування</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Опис</h4>
+        <p class="hn-opp__desc">Зручна світла зона очікування, що зустрічає кожного відвідувача.</p>
+        <h4 class="hn-opp__subtitle">Статус</h4>
+        <p class="hn-opp__status hn-opp__status--available">Доступно</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D1%96%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%C2%AB%D0%97%D0%BE%D0%BD%D0%B0%20%D0%BE%D1%87%D1%96%D0%BA%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F%C2%BB%20(%24200%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="waiting-area">Обговорити цю можливість <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="hn-opp" id="hn-opp-donor-wall" data-opp="donor-wall" aria-labelledby="hn-opp-donor-wall-title">
+        <p class="hn-opp__kicker">Простір</p>
+        <h3 class="hn-opp__title" id="hn-opp-donor-wall-title">Стіна донорів</h3>
+        <dl class="hn-opp__facts">
+          <div class="hn-opp__value"><dt>Вартість найменування</dt><dd>$50,000</dd></div>
+          <div><dt>Зона</dt><dd>Стіна донорів / зона визнання</dd></div>
+        </dl>
+        <h4 class="hn-opp__subtitle">Опис</h4>
+        <p class="hn-opp__desc">Іменна табличка на стіні визнання в холі, яку бачить кожен відвідувач.</p>
+        <h4 class="hn-opp__subtitle">Статус</h4>
+        <p class="hn-opp__status hn-opp__status--available">Доступно</p>
+        <a class="hn-opp__cta" href="https://wa.me/34722878642?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D1%96%D0%B2(%D0%BB%D0%B0)%20%D0%B1%20%D0%BE%D0%B1%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D0%B8%20%D1%96%D0%BC%D0%B5%D0%BD%D0%BD%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%96%D1%80%20%C2%AB%D0%A1%D1%82%D1%96%D0%BD%D0%B0%20%D0%B4%D0%BE%D0%BD%D0%BE%D1%80%D1%96%D0%B2%C2%BB%20(%2450%2C000)." target="_blank" rel="noopener noreferrer"
+          data-track="naming_opportunity_contact" data-track-location="donor-wall">Обговорити цю можливість <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      </div>
+      <p class="hnaming__note">Демонстраційні суми в доларах США. Реальні значення визначаються з кожною установою.</p>
+    </aside>
+  </div>
+
+  <script type="application/json" id="naming-data">{"model":{"enabled":false,"url":"/models/healthcare/hospital-naming.glb"},"floor":{"width":44,"depth":28},"serviceAreas":[{"id":"nurse-station","rect":{"x":0,"z":0,"w":22,"d":4}}],"zones":[{"id":"patientrooms","mesh":"ZONE_PatientRooms","rect":{"x":0,"z":4,"w":14,"d":8},"finish":"warm","name":"Палати пацієнтів"},{"id":"consultation","mesh":"ZONE_Consultation","rect":{"x":14,"z":4,"w":8,"d":8},"finish":"warm","name":"Кабінети консультацій"},{"id":"imaging","mesh":"ZONE_Imaging","rect":{"x":22,"z":0,"w":8,"d":12},"finish":"clinical","name":"Променева діагностика"},{"id":"mri","mesh":"ZONE_MRI","rect":{"x":30,"z":0,"w":7,"d":12},"finish":"clinical","name":"Кабінет МРТ"},{"id":"trauma","mesh":"ZONE_Trauma","rect":{"x":37,"z":0,"w":7,"d":6},"finish":"clinical","name":"Травматологія / реанімація"},{"id":"recovery","mesh":"ZONE_Recovery","rect":{"x":37,"z":6,"w":7,"d":6},"finish":"clinical","name":"Підготовка та відновлення"},{"id":"corridor","mesh":"ZONE_Corridor","rect":{"x":0,"z":12,"w":44,"d":3},"finish":"corridor","name":"Коридор / навігаційна вісь"},{"id":"waiting","mesh":"ZONE_Waiting","rect":{"x":0,"z":15,"w":10,"d":13},"finish":"wood","name":"Зона очікування"},{"id":"lobby","mesh":"ZONE_Lobby","rect":{"x":10,"z":15,"w":16,"d":13},"finish":"stone","name":"Головний вхід / хол"},{"id":"donorwall","mesh":"ZONE_DonorWall","rect":{"x":26,"z":15,"w":3,"d":13},"finish":"stone","name":"Стіна донорів / зона визнання"},{"id":"familylounge","mesh":"ZONE_FamilyLounge","rect":{"x":29,"z":15,"w":7.5,"d":13},"finish":"wood","name":"Кімната для родин"},{"id":"education","mesh":"ZONE_Education","rect":{"x":36.5,"z":15,"w":7.5,"d":13},"finish":"wood","name":"Навчальний клас"}],"opportunities":[{"id":"main-lobby","zone":"lobby","meshId":"NAMING_MainLobby","status":"available","rect":{"x":10,"z":15,"w":16,"d":13},"hotspot":{"x":18,"z":22.5},"name":"Головний хол","price":"$1,000,000"},{"id":"mri-suite","zone":"mri","meshId":"NAMING_MRI","status":"available","rect":{"x":30,"z":0,"w":7,"d":12},"hotspot":{"x":35.6,"z":7.4},"name":"Кабінет МРТ","price":"$750,000"},{"id":"trauma-room","zone":"trauma","meshId":"NAMING_Trauma","status":"available","rect":{"x":37,"z":0,"w":7,"d":6},"hotspot":{"x":40.5,"z":3},"name":"Травматологія / реанімація","price":"$500,000"},{"id":"imaging-area","zone":"imaging","meshId":"NAMING_Imaging","status":"available","rect":{"x":22,"z":0,"w":8,"d":12},"hotspot":{"x":26,"z":6},"name":"Відділення променевої діагностики","price":"$350,000"},{"id":"family-lounge","zone":"familylounge","meshId":"NAMING_FamilyLounge","status":"available","rect":{"x":29,"z":15,"w":7.5,"d":13},"hotspot":{"x":32.75,"z":21.5},"name":"Кімната для родин","price":"$250,000"},{"id":"patient-room","zone":"patientrooms","meshId":"NAMING_PatientRoom01","status":"available","rect":{"x":0,"z":4,"w":3.5,"d":8},"hotspot":{"x":1.75,"z":8},"name":"Палата пацієнта","price":"$100,000"},{"id":"consultation-room","zone":"consultation","meshId":"NAMING_Consultation01","status":"available","rect":{"x":14,"z":4,"w":4,"d":8},"hotspot":{"x":16,"z":8},"name":"Кабінет консультацій","price":"$75,000"},{"id":"education-room","zone":"education","meshId":"NAMING_Education","status":"available","rect":{"x":36.5,"z":15,"w":7.5,"d":13},"hotspot":{"x":40.25,"z":21.5},"name":"Навчальний клас","price":"$150,000"},{"id":"waiting-area","zone":"waiting","meshId":"NAMING_Waiting","status":"available","rect":{"x":0,"z":15,"w":10,"d":13},"hotspot":{"x":5,"z":21.5},"name":"Зона очікування","price":"$200,000"},{"id":"donor-wall","zone":"donorwall","meshId":"NAMING_DonorWall","status":"available","rect":{"x":26,"z":17.5,"w":3,"d":8},"hotspot":{"x":27.5,"z":21.5},"name":"Стіна донорів","price":"$50,000"}]}</script>
+</section>
+
 <div class="spacer spacer-logos">
   <div class="spacer-inner">
    
@@ -1488,6 +1720,7 @@
 </script>
 <script src="/assets/js/main.js?v=20261008e"></script>
 <script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
+<script src="/assets/js/healthcare-3d/naming-app.js?v=20261009a" defer></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
 (function () {

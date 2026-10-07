@@ -193,6 +193,59 @@
         "facility": "Facility"
       }
     },
+    "naming": {
+      "eyebrow": "Naming opportunities",
+      "heading": ["Spaces that", "can support", "fundraising."],
+      "headingText": "Spaces that can support fundraising.",
+      "intro": "Explore patient rooms, clinical areas and public spaces available for naming and recognition.",
+      "ui": {
+        "listLabel": "Naming opportunities",
+        "opportunity": "Opportunity",
+        "namingValue": "Naming value",
+        "area": "Area",
+        "description": "Description",
+        "status": "Status",
+        "cta": "Discuss this opportunity",
+        "resetView": "Reset view",
+        "hint": "Drag to orbit, scroll or pinch to zoom, right-click or two fingers to pan.",
+        "loading": "Loading 3D model…",
+        "close": "Close",
+        "overviewTitle": "Overview",
+        "overviewText": "Select a space on the model or in the list to see its naming value and how the donor is recognized.",
+        "count": "Opportunities",
+        "total": "Total value",
+        "note": "Demonstration amounts in USD. Actual values are defined with each institution.",
+        "canvasDescription": "Interactive 3D model of a hospital floor with naming opportunities.",
+        "whatsappMessage": "Hello, I’d like to discuss the “{name}” naming opportunity ({price})."
+      },
+      "statuses": { "available": "Available", "reserved": "Reserved", "named": "Named" },
+      "zones": {
+        "lobby": "Main Entrance / Lobby",
+        "waiting": "Waiting Area",
+        "patientrooms": "Patient Rooms",
+        "familylounge": "Family Lounge",
+        "consultation": "Consultation Rooms",
+        "imaging": "Diagnostic Imaging",
+        "mri": "MRI Suite",
+        "trauma": "Trauma / Resuscitation",
+        "recovery": "Preparation & Recovery",
+        "corridor": "Corridor / Wayfinding Spine",
+        "education": "Education / Learning Room",
+        "donorwall": "Donor Wall / Recognition Area"
+      },
+      "opportunities": {
+        "main-lobby": {"name": "Main Lobby", "description": "A high-visibility public space experienced by patients, visitors and staff."},
+        "mri-suite": {"name": "MRI Suite", "description": "An advanced diagnostic room associated with technology and clinical precision."},
+        "trauma-room": {"name": "Trauma / Resuscitation Room", "description": "Where the most critical emergencies are treated: recognition tied directly to saving lives."},
+        "imaging-area": {"name": "Diagnostic Imaging Area", "description": "Radiology and ultrasound in a calm setting designed to reduce patient anxiety."},
+        "family-lounge": {"name": "Family Lounge", "description": "A quiet place where families can wait, rest and receive updates."},
+        "patient-room": {"name": "Patient Room", "description": "A private room where patients recover; recognition accompanies every stay."},
+        "consultation-room": {"name": "Consultation Room", "description": "A bright room where the relationship between patient and clinician begins."},
+        "education-room": {"name": "Education / Learning Room", "description": "A space to train clinicians and educate patients and families."},
+        "waiting-area": {"name": "Waiting Area", "description": "A comfortable, light-filled waiting area that welcomes every visitor."},
+        "donor-wall": {"name": "Donor Recognition Wall", "description": "A plaque on the lobby recognition wall, seen by every visitor."}
+      }
+    },
     "fitness247": {
       "eyebrow": "Fitness 24/7",
       "heading": "Spaces designed to work as a system.",
@@ -440,6 +493,59 @@
         "furniture": "Mobiliario",
         "system": "Sistema",
         "facility": "Instalación"
+      }
+    },
+    "naming": {
+      "eyebrow": "Naming opportunities",
+      "heading": ["Espacios que", "también pueden", "generar apoyo."],
+      "headingText": "Espacios que también pueden generar apoyo.",
+      "intro": "Explora habitaciones, áreas clínicas y espacios públicos disponibles para reconocimiento y naming.",
+      "ui": {
+        "listLabel": "Oportunidades de naming",
+        "opportunity": "Oportunidad",
+        "namingValue": "Valor de naming",
+        "area": "Área",
+        "description": "Descripción",
+        "status": "Estado",
+        "cta": "Hablar sobre esta oportunidad",
+        "resetView": "Restablecer vista",
+        "hint": "Arrastra para girar, usa la rueda o pellizca para acercar, clic derecho o dos dedos para desplazar.",
+        "loading": "Cargando modelo 3D…",
+        "close": "Cerrar",
+        "overviewTitle": "Resumen",
+        "overviewText": "Selecciona un espacio en el modelo o en la lista para ver su valor de naming y cómo se reconoce al donante.",
+        "count": "Oportunidades",
+        "total": "Valor total",
+        "note": "Importes de demostración en USD. Los valores reales se definen con cada institución.",
+        "canvasDescription": "Modelo 3D interactivo de una planta hospitalaria con oportunidades de naming.",
+        "whatsappMessage": "Hola, me gustaría hablar sobre la oportunidad de naming «{name}» ({price})."
+      },
+      "statuses": { "available": "Disponible", "reserved": "Reservado", "named": "Asignado" },
+      "zones": {
+        "lobby": "Entrada principal / Vestíbulo",
+        "waiting": "Sala de espera",
+        "patientrooms": "Habitaciones de pacientes",
+        "familylounge": "Sala para familias",
+        "consultation": "Consultas",
+        "imaging": "Diagnóstico por imagen",
+        "mri": "Resonancia magnética (RM)",
+        "trauma": "Trauma / Reanimación",
+        "recovery": "Preparación y recuperación",
+        "corridor": "Corredor / Eje de orientación",
+        "education": "Aula de formación",
+        "donorwall": "Muro de donantes / Reconocimiento"
+      },
+      "opportunities": {
+        "main-lobby": {"name": "Vestíbulo principal", "description": "Un espacio público de máxima visibilidad que recorren pacientes, visitantes y personal cada día."},
+        "mri-suite": {"name": "Unidad de resonancia magnética", "description": "Una sala de diagnóstico avanzado asociada a la tecnología y a la precisión clínica."},
+        "trauma-room": {"name": "Sala de trauma / reanimación", "description": "El espacio donde se atienden las urgencias más críticas: un reconocimiento ligado a salvar vidas."},
+        "imaging-area": {"name": "Área de diagnóstico por imagen", "description": "Radiología y ecografía en un entorno sereno, pensado para reducir la ansiedad del paciente."},
+        "family-lounge": {"name": "Sala para familias", "description": "Un lugar tranquilo para que las familias esperen, descansen y reciban información."},
+        "patient-room": {"name": "Habitación de paciente", "description": "Una habitación individual donde el paciente se recupera; el reconocimiento acompaña cada estancia."},
+        "consultation-room": {"name": "Sala de consulta", "description": "Una consulta luminosa donde empieza la relación entre paciente y profesional."},
+        "education-room": {"name": "Aula de formación", "description": "Un espacio para formar a profesionales y educar a pacientes y familias."},
+        "waiting-area": {"name": "Sala de espera", "description": "Una zona de espera cómoda y luminosa que acoge a cada visitante."},
+        "donor-wall": {"name": "Muro de donantes", "description": "Una placa en el muro de reconocimiento del vestíbulo, visible para todos los visitantes."}
       }
     },
     "fitness247": {
@@ -691,6 +797,59 @@
         "facility": "Оснащение"
       }
     },
+    "naming": {
+      "eyebrow": "Именные пространства",
+      "heading": ["Пространства,", "которые привлекают", "поддержку."],
+      "headingText": "Пространства, которые привлекают поддержку.",
+      "intro": "Исследуйте палаты, клинические зоны и общественные пространства, доступные для именного признания и нейминга.",
+      "ui": {
+        "listLabel": "Именные пространства",
+        "opportunity": "Пространство",
+        "namingValue": "Стоимость наименования",
+        "area": "Зона",
+        "description": "Описание",
+        "status": "Статус",
+        "cta": "Обсудить эту возможность",
+        "resetView": "Сбросить вид",
+        "hint": "Перетаскивайте для вращения, колесо или щипок для масштаба, правая кнопка или два пальца для сдвига.",
+        "loading": "Загрузка 3D-модели…",
+        "close": "Закрыть",
+        "overviewTitle": "Обзор",
+        "overviewText": "Выберите пространство на модели или в списке, чтобы увидеть стоимость наименования и формат признания донора.",
+        "count": "Возможностей",
+        "total": "Общая стоимость",
+        "note": "Демонстрационные суммы в долларах США. Реальные значения определяются с каждым учреждением.",
+        "canvasDescription": "Интерактивная 3D-модель этажа больницы с именными пространствами.",
+        "whatsappMessage": "Здравствуйте, я хотел(а) бы обсудить именное пространство «{name}» ({price})."
+      },
+      "statuses": { "available": "Доступно", "reserved": "Зарезервировано", "named": "Названо" },
+      "zones": {
+        "lobby": "Главный вход / холл",
+        "waiting": "Зона ожидания",
+        "patientrooms": "Палаты пациентов",
+        "familylounge": "Комната для семей",
+        "consultation": "Кабинеты консультаций",
+        "imaging": "Лучевая диагностика",
+        "mri": "Кабинет МРТ",
+        "trauma": "Травматология / реанимация",
+        "recovery": "Подготовка и восстановление",
+        "corridor": "Коридор / навигационная ось",
+        "education": "Учебный класс",
+        "donorwall": "Стена доноров / зона признания"
+      },
+      "opportunities": {
+        "main-lobby": {"name": "Главный холл", "description": "Общественное пространство с максимальной видимостью: через него каждый день проходят пациенты, посетители и персонал."},
+        "mri-suite": {"name": "Кабинет МРТ", "description": "Кабинет высокотехнологичной диагностики, который ассоциируется с технологиями и клинической точностью."},
+        "trauma-room": {"name": "Травматология / реанимация", "description": "Здесь оказывают помощь в самых критических случаях: признание, напрямую связанное со спасением жизней."},
+        "imaging-area": {"name": "Отделение лучевой диагностики", "description": "Рентген и УЗИ в спокойной обстановке, которая снижает тревожность пациентов."},
+        "family-lounge": {"name": "Комната для семей", "description": "Тихое место, где родственники могут ждать, отдыхать и получать информацию."},
+        "patient-room": {"name": "Палата пациента", "description": "Отдельная палата, где пациент восстанавливается; признание сопровождает каждое пребывание."},
+        "consultation-room": {"name": "Кабинет консультаций", "description": "Светлый кабинет, где начинаются отношения пациента и врача."},
+        "education-room": {"name": "Учебный класс", "description": "Пространство для обучения медицинского персонала, пациентов и их семей."},
+        "waiting-area": {"name": "Зона ожидания", "description": "Удобная светлая зона ожидания, которая встречает каждого посетителя."},
+        "donor-wall": {"name": "Стена доноров", "description": "Именная табличка на стене признания в холле, которую видит каждый посетитель."}
+      }
+    },
     "fitness247": {
       "eyebrow": "Фитнес 24/7",
       "heading": "Пространства, которые работают как система.",
@@ -938,6 +1097,59 @@
         "furniture": "Меблі",
         "system": "Система",
         "facility": "Оснащення"
+      }
+    },
+    "naming": {
+      "eyebrow": "Іменні простори",
+      "heading": ["Простори,", "які залучають", "підтримку."],
+      "headingText": "Простори, які залучають підтримку.",
+      "intro": "Досліджуйте палати, клінічні зони та громадські простори, доступні для іменного визнання та неймінгу.",
+      "ui": {
+        "listLabel": "Іменні простори",
+        "opportunity": "Простір",
+        "namingValue": "Вартість найменування",
+        "area": "Зона",
+        "description": "Опис",
+        "status": "Статус",
+        "cta": "Обговорити цю можливість",
+        "resetView": "Скинути вигляд",
+        "hint": "Перетягуйте для обертання, коліщатко або щипок для масштабу, права кнопка або два пальці для зсуву.",
+        "loading": "Завантаження 3D-моделі…",
+        "close": "Закрити",
+        "overviewTitle": "Огляд",
+        "overviewText": "Виберіть простір на моделі або у списку, щоб побачити вартість найменування та формат визнання донора.",
+        "count": "Можливостей",
+        "total": "Загальна вартість",
+        "note": "Демонстраційні суми в доларах США. Реальні значення визначаються з кожною установою.",
+        "canvasDescription": "Інтерактивна 3D-модель поверху лікарні з іменними просторами.",
+        "whatsappMessage": "Вітаю, я хотів(ла) б обговорити іменний простір «{name}» ({price})."
+      },
+      "statuses": { "available": "Доступно", "reserved": "Зарезервовано", "named": "Названо" },
+      "zones": {
+        "lobby": "Головний вхід / хол",
+        "waiting": "Зона очікування",
+        "patientrooms": "Палати пацієнтів",
+        "familylounge": "Кімната для родин",
+        "consultation": "Кабінети консультацій",
+        "imaging": "Променева діагностика",
+        "mri": "Кабінет МРТ",
+        "trauma": "Травматологія / реанімація",
+        "recovery": "Підготовка та відновлення",
+        "corridor": "Коридор / навігаційна вісь",
+        "education": "Навчальний клас",
+        "donorwall": "Стіна донорів / зона визнання"
+      },
+      "opportunities": {
+        "main-lobby": {"name": "Головний хол", "description": "Громадський простір з максимальною видимістю: щодня через нього проходять пацієнти, відвідувачі та персонал."},
+        "mri-suite": {"name": "Кабінет МРТ", "description": "Кабінет високотехнологічної діагностики, що асоціюється з технологіями та клінічною точністю."},
+        "trauma-room": {"name": "Травматологія / реанімація", "description": "Тут надають допомогу в найкритичніших випадках: визнання, безпосередньо пов’язане з порятунком життів."},
+        "imaging-area": {"name": "Відділення променевої діагностики", "description": "Рентген і УЗД у спокійній обстановці, що знижує тривожність пацієнтів."},
+        "family-lounge": {"name": "Кімната для родин", "description": "Тихе місце, де рідні можуть чекати, відпочивати й отримувати інформацію."},
+        "patient-room": {"name": "Палата пацієнта", "description": "Окрема палата, де пацієнт одужує; визнання супроводжує кожне перебування."},
+        "consultation-room": {"name": "Кабінет консультацій", "description": "Світлий кабінет, де починаються стосунки пацієнта й лікаря."},
+        "education-room": {"name": "Навчальний клас", "description": "Простір для навчання медичного персоналу, пацієнтів та їхніх родин."},
+        "waiting-area": {"name": "Зона очікування", "description": "Зручна світла зона очікування, що зустрічає кожного відвідувача."},
+        "donor-wall": {"name": "Стіна донорів", "description": "Іменна табличка на стіні визнання в холі, яку бачить кожен відвідувач."}
       }
     },
     "fitness247": {
