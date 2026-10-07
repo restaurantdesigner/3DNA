@@ -32,6 +32,7 @@
             <li><a href="/politica-cookies.html">{{footer.legalItems.1}}</a></li>
             <li><a href="/aviso-legal.html">{{footer.legalItems.2}}</a></li>
             <li><a href="/politica-privacidad.html">{{footer.legalItems.3}}</a></li>
+            <li><button type="button" class="footer-cookie-link" data-cookie-settings>{{cookies.footerLink}}</button></li>
           </ul>
         </div>
 
@@ -76,3 +77,57 @@
     .catch((error) => { console.error(error); });
 })();
 </script>
+
+<!-- Cookie consent (shared; behaviour in assets/js/main.js "COOKIE CONSENT").
+     Hidden until main.js finds no stored choice. Only Google Analytics is
+     optional on this site; it loads only after Analytics consent. -->
+<aside class="cconsent" id="cookie-consent" aria-label="{{cookies.bannerLabel}}" hidden>
+  <svg class="cconsent__mark" viewBox="0 0 64 64" width="56" height="56" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="ccg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9dcc6" stop-opacity=".95"/><stop offset="1" stop-color="#b9a88f" stop-opacity=".55"/></linearGradient>
+      <linearGradient id="ccg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset="1" stop-color="#d9d2c7" stop-opacity=".35"/></linearGradient>
+    </defs>
+    <circle cx="26" cy="30" r="17" fill="url(#ccg1)"/>
+    <path d="M38 12l14 5.5v10c0 9-5.8 15.8-14 19-8.2-3.2-14-10-14-19v-10z" fill="url(#ccg2)" stroke="rgba(22,21,19,.22)" stroke-width="1"/>
+    <path d="M32.5 28.5l4 4 7.5-8" fill="none" stroke="#161513" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="16" cy="48" r="5" fill="#161513" fill-opacity=".08"/>
+  </svg>
+  <div class="cconsent__copy">
+    <h2 class="cconsent__title">{{cookies.title}}</h2>
+    <p class="cconsent__text">{{cookies.body}}</p>
+    <p class="cconsent__links"><a href="/politica-cookies.html">{{cookies.cookiePolicy}}</a><span aria-hidden="true">·</span><a href="/politica-privacidad.html">{{cookies.privacyPolicy}}</a></p>
+  </div>
+  <div class="cconsent__actions">
+    <button type="button" class="cconsent__btn cconsent__btn--primary" data-consent="accept">{{cookies.acceptAll}}</button>
+    <button type="button" class="cconsent__btn" data-consent="reject">{{cookies.rejectOptional}}</button>
+    <button type="button" class="cconsent__btn cconsent__btn--text" data-consent="choose" aria-haspopup="dialog" aria-controls="cookie-prefs">{{cookies.choose}}</button>
+  </div>
+</aside>
+
+<div class="cprefs" id="cookie-prefs" role="dialog" aria-modal="true" aria-labelledby="cookie-prefs-title" hidden>
+  <div class="cprefs__backdrop" data-consent="close"></div>
+  <div class="cprefs__panel">
+    <button type="button" class="cprefs__close" data-consent="close" aria-label="{{cookies.close}}">&times;</button>
+    <h2 class="cprefs__title" id="cookie-prefs-title">{{cookies.prefsTitle}}</h2>
+    <p class="cprefs__intro">{{cookies.prefsIntro}}</p>
+    <div class="cprefs__row">
+      <div class="cprefs__label">
+        <h3 class="cprefs__name">{{cookies.essentialTitle}}</h3>
+        <p class="cprefs__desc">{{cookies.essentialText}}</p>
+      </div>
+      <span class="cprefs__always">{{cookies.alwaysOn}}</span>
+    </div>
+    <div class="cprefs__row">
+      <div class="cprefs__label">
+        <h3 class="cprefs__name" id="cookie-analytics-label">{{cookies.analyticsTitle}}</h3>
+        <p class="cprefs__desc" id="cookie-analytics-desc">{{cookies.analyticsText}}</p>
+      </div>
+      <button type="button" class="cprefs__switch" role="switch" aria-checked="false" data-consent-toggle="analytics"
+        aria-labelledby="cookie-analytics-label" aria-describedby="cookie-analytics-desc"><span class="cprefs__knob" aria-hidden="true"></span></button>
+    </div>
+    <div class="cprefs__actions">
+      <button type="button" class="cconsent__btn" data-consent="save">{{cookies.save}}</button>
+      <button type="button" class="cconsent__btn cconsent__btn--primary" data-consent="accept">{{cookies.acceptAll}}</button>
+    </div>
+  </div>
+</div>

@@ -319,124 +319,136 @@ onFormPanelLifecycle(() => {
 
 
 // =============================================
-// 4. COOKIES BANNER
+// 4. COOKIE CONSENT (shared banner + preferences; markup in templates/layout/footer.html)
 // =============================================
-const COOKIE_CONSENT_KEY = 'cookiesDecision';
-const COOKIE_CONSENT_VERSION = '2026-05-01';
+// Categories that exist on this site: Essential (always on) and Analytics
+// (Google Analytics 4, loaded only after consent). There are no marketing
+// trackers, so "marketing" is stored as false and has no switch.
+// Bump CONSENT_VERSION when the categories change materially: every visitor
+// is then asked again.
+const CONSENT_KEY = "3dna_cookie_consent";
+const CONSENT_VERSION = 1;
+const LEGACY_CONSENT_KEY = "cookiesDecision"; // previous banner (2026-05)
 
 function readCookieConsent() {
   try {
-    const raw = localStorage.getItem(COOKIE_CONSENT_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== 'object') return null;
-    return parsed;
-  } catch (_error) {
-    return null;
-  }
+    const raw = localStorage.getItem(CONSENT_KEY);
+    if (raw) {
+      const c = JSON.parse(raw);
+      if (c && c.version === CONSENT_VERSION) return c;
+      return null; // older structure: ask again
+    }
+    // carry over a choice made with the previous banner (same categories)
+    const legacy = JSON.parse(localStorage.getItem(LEGACY_CONSENT_KEY) || "null");
+    if (legacy && typeof legacy === "object") {
+      const c = writeCookieConsent({ analytics: !!legacy.analytics }, "migrated");
+      localStorage.removeItem(LEGACY_CONSENT_KEY);
+      document.cookie = "cookie_consent=; path=/; max-age=0; SameSite=Lax";
+      return c;
+    }
+  } catch (_e) { /* storage blocked: treat as no decision */ }
+  return null;
 }
 
-function writeCookieConsent(decision) {
+function writeCookieConsent({ analytics }, source) {
   const payload = {
-    necessary: true,
-    analytics: !!decision.analytics,
-    ads: !!decision.ads,
-    source: decision.source || 'banner',
-    version: COOKIE_CONSENT_VERSION,
-    updatedAt: new Date().toISOString()
+    version: CONSENT_VERSION,
+    essential: true,
+    analytics: !!analytics,
+    marketing: false,
+    timestamp: new Date().toISOString(),
+    source
   };
-
-  localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(payload));
-  document.cookie = `cookie_consent=${encodeURIComponent(JSON.stringify(payload))}; path=/; max-age=31536000; SameSite=Lax`;
-  document.dispatchEvent(new CustomEvent('cookie:consent-changed', { detail: payload }));
+  try { localStorage.setItem(CONSENT_KEY, JSON.stringify(payload)); } catch (_e) {}
+  document.cookie = `${CONSENT_KEY}=${encodeURIComponent(JSON.stringify(payload))}; path=/; max-age=31536000; SameSite=Lax`;
+  document.dispatchEvent(new CustomEvent("cookie:consent-changed", { detail: payload }));
   return payload;
 }
 
+// Withdrawn consent: stop GA on this page and remove its cookies (_ga, _ga_*)
+function stopGoogleAnalytics() {
+  window["ga-disable-G-QGGREKNJDX"] = true;
+  const host = window.location.hostname;
+  const domains = ["", host, "." + host, "." + host.split(".").slice(-2).join(".")];
+  document.cookie.split(";").map((c) => c.trim().split("=")[0]).filter((n) => /^_ga(_|$)/.test(n)).forEach((name) => {
+    domains.forEach((d) => { document.cookie = `${name}=; path=/; max-age=0${d ? `; domain=${d}` : ""}`; });
+  });
+}
+
 function hasAnalyticsConsent() {
-  const consent = readCookieConsent();
-  return !!(consent && consent.analytics === true);
+  const c = readCookieConsent();
+  return !!(c && c.analytics === true);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const banner = document.getElementById('cookie-banner');
-  const modal = document.getElementById('cookie-modal');
-  const overlay = document.getElementById('cookie-overlay');
+  const banner = document.getElementById("cookie-consent");
+  const prefs = document.getElementById("cookie-prefs");
+  if (!banner || !prefs) return;
+  const toggle = prefs.querySelector('[data-consent-toggle="analytics"]');
+  let lastFocus = null;
 
-  const accept = document.getElementById('accept-cookies');
-  const config = document.getElementById('config-cookies');
-  const reject = document.getElementById('reject-cookies');
-
-  const save = document.getElementById('save-settings');
-  const cancel = document.getElementById('cancel-settings');
-
-  if (!banner || !modal || !overlay || !accept || !config || !reject || !save || !cancel) {
-    return;
-  }
-
-  const showBanner = () => {
-    banner.classList.remove('cookie-banner--hidden');
-    requestAnimationFrame(() => {
-      banner.classList.add('show');
-      banner.setAttribute('aria-hidden', 'false');
-    });
-  };
-
+  const showBanner = () => { banner.hidden = false; requestAnimationFrame(() => banner.classList.add("is-visible")); };
   const hideBanner = () => {
-    banner.classList.remove('show');
-    banner.setAttribute('aria-hidden', 'true');
-    window.setTimeout(() => {
-      if (!banner.classList.contains('show')) {
-        banner.classList.add('cookie-banner--hidden');
-      }
-    }, 420);
+    banner.classList.remove("is-visible");
+    window.setTimeout(() => { if (!banner.classList.contains("is-visible")) banner.hidden = true; }, 320);
   };
+  const setToggle = (on) => toggle && toggle.setAttribute("aria-checked", String(!!on));
 
-  if (!readCookieConsent()) {
-    showBanner();
-  } else {
+  function openPrefs() {
+    const c = readCookieConsent();
+    setToggle(c ? c.analytics : false); // nothing optional is pre-ticked
+    lastFocus = document.activeElement;
+    prefs.hidden = false;
+    document.body.classList.add("cookie-prefs-open");
+    requestAnimationFrame(() => {
+      prefs.classList.add("is-open");
+      prefs.querySelector(".cprefs__close")?.focus();
+    });
+  }
+  function closePrefs() {
+    prefs.classList.remove("is-open");
+    document.body.classList.remove("cookie-prefs-open");
+    prefs.hidden = true;
+    // no decision yet: back to the banner (closing never accepts anything)
+    if (!readCookieConsent()) showBanner();
+    if (lastFocus && document.contains(lastFocus) && !lastFocus.closest("[hidden]")) lastFocus.focus();
+    else banner.querySelector('[data-consent="choose"]')?.focus();
+  }
+  function decide(analytics, source) {
+    writeCookieConsent({ analytics }, source);
+    if (analytics) loadGoogleAnalytics();
+    else stopGoogleAnalytics();
+    if (!prefs.hidden) { prefs.classList.remove("is-open"); document.body.classList.remove("cookie-prefs-open"); prefs.hidden = true; }
     hideBanner();
+    if (lastFocus && document.contains(lastFocus) && !lastFocus.closest("#cookie-consent")) lastFocus.focus();
   }
 
-  accept.onclick = () => {
-    writeCookieConsent({ analytics: true, ads: true, source: 'accept' });
-    loadGoogleAnalytics();
-    hideBanner();
-  };
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest && e.target.closest("[data-consent], [data-cookie-settings], [data-consent-toggle]");
+    if (!el) return;
+    if (el.hasAttribute("data-cookie-settings")) { e.preventDefault(); hideBanner(); openPrefs(); return; }
+    if (el.hasAttribute("data-consent-toggle")) { setToggle(el.getAttribute("aria-checked") !== "true"); return; }
+    const action = el.dataset.consent;
+    if (action === "accept") decide(true, "accept");
+    else if (action === "reject") decide(false, "reject");
+    else if (action === "choose") { banner.classList.remove("is-visible"); banner.hidden = true; openPrefs(); }
+    else if (action === "save") decide(toggle && toggle.getAttribute("aria-checked") === "true", "preferences");
+    else if (action === "close") closePrefs();
+  });
 
-  reject.onclick = () => {
-    writeCookieConsent({ analytics: false, ads: false, source: 'reject' });
-    hideBanner();
-  };
-
-  config.onclick = () => {
-    const consent = readCookieConsent();
-    const analyticsCheckbox = document.getElementById('analytics-cookies');
-    const adsCheckbox = document.getElementById('ads-cookies');
-    if (analyticsCheckbox && consent) analyticsCheckbox.checked = !!consent.analytics;
-    if (adsCheckbox && consent) adsCheckbox.checked = !!consent.ads;
-
-    modal.classList.add('show');
-    overlay.classList.add('show');
-  };
-
-  cancel.onclick = () => {
-    modal.classList.remove('show');
-    overlay.classList.remove('show');
-  };
-
-  save.onclick = () => {
-    const analytics = document.getElementById('analytics-cookies').checked;
-    const ads = document.getElementById('ads-cookies').checked;
-
-    writeCookieConsent({ analytics, ads, source: 'config' });
-    if (analytics) {
-      loadGoogleAnalytics();
+  document.addEventListener("keydown", (e) => {
+    if (prefs.hidden) return;
+    if (e.key === "Escape") { e.preventDefault(); closePrefs(); return; }
+    if (e.key === "Tab") { // keep Tab inside the open dialog
+      const items = [...prefs.querySelectorAll("button, a[href]")].filter((x) => x.offsetParent !== null);
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
+  });
 
-    modal.classList.remove('show');
-    overlay.classList.remove('show');
-    hideBanner();
-  };
+  if (!readCookieConsent()) showBanner();
 });
 
 
@@ -476,6 +488,7 @@ document.getElementById('privacy-policy-modal')?.addEventListener('click', (e) =
 // 6. GOOGLE ANALYTICS (after consent)
 // =============================================
 function loadGoogleAnalytics() {
+  window["ga-disable-G-QGGREKNJDX"] = false;
   if (window.__gaLoaded) return;
   window.__gaLoaded = true;
 
@@ -1117,7 +1130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const blocked = root.classList.contains("panel-open") ||
                     root.classList.contains("modal-open") ||
                     root.classList.contains("mobile-open");
-    const banner = document.querySelector(".cookie-banner.show:not(.cookie-banner--hidden)");
+    const banner = document.querySelector("#cookie-consent.is-visible");
     const chat = document.querySelector("button.pxe-fixed");
     a.classList.toggle("is-hidden", blocked);
     a.classList.toggle("is-muted", !blocked && (footerVisible || !!banner));

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Lato&family=Ultra&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=20261012e">
+  <link rel="stylesheet" href="assets/css/main.css?v=20261013a">
   <style>
     body {
       scroll-snap-type: none !important;
@@ -172,6 +172,7 @@
             <li><a href="/politica-cookies.html">Política de Cookies</a></li>
             <li><a href="/aviso-legal.html">Aviso Legal</a></li>
             <li><a href="/politica-privacidad.html">Política de Privacidad</a></li>
+            <li><button type="button" class="footer-cookie-link" data-cookie-settings>Configurar cookies</button></li>
           </ul>
         </div>
 
@@ -216,7 +217,61 @@
     .catch((error) => { console.error(error); });
 })();
 </script>
+
+<!-- Cookie consent (shared; behaviour in assets/js/main.js "COOKIE CONSENT").
+     Hidden until main.js finds no stored choice. Only Google Analytics is
+     optional on this site; it loads only after Analytics consent. -->
+<aside class="cconsent" id="cookie-consent" aria-label="Aviso de cookies" hidden>
+  <svg class="cconsent__mark" viewBox="0 0 64 64" width="56" height="56" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="ccg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9dcc6" stop-opacity=".95"/><stop offset="1" stop-color="#b9a88f" stop-opacity=".55"/></linearGradient>
+      <linearGradient id="ccg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset="1" stop-color="#d9d2c7" stop-opacity=".35"/></linearGradient>
+    </defs>
+    <circle cx="26" cy="30" r="17" fill="url(#ccg1)"/>
+    <path d="M38 12l14 5.5v10c0 9-5.8 15.8-14 19-8.2-3.2-14-10-14-19v-10z" fill="url(#ccg2)" stroke="rgba(22,21,19,.22)" stroke-width="1"/>
+    <path d="M32.5 28.5l4 4 7.5-8" fill="none" stroke="#161513" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="16" cy="48" r="5" fill="#161513" fill-opacity=".08"/>
+  </svg>
+  <div class="cconsent__copy">
+    <h2 class="cconsent__title">Tu privacidad, tus preferencias.</h2>
+    <p class="cconsent__text">Utilizamos cookies esenciales para que el sitio funcione y, con tu permiso, cookies adicionales para analizar el uso de la web y mejorar la experiencia.</p>
+    <p class="cconsent__links"><a href="/politica-cookies.html">Política de Cookies</a><span aria-hidden="true">·</span><a href="/politica-privacidad.html">Política de Privacidad</a></p>
+  </div>
+  <div class="cconsent__actions">
+    <button type="button" class="cconsent__btn cconsent__btn--primary" data-consent="accept">Aceptar todas</button>
+    <button type="button" class="cconsent__btn" data-consent="reject">Rechazar opcionales</button>
+    <button type="button" class="cconsent__btn cconsent__btn--text" data-consent="choose" aria-haspopup="dialog" aria-controls="cookie-prefs">Elegir cookies</button>
+  </div>
+</aside>
+
+<div class="cprefs" id="cookie-prefs" role="dialog" aria-modal="true" aria-labelledby="cookie-prefs-title" hidden>
+  <div class="cprefs__backdrop" data-consent="close"></div>
+  <div class="cprefs__panel">
+    <button type="button" class="cprefs__close" data-consent="close" aria-label="Cerrar">&times;</button>
+    <h2 class="cprefs__title" id="cookie-prefs-title">Preferencias de cookies</h2>
+    <p class="cprefs__intro">Elige qué cookies opcionales permites. Puedes cambiarlo en cualquier momento desde «Configurar cookies» en el pie de página.</p>
+    <div class="cprefs__row">
+      <div class="cprefs__label">
+        <h3 class="cprefs__name">Esenciales</h3>
+        <p class="cprefs__desc">Necesarias para que el sitio funcione, por ejemplo para recordar tu idioma y esta elección.</p>
+      </div>
+      <span class="cprefs__always">Siempre activas</span>
+    </div>
+    <div class="cprefs__row">
+      <div class="cprefs__label">
+        <h3 class="cprefs__name" id="cookie-analytics-label">Analítica</h3>
+        <p class="cprefs__desc" id="cookie-analytics-desc">Nos ayudan a entender cómo se usa la web (Google Analytics).</p>
+      </div>
+      <button type="button" class="cprefs__switch" role="switch" aria-checked="false" data-consent-toggle="analytics"
+        aria-labelledby="cookie-analytics-label" aria-describedby="cookie-analytics-desc"><span class="cprefs__knob" aria-hidden="true"></span></button>
+    </div>
+    <div class="cprefs__actions">
+      <button type="button" class="cconsent__btn" data-consent="save">Guardar preferencias</button>
+      <button type="button" class="cconsent__btn cconsent__btn--primary" data-consent="accept">Aceptar todas</button>
+    </div>
+  </div>
+</div>
 <!-- /3dna:footer -->
-  <script src="assets/js/main.js?v=20261012c"></script>
+  <script src="assets/js/main.js?v=20261013a"></script>
 </body>
 </html>

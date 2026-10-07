@@ -48,7 +48,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261012e">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261013a">
 </head>
 
 <body>
@@ -116,73 +116,6 @@
 <div class="mobile-menu-backdrop" id="mobileBackdrop"></div>
   </div>
 <!-- /3dna:header -->
-
-
-
-
-
-
-<!-- Cookie Banner -->
-<div id="cookie-banner" class="cookie-banner">
-  <div class="cookie-content">
-    <span>
-      Usamos cookies para personalizar el contenido, medir anuncios y mejorar tu experiencia. 
-      Consulta nuestra <a href="#politica-cookies">Politica de cookies</a>.
-    </span>
-    <div class="cookie-buttons">
-      <button id="accept-cookies">Aceptar</button>
-      <button id="config-cookies">Configurar</button>
-      <button id="reject-cookies">Rechazar</button>
-    </div>
-  </div>
-</div>
-
-<!-- Cookie Settings Modal -->
-<div id="cookie-modal" class="cookie-modal">
-  <div class="cookie-modal-content">
-    <h2>Configuracion de cookies</h2>
-    <p class="modal-desc">
-      Selecciona que tipos de cookies deseas permitir. Puedes cambiar esta configuracion en cualquier momento.
-    </p>
-
-    <div class="cookie-option">
-      <label>
-        <input type="checkbox" checked disabled />
-        <strong>Cookies necesarias</strong><br>
-        Estas cookies son esenciales para el funcionamiento del sitio web y no se pueden desactivar.
-      </label>
-    </div>
-
-    <div class="cookie-option">
-      <label>
-        <input type="checkbox" id="analytics-cookies" />
-        <strong>Cookies de analisis</strong><br>
-        Nos permiten recopilar datos para mejorar el rendimiento del sitio.
-      </label>
-    </div>
-
-    <div class="cookie-option">
-      <label>
-        <input type="checkbox" id="ads-cookies" />
-        <strong>Cookies de publicidad</strong><br>
-        Ayudan a mostrar anuncios personalizados segun tu comportamiento.
-      </label>
-    </div>
-
-    <div class="modal-buttons">
-      <button id="save-settings" class="save-btn">Guardar preferencias</button>
-      <button id="cancel-settings" class="cancel-btn">Cancelar</button>
-    </div>
-  </div>
-</div>
-<div id="cookie-overlay"></div>
-
-
-
-
-
-
-
  
 <main id="main" tabindex="-1">
 
@@ -1821,6 +1754,7 @@
             <li><a href="/politica-cookies.html">Політика cookie</a></li>
             <li><a href="/aviso-legal.html">Правове повідомлення</a></li>
             <li><a href="/politica-privacidad.html">Політика конфіденційності</a></li>
+            <li><button type="button" class="footer-cookie-link" data-cookie-settings>Налаштування cookies</button></li>
           </ul>
         </div>
 
@@ -1865,8 +1799,62 @@
     .catch((error) => { console.error(error); });
 })();
 </script>
+
+<!-- Cookie consent (shared; behaviour in assets/js/main.js "COOKIE CONSENT").
+     Hidden until main.js finds no stored choice. Only Google Analytics is
+     optional on this site; it loads only after Analytics consent. -->
+<aside class="cconsent" id="cookie-consent" aria-label="Повідомлення про cookies" hidden>
+  <svg class="cconsent__mark" viewBox="0 0 64 64" width="56" height="56" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="ccg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9dcc6" stop-opacity=".95"/><stop offset="1" stop-color="#b9a88f" stop-opacity=".55"/></linearGradient>
+      <linearGradient id="ccg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset="1" stop-color="#d9d2c7" stop-opacity=".35"/></linearGradient>
+    </defs>
+    <circle cx="26" cy="30" r="17" fill="url(#ccg1)"/>
+    <path d="M38 12l14 5.5v10c0 9-5.8 15.8-14 19-8.2-3.2-14-10-14-19v-10z" fill="url(#ccg2)" stroke="rgba(22,21,19,.22)" stroke-width="1"/>
+    <path d="M32.5 28.5l4 4 7.5-8" fill="none" stroke="#161513" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="16" cy="48" r="5" fill="#161513" fill-opacity=".08"/>
+  </svg>
+  <div class="cconsent__copy">
+    <h2 class="cconsent__title">Ваша конфіденційність — ваш вибір.</h2>
+    <p class="cconsent__text">Ми використовуємо необхідні cookies для роботи сайту та, з вашого дозволу, додаткові cookies для аналізу використання сайту й покращення його роботи.</p>
+    <p class="cconsent__links"><a href="/politica-cookies.html">Політика cookies</a><span aria-hidden="true">·</span><a href="/politica-privacidad.html">Політика конфіденційності</a></p>
+  </div>
+  <div class="cconsent__actions">
+    <button type="button" class="cconsent__btn cconsent__btn--primary" data-consent="accept">Прийняти всі</button>
+    <button type="button" class="cconsent__btn" data-consent="reject">Відхилити необов’язкові</button>
+    <button type="button" class="cconsent__btn cconsent__btn--text" data-consent="choose" aria-haspopup="dialog" aria-controls="cookie-prefs">Налаштувати cookies</button>
+  </div>
+</aside>
+
+<div class="cprefs" id="cookie-prefs" role="dialog" aria-modal="true" aria-labelledby="cookie-prefs-title" hidden>
+  <div class="cprefs__backdrop" data-consent="close"></div>
+  <div class="cprefs__panel">
+    <button type="button" class="cprefs__close" data-consent="close" aria-label="Закрити">&times;</button>
+    <h2 class="cprefs__title" id="cookie-prefs-title">Налаштування cookies</h2>
+    <p class="cprefs__intro">Оберіть, які необов’язкові cookies дозволити. Змінити вибір можна будь-коли через «Налаштування cookies» внизу сторінки.</p>
+    <div class="cprefs__row">
+      <div class="cprefs__label">
+        <h3 class="cprefs__name">Необхідні</h3>
+        <p class="cprefs__desc">Потрібні для роботи сайту, наприклад щоб запам’ятати мову та цей вибір.</p>
+      </div>
+      <span class="cprefs__always">Завжди активні</span>
+    </div>
+    <div class="cprefs__row">
+      <div class="cprefs__label">
+        <h3 class="cprefs__name" id="cookie-analytics-label">Аналітика</h3>
+        <p class="cprefs__desc" id="cookie-analytics-desc">Допомагають зрозуміти, як використовується сайт (Google Analytics).</p>
+      </div>
+      <button type="button" class="cprefs__switch" role="switch" aria-checked="false" data-consent-toggle="analytics"
+        aria-labelledby="cookie-analytics-label" aria-describedby="cookie-analytics-desc"><span class="cprefs__knob" aria-hidden="true"></span></button>
+    </div>
+    <div class="cprefs__actions">
+      <button type="button" class="cconsent__btn" data-consent="save">Зберегти налаштування</button>
+      <button type="button" class="cconsent__btn cconsent__btn--primary" data-consent="accept">Прийняти всі</button>
+    </div>
+  </div>
+</div>
 <!-- /3dna:footer -->
-<script src="/assets/js/main.js?v=20261012c"></script>
+<script src="/assets/js/main.js?v=20261013a"></script>
 <script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
 <script src="/assets/js/healthcare-3d/naming-app.js?v=20261009a" defer></script>
 <!-- Spotlight video tile: restaurantes -->

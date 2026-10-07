@@ -283,6 +283,26 @@
         "action": "Start a project"
       }
     },
+    "cookies": {
+      "title": "Your privacy, your choice.",
+      "body": "We use essential cookies to make the website work and, with your permission, additional cookies to understand how the site is used and improve the experience.",
+      "acceptAll": "Accept all",
+      "rejectOptional": "Reject optional",
+      "choose": "Choose cookies",
+      "cookiePolicy": "Cookie Policy",
+      "privacyPolicy": "Privacy Policy",
+      "bannerLabel": "Cookie notice",
+      "prefsTitle": "Cookie preferences",
+      "prefsIntro": "Choose which optional cookies you allow. You can change this at any time from “Cookie settings” in the footer.",
+      "essentialTitle": "Essential",
+      "essentialText": "Required for the website to work, for example to remember your language and this choice.",
+      "alwaysOn": "Always active",
+      "analyticsTitle": "Analytics",
+      "analyticsText": "Help us understand how the website is used (Google Analytics).",
+      "save": "Save preferences",
+      "close": "Close",
+      "footerLink": "Cookie settings"
+    },
     "footer": {
       "tagline": "Visual Marketing & Immersive 3D Experiences",
       "services": "Services",
@@ -764,6 +784,26 @@
         "text": "Diseñemos un espacio que funcione mejor.",
         "action": "Empezar un proyecto"
       }
+    },
+    "cookies": {
+      "title": "Tu privacidad, tus preferencias.",
+      "body": "Utilizamos cookies esenciales para que el sitio funcione y, con tu permiso, cookies adicionales para analizar el uso de la web y mejorar la experiencia.",
+      "acceptAll": "Aceptar todas",
+      "rejectOptional": "Rechazar opcionales",
+      "choose": "Elegir cookies",
+      "cookiePolicy": "Política de Cookies",
+      "privacyPolicy": "Política de Privacidad",
+      "bannerLabel": "Aviso de cookies",
+      "prefsTitle": "Preferencias de cookies",
+      "prefsIntro": "Elige qué cookies opcionales permites. Puedes cambiarlo en cualquier momento desde «Configurar cookies» en el pie de página.",
+      "essentialTitle": "Esenciales",
+      "essentialText": "Necesarias para que el sitio funcione, por ejemplo para recordar tu idioma y esta elección.",
+      "alwaysOn": "Siempre activas",
+      "analyticsTitle": "Analítica",
+      "analyticsText": "Nos ayudan a entender cómo se usa la web (Google Analytics).",
+      "save": "Guardar preferencias",
+      "close": "Cerrar",
+      "footerLink": "Configurar cookies"
     },
     "footer": {
       "tagline": "Visual Marketing & Experiencias Inmersivas 3D",
@@ -1247,6 +1287,26 @@
         "action": "Начать проект"
       }
     },
+    "cookies": {
+      "title": "Ваша конфиденциальность — ваш выбор.",
+      "body": "Мы используем необходимые cookies для работы сайта и, с вашего разрешения, дополнительные cookies для анализа использования сайта и улучшения его работы.",
+      "acceptAll": "Принять все",
+      "rejectOptional": "Отклонить необязательные",
+      "choose": "Настроить cookies",
+      "cookiePolicy": "Политика cookies",
+      "privacyPolicy": "Политика конфиденциальности",
+      "bannerLabel": "Уведомление о cookies",
+      "prefsTitle": "Настройки cookies",
+      "prefsIntro": "Выберите, какие необязательные cookies разрешить. Изменить выбор можно в любой момент через «Настройки cookies» внизу страницы.",
+      "essentialTitle": "Необходимые",
+      "essentialText": "Нужны для работы сайта, например чтобы запомнить язык и этот выбор.",
+      "alwaysOn": "Всегда включены",
+      "analyticsTitle": "Аналитика",
+      "analyticsText": "Помогают понять, как используется сайт (Google Analytics).",
+      "save": "Сохранить настройки",
+      "close": "Закрыть",
+      "footerLink": "Настройки cookies"
+    },
     "footer": {
       "tagline": "Визуальный маркетинг и иммерсивный 3D",
       "services": "Услуги",
@@ -1728,6 +1788,26 @@
         "text": "Давайте створимо простір, який працює краще.",
         "action": "Розпочати проєкт"
       }
+    },
+    "cookies": {
+      "title": "Ваша конфіденційність — ваш вибір.",
+      "body": "Ми використовуємо необхідні cookies для роботи сайту та, з вашого дозволу, додаткові cookies для аналізу використання сайту й покращення його роботи.",
+      "acceptAll": "Прийняти всі",
+      "rejectOptional": "Відхилити необов’язкові",
+      "choose": "Налаштувати cookies",
+      "cookiePolicy": "Політика cookies",
+      "privacyPolicy": "Політика конфіденційності",
+      "bannerLabel": "Повідомлення про cookies",
+      "prefsTitle": "Налаштування cookies",
+      "prefsIntro": "Оберіть, які необов’язкові cookies дозволити. Змінити вибір можна будь-коли через «Налаштування cookies» внизу сторінки.",
+      "essentialTitle": "Необхідні",
+      "essentialText": "Потрібні для роботи сайту, наприклад щоб запам’ятати мову та цей вибір.",
+      "alwaysOn": "Завжди активні",
+      "analyticsTitle": "Аналітика",
+      "analyticsText": "Допомагають зрозуміти, як використовується сайт (Google Analytics).",
+      "save": "Зберегти налаштування",
+      "close": "Закрити",
+      "footerLink": "Налаштування cookies"
     },
     "footer": {
       "tagline": "Візуальний маркетинг та іммерсивний 3D",
