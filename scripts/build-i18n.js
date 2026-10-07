@@ -81,8 +81,11 @@ const whatsappHref = (lang) => {
 
 const restaurantsPage = require("./restaurants-page.js").createRestaurantsPage(
   restaurantStories, translations, { whatsappHref: (lang) => whatsappHref(lang) });
-const restaurantPlan = require("./restaurant-plan.js").createRestaurantPlan(
-  JSON.parse(read("assets/data/restaurant-plan.json")), translations);
+const restaurantPlanData = JSON.parse(read("assets/data/restaurant-plan.json"));
+// FF&E / lighting / equipment / finishes specification (also tags the plan's objects with their references)
+const restaurantSpec = require("./restaurant-spec.js").createRestaurantSpec(
+  restaurantPlanData, JSON.parse(read("assets/data/restaurant-spec.json")), JSON.parse(read("assets/i18n/restaurant-spec.json")));
+const restaurantPlan = require("./restaurant-plan.js").createRestaurantPlan(restaurantPlanData, translations, { spec: restaurantSpec });
 
 // Localized sub-pages: key -> path under /<lang>/ (slug comes from translations)
 const PAGES = {

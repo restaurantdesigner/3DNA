@@ -147,6 +147,12 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
   // local-frame helper: parts built around the origin, turned by `a`, moved to (cx, cz)
   const local = (cx, cz, a) => (mat, g) => { g.rotateY(a); g.translate(cx, 0, cz); put(mat, g); };
   const rnd = ((seed) => () => ((seed = (seed * 16807) % 2147483647) / 2147483647))(4242);
+  // click targets: one box per object instance, tagged with its specification reference
+  const picks = [];
+  const pick = (ref, zone, x0, y0, z0, x1, y1, z1) => {
+    if (ref) picks.push({ ref, zone, box: new THREE.Box3(new THREE.Vector3(Math.min(x0, x1), y0, Math.min(z0, z1)), new THREE.Vector3(Math.max(x0, x1), y1, Math.max(z0, z1))) });
+  };
+  const pickRect = (it, h, ref = it.ref) => pick(ref, it.zone, it.x, 0, it.z, it.x + it.w, h, it.z + it.d);
 
   // ---------- floors: slab, pavement, textured zone finishes ----------
   box("slab", W + 0.7, 0.26, D + 0.35, W / 2, -0.13, (D + 0.35) / 2 - 0.35);
@@ -205,6 +211,7 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
     const cx = (x1 + x2) / 2, cz = (z1 + z2) / 2;
     const seg = (w, h, d, y, mat) => { const g = new THREE.BoxGeometry(w, h, d); g.rotateY(ang); g.translate(cx, y, cz); put(mat, g); return g; };
     if (wl.type === "glass") {
+      pick(wl.ref, null, Math.min(x1, x2), 0, Math.min(z1, z2) - 0.1, Math.max(x1, x2), H * 0.88, Math.max(z1, z2) + 0.1);
       seg(len, H * 0.88, 0.04, H * 0.44, "glass");
       seg(len, 0.04, 0.08, H * 0.88, "mullion");
       seg(len, 0.12, 0.2, 0.06, "structure");
@@ -213,6 +220,7 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
       return;
     }
     const th = wl.type === "exterior" ? 0.36 : 0.2;
+    pick(wl.ref, null, Math.min(x1, x2) - th / 2, 0, Math.min(z1, z2) - th / 2, Math.max(x1, x2) + th / 2, H, Math.max(z1, z2) + th / 2);
     const g = seg(len + th, H - 0.03, th, (H - 0.03) / 2, "structure");
     seg(len + th, 0.03, th, H - 0.015, "structureTop");
     edges.push(new THREE.EdgesGeometry(g, 30));
@@ -231,7 +239,8 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
 
   // ---------- furniture ----------
   // upholstered dining chair with walnut frame (local: back towards -z, table towards +z)
-  function chair(cx, cz, a, priv) {
+  function chair(cx, cz, a, priv, ref, zone) {
+    pick(ref, zone, cx - 0.27, 0, cz - 0.27, cx + 0.27, 0.92, cz + 0.27);
     const add = local(cx, cz, a);
     const fab = priv ? "oliveDark" : "olive";
     [[-0.19, -0.18], [0.19, -0.18], [-0.19, 0.18], [0.19, 0.18]].forEach(([x, z]) => add("walnut", C(0.018, 0.015, 0.44, x, 0.22, z, 8)));
@@ -251,19 +260,21 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
     const priv = it.zone === "private-dining";
     if (it.shape === "long") {
       const w = it.w || 1, d = it.d || 3;
+      pick(it.ref, it.zone, it.x - w / 2, 0, it.z - d / 2, it.x + w / 2, 0.8, it.z + d / 2);
       rbox("walnutTop", w, 0.05, d, 0.015, it.x, 0.75, it.z);
       [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sz]) => box("walnut", 0.07, 0.72, 0.07, it.x + sx * (w / 2 - 0.1), 0.36, it.z + sz * (d / 2 - 0.1)));
       const per = Math.ceil((it.chairs || 0) / 2);
       for (let i = 0; i < per; i++) {
         const z = it.z - d / 2 + (d / per) * (i + 0.5);
-        chair(it.x - w / 2 - 0.25, z, Math.PI / 2, priv);
-        chair(it.x + w / 2 + 0.25, z, -Math.PI / 2, priv);
+        chair(it.x - w / 2 - 0.25, z, Math.PI / 2, priv, it.chairRef, it.zone);
+        chair(it.x + w / 2 + 0.25, z, -Math.PI / 2, priv, it.chairRef, it.zone);
         setting(it.x - w / 2 + 0.2, z); setting(it.x + w / 2 - 0.2, z);
       }
       if (rich) for (let i = 0; i < 3; i++) cyl("white", 0.03, 0.03, 0.08, it.x, 0.81, it.z - d / 3 + (d / 3) * i, 10);
       return;
     }
     const s = it.size || 0.8;
+    pick(it.ref, it.zone, it.x - s / 2, 0, it.z - s / 2, it.x + s / 2, 0.8, it.z + s / 2);
     if (it.shape === "square") {
       rbox("walnutTop", s, 0.04, s, 0.012, it.x, 0.755, it.z);
       [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sz]) => cyl("walnut", 0.022, 0.016, 0.72, it.x + sx * (s / 2 - 0.06), 0.36, it.z + sz * (s / 2 - 0.06), 8));
@@ -278,12 +289,13 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
     angles.slice(0, n).forEach((deg) => {
       const r = (deg * Math.PI) / 180;
       const cx = it.x + Math.cos(r) * dist, cz = it.z + Math.sin(r) * dist;
-      chair(cx, cz, Math.atan2(it.x - cx, it.z - cz), priv);
+      chair(cx, cz, Math.atan2(it.x - cx, it.z - cz), priv, it.chairRef, it.zone);
       setting(it.x + Math.cos(r) * (s / 2 - 0.16), it.z + Math.sin(r) * (s / 2 - 0.16));
     });
     if (rich) cyl("white", 0.028, 0.028, 0.07, it.x, 0.81, it.z, 10); // candle
   }
-  function stool(cx, cz) {
+  function stool(cx, cz, ref, zone) {
+    pick(ref, zone, cx - 0.21, 0, cz - 0.21, cx + 0.21, 0.82, cz + 0.21);
     cyl("olive", 0.2, 0.19, 0.08, cx, 0.77, cz, 24);
     [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sz]) => {
       const g = new THREE.CylinderGeometry(0.015, 0.017, 0.76, 8);
@@ -293,12 +305,13 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
     const ring = new THREE.TorusGeometry(0.15, 0.011, 6, 24); ring.rotateX(Math.PI / 2); ring.translate(cx, 0.3, cz); put("brass", ring);
   }
   function highTable(it) {
+    pick(it.ref, it.zone, it.x - 0.37, 0, it.z - 0.37, it.x + 0.37, 1.08, it.z + 0.37);
     cyl("marble", 0.36, 0.36, 0.035, it.x, 1.05, it.z, 32);
     cyl("black", 0.04, 0.04, 1.03, it.x, 0.52, it.z, 10);
     cyl("black", 0.25, 0.27, 0.025, it.x, 0.013, it.z, 24);
     for (let i = 0; i < (it.stools || 0); i++) {
       const a = (i / it.stools) * Math.PI * 2;
-      stool(it.x, it.z + Math.cos(a) * 0.62);
+      stool(it.x, it.z + Math.cos(a) * 0.62, it.stoolRef, it.zone);
     }
   }
   // curved upholstered alcove: half ring open towards +x, tufted panels, walnut cap, sconces
@@ -313,10 +326,13 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
       const base = B(0.22, 0.1, len, 0, 0.05, 0); base.rotateY(-am); base.translate(px + Math.cos(am) * 0.03, 0, pz + Math.sin(am) * 0.03); put("walnut", base);
     }
     glowGeos.push(at(new THREE.SphereGeometry(0.05, 10, 8), it.x - r - 0.02, 1.04, it.z));
+    pick(it.ref, it.zone, it.x - r - 0.14, 0, it.z - r - 0.1, it.x - 0.05, 1.02, it.z + r + 0.1);
+    pick(it.sconceRef, it.zone, it.x - r - 0.16, 0.98, it.z - 0.14, it.x - r + 0.12, 1.16, it.z + 0.14);
   }
   // bar run: slatted dark green front on the guest side, marble top with overhang, brass foot rail
   function barRun(it) {
     const { x, z, w, d } = it;
+    pick(it.ref, it.zone, x - 0.12, 0, z - 0.05, x + w + 0.12, 1.12, z + d + 0.12);
     const g = it.guest || "south";
     box("walnut", w, 1.0, d, x + w / 2, 0.5, z + d / 2);
     const over = 0.14;
@@ -339,11 +355,13 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
   }
   function backBar(it) {
     const { x, z, w, d } = it;
+    pick(it.ref, it.zone, x, 0, z, x + w, 1.62, z + d);
     box("walnut", w, 0.92, d, x + w / 2, 0.46, z + d / 2);
     box("marble", w, 0.03, d + 0.02, x + w / 2, 0.935, z + d / 2);
     [1.22, 1.5].forEach((y) => box("oak", w - 0.2, 0.03, 0.26, x + w / 2, y, z + 0.13));
     [0.12, w / 3, (2 * w) / 3, w - 0.12].forEach((p) => box("black", 0.03, 0.75, 0.03, x + p, 1.3, z + 0.02));
     glowGeos.push(B(w - 0.24, 0.012, 0.04, x + w / 2, 1.2, z + 0.24), B(w - 0.24, 0.012, 0.04, x + w / 2, 1.48, z + 0.24));
+    [1.2, 1.48].forEach((y) => pick(it.ledRef, it.zone, x + 0.12, y - 0.03, z + 0.2, x + w - 0.12, y + 0.03, z + 0.28));
     if (!rich) return;
     const kinds = ["amber", "bottle", "clear", "amber", "clear", "bottle"];
     let k = 0;
@@ -398,11 +416,17 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
   }
 
   const glowGeos = [];
+  const PICK_H = { sideboard: 0.85, hostStand: 1.05, bench: 0.8, kitchenCounter: 1.0, cookline: 0.95, dishwash: 0.95, pass: 0.95, coldRoom: 1.0, lockers: 1.0, shelving: 1.02, vanity: 0.9, rug: 0.04 };
   data.items.forEach((it) => {
     const cxr = it.x + (it.w || 0) / 2, czr = it.z + (it.d || 0) / 2;
+    const sz = it.size || 0.6;
+    if (PICK_H[it.type]) pickRect(it, PICK_H[it.type]);
+    if (it.type === "plant") pick(it.ref, it.zone, it.x - sz / 2, 0, it.z - sz / 2, it.x + sz / 2, sz * 1.45, it.z + sz / 2);
+    if (it.type === "planter") pick(it.ref, it.zone, it.x - 0.42, 0, it.z - 0.42, it.x + 0.42, 1.85, it.z + 0.42);
+    if (it.type === "wcPan") pick(it.ref, it.zone, it.x, 0, it.z, it.x + 0.4, 0.72, it.z + 0.65);
     switch (it.type) {
       case "table": table(it); break;
-      case "stool": stool(it.x, it.z); break;
+      case "stool": stool(it.x, it.z, it.ref, it.zone); break;
       case "highTable": highTable(it); break;
       case "alcove": alcove(it); break;
       case "barRun": barRun(it); break;
@@ -479,6 +503,7 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
       glowGeos.push(at(new THREE.SphereGeometry(r * 0.3, 12, 8), L.x, y - 0.01, L.z));
     }
     cyl("black", 0.005, 0.005, CEILING - y, L.x, (CEILING + y) / 2, L.z, 6);
+    pick(L.ref, L.zone, L.x - 0.26, y - 0.2, L.z - 0.26, L.x + 0.26, y + 0.14, L.z + 0.26);
     pool(tablePools, L.x, overBar ? 1.108 : 0.785, L.z, small ? 0.42 : 0.6);
     pool(floorPools, L.x, 0.035, L.z, small ? 0.75 : 1.05);
     if (L.glow && realLights < 8) {
@@ -551,60 +576,137 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
     zones.set(zn.id, { rects: zn.rects, fills, lines, label: labels.querySelector(`[data-zone="${zn.id}"]`), center: c });
   });
 
-  // ---------- controls: a gentle turn on desktop only (touch keeps page scroll) ----------
-  let controls = null;
-  if (fine) {
-    controls = new OrbitControls(camera, canvas);
-    controls.target.copy(target);
-    controls.enableZoom = false;
-    controls.enablePan = false;
-    controls.enableDamping = !reducedMotion;
-    controls.dampingFactor = 0.09;
-    controls.rotateSpeed = 0.5;
-    controls.minAzimuthAngle = A - 0.4;
-    controls.maxAzimuthAngle = A + 0.4;
-    controls.minPolarAngle = P - 0.2;
-    controls.maxPolarAngle = P + 0.1;
-    controls.update();
-  }
+  // ---------- controls: OrbitControls on every device ----------
+  // mouse: drag = rotate, right-drag = pan; wheel stays with the page (no zoom hijack)
+  // touch: one finger = rotate, two fingers = pinch zoom + pan, with inertia.
+  // The canvas keeps `touch-action: pan-y`, so a vertical swipe still scrolls the
+  // page; horizontal swipes and pinches belong to the model (only while touching it).
+  const touch = window.matchMedia("(pointer: coarse)").matches;
+  // the mouse wheel / two-finger trackpad scroll belongs to the page; only a
+  // pinch (ctrl + wheel on trackpads) zooms the model. Registered before
+  // OrbitControls so its wheel handler never sees a plain scroll.
+  canvas.addEventListener("wheel", (e) => { if (!e.ctrlKey) e.stopImmediatePropagation(); });
+  const controls = new OrbitControls(camera, canvas);
+  controls.target.copy(target);
+  controls.enableRotate = true;
+  controls.enablePan = true;
+  controls.enableZoom = true;                // pinch (touch + trackpad); plain wheel scrolls the page (see above)
+  controls.screenSpacePanning = false;       // pan along the floor
+  controls.enableDamping = !reducedMotion;
+  controls.dampingFactor = 0.08;
+  controls.rotateSpeed = touch ? 0.6 : 0.5;
+  controls.panSpeed = 0.8;
+  controls.zoomSpeed = 0.9;
+  controls.minZoom = 1;                      // never smaller than the fitted plan
+  controls.maxZoom = 4;
+  controls.minAzimuthAngle = A - 0.7;
+  controls.maxAzimuthAngle = A + 0.7;
+  controls.minPolarAngle = P - 0.35;
+  controls.maxPolarAngle = Math.min(P + 0.25, 1.2);
+  controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
+  controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
+  controls.update();
+  controls.saveState();
+  canvas.style.touchAction = "pan-y";        // OrbitControls sets "none"; keep vertical page scroll
+  // keep the plan in reach: the orbit centre stays over the restaurant
+  const clampTarget = () => {
+    const tg = controls.target, ox = tg.x, oz = tg.z;
+    tg.x = THREE.MathUtils.clamp(tg.x, 0, W);
+    tg.z = THREE.MathUtils.clamp(tg.z, 0, D + 1.5);
+    tg.y = 0;
+    camera.position.x += tg.x - ox;
+    camera.position.z += tg.z - oz;
+  };
+  controls.addEventListener("change", clampTarget);
 
   // ---------- state ----------
-  let selected = null, hovered = null, dirty = true, active = true, raf = 0;
+  let selected = null, hovered = null, selRef = null, hoverPick = null, dirty = true, active = true, raf = 0;
+  // outlines: every instance of the selected reference, and the hovered instance
+  const boxEdges = (boxes, pad) => {
+    const p = [];
+    boxes.forEach((bx) => {
+      const a = bx.min, c = bx.max, x0 = a.x - pad, y0 = a.y, z0 = a.z - pad, x1 = c.x + pad, y1 = c.y + pad, z1 = c.z + pad;
+      const v = [[x0, y0, z0], [x1, y0, z0], [x1, y0, z1], [x0, y0, z1], [x0, y1, z0], [x1, y1, z0], [x1, y1, z1], [x0, y1, z1]];
+      [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]].forEach(([i, j]) => p.push(...v[i], ...v[j]));
+    });
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.Float32BufferAttribute(p, 3));
+    return g;
+  };
+  const selLines = new THREE.LineSegments(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: ACCENT, depthTest: false, transparent: true, opacity: 0.95 }));
+  const hovLines = new THREE.LineSegments(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0x161513, depthTest: false, transparent: true, opacity: 0.45 }));
+  selLines.renderOrder = hovLines.renderOrder = 5;
+  scene.add(selLines, hovLines);
   function applyHighlight() {
     zones.forEach((zn, id) => {
-      const sel = id === selected, hov = id === hovered && !sel;
+      const sel = id === selected, hov = id === hovered && !sel && !hoverPick;
       zn.fills.forEach((f) => { f.material.opacity = sel ? 0.14 : hov ? 0.08 : 0; });
       zn.lines.forEach((l) => { l.visible = sel; });
     });
-    canvas.style.cursor = hovered ? "pointer" : "";
+    selLines.geometry.dispose();
+    selLines.geometry = boxEdges(selRef ? picks.filter((pk) => pk.ref === selRef).map((pk) => pk.box) : [], 0.03);
+    hovLines.geometry.dispose();
+    hovLines.geometry = boxEdges(hoverPick && hoverPick.ref !== selRef ? [hoverPick.box] : [], 0.02);
+    canvas.style.cursor = hovered || hoverPick ? "pointer" : "";
     dirty = true;
   }
-  function select(id) { selected = zones.has(id) ? id : null; applyHighlight(); }
+  function select(zoneId, ref) { selected = zones.has(zoneId) ? zoneId : null; selRef = ref || null; applyHighlight(); }
 
   const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), floor = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), hit = new THREE.Vector3();
-  function zoneAt(ev) {
+  const tmp = new THREE.Vector3();
+  function aim(ev) {
     const r = canvas.getBoundingClientRect();
     ndc.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
     ray.setFromCamera(ndc, camera);
+  }
+  // nearest object box along the ray
+  function objectAt() {
+    let best = null, bestD = Infinity;
+    for (const pk of picks) {
+      if (!ray.ray.intersectBox(pk.box, tmp)) continue;
+      const d = tmp.distanceToSquared(ray.ray.origin);
+      if (d < bestD) { bestD = d; best = pk; }
+    }
+    return best;
+  }
+  function zoneAt() {
     if (!ray.ray.intersectPlane(floor, hit)) return null;
     for (const [id, zn] of zones) {
       if (zn.rects.some(({ x, z, w, d }) => hit.x >= x && hit.x <= x + w && hit.z >= z && hit.z <= z + d)) return id;
     }
     return null;
   }
-  let down = null;
-  canvas.addEventListener("pointerdown", (e) => { down = { x: e.clientX, y: e.clientY }; });
-  canvas.addEventListener("pointerup", (e) => {
-    if (!down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) return;
-    const id = zoneAt(e);
-    if (id && onSelect) onSelect(id);
+  // tap vs gesture: select only for a single, short, (almost) still press
+  const downs = new Map();
+  let multi = false;
+  canvas.addEventListener("pointerdown", (e) => {
+    downs.set(e.pointerId, { x: e.clientX, y: e.clientY, t: performance.now() });
+    if (downs.size > 1) multi = true;
   });
+  const endPointer = (e, cancelled) => {
+    const d = downs.get(e.pointerId);
+    downs.delete(e.pointerId);
+    const wasMulti = multi;
+    if (!downs.size) multi = false;
+    if (cancelled || !d || wasMulti) return;
+    const moved = Math.hypot(e.clientX - d.x, e.clientY - d.y);
+    if (moved > (e.pointerType === "mouse" ? 5 : 10) || performance.now() - d.t > 600) return;
+    aim(e);
+    const pk = objectAt();
+    if (pk && onSelect) { onSelect("object", pk.ref, pk.zone); return; }
+    const id = zoneAt();
+    if (id && onSelect) onSelect("zone", id);
+  };
+  canvas.addEventListener("pointerup", (e) => endPointer(e, false));
+  canvas.addEventListener("pointercancel", (e) => endPointer(e, true));
   canvas.addEventListener("pointermove", (e) => {
     if (e.pointerType !== "mouse" || e.buttons) return;
-    const id = zoneAt(e);
-    if (id !== hovered) { hovered = id; applyHighlight(); }
+    aim(e);
+    const pk = objectAt();
+    const id = pk ? null : zoneAt();
+    if (id !== hovered || pk !== hoverPick) { hovered = id; hoverPick = pk; applyHighlight(); }
   });
-  canvas.addEventListener("pointerleave", () => { if (hovered) { hovered = null; applyHighlight(); } });
+  canvas.addEventListener("pointerleave", () => { if (hovered || hoverPick) { hovered = null; hoverPick = null; applyHighlight(); } });
 
   // ---------- size, labels, render loop ----------
   function resize() {
@@ -616,7 +718,7 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
   }
   new ResizeObserver(resize).observe(container);
   resize();
-  controls?.addEventListener("change", () => { dirty = true; });
+  controls.addEventListener("change", () => { dirty = true; });
 
   const v = new THREE.Vector3();
   function placeLabels() {
@@ -630,7 +732,7 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
   function frame() {
     raf = 0;
     if (!active) return;
-    if (controls && controls.update()) dirty = true;
+    if (controls.update()) dirty = true;
     if (dirty) { dirty = false; renderer.render(scene, camera); placeLabels(); }
     raf = requestAnimationFrame(frame);
   }
@@ -640,6 +742,7 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
 
   return {
     select,
+    resetView() { controls.reset(); controls.update(); dirty = true; },
     setActive(on) {
       active = on;
       if (on && !raf) { dirty = true; raf = requestAnimationFrame(frame); }

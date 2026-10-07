@@ -23,7 +23,7 @@ const escapeHtml = (value) =>
 const LOCALE = { es: "es-ES", en: "en-GB", ru: "ru-RU", uk: "uk-UA" };
 const num = (lang, n) => new Intl.NumberFormat(LOCALE[lang] || "en-GB", { maximumFractionDigits: 2 }).format(n);
 
-// ---- counting (zone details + consistency check) ----
+// ---- counting (consistency check against data.planning) ----
 const countItem = (it) => {
   if (it.type === "table") return { tables: 1, chairs: it.chairs || 0, stools: 0 };
   if (it.type === "stool") return { tables: 0, chairs: 0, stools: 1 };
@@ -35,21 +35,6 @@ const sum = (items) => items.reduce((t, it) => {
   t.tables += c.tables; t.chairs += c.chairs; t.stools += c.stools;
   return t;
 }, { tables: 0, chairs: 0, stools: 0 });
-const countZone = (data, id) => { const t = sum(data.items.filter((it) => it.zone === id)); return { ...t, seats: t.chairs + t.stools }; };
-
-// furniture lines per zone: "Round Table Type A (4 seats) × 3"
-function furnitureLines(data, zoneId, names) {
-  const tally = new Map();
-  const add = (key, n) => { if (n > 0) tally.set(key, (tally.get(key) || 0) + n); };
-  const chairKey = zoneId === "private-dining" ? "chairPrivate" : "chair";
-  data.items.filter((it) => it.zone === zoneId).forEach((it) => {
-    if (it.type === "table") { add(it.kind, 1); add(chairKey, it.chairs || 0); }
-    else if (it.type === "stool") add("stool", 1);
-    else if (it.type === "highTable") { add("highTable", 1); add("stool", it.stools || 0); }
-    else if (it.type === "alcove") add("alcove", 1);
-  });
-  return [...tally].filter(([key]) => names[key]).map(([key, n]) => `${names[key]} × ${n}`);
-}
 
 // ---- projection shared with the 3D camera (orthographic, see plan-scene.js) ----
 function projector(view) {
@@ -80,7 +65,8 @@ const ICON = {
 };
 const icon = (k) => `<svg class="rp-metric__icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICON[k]}</svg>`;
 
-function createRestaurantPlan(data, translations) {
+function createRestaurantPlan(data, translations, { spec } = {}) {
+  const panel = require("../assets/js/restaurant-3d/spec-panel.js");
   const t = (lang) => translations[lang].restaurantsPage.plan;
   const P = data.planning;
   const monthlyRevenue = P.seats * P.averageCheck * P.seatTurnsPerDay * P.daysPerMonth;
@@ -158,34 +144,11 @@ function createRestaurantPlan(data, translations) {
     ].join("\n");
   }
 
-  function details(lang) {
-    const p = t(lang);
-    const arts = data.zones.map((z) => {
-      const c = countZone(data, z.id);
-      const zt = p.zones[z.id];
-      const area = Math.round(rectsOf(z).reduce((a, r) => a + r.w * r.d, 0));
-      const stats = [["area", `${area} m²`], ["seats", c.seats], ["tables", c.tables], ["chairs", c.chairs], ["stools", c.stools]]
-        .filter(([k, v]) => k === "area" || v > 0)
-        .map(([k, v]) => `            <div><dt>${escapeHtml(p.info[k])}</dt><dd>${escapeHtml(v)}</dd></div>`);
-      const furn = furnitureLines(data, z.id, p.furniture);
-      const list = (title, lines) => lines.length
-        ? [`        <div class="rp-info__col">`, `          <p class="rp-info__label">${escapeHtml(title)}</p>`, `          <ul class="rp-info__list">`, ...lines.map((x) => `            <li>${escapeHtml(x)}</li>`), `          </ul>`, `        </div>`]
-        : [];
-      return [
-        `      <article class="rp-info" data-zone="${z.id}"${z.id === data.defaultZone ? "" : " hidden"}>`,
-        `        <div class="rp-info__head">`,
-        `          <p class="rp-info__kicker">${escapeHtml(p.info.selected)}</p>`,
-        `          <h2 class="rp-info__name">${escapeHtml(zt.name)}</h2>`,
-        `          <dl class="rp-info__stats">`,
-        ...stats,
-        `          </dl>`,
-        `        </div>`,
-        ...list(p.info.furniture, furn),
-        ...list(p.info.spec, zt.spec || []),
-        `      </article>`
-      ].join("\n");
-    });
-    return [`    <div class="rplan3d__info" data-rplan-info aria-live="polite">`, ...arts, `    </div>`].join("\n");
+  // specification panel data for one language (display-ready) + the default view
+  const specCache = {};
+  function specData(lang) {
+    if (!specCache[lang]) specCache[lang] = spec.forLang(lang, Object.fromEntries(data.zones.map((z) => [z.id, t(lang).zones[z.id].name])));
+    return specCache[lang];
   }
 
   function clientData(lang) {
@@ -194,6 +157,7 @@ function createRestaurantPlan(data, translations) {
       floor: data.floor, wallHeight: data.wallHeight, view: data.view, defaultZone: data.defaultZone,
       zones: data.zones.map((z) => ({ id: z.id, rects: rectsOf(z), label: z.label || null, finish: z.finish, name: p.zones[z.id].name })),
       walls: data.walls, items: data.items, lights: data.lights || [],
+      zoneFloors: Object.fromEntries(data.zones.map((z) => [z.id, z.floorRef || null])),
     };
   }
 
@@ -213,18 +177,26 @@ function createRestaurantPlan(data, translations) {
       `      </div>`,
       `    </header>`,
       `    <div class="rplan3d__stage">`,
+      `     <div class="rplan3d__model">`,
       `      <div class="rplan3d__viewport" data-rplan-viewport style="--ar: ${(box.w / box.h).toFixed(4)}; aspect-ratio: ${f2(box.w)} / ${f2(box.h)}">`,
       posterSvg(lang).replace(/^/gm, "    "),
       labels(lang).replace(/^/gm, "  "),
       `        <p class="rplan3d__loading" data-rplan-loading hidden>${escapeHtml(p.loading)}</p>`,
+      `        <button type="button" class="rplan3d__reset" data-rplan-reset hidden>${escapeHtml(p.reset)}</button>`,
       `      </div>`,
       `      <p class="rplan3d__hint" data-hint-fine="${escapeHtml(p.hint)}" data-hint-touch="${escapeHtml(p.hintTouch)}">${escapeHtml(p.hint)}</p>`,
+      `     </div>`,
+      // specification panel: side panel on desktop, bottom sheet on phones
+      `      <aside class="rplan3d__panel" data-rplan-panel aria-label="${escapeHtml(specData(lang).labels["ui.panel"])}">`,
+      `        <div class="rplan3d__panel-in" data-rplan-panel-body aria-live="polite">${panel.render(specData(lang), { type: "zone", id: data.defaultZone })}</div>`,
+      `      </aside>`,
+      `      <div class="rplan3d__scrim" data-rplan-scrim hidden></div>`,
       `    </div>`,
       metrics(lang).replace(/^/gm, "  "),
-      details(lang),
       `    </div>`,
       `  </section>`,
-      `  <script type="application/json" id="rplan-data">${JSON.stringify(clientData(lang)).replace(/</g, "\\u003c")}</script>`
+      `  <script type="application/json" id="rplan-data">${JSON.stringify(clientData(lang)).replace(/</g, "\\u003c")}</script>`,
+      `  <script type="application/json" id="rplan-spec">${JSON.stringify(specData(lang)).replace(/</g, "\\u003c")}</script>`
     ].join("\n");
   }
 

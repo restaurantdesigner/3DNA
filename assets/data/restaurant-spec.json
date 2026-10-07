@@ -1,0 +1,3528 @@
+{
+ "_comment": "Specification data for the 3D restaurant planning section (FF&E, lighting, equipment and finishes schedules). Values starting with 't:' are vocabulary keys translated in assets/i18n/restaurant-spec.json; anything else is shown as written. 'match' links an object to its instances in the 3D model (assets/data/restaurant-plan.json) so quantities and click targets come from the model; objects without a model instance give 'zones' + 'quantity'. Budgets are [min, max, per] in EUR — INDICATIVE PLACEHOLDERS for the concept stage, not quotes. Manufacturers and suppliers stay 'tbc' until real project data replaces them.",
+ "currency": "EUR",
+ "objects": [
+  {
+   "ref": "CH-01",
+   "group": "furniture",
+   "category": "cat.diningChair",
+   "name": "n.chairA",
+   "match": [
+    {
+     "source": "chairs",
+     "zone": "main-dining"
+    }
+   ],
+   "dims": "W 520 × D 560 × H 790 mm",
+   "key": [
+    "seatHeight",
+    "material",
+    "color"
+   ],
+   "spec": [
+    [
+     "seatHeight",
+     "460 mm"
+    ],
+    [
+     "material",
+     "t:oakUpholstered"
+    ],
+    [
+     "finish",
+     "t:naturalOakMatte"
+    ],
+    [
+     "upholstery",
+     "t:commercialFabric"
+    ],
+    [
+     "color",
+     "t:oliveWarm"
+    ],
+    [
+     "fireRating",
+     "t:projectRequirement"
+    ],
+    [
+     "durability",
+     "t:hospitalityUse"
+    ],
+    [
+     "maintenance",
+     "t:wipeClean"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:commercialFabric",
+    "t:naturalOakMatte"
+   ],
+   "model": "CH-01",
+   "status": "proposed",
+   "budget": [
+    180,
+    260,
+    "unit"
+   ],
+   "notes": "t:noteChairA",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "CH-02",
+   "group": "furniture",
+   "category": "cat.diningChair",
+   "name": "n.chairB",
+   "match": [
+    {
+     "source": "chairs",
+     "zone": "private-dining"
+    }
+   ],
+   "dims": "W 540 × D 580 × H 820 mm",
+   "key": [
+    "seatHeight",
+    "material",
+    "color"
+   ],
+   "spec": [
+    [
+     "seatHeight",
+     "465 mm"
+    ],
+    [
+     "material",
+     "t:walnutVelvet"
+    ],
+    [
+     "finish",
+     "t:walnutStain"
+    ],
+    [
+     "upholstery",
+     "t:velvetCommercial"
+    ],
+    [
+     "color",
+     "t:deepGreen"
+    ],
+    [
+     "fireRating",
+     "t:projectRequirement"
+    ],
+    [
+     "durability",
+     "t:hospitalityUse"
+    ],
+    [
+     "maintenance",
+     "t:wipeClean"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:velvetCommercial",
+    "t:walnutStain"
+   ],
+   "model": "CH-02",
+   "status": "proposed",
+   "budget": [
+    260,
+    380,
+    "unit"
+   ],
+   "notes": "t:noteChairB",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "ST-01",
+   "group": "furniture",
+   "category": "cat.barStool",
+   "name": "n.stoolA",
+   "match": [
+    {
+     "source": "items",
+     "type": "stool"
+    },
+    {
+     "source": "tableStools"
+    }
+   ],
+   "dims": "Ø 420 × H 760 mm",
+   "key": [
+    "seatHeight",
+    "counterHeight",
+    "spacing"
+   ],
+   "spec": [
+    [
+     "seatHeight",
+     "750 mm"
+    ],
+    [
+     "overallHeight",
+     "760 mm"
+    ],
+    [
+     "material",
+     "t:oakUpholstered"
+    ],
+    [
+     "upholstery",
+     "t:commercialFabric"
+    ],
+    [
+     "footrest",
+     "t:brassRing"
+    ],
+    [
+     "baseFinish",
+     "t:walnutStain"
+    ],
+    [
+     "spacing",
+     "600–650 mm"
+    ],
+    [
+     "counterHeight",
+     "1080 mm"
+    ],
+    [
+     "fireRating",
+     "t:projectRequirement"
+    ],
+    [
+     "durability",
+     "t:hospitalityUse"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:commercialFabric",
+    "t:brassRing"
+   ],
+   "model": "ST-01",
+   "status": "proposed",
+   "budget": [
+    220,
+    340,
+    "unit"
+   ],
+   "notes": "t:noteStool",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "TB-01",
+   "group": "furniture",
+   "category": "cat.diningTable",
+   "name": "n.tableA",
+   "match": [
+    {
+     "source": "items",
+     "type": "table",
+     "kind": "roundTable4"
+    }
+   ],
+   "dims": "Ø 1000 × H 750 mm",
+   "key": [
+    "top",
+    "base",
+    "seating"
+   ],
+   "spec": [
+    [
+     "top",
+     "t:walnutVeneer"
+    ],
+    [
+     "base",
+     "t:powderSteel"
+    ],
+    [
+     "edge",
+     "25 mm"
+    ],
+    [
+     "seating",
+     "t:seats4"
+    ],
+    [
+     "flexibility",
+     "t:flexRound"
+    ],
+    [
+     "finish",
+     "t:walnutStain"
+    ],
+    [
+     "durability",
+     "t:hospitalityUse"
+    ],
+    [
+     "maintenance",
+     "t:wipeClean"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:walnutVeneer",
+    "t:powderSteel"
+   ],
+   "model": "TB-01",
+   "status": "proposed",
+   "budget": [
+    420,
+    650,
+    "unit"
+   ],
+   "notes": "t:noteTables",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "TB-02",
+   "group": "furniture",
+   "category": "cat.diningTable",
+   "name": "n.tableB",
+   "match": [
+    {
+     "source": "items",
+     "type": "table",
+     "kind": "roundTable2",
+     "size": 0.8
+    }
+   ],
+   "dims": "Ø 800 × H 750 mm",
+   "key": [
+    "top",
+    "base",
+    "seating"
+   ],
+   "spec": [
+    [
+     "top",
+     "t:walnutVeneer"
+    ],
+    [
+     "base",
+     "t:powderSteel"
+    ],
+    [
+     "edge",
+     "25 mm"
+    ],
+    [
+     "seating",
+     "t:seats2"
+    ],
+    [
+     "flexibility",
+     "t:flexRound"
+    ],
+    [
+     "finish",
+     "t:walnutStain"
+    ],
+    [
+     "durability",
+     "t:hospitalityUse"
+    ],
+    [
+     "maintenance",
+     "t:wipeClean"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:walnutVeneer",
+    "t:powderSteel"
+   ],
+   "model": "TB-02",
+   "status": "proposed",
+   "budget": [
+    320,
+    480,
+    "unit"
+   ],
+   "notes": "t:noteTables",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "TB-03",
+   "group": "furniture",
+   "category": "cat.diningTable",
+   "name": "n.tableC",
+   "match": [
+    {
+     "source": "items",
+     "type": "table",
+     "kind": "roundTable2",
+     "size": 0.7
+    }
+   ],
+   "dims": "Ø 700 × H 750 mm",
+   "key": [
+    "top",
+    "base",
+    "seating"
+   ],
+   "spec": [
+    [
+     "top",
+     "t:walnutVeneer"
+    ],
+    [
+     "base",
+     "t:powderSteel"
+    ],
+    [
+     "edge",
+     "25 mm"
+    ],
+    [
+     "seating",
+     "t:seats2"
+    ],
+    [
+     "flexibility",
+     "t:flexRound"
+    ],
+    [
+     "finish",
+     "t:walnutStain"
+    ],
+    [
+     "durability",
+     "t:hospitalityUse"
+    ],
+    [
+     "maintenance",
+     "t:wipeClean"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:walnutVeneer",
+    "t:powderSteel"
+   ],
+   "model": "TB-03",
+   "status": "proposed",
+   "budget": [
+    280,
+    420,
+    "unit"
+   ],
+   "notes": "t:noteTables",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "TB-04",
+   "group": "furniture",
+   "category": "cat.diningTable",
+   "name": "n.tableD",
+   "match": [
+    {
+     "source": "items",
+     "type": "table",
+     "kind": "squareTable2"
+    }
+   ],
+   "dims": "700 × 700 × H 750 mm",
+   "key": [
+    "top",
+    "base",
+    "seating"
+   ],
+   "spec": [
+    [
+     "top",
+     "t:walnutVeneer"
+    ],
+    [
+     "base",
+     "t:timberLegs"
+    ],
+    [
+     "edge",
+     "25 mm"
+    ],
+    [
+     "seating",
+     "t:seats24"
+    ],
+    [
+     "flexibility",
+     "t:flexCombine"
+    ],
+    [
+     "finish",
+     "t:walnutStain"
+    ],
+    [
+     "durability",
+     "t:hospitalityUse"
+    ],
+    [
+     "maintenance",
+     "t:wipeClean"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:walnutVeneer",
+    "t:timberLegs"
+   ],
+   "model": "TB-04",
+   "status": "proposed",
+   "budget": [
+    300,
+    450,
+    "unit"
+   ],
+   "notes": "t:noteTables",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "TB-05",
+   "group": "furniture",
+   "category": "cat.diningTable",
+   "name": "n.tableE",
+   "match": [
+    {
+     "source": "items",
+     "type": "table",
+     "kind": "longTable8"
+    }
+   ],
+   "dims": "3000 × 1000 × H 750 mm",
+   "key": [
+    "top",
+    "base",
+    "seating"
+   ],
+   "spec": [
+    [
+     "top",
+     "t:solidWalnut"
+    ],
+    [
+     "base",
+     "t:timberLegs"
+    ],
+    [
+     "edge",
+     "25 mm"
+    ],
+    [
+     "seating",
+     "t:seats8"
+    ],
+    [
+     "flexibility",
+     "t:flexPrivate"
+    ],
+    [
+     "finish",
+     "t:walnutStain"
+    ],
+    [
+     "durability",
+     "t:hospitalityUse"
+    ],
+    [
+     "maintenance",
+     "t:wipeClean"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:solidWalnut",
+    "t:timberLegs"
+   ],
+   "model": "TB-05",
+   "status": "proposed",
+   "budget": [
+    2600,
+    4200,
+    "unit"
+   ],
+   "notes": "t:noteTables",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "TB-06",
+   "group": "furniture",
+   "category": "cat.highTable",
+   "name": "n.tableF",
+   "match": [
+    {
+     "source": "items",
+     "type": "highTable"
+    }
+   ],
+   "dims": "Ø 720 × H 1050 mm",
+   "key": [
+    "top",
+    "base",
+    "seating"
+   ],
+   "spec": [
+    [
+     "top",
+     "t:honedStone"
+    ],
+    [
+     "base",
+     "t:powderSteel"
+    ],
+    [
+     "edge",
+     "30 mm"
+    ],
+    [
+     "seating",
+     "t:seats2"
+    ],
+    [
+     "maintenance",
+     "t:sealed"
+    ]
+   ],
+   "materials": [
+    "t:m.stone",
+    "t:powderSteel"
+   ],
+   "model": "TB-06",
+   "status": "proposed",
+   "budget": [
+    480,
+    760,
+    "unit"
+   ],
+   "notes": "t:noteTables",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "BQ-01",
+   "group": "furniture",
+   "category": "cat.banquette",
+   "name": "n.alcove",
+   "match": [
+    {
+     "source": "items",
+     "type": "alcove"
+    }
+   ],
+   "dims": "Ø 2300 × H 1000 mm (½ ring)",
+   "key": [
+    "material",
+    "upholstery",
+    "color"
+   ],
+   "spec": [
+    [
+     "material",
+     "t:upholsteredPanels"
+    ],
+    [
+     "upholstery",
+     "t:leatherLook"
+    ],
+    [
+     "base",
+     "t:walnutPlinth"
+    ],
+    [
+     "color",
+     "t:cognac"
+    ],
+    [
+     "fireRating",
+     "t:projectRequirement"
+    ],
+    [
+     "maintenance",
+     "t:wipeClean"
+    ]
+   ],
+   "materials": [
+    "t:m.upholstery",
+    "t:leatherLook",
+    "t:walnutPlinth"
+   ],
+   "model": "BQ-01",
+   "status": "proposed",
+   "budget": [
+    2800,
+    4200,
+    "unit"
+   ],
+   "notes": "t:noteAlcove",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "SB-01",
+   "group": "furniture",
+   "category": "cat.casegoods",
+   "name": "n.sideboard",
+   "match": [
+    {
+     "source": "items",
+     "type": "sideboard"
+    }
+   ],
+   "dims": "3600 × 450 × H 820 mm",
+   "key": [
+    "material"
+   ],
+   "spec": [
+    [
+     "material",
+     "t:walnutMarble"
+    ],
+    [
+     "finish",
+     "t:walnutStain"
+    ],
+    [
+     "maintenance",
+     "t:sealed"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:m.stone"
+   ],
+   "model": "SB-01",
+   "status": "proposed",
+   "budget": [
+    2400,
+    3600,
+    "unit"
+   ],
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "HS-01",
+   "group": "furniture",
+   "category": "cat.casegoods",
+   "name": "n.hostStand",
+   "match": [
+    {
+     "source": "items",
+     "type": "hostStand"
+    }
+   ],
+   "dims": "1000 × 500 × H 1000 mm",
+   "key": [
+    "material",
+    "includes"
+   ],
+   "spec": [
+    [
+     "material",
+     "t:walnutBrass"
+    ],
+    [
+     "includes",
+     "t:posIncluded"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:m.metal"
+   ],
+   "model": "HS-01",
+   "status": "proposed",
+   "budget": [
+    900,
+    1500,
+    "unit"
+   ],
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "BN-01",
+   "group": "furniture",
+   "category": "cat.seating",
+   "name": "n.waitingBench",
+   "match": [
+    {
+     "source": "items",
+     "type": "bench",
+     "zone": "entry"
+    }
+   ],
+   "dims": "1300 × 500 × H 700 mm",
+   "key": [
+    "upholstery"
+   ],
+   "spec": [
+    [
+     "upholstery",
+     "t:linenUphol"
+    ],
+    [
+     "base",
+     "t:walnutPlinth"
+    ],
+    [
+     "fireRating",
+     "t:projectRequirement"
+    ]
+   ],
+   "materials": [
+    "t:m.upholstery",
+    "t:m.timber"
+   ],
+   "model": "BN-01",
+   "status": "proposed",
+   "budget": [
+    600,
+    950,
+    "unit"
+   ],
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "RG-01",
+   "group": "furniture",
+   "category": "cat.softFurnishing",
+   "name": "n.rug",
+   "match": [
+    {
+     "source": "items",
+     "type": "rug"
+    }
+   ],
+   "dims": "3100 × 4000 mm",
+   "key": [
+    "material"
+   ],
+   "spec": [
+    [
+     "material",
+     "t:woolBlend"
+    ],
+    [
+     "fireRating",
+     "t:projectRequirement"
+    ],
+    [
+     "maintenance",
+     "t:lowMaintenance"
+    ]
+   ],
+   "materials": [
+    "t:woolBlend"
+   ],
+   "model": "RG-01",
+   "status": "alternative",
+   "budget": [
+    900,
+    1600,
+    "unit"
+   ],
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "PL-01",
+   "group": "furniture",
+   "category": "cat.planting",
+   "name": "n.plantIndoor",
+   "match": [
+    {
+     "source": "items",
+     "type": "plant"
+    }
+   ],
+   "dims": "Ø 450–600 × H 900–1300 mm",
+   "key": [
+    "species",
+    "pot"
+   ],
+   "spec": [
+    [
+     "species",
+     "t:speciesTbc"
+    ],
+    [
+     "pot",
+     "t:ceramicPot"
+    ],
+    [
+     "maintenance",
+     "t:plantCare"
+    ]
+   ],
+   "materials": [
+    "t:ceramicPot"
+   ],
+   "model": "PL-01",
+   "status": "proposed",
+   "budget": [
+    120,
+    260,
+    "unit"
+   ],
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "PL-02",
+   "group": "furniture",
+   "category": "cat.planting",
+   "name": "n.planterOutdoor",
+   "match": [
+    {
+     "source": "items",
+     "type": "planter"
+    }
+   ],
+   "dims": "750 × 750 × H 500 mm + tree",
+   "key": [
+    "pot",
+    "species"
+   ],
+   "spec": [
+    [
+     "pot",
+     "t:concretePlanter"
+    ],
+    [
+     "species",
+     "t:speciesTbc"
+    ],
+    [
+     "maintenance",
+     "t:plantCare"
+    ]
+   ],
+   "materials": [
+    "t:concretePlanter"
+   ],
+   "model": "PL-02",
+   "status": "proposed",
+   "budget": [
+    650,
+    1100,
+    "unit"
+   ],
+   "zoneOverride": "entry",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "LT-01",
+   "group": "lighting",
+   "category": "cat.pendant",
+   "name": "n.pendantDome",
+   "match": [
+    {
+     "source": "lights",
+     "zone": "main-dining",
+     "style": "dome"
+    }
+   ],
+   "dims": "Ø 480 × H 300 mm",
+   "key": [
+    "power",
+    "cct",
+    "mounting"
+   ],
+   "spec": [
+    [
+     "type",
+     "t:decorativeAmbient"
+    ],
+    [
+     "power",
+     "8 W LED"
+    ],
+    [
+     "cct",
+     "2700 K"
+    ],
+    [
+     "cri",
+     "CRI ≥ 90"
+    ],
+    [
+     "beam",
+     "t:wideDiffuse"
+    ],
+    [
+     "dimming",
+     "t:dimmingOptions"
+    ],
+    [
+     "mounting",
+     "t:mount700"
+    ],
+    [
+     "finish",
+     "t:brassBronze"
+    ],
+    [
+     "role",
+     "t:roleAmbientDecor"
+    ]
+   ],
+   "materials": [
+    "t:brassBronze"
+   ],
+   "model": "LT-01",
+   "status": "proposed",
+   "budget": [
+    280,
+    520,
+    "unit"
+   ],
+   "notes": "t:noteLight",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "LT-02",
+   "group": "lighting",
+   "category": "cat.pendant",
+   "name": "n.pendantGlobe",
+   "match": [
+    {
+     "source": "lights",
+     "zone": "main-dining",
+     "style": "globe"
+    }
+   ],
+   "dims": "Ø 160–220 mm",
+   "key": [
+    "power",
+    "cct",
+    "mounting"
+   ],
+   "spec": [
+    [
+     "type",
+     "t:decorativeAmbient"
+    ],
+    [
+     "power",
+     "5 W LED"
+    ],
+    [
+     "cct",
+     "2700 K"
+    ],
+    [
+     "cri",
+     "CRI ≥ 90"
+    ],
+    [
+     "beam",
+     "t:diffuse360"
+    ],
+    [
+     "dimming",
+     "t:dimmingOptions"
+    ],
+    [
+     "mounting",
+     "t:mount700"
+    ],
+    [
+     "finish",
+     "t:opalBrass"
+    ],
+    [
+     "role",
+     "t:roleAmbient"
+    ]
+   ],
+   "materials": [
+    "t:opalBrass"
+   ],
+   "model": "LT-02",
+   "status": "proposed",
+   "budget": [
+    160,
+    320,
+    "unit"
+   ],
+   "notes": "t:noteLight",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "LT-03",
+   "group": "lighting",
+   "category": "cat.pendant",
+   "name": "n.pendantBar",
+   "match": [
+    {
+     "source": "lights",
+     "zone": "bar",
+     "style": "dome"
+    }
+   ],
+   "dims": "Ø 300 × H 190 mm",
+   "key": [
+    "power",
+    "cct",
+    "mounting"
+   ],
+   "spec": [
+    [
+     "type",
+     "t:taskAccent"
+    ],
+    [
+     "power",
+     "6 W LED"
+    ],
+    [
+     "cct",
+     "2700 K"
+    ],
+    [
+     "cri",
+     "CRI ≥ 90"
+    ],
+    [
+     "beam",
+     "t:mediumBeam"
+    ],
+    [
+     "dimming",
+     "t:dimmingOptions"
+    ],
+    [
+     "mounting",
+     "t:mount650"
+    ],
+    [
+     "finish",
+     "t:brassBronze"
+    ],
+    [
+     "role",
+     "t:roleCounter"
+    ]
+   ],
+   "materials": [
+    "t:brassBronze"
+   ],
+   "model": "LT-03",
+   "status": "proposed",
+   "budget": [
+    220,
+    400,
+    "unit"
+   ],
+   "notes": "t:noteLight",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "LT-04",
+   "group": "lighting",
+   "category": "cat.pendant",
+   "name": "n.pendantPrivate",
+   "match": [
+    {
+     "source": "lights",
+     "zone": "private-dining"
+    }
+   ],
+   "dims": "Ø 480 × H 300 mm",
+   "key": [
+    "power",
+    "cct",
+    "mounting"
+   ],
+   "spec": [
+    [
+     "type",
+     "t:decorativeFocal"
+    ],
+    [
+     "power",
+     "10 W LED"
+    ],
+    [
+     "cct",
+     "2700 K"
+    ],
+    [
+     "cri",
+     "CRI ≥ 90"
+    ],
+    [
+     "beam",
+     "t:wideDiffuse"
+    ],
+    [
+     "dimming",
+     "t:dimmingOptions"
+    ],
+    [
+     "mounting",
+     "t:mount700"
+    ],
+    [
+     "finish",
+     "t:brassBronze"
+    ],
+    [
+     "role",
+     "t:roleFocal"
+    ]
+   ],
+   "materials": [
+    "t:brassBronze"
+   ],
+   "model": "LT-04",
+   "status": "proposed",
+   "budget": [
+    320,
+    580,
+    "unit"
+   ],
+   "notes": "t:noteLight",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "LT-05",
+   "group": "lighting",
+   "category": "cat.wallLight",
+   "name": "n.sconce",
+   "match": [
+    {
+     "source": "sconces"
+    }
+   ],
+   "dims": "W 120 × H 200 mm",
+   "key": [
+    "power",
+    "cct",
+    "mounting"
+   ],
+   "spec": [
+    [
+     "type",
+     "t:decorativeAmbient"
+    ],
+    [
+     "power",
+     "4 W LED"
+    ],
+    [
+     "cct",
+     "2700 K"
+    ],
+    [
+     "cri",
+     "CRI ≥ 90"
+    ],
+    [
+     "beam",
+     "t:upDown"
+    ],
+    [
+     "dimming",
+     "t:dimmingOptions"
+    ],
+    [
+     "mounting",
+     "t:mountAlcove"
+    ],
+    [
+     "finish",
+     "t:brassBronze"
+    ],
+    [
+     "role",
+     "t:roleGlow"
+    ]
+   ],
+   "materials": [
+    "t:brassBronze"
+   ],
+   "model": "LT-05",
+   "status": "proposed",
+   "budget": [
+    140,
+    260,
+    "unit"
+   ],
+   "notes": "t:noteLight",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "LT-06",
+   "group": "lighting",
+   "category": "cat.linearLight",
+   "name": "n.backbarLed",
+   "match": [
+    {
+     "source": "backbarLeds"
+    }
+   ],
+   "dims": "2 × 4600 mm",
+   "key": [
+    "power",
+    "cct",
+    "mounting"
+   ],
+   "spec": [
+    [
+     "type",
+     "t:taskAccent"
+    ],
+    [
+     "power",
+     "9.6 W/m LED"
+    ],
+    [
+     "cct",
+     "2700 K"
+    ],
+    [
+     "cri",
+     "CRI ≥ 90"
+    ],
+    [
+     "beam",
+     "t:linearGrazing"
+    ],
+    [
+     "dimming",
+     "t:dimmingOptions"
+    ],
+    [
+     "mounting",
+     "t:underShelf"
+    ],
+    [
+     "finish",
+     "t:m.integratedLight"
+    ],
+    [
+     "role",
+     "t:roleDisplay"
+    ]
+   ],
+   "materials": [
+    "t:m.integratedLight"
+   ],
+   "model": "LT-06",
+   "status": "proposed",
+   "budget": [
+    380,
+    620,
+    "run"
+   ],
+   "notes": "t:noteLight",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "LT-07",
+   "group": "lighting",
+   "category": "cat.pendant",
+   "name": "n.globeSmall",
+   "match": [
+    {
+     "source": "lights",
+     "zone": "bar",
+     "style": "globe"
+    },
+    {
+     "source": "lights",
+     "zone": "entry"
+    }
+   ],
+   "dims": "Ø 160 mm",
+   "key": [
+    "power",
+    "cct",
+    "mounting"
+   ],
+   "spec": [
+    [
+     "type",
+     "t:decorativeAmbient"
+    ],
+    [
+     "power",
+     "4 W LED"
+    ],
+    [
+     "cct",
+     "2700 K"
+    ],
+    [
+     "cri",
+     "CRI ≥ 90"
+    ],
+    [
+     "beam",
+     "t:diffuse360"
+    ],
+    [
+     "dimming",
+     "t:dimmingOptions"
+    ],
+    [
+     "mounting",
+     "t:mount700"
+    ],
+    [
+     "finish",
+     "t:opalBrass"
+    ],
+    [
+     "role",
+     "t:roleAmbient"
+    ]
+   ],
+   "materials": [
+    "t:opalBrass"
+   ],
+   "model": "LT-07",
+   "status": "proposed",
+   "budget": [
+    140,
+    260,
+    "unit"
+   ],
+   "notes": "t:noteLight",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "BR-01",
+   "group": "equipment",
+   "category": "cat.barJoinery",
+   "name": "n.barCounter",
+   "match": [
+    {
+     "source": "items",
+     "type": "barRun"
+    }
+   ],
+   "dims": "auto:barLength",
+   "qtyAs": "none",
+   "quantity": "auto:barLengthNum",
+   "zones": [
+    "bar"
+   ],
+   "key": [
+    "counterHeight",
+    "top",
+    "front"
+   ],
+   "spec": [
+    [
+     "length",
+     "auto:barLength"
+    ],
+    [
+     "counterHeight",
+     "1080 mm"
+    ],
+    [
+     "workHeight",
+     "900 mm"
+    ],
+    [
+     "top",
+     "t:honedStone"
+    ],
+    [
+     "front",
+     "t:slatsGreen"
+    ],
+    [
+     "footRail",
+     "t:brassRail"
+    ],
+    [
+     "maintenance",
+     "t:sealed"
+    ]
+   ],
+   "materials": [
+    "MAT-10",
+    "MAT-09",
+    "t:brassRail",
+    "t:m.integratedLight"
+   ],
+   "equipment": [
+    "BR-02",
+    "EQ-11",
+    "EQ-12",
+    "EQ-13",
+    "EQ-14",
+    "EQ-15"
+   ],
+   "model": "BR-01",
+   "status": "proposed",
+   "budget": [
+    1800,
+    2800,
+    "m"
+   ],
+   "notes": "t:noteBar",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "BR-02",
+   "group": "equipment",
+   "category": "cat.barJoinery",
+   "name": "n.backBar",
+   "match": [
+    {
+     "source": "items",
+     "type": "backBar"
+    }
+   ],
+   "dims": "4800 × 500 × H 920 mm + shelving",
+   "key": [
+    "material",
+    "role"
+   ],
+   "spec": [
+    [
+     "material",
+     "t:walnutMarble"
+    ],
+    [
+     "role",
+     "t:displayStorage"
+    ],
+    [
+     "finish",
+     "t:walnutStain"
+    ]
+   ],
+   "materials": [
+    "t:m.timber",
+    "t:m.stone",
+    "t:m.integratedLight"
+   ],
+   "equipment": [
+    "LT-06"
+   ],
+   "model": "BR-02",
+   "status": "proposed",
+   "budget": [
+    6500,
+    9500,
+    "unit"
+   ],
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "EQ-01",
+   "group": "equipment",
+   "category": "cat.kitchenEquipment",
+   "name": "n.cookline",
+   "dims": "4600 × 900 × H 900 mm",
+   "key": [
+    "powerGas",
+    "ventilation",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "ventilation",
+     "t:underHood"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    18000,
+    32000,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "match": [
+    {
+     "source": "items",
+     "type": "cookline"
+    }
+   ]
+  },
+  {
+   "ref": "EQ-02",
+   "group": "equipment",
+   "category": "cat.kitchenEquipment",
+   "name": "n.prepCounter",
+   "dims": "8400 × 700 × H 900 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "material",
+     "t:stainless304"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    6000,
+    9500,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "match": [
+    {
+     "source": "items",
+     "type": "kitchenCounter",
+     "zone": "kitchen"
+    }
+   ]
+  },
+  {
+   "ref": "EQ-03",
+   "group": "equipment",
+   "category": "cat.refrigeration",
+   "name": "n.coldRoom",
+   "dims": "1000 × 1200 × H 2100 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "temperature",
+     "t:coldTemp"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    7500,
+    12000,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "match": [
+    {
+     "source": "items",
+     "type": "coldRoom"
+    }
+   ]
+  },
+  {
+   "ref": "EQ-04",
+   "group": "equipment",
+   "category": "cat.kitchenEquipment",
+   "name": "n.pass",
+   "dims": "1200 × 500 × H 900 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "material",
+     "t:stainless304"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    1800,
+    3200,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "match": [
+    {
+     "source": "items",
+     "type": "pass"
+    }
+   ]
+  },
+  {
+   "ref": "EQ-05",
+   "group": "equipment",
+   "category": "cat.kitchenEquipment",
+   "name": "n.dishwash",
+   "dims": "600 × 1600 × H 900 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "water",
+     "t:drainRequired"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    5500,
+    9000,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "match": [
+    {
+     "source": "items",
+     "type": "dishwash"
+    }
+   ]
+  },
+  {
+   "ref": "EQ-06",
+   "group": "equipment",
+   "category": "cat.kitchenEquipment",
+   "name": "n.hood",
+   "dims": "≈ 5000 × 1200 mm",
+   "key": [
+    "powerGas",
+    "ventilation",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "ventilation",
+     "t:hoodSystem"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    9000,
+    16000,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "kitchen"
+   ],
+   "quantity": 1
+  },
+  {
+   "ref": "EQ-07",
+   "group": "equipment",
+   "category": "cat.kitchenEquipment",
+   "name": "n.combiOven",
+   "dims": "≈ 850 × 800 × H 1050 mm",
+   "key": [
+    "powerGas",
+    "ventilation",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "ventilation",
+     "t:underHood"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    9000,
+    15000,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "kitchen"
+   ],
+   "quantity": 1
+  },
+  {
+   "ref": "EQ-08",
+   "group": "equipment",
+   "category": "cat.kitchenEquipment",
+   "name": "n.grill",
+   "dims": "≈ 800 × 700 × H 900 mm",
+   "key": [
+    "powerGas",
+    "ventilation",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "ventilation",
+     "t:underHood"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    3000,
+    6000,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "kitchen"
+   ],
+   "quantity": 1
+  },
+  {
+   "ref": "EQ-09",
+   "group": "equipment",
+   "category": "cat.kitchenEquipment",
+   "name": "n.fryer",
+   "dims": "≈ 400 × 700 × H 900 mm",
+   "key": [
+    "powerGas",
+    "ventilation",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "ventilation",
+     "t:underHood"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    1500,
+    3000,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "kitchen"
+   ],
+   "quantity": 1
+  },
+  {
+   "ref": "EQ-10",
+   "group": "equipment",
+   "category": "cat.refrigeration",
+   "name": "n.fridgeKitchen",
+   "dims": "≈ 1400 × 700 × H 850 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "temperature",
+     "t:coldTemp"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    2500,
+    4500,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "kitchen"
+   ],
+   "quantity": 2
+  },
+  {
+   "ref": "EQ-16",
+   "group": "equipment",
+   "category": "cat.kitchenEquipment",
+   "name": "n.waste",
+   "dims": "≈ 900 × 500 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    400,
+    900,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "kitchen"
+   ],
+   "quantity": 1
+  },
+  {
+   "ref": "EQ-11",
+   "group": "equipment",
+   "category": "cat.refrigeration",
+   "name": "n.fridgeBar",
+   "dims": "≈ 900 × 550 × H 850 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "temperature",
+     "t:coldTemp"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    1400,
+    2400,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "bar"
+   ],
+   "quantity": 3
+  },
+  {
+   "ref": "EQ-12",
+   "group": "equipment",
+   "category": "cat.barEquipment",
+   "name": "n.iceMachine",
+   "dims": "≈ 500 × 600 × H 800 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "water",
+     "t:drainRequired"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    1800,
+    3500,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "bar"
+   ],
+   "quantity": 1
+  },
+  {
+   "ref": "EQ-13",
+   "group": "equipment",
+   "category": "cat.barEquipment",
+   "name": "n.barSink",
+   "dims": "≈ 400 × 400 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "water",
+     "t:drainRequired"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    350,
+    700,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "bar"
+   ],
+   "quantity": 2
+  },
+  {
+   "ref": "EQ-14",
+   "group": "equipment",
+   "category": "cat.barEquipment",
+   "name": "n.glasswasher",
+   "dims": "≈ 450 × 500 × H 700 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "water",
+     "t:drainRequired"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    1600,
+    3000,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "bar"
+   ],
+   "quantity": 1
+  },
+  {
+   "ref": "EQ-15",
+   "group": "equipment",
+   "category": "cat.barEquipment",
+   "name": "n.pos",
+   "dims": "—",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:m.metal"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    600,
+    1200,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "zones": [
+    "bar"
+   ],
+   "quantity": 2
+  },
+  {
+   "ref": "EQ-20",
+   "group": "equipment",
+   "category": "cat.storage",
+   "name": "n.shelving",
+   "dims": "auto:size",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "material",
+     "t:stainless304"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    450,
+    800,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "match": [
+    {
+     "source": "items",
+     "type": "shelving"
+    }
+   ]
+  },
+  {
+   "ref": "EQ-21",
+   "group": "equipment",
+   "category": "cat.staffFacilities",
+   "name": "n.lockers",
+   "dims": "1200 × 500 × H 1800 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "material",
+     "t:lockers4"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:m.metal"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    900,
+    1600,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "match": [
+    {
+     "source": "items",
+     "type": "lockers"
+    }
+   ]
+  },
+  {
+   "ref": "EQ-22",
+   "group": "equipment",
+   "category": "cat.staffFacilities",
+   "name": "n.staffSink",
+   "dims": "1200 × 600 × H 900 mm",
+   "key": [
+    "powerGas",
+    "clearance",
+    "status"
+   ],
+   "spec": [
+    [
+     "powerGas",
+     "t:projectDependent"
+    ],
+    [
+     "electricalLoad",
+     "t:tbc"
+    ],
+    [
+     "water",
+     "t:drainRequired"
+    ],
+    [
+     "clearance",
+     "t:required"
+    ],
+    [
+     "installNotes",
+     "t:coordinateMEP"
+    ]
+   ],
+   "materials": [
+    "t:stainless304"
+   ],
+   "model": "t:toBeSelected",
+   "status": "conceptSpec",
+   "budget": [
+    600,
+    1200,
+    "unit"
+   ],
+   "notes": "t:noteEquipment",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "match": [
+    {
+     "source": "items",
+     "type": "kitchenCounter",
+     "zone": "staff"
+    }
+   ]
+  },
+  {
+   "ref": "BN-02",
+   "group": "furniture",
+   "category": "cat.staffFacilities",
+   "name": "n.staffBench",
+   "match": [
+    {
+     "source": "items",
+     "type": "bench",
+     "zone": "staff"
+    }
+   ],
+   "dims": "1200 × 400 × H 450 mm",
+   "key": [
+    "material"
+   ],
+   "spec": [
+    [
+     "material",
+     "t:m.timber"
+    ]
+   ],
+   "materials": [
+    "t:m.timber"
+   ],
+   "model": "BN-02",
+   "status": "proposed",
+   "budget": [
+    250,
+    450,
+    "unit"
+   ],
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "SW-01",
+   "group": "equipment",
+   "category": "cat.sanitary",
+   "name": "n.wcPan",
+   "match": [
+    {
+     "source": "items",
+     "type": "wcPan"
+    }
+   ],
+   "dims": "360 × 540 mm",
+   "key": [
+    "material",
+    "installation"
+   ],
+   "spec": [
+    [
+     "material",
+     "t:vitreousChina"
+    ],
+    [
+     "installation",
+     "t:concealedCistern"
+    ],
+    [
+     "water",
+     "t:drainRequired"
+    ]
+   ],
+   "materials": [
+    "t:vitreousChina"
+   ],
+   "model": "t:toBeSelected",
+   "status": "proposed",
+   "budget": [
+    450,
+    900,
+    "unit"
+   ],
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "SW-02",
+   "group": "equipment",
+   "category": "cat.sanitary",
+   "name": "n.vanity",
+   "match": [
+    {
+     "source": "items",
+     "type": "vanity"
+    }
+   ],
+   "dims": "2400 × 450 × H 820 mm",
+   "key": [
+    "material"
+   ],
+   "spec": [
+    [
+     "material",
+     "t:stoneVanity"
+    ],
+    [
+     "water",
+     "t:drainRequired"
+    ],
+    [
+     "maintenance",
+     "t:sealed"
+    ]
+   ],
+   "materials": [
+    "t:m.stone",
+    "t:m.timber",
+    "t:vitreousChina"
+   ],
+   "model": "t:toBeSelected",
+   "status": "proposed",
+   "budget": [
+    1800,
+    3200,
+    "unit"
+   ],
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc"
+  },
+  {
+   "ref": "MAT-01",
+   "group": "material",
+   "category": "cat.flooring",
+   "name": "n.floorStone",
+   "key": [
+    "material",
+    "format",
+    "slipRating"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.flooring"
+    ],
+    [
+     "material",
+     "t:porcelainStone"
+    ],
+    [
+     "finish",
+     "t:matte"
+    ],
+    [
+     "color",
+     "t:warmNeutral"
+    ],
+    [
+     "format",
+     "600 × 1200 mm"
+    ],
+    [
+     "slipRating",
+     "t:slipR10"
+    ],
+    [
+     "installation",
+     "t:adhesive"
+    ],
+    [
+     "maintenance",
+     "t:lowMaintenance"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-01",
+   "status": "proposed",
+   "budget": [
+    55,
+    95,
+    "m2"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "areaOf": [
+    "main-dining",
+    "bar",
+    "entry"
+   ],
+   "zones": [
+    "main-dining",
+    "bar",
+    "entry"
+   ],
+   "match": [
+    {
+     "source": "floors",
+     "finish": "stone"
+    }
+   ]
+  },
+  {
+   "ref": "MAT-02",
+   "group": "material",
+   "category": "cat.flooring",
+   "name": "n.floorTimber",
+   "key": [
+    "material",
+    "format",
+    "finish"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.flooring"
+    ],
+    [
+     "material",
+     "t:engineeredOak"
+    ],
+    [
+     "finish",
+     "t:oiledMatte"
+    ],
+    [
+     "color",
+     "t:warmOak"
+    ],
+    [
+     "format",
+     "190 × 1900 mm"
+    ],
+    [
+     "slipRating",
+     "t:slipTimber"
+    ],
+    [
+     "installation",
+     "t:glueDown"
+    ],
+    [
+     "maintenance",
+     "t:lowMaintenance"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-02",
+   "status": "proposed",
+   "budget": [
+    85,
+    140,
+    "m2"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "areaOf": [
+    "private-dining"
+   ],
+   "zones": [
+    "private-dining"
+   ],
+   "match": [
+    {
+     "source": "floors",
+     "finish": "wood"
+    }
+   ]
+  },
+  {
+   "ref": "MAT-03",
+   "group": "material",
+   "category": "cat.flooring",
+   "name": "n.floorKitchen",
+   "key": [
+    "material",
+    "slipRating",
+    "format"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.flooring"
+    ],
+    [
+     "material",
+     "t:glazedPorcelain"
+    ],
+    [
+     "finish",
+     "t:matte"
+    ],
+    [
+     "color",
+     "t:lightGrey"
+    ],
+    [
+     "format",
+     "300 × 300 mm"
+    ],
+    [
+     "slipRating",
+     "t:slipR12"
+    ],
+    [
+     "installation",
+     "t:coveSkirting"
+    ],
+    [
+     "maintenance",
+     "t:lowMaintenance"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-03",
+   "status": "proposed",
+   "budget": [
+    60,
+    100,
+    "m2"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "areaOf": [
+    "kitchen"
+   ],
+   "zones": [
+    "kitchen"
+   ],
+   "match": [
+    {
+     "source": "floors",
+     "finish": "tile"
+    }
+   ]
+  },
+  {
+   "ref": "MAT-04",
+   "group": "material",
+   "category": "cat.flooring",
+   "name": "n.floorWc",
+   "key": [
+    "material",
+    "color",
+    "slipRating"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.flooring"
+    ],
+    [
+     "material",
+     "t:glazedPorcelain"
+    ],
+    [
+     "finish",
+     "t:matte"
+    ],
+    [
+     "color",
+     "t:sage"
+    ],
+    [
+     "format",
+     "300 × 300 mm"
+    ],
+    [
+     "slipRating",
+     "t:slipR11"
+    ],
+    [
+     "installation",
+     "t:adhesive"
+    ],
+    [
+     "maintenance",
+     "t:lowMaintenance"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-04",
+   "status": "proposed",
+   "budget": [
+    70,
+    120,
+    "m2"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "areaOf": [
+    "wc"
+   ],
+   "zones": [
+    "wc"
+   ],
+   "match": [
+    {
+     "source": "floors",
+     "finish": "tileGreen"
+    }
+   ]
+  },
+  {
+   "ref": "MAT-05",
+   "group": "material",
+   "category": "cat.flooring",
+   "name": "n.floorService",
+   "key": [
+    "material",
+    "slipRating"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.flooring"
+    ],
+    [
+     "material",
+     "t:resin"
+    ],
+    [
+     "finish",
+     "t:matte"
+    ],
+    [
+     "color",
+     "t:warmNeutral"
+    ],
+    [
+     "slipRating",
+     "t:slipR11"
+    ],
+    [
+     "installation",
+     "t:resin"
+    ],
+    [
+     "maintenance",
+     "t:lowMaintenance"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-05",
+   "status": "proposed",
+   "budget": [
+    45,
+    80,
+    "m2"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "areaOf": [
+    "staff",
+    "dry-storage"
+   ],
+   "zones": [
+    "staff",
+    "dry-storage"
+   ],
+   "match": [
+    {
+     "source": "floors",
+     "finish": "service"
+    }
+   ]
+  },
+  {
+   "ref": "MAT-06",
+   "group": "material",
+   "category": "cat.wallFinish",
+   "name": "n.wallStructure",
+   "key": [
+    "material",
+    "color",
+    "finish"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.wallFinish"
+    ],
+    [
+     "material",
+     "t:mineralPlaster"
+    ],
+    [
+     "finish",
+     "t:matte"
+    ],
+    [
+     "color",
+     "t:charcoal"
+    ],
+    [
+     "installation",
+     "t:mineralPlaster"
+    ],
+    [
+     "maintenance",
+     "t:lowMaintenance"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-06",
+   "status": "proposed",
+   "budget": [
+    45,
+    85,
+    "m2"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "quantity": "tbc",
+   "zones": [
+    "main-dining",
+    "bar",
+    "private-dining",
+    "entry",
+    "kitchen",
+    "staff",
+    "dry-storage",
+    "wc"
+   ],
+   "match": [
+    {
+     "source": "walls",
+     "type": "exterior"
+    }
+   ]
+  },
+  {
+   "ref": "MAT-07",
+   "group": "material",
+   "category": "cat.wallFinish",
+   "name": "n.wallPartition",
+   "key": [
+    "material",
+    "color"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.wallFinish"
+    ],
+    [
+     "material",
+     "t:mineralPaint"
+    ],
+    [
+     "finish",
+     "t:matte"
+    ],
+    [
+     "color",
+     "t:charcoal"
+    ],
+    [
+     "installation",
+     "t:mineralPaint"
+    ],
+    [
+     "maintenance",
+     "t:lowMaintenance"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-07",
+   "status": "proposed",
+   "budget": [
+    35,
+    60,
+    "m2"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "quantity": "tbc",
+   "zones": [
+    "main-dining",
+    "private-dining",
+    "entry",
+    "kitchen",
+    "wc"
+   ],
+   "match": [
+    {
+     "source": "walls",
+     "type": "partition"
+    }
+   ]
+  },
+  {
+   "ref": "MAT-08",
+   "group": "material",
+   "category": "cat.glazing",
+   "name": "n.glazing",
+   "key": [
+    "material"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.glazing"
+    ],
+    [
+     "material",
+     "t:laminatedGlass"
+    ],
+    [
+     "color",
+     "t:charcoal"
+    ],
+    [
+     "installation",
+     "t:projectDependent"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-08",
+   "status": "proposed",
+   "budget": [
+    550,
+    850,
+    "m2"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "quantity": "tbc",
+   "zones": [
+    "main-dining",
+    "entry"
+   ],
+   "match": [
+    {
+     "source": "walls",
+     "type": "glass"
+    }
+   ]
+  },
+  {
+   "ref": "MAT-09",
+   "group": "material",
+   "category": "cat.barFinish",
+   "name": "n.barFront",
+   "key": [
+    "material",
+    "finish"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.barFinish"
+    ],
+    [
+     "material",
+     "t:timberSlats"
+    ],
+    [
+     "finish",
+     "t:slatsGreen"
+    ],
+    [
+     "color",
+     "t:deepGreen"
+    ],
+    [
+     "maintenance",
+     "t:wipeClean"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-09",
+   "status": "proposed",
+   "budget": [
+    450,
+    750,
+    "m"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "quantity": "auto:barLengthNum",
+   "zones": [
+    "bar"
+   ]
+  },
+  {
+   "ref": "MAT-10",
+   "group": "material",
+   "category": "cat.barFinish",
+   "name": "n.barTop",
+   "key": [
+    "material",
+    "finish"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.barFinish"
+    ],
+    [
+     "material",
+     "t:stoneSlab"
+    ],
+    [
+     "finish",
+     "t:honed"
+    ],
+    [
+     "color",
+     "t:warmWhite"
+    ],
+    [
+     "maintenance",
+     "t:sealed"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-10",
+   "status": "proposed",
+   "budget": [
+    650,
+    1100,
+    "m"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "quantity": "auto:barLengthNum",
+   "zones": [
+    "bar"
+   ]
+  },
+  {
+   "ref": "MAT-11",
+   "group": "material",
+   "category": "cat.ceilingFinish",
+   "name": "n.ceilingDining",
+   "key": [
+    "material",
+    "finish"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.ceilingFinish"
+    ],
+    [
+     "material",
+     "t:acousticPlaster"
+    ],
+    [
+     "finish",
+     "t:matte"
+    ],
+    [
+     "color",
+     "t:warmWhite"
+    ],
+    [
+     "installation",
+     "t:suspended"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-11",
+   "status": "proposed",
+   "budget": [
+    60,
+    110,
+    "m2"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "areaOf": [
+    "main-dining",
+    "bar",
+    "private-dining",
+    "entry"
+   ],
+   "zones": [
+    "main-dining",
+    "bar",
+    "private-dining",
+    "entry"
+   ]
+  },
+  {
+   "ref": "MAT-12",
+   "group": "material",
+   "category": "cat.ceilingFinish",
+   "name": "n.ceilingKitchen",
+   "key": [
+    "material"
+   ],
+   "spec": [
+    [
+     "materialType",
+     "t:cat.ceilingFinish"
+    ],
+    [
+     "material",
+     "t:hygienicPanels"
+    ],
+    [
+     "color",
+     "t:warmWhite"
+    ],
+    [
+     "installation",
+     "t:suspended"
+    ]
+   ],
+   "materials": [],
+   "model": "MAT-12",
+   "status": "proposed",
+   "budget": [
+    40,
+    70,
+    "m2"
+   ],
+   "notes": "t:noteMaterial",
+   "manufacturer": "t:tbc",
+   "supplier": "t:tbc",
+   "areaOf": [
+    "kitchen",
+    "wc",
+    "staff",
+    "dry-storage"
+   ],
+   "zones": [
+    "kitchen",
+    "wc",
+    "staff",
+    "dry-storage"
+   ]
+  }
+ ],
+ "zones": {
+  "main-dining": {
+   "objectives": [
+    "o.comfort",
+    "o.staffFlow",
+    "o.flexTables",
+    "o.sightlines",
+    "o.lighting"
+   ],
+   "primary": [
+    "m.timber",
+    "m.stone",
+    "m.upholstery",
+    "m.metal"
+   ],
+   "materials": [
+    "MAT-01",
+    "MAT-11",
+    "MAT-06",
+    "MAT-08"
+   ],
+   "floor": "MAT-01",
+   "ceiling": "MAT-11"
+  },
+  "bar": {
+   "objectives": [
+    "o.fastService",
+    "o.socialSeating",
+    "o.barVisibility"
+   ],
+   "primary": [
+    "m.stone",
+    "m.timber",
+    "m.metal",
+    "m.integratedLight"
+   ],
+   "materials": [
+    "MAT-01",
+    "MAT-10",
+    "MAT-09",
+    "MAT-11"
+   ],
+   "floor": "MAT-01",
+   "ceiling": "MAT-11",
+   "extraEquipment": [
+    "BR-01",
+    "BR-02",
+    "EQ-11",
+    "EQ-12",
+    "EQ-13",
+    "EQ-14",
+    "EQ-15"
+   ],
+   "bar": true
+  },
+  "kitchen": {
+   "objectives": [
+    "o.workflow",
+    "o.hygiene",
+    "o.capacity"
+   ],
+   "primary": [
+    "m.stainless",
+    "m.tile"
+   ],
+   "materials": [
+    "MAT-03",
+    "MAT-12",
+    "MAT-07"
+   ],
+   "floor": "MAT-03",
+   "ceiling": "MAT-12",
+   "workZones": [
+    "hotZone",
+    "prepZone",
+    "washZone",
+    "storageZone"
+   ],
+   "circulation": "kitchenCirc"
+  },
+  "private-dining": {
+   "objectives": [
+    "o.privacy",
+    "o.groups",
+    "o.lighting"
+   ],
+   "primary": [
+    "m.timber",
+    "m.upholstery",
+    "m.stone",
+    "m.metal"
+   ],
+   "materials": [
+    "MAT-02",
+    "MAT-11",
+    "MAT-07"
+   ],
+   "floor": "MAT-02",
+   "ceiling": "MAT-11"
+  },
+  "entry": {
+   "objectives": [
+    "o.welcome",
+    "o.queue",
+    "o.sightlines"
+   ],
+   "primary": [
+    "m.stone",
+    "m.timber",
+    "m.glass"
+   ],
+   "materials": [
+    "MAT-01",
+    "MAT-08",
+    "MAT-11"
+   ],
+   "floor": "MAT-01",
+   "ceiling": "MAT-11"
+  },
+  "wc": {
+   "objectives": [
+    "o.accessibility",
+    "o.hygiene"
+   ],
+   "primary": [
+    "m.tile",
+    "m.stone",
+    "m.timber"
+   ],
+   "materials": [
+    "MAT-04",
+    "MAT-12",
+    "MAT-07"
+   ],
+   "floor": "MAT-04",
+   "ceiling": "MAT-12"
+  },
+  "staff": {
+   "objectives": [
+    "o.staffWelfare",
+    "o.separateAccess"
+   ],
+   "primary": [
+    "m.metal",
+    "m.timber"
+   ],
+   "materials": [
+    "MAT-05",
+    "MAT-12"
+   ],
+   "floor": "MAT-05",
+   "ceiling": "MAT-12"
+  },
+  "dry-storage": {
+   "objectives": [
+    "o.stock",
+    "o.kitchenLink"
+   ],
+   "primary": [
+    "m.stainless"
+   ],
+   "materials": [
+    "MAT-05",
+    "MAT-12"
+   ],
+   "floor": "MAT-05",
+   "ceiling": "MAT-12"
+  }
+ }
+}

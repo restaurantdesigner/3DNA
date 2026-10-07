@@ -10181,7 +10181,7 @@ section.rplan3d{
   scroll-margin-top: 68px;
 }
 .rplan3d__inner{ max-width: 1320px; margin: 0 auto; }
-.rplan3d__text, .rplan3d__info, .rplan3d__figures{ text-align: left; }   /* legacy rules centre text */
+.rplan3d__text, .rplan3d__figures{ text-align: left; }   /* legacy rules centre text */
 
 /* intro: heading left, copy right */
 .rplan3d__text{
@@ -10232,25 +10232,6 @@ html[lang="ru"] .rplan3d__title, html[lang="uk"] .rplan3d__title{ font-size: cla
 .rplan3d__loading{ position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); margin: 0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--r-muted); }
 .rplan3d__hint{ margin: 4px 0 0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--r-muted); text-align: right; }
 
-/* selected-zone details: one compact row under the model */
-.rplan3d__info{ margin-top: 14px; padding-top: 16px; border-top: 1px solid var(--r-rule); }
-.rp-info{ display: grid; grid-template-columns: minmax(240px, 1.1fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(24px, 3vw, 48px); }
-.rp-info[hidden]{ display: none; }
-.rp-info__kicker{ margin: 0 0 6px; font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--r-accent); }
-.rp-info__name{
-  margin: 0 0 12px;
-  font-family: "Inter", system-ui, sans-serif !important; font-weight: 600 !important;
-  font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: var(--r-ink);
-}
-.rp-info__stats{ display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0; }
-.rp-info__stats div{ display: flex; flex-direction: column-reverse; gap: 3px; }
-.rp-info__stats dt{ font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--r-muted); }
-.rp-info__stats dd{ margin: 0; font-size: 18px; font-weight: 400; color: var(--r-ink); font-variant-numeric: tabular-nums; }
-.rp-info__label{ margin: 0 0 6px; font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--r-muted); }
-.rp-info__list{ margin: 0; padding: 0; list-style: none; }
-.rp-info__list li{ position: relative; padding-left: 16px; font-size: 13.5px; line-height: 1.55; color: #3d3934; }
-.rp-info__list li::before{ content: ""; position: absolute; left: 0; top: .8em; width: 8px; height: 1px; background: rgba(22,21,19,.35); }
-
 /* planning metrics + potential monthly revenue: editorial specification strip */
 .rplan3d__figures{
   display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
@@ -10288,12 +10269,11 @@ html[lang="ru"] .rplan3d__title, html[lang="uk"] .rplan3d__title{ font-size: cla
   html[lang="ru"] .rplan3d__title, html[lang="uk"] .rplan3d__title{ font-size: clamp(28px, 7.6vw, 38px); }
   .rplan3d__body{ font-size: 16px; line-height: 1.55; }
   .rplan3d__supporting{ margin-top: 12px; font-size: 10px; letter-spacing: .14em; line-height: 1.5; }
-  .rplan3d__stage{ margin: 16px -12px 0; }
+  .rplan3d__model{ margin: 16px -12px 0; }
   .rplan3d__viewport{ width: 100%; }
   .rp-zone{ padding: 4px 6px; font-size: 8px; letter-spacing: .08em; }
   .rplan3d__hint{ margin: 4px 12px 0; text-align: center; font-size: 10px; }
   .rplan3d__figures{ order: 3; margin-top: 16px; padding-top: 18px; }
-  .rplan3d__info{ order: 4; margin-top: 22px; }
   .rplan3d__metrics{ gap: 0; }
   .rp-metric{ padding: 0 4px; gap: 6px; }
   .rp-metric__icon{ width: 22px; height: 22px; }
@@ -10301,9 +10281,127 @@ html[lang="ru"] .rplan3d__title, html[lang="uk"] .rplan3d__title{ font-size: cla
   .rp-metric dt{ font-size: 8.5px; letter-spacing: .06em; overflow-wrap: anywhere; }
   .rp-revenue__title{ font-size: 20px; }
   .rp-revenue__result{ font-size: 30px; }
-  .rp-info{ grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
   #rplan-data + section.rstory{ padding-top: 36px; }
 }
 @media (prefers-reduced-motion: reduce){
   .rplan3d__canvas, .rplan3d.is-3d .rplan3d__poster, .rp-zone, .rp-poster__zone{ transition: none; }
+}
+
+/* ---- model + specification panel (desktop: panel beside the model) ---- */
+.rplan3d__stage{ display: grid; grid-template-columns: minmax(0, 1fr) clamp(300px, 27vw, 380px); column-gap: clamp(20px, 2.4vw, 36px); align-items: stretch; }
+.rplan3d__model{ position: relative; min-width: 0; }
+.rplan3d__viewport{ overflow: hidden; }
+.rplan3d__reset{
+  position: absolute; right: 8px; bottom: 8px; z-index: 2;   /* empty corner of the plan */
+  padding: 7px 11px;
+  background: rgba(255,255,255,.92); border: 1px solid rgba(22,21,19,.14); border-radius: 2px;
+  font: 600 9.5px/1 "Inter", system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--r-ink); cursor: pointer;
+}
+.rplan3d__reset:hover{ border-color: var(--r-ink); }
+.rplan3d__reset[hidden]{ display: none; }
+.rplan3d__panel{ position: relative; min-width: 0; border-left: 1px solid var(--r-rule); }
+.rplan3d__panel-in{ position: absolute; inset: 0; overflow-y: auto; padding: 2px 0 12px clamp(18px, 1.8vw, 26px); overscroll-behavior: contain; scrollbar-width: thin; }
+.rplan3d__scrim{ display: none; }
+
+/* ---- specification panel content (.rps) ---- */
+.rps{ text-align: left; color: var(--r-ink); font-family: "Inter", system-ui, sans-serif; }
+.rps *, .rps__item{ text-align: left; }   /* legacy rules centre text */
+.rps__head{ position: relative; padding-bottom: 12px; }
+.rps__kicker{ margin: 0 0 6px; font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--r-accent); }
+.rps__title{
+  margin: 0; padding-right: 36px;
+  font-family: "Inter", system-ui, sans-serif !important; font-weight: 500 !important;
+  font-size: 19px; line-height: 1.25; letter-spacing: -.01em; text-transform: none; color: var(--r-ink);
+}
+.rps__meta{ display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 8px 0 0; font-size: 11.5px; color: var(--r-muted); }
+.rps__ref{ font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 11px; letter-spacing: .04em; color: var(--r-ink); }
+.rps__status{ padding: 2px 7px; border: 1px solid rgba(22,21,19,.2); border-radius: 2px; font-size: 9.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--r-ink); }
+.rps__back{ display: inline-flex; gap: 6px; margin-top: 10px; padding: 0; border: 0; background: none; font: 500 11px/1.4 "Inter", system-ui, sans-serif; letter-spacing: .06em; color: var(--r-muted); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.rps__back:hover{ color: var(--r-ink); }
+.rps__close{ display: none; position: absolute; top: -6px; right: -6px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; font-size: 26px; line-height: 1; color: var(--r-ink); cursor: pointer; }
+.rps__tabs{ display: none; }
+.rps__sum{ display: flex; align-items: center; gap: 10px; width: 100%; margin: 0; padding: 12px 0; border: 0; border-top: 1px solid var(--r-rule); background: none; text-align: left; font: 600 10.5px/1 "Inter", system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--r-ink); cursor: default; }
+.rps__plus{ display: none; }
+.rps__body{ padding: 2px 0 12px; }
+.rps__dl{ margin: 0; }
+.rps__row{ display: grid; grid-template-columns: minmax(96px, 40%) minmax(0, 1fr); gap: 12px; padding: 7px 0; border-top: 1px solid var(--r-rule); }
+.rps__row:first-child{ border-top: 0; }
+.rps__row dt{ font-size: 9.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--r-muted); line-height: 1.5; }
+.rps__row dd{ margin: 0; font-size: 13px; line-height: 1.45; color: var(--r-ink); }
+.rps__label{ margin: 14px 0 6px; font-size: 9.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--r-muted); }
+.rps__list{ margin: 0; padding: 0; list-style: none; }
+.rps__list li, .rps__plain{ position: relative; padding: 3px 0 3px 16px; font-size: 13px; line-height: 1.45; color: #3d3934; }
+.rps__list li::before, .rps__plain::before{ content: ""; position: absolute; left: 0; top: .95em; width: 8px; height: 1px; background: rgba(22,21,19,.35); }
+.rps__sched{ margin: 0; padding: 0; list-style: none; }
+.rps__sched li{ border-top: 1px solid var(--r-rule); }
+.rps__sched li:first-child{ border-top: 0; }
+.rps__item{
+  display: grid; grid-template-columns: 58px minmax(0, 1fr) auto; align-items: baseline; gap: 10px;
+  width: 100%; padding: 8px 4px; border: 0; background: none; text-align: left; cursor: pointer;
+  font: inherit; color: var(--r-ink);
+}
+.rps__item:hover{ background: rgba(22,21,19,.035); }
+.rps__iref{ font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 10.5px; color: var(--r-accent); }
+.rps__iname{ font-size: 13px; line-height: 1.35; }
+.rps__iqty{ font-size: 11.5px; color: var(--r-muted); white-space: nowrap; }
+.rps__badge{ display: inline-block; margin: 2px 0 10px; padding: 4px 8px; border: 1px solid rgba(138,106,58,.45); border-radius: 2px; font-size: 9.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--r-accent); }
+.rps__fine{ margin: 10px 0 0; font-size: 11px; line-height: 1.5; color: var(--r-muted); }
+.rps__note{ margin: 10px 0 0; font-size: 13px; line-height: 1.5; color: #3d3934; }
+.rps__note--desktop{ padding-top: 10px; border-top: 1px solid var(--r-rule); }
+.rps button:focus-visible{ outline: 2px solid var(--r-accent); outline-offset: 2px; }
+
+/* enhanced (JS): tabs on desktop */
+.is-enhanced .rps__tabs{ display: flex; flex-wrap: wrap; gap: 0 16px; margin: 0 0 6px; border-bottom: 1px solid var(--r-rule); }
+.rps__tab{ padding: 9px 0 8px; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; background: none; font: 600 10px/1 "Inter", system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--r-muted); cursor: pointer; }
+.rps__tab[aria-selected="true"]{ color: var(--r-ink); border-bottom-color: var(--r-ink); }
+.is-enhanced .rps__sum{ display: none; }
+.is-enhanced .rps__sec{ display: none; }
+.is-enhanced .rps__sec.is-active{ display: block; }
+.is-enhanced .rps__sec[data-sec="notes"]{ display: none; }
+
+@media (max-width: 1100px){
+  .rplan3d__stage{ grid-template-columns: minmax(0, 1fr) 300px; }
+}
+@media (max-width: 900px){
+  .rplan3d__stage{ display: block; }
+  .rplan3d__panel{ border-left: 0; margin: 18px 12px 0; }
+  .rplan3d__panel-in{ position: static; padding: 0; overflow: visible; }
+  .rplan3d__reset{ right: 14px; bottom: 6px; padding: 6px 9px; font-size: 8.5px; }
+
+  /* enhanced: the panel becomes a bottom sheet opened by a selection */
+  .rplan3d.is-enhanced .rplan3d__panel{
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 2300;
+    margin: 0;
+    max-height: min(74dvh, 640px);
+    display: flex; flex-direction: column;
+    background: #fbf9f6;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -18px 50px -20px rgba(22,21,19,.45);
+    transform: translateY(105%); visibility: hidden;
+    transition: transform .32s cubic-bezier(.2,.7,.2,1), visibility 0s .32s;
+  }
+  .rplan3d.is-enhanced.is-sheet-open .rplan3d__panel{ transform: none; visibility: visible; transition: transform .32s cubic-bezier(.2,.7,.2,1); }
+  .rplan3d.is-enhanced .rplan3d__panel::before{ content: ""; flex: none; align-self: center; width: 40px; height: 4px; margin: 8px 0 2px; border-radius: 2px; background: rgba(22,21,19,.18); }
+  .rplan3d.is-enhanced .rplan3d__panel-in{ overflow-y: auto; padding: 10px 18px calc(18px + env(safe-area-inset-bottom)); overscroll-behavior: contain; }
+  .rplan3d.is-enhanced .rplan3d__scrim{ display: block; position: fixed; inset: 0; z-index: 2290; background: rgba(22,21,19,.16); }
+  .rplan3d.is-enhanced .rplan3d__scrim[hidden]{ display: none; }
+  .is-enhanced .rps__close{ display: block; }
+  /* sheet: overview first, the rest as collapsible blocks */
+  .is-enhanced .rps__tabs{ display: none; }
+  .is-enhanced .rps__sec{ display: block; }
+  .is-enhanced .rps__sec[data-sec="overview"] .rps__sum{ display: none; }
+  .is-enhanced .rps__sec:not([data-sec="overview"]) .rps__sum{ display: flex; cursor: pointer; min-height: 44px; }
+  .is-enhanced .rps__plus{ display: inline-block; position: relative; width: 11px; height: 11px; }
+  .is-enhanced .rps__plus::before, .is-enhanced .rps__plus::after{ content: ""; position: absolute; left: 0; top: 5px; width: 11px; height: 1px; background: currentColor; transition: transform .2s ease; }
+  .is-enhanced .rps__plus::after{ transform: rotate(90deg); }
+  .is-enhanced .rps__sec.is-open .rps__plus::after{ transform: rotate(0deg); }
+  .is-enhanced .rps__sec:not([data-sec="overview"]):not(.is-open) .rps__body{ display: none; }
+  .is-enhanced .rps__sec[data-sec="notes"]{ display: block; }
+  .is-enhanced .rps__note--desktop{ display: none; }
+  .rps__title{ font-size: 18px; }
+  body.rp-sheet-open .wa-float{ opacity: 0 !important; pointer-events: none !important; }
+}
+@media (prefers-reduced-motion: reduce){
+  .rplan3d.is-enhanced .rplan3d__panel{ transition: none !important; }
 }
