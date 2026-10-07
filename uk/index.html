@@ -39,7 +39,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=Lato&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Roboto&family=Sora:wght@700;800;900&family=Staatliches&family=Ultra&display=swap">
 
   <!-- Hero poster is the LCP element: fetch it before anything else -->
-  <link rel="preload" as="image" href="/images/hero-poster.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/images/hero-desktop-poster.webp" type="image/webp" fetchpriority="high" media="(min-width: 768px)">
+  <link rel="preload" as="image" href="/images/hero-mobile-poster.webp" type="image/webp" fetchpriority="high" media="(max-width: 767px)">
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -47,7 +48,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261008e">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261008h">
 </head>
 
 <body>
@@ -189,23 +190,37 @@
     /<lang>/<slug>/ once those pages exist.
   -->
   <section id="hero" class="sector-hero" aria-labelledby="hero-title">
+    <!-- Responsive sources: phones (<=767px) get the vertical showreel, larger
+         screens the horizontal video. Only ONE source is ever requested; it is
+         swapped if the width crosses the breakpoint (rotation / resize). -->
     <video class="sector-hero__video" muted loop playsinline preload="metadata"
-      poster="/images/hero-poster.webp" data-src="/videos/restaurant-hero.mp4?v=2"
-      width="854" height="480" aria-hidden="true" tabindex="-1"></video>
+      data-src-desktop="/videos/hero-desktop-showreel.mp4" data-poster-desktop="/images/hero-desktop-poster.webp"
+      data-src-mobile="/videos/hero-mobile-showreel.mp4" data-poster-mobile="/images/hero-mobile-poster.webp"
+      aria-hidden="true" tabindex="-1"></video>
     <script>
-      // Decorative background video, one source. Not loaded at all when the visitor
-      // prefers reduced motion; on any error the poster (also the CSS background) stays.
+      // Decorative background video. Not loaded at all with reduced motion (poster
+      // only); on any error the poster (also the CSS background) stays.
       (function () {
         var v = document.currentScript.previousElementSibling;
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        v.addEventListener('error', function () { v.remove(); }, true);
+        var mq = window.matchMedia('(max-width: 767px)');
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var play = function () { if (v.src && v.paused) v.play().catch(function () {}); };
         v.muted = true;
-        v.autoplay = true;
-        v.src = v.dataset.src;
-        var play = function () { if (v.paused) v.play().catch(function () {}); };
-        v.addEventListener('canplay', play, { once: true });
+        v.addEventListener('error', function () { v.removeAttribute('src'); v.load(); }, true);
+        function apply() {
+          var kind = mq.matches ? 'mobile' : 'desktop';
+          if (v.dataset.current === kind) return;
+          v.dataset.current = kind;
+          v.poster = v.dataset['poster' + (kind === 'mobile' ? 'Mobile' : 'Desktop')];
+          if (reduce) return;
+          v.autoplay = true;
+          v.src = v.dataset['src' + (kind === 'mobile' ? 'Mobile' : 'Desktop')];
+          play();
+        }
+        apply();
+        mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply);
+        v.addEventListener('canplay', play);
         document.addEventListener('touchstart', play, { once: true, passive: true });
-        play();
       })();
     </script>
     <div class="sector-hero__overlay" aria-hidden="true"></div>
@@ -1429,7 +1444,7 @@
     });
 })();
 </script>
-<script src="/assets/js/main.js?v=20261008d"></script>
+<script src="/assets/js/main.js?v=20261008e"></script>
 <script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
