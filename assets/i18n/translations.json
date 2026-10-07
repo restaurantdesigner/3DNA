@@ -200,6 +200,124 @@
       "body": "The same renders, walkthroughs and 3D views we use to design also work to communicate: social media, website, investor presentations and pre-opening campaigns."
     },
     "restaurantsPage": {
+      "plan": {
+        "eyebrow": "Restaurant planning",
+        "heading": "Spaces designed to work.",
+        "body": [
+          "Before materials and atmosphere, we solve layout, capacity, circulation and operations.",
+          "Every table, every chair and every route is planned before construction begins."
+        ],
+        "supporting": "Capacity · Circulation · Furniture · Zoning · Operations",
+        "modelLabel": "Isometric plan of a restaurant with eight zones: entry, main dining with curved alcoves and round tables, U-shaped bar, kitchen, private dining, staff, dry storage and WC.",
+        "zonesLabel": "Restaurant zones",
+        "hint": "Select a zone on the model",
+        "hintTouch": "Tap a zone on the model",
+        "loading": "Loading 3D model…",
+        "metricsLabel": "Planning data",
+        "metrics": {
+          "seats": "Seats",
+          "tables": "Tables",
+          "chairs": "Chairs",
+          "stools": "Bar stools",
+          "zones": "Zones"
+        },
+        "revenue": {
+          "title": "Potential monthly revenue",
+          "formula": "{seats} seats × €{check} average check × {turns} seat turns/day × {days} days",
+          "result": "≈ €{revenue}/month"
+        },
+        "info": {
+          "selected": "Selected zone",
+          "area": "Area",
+          "seats": "Seats",
+          "tables": "Tables",
+          "chairs": "Chairs",
+          "stools": "Bar stools",
+          "furniture": "Furniture",
+          "spec": "Planning"
+        },
+        "furniture": {
+          "roundTable4": "Round Table Type A (4 seats)",
+          "roundTable2": "Round Table Type B (2 seats)",
+          "squareTable2": "Square Table Type C (2 seats)",
+          "longTable8": "Banquet Table Type D (8 seats)",
+          "highTable": "High Table Type E (2 seats)",
+          "chair": "Upholstered Chair Type A",
+          "chairPrivate": "Upholstered Chair Type B",
+          "stool": "Bar Stool Type A",
+          "alcove": "Curved upholstered alcove"
+        },
+        "zones": {
+          "entry": {
+            "name": "Entry",
+            "spec": [
+              "Double entrance doors",
+              "Host stand",
+              "Waiting bench"
+            ]
+          },
+          "main-dining": {
+            "name": "Main dining",
+            "spec": [
+              "Curved alcoves along the wall",
+              "Round tables in the centre of the room",
+              "Tables for two along the window",
+              "Service aisles of 1 m or more",
+              "Pendants over the tables"
+            ]
+          },
+          "bar": {
+            "name": "Bar",
+            "spec": [
+              "U-shaped bar with a slatted front",
+              "Lit back bar",
+              "Direct link to the kitchen",
+              "Pendants over the bar"
+            ]
+          },
+          "kitchen": {
+            "name": "Kitchen",
+            "spec": [
+              "Central hot line",
+              "Cold room",
+              "Dishwashing area",
+              "Two doors to the dining room"
+            ]
+          },
+          "private-dining": {
+            "name": "Private dining",
+            "spec": [
+              "Banquet table for 8",
+              "Service sideboard",
+              "Own access from the entry",
+              "Pendants over the table"
+            ]
+          },
+          "staff": {
+            "name": "Staff",
+            "spec": [
+              "Lockers",
+              "Changing bench",
+              "Separate service entrance"
+            ]
+          },
+          "dry-storage": {
+            "name": "Dry storage",
+            "spec": [
+              "Storage shelving",
+              "Direct link to the kitchen"
+            ]
+          },
+          "wc": {
+            "name": "WC",
+            "spec": [
+              "Two cubicles",
+              "Washbasin area",
+              "Access from the dining room"
+            ]
+          }
+        }
+      },
       "slug": "restaurants",
       "meta": {
         "title": "Restaurant Interior Design | Commercial Interiors | 3DNA",
@@ -703,6 +821,124 @@
       "body": "Los mismos renders, recorridos y vistas 3D que usamos para diseñar sirven también para comunicar: redes sociales, web, presentaciones a inversores y campañas antes de abrir."
     },
     "restaurantsPage": {
+      "plan": {
+        "eyebrow": "Planificación de restaurantes",
+        "heading": "Espacios diseñados para funcionar.",
+        "body": [
+          "Antes de pensar en materiales y atmósfera, resolvemos distribución, capacidad, circulación y operación.",
+          "Cada mesa, cada silla y cada recorrido se planifica antes de empezar la obra."
+        ],
+        "supporting": "Capacidad · Circulación · Mobiliario · Zoning · Operación",
+        "modelLabel": "Plano isométrico de un restaurante con ocho zonas: entrada, comedor principal con hornacinas curvas y mesas redondas, barra en U, cocina, comedor privado, personal, almacén seco y aseos.",
+        "zonesLabel": "Zonas del restaurante",
+        "hint": "Selecciona una zona del modelo",
+        "hintTouch": "Toca una zona del modelo",
+        "loading": "Cargando modelo 3D…",
+        "metricsLabel": "Datos de planificación",
+        "metrics": {
+          "seats": "Plazas",
+          "tables": "Mesas",
+          "chairs": "Sillas",
+          "stools": "Taburetes",
+          "zones": "Zonas"
+        },
+        "revenue": {
+          "title": "Facturación mensual potencial",
+          "formula": "{seats} plazas × {check} € ticket medio × {turns} rotaciones por plaza/día × {days} días",
+          "result": "≈ {revenue} €/mes"
+        },
+        "info": {
+          "selected": "Zona seleccionada",
+          "area": "Superficie",
+          "seats": "Plazas",
+          "tables": "Mesas",
+          "chairs": "Sillas",
+          "stools": "Taburetes",
+          "furniture": "Mobiliario",
+          "spec": "Planificación"
+        },
+        "furniture": {
+          "roundTable4": "Mesa redonda tipo A (4 plazas)",
+          "roundTable2": "Mesa redonda tipo B (2 plazas)",
+          "squareTable2": "Mesa cuadrada tipo C (2 plazas)",
+          "longTable8": "Mesa de banquete tipo D (8 plazas)",
+          "highTable": "Mesa alta tipo E (2 plazas)",
+          "chair": "Silla tapizada tipo A",
+          "chairPrivate": "Silla tapizada tipo B",
+          "stool": "Taburete de barra tipo A",
+          "alcove": "Hornacina curva tapizada"
+        },
+        "zones": {
+          "entry": {
+            "name": "Entrada",
+            "spec": [
+              "Puertas dobles de acceso",
+              "Puesto de recepción",
+              "Banco de espera"
+            ]
+          },
+          "main-dining": {
+            "name": "Comedor principal",
+            "spec": [
+              "Hornacinas curvas junto a la pared",
+              "Mesas redondas en el centro de la sala",
+              "Mesas de 2 junto al ventanal",
+              "Pasillos de servicio de 1 m o más",
+              "Colgantes sobre las mesas"
+            ]
+          },
+          "bar": {
+            "name": "Barra",
+            "spec": [
+              "Barra en U con frente de lamas",
+              "Contrabarra iluminada",
+              "Conexión directa con cocina",
+              "Colgantes sobre la barra"
+            ]
+          },
+          "kitchen": {
+            "name": "Cocina",
+            "spec": [
+              "Línea caliente central",
+              "Cámara frigorífica",
+              "Zona de lavado",
+              "Dos accesos a sala"
+            ]
+          },
+          "private-dining": {
+            "name": "Comedor privado",
+            "spec": [
+              "Mesa de banquete para 8",
+              "Aparador de servicio",
+              "Acceso propio desde la entrada",
+              "Colgantes sobre la mesa"
+            ]
+          },
+          "staff": {
+            "name": "Personal",
+            "spec": [
+              "Taquillas",
+              "Banco de vestuario",
+              "Acceso de servicio independiente"
+            ]
+          },
+          "dry-storage": {
+            "name": "Almacén seco",
+            "spec": [
+              "Estanterías de almacenaje",
+              "Conexión directa con cocina"
+            ]
+          },
+          "wc": {
+            "name": "Aseos",
+            "spec": [
+              "Dos cabinas",
+              "Zona de lavabos",
+              "Acceso desde el comedor"
+            ]
+          }
+        }
+      },
       "slug": "restaurantes",
       "meta": {
         "title": "Diseño de Restaurantes | Interiores Comerciales | 3DNA",
@@ -1206,6 +1442,124 @@
       "body": "Те же рендеры, видеопроходы и 3D-виды, которые мы используем при проектировании, работают и на продвижение: соцсети, сайт, презентации для инвесторов и кампании до открытия."
     },
     "restaurantsPage": {
+      "plan": {
+        "eyebrow": "Планирование ресторана",
+        "heading": "Пространства, спроектированные для работы.",
+        "body": [
+          "Прежде чем думать о материалах и атмосфере, мы решаем планировку, вместимость, потоки и операционную логику.",
+          "Каждый стол, каждый стул и каждый маршрут продумываются ещё до начала реализации."
+        ],
+        "supporting": "Вместимость · Потоки · Мебель · Зонирование · Операции",
+        "modelLabel": "Изометрический план ресторана с восемью зонами: вход, основной зал с полукруглыми нишами и круглыми столами, П-образный бар, кухня, приватный зал, персонал, сухой склад и санузлы.",
+        "zonesLabel": "Зоны ресторана",
+        "hint": "Выберите зону на модели",
+        "hintTouch": "Нажмите на зону модели",
+        "loading": "Загрузка 3D-модели…",
+        "metricsLabel": "Данные планировки",
+        "metrics": {
+          "seats": "Мест",
+          "tables": "Столов",
+          "chairs": "Стульев",
+          "stools": "Барных стульев",
+          "zones": "Зон"
+        },
+        "revenue": {
+          "title": "Потенциальная месячная выручка",
+          "formula": "{seats} мест × {check} € средний чек × {turns} оборота места в день × {days} дней",
+          "result": "≈ {revenue} €/месяц"
+        },
+        "info": {
+          "selected": "Выбранная зона",
+          "area": "Площадь",
+          "seats": "Мест",
+          "tables": "Столов",
+          "chairs": "Стульев",
+          "stools": "Барных стульев",
+          "furniture": "Мебель",
+          "spec": "Планировка"
+        },
+        "furniture": {
+          "roundTable4": "Круглый стол, тип A (4 места)",
+          "roundTable2": "Круглый стол, тип B (2 места)",
+          "squareTable2": "Квадратный стол, тип C (2 места)",
+          "longTable8": "Банкетный стол, тип D (8 мест)",
+          "highTable": "Высокий стол, тип E (2 места)",
+          "chair": "Мягкий стул, тип A",
+          "chairPrivate": "Мягкий стул, тип B",
+          "stool": "Барный стул, тип A",
+          "alcove": "Полукруглая мягкая ниша"
+        },
+        "zones": {
+          "entry": {
+            "name": "Вход",
+            "spec": [
+              "Двустворчатые входные двери",
+              "Стойка хостес",
+              "Скамья ожидания"
+            ]
+          },
+          "main-dining": {
+            "name": "Основной зал",
+            "spec": [
+              "Полукруглые ниши вдоль стены",
+              "Круглые столы в центре зала",
+              "Столы на двоих у окна",
+              "Проходы для обслуживания от 1 м",
+              "Подвесные светильники над столами"
+            ]
+          },
+          "bar": {
+            "name": "Бар",
+            "spec": [
+              "П-образная стойка с реечным фасадом",
+              "Задняя стойка с подсветкой",
+              "Прямая связь с кухней",
+              "Подвесные светильники над стойкой"
+            ]
+          },
+          "kitchen": {
+            "name": "Кухня",
+            "spec": [
+              "Центральная горячая линия",
+              "Холодильная камера",
+              "Моечная зона",
+              "Два выхода в зал"
+            ]
+          },
+          "private-dining": {
+            "name": "Приватный зал",
+            "spec": [
+              "Банкетный стол на 8 персон",
+              "Сервировочный буфет",
+              "Отдельный вход со стороны входной зоны",
+              "Подвесные светильники над столом"
+            ]
+          },
+          "staff": {
+            "name": "Персонал",
+            "spec": [
+              "Шкафчики",
+              "Скамья в раздевалке",
+              "Отдельный служебный вход"
+            ]
+          },
+          "dry-storage": {
+            "name": "Сухой склад",
+            "spec": [
+              "Стеллажи для хранения",
+              "Прямая связь с кухней"
+            ]
+          },
+          "wc": {
+            "name": "Санузлы",
+            "spec": [
+              "Две кабины",
+              "Зона умывальников",
+              "Вход из зала"
+            ]
+          }
+        }
+      },
       "slug": "restaurants",
       "meta": {
         "title": "Дизайн интерьеров ресторанов | 3DNA",
@@ -1709,6 +2063,124 @@
       "body": "Ті самі рендери, відеопроходи та 3D-види, які ми використовуємо під час проєктування, працюють і на просування: соцмережі, сайт, презентації для інвесторів і кампанії до відкриття."
     },
     "restaurantsPage": {
+      "plan": {
+        "eyebrow": "Планування ресторану",
+        "heading": "Простори, спроєктовані для роботи.",
+        "body": [
+          "Перш ніж думати про матеріали й атмосферу, ми вирішуємо планування, місткість, потоки та операційну логіку.",
+          "Кожен стіл, кожен стілець і кожен маршрут продумуються ще до початку реалізації."
+        ],
+        "supporting": "Місткість · Потоки · Меблі · Зонування · Операції",
+        "modelLabel": "Ізометричний план ресторану з вісьмома зонами: вхід, основна зала з напівкруглими нішами та круглими столами, П-подібний бар, кухня, приватна зала, персонал, сухий склад і санвузли.",
+        "zonesLabel": "Зони ресторану",
+        "hint": "Оберіть зону на моделі",
+        "hintTouch": "Торкніться зони на моделі",
+        "loading": "Завантаження 3D-моделі…",
+        "metricsLabel": "Дані планування",
+        "metrics": {
+          "seats": "Місць",
+          "tables": "Столів",
+          "chairs": "Стільців",
+          "stools": "Барних стільців",
+          "zones": "Зон"
+        },
+        "revenue": {
+          "title": "Потенційна місячна виручка",
+          "formula": "{seats} місць × {check} € середній чек × {turns} оборота місця на день × {days} днів",
+          "result": "≈ {revenue} €/місяць"
+        },
+        "info": {
+          "selected": "Обрана зона",
+          "area": "Площа",
+          "seats": "Місць",
+          "tables": "Столів",
+          "chairs": "Стільців",
+          "stools": "Барних стільців",
+          "furniture": "Меблі",
+          "spec": "Планування"
+        },
+        "furniture": {
+          "roundTable4": "Круглий стіл, тип A (4 місця)",
+          "roundTable2": "Круглий стіл, тип B (2 місця)",
+          "squareTable2": "Квадратний стіл, тип C (2 місця)",
+          "longTable8": "Банкетний стіл, тип D (8 місць)",
+          "highTable": "Високий стіл, тип E (2 місця)",
+          "chair": "М’який стілець, тип A",
+          "chairPrivate": "М’який стілець, тип B",
+          "stool": "Барний стілець, тип A",
+          "alcove": "Напівкругла м’яка ніша"
+        },
+        "zones": {
+          "entry": {
+            "name": "Вхід",
+            "spec": [
+              "Двостулкові вхідні двері",
+              "Стійка хостес",
+              "Лава очікування"
+            ]
+          },
+          "main-dining": {
+            "name": "Основна зала",
+            "spec": [
+              "Напівкруглі ніші вздовж стіни",
+              "Круглі столи в центрі зали",
+              "Столи на двох біля вікна",
+              "Проходи для обслуговування від 1 м",
+              "Підвісні світильники над столами"
+            ]
+          },
+          "bar": {
+            "name": "Бар",
+            "spec": [
+              "П-подібна стійка з рейковим фасадом",
+              "Задня стійка з підсвіткою",
+              "Пряме сполучення з кухнею",
+              "Підвісні світильники над стійкою"
+            ]
+          },
+          "kitchen": {
+            "name": "Кухня",
+            "spec": [
+              "Центральна гаряча лінія",
+              "Холодильна камера",
+              "Мийна зона",
+              "Два виходи в залу"
+            ]
+          },
+          "private-dining": {
+            "name": "Приватна зала",
+            "spec": [
+              "Банкетний стіл на 8 осіб",
+              "Сервірувальний буфет",
+              "Окремий вхід із вхідної зони",
+              "Підвісні світильники над столом"
+            ]
+          },
+          "staff": {
+            "name": "Персонал",
+            "spec": [
+              "Шафки",
+              "Лава в роздягальні",
+              "Окремий службовий вхід"
+            ]
+          },
+          "dry-storage": {
+            "name": "Сухий склад",
+            "spec": [
+              "Стелажі для зберігання",
+              "Пряме сполучення з кухнею"
+            ]
+          },
+          "wc": {
+            "name": "Санвузли",
+            "spec": [
+              "Дві кабіни",
+              "Зона умивальників",
+              "Вхід із зали"
+            ]
+          }
+        }
+      },
       "slug": "restaurants",
       "meta": {
         "title": "Дизайн інтер’єрів ресторанів | 3DNA",

@@ -81,6 +81,8 @@ const whatsappHref = (lang) => {
 
 const restaurantsPage = require("./restaurants-page.js").createRestaurantsPage(
   restaurantStories, translations, { whatsappHref: (lang) => whatsappHref(lang) });
+const restaurantPlan = require("./restaurant-plan.js").createRestaurantPlan(
+  JSON.parse(read("assets/data/restaurant-plan.json")), translations);
 
 // Localized sub-pages: key -> path under /<lang>/ (slug comes from translations)
 const PAGES = {
@@ -235,6 +237,7 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "layout.header") return renderPartial(lang, layoutHeader, options);
     if (key === "layout.footer") return renderPartial(lang, layoutFooter, options);
     if (key === "restaurants.storiesHtml") return restaurantsPage.storiesHtml(lang);
+    if (key === "restaurants.planHtml") return restaurantPlan.sectionHtml(lang);
     if (key === "footer.year") return String(new Date().getFullYear());
     if (key === "footer.mailtoHref") {
       const f = translations[lang].footer;

@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap">
 
-  <!-- First story poster is the largest early image -->
-  <link rel="preload" as="image" href="/images/restaurants/01-costly-mistakes.webp" type="image/webp" fetchpriority="high">
+  <!-- Three.js for the 3D restaurant plan (loaded by plan-app.js after the page, never before) -->
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -29,6 +29,9 @@
     <a class="rpage-context__back" href="/{{lang}}/"><span aria-hidden="true">&larr;</span> {{restaurantsPage.context.back}}</a>
     <span class="rpage-context__current" aria-current="page">{{restaurantsPage.context.current}}</span>
   </nav>
+
+  <!-- Opening: how we plan a restaurant (axonometric 3D plan, data in assets/data/restaurant-plan.json) -->
+{{restaurants.planHtml}}
 
 {{restaurants.storiesHtml}}
 
@@ -66,5 +69,6 @@
 {{layout.footer}}
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261011a"></script>
+<script src="/assets/js/restaurant-3d/plan-app.js?v=20261015a" defer></script>
 </body>
 </html>

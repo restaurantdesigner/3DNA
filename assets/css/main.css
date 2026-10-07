@@ -9827,8 +9827,10 @@ html[lang="ru"] .rstory__title, html[lang="uk"] .rstory__title{ font-size: clamp
 .rstory__body p + p{ margin-top: 20px; }
 
 /* gentle reveal (SECTOR SECTIONS module adds the classes) */
-.rstory.reveal-pending .rstory__text > *,
-.rstory.reveal-pending .rstory__media{ opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.rstory.reveal-pending .rstory__text > *{ opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+/* the video frame only slides: it is never transparent, so the poster shows
+   at once and iPad Safari treats the video as visible (it will not play hidden ones) */
+.rstory.reveal-pending .rstory__media{ transform: translateY(18px); transition: transform .8s cubic-bezier(.2,.7,.2,1); }
 .rstory.reveal-pending.is-inview .rstory__text > *,
 .rstory.reveal-pending.is-inview .rstory__media{ opacity: 1; transform: none; }
 .rstory.reveal-pending.is-inview .rstory__text > :nth-child(2){ transition-delay: .08s; }
@@ -10165,3 +10167,143 @@ html[lang="ru"] .rplan__title, html[lang="uk"] .rplan__title{ font-size: clamp(3
 }
 @keyframes aiSpin{ to{ transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce){ .ai-launch{ transition: none; } .ai-launch.is-loading::after{ animation: none; } }
+
+/* =========================
+   RESTAURANTS — 3D PLANNING (opening section; markup by scripts/restaurant-plan.js,
+   3D in assets/js/restaurant-3d/). Intro row, large isometric model, selected-zone
+   details, then the planning metrics + potential monthly revenue strip.
+   ========================= */
+section.rplan3d{
+  display: block; height: auto; min-height: 0;
+  margin: 0 !important;
+  padding: clamp(16px, 2.6vh, 30px) 6vw clamp(44px, 6vh, 72px);
+  scroll-snap-align: none;
+  scroll-margin-top: 68px;
+}
+.rplan3d__inner{ max-width: 1320px; margin: 0 auto; }
+.rplan3d__text, .rplan3d__info, .rplan3d__figures{ text-align: left; }   /* legacy rules centre text */
+
+/* intro: heading left, copy right */
+.rplan3d__text{
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: clamp(32px, 6vw, 110px); align-items: end;
+}
+.rplan3d__eyebrow{ margin: 0 0 16px; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--r-accent); }
+.rplan3d__title{
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: clamp(38px, 3.6vw, 58px); line-height: 1.02; letter-spacing: -.035em;
+  text-transform: none; color: var(--r-ink); text-shadow: none;
+}
+html[lang="ru"] .rplan3d__title, html[lang="uk"] .rplan3d__title{ font-size: clamp(32px, 2.9vw, 46px); line-height: 1.07; }
+.rplan3d__body{ margin: 0; font-size: clamp(16px, 1.1vw, 18px); line-height: 1.6; color: #3d3934; max-width: 56ch; }
+.rplan3d__body + .rplan3d__body{ margin-top: 10px; }
+.rplan3d__supporting{ margin: 16px 0 0; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--r-muted); }
+
+/* the model: as large as the screen allows, never taller than ~64vh (metrics stay close) */
+.rplan3d__stage{ margin-top: clamp(4px, 1vh, 12px); }
+.rplan3d__viewport{ position: relative; width: min(100%, calc(64vh * var(--ar, 1.6))); margin: 0 auto; }
+.rplan3d__poster, .rplan3d__canvas{ position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.rplan3d__canvas{ opacity: 0; transition: opacity .6s ease; outline: none; }
+.rplan3d.is-3d .rplan3d__canvas{ opacity: 1; }
+.rplan3d.is-3d .rplan3d__poster{ opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility 0s .6s; }
+.rp-poster__zone{ stroke: rgba(22,21,19,.22); stroke-width: 1; vector-effect: non-scaling-stroke; cursor: pointer; transition: fill .2s ease; }
+.rp-poster__zone:hover{ fill: #efe3d6; }
+.rp-poster__zone.is-active{ fill: #f0d8c4; stroke: #c0682c; }
+.rp-poster__wall{ fill: #2b2724; stroke: #2b2724; stroke-width: .8; vector-effect: non-scaling-stroke; stroke-linejoin: round; pointer-events: none; }
+.rp-poster__wall--glass{ fill: rgba(213,227,230,.45); stroke: #2b2724; }
+
+/* zone labels: small white plates (HTML, positioned by the build or by the 3D camera) */
+.rplan3d__labels{ position: absolute; inset: 0; pointer-events: none; }
+.rp-zone{
+  position: absolute; transform: translate(-50%, -50%);
+  pointer-events: auto;
+  padding: 6px 10px;
+  background: rgba(255,255,255,.95);
+  border: 1px solid rgba(22,21,19,.12); border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(22,21,19,.12);
+  font: 600 9.5px/1 "Inter", system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--r-ink); white-space: nowrap; cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.rp-zone:hover{ border-color: var(--r-ink); }
+.rp-zone[aria-pressed="true"]{ background: var(--r-ink); border-color: var(--r-ink); color: #fff; }
+.rplan3d__loading{ position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); margin: 0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--r-muted); }
+.rplan3d__hint{ margin: 4px 0 0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--r-muted); text-align: right; }
+
+/* selected-zone details: one compact row under the model */
+.rplan3d__info{ margin-top: 14px; padding-top: 16px; border-top: 1px solid var(--r-rule); }
+.rp-info{ display: grid; grid-template-columns: minmax(240px, 1.1fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(24px, 3vw, 48px); }
+.rp-info[hidden]{ display: none; }
+.rp-info__kicker{ margin: 0 0 6px; font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--r-accent); }
+.rp-info__name{
+  margin: 0 0 12px;
+  font-family: "Inter", system-ui, sans-serif !important; font-weight: 600 !important;
+  font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: var(--r-ink);
+}
+.rp-info__stats{ display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0; }
+.rp-info__stats div{ display: flex; flex-direction: column-reverse; gap: 3px; }
+.rp-info__stats dt{ font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--r-muted); }
+.rp-info__stats dd{ margin: 0; font-size: 18px; font-weight: 400; color: var(--r-ink); font-variant-numeric: tabular-nums; }
+.rp-info__label{ margin: 0 0 6px; font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--r-muted); }
+.rp-info__list{ margin: 0; padding: 0; list-style: none; }
+.rp-info__list li{ position: relative; padding-left: 16px; font-size: 13.5px; line-height: 1.55; color: #3d3934; }
+.rp-info__list li::before{ content: ""; position: absolute; left: 0; top: .8em; width: 8px; height: 1px; background: rgba(22,21,19,.35); }
+
+/* planning metrics + potential monthly revenue: editorial specification strip */
+.rplan3d__figures{
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: center;
+  margin-top: 18px; padding: 22px 0 4px;
+  border-top: 1px solid var(--r-rule);
+}
+.rplan3d__metrics{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; }
+.rp-metric{
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 0 10px; text-align: center;
+  border-right: 1px solid var(--r-rule);
+}
+.rp-metric__icon{ width: 28px; height: 28px; color: #6b6258; order: 1; }
+.rp-metric dd{ order: 2; margin: 0; font-family: "DM Serif Text", Georgia, serif; font-size: clamp(32px, 2.6vw, 42px); font-weight: 400; line-height: 1; color: var(--r-ink); font-variant-numeric: lining-nums; }
+.rp-metric dt{ order: 3; font-size: 10.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--r-muted); line-height: 1.3; }
+.rp-revenue{ padding-left: clamp(24px, 3.4vw, 52px); }
+.rp-revenue__title{ margin: 0; font-family: "DM Serif Text", Georgia, serif; font-size: clamp(20px, 1.6vw, 25px); line-height: 1.2; color: var(--r-ink); }
+.rp-revenue__formula{ margin: 8px 0 0; font-size: 13px; line-height: 1.5; color: var(--r-muted); }
+.rp-revenue__result{ margin: 10px 0 0; font-family: "DM Serif Text", Georgia, serif; font-size: clamp(28px, 2.5vw, 40px); line-height: 1.05; color: var(--r-ink); font-variant-numeric: lining-nums; }
+
+/* transition into story 01: how we plan -> why planning matters */
+#rplan-data + section.rstory{ border-top: 1px solid var(--r-rule); padding-top: clamp(48px, 7vh, 88px); }
+
+@media (max-width: 1100px){
+  .rplan3d__figures{ grid-template-columns: minmax(0, 1fr); row-gap: 22px; }
+  .rp-revenue{ padding: 20px 0 0; border-top: 1px solid var(--r-rule); }
+}
+@media (max-width: 900px){
+  section.rplan3d{ padding: 14px 16px 36px; }
+  .rplan3d__inner{ display: flex; flex-direction: column; }
+  .rplan3d__text{ grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
+  .rplan3d__eyebrow{ margin-bottom: 12px; font-size: 10px; }
+  .rplan3d__title{ font-size: clamp(32px, 8.8vw, 44px); }
+  html[lang="ru"] .rplan3d__title, html[lang="uk"] .rplan3d__title{ font-size: clamp(28px, 7.6vw, 38px); }
+  .rplan3d__body{ font-size: 16px; line-height: 1.55; }
+  .rplan3d__supporting{ margin-top: 12px; font-size: 10px; letter-spacing: .14em; line-height: 1.5; }
+  .rplan3d__stage{ margin: 16px -12px 0; }
+  .rplan3d__viewport{ width: 100%; }
+  .rp-zone{ padding: 4px 6px; font-size: 8px; letter-spacing: .08em; }
+  .rplan3d__hint{ margin: 4px 12px 0; text-align: center; font-size: 10px; }
+  .rplan3d__figures{ order: 3; margin-top: 16px; padding-top: 18px; }
+  .rplan3d__info{ order: 4; margin-top: 22px; }
+  .rplan3d__metrics{ gap: 0; }
+  .rp-metric{ padding: 0 4px; gap: 6px; }
+  .rp-metric__icon{ width: 22px; height: 22px; }
+  .rp-metric dd{ font-size: 28px; }
+  .rp-metric dt{ font-size: 8.5px; letter-spacing: .06em; overflow-wrap: anywhere; }
+  .rp-revenue__title{ font-size: 20px; }
+  .rp-revenue__result{ font-size: 30px; }
+  .rp-info{ grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
+  #rplan-data + section.rstory{ padding-top: 36px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .rplan3d__canvas, .rplan3d.is-3d .rplan3d__poster, .rp-zone, .rp-poster__zone{ transition: none; }
+}

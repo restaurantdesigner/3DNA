@@ -21,13 +21,13 @@ function createRestaurantsPage(data, translations, { whatsappHref }) {
     const st = p.stories[s.id];
     if (!st) throw new Error(`restaurantsPage.stories.${s.id} missing for "${lang}"`);
     const alignment = s.alignment || (index % 2 === 0 ? "text-left" : "video-left");
-    const heading = index === 0 ? "h1" : "h2"; // the first story headline is the page H1
+    const heading = "h2"; // the page H1 is the planning section that opens the page
     const label = `${s.number} / ${st.label}`;
     const media = s.video
       ? [
           // frame follows the video's own proportions (9:16 for most stories)
           `      <div class="rstory__media" style="aspect-ratio: ${s.width || 9} / ${s.height || 16}">`,
-          `        <video class="rstory__video" muted loop playsinline preload="none" tabindex="-1"`,
+          `        <video class="rstory__video" muted autoplay loop playsinline webkit-playsinline preload="metadata" tabindex="-1"`,
           `          width="${s.width || 1080}" height="${s.height || 1920}"${s.poster ? ` poster="${s.poster}"` : ""}`,
           `          data-src="${s.video}" aria-label="${escapeHtml(p.videoLabel.replace("{label}", st.label))}"></video>`,
           `      </div>`
@@ -78,7 +78,7 @@ function createRestaurantsPage(data, translations, { whatsappHref }) {
     const snd = t(lang).sound;
     return [
       `  <div class="rwide${s.sound ? " rwide--sound" : ""}" id="${s.id}"${s.sound ? "" : ' aria-hidden="true"'}>`,
-      `    <video class="rwide__video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"`,
+      `    <video class="rwide__video" muted autoplay loop playsinline webkit-playsinline preload="metadata" tabindex="-1" aria-hidden="true"`,
       `      width="${s.width}" height="${s.height}"${s.poster ? ` poster="${s.poster}"` : ""}`,
       `      data-src="${s.video}" style="aspect-ratio: ${s.width} / ${s.height}"></video>`,
       ...(s.sound ? [

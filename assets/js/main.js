@@ -1038,7 +1038,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // =============================================
 // SECTOR SECTIONS (.sector: 01 Restaurants, later 02–04; also .transform)
 // =============================================
-// - background video loads only near the viewport and pauses when away
+// - background video loads only near the viewport, plays only while visible,
+//   pauses when it leaves (see "Video playback" below)
 // - reduced motion: no video (poster stays), no reveal animation
 // - one "<sector>_section_viewed" analytics hook per page view (data-track-view)
 (() => {
@@ -1047,39 +1048,82 @@ document.addEventListener("DOMContentLoaded", () => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasIO = "IntersectionObserver" in window;
 
-  const startVideo = (video) => {
-    if (!video.getAttribute("src")) {
-      video.muted = true;
-      video.src = video.dataset.src;
-    }
-    video.play().catch(() => {});
+  // ---- Video playback ----
+  // iPad / iOS Safari pauses a muted video by itself whenever it is not
+  // visible, and never resumes one that was started with play(). Calling
+  // play() early (while the video is still below the fold, or faded out by
+  // the reveal) therefore left every video after the first one stuck.
+  // So loading and playing are separate steps:
+  //   near the viewport  -> attach the source (preload metadata), load()
+  //   actually visible   -> play(), retried when data arrives or when the
+  //                         browser pauses it while it is still on screen
+  //   out of view        -> pause()
+  // Only visible videos play; the poster stays until the first frame shows.
+  const visible = new Set();
+  const attach = (video) => {
+    if (video.getAttribute("src") || !video.dataset.src) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("muted", "");
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.src = video.dataset.src;
+    video.load();
   };
+  const tries = new WeakMap();
+  const play = (video) => {
+    if (!visible.has(video)) return;
+    attach(video);
+    if (!video.paused && !video.ended) return;
+    const p = video.play();
+    if (p && p.catch) p.catch(() => retry(video)); // not ready yet / interrupted / blocked
+  };
+  // a few retries per visit (reset each time the video comes into view), never a loop
+  const retry = (video) => {
+    const n = (tries.get(video) || 0) + 1;
+    tries.set(video, n);
+    if (n <= 4) window.setTimeout(() => play(video), 350 * n);
+  };
+  const near = hasIO && !reduceMotion ? new IntersectionObserver((entries) => {
+    entries.forEach((entry) => { if (entry.isIntersecting) attach(entry.target); });
+  }, { rootMargin: "400px 0px" }) : null;
+  const seen = hasIO && !reduceMotion ? new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const video = entry.target;
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.2) { visible.add(video); tries.set(video, 0); play(video); }
+      else if (!entry.isIntersecting || entry.intersectionRatio < 0.05) { visible.delete(video); if (!video.paused) video.pause(); }
+    });
+  }, { threshold: [0, 0.05, 0.2, 0.5] }) : null;
+  const watchVideo = (video) => {
+    video.addEventListener("canplay", () => play(video));
+    video.addEventListener("loadeddata", () => play(video));
+    // the browser paused it (power saving, visibility policy) while it is still on screen
+    video.addEventListener("pause", () => { if (visible.has(video) && !document.hidden) retry(video); });
+    // started by the autoplay attribute while off screen: stop it
+    video.addEventListener("play", () => { if (!visible.has(video)) video.pause(); });
+    near.observe(video);
+    seen.observe(video);
+  };
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) visible.forEach(play); });
+  window.addEventListener("pageshow", (e) => { if (e.persisted) visible.forEach(play); }); // back/forward cache
 
   sections.forEach((section) => {
     // every lazy video in the section (some sections have more than one)
     const videos = [...section.querySelectorAll("video[data-src]")];
-    videos.forEach((video) => video.addEventListener("error", () => video.remove(), true));
+    // a source that cannot be decoded: keep the poster if there is one, else drop the element
+    videos.forEach((video) => video.addEventListener("error", () => { if (!video.getAttribute("poster")) video.remove(); }, true));
 
     if (!hasIO) {
       section.classList.add("is-inview");
-      if (!reduceMotion) videos.forEach(startVideo);
+      if (!reduceMotion) videos.forEach((v) => { visible.add(v); attach(v); play(v); });
       return;
     }
 
     if (videos.length && !reduceMotion) {
       // Wait for the page (hero video included) to finish loading first
-      const watch = () => {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            const video = entry.target;
-            if (entry.isIntersecting) startVideo(video);
-            else if (video.getAttribute("src")) video.pause();
-          });
-        }, { rootMargin: "200px 0px" });
-        videos.forEach((video) => io.observe(video));
-      };
-      if (document.readyState === "complete") watch();
-      else window.addEventListener("load", watch, { once: true });
+      const start = () => videos.forEach(watchVideo);
+      if (document.readyState === "complete") start();
+      else window.addEventListener("load", start, { once: true });
     }
 
     if (!reduceMotion) section.classList.add("reveal-pending");
@@ -1089,7 +1133,8 @@ document.addEventListener("DOMContentLoaded", () => {
       section.classList.add("is-inview");
       if (viewEvent && window.track) window.track(viewEvent, { language: document.documentElement.lang });
       observer.disconnect();
-    }, { threshold: 0.3 }).observe(section);
+    // top edge well inside the viewport (a ratio threshold never fires for very tall sections)
+    }, { rootMargin: "0px 0px -18% 0px" }).observe(section);
   });
 })();
 
