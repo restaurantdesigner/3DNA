@@ -1,28 +1,28 @@
 ﻿<!-- "Start a project" panel. Built by scripts/build-i18n.js from
      templates/form-panel.html + "form" strings in assets/i18n/translations.json.
      Output: assets/partials/form-panel.html (es) and form-panel.{en,ru,uk}.html -->
-<div id="side-panel" class="sp" role="dialog" aria-modal="true" aria-labelledby="sp-title" lang="es">
-  <button id="close-panel" class="sp__close" type="button" aria-label="Cerrar">&times;</button>
+<div id="side-panel" class="sp" role="dialog" aria-modal="true" aria-labelledby="sp-title" lang="en">
+  <button id="close-panel" class="sp__close" type="button" aria-label="Close">&times;</button>
 
   <div class="sp__inner">
     <div class="sp__state" data-sp-form-state>
-      <h2 class="sp__title" id="sp-title">Empezar un proyecto</h2>
-      <p class="sp__intro">Cuéntame en qué estás trabajando. Te responderé personalmente.</p>
+      <h2 class="sp__title" id="sp-title">Start a project</h2>
+      <p class="sp__intro">Tell me what you’re working on. I’ll reply personally.</p>
 
       <form class="sp__form" data-sp-form novalidate
-        data-msg-required="Completa los tres campos para enviar tu mensaje." data-msg-contact="Introduce un email o un número de WhatsApp válido."
-        data-msg-send="No se ha podido enviar el mensaje. Escríbeme por WhatsApp o a andrei@3dna.es." data-msg-sending="Enviando…">
+        data-msg-required="Please fill in all three fields to send your message." data-msg-contact="Please enter a valid email or WhatsApp number."
+        data-msg-send="Your message couldn’t be sent. Please message me on WhatsApp or at andrei@3dna.es." data-msg-sending="Sending…">
         <div class="sp__field">
-          <label for="sp-name">Tu nombre</label>
+          <label for="sp-name">Your name</label>
           <input id="sp-name" name="nombre" type="text" autocomplete="name" required>
         </div>
         <div class="sp__field">
-          <label for="sp-contact">WhatsApp o email</label>
+          <label for="sp-contact">WhatsApp or email</label>
           <input id="sp-contact" name="contacto" type="text" autocomplete="email" inputmode="email" required aria-describedby="sp-contact-hint">
-          <p class="sp__hint" id="sp-contact-hint">Para poder responderte.</p>
+          <p class="sp__hint" id="sp-contact-hint">So I can get back to you.</p>
         </div>
         <div class="sp__field">
-          <label for="sp-message">Cuéntame brevemente sobre tu proyecto</label>
+          <label for="sp-message">Tell me briefly about your project</label>
           <textarea id="sp-message" name="mensaje" rows="5" required></textarea>
         </div>
 
@@ -35,22 +35,22 @@
         <p class="sp__error" data-sp-error role="alert" hidden></p>
 
         <button class="sp__submit" type="submit" data-sp-submit>
-          <span data-sp-submit-label>Enviar proyecto</span> <span aria-hidden="true">&rarr;</span>
+          <span data-sp-submit-label>Send project</span> <span aria-hidden="true">&rarr;</span>
         </button>
-        <p class="sp__privacy">Al enviar aceptas la <a href="/politica-privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</p>
+        <p class="sp__privacy">By sending, you accept the <a href="/politica-privacidad.html" target="_blank" rel="noopener">privacy policy</a>.</p>
       </form>
 
       <div class="sp__alt">
-        <p class="sp__alt-q">¿Prefieres WhatsApp?</p>
-        <a class="sp__wa" href="https://wa.me/34722878642?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20de%20interiores%20comerciales." target="_blank" rel="noopener noreferrer"
-          data-track="whatsapp_clicked" data-track-location="project_panel">Hablar por WhatsApp <span aria-hidden="true">&rarr;</span></a>
+        <p class="sp__alt-q">Prefer WhatsApp?</p>
+        <a class="sp__wa" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20commercial%20interior%20design%20project." target="_blank" rel="noopener noreferrer"
+          data-track="whatsapp_clicked" data-track-location="project_panel">Chat on WhatsApp <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
 
     <div class="sp__done" data-sp-done hidden tabindex="-1">
-      <h2 class="sp__title">Empezar un proyecto</h2>
-      <p class="sp__success">Gracias. He recibido tu mensaje y me pondré en contacto contigo pronto.</p>
-      <a class="sp__wa" href="https://wa.me/34722878642?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20de%20interiores%20comerciales." target="_blank" rel="noopener noreferrer">Hablar por WhatsApp <span aria-hidden="true">&rarr;</span></a>
+      <h2 class="sp__title">Start a project</h2>
+      <p class="sp__success">Thank you. I’ve received your message and I’ll get back to you shortly.</p>
+      <a class="sp__wa" href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20commercial%20interior%20design%20project." target="_blank" rel="noopener noreferrer">Chat on WhatsApp <span aria-hidden="true">&rarr;</span></a>
     </div>
   </div>
 </div>

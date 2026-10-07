@@ -31,8 +31,8 @@
   <meta name="twitter:image" content="https://3dna.es/images/og/og-ru.jpg">
   <meta name="twitter:image:alt" content="Коммерческий интерьер 3DNA с текстом: Пространства, которые работают.">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://3dna.es/#organization","name":"3DNA","url":"https://3dna.es/","logo":{"@type":"ImageObject","url":"https://3dna.es/img/logo.png","width":1536,"height":1024},"description":"Студия дизайна коммерческих интерьеров: рестораны, фитнес-пространства, медицинские учреждения и офисы.","email":"andrei@3dna.es"},{"@type":"WebSite","@id":"https://3dna.es/#website","url":"https://3dna.es/","name":"3DNA","inLanguage":["en","es","ru","uk"],"publisher":{"@id":"https://3dna.es/#organization"}},{"@type":"WebPage","@id":"https://3dna.es/ru/#webpage","url":"https://3dna.es/ru/","name":"Дизайн коммерческих интерьеров | 3DNA","description":"3DNA проектирует коммерческие интерьеры для ресторанов, фитнес-пространств, медицинских учреждений и офисов, объединяя стратегию, планирование пространства и 3D-визуализацию.","inLanguage":"ru","isPartOf":{"@id":"https://3dna.es/#website"},"about":{"@id":"https://3dna.es/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://3dna.es/images/og/og-ru.jpg"}}]}</script>
-  <script>window.I18N = {"lang":"ru","languages":["en","es","ru","uk"]};</script>
-  <script src="/assets/js/i18n-detect.js?v=2ecbbe1c" defer></script>
+  <script>window.I18N = {"lang":"ru","languages":["en","es","ru","uk"],"whatsappHref":"https://wa.me/34722878642?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB(%D0%B0)%20%D0%B1%D1%8B%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%D0%B0."};</script>
+  <script src="/assets/js/i18n-detect.js?v=51ee2bed" defer></script>
   <!-- Fonts: one request, only families used on this page; display=swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,10 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261007u">
+  <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261007z">
 </head>
 
 <body>
@@ -60,8 +63,8 @@
     </a>
 
     <nav class="nav-desktop" aria-label="Основная навигация">
-      <a href="#sec3">Проекты</a>
-      <a href="#sec2">Процесс</a>
+      <a href="#sec2">Проекты</a>
+      <a href="#transform">Процесс</a>
       <a href="#about">О нас</a>
     </nav>
 
@@ -80,23 +83,29 @@
   </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+<!-- Sidebar menu: logo · 5 links · language · one WhatsApp action -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Меню" aria-hidden="true">
   <div class="mobile-menu-inner">
     <div class="mobile-menu-head">
-      <div class="mobile-menu-title">Меню</div>
+      <a class="mobile-menu-brand m-link" href="#hero" aria-label="Главная 3DNA"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
       <button class="mobile-close" id="mobileClose" type="button" aria-label="Закрыть меню">&times;</button>
     </div>
 
     <nav class="mobile-menu-nav" aria-label="Основная навигация">
-      <a href="#sec3" class="m-link">Проекты</a>
-      <a href="#sec2" class="m-link">Процесс</a>
+      <a href="#hero" class="m-link">Главная</a>
+      <a href="#sec2" class="m-link">Проекты</a>
+      <a href="#transform" class="m-link">Процесс</a>
       <a href="#about" class="m-link">О нас</a>
+      <a href="#site-footer" class="m-link">Контакты</a>
     </nav>
 
-    <button class="m-cta open-panel" type="button" data-track="start_project_clicked" data-track-location="mobile_menu">Начать проект &rarr;</button>
+    <div class="mobile-menu-foot">
       <nav class="lang-switch lang-switch--menu" aria-label="Язык">
         <a href="/en/" hreflang="en" lang="en" data-lang="en" aria-label="English">EN</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español">ES</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/ru/" hreflang="ru" lang="ru" data-lang="ru" aria-label="Русский" aria-current="page">RU</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/uk/" hreflang="uk" lang="uk" data-lang="uk" aria-label="Українська">UK</a>
       </nav>
+      <a class="m-whatsapp" href="https://wa.me/34722878642?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB(%D0%B0)%20%D0%B1%D1%8B%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%D0%B0." target="_blank" rel="noopener noreferrer"
+        data-track="whatsapp_clicked" data-track-location="menu">WhatsApp <span aria-hidden="true">&rarr;</span></a>
+    </div>
   </div>
 </div>
 
@@ -582,6 +591,442 @@
 
 
 
+<!-- ===== SECTOR 02: FITNESS — interactive 3D planner =====
+     Copy: sectors[1] + "fitness" in assets/i18n/translations.json.
+     Zone data: assets/data/gym-zones.json (area, capacity, equipment, layout).
+     All zone information is real HTML below (list + articles); the 3D scene in
+     assets/js/fitness-3d/ only adds interaction and is lazy-loaded. -->
+<section class="gym3d" id="sector-fitness" data-track-view="fitness_section_viewed"
+  aria-labelledby="sector-fitness-title">
+  <div class="gym3d__head">
+    <p class="sector__label gym3d__label">
+      <span class="sector__index">02</span>
+      <span class="sector__slash" aria-hidden="true">/</span>
+      <span>Фитнес</span>
+    </p>
+    <h2 class="gym3d__title" id="sector-fitness-title" aria-label="Пространства, созданные для результата.">
+      <span class="gym3d__line" aria-hidden="true">Пространства,</span>
+      <span class="gym3d__line" aria-hidden="true">созданные для</span>
+      <span class="gym3d__line" aria-hidden="true"><em>результата.</em></span>
+    </h2>
+    <div class="gym3d__intro">
+      <p class="gym3d__lead">Дизайн для движения, мотивации и сильного впечатления.</p>
+      <p class="gym3d__text">Мы проектируем фитнес-клубы и спортивные пространства, где планировка, движение людей, освещение и визуальная идентичность работают вместе, создавая удобную, эффективную и запоминающуюся среду.</p>
+      <p class="gym3d__text">Фитнес-клуб работает, когда пространство, маршруты и оборудование спланированы вместе. Изучите пример клуба по зонам: что где стоит, сколько места нужно и сколько людей обслуживает каждая зона.</p>
+    </div>
+  </div>
+
+  <div class="gym3d__app" data-gym-app>
+    <div class="gym3d__stage">
+      <div class="gym3d__viewport" data-gym-viewport>
+        <div class="gym3d__poster" data-gym-poster>
+<svg class="gym-plan" viewBox="-0.5 -0.5 33 23" role="img" aria-label="Интерактивная 3D-модель зала фитнес-клуба, разделённого на десять функциональных зон. Та же информация доступна в списке зон."><rect class="gym-plan__service" x="26.08" y="0.08" width="5.84" height="7.84" rx="0.15"/><g class="gym-plan__zone" data-zone="reception"><rect x="0.08" y="16.08" width="5.84" height="5.84" rx="0.15"/><text x="0.45" y="16.95" class="gym-plan__num">01</text><text x="0.45" y="17.75" font-size="0.62">Ресепшн</text></g><g class="gym-plan__zone" data-zone="cardio"><rect x="6.08" y="16.08" width="12.84" height="5.84" rx="0.15"/><text x="6.45" y="16.95" class="gym-plan__num">02</text><text x="6.45" y="17.75" font-size="0.62">Кардио</text></g><g class="gym-plan__zone" data-zone="strength"><rect x="6.08" y="8.08" width="8.84" height="7.84" rx="0.15"/><text x="6.45" y="8.95" class="gym-plan__num">03</text><text x="6.45" y="9.75" font-size="0.62">Силовые тренажёры</text></g><g class="gym-plan__zone" data-zone="freeweights"><rect x="15.08" y="8.08" width="8.84" height="7.84" rx="0.15"/><text x="15.45" y="8.95" class="gym-plan__num">04</text><text x="15.45" y="9.75" font-size="0.62">Свободные веса</text></g><g class="gym-plan__zone" data-zone="functional"><rect x="19.08" y="16.08" width="12.84" height="5.84" rx="0.15"/><text x="19.45" y="16.95" class="gym-plan__num">05</text><text x="19.45" y="17.75" font-size="0.62">Функциональный тренинг</text></g><g class="gym-plan__zone" data-zone="stretching"><rect x="24.08" y="8.08" width="7.84" height="7.84" rx="0.15"/><text x="24.45" y="8.95" class="gym-plan__num">06</text><text x="24.45" y="9.75" font-size="0.62">Мобильность</text></g><g class="gym-plan__zone" data-zone="studio"><rect x="6.08" y="0.08" width="11.84" height="7.84" rx="0.15"/><text x="6.45" y="0.95" class="gym-plan__num">07</text><text x="6.45" y="1.75" font-size="0.62">Зал групповых программ</text></g><g class="gym-plan__zone" data-zone="spin"><rect x="18.08" y="0.08" width="7.84" height="7.84" rx="0.15"/><text x="18.45" y="0.95" class="gym-plan__num">08</text><text x="18.45" y="1.75" font-size="0.62">Сайкл</text></g><g class="gym-plan__zone" data-zone="lockers"><rect x="0.08" y="8.08" width="5.84" height="7.84" rx="0.15"/><text x="0.45" y="8.95" class="gym-plan__num">09</text><text x="0.45" y="9.75" font-size="0.62">Раздевалки</text></g><g class="gym-plan__zone" data-zone="recovery"><rect x="0.08" y="0.08" width="5.84" height="7.84" rx="0.15"/><text x="0.45" y="0.95" class="gym-plan__num">10</text><text x="0.45" y="1.75" font-size="0.62">Восстановление</text></g></svg>
+        </div>
+        <p class="gym3d__loading" data-gym-loading hidden>Загрузка 3D-модели…</p>
+        <div class="gym3d__labels" data-gym-labels aria-hidden="true"></div>
+      </div>
+      <div class="gym3d__toolbar">
+        <p class="gym3d__hint" data-gym-hint hidden>Перетащите для вращения · Колесо или щипок для масштаба</p>
+        <button type="button" class="gym3d__reset" data-gym-reset>Общий вид</button>
+      </div>
+      <ol class="gym3d__nav" aria-label="Зоны фитнес-клуба">
+        <li><button type="button" class="gym3d__zone-btn" data-zone="reception" aria-controls="gym-zone-reception" aria-pressed="false"><span class="gym3d__zone-num">01</span><span class="gym3d__zone-name">Ресепшн</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="cardio" aria-controls="gym-zone-cardio" aria-pressed="false"><span class="gym3d__zone-num">02</span><span class="gym3d__zone-name">Кардио</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="strength" aria-controls="gym-zone-strength" aria-pressed="false"><span class="gym3d__zone-num">03</span><span class="gym3d__zone-name">Силовые тренажёры</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="freeweights" aria-controls="gym-zone-freeweights" aria-pressed="false"><span class="gym3d__zone-num">04</span><span class="gym3d__zone-name">Свободные веса</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="functional" aria-controls="gym-zone-functional" aria-pressed="false"><span class="gym3d__zone-num">05</span><span class="gym3d__zone-name">Функциональный тренинг</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="stretching" aria-controls="gym-zone-stretching" aria-pressed="false"><span class="gym3d__zone-num">06</span><span class="gym3d__zone-name">Мобильность</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="studio" aria-controls="gym-zone-studio" aria-pressed="false"><span class="gym3d__zone-num">07</span><span class="gym3d__zone-name">Зал групповых программ</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="spin" aria-controls="gym-zone-spin" aria-pressed="false"><span class="gym3d__zone-num">08</span><span class="gym3d__zone-name">Сайкл</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="lockers" aria-controls="gym-zone-lockers" aria-pressed="false"><span class="gym3d__zone-num">09</span><span class="gym3d__zone-name">Раздевалки</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="recovery" aria-controls="gym-zone-recovery" aria-pressed="false"><span class="gym3d__zone-num">10</span><span class="gym3d__zone-name">Восстановление</span></button></li>
+      </ol>
+    </div>
+
+    <aside class="gym3d__panel" data-gym-panel aria-label="Зона" aria-live="polite">
+      <button type="button" class="gym3d__sheet-close" data-gym-close aria-label="Закрыть">&times;</button>
+      <div class="gym3d__zones">
+      <article class="gym-zone gym-zone--overview" id="gym-zone-overview" data-zone="overview">
+        <p class="gym-zone__kicker">Общий вид</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Общая площадь</dt><dd>656 m²</dd></div>
+          <div><dt>Зоны</dt><dd>10</dd></div>
+        </dl>
+        <p class="gym-zone__desc">Выберите зону на модели или в списке, чтобы увидеть площадь, вместимость и оборудование.</p>
+      </article>
+      <article class="gym-zone" id="gym-zone-reception" data-zone="reception" aria-labelledby="gym-zone-reception-title">
+        <p class="gym-zone__kicker">Зона 01</p>
+        <h3 class="gym-zone__title" id="gym-zone-reception-title">Ресепшн</h3>
+        <p class="gym-zone__desc">Контроль доступа, обслуживание клиентов и первое впечатление о бренде.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Площадь</dt><dd>36 m²</dd></div>
+          <div><dt>Вместимость</dt><dd>6 чел.</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Оборудование</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Стойка ресепшн</span>
+              <span class="gym-zone__meta">Мебель · 420 × 90 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 2">2 ×</span>
+              <span class="gym-zone__name">Турникет</span>
+              <span class="gym-zone__meta">Система · 230 V</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 2">2 ×</span>
+              <span class="gym-zone__name">Скамья ожидания</span>
+              <span class="gym-zone__meta">Мебель</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Витрина-стена</span>
+              <span class="gym-zone__meta">Мебель</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-cardio" data-zone="cardio" aria-labelledby="gym-zone-cardio-title">
+        <p class="gym-zone__kicker">Зона 02</p>
+        <h3 class="gym-zone__title" id="gym-zone-cardio-title">Кардио</h3>
+        <p class="gym-zone__desc">Кардиолиния вдоль фасада: дневной свет и свободный проход позади.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Площадь</dt><dd>78 m²</dd></div>
+          <div><dt>Вместимость</dt><dd>17 чел.</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Оборудование</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 6">6 ×</span>
+              <span class="gym-zone__name">Беговая дорожка</span>
+              <span class="gym-zone__meta">Тренажёр · 210 × 90 cm · 230 V</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 4">4 ×</span>
+              <span class="gym-zone__name">Эллиптический тренажёр</span>
+              <span class="gym-zone__meta">Тренажёр · 210 × 75 cm · 230 V</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 3">3 ×</span>
+              <span class="gym-zone__name">Вертикальный велотренажёр</span>
+              <span class="gym-zone__meta">Тренажёр · 110 × 60 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 2">2 ×</span>
+              <span class="gym-zone__name">Гребной тренажёр</span>
+              <span class="gym-zone__meta">Тренажёр · 245 × 60 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 2">2 ×</span>
+              <span class="gym-zone__name">Степпер-лестница</span>
+              <span class="gym-zone__meta">Тренажёр · 165 × 85 cm · 230 V</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-strength" data-zone="strength" aria-labelledby="gym-zone-strength-title">
+        <p class="gym-zone__kicker">Зона 03</p>
+        <h3 class="gym-zone__title" id="gym-zone-strength-title">Силовые тренажёры</h3>
+        <p class="gym-zone__desc">Блочные тренажёры по логичному кругу с безопасными расстояниями между ними.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Площадь</dt><dd>72 m²</dd></div>
+          <div><dt>Вместимость</dt><dd>8 чел.</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Оборудование</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Жим от груди</span>
+              <span class="gym-zone__meta">Тренажёр · 150 × 130 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Жим вверх</span>
+              <span class="gym-zone__meta">Тренажёр · 150 × 130 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Верхняя тяга</span>
+              <span class="gym-zone__meta">Тренажёр · 150 × 120 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Горизонтальная тяга</span>
+              <span class="gym-zone__meta">Тренажёр · 160 × 120 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Жим ногами</span>
+              <span class="gym-zone__meta">Тренажёр · 220 × 140 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Разгибание ног</span>
+              <span class="gym-zone__meta">Тренажёр · 140 × 110 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Сгибание ног</span>
+              <span class="gym-zone__meta">Тренажёр · 160 × 110 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Кроссовер</span>
+              <span class="gym-zone__meta">Тренажёр · 420 × 100 cm</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-freeweights" data-zone="freeweights" aria-labelledby="gym-zone-freeweights-title">
+        <p class="gym-zone__kicker">Зона 04</p>
+        <h3 class="gym-zone__title" id="gym-zone-freeweights-title">Свободные веса</h3>
+        <p class="gym-zone__desc">Рамы, помост и гантели на ударопрочном спортивном покрытии.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Площадь</dt><dd>72 m²</dd></div>
+          <div><dt>Вместимость</dt><dd>10 чел.</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Оборудование</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 2">2 ×</span>
+              <span class="gym-zone__name">Силовая рама</span>
+              <span class="gym-zone__meta">Свободный вес · 140 × 140 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 2">2 ×</span>
+              <span class="gym-zone__name">Регулируемая скамья</span>
+              <span class="gym-zone__meta">Свободный вес</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Стойка для гантелей</span>
+              <span class="gym-zone__meta">Свободный вес · 250 × 80 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Система хранения блинов</span>
+              <span class="gym-zone__meta">Свободный вес</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Тяжелоатлетический помост</span>
+              <span class="gym-zone__meta">Свободный вес · 300 × 240 cm</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-functional" data-zone="functional" aria-labelledby="gym-zone-functional-title">
+        <p class="gym-zone__kicker">Зона 05</p>
+        <h3 class="gym-zone__title" id="gym-zone-functional-title">Функциональный тренинг</h3>
+        <p class="gym-zone__desc">Открытая зона с рамой, дорожками для саней и точками подвеса.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Площадь</dt><dd>78 m²</dd></div>
+          <div><dt>Вместимость</dt><dd>14 чел.</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Оборудование</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Функциональная рама</span>
+              <span class="gym-zone__meta">Свободный вес · 600 × 180 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 4">4 ×</span>
+              <span class="gym-zone__name">Набор гирь</span>
+              <span class="gym-zone__meta">Аксессуар</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 6">6 ×</span>
+              <span class="gym-zone__name">Медицинбол</span>
+              <span class="gym-zone__meta">Аксессуар</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 4">4 ×</span>
+              <span class="gym-zone__name">Плиометрический бокс</span>
+              <span class="gym-zone__meta">Аксессуар</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 2">2 ×</span>
+              <span class="gym-zone__name">Дорожка для саней</span>
+              <span class="gym-zone__meta">Оснащение · 15 × 1.5 m</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 6">6 ×</span>
+              <span class="gym-zone__name">Точка подвеса для петель</span>
+              <span class="gym-zone__meta">Аксессуар</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-stretching" data-zone="stretching" aria-labelledby="gym-zone-stretching-title">
+        <p class="gym-zone__kicker">Зона 06</p>
+        <h3 class="gym-zone__title" id="gym-zone-stretching-title">Мобильность</h3>
+        <p class="gym-zone__desc">Спокойная зона для мобильности, растяжки и заминки.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Площадь</dt><dd>64 m²</dd></div>
+          <div><dt>Вместимость</dt><dd>10 чел.</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Оборудование</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 10">10 ×</span>
+              <span class="gym-zone__name">Коврик</span>
+              <span class="gym-zone__meta">Аксессуар</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 10">10 ×</span>
+              <span class="gym-zone__name">Ролл для МФР</span>
+              <span class="gym-zone__meta">Аксессуар</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 2">2 ×</span>
+              <span class="gym-zone__name">Станция для растяжки</span>
+              <span class="gym-zone__meta">Тренажёр</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-studio" data-zone="studio" aria-labelledby="gym-zone-studio-title">
+        <p class="gym-zone__kicker">Зона 07</p>
+        <h3 class="gym-zone__title" id="gym-zone-studio-title">Зал групповых программ</h3>
+        <p class="gym-zone__desc">Студия с зеркальной стеной, встроенным хранением и отдельным звуком.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Площадь</dt><dd>96 m²</dd></div>
+          <div><dt>Вместимость</dt><dd>20 чел.</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Оборудование</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 20">20 ×</span>
+              <span class="gym-zone__name">Тренировочное место</span>
+              <span class="gym-zone__meta">Оснащение</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Стена для хранения</span>
+              <span class="gym-zone__meta">Мебель</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Зеркальная стена</span>
+              <span class="gym-zone__meta">Оснащение</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Аудиосистема</span>
+              <span class="gym-zone__meta">Система · 230 V</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-spin" data-zone="spin" aria-labelledby="gym-zone-spin-title">
+        <p class="gym-zone__kicker">Зона 08</p>
+        <h3 class="gym-zone__title" id="gym-zone-spin-title">Сайкл</h3>
+        <p class="gym-zone__desc">Сайкл-студия с подиумом инструктора и управлением светом.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Площадь</dt><dd>64 m²</dd></div>
+          <div><dt>Вместимость</dt><dd>16 чел.</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Оборудование</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 15">15 ×</span>
+              <span class="gym-zone__name">Сайкл-велосипед</span>
+              <span class="gym-zone__meta">Тренажёр · 120 × 55 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Подиум инструктора</span>
+              <span class="gym-zone__meta">Оснащение</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Система управления светом</span>
+              <span class="gym-zone__meta">Система · 230 V</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-lockers" data-zone="lockers" aria-labelledby="gym-zone-lockers-title">
+        <p class="gym-zone__kicker">Зона 09</p>
+        <h3 class="gym-zone__title" id="gym-zone-lockers-title">Раздевалки</h3>
+        <p class="gym-zone__desc">Шкафчики, душевые и зона макияжа, отделённые от тренировочного зала.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Площадь</dt><dd>48 m²</dd></div>
+          <div><dt>Вместимость</dt><dd>40 чел.</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Оборудование</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 80">80 ×</span>
+              <span class="gym-zone__name">Шкафчик</span>
+              <span class="gym-zone__meta">Мебель</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 8">8 ×</span>
+              <span class="gym-zone__name">Душ</span>
+              <span class="gym-zone__meta">Оснащение</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 6">6 ×</span>
+              <span class="gym-zone__name">Скамья раздевалки</span>
+              <span class="gym-zone__meta">Мебель</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 4">4 ×</span>
+              <span class="gym-zone__name">Туалетный столик</span>
+              <span class="gym-zone__meta">Мебель · 230 V</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-recovery" data-zone="recovery" aria-labelledby="gym-zone-recovery-title">
+        <p class="gym-zone__kicker">Зона 10</p>
+        <h3 class="gym-zone__title" id="gym-zone-recovery-title">Восстановление</h3>
+        <p class="gym-zone__desc">Зона восстановления и велнеса с массажными станциями и ассистированной растяжкой.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Площадь</dt><dd>48 m²</dd></div>
+          <div><dt>Вместимость</dt><dd>6 чел.</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Оборудование</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 2">2 ×</span>
+              <span class="gym-zone__name">Скамья для растяжки</span>
+              <span class="gym-zone__meta">Мебель</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 2">2 ×</span>
+              <span class="gym-zone__name">Станция восстановления (условно)</span>
+              <span class="gym-zone__meta">Тренажёр · 230 V</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Количество: 1">1 ×</span>
+              <span class="gym-zone__name">Массажный стол (условно)</span>
+              <span class="gym-zone__meta">Мебель</span>
+            </li>
+        </ul>
+      </article>
+      </div>
+      <div class="gym3d__panel-foot">
+        <a class="gym3d__plan-cta" href="https://wa.me/34722878642?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB(%D0%B0)%20%D0%B1%D1%8B%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%D0%B0." target="_blank" rel="noopener noreferrer"
+          data-track="start_project_clicked" data-track-location="fitness_planner">Спроектировать мой фитнес-зал <span aria-hidden="true">&rarr;</span></a>
+        <p class="gym3d__note">Прототип планировки: упрощённая геометрия и примерные спецификации.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="gym3d__foot">
+    <a class="sector__cta gym3d__projects" href="/gimnasios-3d.html"
+      data-track="view_projects_clicked" data-track-location="sector_fitness">
+      Смотреть фитнес-проекты <span class="sector__arrow" aria-hidden="true">&rarr;</span>
+    </a>
+    <ul class="sector__services gym3d__services" aria-label="Услуги">
+      <li>Планировка</li>
+      <li>Зонирование</li>
+      <li>Освещение</li>
+      <li>Айдентика</li>
+      <li>3D-визуализация</li>
+    </ul>
+  </div>
+
+  <script type="application/json" id="gym-data">{"model":{"url":"/models/gym/gym.glb","enabled":false,"note":"Set enabled to true once /models/gym/gym.glb exists. While false, the built-in placeholder geometry is used and no request is made."},"floor":{"width":32,"depth":22,"unit":"m"},"serviceAreas":[{"id":"service","rect":{"x":26,"z":0,"w":6,"d":8}}],"zones":[{"id":"reception","mesh":"zone-reception","index":"01","rect":{"x":0,"z":16,"w":6,"d":6},"floorFinish":"wood","name":"Ресепшн","equipment":[{"key":"reception_desk","quantity":1},{"key":"access_gate","quantity":2},{"key":"waiting_bench","quantity":2},{"key":"retail_wall","quantity":1}]},{"id":"cardio","mesh":"zone-cardio","index":"02","rect":{"x":6,"z":16,"w":13,"d":6},"floorFinish":"rubber","name":"Кардио","equipment":[{"key":"treadmill","quantity":6},{"key":"elliptical","quantity":4},{"key":"upright_bike","quantity":3},{"key":"rower","quantity":2},{"key":"stair_climber","quantity":2}]},{"id":"strength","mesh":"zone-strength","index":"03","rect":{"x":6,"z":8,"w":9,"d":8},"floorFinish":"rubber","name":"Силовые тренажёры","equipment":[{"key":"chest_press","quantity":1},{"key":"shoulder_press","quantity":1},{"key":"lat_pulldown","quantity":1},{"key":"seated_row","quantity":1},{"key":"leg_press","quantity":1},{"key":"leg_extension","quantity":1},{"key":"leg_curl","quantity":1},{"key":"cable_crossover","quantity":1}]},{"id":"freeweights","mesh":"zone-freeweights","index":"04","rect":{"x":15,"z":8,"w":9,"d":8},"floorFinish":"impact","name":"Свободные веса","equipment":[{"key":"power_rack","quantity":2},{"key":"adjustable_bench","quantity":2},{"key":"dumbbell_rack","quantity":1},{"key":"plate_storage","quantity":1},{"key":"lifting_platform","quantity":1}]},{"id":"functional","mesh":"zone-functional","index":"05","rect":{"x":19,"z":16,"w":13,"d":6},"floorFinish":"turf","name":"Функциональный тренинг","equipment":[{"key":"functional_rig","quantity":1},{"key":"kettlebell_set","quantity":4},{"key":"medicine_ball","quantity":6},{"key":"plyo_box","quantity":4},{"key":"sled_lane","quantity":2},{"key":"suspension_point","quantity":6}]},{"id":"stretching","mesh":"zone-stretching","index":"06","rect":{"x":24,"z":8,"w":8,"d":8},"floorFinish":"wood","name":"Мобильность","equipment":[{"key":"mat","quantity":10},{"key":"foam_roller","quantity":10},{"key":"stretch_station","quantity":2}]},{"id":"studio","mesh":"zone-studio","index":"07","rect":{"x":6,"z":0,"w":12,"d":8},"floorFinish":"wood","name":"Зал групповых программ","equipment":[{"key":"training_position","quantity":20},{"key":"storage_wall","quantity":1},{"key":"mirror_wall","quantity":1},{"key":"audio_system","quantity":1}]},{"id":"spin","mesh":"zone-spin","index":"08","rect":{"x":18,"z":0,"w":8,"d":8},"floorFinish":"rubber","name":"Сайкл","equipment":[{"key":"spin_bike","quantity":15},{"key":"instructor_platform","quantity":1},{"key":"lighting_control","quantity":1}]},{"id":"lockers","mesh":"zone-lockers","index":"09","rect":{"x":0,"z":8,"w":6,"d":8},"floorFinish":"tile","name":"Раздевалки","equipment":[{"key":"locker","quantity":80},{"key":"shower","quantity":8},{"key":"changing_bench","quantity":6},{"key":"vanity_station","quantity":4}]},{"id":"recovery","mesh":"zone-recovery","index":"10","rect":{"x":0,"z":0,"w":6,"d":8},"floorFinish":"wood","name":"Восстановление","equipment":[{"key":"stretch_bench","quantity":2},{"key":"recovery_station","quantity":2},{"key":"massage_table","quantity":1}]}]}</script>
+</section>
+
+
+
 <!-- ===== ABOUT / PRESENTATION ===== -->
 <section id="about" class="about-section">
   <div class="about-wrap">
@@ -993,7 +1438,7 @@
   const mount = document.getElementById('form-panel-root');
   if (!mount) return;
 
-  const src = '/assets/partials/form-panel.html?v=20260501m';
+  const src = '/assets/partials/form-panel.ru.html?v=20261007a';
   fetch(src, { cache: 'no-store' })
     .then((response) => {
       if (!response.ok) throw new Error('Failed to load form panel partial.');
@@ -1009,7 +1454,8 @@
     });
 })();
 </script>
-<script src="/assets/js/main.js?v=20261007e"></script>
+<script src="/assets/js/main.js?v=20261007h"></script>
+<script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
 (function () {

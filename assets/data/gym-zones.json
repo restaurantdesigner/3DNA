@@ -1,0 +1,129 @@
+{
+  "_about": "Fitness 3D planner data. Language-neutral: zone/equipment/category names live in assets/i18n/translations.json under fitness.zones / fitness.equipment / fitness.categories. Replace with real client data per project. 'rect' is the zone footprint in metres on the placeholder floor plan (x, z = top-left corner; w, d = size). 'mesh' is the object/group name the 3D model must use for this zone.",
+  "model": {
+    "url": "/models/gym/gym.glb",
+    "enabled": false,
+    "note": "Set enabled to true once /models/gym/gym.glb exists. While false, the built-in placeholder geometry is used and no request is made."
+  },
+  "floor": { "width": 32, "depth": 22, "unit": "m" },
+  "zones": [
+    {
+      "id": "reception", "mesh": "zone-reception", "index": "01",
+      "area": 36, "capacity": 6,
+      "rect": { "x": 0, "z": 16, "w": 6, "d": 6 }, "floorFinish": "wood",
+      "equipment": [
+        { "key": "reception_desk", "quantity": 1, "category": "furniture", "dimensions": "420 × 90 cm" },
+        { "key": "access_gate", "quantity": 2, "category": "system", "power": "230 V" },
+        { "key": "waiting_bench", "quantity": 2, "category": "furniture" },
+        { "key": "retail_wall", "quantity": 1, "category": "furniture" }
+      ]
+    },
+    {
+      "id": "cardio", "mesh": "zone-cardio", "index": "02",
+      "area": 78, "capacity": 17,
+      "rect": { "x": 6, "z": 16, "w": 13, "d": 6 }, "floorFinish": "rubber",
+      "equipment": [
+        { "key": "treadmill", "quantity": 6, "category": "machine", "dimensions": "210 × 90 cm", "power": "230 V" },
+        { "key": "elliptical", "quantity": 4, "category": "machine", "dimensions": "210 × 75 cm", "power": "230 V" },
+        { "key": "upright_bike", "quantity": 3, "category": "machine", "dimensions": "110 × 60 cm" },
+        { "key": "rower", "quantity": 2, "category": "machine", "dimensions": "245 × 60 cm" },
+        { "key": "stair_climber", "quantity": 2, "category": "machine", "dimensions": "165 × 85 cm", "power": "230 V" }
+      ]
+    },
+    {
+      "id": "strength", "mesh": "zone-strength", "index": "03",
+      "area": 72, "capacity": 8,
+      "rect": { "x": 6, "z": 8, "w": 9, "d": 8 }, "floorFinish": "rubber",
+      "equipment": [
+        { "key": "chest_press", "quantity": 1, "category": "machine", "dimensions": "150 × 130 cm" },
+        { "key": "shoulder_press", "quantity": 1, "category": "machine", "dimensions": "150 × 130 cm" },
+        { "key": "lat_pulldown", "quantity": 1, "category": "machine", "dimensions": "150 × 120 cm" },
+        { "key": "seated_row", "quantity": 1, "category": "machine", "dimensions": "160 × 120 cm" },
+        { "key": "leg_press", "quantity": 1, "category": "machine", "dimensions": "220 × 140 cm" },
+        { "key": "leg_extension", "quantity": 1, "category": "machine", "dimensions": "140 × 110 cm" },
+        { "key": "leg_curl", "quantity": 1, "category": "machine", "dimensions": "160 × 110 cm" },
+        { "key": "cable_crossover", "quantity": 1, "category": "machine", "dimensions": "420 × 100 cm" }
+      ]
+    },
+    {
+      "id": "freeweights", "mesh": "zone-freeweights", "index": "04",
+      "area": 72, "capacity": 10,
+      "rect": { "x": 15, "z": 8, "w": 9, "d": 8 }, "floorFinish": "impact",
+      "equipment": [
+        { "key": "power_rack", "quantity": 2, "category": "free_weight", "dimensions": "140 × 140 cm" },
+        { "key": "adjustable_bench", "quantity": 2, "category": "free_weight" },
+        { "key": "dumbbell_rack", "quantity": 1, "category": "free_weight", "dimensions": "250 × 80 cm" },
+        { "key": "plate_storage", "quantity": 1, "category": "free_weight" },
+        { "key": "lifting_platform", "quantity": 1, "category": "free_weight", "dimensions": "300 × 240 cm" }
+      ]
+    },
+    {
+      "id": "functional", "mesh": "zone-functional", "index": "05",
+      "area": 78, "capacity": 14,
+      "rect": { "x": 19, "z": 16, "w": 13, "d": 6 }, "floorFinish": "turf",
+      "equipment": [
+        { "key": "functional_rig", "quantity": 1, "category": "free_weight", "dimensions": "600 × 180 cm" },
+        { "key": "kettlebell_set", "quantity": 4, "category": "accessory" },
+        { "key": "medicine_ball", "quantity": 6, "category": "accessory" },
+        { "key": "plyo_box", "quantity": 4, "category": "accessory" },
+        { "key": "sled_lane", "quantity": 2, "category": "facility", "dimensions": "15 × 1.5 m" },
+        { "key": "suspension_point", "quantity": 6, "category": "accessory" }
+      ]
+    },
+    {
+      "id": "stretching", "mesh": "zone-stretching", "index": "06",
+      "area": 64, "capacity": 10,
+      "rect": { "x": 24, "z": 8, "w": 8, "d": 8 }, "floorFinish": "wood",
+      "equipment": [
+        { "key": "mat", "quantity": 10, "category": "accessory" },
+        { "key": "foam_roller", "quantity": 10, "category": "accessory" },
+        { "key": "stretch_station", "quantity": 2, "category": "machine" }
+      ]
+    },
+    {
+      "id": "studio", "mesh": "zone-studio", "index": "07",
+      "area": 96, "capacity": 20,
+      "rect": { "x": 6, "z": 0, "w": 12, "d": 8 }, "floorFinish": "wood",
+      "equipment": [
+        { "key": "training_position", "quantity": 20, "category": "facility" },
+        { "key": "storage_wall", "quantity": 1, "category": "furniture" },
+        { "key": "mirror_wall", "quantity": 1, "category": "facility" },
+        { "key": "audio_system", "quantity": 1, "category": "system", "power": "230 V" }
+      ]
+    },
+    {
+      "id": "spin", "mesh": "zone-spin", "index": "08",
+      "area": 64, "capacity": 16,
+      "rect": { "x": 18, "z": 0, "w": 8, "d": 8 }, "floorFinish": "rubber",
+      "equipment": [
+        { "key": "spin_bike", "quantity": 15, "category": "machine", "dimensions": "120 × 55 cm" },
+        { "key": "instructor_platform", "quantity": 1, "category": "facility" },
+        { "key": "lighting_control", "quantity": 1, "category": "system", "power": "230 V" }
+      ]
+    },
+    {
+      "id": "lockers", "mesh": "zone-lockers", "index": "09",
+      "area": 48, "capacity": 40,
+      "rect": { "x": 0, "z": 8, "w": 6, "d": 8 }, "floorFinish": "tile",
+      "equipment": [
+        { "key": "locker", "quantity": 80, "category": "furniture" },
+        { "key": "shower", "quantity": 8, "category": "facility" },
+        { "key": "changing_bench", "quantity": 6, "category": "furniture" },
+        { "key": "vanity_station", "quantity": 4, "category": "furniture", "power": "230 V" }
+      ]
+    },
+    {
+      "id": "recovery", "mesh": "zone-recovery", "index": "10",
+      "area": 48, "capacity": 6,
+      "rect": { "x": 0, "z": 0, "w": 6, "d": 8 }, "floorFinish": "wood",
+      "equipment": [
+        { "key": "stretch_bench", "quantity": 2, "category": "furniture" },
+        { "key": "recovery_station", "quantity": 2, "category": "machine", "power": "230 V" },
+        { "key": "massage_table", "quantity": 1, "category": "furniture" }
+      ]
+    }
+  ],
+  "serviceAreas": [
+    { "id": "service", "rect": { "x": 26, "z": 0, "w": 6, "d": 8 } }
+  ]
+}

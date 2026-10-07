@@ -39,7 +39,7 @@ function readCountry(req) {
 
 app.get(['/', '/index.html'], (req, res) => {
   const lang = i18nDetect.detect({
-    saved: readCookie(req, i18nDetect.STORAGE_KEY),
+    saved: readCookie(req, i18nDetect.STORAGE_KEY) || readCookie(req, i18nDetect.LEGACY_STORAGE_KEY),
     languages: i18nDetect.parseAcceptLanguage(req.headers['accept-language']),
     country: readCountry(req)
   });
@@ -112,7 +112,28 @@ function checkRateLimit(ip) {
   return { limited: false, retryAfterSec: 0 };
 }
 
+// Simple "Start a project" form (name · contact · message)
+function buildContactEmailText(payload, audit) {
+  return [
+    'Nuevo mensaje desde "Empezar un proyecto" (3DNA)',
+    '',
+    `Nombre: ${payload.nombre || '-'}`,
+    `Contacto: ${payload.contacto || '-'}`,
+    `Idioma de la web: ${payload.idioma || '-'}`,
+    `Pagina: ${payload.pagina || '-'}`,
+    '',
+    'Mensaje:',
+    String(payload.mensaje || '-'),
+    '',
+    `Fecha (Europe/Madrid): ${payload.fecha_envio_local || '-'}`,
+    `Fecha (ISO): ${payload.fecha_envio_iso || audit.timestamp}`,
+    `IP: ${audit.ip}`,
+    `Version del formulario: ${audit.formVersion}`
+  ].join('\n');
+}
+
 function buildEmailText(payload, audit) {
+  if (payload.mensaje !== undefined) return buildContactEmailText(payload, audit);
   const lines = [
     'Nueva solicitud desde el formulario 3DNA',
     '',
@@ -238,7 +259,15 @@ app.post('/api/lead', async (req, res) => {
       return res.json({ ok: true });
     }
 
-    if (!isValidEmail(payload.email) || !isValidPhone(payload.whatsapp)) {
+    const isContactForm = payload.mensaje !== undefined;
+    if (isContactForm) {
+      // name + one way to reply (email or phone) + message
+      const contacto = String(payload.contacto || '').trim();
+      const contactOk = isValidEmail(contacto) || contacto.replace(/\D/g, '').length >= 7;
+      if (!String(payload.nombre || '').trim() || !String(payload.mensaje || '').trim() || !contactOk) {
+        return res.status(400).json({ ok: false });
+      }
+    } else if (!isValidEmail(payload.email) || !isValidPhone(payload.whatsapp)) {
       return res.status(400).json({ ok: false });
     }
 

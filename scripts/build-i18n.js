@@ -45,7 +45,12 @@ const LEGACY_PAGES = [
 const root = path.join(__dirname, "..");
 const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8").replace(/^﻿/, "");
 const template = read("templates/home.html");
+const formTemplate = read("templates/form-panel.html");
+// Spanish keeps the original path, which the legacy (Spanish) pages already load
+const formPartialFile = (lang) => (lang === "es" ? "form-panel.html" : `form-panel.${lang}.html`);
 const translations = JSON.parse(read("assets/i18n/translations.json"));
+const gym = JSON.parse(read("assets/data/gym-zones.json"));
+const fitnessPlanner = require("./fitness-planner.js").createFitnessPlanner(gym, translations);
 
 // ---------------------------------------------------------------- helpers
 const escapeHtml = (value) =>
@@ -56,6 +61,12 @@ const lookup = (dict, key) => key.split(".").reduce((node, part) => (node == nul
 
 const absolute = (urlPath) => `${SITE_URL}${urlPath}`;
 const localeUrl = (lang, subPath = "") => absolute(`/${lang}/${subPath}`);
+
+// WhatsApp deep link with the locale's pre-filled message (no "+" or spaces in the number)
+const whatsappHref = (lang) => {
+  const c = translations[lang].contact;
+  return `https://wa.me/${c.whatsappNumber}?text=${encodeURIComponent(c.whatsappMessage)}`;
+};
 
 const fileVersion = (rel) =>
   crypto.createHash("sha1").update(fs.readFileSync(path.join(root, rel))).digest("hex").slice(0, 8);
@@ -135,7 +146,7 @@ function headTags(lang, { isRoot }) {
   const t = translations[lang];
   const detectSrc = `/assets/js/i18n-detect.js?v=${fileVersion("assets/js/i18n-detect.js")}`;
   // Only what client JS needs; all visible text is rendered into the HTML here.
-  const clientI18n = { lang, languages: SUPPORTED };
+  const clientI18n = { lang, languages: SUPPORTED, whatsappHref: whatsappHref(lang) };
 
   const lines = [
     `  <meta name="description" content="${escapeHtml(t.meta.description)}">`,
@@ -154,7 +165,7 @@ function headTags(lang, { isRoot }) {
       `  <script src="${detectSrc}"></script>`,
       `  <script>(function () {`,
       `    var d = window.I18nDetect; if (!d) return;`,
-      `    var lang = d.detect({ saved: d.getSaved(), languages: d.browserLanguages() });`,
+      `    var lang = d.detectInBrowser(); // saved choice > market (time zone) > browser language > en`,
       `    window.location.replace("/" + lang + "/" + window.location.search + window.location.hash);`,
       `  })();</script>`
     );
@@ -181,15 +192,21 @@ function languageSwitcher(lang, variant) {
 }
 
 // ---------------------------------------------------------------- render
-function render(lang, options = { isRoot: false }) {
+function render(lang, options = { isRoot: false }, tpl = template) {
   const dict = translations[lang];
   if (!dict) throw new Error(`Missing translations for "${lang}"`);
 
-  const out = template.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (match, key) => {
+  const out = tpl.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (match, key) => {
     if (key === "lang") return lang;
     if (key === "head.i18n") return headTags(lang, options);
     if (key === "header.langSwitchBar") return languageSwitcher(lang, "bar");
     if (key === "header.langSwitchMenu") return languageSwitcher(lang, "menu");
+    if (key === "contact.whatsappHref") return escapeHtml(whatsappHref(lang));
+    if (key === "form.partialFile") return formPartialFile(lang);
+    if (key === "fitness.zoneNav") return fitnessPlanner.zoneNav(lang);
+    if (key === "fitness.zoneDetails") return fitnessPlanner.zoneDetails(lang);
+    if (key === "fitness.planSvg") return fitnessPlanner.planSvg(lang);
+    if (key === "fitness.dataJson") return jsonForScript(fitnessPlanner.clientData(lang));
     const value = lookup(dict, key);
     if (value == null || typeof value === "object") {
       throw new Error(`Missing translation "${key}" for "${lang}"`);
@@ -283,6 +300,7 @@ const robotsTxt = () =>
 
 // ---------------------------------------------------------------- build
 for (const lang of SUPPORTED) write(`${lang}/index.html`, render(lang));
+for (const lang of SUPPORTED) write(`assets/partials/${formPartialFile(lang)}`, render(lang, {}, formTemplate));
 write("index.html", render(DEFAULT_LANG, { isRoot: true }));
 write("sitemap.xml", sitemapXml());
 write("robots.txt", robotsTxt());

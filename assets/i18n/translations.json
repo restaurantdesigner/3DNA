@@ -23,7 +23,33 @@
       "menu": "Menu",
       "openMenu": "Open menu",
       "closeMenu": "Close menu",
-      "language": "Language"
+      "language": "Language",
+      "home": "Home",
+      "contact": "Contact",
+      "whatsapp": "WhatsApp"
+    },
+    "contact": {
+      "whatsappNumber": "34722878642",
+      "whatsappMessage": "Hello, I’d like to discuss a commercial interior design project."
+    },
+    "form": {
+      "title": "Start a project",
+      "intro": "Tell me what you’re working on. I’ll reply personally.",
+      "nameLabel": "Your name",
+      "contactLabel": "WhatsApp or email",
+      "contactHint": "So I can get back to you.",
+      "messageLabel": "Tell me briefly about your project",
+      "submit": "Send project",
+      "sending": "Sending…",
+      "altQuestion": "Prefer WhatsApp?",
+      "altCta": "Chat on WhatsApp",
+      "success": "Thank you. I’ve received your message and I’ll get back to you shortly.",
+      "errorRequired": "Please fill in all three fields to send your message.",
+      "errorContact": "Please enter a valid email or WhatsApp number.",
+      "errorSend": "Your message couldn’t be sent. Please message me on WhatsApp or at andrei@3dna.es.",
+      "privacyPrefix": "By sending, you accept the",
+      "privacyLink": "privacy policy",
+      "close": "Close"
     },
     "hero": {
       "eyebrow": "Commercial interior design",
@@ -45,6 +71,128 @@
       "closing": "If you feel your business is ready for the next level, let’s talk.",
       "cta": "Let’s improve your space"
     },
+    "fitness": {
+      "ui": {
+        "zone": "Zone",
+        "area": "Area",
+        "capacity": "Capacity",
+        "equipment": "Equipment",
+        "quantity": "Quantity",
+        "resetView": "Reset view",
+        "users": "users",
+        "zonesNav": "Gym zones",
+        "overviewTitle": "Overview",
+        "overviewText": "Select a zone in the model or in the list to see its area, capacity and equipment.",
+        "totalArea": "Total area",
+        "zoneCount": "Zones",
+        "interactHint": "Drag to rotate · Scroll or pinch to zoom",
+        "loading": "Loading 3D model…",
+        "close": "Close",
+        "category": "Category",
+        "dimensions": "Dimensions",
+        "power": "Power",
+        "intro": "A gym works when space, circulation and equipment are planned together. Explore a sample club zone by zone: what goes where, how much room it needs and how many people it serves.",
+        "canvasDescription": "Interactive 3D model of a gym floor divided into ten functional zones. The same information is available in the zone list.",
+        "prototypeNote": "Planning prototype: simplified geometry and sample specifications."
+      },
+      "zones": {
+        "reception": {
+          "name": "Reception",
+          "description": "Controlled access, member service and the first brand impression."
+        },
+        "cardio": {
+          "name": "Cardio",
+          "description": "Cardio line along the façade, with daylight and clear circulation behind it."
+        },
+        "strength": {
+          "name": "Strength machines",
+          "description": "Selectorised machines in a logical circuit, with safe spacing between stations."
+        },
+        "freeweights": {
+          "name": "Free weights",
+          "description": "Racks, platform and dumbbells on high-impact technical flooring."
+        },
+        "functional": {
+          "name": "Functional training",
+          "description": "Open floor with a rig, sled lanes and suspension anchor points."
+        },
+        "stretching": {
+          "name": "Mobility",
+          "description": "A calm area for mobility work, stretching and cool-down."
+        },
+        "studio": {
+          "name": "Group studio",
+          "description": "Class studio with a mirror wall, integrated storage and dedicated sound."
+        },
+        "spin": {
+          "name": "Indoor cycling",
+          "description": "Cycling studio with an instructor platform and lighting control."
+        },
+        "lockers": {
+          "name": "Changing rooms",
+          "description": "Lockers, showers and vanity stations, separated from the training floor."
+        },
+        "recovery": {
+          "name": "Recovery",
+          "description": "Recovery and wellness area with massage and assisted-stretching stations."
+        }
+      },
+      "equipment": {
+        "reception_desk": "Reception desk",
+        "access_gate": "Access gate",
+        "waiting_bench": "Waiting bench",
+        "retail_wall": "Retail display wall",
+        "treadmill": "Treadmill",
+        "elliptical": "Elliptical",
+        "upright_bike": "Upright bike",
+        "rower": "Rower",
+        "stair_climber": "Stair climber",
+        "chest_press": "Chest press",
+        "shoulder_press": "Shoulder press",
+        "lat_pulldown": "Lat pulldown",
+        "seated_row": "Seated row",
+        "leg_press": "Leg press",
+        "leg_extension": "Leg extension",
+        "leg_curl": "Leg curl",
+        "cable_crossover": "Cable crossover",
+        "power_rack": "Power rack",
+        "adjustable_bench": "Adjustable bench",
+        "dumbbell_rack": "Dumbbell rack",
+        "plate_storage": "Plate storage system",
+        "lifting_platform": "Lifting platform",
+        "functional_rig": "Functional rig",
+        "kettlebell_set": "Kettlebell set",
+        "medicine_ball": "Medicine ball",
+        "plyo_box": "Plyo box",
+        "sled_lane": "Sled lane",
+        "suspension_point": "Suspension training anchor",
+        "mat": "Exercise mat",
+        "foam_roller": "Foam roller",
+        "stretch_station": "Stretching station",
+        "training_position": "Training position",
+        "storage_wall": "Storage wall",
+        "mirror_wall": "Mirror wall",
+        "audio_system": "Audio system",
+        "spin_bike": "Indoor cycling bike",
+        "instructor_platform": "Instructor platform",
+        "lighting_control": "Lighting control system",
+        "locker": "Locker",
+        "shower": "Shower",
+        "changing_bench": "Changing bench",
+        "vanity_station": "Vanity station",
+        "stretch_bench": "Stretching bench",
+        "recovery_station": "Recovery station (placeholder)",
+        "massage_table": "Massage table (placeholder)"
+      },
+      "categories": {
+        "machine": "Machine",
+        "free_weight": "Free weight",
+        "accessory": "Accessory",
+        "furniture": "Furniture",
+        "system": "System",
+        "facility": "Facility"
+      }
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Restaurants", "slug": "restaurants",
@@ -57,7 +205,19 @@
           "services": ["Space planning", "Concept design", "3D visualization", "Lighting", "FF&E"]
         }
       },
-      { "id": "fitness", "index": "02", "title": "Fitness", "slug": "fitness" },
+      {
+        "id": "fitness", "index": "02", "title": "Fitness", "slug": "fitness",
+        "section": {
+          "heading": ["Spaces", "designed to", "perform."],
+          "headingText": "Spaces designed to perform.",
+          "lead": "Design that supports movement, motivation and experience.",
+          "body": "We design gyms and fitness spaces where planning, circulation, lighting and identity work together to create a stronger, more efficient and more memorable experience.",
+          "cta": "View fitness projects",
+          "ctaHref": "/gimnasios-3d.html",
+          "ctaPlan": "Plan my fitness space",
+          "services": ["Space planning", "Zoning", "Lighting", "Identity", "3D visualization"]
+        }
+      },
       { "id": "healthcare", "index": "03", "title": "Healthcare", "slug": "healthcare" },
       { "id": "workplaces", "index": "04", "title": "Workplaces", "slug": "workplaces" }
     ]
@@ -86,7 +246,33 @@
       "menu": "Menú",
       "openMenu": "Abrir menú",
       "closeMenu": "Cerrar menú",
-      "language": "Idioma"
+      "language": "Idioma",
+      "home": "Inicio",
+      "contact": "Contacto",
+      "whatsapp": "WhatsApp"
+    },
+    "contact": {
+      "whatsappNumber": "34722878642",
+      "whatsappMessage": "Hola, me gustaría hablar sobre un proyecto de diseño de interiores comerciales."
+    },
+    "form": {
+      "title": "Empezar un proyecto",
+      "intro": "Cuéntame en qué estás trabajando. Te responderé personalmente.",
+      "nameLabel": "Tu nombre",
+      "contactLabel": "WhatsApp o email",
+      "contactHint": "Para poder responderte.",
+      "messageLabel": "Cuéntame brevemente sobre tu proyecto",
+      "submit": "Enviar proyecto",
+      "sending": "Enviando…",
+      "altQuestion": "¿Prefieres WhatsApp?",
+      "altCta": "Hablar por WhatsApp",
+      "success": "Gracias. He recibido tu mensaje y me pondré en contacto contigo pronto.",
+      "errorRequired": "Completa los tres campos para enviar tu mensaje.",
+      "errorContact": "Introduce un email o un número de WhatsApp válido.",
+      "errorSend": "No se ha podido enviar el mensaje. Escríbeme por WhatsApp o a andrei@3dna.es.",
+      "privacyPrefix": "Al enviar aceptas la",
+      "privacyLink": "política de privacidad",
+      "close": "Cerrar"
     },
     "hero": {
       "eyebrow": "Diseño de interiores comerciales",
@@ -108,6 +294,128 @@
       "closing": "Si sientes que tu negocio está listo para el siguiente nivel, hablemos.",
       "cta": "Mejoremos tu espacio"
     },
+    "fitness": {
+      "ui": {
+        "zone": "Zona",
+        "area": "Superficie",
+        "capacity": "Capacidad",
+        "equipment": "Equipamiento",
+        "quantity": "Unidades",
+        "resetView": "Volver a vista general",
+        "users": "usuarios",
+        "zonesNav": "Zonas del gimnasio",
+        "overviewTitle": "Vista general",
+        "overviewText": "Selecciona una zona en el modelo o en la lista para ver su superficie, capacidad y equipamiento.",
+        "totalArea": "Superficie total",
+        "zoneCount": "Zonas",
+        "interactHint": "Arrastra para girar · Rueda o pellizca para acercar",
+        "loading": "Cargando modelo 3D…",
+        "close": "Cerrar",
+        "category": "Categoría",
+        "dimensions": "Dimensiones",
+        "power": "Potencia",
+        "intro": "Un gimnasio funciona cuando el espacio, la circulación y el equipamiento se planifican juntos. Explora un club de ejemplo zona por zona: qué va en cada sitio, cuánto espacio necesita y a cuántas personas atiende.",
+        "canvasDescription": "Modelo 3D interactivo de una planta de gimnasio dividida en diez zonas funcionales. La misma información está disponible en la lista de zonas.",
+        "prototypeNote": "Prototipo de planificación: geometría simplificada y especificaciones de ejemplo."
+      },
+      "zones": {
+        "reception": {
+          "name": "Recepción",
+          "description": "Acceso controlado, atención al socio y primera impresión de marca."
+        },
+        "cardio": {
+          "name": "Cardio",
+          "description": "Línea de cardio junto a la fachada, con luz natural y circulación despejada detrás."
+        },
+        "strength": {
+          "name": "Máquinas de fuerza",
+          "description": "Máquinas guiadas en un circuito lógico, con espacio de seguridad entre equipos."
+        },
+        "freeweights": {
+          "name": "Peso libre",
+          "description": "Racks, plataforma y mancuernas sobre pavimento técnico de alto impacto."
+        },
+        "functional": {
+          "name": "Entrenamiento funcional",
+          "description": "Espacio abierto con rig, carriles de arrastre y anclajes de suspensión."
+        },
+        "stretching": {
+          "name": "Movilidad",
+          "description": "Zona tranquila para movilidad, estiramientos y vuelta a la calma."
+        },
+        "studio": {
+          "name": "Sala de clases",
+          "description": "Sala de actividades dirigidas con espejo, almacenaje integrado y sonido propio."
+        },
+        "spin": {
+          "name": "Ciclo indoor",
+          "description": "Sala de ciclo indoor con plataforma de instructor y control de iluminación."
+        },
+        "lockers": {
+          "name": "Vestuarios",
+          "description": "Taquillas, duchas y tocadores, separados de la zona de entrenamiento."
+        },
+        "recovery": {
+          "name": "Recuperación",
+          "description": "Zona de recuperación y bienestar con estaciones de masaje y estiramiento asistido."
+        }
+      },
+      "equipment": {
+        "reception_desk": "Mostrador de recepción",
+        "access_gate": "Torno de acceso",
+        "waiting_bench": "Banco de espera",
+        "retail_wall": "Muro expositor",
+        "treadmill": "Cinta de correr",
+        "elliptical": "Elíptica",
+        "upright_bike": "Bicicleta vertical",
+        "rower": "Remo",
+        "stair_climber": "Escaladora",
+        "chest_press": "Press de pecho",
+        "shoulder_press": "Press de hombro",
+        "lat_pulldown": "Jalón al pecho",
+        "seated_row": "Remo sentado",
+        "leg_press": "Prensa de piernas",
+        "leg_extension": "Extensión de cuádriceps",
+        "leg_curl": "Curl femoral",
+        "cable_crossover": "Cruce de poleas",
+        "power_rack": "Rack de potencia",
+        "adjustable_bench": "Banco ajustable",
+        "dumbbell_rack": "Rack de mancuernas",
+        "plate_storage": "Sistema de almacenaje de discos",
+        "lifting_platform": "Plataforma de halterofilia",
+        "functional_rig": "Rig funcional",
+        "kettlebell_set": "Set de kettlebells",
+        "medicine_ball": "Balón medicinal",
+        "plyo_box": "Cajón pliométrico",
+        "sled_lane": "Carril de trineo",
+        "suspension_point": "Anclaje de entrenamiento en suspensión",
+        "mat": "Esterilla",
+        "foam_roller": "Rodillo de espuma",
+        "stretch_station": "Estación de estiramiento",
+        "training_position": "Puesto de entrenamiento",
+        "storage_wall": "Muro de almacenaje",
+        "mirror_wall": "Pared de espejo",
+        "audio_system": "Sistema de sonido",
+        "spin_bike": "Bicicleta de ciclo indoor",
+        "instructor_platform": "Plataforma de instructor",
+        "lighting_control": "Sistema de control de iluminación",
+        "locker": "Taquilla",
+        "shower": "Ducha",
+        "changing_bench": "Banco de vestuario",
+        "vanity_station": "Tocador",
+        "stretch_bench": "Banco de estiramiento",
+        "recovery_station": "Estación de recuperación (provisional)",
+        "massage_table": "Camilla de masaje (provisional)"
+      },
+      "categories": {
+        "machine": "Máquina",
+        "free_weight": "Peso libre",
+        "accessory": "Accesorio",
+        "furniture": "Mobiliario",
+        "system": "Sistema",
+        "facility": "Instalación"
+      }
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Restaurantes", "slug": "restaurantes",
@@ -120,7 +428,19 @@
           "services": ["Planificación del espacio", "Diseño de concepto", "Visualización 3D", "Iluminación", "FF&E"]
         }
       },
-      { "id": "fitness", "index": "02", "title": "Fitness", "slug": "fitness" },
+      {
+        "id": "fitness", "index": "02", "title": "Gimnasios", "slug": "gimnasios",
+        "section": {
+          "heading": ["Espacios", "diseñados para", "rendir."],
+          "headingText": "Espacios diseñados para rendir.",
+          "lead": "Diseño que impulsa el movimiento, la motivación y la experiencia.",
+          "body": "Diseñamos gimnasios y espacios fitness donde la distribución, la circulación, la iluminación y la identidad trabajan juntas para crear una experiencia más atractiva, eficiente y memorable.",
+          "cta": "Ver proyectos fitness",
+          "ctaHref": "/gimnasios-3d.html",
+          "ctaPlan": "Diseñar mi espacio fitness",
+          "services": ["Planificación", "Zonificación", "Iluminación", "Identidad", "Visualización 3D"]
+        }
+      },
       { "id": "healthcare", "index": "03", "title": "Salud", "slug": "salud" },
       { "id": "workplaces", "index": "04", "title": "Oficinas", "slug": "oficinas" }
     ]
@@ -149,7 +469,33 @@
       "menu": "Меню",
       "openMenu": "Открыть меню",
       "closeMenu": "Закрыть меню",
-      "language": "Язык"
+      "language": "Язык",
+      "home": "Главная",
+      "contact": "Контакты",
+      "whatsapp": "WhatsApp"
+    },
+    "contact": {
+      "whatsappNumber": "34722878642",
+      "whatsappMessage": "Здравствуйте, я хотел(а) бы обсудить проект коммерческого интерьера."
+    },
+    "form": {
+      "title": "Начать проект",
+      "intro": "Расскажите, над чем вы работаете. Я отвечу лично.",
+      "nameLabel": "Ваше имя",
+      "contactLabel": "WhatsApp или email",
+      "contactHint": "Чтобы я мог вам ответить.",
+      "messageLabel": "Коротко расскажите о вашем проекте",
+      "submit": "Отправить проект",
+      "sending": "Отправка…",
+      "altQuestion": "Удобнее в WhatsApp?",
+      "altCta": "Написать в WhatsApp",
+      "success": "Спасибо. Я получил ваше сообщение и скоро свяжусь с вами.",
+      "errorRequired": "Заполните все три поля, чтобы отправить сообщение.",
+      "errorContact": "Введите корректный email или номер WhatsApp.",
+      "errorSend": "Не удалось отправить сообщение. Напишите мне в WhatsApp или на andrei@3dna.es.",
+      "privacyPrefix": "Отправляя форму, вы принимаете",
+      "privacyLink": "политику конфиденциальности",
+      "close": "Закрыть"
     },
     "hero": {
       "eyebrow": "Дизайн коммерческих интерьеров",
@@ -171,6 +517,128 @@
       "closing": "Если вы чувствуете, что ваш бизнес готов к следующему уровню, давайте поговорим.",
       "cta": "Улучшим ваше пространство"
     },
+    "fitness": {
+      "ui": {
+        "zone": "Зона",
+        "area": "Площадь",
+        "capacity": "Вместимость",
+        "equipment": "Оборудование",
+        "quantity": "Количество",
+        "resetView": "Общий вид",
+        "users": "чел.",
+        "zonesNav": "Зоны фитнес-клуба",
+        "overviewTitle": "Общий вид",
+        "overviewText": "Выберите зону на модели или в списке, чтобы увидеть площадь, вместимость и оборудование.",
+        "totalArea": "Общая площадь",
+        "zoneCount": "Зоны",
+        "interactHint": "Перетащите для вращения · Колесо или щипок для масштаба",
+        "loading": "Загрузка 3D-модели…",
+        "close": "Закрыть",
+        "category": "Категория",
+        "dimensions": "Размеры",
+        "power": "Питание",
+        "intro": "Фитнес-клуб работает, когда пространство, маршруты и оборудование спланированы вместе. Изучите пример клуба по зонам: что где стоит, сколько места нужно и сколько людей обслуживает каждая зона.",
+        "canvasDescription": "Интерактивная 3D-модель зала фитнес-клуба, разделённого на десять функциональных зон. Та же информация доступна в списке зон.",
+        "prototypeNote": "Прототип планировки: упрощённая геометрия и примерные спецификации."
+      },
+      "zones": {
+        "reception": {
+          "name": "Ресепшн",
+          "description": "Контроль доступа, обслуживание клиентов и первое впечатление о бренде."
+        },
+        "cardio": {
+          "name": "Кардио",
+          "description": "Кардиолиния вдоль фасада: дневной свет и свободный проход позади."
+        },
+        "strength": {
+          "name": "Силовые тренажёры",
+          "description": "Блочные тренажёры по логичному кругу с безопасными расстояниями между ними."
+        },
+        "freeweights": {
+          "name": "Свободные веса",
+          "description": "Рамы, помост и гантели на ударопрочном спортивном покрытии."
+        },
+        "functional": {
+          "name": "Функциональный тренинг",
+          "description": "Открытая зона с рамой, дорожками для саней и точками подвеса."
+        },
+        "stretching": {
+          "name": "Мобильность",
+          "description": "Спокойная зона для мобильности, растяжки и заминки."
+        },
+        "studio": {
+          "name": "Зал групповых программ",
+          "description": "Студия с зеркальной стеной, встроенным хранением и отдельным звуком."
+        },
+        "spin": {
+          "name": "Сайкл",
+          "description": "Сайкл-студия с подиумом инструктора и управлением светом."
+        },
+        "lockers": {
+          "name": "Раздевалки",
+          "description": "Шкафчики, душевые и зона макияжа, отделённые от тренировочного зала."
+        },
+        "recovery": {
+          "name": "Восстановление",
+          "description": "Зона восстановления и велнеса с массажными станциями и ассистированной растяжкой."
+        }
+      },
+      "equipment": {
+        "reception_desk": "Стойка ресепшн",
+        "access_gate": "Турникет",
+        "waiting_bench": "Скамья ожидания",
+        "retail_wall": "Витрина-стена",
+        "treadmill": "Беговая дорожка",
+        "elliptical": "Эллиптический тренажёр",
+        "upright_bike": "Вертикальный велотренажёр",
+        "rower": "Гребной тренажёр",
+        "stair_climber": "Степпер-лестница",
+        "chest_press": "Жим от груди",
+        "shoulder_press": "Жим вверх",
+        "lat_pulldown": "Верхняя тяга",
+        "seated_row": "Горизонтальная тяга",
+        "leg_press": "Жим ногами",
+        "leg_extension": "Разгибание ног",
+        "leg_curl": "Сгибание ног",
+        "cable_crossover": "Кроссовер",
+        "power_rack": "Силовая рама",
+        "adjustable_bench": "Регулируемая скамья",
+        "dumbbell_rack": "Стойка для гантелей",
+        "plate_storage": "Система хранения блинов",
+        "lifting_platform": "Тяжелоатлетический помост",
+        "functional_rig": "Функциональная рама",
+        "kettlebell_set": "Набор гирь",
+        "medicine_ball": "Медицинбол",
+        "plyo_box": "Плиометрический бокс",
+        "sled_lane": "Дорожка для саней",
+        "suspension_point": "Точка подвеса для петель",
+        "mat": "Коврик",
+        "foam_roller": "Ролл для МФР",
+        "stretch_station": "Станция для растяжки",
+        "training_position": "Тренировочное место",
+        "storage_wall": "Стена для хранения",
+        "mirror_wall": "Зеркальная стена",
+        "audio_system": "Аудиосистема",
+        "spin_bike": "Сайкл-велосипед",
+        "instructor_platform": "Подиум инструктора",
+        "lighting_control": "Система управления светом",
+        "locker": "Шкафчик",
+        "shower": "Душ",
+        "changing_bench": "Скамья раздевалки",
+        "vanity_station": "Туалетный столик",
+        "stretch_bench": "Скамья для растяжки",
+        "recovery_station": "Станция восстановления (условно)",
+        "massage_table": "Массажный стол (условно)"
+      },
+      "categories": {
+        "machine": "Тренажёр",
+        "free_weight": "Свободный вес",
+        "accessory": "Аксессуар",
+        "furniture": "Мебель",
+        "system": "Система",
+        "facility": "Оснащение"
+      }
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Рестораны", "slug": "restaurants",
@@ -183,7 +651,19 @@
           "services": ["Планировка", "Концепт-дизайн", "3D-визуализация", "Освещение", "FF&E"]
         }
       },
-      { "id": "fitness", "index": "02", "title": "Фитнес", "slug": "fitness" },
+      {
+        "id": "fitness", "index": "02", "title": "Фитнес", "slug": "fitness",
+        "section": {
+          "heading": ["Пространства,", "созданные для", "результата."],
+          "headingText": "Пространства, созданные для результата.",
+          "lead": "Дизайн для движения, мотивации и сильного впечатления.",
+          "body": "Мы проектируем фитнес-клубы и спортивные пространства, где планировка, движение людей, освещение и визуальная идентичность работают вместе, создавая удобную, эффективную и запоминающуюся среду.",
+          "cta": "Смотреть фитнес-проекты",
+          "ctaHref": "/gimnasios-3d.html",
+          "ctaPlan": "Спроектировать мой фитнес-зал",
+          "services": ["Планировка", "Зонирование", "Освещение", "Айдентика", "3D-визуализация"]
+        }
+      },
       { "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare" },
       { "id": "workplaces", "index": "04", "title": "Офисы", "slug": "workplaces" }
     ]
@@ -212,7 +692,33 @@
       "menu": "Меню",
       "openMenu": "Відкрити меню",
       "closeMenu": "Закрити меню",
-      "language": "Мова"
+      "language": "Мова",
+      "home": "Головна",
+      "contact": "Контакти",
+      "whatsapp": "WhatsApp"
+    },
+    "contact": {
+      "whatsappNumber": "34722878642",
+      "whatsappMessage": "Вітаю, я хотів(ла) б обговорити проєкт комерційного інтер’єру."
+    },
+    "form": {
+      "title": "Розпочати проєкт",
+      "intro": "Розкажіть, над чим ви працюєте. Я відповім особисто.",
+      "nameLabel": "Ваше ім’я",
+      "contactLabel": "WhatsApp або email",
+      "contactHint": "Щоб я міг вам відповісти.",
+      "messageLabel": "Коротко розкажіть про ваш проєкт",
+      "submit": "Надіслати проєкт",
+      "sending": "Надсилання…",
+      "altQuestion": "Зручніше у WhatsApp?",
+      "altCta": "Написати у WhatsApp",
+      "success": "Дякую. Я отримав ваше повідомлення і скоро зв’яжуся з вами.",
+      "errorRequired": "Заповніть усі три поля, щоб надіслати повідомлення.",
+      "errorContact": "Введіть коректний email або номер WhatsApp.",
+      "errorSend": "Не вдалося надіслати повідомлення. Напишіть мені у WhatsApp або на andrei@3dna.es.",
+      "privacyPrefix": "Надсилаючи форму, ви приймаєте",
+      "privacyLink": "політику конфіденційності",
+      "close": "Закрити"
     },
     "hero": {
       "eyebrow": "Дизайн комерційних інтер'єрів",
@@ -234,6 +740,128 @@
       "closing": "Якщо ви відчуваєте, що ваш бізнес готовий до наступного рівня, давайте поговоримо.",
       "cta": "Покращимо ваш простір"
     },
+    "fitness": {
+      "ui": {
+        "zone": "Зона",
+        "area": "Площа",
+        "capacity": "Місткість",
+        "equipment": "Обладнання",
+        "quantity": "Кількість",
+        "resetView": "Загальний вигляд",
+        "users": "осіб",
+        "zonesNav": "Зони фітнес-клубу",
+        "overviewTitle": "Загальний вигляд",
+        "overviewText": "Оберіть зону на моделі або у списку, щоб побачити площу, місткість та обладнання.",
+        "totalArea": "Загальна площа",
+        "zoneCount": "Зони",
+        "interactHint": "Перетягніть для обертання · Колесо або щипок для масштабу",
+        "loading": "Завантаження 3D-моделі…",
+        "close": "Закрити",
+        "category": "Категорія",
+        "dimensions": "Розміри",
+        "power": "Живлення",
+        "intro": "Фітнес-клуб працює, коли простір, маршрути та обладнання сплановані разом. Перегляньте приклад клубу зона за зоною: що де розташоване, скільки місця потрібно і скільки людей обслуговує кожна зона.",
+        "canvasDescription": "Інтерактивна 3D-модель залу фітнес-клубу, поділеного на десять функціональних зон. Та сама інформація доступна у списку зон.",
+        "prototypeNote": "Прототип планування: спрощена геометрія та приклад специфікацій."
+      },
+      "zones": {
+        "reception": {
+          "name": "Рецепція",
+          "description": "Контроль доступу, обслуговування клієнтів і перше враження про бренд."
+        },
+        "cardio": {
+          "name": "Кардіо",
+          "description": "Кардіолінія вздовж фасаду: денне світло і вільний прохід позаду."
+        },
+        "strength": {
+          "name": "Силові тренажери",
+          "description": "Блокові тренажери за логічним колом із безпечними відстанями між ними."
+        },
+        "freeweights": {
+          "name": "Вільні ваги",
+          "description": "Рами, поміст і гантелі на ударостійкому спортивному покритті."
+        },
+        "functional": {
+          "name": "Функціональний тренінг",
+          "description": "Відкрита зона з рамою, доріжками для саней і точками підвісу."
+        },
+        "stretching": {
+          "name": "Мобільність",
+          "description": "Спокійна зона для мобільності, розтяжки та заминки."
+        },
+        "studio": {
+          "name": "Зал групових програм",
+          "description": "Студія із дзеркальною стіною, вбудованим зберіганням і власним звуком."
+        },
+        "spin": {
+          "name": "Сайкл",
+          "description": "Сайкл-студія з подіумом інструктора та керуванням світлом."
+        },
+        "lockers": {
+          "name": "Роздягальні",
+          "description": "Шафки, душові та туалетні столики, відокремлені від тренувальної зали."
+        },
+        "recovery": {
+          "name": "Відновлення",
+          "description": "Зона відновлення та велнесу з масажними станціями й асистованою розтяжкою."
+        }
+      },
+      "equipment": {
+        "reception_desk": "Стійка рецепції",
+        "access_gate": "Турнікет",
+        "waiting_bench": "Лава очікування",
+        "retail_wall": "Вітрина-стіна",
+        "treadmill": "Бігова доріжка",
+        "elliptical": "Еліптичний тренажер",
+        "upright_bike": "Вертикальний велотренажер",
+        "rower": "Гребний тренажер",
+        "stair_climber": "Степер-сходи",
+        "chest_press": "Жим від грудей",
+        "shoulder_press": "Жим угору",
+        "lat_pulldown": "Верхня тяга",
+        "seated_row": "Горизонтальна тяга",
+        "leg_press": "Жим ногами",
+        "leg_extension": "Розгинання ніг",
+        "leg_curl": "Згинання ніг",
+        "cable_crossover": "Кросовер",
+        "power_rack": "Силова рама",
+        "adjustable_bench": "Регульована лава",
+        "dumbbell_rack": "Стійка для гантелей",
+        "plate_storage": "Система зберігання дисків",
+        "lifting_platform": "Важкоатлетичний поміст",
+        "functional_rig": "Функціональна рама",
+        "kettlebell_set": "Набір гир",
+        "medicine_ball": "Медбол",
+        "plyo_box": "Пліометричний бокс",
+        "sled_lane": "Доріжка для саней",
+        "suspension_point": "Точка підвісу для петель",
+        "mat": "Килимок",
+        "foam_roller": "Рол для МФР",
+        "stretch_station": "Станція для розтяжки",
+        "training_position": "Тренувальне місце",
+        "storage_wall": "Стіна для зберігання",
+        "mirror_wall": "Дзеркальна стіна",
+        "audio_system": "Аудіосистема",
+        "spin_bike": "Сайкл-велосипед",
+        "instructor_platform": "Подіум інструктора",
+        "lighting_control": "Система керування світлом",
+        "locker": "Шафка",
+        "shower": "Душ",
+        "changing_bench": "Лава роздягальні",
+        "vanity_station": "Туалетний столик",
+        "stretch_bench": "Лава для розтяжки",
+        "recovery_station": "Станція відновлення (умовно)",
+        "massage_table": "Масажний стіл (умовно)"
+      },
+      "categories": {
+        "machine": "Тренажер",
+        "free_weight": "Вільна вага",
+        "accessory": "Аксесуар",
+        "furniture": "Меблі",
+        "system": "Система",
+        "facility": "Оснащення"
+      }
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Ресторани", "slug": "restaurants",
@@ -246,7 +874,19 @@
           "services": ["Планування", "Концепт-дизайн", "3D-візуалізація", "Освітлення", "FF&E"]
         }
       },
-      { "id": "fitness", "index": "02", "title": "Фітнес", "slug": "fitness" },
+      {
+        "id": "fitness", "index": "02", "title": "Фітнес", "slug": "fitness",
+        "section": {
+          "heading": ["Простори,", "створені для", "результату."],
+          "headingText": "Простори, створені для результату.",
+          "lead": "Дизайн для руху, мотивації та сильного враження.",
+          "body": "Ми проєктуємо фітнес-клуби та спортивні простори, де планування, циркуляція, освітлення та візуальна ідентичність працюють разом, створюючи зручне, ефективне та виразне середовище.",
+          "cta": "Переглянути фітнес-проєкти",
+          "ctaHref": "/gimnasios-3d.html",
+          "ctaPlan": "Спроєктувати мій фітнес-простір",
+          "services": ["Планування", "Зонування", "Освітлення", "Ідентичність", "3D-візуалізація"]
+        }
+      },
       { "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare" },
       { "id": "workplaces", "index": "04", "title": "Офіси", "slug": "workplaces" }
     ]

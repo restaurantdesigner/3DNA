@@ -1,11 +1,15 @@
 /*
  * 3DNA language detection — shared by the browser (root redirect, language
- * switcher) and server.js (require). No dependencies.
+ * switcher) and server.js (require). No dependencies, no network calls.
  *
  * Priority:
- *   1. language the visitor picked manually (localStorage / cookie "lang")
- *   2. browser languages (navigator.languages / Accept-Language)
- *   3. IP country — only when 2 gives no information and the host provides it
+ *   1. language the visitor picked manually ("3dna_language" in localStorage/cookie)
+ *   2. the visitor's market:
+ *        Spain + Spanish-speaking Latin America -> es, Ukraine -> uk
+ *        (never Russian from geography)
+ *      Country comes from a CDN/host header when one exists (server), otherwise
+ *      from the device time zone (browser) — GitHub Pages exposes no IP country.
+ *   3. browser languages (navigator.languages / Accept-Language)
  *   4. English
  */
 (function (root, factory) {
@@ -15,17 +19,34 @@
 })(typeof self !== "undefined" ? self : this, function () {
   var SUPPORTED = ["en", "es", "ru", "uk"];
   var DEFAULT_LANG = "en";
-  var STORAGE_KEY = "lang";
+  var STORAGE_KEY = "3dna_language";
+  var LEGACY_STORAGE_KEY = "lang"; // earlier manual choices; still honoured
   var COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
-  // Spain + Spanish-speaking Latin America (and Equatorial Guinea)
+  // ISO 3166-1 alpha-2 -> language
   var SPANISH_COUNTRIES = [
-    "ES", "MX", "AR", "CO", "CL", "PE", "VE", "EC", "GT", "CU", "BO", "DO",
-    "HN", "PY", "SV", "NI", "CR", "PA", "UY", "PR", "GQ"
+    "ES", "MX", "AR", "CL", "CO", "PE", "UY", "PY", "BO", "EC",
+    "VE", "CR", "PA", "GT", "HN", "SV", "NI", "DO", "CU", "PR"
   ];
-  // Country is never used to pick Russian.
   var COUNTRY_LANG = { UA: "uk" };
   SPANISH_COUNTRIES.forEach(function (c) { COUNTRY_LANG[c] = "es"; });
+
+  // IANA time zone -> country, for the markets above only. Phones set their
+  // time zone from the network, so this follows where the device actually is.
+  var TIMEZONE_COUNTRY = {
+    "Europe/Madrid": "ES", "Africa/Ceuta": "ES", "Atlantic/Canary": "ES",
+    "America/Mexico_City": "MX", "America/Cancun": "MX", "America/Merida": "MX", "America/Monterrey": "MX",
+    "America/Matamoros": "MX", "America/Chihuahua": "MX", "America/Ciudad_Juarez": "MX", "America/Ojinaga": "MX",
+    "America/Mazatlan": "MX", "America/Bahia_Banderas": "MX", "America/Hermosillo": "MX", "America/Tijuana": "MX",
+    "America/Buenos_Aires": "AR", "America/Cordoba": "AR", "America/Mendoza": "AR",
+    "America/Santiago": "CL", "America/Punta_Arenas": "CL", "Pacific/Easter": "CL",
+    "America/Bogota": "CO", "America/Lima": "PE", "America/Montevideo": "UY", "America/Asuncion": "PY",
+    "America/La_Paz": "BO", "America/Guayaquil": "EC", "Pacific/Galapagos": "EC", "America/Caracas": "VE",
+    "America/Costa_Rica": "CR", "America/Panama": "PA", "America/Guatemala": "GT", "America/Tegucigalpa": "HN",
+    "America/El_Salvador": "SV", "America/Managua": "NI", "America/Santo_Domingo": "DO", "America/Havana": "CU",
+    "America/Puerto_Rico": "PR",
+    "Europe/Kyiv": "UA", "Europe/Kiev": "UA", "Europe/Uzhgorod": "UA", "Europe/Zaporozhye": "UA"
+  };
 
   function isSupported(lang) {
     return SUPPORTED.indexOf(lang) !== -1;
@@ -72,12 +93,19 @@
     return COUNTRY_LANG[String(country).trim().toUpperCase()] || null;
   }
 
+  function countryFromTimeZone(tz) {
+    if (!tz) return null;
+    if (TIMEZONE_COUNTRY[tz]) return TIMEZONE_COUNTRY[tz];
+    if (/^America\/Argentina\//.test(tz)) return "AR";
+    return null;
+  }
+
   function detect(input) {
     input = input || {};
     if (isSupported(input.saved)) return input.saved;
-    var byLanguage = fromLanguages(input.languages);
-    if (byLanguage) return byLanguage;
-    return fromCountry(input.country) || DEFAULT_LANG;
+    var byCountry = fromCountry(input.country);
+    if (byCountry) return byCountry;
+    return fromLanguages(input.languages) || DEFAULT_LANG;
   }
 
   // ---- browser-only helpers ----
@@ -88,19 +116,27 @@
   }
 
   function getSaved() {
-    var value = null;
-    try { value = window.localStorage.getItem(STORAGE_KEY); } catch (e) {}
-    if (!isSupported(value)) value = readCookie(STORAGE_KEY);
-    return isSupported(value) ? value : null;
+    var keys = [STORAGE_KEY, LEGACY_STORAGE_KEY];
+    for (var i = 0; i < keys.length; i++) {
+      var value = null;
+      try { value = window.localStorage.getItem(keys[i]); } catch (e) {}
+      if (!isSupported(value)) value = readCookie(keys[i]);
+      if (isSupported(value)) return value;
+    }
+    return null;
   }
 
   // Manual choice: stored in localStorage and in a cookie (the cookie lets a
   // server-side redirect honour it too).
   function save(lang) {
     if (!isSupported(lang)) return;
-    try { window.localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+    try {
+      window.localStorage.setItem(STORAGE_KEY, lang);
+      window.localStorage.removeItem(LEGACY_STORAGE_KEY);
+    } catch (e) {}
     try {
       document.cookie = STORAGE_KEY + "=" + lang + "; path=/; max-age=" + COOKIE_MAX_AGE + "; SameSite=Lax";
+      document.cookie = LEGACY_STORAGE_KEY + "=; path=/; max-age=0";
     } catch (e) {}
   }
 
@@ -110,18 +146,35 @@
     return navigator.language ? [navigator.language] : [];
   }
 
+  function browserTimeZone() {
+    try { return Intl.DateTimeFormat().resolvedOptions().timeZone || null; } catch (e) { return null; }
+  }
+
+  // Everything the root redirect needs, in one call
+  function detectInBrowser() {
+    return detect({
+      saved: getSaved(),
+      country: countryFromTimeZone(browserTimeZone()),
+      languages: browserLanguages()
+    });
+  }
+
   return {
     SUPPORTED: SUPPORTED,
     DEFAULT_LANG: DEFAULT_LANG,
     STORAGE_KEY: STORAGE_KEY,
+    LEGACY_STORAGE_KEY: LEGACY_STORAGE_KEY,
     isSupported: isSupported,
     normalize: normalize,
     fromLanguages: fromLanguages,
     parseAcceptLanguage: parseAcceptLanguage,
     fromCountry: fromCountry,
+    countryFromTimeZone: countryFromTimeZone,
     detect: detect,
     getSaved: getSaved,
     save: save,
-    browserLanguages: browserLanguages
+    browserLanguages: browserLanguages,
+    browserTimeZone: browserTimeZone,
+    detectInBrowser: detectInBrowser
   };
 });

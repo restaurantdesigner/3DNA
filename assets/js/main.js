@@ -1,4 +1,22 @@
 // =============================================
+// 0a. WHATSAPP LINK (one number site-wide; message follows the page language)
+// =============================================
+// Locale home pages get the exact link from the build (window.I18N.whatsappHref,
+// text from assets/i18n/translations.json). Other pages are Spanish.
+window.whatsappHref = () =>
+  (window.I18N && window.I18N.whatsappHref) ||
+  "https://wa.me/34722878642?text=" +
+    encodeURIComponent("Hola, me gustaría hablar sobre un proyecto de diseño de interiores comerciales.");
+
+// Manual language choice; mirrors I18nDetect.save() for pages without it
+window.saveLanguageChoice = (lang) => {
+  if (window.I18nDetect) return window.I18nDetect.save(lang);
+  if (!/^(en|es|ru|uk)$/.test(lang)) return;
+  try { localStorage.setItem("3dna_language", lang); } catch (e) {}
+  document.cookie = `3dna_language=${lang}; path=/; max-age=31536000; SameSite=Lax`;
+};
+
+// =============================================
 // 0. ANALYTICS HOOK (no tracking by itself)
 // =============================================
 // window.track(name, params) always fires a "3dna:track" DOM event. It is only
@@ -113,20 +131,28 @@
   </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú" aria-hidden="true">
   <div class="mobile-menu-inner">
     <div class="mobile-menu-head">
-      <div class="mobile-menu-title">MENU</div>
-      <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">\u00d7</button>
+      <a class="mobile-menu-brand m-link" href="${homeLink("#hero")}" aria-label="Inicio de 3DNA"><img src="${pagePrefix}img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
+      <button class="mobile-close" id="mobileClose" type="button" aria-label="Cerrar menú">\u00d7</button>
     </div>
 
-    <a href="${homeLink("#hero")}" class="m-link">Inicio</a>
-    <a href="${homeLink("#about")}" class="m-link">Sobre nosotros</a>
-    <a href="${homeLink("#sec2")}" class="m-link">Servicios</a>
-    <a href="${homeLink("#sec3")}" class="m-link">Showroom</a>
-    <a href="${homeLink("#contacto")}" class="m-link">Contacto</a>
+    <nav class="mobile-menu-nav" aria-label="Principal">
+      <a href="${homeLink("#hero")}" class="m-link">Inicio</a>
+      <a href="${homeLink("#sec2")}" class="m-link">Proyectos</a>
+      <a href="${homeLink("#transform")}" class="m-link">Proceso</a>
+      <a href="${homeLink("#about")}" class="m-link">Nosotros</a>
+      <a href="#site-footer" class="m-link">Contacto</a>
+    </nav>
 
-    <button class="m-cta open-panel" type="button">Solicitar propuesta</button>
+    <div class="mobile-menu-foot">
+      <nav class="lang-switch lang-switch--menu" aria-label="Idioma">
+        <a href="/en/" hreflang="en" lang="en" data-lang="en" aria-label="English">EN</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español" aria-current="page">ES</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/ru/" hreflang="ru" lang="ru" data-lang="ru" aria-label="Русский">RU</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/uk/" hreflang="uk" lang="uk" data-lang="uk" aria-label="Українська">UK</a>
+      </nav>
+      <a class="m-whatsapp" href="${window.whatsappHref()}" target="_blank" rel="noopener noreferrer"
+        data-track="whatsapp_clicked" data-track-location="menu">WhatsApp <span aria-hidden="true">&rarr;</span></a>
+    </div>
   </div>
 </div>
 
@@ -147,7 +173,7 @@
     host.querySelectorAll(".lang-switch a[data-lang]").forEach((link) => {
       link.addEventListener("click", () => {
         const lang = link.dataset.lang;
-        if (window.I18nDetect) window.I18nDetect.save(lang);
+        window.saveLanguageChoice(lang);
         if (window.track) window.track("language_selected", { language: lang });
         if (window.location.hash) link.setAttribute("href", `/${lang}/${window.location.hash}`);
       });
@@ -161,6 +187,11 @@
       }, { rootMargin: `-${topbar.offsetHeight || 72}px 0px 0px 0px` });
       io.observe(hero);
     }
+  }
+  if (!prerenderedHeader) {
+    host.querySelectorAll(".lang-switch a[data-lang]").forEach((link) => {
+      link.addEventListener("click", () => window.saveLanguageChoice(link.dataset.lang));
+    });
   }
   if (isNestedDetailPage) {
     fixRelativePaths(host, "../");
@@ -216,7 +247,7 @@
           <h4>Contacto</h4>
           <ul>
             <li><a href="mailto:andrei@3dna.es?subject=Consulta%20desde%203dna.es&body=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20vuestros%20servicios.">Email: andrei@3dna.es</a></li>
-            <li><a href="https://wa.me/34722878642?text=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20vuestros%20servicios." target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li><a href="${window.whatsappHref()}" target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="footer">WhatsApp</a></li>
             <li><span>Salobreña, Granada</span></li>
             <li><a href="https://www.3dna.es">www.3dna.es</a></li>
             <li class="footer-cta-row"><button type="button" class="open-panel footer-cta-btn">Solicitar propuesta</button></li>
@@ -419,22 +450,35 @@ onFormPanelLifecycle(() => {
       e.preventDefault();
       e.stopPropagation();
     }
+    lastTrigger = trigger || document.activeElement;
     panel.classList.add('open');
     backdrop.classList.add('visible');
     document.body.classList.add('panel-open');
     document.body.classList.add('modal-open');
+    // keyboard users land in the first field (after the slide-in)
+    setTimeout(() => {
+      const first = panel.querySelector('[data-sp-form-state]:not([hidden]) input:not([tabindex="-1"]), [data-sp-done]:not([hidden])');
+      first?.focus({ preventScroll: true });
+    }, 320);
   };
+  let lastTrigger = null;
 
   document.querySelectorAll('.open-panel').forEach(btn => {
     bindTap(btn, openPanel);
   });
 
   function closePanel() {
+    if (!panel.classList.contains('open')) return;
     panel.classList.remove('open');
     backdrop.classList.remove('visible');
     document.body.classList.remove('panel-open');
     document.body.classList.remove('modal-open');
+    if (lastTrigger && lastTrigger.focus) lastTrigger.focus({ preventScroll: true });
   }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
+  });
 
   bindTap(closeBtn, closePanel);
   bindTap(backdrop, (e) => {
@@ -718,438 +762,100 @@ onFormPanelLifecycle(() => {
 
 
 // =============================================
-// 8. FORM PROGRESS BAR
+// 8. PROJECT FORM (name · contact · message)
 // =============================================
-function updateStepProgress() {
-  const allSections = document.querySelectorAll('.form-section');
-  const progressSections = document.querySelectorAll('.form-section:not([data-optional="true"])');
-  let completed = 0;
-
-  allSections.forEach(section => {
-    const checkboxGroupName = section.dataset.checkboxGroup;
-    const requiredFields = section.querySelectorAll('.form-select[required], .form-input[required], .form-textarea[required]');
-    const controls = section.querySelectorAll('.form-select, .form-input, .form-textarea');
-    const checkboxFields = checkboxGroupName
-      ? section.querySelectorAll(`.form-check-input[name="${checkboxGroupName}"]`)
-      : [];
-
-    controls.forEach((field) => {
-      const isFilled = String(field.value || '').trim() !== '';
-      field.classList.toggle('is-filled', isFilled);
-    });
-
-    checkboxFields.forEach((field) => {
-      const option = field.closest('.form-check-option');
-      option?.classList.toggle('is-filled', field.checked);
-    });
-
-    const isCheckboxGroupComplete = checkboxFields.length > 0
-      ? Array.from(checkboxFields).some((field) => field.checked)
-      : false;
-
-    const isSectionComplete = checkboxFields.length > 0
-      ? isCheckboxGroupComplete
-      : requiredFields.length > 0
-        ? Array.from(requiredFields).every((field) => String(field.value || '').trim() !== '')
-        : Array.from(controls).some((field) => String(field.value || '').trim() !== '');
-
-    section.classList.toggle('is-complete', isSectionComplete);
-  });
-
-  progressSections.forEach(section => {
-    if (section.classList.contains('is-complete')) completed++;
-  });
-
-  const percent = progressSections.length > 0
-    ? Math.round((completed / progressSections.length) * 100)
-    : 0;
-  const bar = document.getElementById('progress-bar');
-  const txt = document.getElementById('progress-text');
-  if (bar) bar.style.width = `${percent}%`;
-  if (txt) txt.textContent = `${percent}% completado`;
-}
-
+// Strings come from the localized partial (data-msg-* on the form), so this
+// code has no hard-coded copy. Posts to the existing /api/lead endpoint.
 onFormPanelLifecycle(() => {
-  if (document.body.dataset.formProgressInit === '1') return;
-  if (!document.querySelector('.form-section')) return;
-  document.body.dataset.formProgressInit = '1';
+  const form = document.querySelector('[data-sp-form]');
+  if (!form || form.dataset.spInit === '1') return;
+  form.dataset.spInit = '1';
 
-  updateStepProgress();
-
-  document.querySelectorAll('.form-section .form-select, .form-section .form-input, .form-section .form-textarea, .form-section .form-check-input').forEach(field => {
-    field.addEventListener('change', updateStepProgress);
-    field.addEventListener('input', updateStepProgress);
-  });
-});
-
-
-// =============================================
-// 9. FORM SUBMIT VALIDATION
-// =============================================
-onFormPanelLifecycle(() => {
-  const submitBtn = document.querySelector('.form-submit');
-  const progressWrapper = document.querySelector('.progress-wrapper');
   const API_BASE_URL = 'https://threedna-site.onrender.com';
-  const SUBMISSION_STATE_KEY = 'threeDNA_form_submission_state';
-  const SUBMISSION_STATE_TTL_MS = 24 * 60 * 60 * 1000;
-  if (!submitBtn) return;
-  if (submitBtn.dataset.submitInit === '1') return;
-  submitBtn.dataset.submitInit = '1';
+  const formState = document.querySelector('[data-sp-form-state]');
+  const doneState = document.querySelector('[data-sp-done]');
+  const errorEl = form.querySelector('[data-sp-error]');
+  const submitBtn = form.querySelector('[data-sp-submit]');
+  const submitLabel = form.querySelector('[data-sp-submit-label]');
+  const fields = {
+    nombre: form.elements.nombre,
+    contacto: form.elements.contacto,
+    mensaje: form.elements.mensaje
+  };
+  const msg = (key) => form.dataset[key] || '';
+  let busy = false;
 
-  const showSubmittedState = () => {
-    document.querySelectorAll('.form-section').forEach((section) => {
-      section.hidden = true;
-    });
-    submitBtn.hidden = true;
-    if (progressWrapper) progressWrapper.hidden = true;
-
-    const formIntro = document.querySelector('.form-intro');
-    if (formIntro) {
-      formIntro.hidden = true;
-    }
-
-    const successState = document.getElementById('form-success-state');
-    if (successState) {
-      successState.hidden = false;
-    }
+  // A contact is usable if it is an email, or a phone number with 7+ digits
+  const contactKind = (value) => {
+    const v = value.trim();
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'email';
+    if ((v.replace(/\D/g, '').length >= 7) && /^[+\d\s().-]+$/.test(v)) return 'phone';
+    return null;
   };
 
-  const persistSubmissionState = () => {
-    try {
-      const state = { submittedAt: Date.now() };
-      localStorage.setItem(SUBMISSION_STATE_KEY, JSON.stringify(state));
-    } catch (_error) {
-      // Ignore localStorage failures.
-    }
+  const showError = (text, field) => {
+    errorEl.textContent = text;
+    errorEl.hidden = !text;
+    Object.values(fields).forEach((f) => f.removeAttribute('aria-invalid'));
+    if (field) { field.setAttribute('aria-invalid', 'true'); field.focus(); }
   };
 
-  const restoreSubmissionState = () => {
-    try {
-      const raw = localStorage.getItem(SUBMISSION_STATE_KEY);
-      if (!raw) return;
+  Object.values(fields).forEach((f) => f.addEventListener('input', () => {
+    f.removeAttribute('aria-invalid');
+    if (!errorEl.hidden) { errorEl.hidden = true; }
+  }));
 
-      const state = JSON.parse(raw);
-      const submittedAt = Number(state?.submittedAt || 0);
-      const isFresh = Number.isFinite(submittedAt) && (Date.now() - submittedAt < SUBMISSION_STATE_TTL_MS);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (busy) return;
 
-      if (isFresh) {
-        showSubmittedState();
-        upsertMessage('Solicitud enviada correctamente. Te contactaremos muy pronto.', 'success');
-      } else {
-        localStorage.removeItem(SUBMISSION_STATE_KEY);
-      }
-    } catch (_error) {
-      localStorage.removeItem(SUBMISSION_STATE_KEY);
-    }
-  };
+    const values = Object.fromEntries(Object.entries(fields).map(([k, f]) => [k, f.value.trim()]));
+    const empty = Object.keys(fields).find((k) => !values[k]);
+    if (empty) return showError(msg('msgRequired'), fields[empty]);
+    const kind = contactKind(values.contacto);
+    if (!kind) return showError(msg('msgContact'), fields.contacto);
+    showError('');
 
-  const formControls = Array.from(
-    document.querySelectorAll('.form-section .form-select, .form-section .form-input, .form-section .form-textarea, .form-section .form-check-input')
-  );
-
-  const setFormBusy = (busy) => {
-    formControls.forEach((field) => {
-      if (busy) {
-        field.dataset.prevDisabled = field.disabled ? '1' : '0';
-        field.disabled = true;
-        field.setAttribute('aria-disabled', 'true');
-        return;
-      }
-
-      const wasDisabled = field.dataset.prevDisabled === '1';
-      field.disabled = wasDisabled;
-      field.removeAttribute('aria-disabled');
-      delete field.dataset.prevDisabled;
-    });
-
-    submitBtn.disabled = busy;
-    submitBtn.setAttribute('aria-busy', busy ? 'true' : 'false');
-    submitBtn.textContent = busy ? 'Procesando...' : 'Analizar mi negocio';
-  };
-
-  const getRequiredFields = () => Array.from(
-    document.querySelectorAll('.form-section:not([data-optional="true"]) .form-select[required], .form-section:not([data-optional="true"]) .form-input[required], .form-section:not([data-optional="true"]) .form-textarea[required]')
-  );
-
-  const clearErrors = () => {
-    document.querySelectorAll('.is-invalid').forEach((field) => field.classList.remove('is-invalid'));
-    document.querySelectorAll('.form-check-option.is-invalid').forEach((field) => field.classList.remove('is-invalid'));
-    document.querySelectorAll('.form-section.has-error').forEach((section) => section.classList.remove('has-error'));
-  };
-
-  const upsertMessage = (text, type, useHtml = false) => {
-    let message = document.getElementById('form-status-message');
-    if (!message) {
-      message = document.createElement('p');
-      message.id = 'form-status-message';
-      message.className = 'form-status-message';
-      if (progressWrapper) {
-        progressWrapper.appendChild(message);
-      } else {
-        submitBtn.insertAdjacentElement('afterend', message);
-      }
-    }
-    if (useHtml) {
-      message.innerHTML = text;
-    } else {
-      message.textContent = text;
-    }
-    message.classList.remove('is-error', 'is-success');
-    message.classList.add(type === 'success' ? 'is-success' : 'is-error');
-  };
-
-  const isValidEmail = (value) => {
-    const email = String(value || '').trim().toLowerCase();
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const blockedDomains = new Set([
-      'gmai.com',
-      'ail.com',
-      'gmil.com',
-      'gnail.com',
-      'hotnail.com',
-      'outlok.com',
-      'yaho.com'
-    ]);
-    if (!emailPattern.test(email)) return false;
-    if (email.includes('xn--')) return false;
-    const domain = email.split('@')[1] || '';
-    if (blockedDomains.has(domain)) return false;
-    return true;
-  };
-
-  const isValidPhone = (value) => {
-    const cleaned = String(value || '').replace(/\s|-/g, '');
-    const e164Pattern = /^\+[1-9]\d{7,14}$/;
-    if (!e164Pattern.test(cleaned)) return false;
-    // Keep worldwide numbers, but apply realistic length for Spain (+34 + 9 digits).
-    if (cleaned.startsWith('+34')) {
-      return /^\+34\d{9}$/.test(cleaned);
-    }
-    return true;
-  };
-
-  let isSubmitting = false;
-
-  restoreSubmissionState();
-
-  submitBtn.addEventListener('click', async () => {
-    if (isSubmitting) return;
-    isSubmitting = true;
-    setFormBusy(true);
-
-    clearErrors();
-    updateStepProgress();
-
-    const requiredFields = getRequiredFields();
-    const invalidFields = requiredFields.filter((field) => String(field.value || '').trim() === '');
-    const invalidSections = [];
-
-    document.querySelectorAll('.form-section[data-checkbox-group]').forEach((section) => {
-      const groupName = section.dataset.checkboxGroup;
-      const checkboxes = Array.from(section.querySelectorAll(`.form-check-input[name="${groupName}"]`));
-      const hasChecked = checkboxes.some((field) => field.checked);
-
-      if (!hasChecked) {
-        invalidSections.push(section);
-        checkboxes.forEach((field) => field.closest('.form-check-option')?.classList.add('is-invalid'));
-      }
-    });
-
-    if (invalidFields.length > 0 || invalidSections.length > 0) {
-      invalidFields.forEach((field) => {
-        field.classList.add('is-invalid');
-        const section = field.closest('.form-section');
-        if (section) section.classList.add('has-error');
-      });
-
-      invalidSections.forEach((section) => section.classList.add('has-error'));
-
-      const firstInvalidField = invalidFields[0];
-      const firstInvalidSection = invalidSections[0];
-
-      if (firstInvalidField) {
-        firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        firstInvalidField.focus({ preventScroll: true });
-      } else if (firstInvalidSection) {
-        firstInvalidSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-
-      upsertMessage('Completa todos los campos obligatorios para continuar.', 'error');
-      isSubmitting = false;
-      setFormBusy(false);
-      return;
-    }
-
-    const payload = {};
-    document.querySelectorAll('.form-select, .form-input, .form-textarea').forEach((field) => {
-      const key = field.name || field.id;
-      if (!key) return;
-      payload[key] = String(field.value || '').trim();
-    });
-
-    const emailInput = document.querySelector('.form-input[name="email"]');
-    const phoneInput = document.querySelector('.form-input[name="whatsapp"]');
-    const invalidContactFields = [];
-
-    const emailFailsNativeValidation = emailInput
-      ? (typeof emailInput.checkValidity === 'function' && !emailInput.checkValidity())
-      : false;
-
-    if (emailFailsNativeValidation || !isValidEmail(payload.email)) {
-      if (emailInput) {
-        emailInput.classList.add('is-invalid');
-        emailInput.closest('.form-section')?.classList.add('has-error');
-        if (emailFailsNativeValidation && typeof emailInput.reportValidity === 'function') {
-          emailInput.reportValidity();
-        }
-      }
-      invalidContactFields.push(emailInput);
-    }
-
-    if (!isValidPhone(payload.whatsapp)) {
-      if (phoneInput) {
-        phoneInput.classList.add('is-invalid');
-        phoneInput.closest('.form-section')?.classList.add('has-error');
-      }
-      invalidContactFields.push(phoneInput);
-    }
-
-    if (invalidContactFields.length > 0) {
-      const firstInvalid = invalidContactFields.find(Boolean);
-      if (firstInvalid) {
-        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        firstInvalid.focus({ preventScroll: true });
-      }
-
-      upsertMessage('Revisa email y WhatsApp: introduce un correo real y un telefono valido.', 'error');
-      isSubmitting = false;
-      setFormBusy(false);
-      return;
-    }
-
-    document.querySelectorAll('.form-check-input').forEach((field) => {
-      if (!field.name) return;
-      if (!payload[field.name]) payload[field.name] = [];
-      if (field.checked) payload[field.name].push(field.value);
-    });
+    busy = true;
+    submitBtn.disabled = true;
+    const label = submitLabel.textContent;
+    submitLabel.textContent = msg('msgSending');
 
     const now = new Date();
-    const formVersion = '3dna-form-v2026.04.29';
-    const fechaLocal = now.toLocaleString('es-ES', {
-      dateStyle: 'short',
-      timeStyle: 'medium',
-      hour12: false,
-      timeZone: 'Europe/Madrid'
-    });
-    const fechaISO = now.toISOString();
-
-    let clientIp = 'No disponible';
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 1500);
-      const ipResponse = await fetch('https://api.ipify.org?format=json', {
-        method: 'GET',
-        cache: 'no-store',
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
-
-      if (ipResponse.ok) {
-        const ipData = await ipResponse.json();
-        if (ipData && ipData.ip) {
-          clientIp = String(ipData.ip).trim();
-        }
-      }
-    } catch (_error) {
-      clientIp = 'No disponible';
-    }
-
-    const aceptoPrivacidad = Array.isArray(payload.consentimiento)
-      && payload.consentimiento.includes('aceptado')
-      ? 'Si'
-      : 'No';
-
-    payload.acepto_politica_privacidad = aceptoPrivacidad;
-    payload.fecha_envio_local = fechaLocal;
-    payload.fecha_envio_iso = fechaISO;
-    payload.ip_cliente = clientIp;
-    payload.version_formulario = formVersion;
-
-    const submitLog = {
-      ip: clientIp,
-      timestamp: fechaISO,
-      formVersion: formVersion
+    const payload = {
+      nombre: values.nombre,
+      contacto: values.contacto,
+      email: kind === 'email' ? values.contacto : '',
+      whatsapp: kind === 'phone' ? values.contacto : '',
+      mensaje: values.mensaje,
+      idioma: document.documentElement.lang || 'es',
+      pagina: window.location.pathname,
+      company_website: form.elements.company_website.value,
+      fecha_envio_iso: now.toISOString(),
+      fecha_envio_local: now.toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'medium', hour12: false, timeZone: 'Europe/Madrid' }),
+      version_formulario: '3dna-contact-v2026.10'
     };
-
-    try {
-      const storageKey = 'threeDNA_submission_logs';
-      const prevLogs = JSON.parse(localStorage.getItem(storageKey) || '[]');
-      const nextLogs = Array.isArray(prevLogs) ? prevLogs : [];
-      nextLogs.push(submitLog);
-      localStorage.setItem(storageKey, JSON.stringify(nextLogs.slice(-50)));
-    } catch (_error) {
-      // Ignore storage failures (private mode/quota), log still continues in email payload.
-    }
-
-    console.log('Formulario completo. Payload listo para enviar:', payload);
 
     try {
       const response = await fetch(`${API_BASE_URL}/api/lead`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ payload, submitLog })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ payload })
       });
-
-      const result = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        throw new Error(result.error || 'Error al enviar la solicitud.');
-      }
-
-      persistSubmissionState();
-      showSubmittedState();
-
-      const successState = document.getElementById('form-success-state');
-      successState?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-      upsertMessage('Solicitud enviada correctamente. Te contactaremos muy pronto.', 'success');
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      formState.hidden = true;
+      doneState.hidden = false;
+      doneState.focus();
+      if (window.track) window.track('project_form_submitted', { language: payload.idioma });
     } catch (error) {
-      console.error('Error enviando formulario:', error);
-      upsertMessage(
-        'No pudimos procesar tu solicitud en este momento.<br><br>'
-          + '<a href="mailto:andrei@3dna.es">📩 Enviar email</a><br>'
-          + '<a href="https://wa.me/34722878642" target="_blank" rel="noopener noreferrer">💬 Escribir por WhatsApp</a>',
-        'error',
-        true
-      );
+      console.error('Project form failed:', error);
+      showError(msg('msgSend'));
     } finally {
-      isSubmitting = false;
-      setFormBusy(false);
+      busy = false;
+      submitBtn.disabled = false;
+      submitLabel.textContent = label;
     }
   });
-});
-
-
-// =============================================
-// 10. OTRO CHECKBOX TOGGLE
-// =============================================
-onFormPanelLifecycle(() => {
-  const negocioSelect = document.getElementById('negocio-select');
-  const otroInputWrapper = document.getElementById('otroInputWrapper');
-
-  if (negocioSelect && otroInputWrapper) {
-    if (negocioSelect.dataset.otroInit === '1') return;
-    negocioSelect.dataset.otroInit = '1';
-
-    const toggleOtroInput = () => {
-      const isOtro = negocioSelect.value === 'otro';
-      otroInputWrapper.style.display = isOtro ? 'block' : 'none';
-    };
-
-    negocioSelect.addEventListener('change', toggleOtroInput);
-    toggleOtroInput();
-  }
 });
 
 
@@ -1162,32 +868,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileClose = document.getElementById("mobileClose");
   const mobileBackdrop = document.getElementById("mobileBackdrop");
 
+  const isOpen = () => document.body.classList.contains("mobile-open");
+  const focusables = () => [...(mobileMenu?.querySelectorAll("a[href], button:not([disabled])") || [])];
+
+  // Closed menu is inert: its links are not reachable by Tab or screen readers
+  if (mobileMenu && "inert" in mobileMenu) mobileMenu.inert = true;
+
   function openMobileMenu() {
     document.body.classList.add("mobile-open");
     burger?.setAttribute("aria-expanded", "true");
     mobileMenu?.setAttribute("aria-hidden", "false");
+    if (mobileMenu && "inert" in mobileMenu) mobileMenu.inert = false;
     setTimeout(() => mobileClose?.focus(), 0);
   }
 
-  function closeMobileMenu() {
-    burger?.focus();
+  function closeMobileMenu({ restoreFocus = true } = {}) {
+    if (!isOpen()) return;
     document.body.classList.remove("mobile-open");
     burger?.setAttribute("aria-expanded", "false");
-    setTimeout(() => {
-      mobileMenu?.setAttribute("aria-hidden", "true");
-    }, 0);
+    mobileMenu?.setAttribute("aria-hidden", "true");
+    if (mobileMenu && "inert" in mobileMenu) mobileMenu.inert = true;
+    if (restoreFocus) burger?.focus();
   }
 
   burger?.addEventListener("click", openMobileMenu);
-  mobileClose?.addEventListener("click", closeMobileMenu);
-  mobileBackdrop?.addEventListener("click", closeMobileMenu);
+  mobileClose?.addEventListener("click", () => closeMobileMenu());
+  mobileBackdrop?.addEventListener("click", () => closeMobileMenu());
 
+  // Following a link closes the menu without pulling focus back to the burger
   document.querySelectorAll(".m-link").forEach(a => {
-    a.addEventListener("click", closeMobileMenu);
+    a.addEventListener("click", () => closeMobileMenu({ restoreFocus: false }));
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMobileMenu();
+    if (!isOpen()) return;
+    if (e.key === "Escape") { closeMobileMenu(); return; }
+    // keep Tab inside the open panel
+    if (e.key === "Tab") {
+      const items = focusables(); if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
   });
 });
 

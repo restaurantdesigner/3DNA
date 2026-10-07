@@ -31,8 +31,8 @@
   <meta name="twitter:image" content="https://3dna.es/images/og/og-es.jpg">
   <meta name="twitter:image:alt" content="Interior comercial de 3DNA con el texto: Espacios diseñados para funcionar.">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://3dna.es/#organization","name":"3DNA","url":"https://3dna.es/","logo":{"@type":"ImageObject","url":"https://3dna.es/img/logo.png","width":1536,"height":1024},"description":"Estudio de diseño de interiores comerciales para restaurantes, espacios fitness, entornos sanitarios y oficinas.","email":"andrei@3dna.es"},{"@type":"WebSite","@id":"https://3dna.es/#website","url":"https://3dna.es/","name":"3DNA","inLanguage":["en","es","ru","uk"],"publisher":{"@id":"https://3dna.es/#organization"}},{"@type":"WebPage","@id":"https://3dna.es/es/#webpage","url":"https://3dna.es/es/","name":"Diseño de Interiores Comerciales | 3DNA","description":"3DNA diseña interiores comerciales para restaurantes, espacios fitness, centros sanitarios y oficinas, combinando estrategia, planificación del espacio, visualización 3D y experiencia en diseño comercial.","inLanguage":"es","isPartOf":{"@id":"https://3dna.es/#website"},"about":{"@id":"https://3dna.es/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://3dna.es/images/og/og-es.jpg"}}]}</script>
-  <script>window.I18N = {"lang":"es","languages":["en","es","ru","uk"]};</script>
-  <script src="/assets/js/i18n-detect.js?v=2ecbbe1c" defer></script>
+  <script>window.I18N = {"lang":"es","languages":["en","es","ru","uk"],"whatsappHref":"https://wa.me/34722878642?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20de%20interiores%20comerciales."};</script>
+  <script src="/assets/js/i18n-detect.js?v=51ee2bed" defer></script>
   <!-- Fonts: one request, only families used on this page; display=swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,10 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261007u">
+  <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261007z">
 </head>
 
 <body>
@@ -60,8 +63,8 @@
     </a>
 
     <nav class="nav-desktop" aria-label="Principal">
-      <a href="#sec3">Proyectos</a>
-      <a href="#sec2">Proceso</a>
+      <a href="#sec2">Proyectos</a>
+      <a href="#transform">Proceso</a>
       <a href="#about">Nosotros</a>
     </nav>
 
@@ -80,23 +83,29 @@
   </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+<!-- Sidebar menu: logo · 5 links · language · one WhatsApp action -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú" aria-hidden="true">
   <div class="mobile-menu-inner">
     <div class="mobile-menu-head">
-      <div class="mobile-menu-title">Menú</div>
+      <a class="mobile-menu-brand m-link" href="#hero" aria-label="Inicio de 3DNA"><img src="/img/logo.png" alt="3DNA" width="1536" height="1024" decoding="async"></a>
       <button class="mobile-close" id="mobileClose" type="button" aria-label="Cerrar menú">&times;</button>
     </div>
 
     <nav class="mobile-menu-nav" aria-label="Principal">
-      <a href="#sec3" class="m-link">Proyectos</a>
-      <a href="#sec2" class="m-link">Proceso</a>
+      <a href="#hero" class="m-link">Inicio</a>
+      <a href="#sec2" class="m-link">Proyectos</a>
+      <a href="#transform" class="m-link">Proceso</a>
       <a href="#about" class="m-link">Nosotros</a>
+      <a href="#site-footer" class="m-link">Contacto</a>
     </nav>
 
-    <button class="m-cta open-panel" type="button" data-track="start_project_clicked" data-track-location="mobile_menu">Iniciar un proyecto &rarr;</button>
+    <div class="mobile-menu-foot">
       <nav class="lang-switch lang-switch--menu" aria-label="Idioma">
         <a href="/en/" hreflang="en" lang="en" data-lang="en" aria-label="English">EN</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español" aria-current="page">ES</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/ru/" hreflang="ru" lang="ru" data-lang="ru" aria-label="Русский">RU</a><span class="lang-switch__sep" aria-hidden="true">/</span><a href="/uk/" hreflang="uk" lang="uk" data-lang="uk" aria-label="Українська">UK</a>
       </nav>
+      <a class="m-whatsapp" href="https://wa.me/34722878642?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20de%20interiores%20comerciales." target="_blank" rel="noopener noreferrer"
+        data-track="whatsapp_clicked" data-track-location="menu">WhatsApp <span aria-hidden="true">&rarr;</span></a>
+    </div>
   </div>
 </div>
 
@@ -582,6 +591,442 @@
 
 
 
+<!-- ===== SECTOR 02: FITNESS — interactive 3D planner =====
+     Copy: sectors[1] + "fitness" in assets/i18n/translations.json.
+     Zone data: assets/data/gym-zones.json (area, capacity, equipment, layout).
+     All zone information is real HTML below (list + articles); the 3D scene in
+     assets/js/fitness-3d/ only adds interaction and is lazy-loaded. -->
+<section class="gym3d" id="sector-fitness" data-track-view="fitness_section_viewed"
+  aria-labelledby="sector-fitness-title">
+  <div class="gym3d__head">
+    <p class="sector__label gym3d__label">
+      <span class="sector__index">02</span>
+      <span class="sector__slash" aria-hidden="true">/</span>
+      <span>Gimnasios</span>
+    </p>
+    <h2 class="gym3d__title" id="sector-fitness-title" aria-label="Espacios diseñados para rendir.">
+      <span class="gym3d__line" aria-hidden="true">Espacios</span>
+      <span class="gym3d__line" aria-hidden="true">diseñados para</span>
+      <span class="gym3d__line" aria-hidden="true"><em>rendir.</em></span>
+    </h2>
+    <div class="gym3d__intro">
+      <p class="gym3d__lead">Diseño que impulsa el movimiento, la motivación y la experiencia.</p>
+      <p class="gym3d__text">Diseñamos gimnasios y espacios fitness donde la distribución, la circulación, la iluminación y la identidad trabajan juntas para crear una experiencia más atractiva, eficiente y memorable.</p>
+      <p class="gym3d__text">Un gimnasio funciona cuando el espacio, la circulación y el equipamiento se planifican juntos. Explora un club de ejemplo zona por zona: qué va en cada sitio, cuánto espacio necesita y a cuántas personas atiende.</p>
+    </div>
+  </div>
+
+  <div class="gym3d__app" data-gym-app>
+    <div class="gym3d__stage">
+      <div class="gym3d__viewport" data-gym-viewport>
+        <div class="gym3d__poster" data-gym-poster>
+<svg class="gym-plan" viewBox="-0.5 -0.5 33 23" role="img" aria-label="Modelo 3D interactivo de una planta de gimnasio dividida en diez zonas funcionales. La misma información está disponible en la lista de zonas."><rect class="gym-plan__service" x="26.08" y="0.08" width="5.84" height="7.84" rx="0.15"/><g class="gym-plan__zone" data-zone="reception"><rect x="0.08" y="16.08" width="5.84" height="5.84" rx="0.15"/><text x="0.45" y="16.95" class="gym-plan__num">01</text><text x="0.45" y="17.75" font-size="0.62">Recepción</text></g><g class="gym-plan__zone" data-zone="cardio"><rect x="6.08" y="16.08" width="12.84" height="5.84" rx="0.15"/><text x="6.45" y="16.95" class="gym-plan__num">02</text><text x="6.45" y="17.75" font-size="0.62">Cardio</text></g><g class="gym-plan__zone" data-zone="strength"><rect x="6.08" y="8.08" width="8.84" height="7.84" rx="0.15"/><text x="6.45" y="8.95" class="gym-plan__num">03</text><text x="6.45" y="9.75" font-size="0.62">Máquinas de fuerza</text></g><g class="gym-plan__zone" data-zone="freeweights"><rect x="15.08" y="8.08" width="8.84" height="7.84" rx="0.15"/><text x="15.45" y="8.95" class="gym-plan__num">04</text><text x="15.45" y="9.75" font-size="0.62">Peso libre</text></g><g class="gym-plan__zone" data-zone="functional"><rect x="19.08" y="16.08" width="12.84" height="5.84" rx="0.15"/><text x="19.45" y="16.95" class="gym-plan__num">05</text><text x="19.45" y="17.75" font-size="0.62">Entrenamiento funcional</text></g><g class="gym-plan__zone" data-zone="stretching"><rect x="24.08" y="8.08" width="7.84" height="7.84" rx="0.15"/><text x="24.45" y="8.95" class="gym-plan__num">06</text><text x="24.45" y="9.75" font-size="0.62">Movilidad</text></g><g class="gym-plan__zone" data-zone="studio"><rect x="6.08" y="0.08" width="11.84" height="7.84" rx="0.15"/><text x="6.45" y="0.95" class="gym-plan__num">07</text><text x="6.45" y="1.75" font-size="0.62">Sala de clases</text></g><g class="gym-plan__zone" data-zone="spin"><rect x="18.08" y="0.08" width="7.84" height="7.84" rx="0.15"/><text x="18.45" y="0.95" class="gym-plan__num">08</text><text x="18.45" y="1.75" font-size="0.62">Ciclo indoor</text></g><g class="gym-plan__zone" data-zone="lockers"><rect x="0.08" y="8.08" width="5.84" height="7.84" rx="0.15"/><text x="0.45" y="8.95" class="gym-plan__num">09</text><text x="0.45" y="9.75" font-size="0.62">Vestuarios</text></g><g class="gym-plan__zone" data-zone="recovery"><rect x="0.08" y="0.08" width="5.84" height="7.84" rx="0.15"/><text x="0.45" y="0.95" class="gym-plan__num">10</text><text x="0.45" y="1.75" font-size="0.62">Recuperación</text></g></svg>
+        </div>
+        <p class="gym3d__loading" data-gym-loading hidden>Cargando modelo 3D…</p>
+        <div class="gym3d__labels" data-gym-labels aria-hidden="true"></div>
+      </div>
+      <div class="gym3d__toolbar">
+        <p class="gym3d__hint" data-gym-hint hidden>Arrastra para girar · Rueda o pellizca para acercar</p>
+        <button type="button" class="gym3d__reset" data-gym-reset>Volver a vista general</button>
+      </div>
+      <ol class="gym3d__nav" aria-label="Zonas del gimnasio">
+        <li><button type="button" class="gym3d__zone-btn" data-zone="reception" aria-controls="gym-zone-reception" aria-pressed="false"><span class="gym3d__zone-num">01</span><span class="gym3d__zone-name">Recepción</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="cardio" aria-controls="gym-zone-cardio" aria-pressed="false"><span class="gym3d__zone-num">02</span><span class="gym3d__zone-name">Cardio</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="strength" aria-controls="gym-zone-strength" aria-pressed="false"><span class="gym3d__zone-num">03</span><span class="gym3d__zone-name">Máquinas de fuerza</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="freeweights" aria-controls="gym-zone-freeweights" aria-pressed="false"><span class="gym3d__zone-num">04</span><span class="gym3d__zone-name">Peso libre</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="functional" aria-controls="gym-zone-functional" aria-pressed="false"><span class="gym3d__zone-num">05</span><span class="gym3d__zone-name">Entrenamiento funcional</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="stretching" aria-controls="gym-zone-stretching" aria-pressed="false"><span class="gym3d__zone-num">06</span><span class="gym3d__zone-name">Movilidad</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="studio" aria-controls="gym-zone-studio" aria-pressed="false"><span class="gym3d__zone-num">07</span><span class="gym3d__zone-name">Sala de clases</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="spin" aria-controls="gym-zone-spin" aria-pressed="false"><span class="gym3d__zone-num">08</span><span class="gym3d__zone-name">Ciclo indoor</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="lockers" aria-controls="gym-zone-lockers" aria-pressed="false"><span class="gym3d__zone-num">09</span><span class="gym3d__zone-name">Vestuarios</span></button></li>
+        <li><button type="button" class="gym3d__zone-btn" data-zone="recovery" aria-controls="gym-zone-recovery" aria-pressed="false"><span class="gym3d__zone-num">10</span><span class="gym3d__zone-name">Recuperación</span></button></li>
+      </ol>
+    </div>
+
+    <aside class="gym3d__panel" data-gym-panel aria-label="Zona" aria-live="polite">
+      <button type="button" class="gym3d__sheet-close" data-gym-close aria-label="Cerrar">&times;</button>
+      <div class="gym3d__zones">
+      <article class="gym-zone gym-zone--overview" id="gym-zone-overview" data-zone="overview">
+        <p class="gym-zone__kicker">Vista general</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie total</dt><dd>656 m²</dd></div>
+          <div><dt>Zonas</dt><dd>10</dd></div>
+        </dl>
+        <p class="gym-zone__desc">Selecciona una zona en el modelo o en la lista para ver su superficie, capacidad y equipamiento.</p>
+      </article>
+      <article class="gym-zone" id="gym-zone-reception" data-zone="reception" aria-labelledby="gym-zone-reception-title">
+        <p class="gym-zone__kicker">Zona 01</p>
+        <h3 class="gym-zone__title" id="gym-zone-reception-title">Recepción</h3>
+        <p class="gym-zone__desc">Acceso controlado, atención al socio y primera impresión de marca.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie</dt><dd>36 m²</dd></div>
+          <div><dt>Capacidad</dt><dd>6 usuarios</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Equipamiento</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Mostrador de recepción</span>
+              <span class="gym-zone__meta">Mobiliario · 420 × 90 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 2">2 ×</span>
+              <span class="gym-zone__name">Torno de acceso</span>
+              <span class="gym-zone__meta">Sistema · 230 V</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 2">2 ×</span>
+              <span class="gym-zone__name">Banco de espera</span>
+              <span class="gym-zone__meta">Mobiliario</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Muro expositor</span>
+              <span class="gym-zone__meta">Mobiliario</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-cardio" data-zone="cardio" aria-labelledby="gym-zone-cardio-title">
+        <p class="gym-zone__kicker">Zona 02</p>
+        <h3 class="gym-zone__title" id="gym-zone-cardio-title">Cardio</h3>
+        <p class="gym-zone__desc">Línea de cardio junto a la fachada, con luz natural y circulación despejada detrás.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie</dt><dd>78 m²</dd></div>
+          <div><dt>Capacidad</dt><dd>17 usuarios</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Equipamiento</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 6">6 ×</span>
+              <span class="gym-zone__name">Cinta de correr</span>
+              <span class="gym-zone__meta">Máquina · 210 × 90 cm · 230 V</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 4">4 ×</span>
+              <span class="gym-zone__name">Elíptica</span>
+              <span class="gym-zone__meta">Máquina · 210 × 75 cm · 230 V</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 3">3 ×</span>
+              <span class="gym-zone__name">Bicicleta vertical</span>
+              <span class="gym-zone__meta">Máquina · 110 × 60 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 2">2 ×</span>
+              <span class="gym-zone__name">Remo</span>
+              <span class="gym-zone__meta">Máquina · 245 × 60 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 2">2 ×</span>
+              <span class="gym-zone__name">Escaladora</span>
+              <span class="gym-zone__meta">Máquina · 165 × 85 cm · 230 V</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-strength" data-zone="strength" aria-labelledby="gym-zone-strength-title">
+        <p class="gym-zone__kicker">Zona 03</p>
+        <h3 class="gym-zone__title" id="gym-zone-strength-title">Máquinas de fuerza</h3>
+        <p class="gym-zone__desc">Máquinas guiadas en un circuito lógico, con espacio de seguridad entre equipos.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie</dt><dd>72 m²</dd></div>
+          <div><dt>Capacidad</dt><dd>8 usuarios</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Equipamiento</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Press de pecho</span>
+              <span class="gym-zone__meta">Máquina · 150 × 130 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Press de hombro</span>
+              <span class="gym-zone__meta">Máquina · 150 × 130 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Jalón al pecho</span>
+              <span class="gym-zone__meta">Máquina · 150 × 120 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Remo sentado</span>
+              <span class="gym-zone__meta">Máquina · 160 × 120 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Prensa de piernas</span>
+              <span class="gym-zone__meta">Máquina · 220 × 140 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Extensión de cuádriceps</span>
+              <span class="gym-zone__meta">Máquina · 140 × 110 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Curl femoral</span>
+              <span class="gym-zone__meta">Máquina · 160 × 110 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Cruce de poleas</span>
+              <span class="gym-zone__meta">Máquina · 420 × 100 cm</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-freeweights" data-zone="freeweights" aria-labelledby="gym-zone-freeweights-title">
+        <p class="gym-zone__kicker">Zona 04</p>
+        <h3 class="gym-zone__title" id="gym-zone-freeweights-title">Peso libre</h3>
+        <p class="gym-zone__desc">Racks, plataforma y mancuernas sobre pavimento técnico de alto impacto.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie</dt><dd>72 m²</dd></div>
+          <div><dt>Capacidad</dt><dd>10 usuarios</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Equipamiento</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 2">2 ×</span>
+              <span class="gym-zone__name">Rack de potencia</span>
+              <span class="gym-zone__meta">Peso libre · 140 × 140 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 2">2 ×</span>
+              <span class="gym-zone__name">Banco ajustable</span>
+              <span class="gym-zone__meta">Peso libre</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Rack de mancuernas</span>
+              <span class="gym-zone__meta">Peso libre · 250 × 80 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Sistema de almacenaje de discos</span>
+              <span class="gym-zone__meta">Peso libre</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Plataforma de halterofilia</span>
+              <span class="gym-zone__meta">Peso libre · 300 × 240 cm</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-functional" data-zone="functional" aria-labelledby="gym-zone-functional-title">
+        <p class="gym-zone__kicker">Zona 05</p>
+        <h3 class="gym-zone__title" id="gym-zone-functional-title">Entrenamiento funcional</h3>
+        <p class="gym-zone__desc">Espacio abierto con rig, carriles de arrastre y anclajes de suspensión.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie</dt><dd>78 m²</dd></div>
+          <div><dt>Capacidad</dt><dd>14 usuarios</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Equipamiento</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Rig funcional</span>
+              <span class="gym-zone__meta">Peso libre · 600 × 180 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 4">4 ×</span>
+              <span class="gym-zone__name">Set de kettlebells</span>
+              <span class="gym-zone__meta">Accesorio</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 6">6 ×</span>
+              <span class="gym-zone__name">Balón medicinal</span>
+              <span class="gym-zone__meta">Accesorio</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 4">4 ×</span>
+              <span class="gym-zone__name">Cajón pliométrico</span>
+              <span class="gym-zone__meta">Accesorio</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 2">2 ×</span>
+              <span class="gym-zone__name">Carril de trineo</span>
+              <span class="gym-zone__meta">Instalación · 15 × 1.5 m</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 6">6 ×</span>
+              <span class="gym-zone__name">Anclaje de entrenamiento en suspensión</span>
+              <span class="gym-zone__meta">Accesorio</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-stretching" data-zone="stretching" aria-labelledby="gym-zone-stretching-title">
+        <p class="gym-zone__kicker">Zona 06</p>
+        <h3 class="gym-zone__title" id="gym-zone-stretching-title">Movilidad</h3>
+        <p class="gym-zone__desc">Zona tranquila para movilidad, estiramientos y vuelta a la calma.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie</dt><dd>64 m²</dd></div>
+          <div><dt>Capacidad</dt><dd>10 usuarios</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Equipamiento</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 10">10 ×</span>
+              <span class="gym-zone__name">Esterilla</span>
+              <span class="gym-zone__meta">Accesorio</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 10">10 ×</span>
+              <span class="gym-zone__name">Rodillo de espuma</span>
+              <span class="gym-zone__meta">Accesorio</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 2">2 ×</span>
+              <span class="gym-zone__name">Estación de estiramiento</span>
+              <span class="gym-zone__meta">Máquina</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-studio" data-zone="studio" aria-labelledby="gym-zone-studio-title">
+        <p class="gym-zone__kicker">Zona 07</p>
+        <h3 class="gym-zone__title" id="gym-zone-studio-title">Sala de clases</h3>
+        <p class="gym-zone__desc">Sala de actividades dirigidas con espejo, almacenaje integrado y sonido propio.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie</dt><dd>96 m²</dd></div>
+          <div><dt>Capacidad</dt><dd>20 usuarios</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Equipamiento</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 20">20 ×</span>
+              <span class="gym-zone__name">Puesto de entrenamiento</span>
+              <span class="gym-zone__meta">Instalación</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Muro de almacenaje</span>
+              <span class="gym-zone__meta">Mobiliario</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Pared de espejo</span>
+              <span class="gym-zone__meta">Instalación</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Sistema de sonido</span>
+              <span class="gym-zone__meta">Sistema · 230 V</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-spin" data-zone="spin" aria-labelledby="gym-zone-spin-title">
+        <p class="gym-zone__kicker">Zona 08</p>
+        <h3 class="gym-zone__title" id="gym-zone-spin-title">Ciclo indoor</h3>
+        <p class="gym-zone__desc">Sala de ciclo indoor con plataforma de instructor y control de iluminación.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie</dt><dd>64 m²</dd></div>
+          <div><dt>Capacidad</dt><dd>16 usuarios</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Equipamiento</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 15">15 ×</span>
+              <span class="gym-zone__name">Bicicleta de ciclo indoor</span>
+              <span class="gym-zone__meta">Máquina · 120 × 55 cm</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Plataforma de instructor</span>
+              <span class="gym-zone__meta">Instalación</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Sistema de control de iluminación</span>
+              <span class="gym-zone__meta">Sistema · 230 V</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-lockers" data-zone="lockers" aria-labelledby="gym-zone-lockers-title">
+        <p class="gym-zone__kicker">Zona 09</p>
+        <h3 class="gym-zone__title" id="gym-zone-lockers-title">Vestuarios</h3>
+        <p class="gym-zone__desc">Taquillas, duchas y tocadores, separados de la zona de entrenamiento.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie</dt><dd>48 m²</dd></div>
+          <div><dt>Capacidad</dt><dd>40 usuarios</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Equipamiento</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 80">80 ×</span>
+              <span class="gym-zone__name">Taquilla</span>
+              <span class="gym-zone__meta">Mobiliario</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 8">8 ×</span>
+              <span class="gym-zone__name">Ducha</span>
+              <span class="gym-zone__meta">Instalación</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 6">6 ×</span>
+              <span class="gym-zone__name">Banco de vestuario</span>
+              <span class="gym-zone__meta">Mobiliario</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 4">4 ×</span>
+              <span class="gym-zone__name">Tocador</span>
+              <span class="gym-zone__meta">Mobiliario · 230 V</span>
+            </li>
+        </ul>
+      </article>
+      <article class="gym-zone" id="gym-zone-recovery" data-zone="recovery" aria-labelledby="gym-zone-recovery-title">
+        <p class="gym-zone__kicker">Zona 10</p>
+        <h3 class="gym-zone__title" id="gym-zone-recovery-title">Recuperación</h3>
+        <p class="gym-zone__desc">Zona de recuperación y bienestar con estaciones de masaje y estiramiento asistido.</p>
+        <dl class="gym-zone__facts">
+          <div><dt>Superficie</dt><dd>48 m²</dd></div>
+          <div><dt>Capacidad</dt><dd>6 usuarios</dd></div>
+        </dl>
+        <h4 class="gym-zone__subtitle">Equipamiento</h4>
+        <ul class="gym-zone__list">
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 2">2 ×</span>
+              <span class="gym-zone__name">Banco de estiramiento</span>
+              <span class="gym-zone__meta">Mobiliario</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 2">2 ×</span>
+              <span class="gym-zone__name">Estación de recuperación (provisional)</span>
+              <span class="gym-zone__meta">Máquina · 230 V</span>
+            </li>
+            <li class="gym-zone__item">
+              <span class="gym-zone__qty" aria-label="Unidades: 1">1 ×</span>
+              <span class="gym-zone__name">Camilla de masaje (provisional)</span>
+              <span class="gym-zone__meta">Mobiliario</span>
+            </li>
+        </ul>
+      </article>
+      </div>
+      <div class="gym3d__panel-foot">
+        <a class="gym3d__plan-cta" href="https://wa.me/34722878642?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20de%20interiores%20comerciales." target="_blank" rel="noopener noreferrer"
+          data-track="start_project_clicked" data-track-location="fitness_planner">Diseñar mi espacio fitness <span aria-hidden="true">&rarr;</span></a>
+        <p class="gym3d__note">Prototipo de planificación: geometría simplificada y especificaciones de ejemplo.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="gym3d__foot">
+    <a class="sector__cta gym3d__projects" href="/gimnasios-3d.html"
+      data-track="view_projects_clicked" data-track-location="sector_fitness">
+      Ver proyectos fitness <span class="sector__arrow" aria-hidden="true">&rarr;</span>
+    </a>
+    <ul class="sector__services gym3d__services" aria-label="Servicios">
+      <li>Planificación</li>
+      <li>Zonificación</li>
+      <li>Iluminación</li>
+      <li>Identidad</li>
+      <li>Visualización 3D</li>
+    </ul>
+  </div>
+
+  <script type="application/json" id="gym-data">{"model":{"url":"/models/gym/gym.glb","enabled":false,"note":"Set enabled to true once /models/gym/gym.glb exists. While false, the built-in placeholder geometry is used and no request is made."},"floor":{"width":32,"depth":22,"unit":"m"},"serviceAreas":[{"id":"service","rect":{"x":26,"z":0,"w":6,"d":8}}],"zones":[{"id":"reception","mesh":"zone-reception","index":"01","rect":{"x":0,"z":16,"w":6,"d":6},"floorFinish":"wood","name":"Recepción","equipment":[{"key":"reception_desk","quantity":1},{"key":"access_gate","quantity":2},{"key":"waiting_bench","quantity":2},{"key":"retail_wall","quantity":1}]},{"id":"cardio","mesh":"zone-cardio","index":"02","rect":{"x":6,"z":16,"w":13,"d":6},"floorFinish":"rubber","name":"Cardio","equipment":[{"key":"treadmill","quantity":6},{"key":"elliptical","quantity":4},{"key":"upright_bike","quantity":3},{"key":"rower","quantity":2},{"key":"stair_climber","quantity":2}]},{"id":"strength","mesh":"zone-strength","index":"03","rect":{"x":6,"z":8,"w":9,"d":8},"floorFinish":"rubber","name":"Máquinas de fuerza","equipment":[{"key":"chest_press","quantity":1},{"key":"shoulder_press","quantity":1},{"key":"lat_pulldown","quantity":1},{"key":"seated_row","quantity":1},{"key":"leg_press","quantity":1},{"key":"leg_extension","quantity":1},{"key":"leg_curl","quantity":1},{"key":"cable_crossover","quantity":1}]},{"id":"freeweights","mesh":"zone-freeweights","index":"04","rect":{"x":15,"z":8,"w":9,"d":8},"floorFinish":"impact","name":"Peso libre","equipment":[{"key":"power_rack","quantity":2},{"key":"adjustable_bench","quantity":2},{"key":"dumbbell_rack","quantity":1},{"key":"plate_storage","quantity":1},{"key":"lifting_platform","quantity":1}]},{"id":"functional","mesh":"zone-functional","index":"05","rect":{"x":19,"z":16,"w":13,"d":6},"floorFinish":"turf","name":"Entrenamiento funcional","equipment":[{"key":"functional_rig","quantity":1},{"key":"kettlebell_set","quantity":4},{"key":"medicine_ball","quantity":6},{"key":"plyo_box","quantity":4},{"key":"sled_lane","quantity":2},{"key":"suspension_point","quantity":6}]},{"id":"stretching","mesh":"zone-stretching","index":"06","rect":{"x":24,"z":8,"w":8,"d":8},"floorFinish":"wood","name":"Movilidad","equipment":[{"key":"mat","quantity":10},{"key":"foam_roller","quantity":10},{"key":"stretch_station","quantity":2}]},{"id":"studio","mesh":"zone-studio","index":"07","rect":{"x":6,"z":0,"w":12,"d":8},"floorFinish":"wood","name":"Sala de clases","equipment":[{"key":"training_position","quantity":20},{"key":"storage_wall","quantity":1},{"key":"mirror_wall","quantity":1},{"key":"audio_system","quantity":1}]},{"id":"spin","mesh":"zone-spin","index":"08","rect":{"x":18,"z":0,"w":8,"d":8},"floorFinish":"rubber","name":"Ciclo indoor","equipment":[{"key":"spin_bike","quantity":15},{"key":"instructor_platform","quantity":1},{"key":"lighting_control","quantity":1}]},{"id":"lockers","mesh":"zone-lockers","index":"09","rect":{"x":0,"z":8,"w":6,"d":8},"floorFinish":"tile","name":"Vestuarios","equipment":[{"key":"locker","quantity":80},{"key":"shower","quantity":8},{"key":"changing_bench","quantity":6},{"key":"vanity_station","quantity":4}]},{"id":"recovery","mesh":"zone-recovery","index":"10","rect":{"x":0,"z":0,"w":6,"d":8},"floorFinish":"wood","name":"Recuperación","equipment":[{"key":"stretch_bench","quantity":2},{"key":"recovery_station","quantity":2},{"key":"massage_table","quantity":1}]}]}</script>
+</section>
+
+
+
 <!-- ===== ABOUT / PRESENTATION ===== -->
 <section id="about" class="about-section">
   <div class="about-wrap">
@@ -993,7 +1438,7 @@
   const mount = document.getElementById('form-panel-root');
   if (!mount) return;
 
-  const src = '/assets/partials/form-panel.html?v=20260501m';
+  const src = '/assets/partials/form-panel.html?v=20261007a';
   fetch(src, { cache: 'no-store' })
     .then((response) => {
       if (!response.ok) throw new Error('Failed to load form panel partial.');
@@ -1009,7 +1454,8 @@
     });
 })();
 </script>
-<script src="/assets/js/main.js?v=20261007e"></script>
+<script src="/assets/js/main.js?v=20261007h"></script>
+<script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
 (function () {

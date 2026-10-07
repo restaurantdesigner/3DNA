@@ -1,28 +1,28 @@
 ﻿<!-- "Start a project" panel. Built by scripts/build-i18n.js from
      templates/form-panel.html + "form" strings in assets/i18n/translations.json.
      Output: assets/partials/form-panel.html (es) and form-panel.{en,ru,uk}.html -->
-<div id="side-panel" class="sp" role="dialog" aria-modal="true" aria-labelledby="sp-title" lang="es">
-  <button id="close-panel" class="sp__close" type="button" aria-label="Cerrar">&times;</button>
+<div id="side-panel" class="sp" role="dialog" aria-modal="true" aria-labelledby="sp-title" lang="ru">
+  <button id="close-panel" class="sp__close" type="button" aria-label="Закрыть">&times;</button>
 
   <div class="sp__inner">
     <div class="sp__state" data-sp-form-state>
-      <h2 class="sp__title" id="sp-title">Empezar un proyecto</h2>
-      <p class="sp__intro">Cuéntame en qué estás trabajando. Te responderé personalmente.</p>
+      <h2 class="sp__title" id="sp-title">Начать проект</h2>
+      <p class="sp__intro">Расскажите, над чем вы работаете. Я отвечу лично.</p>
 
       <form class="sp__form" data-sp-form novalidate
-        data-msg-required="Completa los tres campos para enviar tu mensaje." data-msg-contact="Introduce un email o un número de WhatsApp válido."
-        data-msg-send="No se ha podido enviar el mensaje. Escríbeme por WhatsApp o a andrei@3dna.es." data-msg-sending="Enviando…">
+        data-msg-required="Заполните все три поля, чтобы отправить сообщение." data-msg-contact="Введите корректный email или номер WhatsApp."
+        data-msg-send="Не удалось отправить сообщение. Напишите мне в WhatsApp или на andrei@3dna.es." data-msg-sending="Отправка…">
         <div class="sp__field">
-          <label for="sp-name">Tu nombre</label>
+          <label for="sp-name">Ваше имя</label>
           <input id="sp-name" name="nombre" type="text" autocomplete="name" required>
         </div>
         <div class="sp__field">
-          <label for="sp-contact">WhatsApp o email</label>
+          <label for="sp-contact">WhatsApp или email</label>
           <input id="sp-contact" name="contacto" type="text" autocomplete="email" inputmode="email" required aria-describedby="sp-contact-hint">
-          <p class="sp__hint" id="sp-contact-hint">Para poder responderte.</p>
+          <p class="sp__hint" id="sp-contact-hint">Чтобы я мог вам ответить.</p>
         </div>
         <div class="sp__field">
-          <label for="sp-message">Cuéntame brevemente sobre tu proyecto</label>
+          <label for="sp-message">Коротко расскажите о вашем проекте</label>
           <textarea id="sp-message" name="mensaje" rows="5" required></textarea>
         </div>
 
@@ -35,22 +35,22 @@
         <p class="sp__error" data-sp-error role="alert" hidden></p>
 
         <button class="sp__submit" type="submit" data-sp-submit>
-          <span data-sp-submit-label>Enviar proyecto</span> <span aria-hidden="true">&rarr;</span>
+          <span data-sp-submit-label>Отправить проект</span> <span aria-hidden="true">&rarr;</span>
         </button>
-        <p class="sp__privacy">Al enviar aceptas la <a href="/politica-privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</p>
+        <p class="sp__privacy">Отправляя форму, вы принимаете <a href="/politica-privacidad.html" target="_blank" rel="noopener">политику конфиденциальности</a>.</p>
       </form>
 
       <div class="sp__alt">
-        <p class="sp__alt-q">¿Prefieres WhatsApp?</p>
-        <a class="sp__wa" href="https://wa.me/34722878642?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20de%20interiores%20comerciales." target="_blank" rel="noopener noreferrer"
-          data-track="whatsapp_clicked" data-track-location="project_panel">Hablar por WhatsApp <span aria-hidden="true">&rarr;</span></a>
+        <p class="sp__alt-q">Удобнее в WhatsApp?</p>
+        <a class="sp__wa" href="https://wa.me/34722878642?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB(%D0%B0)%20%D0%B1%D1%8B%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%D0%B0." target="_blank" rel="noopener noreferrer"
+          data-track="whatsapp_clicked" data-track-location="project_panel">Написать в WhatsApp <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
 
     <div class="sp__done" data-sp-done hidden tabindex="-1">
-      <h2 class="sp__title">Empezar un proyecto</h2>
-      <p class="sp__success">Gracias. He recibido tu mensaje y me pondré en contacto contigo pronto.</p>
-      <a class="sp__wa" href="https://wa.me/34722878642?text=Hola%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20dise%C3%B1o%20de%20interiores%20comerciales." target="_blank" rel="noopener noreferrer">Hablar por WhatsApp <span aria-hidden="true">&rarr;</span></a>
+      <h2 class="sp__title">Начать проект</h2>
+      <p class="sp__success">Спасибо. Я получил ваше сообщение и скоро свяжусь с вами.</p>
+      <a class="sp__wa" href="https://wa.me/34722878642?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB(%D0%B0)%20%D0%B1%D1%8B%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%D0%B0." target="_blank" rel="noopener noreferrer">Написать в WhatsApp <span aria-hidden="true">&rarr;</span></a>
     </div>
   </div>
 </div>
