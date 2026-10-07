@@ -21,7 +21,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261008h">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261008i">
 </head>
 
 <body>
@@ -679,6 +679,48 @@
 
   <a class="fit247__cta" href="{{contact.whatsappHref}}" target="_blank" rel="noopener noreferrer"
     data-track="whatsapp_clicked" data-track-location="fitness_24_7">{{fitness247.cta}} <span aria-hidden="true">&rarr;</span></a>
+</section>
+
+
+<!-- ===== 03 HEALTHCARE ===== same sector component as 01 Restaurants.
+     Bright footage: no colour filter, only a soft shade behind the copy. -->
+<section class="sector sector--healthcare" id="sector-healthcare" data-sector="healthcare"
+  data-track-view="healthcare_section_viewed" aria-labelledby="sector-healthcare-title"
+  style="--sector-poster: url('/images/healthcare-poster.webp')">
+  <div class="sector__media" aria-hidden="true">
+    <video class="sector__video" muted loop playsinline preload="none" tabindex="-1"
+      width="854" height="480"
+      poster="/images/healthcare-poster.webp"
+      data-src="/videos/healthcare-showreel.mp4"></video>
+  </div>
+  <div class="sector__overlay" aria-hidden="true"></div>
+
+  <div class="sector__inner">
+    <div class="sector__content">
+      <p class="sector__label">
+        <span class="sector__index">{{sectors.2.index}}</span>
+        <span class="sector__slash" aria-hidden="true">/</span>
+        <span>{{sectors.2.title}}</span>
+      </p>
+      <h2 class="sector__title" id="sector-healthcare-title" aria-label="{{sectors.2.section.headingText}}">
+        <span class="sector__line" aria-hidden="true">{{sectors.2.section.heading.0}}</span>
+        <span class="sector__line" aria-hidden="true">{{sectors.2.section.heading.1}}</span>
+        <span class="sector__line" aria-hidden="true"><em>{{sectors.2.section.heading.2}}</em></span>
+      </h2>
+      <p class="sector__text">{{sectors.2.section.body}}</p>
+      <a class="sector__cta" href="{{sectors.2.section.ctaHref}}"
+        data-track="view_projects_clicked" data-track-location="sector_healthcare">
+        {{sectors.2.section.cta}} <span class="sector__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <ul class="sector__services" aria-label="{{hero.servicesLabel}}">
+        <li>{{sectors.2.section.services.0}}</li>
+        <li>{{sectors.2.section.services.1}}</li>
+        <li>{{sectors.2.section.services.2}}</li>
+        <li>{{sectors.2.section.services.3}}</li>
+        <li>{{sectors.2.section.services.4}}</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <div class="spacer spacer-logos">

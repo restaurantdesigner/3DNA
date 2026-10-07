@@ -234,7 +234,17 @@
           "services": ["Space planning", "Zoning", "Lighting", "Identity", "3D visualization"]
         }
       },
-      { "id": "healthcare", "index": "03", "title": "Healthcare", "slug": "healthcare" },
+      {
+        "id": "healthcare", "index": "03", "title": "Healthcare", "slug": "healthcare",
+        "section": {
+          "heading": ["Spaces", "designed to", "care."],
+          "headingText": "Spaces designed to care.",
+          "body": "We design clinics and healthcare spaces where the patient journey, privacy, light and materials work together to create calm, build trust and make everyday work easier.",
+          "cta": "View healthcare projects",
+          "ctaHref": "/clinicas-3d.html",
+          "services": ["Patient journey", "Space planning", "Lighting", "Materials", "3D visualization"]
+        }
+      },
       { "id": "workplaces", "index": "04", "title": "Workplaces", "slug": "workplaces" }
     ]
   },
@@ -473,7 +483,17 @@
           "services": ["Planificación", "Zonificación", "Iluminación", "Identidad", "Visualización 3D"]
         }
       },
-      { "id": "healthcare", "index": "03", "title": "Salud", "slug": "salud" },
+      {
+        "id": "healthcare", "index": "03", "title": "Salud", "slug": "salud",
+        "section": {
+          "heading": ["Espacios", "diseñados para", "cuidar."],
+          "headingText": "Espacios diseñados para cuidar.",
+          "body": "Diseñamos clínicas y espacios sanitarios donde el recorrido del paciente, la privacidad, la luz y los materiales trabajan juntos para transmitir calma, generar confianza y facilitar el trabajo diario.",
+          "cta": "Ver proyectos de salud",
+          "ctaHref": "/clinicas-3d.html",
+          "services": ["Recorrido del paciente", "Planificación del espacio", "Iluminación", "Materiales", "Visualización 3D"]
+        }
+      },
       { "id": "workplaces", "index": "04", "title": "Oficinas", "slug": "oficinas" }
     ]
   },
@@ -712,7 +732,17 @@
           "services": ["Планировка", "Зонирование", "Освещение", "Айдентика", "3D-визуализация"]
         }
       },
-      { "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare" },
+      {
+        "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare",
+        "section": {
+          "heading": ["Пространства,", "которые", "заботятся."],
+          "headingText": "Пространства, которые заботятся.",
+          "body": "Мы проектируем клиники и медицинские пространства, где маршрут пациента, приватность, свет и материалы работают вместе: создают спокойствие, вызывают доверие и упрощают ежедневную работу.",
+          "cta": "Смотреть проекты клиник",
+          "ctaHref": "/clinicas-3d.html",
+          "services": ["Маршрут пациента", "Планировка", "Освещение", "Материалы", "3D-визуализация"]
+        }
+      },
       { "id": "workplaces", "index": "04", "title": "Офисы", "slug": "workplaces" }
     ]
   },
@@ -951,7 +981,17 @@
           "services": ["Планування", "Зонування", "Освітлення", "Ідентичність", "3D-візуалізація"]
         }
       },
-      { "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare" },
+      {
+        "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare",
+        "section": {
+          "heading": ["Простори,", "які", "піклуються."],
+          "headingText": "Простори, які піклуються.",
+          "body": "Ми проєктуємо клініки та медичні простори, де маршрут пацієнта, приватність, світло й матеріали працюють разом: створюють спокій, викликають довіру та полегшують щоденну роботу.",
+          "cta": "Переглянути проєкти клінік",
+          "ctaHref": "/clinicas-3d.html",
+          "services": ["Маршрут пацієнта", "Планування", "Освітлення", "Матеріали", "3D-візуалізація"]
+        }
+      },
       { "id": "workplaces", "index": "04", "title": "Офіси", "slug": "workplaces" }
     ]
   }

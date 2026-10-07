@@ -9217,3 +9217,36 @@ section.fit247{
   .wa-float:hover, .wa-float.is-muted{ transform: none; }
 }
 @media print{ .wa-float{ display: none; } }
+
+/* =========================
+   03 HEALTHCARE — bright showreel in the sector component
+   No colour filter on any size (the footage is already light); the shade is
+   kept to the corner behind the copy.
+   ========================= */
+#sector-healthcare .sector__video{ filter: none !important; object-position: 50% 50%; }
+#sector-healthcare .sector__overlay{
+  background: radial-gradient(85% 90% at 0% 100%, rgba(0,0,0,.52) 0%, rgba(0,0,0,.30) 45%, rgba(0,0,0,0) 85%);
+}
+@media (max-width: 1100px) and (min-width: 768px){
+  #sector-healthcare .sector__video{ object-position: 45% 50%; }
+}
+@media (max-width: 767px){
+  /* presenter sits left of centre in the desk shots: keep him in the crop */
+  #sector-healthcare .sector__video{ object-position: 35% 50%; }
+  #sector-healthcare .sector__overlay{
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,.30) 72%, rgba(0,0,0,.58) 100%);
+  }
+  /* compact copy: label, heading, one paragraph, link; services hidden */
+  #sector-healthcare .sector__title{ font-size: clamp(36px, 10vw, 46px); }
+  html[lang="ru"] #sector-healthcare .sector__title,
+  html[lang="uk"] #sector-healthcare .sector__title{ font-size: clamp(32px, 9vw, 42px); }
+  #sector-healthcare .sector__text{ margin-top: 14px; }
+  #sector-healthcare .sector__cta{ margin-top: 16px; }
+  #sector-healthcare .sector__services{ display: none; }
+}
+/* short phones: keep most of the frame visible */
+@media (max-width: 767px) and (max-height: 700px){
+  #sector-healthcare .sector__inner{ padding-top: 72px; padding-bottom: calc(36px + env(safe-area-inset-bottom)); }
+  #sector-healthcare .sector__label{ margin-bottom: 10px; }
+  #sector-healthcare .sector__text{ font-size: 13px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+}
