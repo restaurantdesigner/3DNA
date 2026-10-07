@@ -47,7 +47,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261007z">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261008e">
 </head>
 
 <body>
@@ -64,8 +64,8 @@
 
     <nav class="nav-desktop" aria-label="Основная навигация">
       <a href="#sec2">Проекты</a>
-      <a href="#transform">Процесс</a>
-      <a href="#about">О нас</a>
+      <a href="#sector-fitness">Процесс</a>
+      <a href="#transform">О нас</a>
     </nav>
 
     <div class="topbar-actions">
@@ -94,8 +94,8 @@
     <nav class="mobile-menu-nav" aria-label="Основная навигация">
       <a href="#hero" class="m-link">Главная</a>
       <a href="#sec2" class="m-link">Проекты</a>
-      <a href="#transform" class="m-link">Процесс</a>
-      <a href="#about" class="m-link">О нас</a>
+      <a href="#sector-fitness" class="m-link">Процесс</a>
+      <a href="#transform" class="m-link">О нас</a>
       <a href="#site-footer" class="m-link">Контакты</a>
     </nav>
 
@@ -1027,64 +1027,39 @@
 
 
 
-<!-- ===== ABOUT / PRESENTATION ===== -->
-<section id="about" class="about-section">
-  <div class="about-wrap">
-
-    <div class="about-media">
-      <video class="side-video" muted loop playsinline preload="none" poster="/img/sc3.jpg">
-        <source src="/img/screen3.mp4" type="video/mp4">
-      </video>
-    </div>
-
-    <div class="about-body">
-      <h2 class="about-heading" style="font-family: 'Ultra', serif !important; font-weight: 400 !important; color: #03acb8 !important;">El espacio es el mensaje</h2>
-      <p>
-        Cuando se trata de comunicación efectiva, el medio importa tanto como el contenido.
-        Los negocios que buscan destacar necesitan las herramientas adecuadas
-        para crear conexiones duraderas con sus clientes.
-      </p>
-
-      <h3>Visualización 3D como herramienta de venta</h3>
-      <p>
-        Utilizo el poder de la <strong>visualización 3D</strong> y la <strong>realidad virtual</strong>
-        como instrumentos transformadores en la comunicación, el marketing
-        y la estrategia comercial de cada proyecto.
-      </p>
-      <p>
-        Una presentación inmersiva activa la confianza del cliente,
-        fomenta la transparencia y construye relaciones a largo plazo
-        con inversores, socios y compradores.
-      </p>
-
-      <h3>Resultados reales, no solo renders bonitos</h3>
-      <p>
-        Generar confianza, aumentar la conversión y crear conexiones
-        emocionales profundas que se traducen en decisiones de compra
-        más rápidas y compromisos más sólidos.
-      </p>
-
-      <h3>¿Qué hago exactamente?</h3>
-      <p>
-        Combino <strong>diseño 3D</strong>, <strong>inteligencia artificial</strong>,
-        <strong>desarrollo web</strong> y <strong>embudos de venta</strong>
-        en un ecosistema integrado para que tu negocio se vea, se entienda y venda
-        — antes de abrir la puerta.
-      </p>
-
-      <p>Trabajo con:</p>
-      <p>
-        <strong>Diseño 3D y visualización</strong> — espacios comerciales, gimnasios, restaurantes, clínicas<br>
-        <strong>Desarrollo web y landing pages</strong> — experiencias digitales de alto impacto<br>
-        <strong>Embudos de venta y ads</strong> — Meta Ads, Google Ads, automatización<br>
-        <strong>AI aplicada al negocio</strong> — herramientas inteligentes para escalar
-      </p>
-
-      <button class="cta-button open-panel" type="button">Solicitar propuesta</button>
-    </div>
-
+<!-- ===== FITNESS 24/7 — compact two-video section (after Fitness) =====
+     Copy: "fitness247" in assets/i18n/translations.json. Videos are lazy-loaded
+     by the SECTOR SECTIONS module in main.js. One CTA: localized WhatsApp. -->
+<section class="fit247" id="fitness-24-7" data-track-view="fitness_247_viewed" aria-labelledby="fit247-title">
+  <div class="fit247__head">
+    <p class="fit247__eyebrow">Фитнес 24/7</p>
+    <h2 class="fit247__title" id="fit247-title">Пространства, которые работают как система.</h2>
+    <p class="fit247__intro">Доступ, процессы и пользовательский опыт, спроектированные как единое целое.</p>
   </div>
+
+  <div class="fit247__items">
+    <article class="fit247__item">
+      <div class="fit247__media" aria-hidden="true">
+        <video class="fit247__video" muted loop playsinline preload="none" tabindex="-1" width="480" height="854"
+          poster="/images/gym-24-7-access-poster.webp" data-src="/videos/gym-24-7-access.mp4"></video>
+      </div>
+      <h3 class="fit247__item-title">Доступ 24/7</h3>
+      <p class="fit247__item-text">Круглосуточный цифровой доступ, меньше трения, больше удобства.</p>
+    </article>
+    <article class="fit247__item">
+      <div class="fit247__media" aria-hidden="true">
+        <video class="fit247__video" muted loop playsinline preload="none" tabindex="-1" width="480" height="854"
+          poster="/images/fitness-247-poster.webp" data-src="/videos/fitness-247-concept.mp4"></video>
+      </div>
+      <h3 class="fit247__item-title">Меньше персонала. Больше эффективности.</h3>
+      <p class="fit247__item-text">Более умные процессы и грамотно организованное пространство помогают клубу работать эффективнее.</p>
+    </article>
+  </div>
+
+  <a class="fit247__cta" href="https://wa.me/34722878642?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%8F%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB(%D0%B0)%20%D0%B1%D1%8B%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%D0%B0." target="_blank" rel="noopener noreferrer"
+    data-track="whatsapp_clicked" data-track-location="fitness_24_7">Создать более эффективный фитнес-клуб <span aria-hidden="true">&rarr;</span></a>
 </section>
+
 <div class="spacer spacer-logos">
   <div class="spacer-inner">
    
@@ -1454,7 +1429,7 @@
     });
 })();
 </script>
-<script src="/assets/js/main.js?v=20261007h"></script>
+<script src="/assets/js/main.js?v=20261008d"></script>
 <script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>

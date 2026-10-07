@@ -101,7 +101,7 @@ window.saveLanguageChoice = (lang) => {
 
     <nav class="nav-desktop" aria-label="Primary">
       <a href="${homeLink("#hero")}">Inicio</a>
-      <a href="${homeLink("#about")}">Sobre nosotros</a>
+      <a href="${homeLink("#transform")}">Sobre nosotros</a>
       <a href="${homeLink("#sec2")}">Servicios</a>
 
       <div class="nav-dropdown" id="showroomDropdown">
@@ -141,8 +141,8 @@ window.saveLanguageChoice = (lang) => {
     <nav class="mobile-menu-nav" aria-label="Principal">
       <a href="${homeLink("#hero")}" class="m-link">Inicio</a>
       <a href="${homeLink("#sec2")}" class="m-link">Proyectos</a>
-      <a href="${homeLink("#transform")}" class="m-link">Proceso</a>
-      <a href="${homeLink("#about")}" class="m-link">Nosotros</a>
+      <a href="${homeLink("#sector-fitness")}" class="m-link">Proceso</a>
+      <a href="${homeLink("#transform")}" class="m-link">Nosotros</a>
       <a href="#site-footer" class="m-link">Contacto</a>
     </nav>
 
@@ -1261,7 +1261,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // - reduced motion: no video (poster stays), no reveal animation
 // - one "<sector>_section_viewed" analytics hook per page view (data-track-view)
 (() => {
-  const sections = document.querySelectorAll(".sector, .transform");
+  const sections = document.querySelectorAll(".sector, .transform, .fit247");
   if (!sections.length) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasIO = "IntersectionObserver" in window;
@@ -1275,21 +1275,28 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   sections.forEach((section) => {
-    const video = section.querySelector("video[data-src]");
-    if (video) video.addEventListener("error", () => video.remove(), true);
+    // every lazy video in the section (some sections have more than one)
+    const videos = [...section.querySelectorAll("video[data-src]")];
+    videos.forEach((video) => video.addEventListener("error", () => video.remove(), true));
 
     if (!hasIO) {
       section.classList.add("is-inview");
-      if (video && !reduceMotion) startVideo(video);
+      if (!reduceMotion) videos.forEach(startVideo);
       return;
     }
 
-    if (video && !reduceMotion) {
+    if (videos.length && !reduceMotion) {
       // Wait for the page (hero video included) to finish loading first
-      const watch = () => new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) startVideo(video);
-        else if (video.getAttribute("src")) video.pause();
-      }, { rootMargin: "200px 0px" }).observe(video);
+      const watch = () => {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+            if (entry.isIntersecting) startVideo(video);
+            else if (video.getAttribute("src")) video.pause();
+          });
+        }, { rootMargin: "200px 0px" });
+        videos.forEach((video) => io.observe(video));
+      };
       if (document.readyState === "complete") watch();
       else window.addEventListener("load", watch, { once: true });
     }

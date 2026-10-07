@@ -193,6 +193,22 @@
         "facility": "Facility"
       }
     },
+    "fitness247": {
+      "eyebrow": "Fitness 24/7",
+      "heading": "Spaces designed to work as a system.",
+      "intro": "Access, operations and experience designed to work better.",
+      "items": [
+        {
+          "title": "24/7 Access",
+          "text": "Continuous digital access with less friction and more convenience."
+        },
+        {
+          "title": "Less staff. More efficiency.",
+          "text": "Smarter processes and a better-organized space help the club operate more effectively."
+        }
+      ],
+      "cta": "Design a more efficient gym"
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Restaurants", "slug": "restaurants",
@@ -415,6 +431,22 @@
         "system": "Sistema",
         "facility": "Instalación"
       }
+    },
+    "fitness247": {
+      "eyebrow": "Fitness 24/7",
+      "heading": "Espacios que funcionan como sistema.",
+      "intro": "Acceso, operación y experiencia pensados para funcionar mejor.",
+      "items": [
+        {
+          "title": "Acceso 24/7",
+          "text": "Acceso digital continuo, menos fricción y más comodidad."
+        },
+        {
+          "title": "Menos personal. Más eficiencia.",
+          "text": "Procesos más inteligentes y un espacio bien organizado ayudan al club a funcionar mejor."
+        }
+      ],
+      "cta": "Diseñar un gimnasio más eficiente"
     },
     "sectors": [
       {
@@ -639,6 +671,22 @@
         "facility": "Оснащение"
       }
     },
+    "fitness247": {
+      "eyebrow": "Фитнес 24/7",
+      "heading": "Пространства, которые работают как система.",
+      "intro": "Доступ, процессы и пользовательский опыт, спроектированные как единое целое.",
+      "items": [
+        {
+          "title": "Доступ 24/7",
+          "text": "Круглосуточный цифровой доступ, меньше трения, больше удобства."
+        },
+        {
+          "title": "Меньше персонала. Больше эффективности.",
+          "text": "Более умные процессы и грамотно организованное пространство помогают клубу работать эффективнее."
+        }
+      ],
+      "cta": "Создать более эффективный фитнес-клуб"
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Рестораны", "slug": "restaurants",
@@ -861,6 +909,22 @@
         "system": "Система",
         "facility": "Оснащення"
       }
+    },
+    "fitness247": {
+      "eyebrow": "Фітнес 24/7",
+      "heading": "Простори, які працюють як система.",
+      "intro": "Доступ, процеси та користувацький досвід, спроєктовані як єдине ціле.",
+      "items": [
+        {
+          "title": "Доступ 24/7",
+          "text": "Цілодобовий цифровий доступ, менше тертя, більше зручності."
+        },
+        {
+          "title": "Менше персоналу. Більше ефективності.",
+          "text": "Розумніші процеси та добре організований простір допомагають клубу працювати ефективніше."
+        }
+      ],
+      "cta": "Створити ефективніший фітнес-клуб"
     },
     "sectors": [
       {
