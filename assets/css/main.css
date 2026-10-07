@@ -9907,6 +9907,57 @@ section.rfinal{
 }
 @media (prefers-reduced-motion: reduce){ .rwide__sound{ transition: none; } }
 
+/* closing "strategic planning" section: photo full width at its own ratio,
+   fading into the dark; text block (HTML) overlaps only the faded edge */
+section.rplan{
+  display: block; height: auto; min-height: 0;
+  margin: 0 !important;
+  padding: 0 0 clamp(72px, 10vh, 120px);
+  background: #161513; color: #fff;
+  text-align: left;
+  scroll-snap-align: none;
+}
+.rplan__media{ position: relative; line-height: 0; }
+.rplan__media img{ display: block; width: 100%; height: auto; }
+.rplan__media::after{
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(22,21,19,0) 55%, rgba(22,21,19,.55) 80%, #161513 100%);
+}
+.rplan__inner{
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 540px);
+  column-gap: clamp(40px, 6vw, 110px);
+  align-items: start;
+  max-width: 1320px;
+  margin: calc(-1 * clamp(56px, 7vw, 130px)) auto 0;
+  padding: 0 6vw;
+  box-sizing: content-box;
+}
+.rplan__eyebrow{ margin: 0 0 18px; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: #e3c48f; }
+.rplan__title{
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: clamp(38px, 3.8vw, 60px); line-height: 1.04; letter-spacing: -.035em;
+  text-transform: none; color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.35);
+}
+html[lang="ru"] .rplan__title, html[lang="uk"] .rplan__title{ font-size: clamp(32px, 3.1vw, 48px); line-height: 1.08; }
+.rplan__body{ padding-top: 34px; }
+.rplan__text{ margin: 0; font-size: 18px; line-height: 1.6; color: #e8e4de; }
+.rplan__text + .rplan__text{ margin-top: 16px; }
+.rplan__line{ margin: 24px 0 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #fff; }
+.rplan__cta{
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 50px; margin-top: 28px; padding: 0 22px;
+  border: 1px solid rgba(255,255,255,.85); color: #fff !important; text-decoration: none;
+  font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  transition: background-color .2s ease, color .2s ease;
+}
+.rplan__cta:hover{ background: #fff; color: #161513 !important; }
+.rplan__cta:focus-visible{ outline: 2px solid #fff; outline-offset: 3px; }
+.rplan + section.rfinal{ border-top: 1px solid rgba(255,255,255,.1); }
+
 /* phones / narrow tablets: one column, ALWAYS video first */
 @media (max-width: 900px){
   .rpage-context{ padding: 20px 16px 0; font-size: 10px; letter-spacing: .2em; gap: 10px; }
@@ -9927,6 +9978,14 @@ section.rfinal{
   .rmid{ padding: 44px 16px 52px; }
   .rmid__title{ font-size: 24px; }
   section.rfinal{ padding: 80px 20px 72px; }
+  .rplan__inner{ grid-template-columns: 1fr; margin-top: -28px; padding: 0 16px; }
+  .rplan__title{ font-size: clamp(30px, 8.6vw, 40px); }
+  html[lang="ru"] .rplan__title, html[lang="uk"] .rplan__title{ font-size: clamp(27px, 7.6vw, 36px); }
+  .rplan__body{ padding-top: 18px; }
+  .rplan__text{ font-size: 16px; line-height: 1.55; }
+  .rplan__line{ margin-top: 18px; padding-top: 14px; font-size: 11px; }
+  .rplan__cta{ display: flex; justify-content: center; margin-top: 22px; }
+  section.rplan{ padding-bottom: 56px; }
   .rfinal__title{ font-size: clamp(32px, 8.8vw, 42px); }
   .rfinal__text{ font-size: 16px; }
 }

@@ -256,6 +256,17 @@
           "description": "3D visualization lets you test layout, lighting, atmosphere and key decisions before construction begins."
         }
       },
+      "planning": {
+        "eyebrow": "Strategic planning",
+        "heading": "Good planning helps avoid costly mistakes.",
+        "body": [
+          "With more than 25 years of experience in restaurant planning and design, I create spaces designed to work better from day one.",
+          "A well-developed project helps define the right layout, organize the flow, optimize the arrangement and turn the space into a more efficient business tool."
+        ],
+        "line": "Better layout. Better performance. Fewer expensive mistakes.",
+        "cta": "Let’s talk about your restaurant",
+        "imageAlt": "Designer reviewing restaurant plans and material samples"
+      },
       "midCta": {
         "heading": "Seeing any of these problems in your restaurant?",
         "action": "Let’s talk"
@@ -721,6 +732,17 @@
           "headline": "Ve el resultado antes de construir.",
           "description": "La visualización 3D permite probar distribución, iluminación, atmósfera y decisiones clave antes de empezar la obra."
         }
+      },
+      "planning": {
+        "eyebrow": "Planificación estratégica",
+        "heading": "Una buena planificación evita errores costosos.",
+        "body": [
+          "Con más de 25 años de experiencia en planificación y diseño de restaurantes, desarrollo espacios pensados para funcionar mejor desde el primer día.",
+          "Un buen proyecto ayuda a definir la distribución correcta, organizar el flujo, optimizar la implantación y convertir el espacio en una herramienta más eficiente para el negocio."
+        ],
+        "line": "Distribución correcta. Mejor funcionamiento. Menos errores caros.",
+        "cta": "Hablemos de tu restaurante",
+        "imageAlt": "Diseñador revisando planos y muestras de materiales de un restaurante"
       },
       "midCta": {
         "heading": "¿Estás viendo alguno de estos problemas en tu restaurante?",
@@ -1188,6 +1210,17 @@
           "description": "3D-визуализация позволяет проверить планировку, свет, атмосферу и ключевые решения до начала реализации."
         }
       },
+      "planning": {
+        "eyebrow": "Стратегическое планирование",
+        "heading": "Правильное планирование помогает избежать дорогостоящих ошибок.",
+        "body": [
+          "Имея более 25 лет опыта в планировании и проектировании ресторанов, я создаю пространства, которые работают лучше с первого дня.",
+          "Хорошо продуманный проект помогает сделать правильную планировку, организовать потоки, оптимизировать расстановку и превратить пространство в более эффективный инструмент для бизнеса."
+        ],
+        "line": "Правильная планировка. Лучшая эффективность. Меньше дорогих ошибок.",
+        "cta": "Давайте обсудим ваш ресторан",
+        "imageAlt": "Дизайнер изучает планы ресторана и образцы материалов"
+      },
       "midCta": {
         "heading": "Узнаёте одну из этих проблем в своём ресторане?",
         "action": "Давайте обсудим"
@@ -1653,6 +1686,17 @@
           "headline": "Побачте результат до початку будівництва.",
           "description": "3D-візуалізація дозволяє перевірити планування, освітлення, атмосферу та ключові рішення до початку реалізації."
         }
+      },
+      "planning": {
+        "eyebrow": "Стратегічне планування",
+        "heading": "Правильне планування допомагає уникнути дорогих помилок.",
+        "body": [
+          "Маючи понад 25 років досвіду у плануванні та проєктуванні ресторанів, я створюю простори, які працюють краще з першого дня.",
+          "Добре продуманий проєкт допомагає сформувати правильне планування, організувати потоки, оптимізувати розстановку та перетворити простір на ефективніший інструмент для бізнесу."
+        ],
+        "line": "Правильне планування. Краща ефективність. Менше дорогих помилок.",
+        "cta": "Обговорімо ваш ресторан",
+        "imageAlt": "Дизайнер переглядає плани ресторану та зразки матеріалів"
       },
       "midCta": {
         "heading": "Впізнаєте одну з цих проблем у своєму ресторані?",

@@ -32,6 +32,29 @@
 
 {{restaurants.storiesHtml}}
 
+  <!-- Closing persuasive section: full-width photo fading into the dark, text in HTML below it -->
+  <section class="rplan" aria-labelledby="rplan-title">
+    <div class="rplan__media">
+      <img src="/images/restaurants/final-planning.webp"
+        srcset="/images/restaurants/final-planning-900.webp 900w, /images/restaurants/final-planning.webp 1672w"
+        sizes="100vw" width="1672" height="941" loading="lazy" decoding="async"
+        alt="{{restaurantsPage.planning.imageAlt}}">
+    </div>
+    <div class="rplan__inner">
+      <div class="rplan__head">
+        <p class="rplan__eyebrow">{{restaurantsPage.planning.eyebrow}}</p>
+        <h2 class="rplan__title" id="rplan-title">{{restaurantsPage.planning.heading}}</h2>
+      </div>
+      <div class="rplan__body">
+        <p class="rplan__text">{{restaurantsPage.planning.body.0}}</p>
+        <p class="rplan__text">{{restaurantsPage.planning.body.1}}</p>
+        <p class="rplan__line">{{restaurantsPage.planning.line}}</p>
+        <a class="rplan__cta" href="{{contact.whatsappHref}}" target="_blank" rel="noopener noreferrer"
+          data-track="whatsapp_clicked" data-track-location="restaurants_planning">{{restaurantsPage.planning.cta}} <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
   <section class="rfinal" aria-labelledby="rfinal-title">
     <h2 class="rfinal__title" id="rfinal-title">{{restaurantsPage.finalCta.heading}}</h2>
     <p class="rfinal__text">{{restaurantsPage.finalCta.text}}</p>
