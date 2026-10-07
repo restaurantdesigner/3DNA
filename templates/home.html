@@ -21,7 +21,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261012d">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261012e">
 </head>
 
 <body>
@@ -471,7 +471,7 @@
         <span class="sector__line" aria-hidden="true"><em>{{sectors.0.section.heading.2}}</em></span>
       </h2>
       <p class="sector__text">{{sectors.0.section.body}}</p>
-      <a class="sector__cta" href="{{sectors.0.section.ctaHref}}"
+      <a class="sector__cta" href="/{{lang}}/{{restaurantsPage.slug}}/"
         data-track="view_projects_clicked" data-track-location="sector_restaurants">
         {{sectors.0.section.cta}} <span class="sector__arrow" aria-hidden="true">&rarr;</span>
       </a>

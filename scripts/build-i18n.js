@@ -32,7 +32,6 @@ const SWITCHER_ORDER = ["en", "es", "ru", "uk"];
 // They have no translations yet, so they go into the sitemap without hreflang.
 const DEFAULT_LANG_LEGACY = "es";
 const LEGACY_PAGES = [
-  "restaurantes-3d.html",
   "gimnasios-3d.html",
   "clinicas-3d.html",
   "ecosistemas-digitales.html",

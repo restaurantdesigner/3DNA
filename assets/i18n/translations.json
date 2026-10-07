@@ -218,6 +218,12 @@
           "label": "Costly mistakes",
           "headline": "Avoid costly mistakes before they happen.",
           "description": "Design, visualize and validate your restaurant before you invest in construction.",
+          "body": [
+            "Good restaurant design starts long before choosing materials or furniture. Space planning, table layout, staff circulation, the relationship between kitchen, bar and dining room, lighting and the guest experience all directly shape how the business runs every day.",
+            "Many restaurant interior design mistakes only appear once construction is finished: aisles that are too narrow, long walks for servers, badly placed tables, areas with poor visibility, uncomfortable lighting or a layout that quietly reduces the venue’s real capacity. Fixing these problems after the build almost always costs far more than solving them at the design stage.",
+            "That is why we use space planning, interior design and 3D visualization to study the restaurant before it is built. We can test proportions, circulation, layout, lighting and the guest experience, and refine the project before any work begins.",
+            "The goal is not just a restaurant that looks good, but a commercial space that works better, makes daily operations easier and helps protect your investment."
+          ],
           "tags": "Layout · Flow · Lighting · Experience · 3D"
         },
         "layout": {
@@ -445,7 +451,6 @@
           "headingText": "Restaurants designed around experience.",
           "body": "From space planning and circulation to atmosphere, lighting and guest flow, we create restaurant interiors that feel right, operate efficiently and support the business behind them.",
           "cta": "View restaurant projects",
-          "ctaHref": "/restaurantes-3d.html",
           "services": ["Space planning", "Concept design", "3D visualization", "Lighting", "FF&E"]
         }
       },
@@ -695,6 +700,12 @@
           "label": "Errores costosos",
           "headline": "Evita errores costosos antes de que ocurran.",
           "description": "Diseña, visualiza y valida tu restaurante antes de invertir en obra.",
+          "body": [
+            "Un buen diseño de restaurantes empieza mucho antes de elegir materiales o mobiliario. La planificación del espacio, la distribución de mesas, la circulación del personal, la relación entre cocina, barra y sala, la iluminación y la experiencia del cliente influyen directamente en el funcionamiento diario del negocio.",
+            "Muchos errores de diseño interior en restaurantes solo se descubren cuando la obra está terminada: pasillos demasiado estrechos, recorridos largos para camareros, mesas mal ubicadas, zonas con poca visibilidad, iluminación incómoda o una distribución que reduce la capacidad real del local. Corregir estos problemas después de la construcción suele ser mucho más caro que resolverlos durante la fase de proyecto.",
+            "Por eso utilizamos planificación, diseño interior y visualización 3D para estudiar el restaurante antes de ejecutarlo. Podemos comprobar proporciones, circulación, distribución, iluminación y experiencia del cliente, y ajustar el proyecto antes de que comiencen los trabajos.",
+            "El objetivo no es solo crear un restaurante visualmente atractivo, sino diseñar un espacio comercial que funcione mejor, facilite la operación y ayude a proteger la inversión."
+          ],
           "tags": "Distribución · Flujo · Iluminación · Experiencia · 3D"
         },
         "layout": {
@@ -922,7 +933,6 @@
           "headingText": "Restaurantes diseñados para la experiencia.",
           "body": "Desde la planificación del espacio y la circulación hasta la atmósfera, la iluminación y el recorrido del cliente, creamos interiores de restaurante que transmiten la sensación adecuada, funcionan con eficiencia y respaldan el negocio que hay detrás.",
           "cta": "Ver proyectos de restaurantes",
-          "ctaHref": "/restaurantes-3d.html",
           "services": ["Planificación del espacio", "Diseño de concepto", "Visualización 3D", "Iluminación", "FF&E"]
         }
       },
@@ -1172,6 +1182,12 @@
           "label": "Дорогие ошибки",
           "headline": "Избегайте дорогостоящих ошибок до того, как они произойдут.",
           "description": "Спроектируйте, визуализируйте и проверьте ресторан до того, как инвестировать в реализацию.",
+          "body": [
+            "Хороший дизайн ресторана начинается задолго до выбора материалов и мебели. Планирование пространства, расстановка столов, маршруты персонала, связь кухни, бара и зала, освещение и впечатления гостей напрямую влияют на то, как заведение работает каждый день.",
+            "Многие ошибки в дизайне интерьера ресторана становятся заметны только после окончания ремонта: слишком узкие проходы, длинные маршруты официантов, неудачно расставленные столы, зоны с плохим обзором, некомфортный свет или планировка, которая незаметно уменьшает реальную вместимость зала. Исправлять такие проблемы после строительства почти всегда гораздо дороже, чем решить их на этапе проекта.",
+            "Поэтому мы используем планирование, дизайн интерьера и 3D-визуализацию, чтобы изучить ресторан ещё до реализации. Можно проверить пропорции, потоки, планировку, освещение и впечатления гостей — и доработать проект до начала работ.",
+            "Цель — не просто красивый ресторан, а коммерческое пространство, которое работает лучше, упрощает ежедневную работу команды и помогает защитить ваши инвестиции."
+          ],
           "tags": "Планировка · Потоки · Свет · Опыт гостей · 3D"
         },
         "layout": {
@@ -1399,7 +1415,6 @@
           "headingText": "Рестораны, созданные для впечатлений.",
           "body": "От планировки и маршрутов движения до атмосферы, освещения и пути гостя — мы создаём интерьеры ресторанов, в которых приятно находиться, которые эффективно работают и поддерживают бизнес.",
           "cta": "Смотреть проекты ресторанов",
-          "ctaHref": "/restaurantes-3d.html",
           "services": ["Планировка", "Концепт-дизайн", "3D-визуализация", "Освещение", "FF&E"]
         }
       },
@@ -1649,6 +1664,12 @@
           "label": "Дорогі помилки",
           "headline": "Уникайте дорогих помилок ще до того, як вони стануться.",
           "description": "Спроєктуйте, візуалізуйте та перевірте ресторан до того, як інвестувати в реалізацію.",
+          "body": [
+            "Гарний дизайн ресторану починається задовго до вибору матеріалів і меблів. Планування простору, розстановка столів, маршрути персоналу, зв’язок кухні, бару та зали, освітлення й враження гостей безпосередньо впливають на те, як заклад працює щодня.",
+            "Багато помилок у дизайні інтер’єру ресторану стають помітними лише після завершення ремонту: надто вузькі проходи, довгі маршрути офіціантів, невдало розставлені столи, зони з поганим оглядом, некомфортне світло або планування, яке непомітно зменшує реальну місткість зали. Виправляти такі проблеми після будівництва майже завжди значно дорожче, ніж розв’язати їх на етапі проєкту.",
+            "Тому ми використовуємо планування, дизайн інтер’єру та 3D-візуалізацію, щоб дослідити ресторан ще до реалізації. Можна перевірити пропорції, потоки, планування, освітлення та враження гостей — і доопрацювати проєкт до початку робіт.",
+            "Мета — не просто гарний ресторан, а комерційний простір, який працює краще, спрощує щоденну роботу команди та допомагає захистити ваші інвестиції."
+          ],
           "tags": "Планування · Потоки · Світло · Досвід гостей · 3D"
         },
         "layout": {
@@ -1876,7 +1897,6 @@
           "headingText": "Ресторани, створені для вражень.",
           "body": "Від планування та маршрутів руху до атмосфери, освітлення й шляху гостя — ми створюємо інтер'єри ресторанів, у яких приємно перебувати, які ефективно працюють і підтримують бізнес.",
           "cta": "Переглянути проєкти ресторанів",
-          "ctaHref": "/restaurantes-3d.html",
           "services": ["Планування", "Концепт-дизайн", "3D-візуалізація", "Освітлення", "FF&E"]
         }
       },

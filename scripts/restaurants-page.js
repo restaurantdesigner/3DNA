@@ -39,13 +39,17 @@ function createRestaurantsPage(data, translations, { whatsappHref }) {
           `      </div>`
         ];
     return [
-      `  <section class="rstory rstory--${alignment}" id="${s.id}" aria-labelledby="rstory-${s.id}-title">`,
+      `  <section class="rstory rstory--${alignment}${Array.isArray(st.body) && st.body.length ? " rstory--long" : ""}" id="${s.id}" aria-labelledby="rstory-${s.id}-title">`,
       `    <div class="rstory__inner">`,
       ...media,
       `      <div class="rstory__text">`,
       `        <p class="rstory__label">${escapeHtml(label)}</p>`,
       `        <${heading} class="rstory__title" id="rstory-${s.id}-title">${escapeHtml(st.headline)}</${heading}>`,
       `        <p class="rstory__desc">${escapeHtml(st.description)}</p>`,
+      // optional longer copy (real, indexable paragraphs; never collapsed)
+      ...(Array.isArray(st.body) && st.body.length
+        ? [`        <div class="rstory__body">`, ...st.body.map((x) => `          <p>${escapeHtml(x)}</p>`), `        </div>`]
+        : []),
       ...(st.tags ? [`        <p class="rstory__tags">${escapeHtml(st.tags)}</p>`] : []),
       `      </div>`,
       `    </div>`,

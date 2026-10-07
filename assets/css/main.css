@@ -9817,6 +9817,14 @@ html[lang="ru"] .rstory__title, html[lang="uk"] .rstory__title{ font-size: clamp
 .rstory__desc{ margin: 24px 0 0; font-size: clamp(18px, 1.35vw, 21px); line-height: 1.55; color: #3d3934; }
 .rstory__tags{ margin: 22px 0 0; font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--r-muted); }
 
+/* stories with longer (SEO) copy: wider text column, comfortable rhythm,
+   section grows naturally with the text */
+.rstory--long .rstory__text{ max-width: 640px; }
+.rstory--long .rstory__inner{ align-items: center; }
+.rstory__body{ margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--r-rule); }
+.rstory__body p{ margin: 0; font-size: clamp(17px, 1.15vw, 18px); line-height: 1.7; color: #3d3934; max-width: 62ch; }
+.rstory__body p + p{ margin-top: 20px; }
+
 /* gentle reveal (SECTOR SECTIONS module adds the classes) */
 .rstory.reveal-pending .rstory__text > *,
 .rstory.reveal-pending .rstory__media{ opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
@@ -9974,6 +9982,9 @@ html[lang="ru"] .rplan__title, html[lang="uk"] .rplan__title{ font-size: clamp(3
   .rstory__title{ font-size: clamp(34px, 9.4vw, 46px); line-height: 1.04; }
   html[lang="ru"] .rstory__title, html[lang="uk"] .rstory__title{ font-size: clamp(30px, 8.2vw, 40px); }
   .rstory__desc{ margin-top: 14px; font-size: 16px; }
+  .rstory__body{ margin-top: 18px; padding-top: 18px; }
+  .rstory__body p{ font-size: 16px; line-height: 1.65; }
+  .rstory__body p + p{ margin-top: 16px; }
   .rstory__tags{ margin-top: 14px; font-size: 11px; }
   .rmid{ padding: 44px 16px 52px; }
   .rmid__title{ font-size: 24px; }
