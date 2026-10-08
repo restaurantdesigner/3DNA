@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Built by scripts/build-i18n.js from templates/fitness.html +
+       assets/i18n/translations.json (fitnessPage.*) -->
+  <title>{{fitnessPage.meta.title}}</title>
+{{head.i18n}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap">
+  <!-- The hero poster is the first paint (also the reduced-motion image) -->
+  <link rel="preload" as="image" href="/images/fitness/hero-walkthrough-poster.webp" type="image/webp" fetchpriority="high">
+
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261011b">
+</head>
+
+<body>
+<!-- 3dna:header -->
+{{layout.header}}
+<!-- /3dna:header -->
+
+<main id="main" tabindex="-1" class="fpage">
+
+  <!-- 01 HERO: the architect walks through a gym as it transforms into a premium club.
+       Same component as the homepage hero (.sector-hero). ONE file for every screen
+       (/videos/fitness/hero-architect-walkthrough.mp4, 16:9, keeps its audio track but
+       always plays muted), cropped with object-fit: cover and centred so the
+       architect stays in frame on phones. Reduced motion: the finished-interior frame. -->
+  <section id="hero" class="sector-hero fhero" aria-labelledby="hero-title"
+    style="--fhero-poster: url('/images/fitness/hero-walkthrough-poster.webp'); --fhero-still: url('/images/fitness/hero-walkthrough-still.webp')">
+    <video class="sector-hero__video fhero__video" muted autoplay loop playsinline preload="metadata"
+      width="854" height="480" poster="/images/fitness/hero-walkthrough-poster.webp"
+      data-src="/videos/fitness/hero-architect-walkthrough.mp4" aria-label="{{fitnessPage.hero.videoLabel}}" tabindex="-1"></video>
+    <script>
+      // Decorative background video: attached right away (it is the hero), never with
+      // reduced motion; on any error the poster / CSS background stays.
+      (function () {
+        var v = document.currentScript.previousElementSibling;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.poster = '/images/fitness/hero-walkthrough-still.webp'; return; }
+        var play = function () { if (v.paused) v.play().catch(function () {}); };
+        v.muted = true;
+        v.addEventListener('error', function () { v.removeAttribute('src'); v.load(); }, true);
+        v.src = v.getAttribute('data-src');
+        v.addEventListener('canplay', play);
+        document.addEventListener('touchstart', play, { once: true, passive: true });
+        play();
+      })();
+    </script>
+    <div class="sector-hero__overlay" aria-hidden="true"></div>
+    <div class="sector-hero__inner">
+      <div class="sector-hero__content">
+        <p class="sector-hero__eyebrow">{{fitnessPage.hero.eyebrow}}</p>
+        <h1 class="sector-hero__title" id="hero-title" aria-label="{{fitnessPage.hero.headingText}}">
+          <span class="sector-hero__line" aria-hidden="true">{{fitnessPage.hero.heading.0}}</span>
+          <span class="sector-hero__line" aria-hidden="true">{{fitnessPage.hero.heading.1}}</span>
+          <span class="sector-hero__line" aria-hidden="true"><em>{{fitnessPage.hero.heading.2}}</em></span>
+        </h1>
+        <p class="sector-hero__lead">{{fitnessPage.hero.lead}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE SPACER between the two films: what fitness club customers want
+       (illustrative wishes, not testimonials). Same component as the homepage
+       spacer (scripts/design-quotes.js), compact variant. Text: fitnessPage.voices.* -->
+{{fitnessPage.voicesHtml}}
+
+  <!-- 02 FROM PLAN TO REALITY: the Higgsfield process film (plan drawn -> equipment
+       placed -> lighting + zoning -> walls rise -> camera flies in -> the architect
+       walks through the finished gym). Two cuts of the same film:
+         landscape 16:9  /videos/fitness/plan-to-reality-landscape.mp4  (landscape screens)
+         portrait  9:16  /videos/fitness/plan-to-reality-portrait.mp4   (portrait screens: phones, tablets upright)
+       The inline script picks ONE by screen orientation before anything loads
+       (the lazy loader in main.js then attaches it near the viewport) and swaps
+       it on rotation. Label + headline overlay the top-left corner of the film
+       (the plan and the architect stay centred, clear of the text).
+       Reduced motion: no video, the finished-interior frame instead. -->
+  <section class="fscene fplan" id="del-plano-al-espacio" aria-labelledby="f-plan-title">
+    <div class="fplan__media">
+      <!-- heading over the film, top-left; the shade only darkens that corner -->
+      <div class="fplan__shade" aria-hidden="true"></div>
+      <div class="fplan__head">
+        <p class="fscene__label">{{fitnessPage.plan.label}}</p>
+        <h2 class="fscene__title" id="f-plan-title">{{fitnessPage.plan.heading}}</h2>
+      </div>
+      <video class="fplan__video" muted autoplay loop playsinline webkit-playsinline preload="metadata" tabindex="-1"
+        aria-label="{{fitnessPage.plan.videoLabel}}"
+        data-src-landscape="/videos/fitness/plan-to-reality-landscape.mp4" data-poster-landscape="/images/fitness/plan-to-reality-landscape.webp" data-still-landscape="/images/fitness/plan-to-reality-landscape-end.webp"
+        data-src-portrait="/videos/fitness/plan-to-reality-portrait.mp4" data-poster-portrait="/images/fitness/plan-to-reality-portrait.webp" data-still-portrait="/images/fitness/plan-to-reality-portrait-end.webp"></video>
+      <script>
+        (function () {
+          var v = document.currentScript.previousElementSibling;
+          var mq = window.matchMedia('(max-aspect-ratio: 1/1)');
+          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          function apply() {
+            var kind = mq.matches ? 'portrait' : 'landscape';
+            if (v.getAttribute('data-kind') === kind) return;
+            v.setAttribute('data-kind', kind);
+            if (reduce) { v.removeAttribute('autoplay'); v.poster = v.getAttribute('data-still-' + kind); return; }
+            v.poster = v.getAttribute('data-poster-' + kind);
+            var src = v.getAttribute('data-src-' + kind);
+            v.setAttribute('data-src', src);
+            // already attached by the lazy loader (rotation): switch the file now
+            if (v.getAttribute('src')) { v.src = src; v.load(); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+          }
+          apply();
+          if (mq.addEventListener) mq.addEventListener('change', apply); else if (mq.addListener) mq.addListener(apply);
+        })();
+      </script>
+    </div>
+  </section>
+
+  <!-- 03 EXPERIENCE: full-width cinematic still (final frame of the hero visualization) -->
+  <section class="fscene fwide" id="experiencia" aria-labelledby="f-exp-title">
+    <img class="fwide__img" src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async"
+      alt="{{fitnessPage.experience.imageAlt}}">
+    <div class="fwide__shade" aria-hidden="true"></div>
+    <div class="fwide__text">
+      <p class="fscene__label">{{fitnessPage.experience.label}}</p>
+      <h2 class="fscene__title" id="f-exp-title">{{fitnessPage.experience.heading}}</h2>
+      <p class="fscene__body">{{fitnessPage.experience.body}}</p>
+    </div>
+  </section>
+
+  <!-- 04 FUNCTIONAL ZONING: schematic plan (same data as the homepage gym planner) -->
+  <section class="fscene fzoning" id="zonificacion" aria-labelledby="f-zoning-title">
+    <div class="fzoning__inner">
+      <div class="fzoning__text">
+        <p class="fscene__label">{{fitnessPage.zoning.label}}</p>
+        <h2 class="fscene__title" id="f-zoning-title">{{fitnessPage.zoning.heading}}</h2>
+        <p class="fscene__body">{{fitnessPage.zoning.body}}</p>
+        <ol class="fzoning__list">
+          <li>{{fitnessPage.zoning.zones.0}}</li>
+          <li>{{fitnessPage.zoning.zones.1}}</li>
+          <li>{{fitnessPage.zoning.zones.2}}</li>
+          <li>{{fitnessPage.zoning.zones.3}}</li>
+          <li>{{fitnessPage.zoning.zones.4}}</li>
+        </ol>
+      </div>
+      <div class="fzoning__plan">
+{{fitnessPage.planSvg}}
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 FITNESS CATEGORIES: typographic (no images yet — see the asset list in the report) -->
+  <section class="fscene fcats" id="categorias" aria-labelledby="f-cats-title">
+    <div class="fscene__inner">
+      <p class="fscene__label">{{fitnessPage.categories.label}}</p>
+      <h2 class="fscene__title" id="f-cats-title">{{fitnessPage.categories.heading}}</h2>
+      <ol class="fcats__list">
+        <li class="fcats__item"><span class="fcats__num" aria-hidden="true">01</span><h3 class="fcats__name">{{fitnessPage.categories.items.0.name}}</h3><p class="fcats__text">{{fitnessPage.categories.items.0.text}}</p></li>
+        <li class="fcats__item"><span class="fcats__num" aria-hidden="true">02</span><h3 class="fcats__name">{{fitnessPage.categories.items.1.name}}</h3><p class="fcats__text">{{fitnessPage.categories.items.1.text}}</p></li>
+        <li class="fcats__item"><span class="fcats__num" aria-hidden="true">03</span><h3 class="fcats__name">{{fitnessPage.categories.items.2.name}}</h3><p class="fcats__text">{{fitnessPage.categories.items.2.text}}</p></li>
+        <li class="fcats__item"><span class="fcats__num" aria-hidden="true">04</span><h3 class="fcats__name">{{fitnessPage.categories.items.3.name}}</h3><p class="fcats__text">{{fitnessPage.categories.items.3.text}}</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 06 DESIGN PROCESS -->
+  <section class="fscene fprocess" id="proceso" aria-labelledby="f-process-title">
+    <div class="fscene__inner">
+      <p class="fscene__label">{{fitnessPage.process.label}}</p>
+      <h2 class="fscene__title" id="f-process-title">{{fitnessPage.process.heading}}</h2>
+      <ol class="fprocess__steps">
+        <li><span aria-hidden="true">01</span>{{fitnessPage.process.steps.0}}</li>
+        <li><span aria-hidden="true">02</span>{{fitnessPage.process.steps.1}}</li>
+        <li><span aria-hidden="true">03</span>{{fitnessPage.process.steps.2}}</li>
+        <li><span aria-hidden="true">04</span>{{fitnessPage.process.steps.3}}</li>
+        <li><span aria-hidden="true">05</span>{{fitnessPage.process.steps.4}}</li>
+        <li><span aria-hidden="true">06</span>{{fitnessPage.process.steps.5}}</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 07 SELECTED WORK: only concept work that exists (the supplied visualization).
+       Completed projects are added here as more <article class="fwork__item"> entries. -->
+  <section class="fscene fwork" id="trabajo" aria-labelledby="f-work-title">
+    <div class="fscene__inner">
+      <p class="fscene__label">{{fitnessPage.work.label}}</p>
+      <h2 class="fscene__title" id="f-work-title">{{fitnessPage.work.heading}}</h2>
+      <p class="fscene__body fwork__note">{{fitnessPage.work.note}}</p>
+      <article class="fwork__item">
+        <div class="fwork__pair">
+          <figure class="fwork__fig">
+            <img src="/images/fitness/hero-before.webp" width="1280" height="720" loading="lazy" decoding="async" alt="{{fitnessPage.work.items.transformation.beforeAlt}}">
+            <figcaption>{{fitnessPage.work.items.transformation.before}}</figcaption>
+          </figure>
+          <figure class="fwork__fig">
+            <img src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt="{{fitnessPage.work.items.transformation.afterAlt}}">
+            <figcaption>{{fitnessPage.work.items.transformation.after}}</figcaption>
+          </figure>
+        </div>
+        <p class="fwork__kind">{{fitnessPage.work.items.transformation.kind}}</p>
+        <h3 class="fwork__title">{{fitnessPage.work.items.transformation.title}}</h3>
+      </article>
+    </div>
+  </section>
+
+  <!-- 08 ARCHITECTURAL DETAILS -->
+  <section class="fscene fdetails" id="detalles" aria-labelledby="f-details-title">
+    <div class="fscene__inner">
+      <p class="fscene__label">{{fitnessPage.details.label}}</p>
+      <h2 class="fscene__title" id="f-details-title">{{fitnessPage.details.heading}}</h2>
+      <div class="fdetails__grid">
+        <figure class="fdetails__item"><img src="/images/fitness/detail-lighting.webp" width="460" height="460" loading="lazy" decoding="async" alt="{{fitnessPage.details.items.0.alt}}"><figcaption><strong>{{fitnessPage.details.items.0.name}}</strong> {{fitnessPage.details.items.0.text}}</figcaption></figure>
+        <figure class="fdetails__item"><img src="/images/fitness/detail-materials.webp" width="460" height="400" loading="lazy" decoding="async" alt="{{fitnessPage.details.items.1.alt}}"><figcaption><strong>{{fitnessPage.details.items.1.name}}</strong> {{fitnessPage.details.items.1.text}}</figcaption></figure>
+        <figure class="fdetails__item"><img src="/images/fitness/detail-identity.webp" width="420" height="420" loading="lazy" decoding="async" alt="{{fitnessPage.details.items.2.alt}}"><figcaption><strong>{{fitnessPage.details.items.2.name}}</strong> {{fitnessPage.details.items.2.text}}</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 THE RESULT: vertical video + statement (no numerical claims) -->
+  <section class="fscene fsplit fsplit--reverse fresult" id="resultado" aria-labelledby="f-result-title">
+    <div class="fsplit__inner">
+      <div class="fsplit__media">
+        <video class="fsplit__video" muted autoplay loop playsinline webkit-playsinline preload="metadata" tabindex="-1"
+          width="480" height="854" poster="/images/gym-24-7-access-poster.webp" data-src="/videos/gym-24-7-access.mp4"
+          aria-label="{{fitnessPage.result.videoLabel}}"></video>
+      </div>
+      <div class="fsplit__text">
+        <p class="fscene__label">{{fitnessPage.result.label}}</p>
+        <h2 class="fscene__title" id="f-result-title">{{fitnessPage.result.heading}}</h2>
+        <p class="fscene__body">{{fitnessPage.result.body}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 CONTACT -->
+  <section class="fscene fcontact" id="contacto" aria-labelledby="f-contact-title">
+    <div class="fscene__inner">
+      <h2 class="fscene__title fcontact__title" id="f-contact-title">{{fitnessPage.contact.heading}}</h2>
+      <p class="fscene__body">{{fitnessPage.contact.text}}</p>
+      <div class="fcontact__actions">
+        <a class="fcontact__btn fcontact__btn--primary" href="{{contact.whatsappHref}}" target="_blank" rel="noopener noreferrer"
+          data-track="whatsapp_clicked" data-track-location="fitness_contact">{{fitnessPage.contact.whatsapp}} <span aria-hidden="true">&rarr;</span></a>
+        <a class="fcontact__btn" href="{{footer.mailtoHref}}" data-track="email_clicked" data-track-location="fitness_contact">{{fitnessPage.contact.email}}</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 3dna:footer -->
+{{layout.footer}}
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=20261011a"></script>
+
+<!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
+     main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->
+<div id="deployment-db155617-f1fa-45ba-aa43-27eb97edb751"></div>
+</body>
+</html>

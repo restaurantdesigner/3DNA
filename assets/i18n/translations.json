@@ -4,6 +4,7 @@
     "meta": {
       "title": "Commercial Interior Design Studio | 3DNA",
       "description": "3DNA designs commercial interiors for restaurants, fitness spaces, healthcare facilities and workplaces, combining strategy, space planning, 3D visualization and commercial design experience.",
+      "ogTitle": "3DNA — Commercial Interior Design",
       "ogLocale": "en_US",
       "ogImageAlt": "Commercial interior by 3DNA with the words: Spaces designed to work."
     },
@@ -199,6 +200,167 @@
       "headingText": "The project becomes content.",
       "body": "The same renders, walkthroughs and 3D views we use to design also work to communicate: social media, website, investor presentations and pre-opening campaigns."
     },
+    "designQuotes": {
+      "label": "The value of design",
+      "quoteKind": "Direct quotation",
+      "translatedNote": "",
+      "researchKind": "Research-based statement",
+      "source": "Source",
+      "newTab": "opens in a new tab",
+      "items": {
+        "ibm": "Good design is good business.",
+        "mckinsey-2018": "Design leaders grow faster.",
+        "hbr-2008": "Design transforms more than appearances.",
+        "design-council-economy": "Design creates economic value.",
+        "mckinsey-tapping": "Design is more than aesthetics.",
+        "design-council-value": "Value goes beyond the visual."
+      }
+    },
+    "fitnessPage": {
+      "slug": "fitness",
+      "meta": {
+        "title": "Gym & Fitness Interior Design | 3DNA",
+        "description": "Interior design for gyms, boutique studios and wellness spaces: layout, circulation, lighting, materials and 3D visualization before construction.",
+        "ogTitle": "Fitness: spaces designed to perform | 3DNA",
+        "ogImageAlt": "Fitness club designed by 3DNA with the words: Spaces designed to perform."
+      },
+      "voices": {
+        "label": "What your members want",
+        "attribution": "What your members want",
+        "items": [
+          "I want to train whenever I like.",
+          "I want a gym that inspires me.",
+          "I want a space that looks amazing on Instagram.",
+          "I want to create content for my social media.",
+          "I want to grab a drink after my workout.",
+          "I want a smoothie and coffee bar.",
+          "I want to feel part of a community.",
+          "I want to train without waiting for a machine.",
+          "I want comfortable, elegant changing rooms.",
+          "I want good light, good music and good energy.",
+          "I want a place where I can socialise too.",
+          "I want to feel this club is made for me."
+        ]
+      },
+      "hero": {
+        "eyebrow": "Fitness space design",
+        "heading": [
+          "Spaces",
+          "designed to",
+          "perform."
+        ],
+        "headingText": "Spaces designed to perform.",
+        "lead": "For people. For business.",
+        "videoLabel": "3D visualization: an existing gym transforms into a contemporary fitness club."
+      },
+      "plan": {
+        "label": "01 / From plan to reality",
+        "heading": "Every space begins with an idea.",
+        "body": "From the first line to the finished gym: plan, equipment, light and zoning, resolved before construction.",
+        "videoLabel": "From plan to space: the plan is drawn, equipment is placed, light and zones are designed and the walls rise into the finished gym."
+      },
+      "experience": {
+        "label": "02 / Experience",
+        "heading": "Designed to come back to.",
+        "body": "Light, materials, comfort and atmosphere turn every workout into an experience people want to repeat.",
+        "imageAlt": "Fitness club floor with linear lighting, dark flooring and a marked training lane."
+      },
+      "zoning": {
+        "label": "03 / Zoning",
+        "heading": "Everything in its place.",
+        "body": "Reception, training areas, circulation, changing rooms and support spaces — every zone connected to the others.",
+        "zones": [
+          "Reception",
+          "Training areas",
+          "Circulation",
+          "Changing rooms",
+          "Support spaces"
+        ],
+        "planLabel": "Schematic gym plan with its zones: reception, cardio, strength, functional, studios, changing rooms and support areas."
+      },
+      "categories": {
+        "label": "04 / Projects",
+        "heading": "A space for every discipline.",
+        "items": [
+          {
+            "name": "Gyms and fitness clubs",
+            "text": "Generous floors, clear routes and well-defined zones."
+          },
+          {
+            "name": "Pilates and boutique studios",
+            "text": "Intimate scale, careful light and an identity of their own."
+          },
+          {
+            "name": "Specialised training",
+            "text": "Functional, strength, boxing or cycling — designed around the discipline."
+          },
+          {
+            "name": "Wellness and recovery",
+            "text": "Calm, warm materials and quiet routes."
+          }
+        ]
+      },
+      "process": {
+        "label": "05 / Process",
+        "heading": "From concept to space. From space to brand.",
+        "steps": [
+          "Business analysis",
+          "Creative concept",
+          "Space design",
+          "3D visualization & AI",
+          "Identity & digital content",
+          "Marketing & advertising"
+        ]
+      },
+      "work": {
+        "label": "06 / Selected work",
+        "heading": "Design concepts.",
+        "note": "Concept studies and 3D visualizations. Completed projects will be published here.",
+        "items": {
+          "transformation": {
+            "kind": "Concept · 3D visualization",
+            "title": "Transforming an existing gym",
+            "before": "Before",
+            "after": "After",
+            "beforeAlt": "Existing gym with a concrete structure and standard equipment.",
+            "afterAlt": "The same space redesigned as a fitness club with linear lighting and brand identity."
+          }
+        }
+      },
+      "details": {
+        "label": "07 / Details",
+        "heading": "Details build identity.",
+        "items": [
+          {
+            "name": "Lighting",
+            "text": "Linear light that guides and gives the space its rhythm.",
+            "alt": "Ceiling with LED light lines and lit columns."
+          },
+          {
+            "name": "Materials and equipment",
+            "text": "Hard-wearing surfaces and equipment built into the route.",
+            "alt": "Training bench next to a lane marked on the floor."
+          },
+          {
+            "name": "Identity",
+            "text": "The brand built into the architecture.",
+            "alt": "Back wall with an illuminated logo and medicine-ball shelving."
+          }
+        ]
+      },
+      "result": {
+        "label": "08 / Result",
+        "heading": "More than a gym.",
+        "body": "When architecture, customer experience and the business model are designed together, the space works for the business every day.",
+        "videoLabel": "Street access to a 24/7 gym."
+      },
+      "contact": {
+        "heading": "Let’s talk about your project.",
+        "text": "Tell us about your space and your goals. We reply personally.",
+        "whatsapp": "Message us on WhatsApp",
+        "email": "Send an email"
+      }
+    },
     "restaurantsPage": {
       "plan": {
         "eyebrow": "Restaurant planning",
@@ -322,7 +484,9 @@
       "slug": "restaurants",
       "meta": {
         "title": "Restaurant Interior Design | Commercial Interiors | 3DNA",
-        "description": "Restaurant interior design: layout, circulation, lighting, ergonomics and 3D visualization to avoid costly mistakes before construction."
+        "description": "Restaurant interior design: layout, circulation, lighting, ergonomics and 3D visualization to avoid costly mistakes before construction.",
+        "ogTitle": "Restaurants: spaces designed to perform | 3DNA",
+        "ogImageAlt": "Restaurant interior by 3DNA with the words: Spaces designed to work."
       },
       "context": {
         "back": "Back to Home",
@@ -626,6 +790,7 @@
     "meta": {
       "title": "Diseño de Interiores Comerciales | 3DNA",
       "description": "3DNA diseña interiores comerciales para restaurantes, espacios fitness, centros sanitarios y oficinas, combinando estrategia, planificación del espacio, visualización 3D y experiencia en diseño comercial.",
+      "ogTitle": "3DNA — Diseño de interiores comerciales",
       "ogLocale": "es_ES",
       "ogImageAlt": "Interior comercial de 3DNA con el texto: Espacios diseñados para funcionar."
     },
@@ -821,6 +986,167 @@
       "headingText": "El proyecto se convierte en contenido.",
       "body": "Los mismos renders, recorridos y vistas 3D que usamos para diseñar sirven también para comunicar: redes sociales, web, presentaciones a inversores y campañas antes de abrir."
     },
+    "designQuotes": {
+      "label": "El valor del diseño",
+      "quoteKind": "Cita textual",
+      "translatedNote": "traducida del inglés",
+      "researchKind": "Afirmación basada en investigación",
+      "source": "Fuente",
+      "newTab": "se abre en una pestaña nueva",
+      "items": {
+        "ibm": "El buen diseño es buen negocio.",
+        "mckinsey-2018": "Las empresas líderes en diseño crecen más rápido.",
+        "hbr-2008": "El diseño transforma más que la apariencia.",
+        "design-council-economy": "El diseño crea valor económico.",
+        "mckinsey-tapping": "El diseño es más que estética.",
+        "design-council-value": "El valor va más allá de lo visual."
+      }
+    },
+    "fitnessPage": {
+      "slug": "gimnasios",
+      "meta": {
+        "title": "Diseño de Gimnasios y Espacios Fitness | 3DNA",
+        "description": "Diseño de interiores para gimnasios, estudios boutique y espacios wellness: distribución, circulación, iluminación, materiales y visualización 3D antes de la obra.",
+        "ogTitle": "Gimnasios: espacios diseñados para rendir | 3DNA",
+        "ogImageAlt": "Club fitness diseñado por 3DNA con el texto: Espacios diseñados para rendir."
+      },
+      "voices": {
+        "label": "Lo que buscan tus clientes",
+        "attribution": "Lo que buscan tus clientes",
+        "items": [
+          "Quiero entrenar cuando yo quiera.",
+          "Quiero un gimnasio que inspire.",
+          "Quiero un espacio que se vea increíble en Instagram.",
+          "Quiero crear contenido para mis redes sociales.",
+          "Quiero tomar algo después de entrenar.",
+          "Quiero un bar de batidos y café.",
+          "Quiero sentirme parte de una comunidad.",
+          "Quiero entrenar sin esperar por una máquina.",
+          "Quiero vestuarios cómodos y elegantes.",
+          "Quiero buena luz, buena música y buena energía.",
+          "Quiero un lugar donde también pueda socializar.",
+          "Quiero sentir que este club es para mí."
+        ]
+      },
+      "hero": {
+        "eyebrow": "Diseño de espacios fitness",
+        "heading": [
+          "Espacios",
+          "diseñados para",
+          "rendir."
+        ],
+        "headingText": "Espacios diseñados para rendir.",
+        "lead": "Para las personas. Para el negocio.",
+        "videoLabel": "Visualización 3D: un gimnasio existente se transforma en un club fitness contemporáneo."
+      },
+      "plan": {
+        "label": "01 / Del plano a la realidad",
+        "heading": "Cada espacio comienza con una idea.",
+        "body": "Del primer trazo al gimnasio terminado: planta, equipamiento, luz y zonificación, resueltos antes de construir.",
+        "videoLabel": "Del plano al espacio: la planta se dibuja, se coloca el equipamiento, se diseñan la luz y las zonas y las paredes se levantan hasta el gimnasio terminado."
+      },
+      "experience": {
+        "label": "02 / Experiencia",
+        "heading": "Diseñado para volver.",
+        "body": "Luz, materiales, confort y atmósfera convierten cada entrenamiento en una experiencia a la que apetece volver.",
+        "imageAlt": "Sala de un club fitness con iluminación lineal, suelo oscuro y una pista de entrenamiento marcada."
+      },
+      "zoning": {
+        "label": "03 / Zonificación",
+        "heading": "Todo en su lugar.",
+        "body": "Recepción, entrenamiento, circulación, vestuarios y espacios de apoyo: cada zona conectada con las demás.",
+        "zones": [
+          "Recepción",
+          "Zonas de entrenamiento",
+          "Circulación",
+          "Vestuarios",
+          "Espacios de apoyo"
+        ],
+        "planLabel": "Planta esquemática de un gimnasio con sus zonas: recepción, cardio, fuerza, funcional, estudios, vestuarios y zonas de apoyo."
+      },
+      "categories": {
+        "label": "04 / Proyectos",
+        "heading": "Un espacio para cada disciplina.",
+        "items": [
+          {
+            "name": "Gimnasios y fitness clubs",
+            "text": "Salas amplias, recorridos claros y zonas bien definidas."
+          },
+          {
+            "name": "Pilates y estudios boutique",
+            "text": "Escala íntima, luz cuidada y una identidad propia."
+          },
+          {
+            "name": "Entrenamiento especializado",
+            "text": "Funcional, fuerza, boxeo o cycling: diseño a la medida de la disciplina."
+          },
+          {
+            "name": "Wellness y recovery",
+            "text": "Calma, materiales cálidos y recorridos sin ruido."
+          }
+        ]
+      },
+      "process": {
+        "label": "05 / Proceso",
+        "heading": "Del concepto al espacio. Del espacio a la marca.",
+        "steps": [
+          "Análisis del negocio",
+          "Concepto creativo",
+          "Diseño del espacio",
+          "Visualización 3D e IA",
+          "Identidad y contenido digital",
+          "Marketing y publicidad"
+        ]
+      },
+      "work": {
+        "label": "06 / Trabajo seleccionado",
+        "heading": "Conceptos de diseño.",
+        "note": "Estudios de concepto y visualizaciones 3D. Los proyectos realizados se publicarán aquí.",
+        "items": {
+          "transformation": {
+            "kind": "Concepto · Visualización 3D",
+            "title": "Transformación de un gimnasio existente",
+            "before": "Antes",
+            "after": "Después",
+            "beforeAlt": "Gimnasio existente con estructura de hormigón y equipamiento estándar.",
+            "afterAlt": "El mismo espacio rediseñado como club fitness, con iluminación lineal e identidad de marca."
+          }
+        }
+      },
+      "details": {
+        "label": "07 / Detalles",
+        "heading": "Los detalles construyen la identidad.",
+        "items": [
+          {
+            "name": "Iluminación",
+            "text": "Luz lineal que guía y da ritmo al espacio.",
+            "alt": "Techo con líneas de luz LED y pilares iluminados."
+          },
+          {
+            "name": "Materiales y equipamiento",
+            "text": "Superficies resistentes y equipamiento integrado en el recorrido.",
+            "alt": "Banco de entrenamiento junto a una pista marcada en el suelo."
+          },
+          {
+            "name": "Identidad",
+            "text": "La marca integrada en la arquitectura.",
+            "alt": "Pared del fondo con el logotipo iluminado y estanterías de balones medicinales."
+          }
+        ]
+      },
+      "result": {
+        "label": "08 / Resultado",
+        "heading": "Más que un gimnasio.",
+        "body": "Cuando la arquitectura, la experiencia del cliente y el modelo de negocio se diseñan juntos, el espacio trabaja para el negocio cada día.",
+        "videoLabel": "Acceso a un gimnasio 24/7 desde la calle."
+      },
+      "contact": {
+        "heading": "Hablemos de tu proyecto.",
+        "text": "Cuéntanos tu espacio y tus objetivos. Te respondemos personalmente.",
+        "whatsapp": "Escribir por WhatsApp",
+        "email": "Enviar un email"
+      }
+    },
     "restaurantsPage": {
       "plan": {
         "eyebrow": "Planificación de restaurantes",
@@ -944,7 +1270,9 @@
       "slug": "restaurantes",
       "meta": {
         "title": "Diseño de Restaurantes | Interiores Comerciales | 3DNA",
-        "description": "Diseño de interiores para restaurantes: distribución, circulación, iluminación, ergonomía y visualización 3D para evitar errores costosos antes de la obra."
+        "description": "Diseño de interiores para restaurantes: distribución, circulación, iluminación, ergonomía y visualización 3D para evitar errores costosos antes de la obra.",
+        "ogTitle": "Restaurantes: espacios diseñados para funcionar | 3DNA",
+        "ogImageAlt": "Interior de restaurante de 3DNA con el texto: Espacios diseñados para funcionar."
       },
       "context": {
         "back": "Volver al inicio",
@@ -1248,6 +1576,7 @@
     "meta": {
       "title": "Дизайн коммерческих интерьеров | 3DNA",
       "description": "3DNA проектирует коммерческие интерьеры для ресторанов, фитнес-пространств, медицинских учреждений и офисов, объединяя стратегию, планирование пространства и 3D-визуализацию.",
+      "ogTitle": "3DNA — Дизайн коммерческих интерьеров",
       "ogLocale": "ru_RU",
       "ogImageAlt": "Коммерческий интерьер 3DNA с текстом: Пространства, которые работают."
     },
@@ -1443,6 +1772,167 @@
       "headingText": "Проект становится контентом.",
       "body": "Те же рендеры, видеопроходы и 3D-виды, которые мы используем при проектировании, работают и на продвижение: соцсети, сайт, презентации для инвесторов и кампании до открытия."
     },
+    "designQuotes": {
+      "label": "Ценность дизайна",
+      "quoteKind": "Цитата",
+      "translatedNote": "перевод с английского",
+      "researchKind": "Тезис на основе исследования",
+      "source": "Источник",
+      "newTab": "откроется в новой вкладке",
+      "items": {
+        "ibm": "Хороший дизайн — это хороший бизнес.",
+        "mckinsey-2018": "Лидеры в дизайне растут быстрее.",
+        "hbr-2008": "Дизайн меняет не только внешний вид.",
+        "design-council-economy": "Дизайн создаёт экономическую ценность.",
+        "mckinsey-tapping": "Дизайн — это больше, чем эстетика.",
+        "design-council-value": "Ценность выходит за пределы визуального."
+      }
+    },
+    "fitnessPage": {
+      "slug": "fitness",
+      "meta": {
+        "title": "Дизайн фитнес-клубов и спортзалов | 3DNA",
+        "description": "Дизайн интерьеров спортзалов, бутик-студий и wellness-пространств: планировка, потоки, свет, материалы и 3D-визуализация до начала работ.",
+        "ogTitle": "Фитнес: пространства, созданные для результата | 3DNA",
+        "ogImageAlt": "Фитнес-клуб от 3DNA с текстом: Пространства, созданные для результата."
+      },
+      "voices": {
+        "label": "Чего хотят ваши клиенты",
+        "attribution": "Чего хотят ваши клиенты",
+        "items": [
+          "Хочу тренироваться, когда мне удобно.",
+          "Хочу зал, который вдохновляет.",
+          "Хочу пространство, которое отлично смотрится в Instagram.",
+          "Хочу снимать контент для своих соцсетей.",
+          "Хочу что-нибудь выпить после тренировки.",
+          "Хочу смузи-бар и кофе.",
+          "Хочу чувствовать себя частью сообщества.",
+          "Хочу тренироваться, не дожидаясь тренажёра.",
+          "Хочу удобные и красивые раздевалки.",
+          "Хочу хороший свет, хорошую музыку и хорошую энергию.",
+          "Хочу место, где можно ещё и пообщаться.",
+          "Хочу чувствовать, что этот клуб — для меня."
+        ]
+      },
+      "hero": {
+        "eyebrow": "Дизайн фитнес-пространств",
+        "heading": [
+          "Пространства,",
+          "созданные для",
+          "результата."
+        ],
+        "headingText": "Пространства, созданные для результата.",
+        "lead": "Для людей. Для бизнеса.",
+        "videoLabel": "3D-визуализация: существующий спортзал превращается в современный фитнес-клуб."
+      },
+      "plan": {
+        "label": "01 / От плана к реальности",
+        "heading": "Каждое пространство начинается с идеи.",
+        "body": "От первой линии до готового зала: планировка, оборудование, свет и зонирование решаются до начала строительства.",
+        "videoLabel": "От плана к пространству: чертится план, расставляется оборудование, проектируются свет и зоны, стены поднимаются до готового зала."
+      },
+      "experience": {
+        "label": "02 / Впечатление",
+        "heading": "Сюда хочется возвращаться.",
+        "body": "Свет, материалы, комфорт и атмосфера превращают каждую тренировку в опыт, который хочется повторить.",
+        "imageAlt": "Зал фитнес-клуба с линейным светом, тёмным полом и размеченной беговой дорожкой."
+      },
+      "zoning": {
+        "label": "03 / Зонирование",
+        "heading": "Всё на своём месте.",
+        "body": "Ресепшен, тренировочные зоны, потоки, раздевалки и вспомогательные помещения — каждая зона связана с остальными.",
+        "zones": [
+          "Ресепшен",
+          "Тренировочные зоны",
+          "Потоки",
+          "Раздевалки",
+          "Вспомогательные помещения"
+        ],
+        "planLabel": "Схема планировки спортзала с зонами: ресепшен, кардио, силовая, функциональная, студии, раздевалки и вспомогательные помещения."
+      },
+      "categories": {
+        "label": "04 / Проекты",
+        "heading": "Пространство для каждой дисциплины.",
+        "items": [
+          {
+            "name": "Спортзалы и фитнес-клубы",
+            "text": "Просторные залы, понятные маршруты и чёткие зоны."
+          },
+          {
+            "name": "Пилатес и бутик-студии",
+            "text": "Камерный масштаб, продуманный свет и собственный характер."
+          },
+          {
+            "name": "Специализированные тренировки",
+            "text": "Функционал, сила, бокс или сайкл — дизайн под дисциплину."
+          },
+          {
+            "name": "Wellness и восстановление",
+            "text": "Спокойствие, тёплые материалы и тихие маршруты."
+          }
+        ]
+      },
+      "process": {
+        "label": "05 / Процесс",
+        "heading": "От концепции к пространству. От пространства к бренду.",
+        "steps": [
+          "Анализ бизнеса",
+          "Креативная концепция",
+          "Дизайн пространства",
+          "3D-визуализация и ИИ",
+          "Айдентика и цифровой контент",
+          "Маркетинг и реклама"
+        ]
+      },
+      "work": {
+        "label": "06 / Избранное",
+        "heading": "Дизайн-концепции.",
+        "note": "Концептуальные исследования и 3D-визуализации. Реализованные проекты будут опубликованы здесь.",
+        "items": {
+          "transformation": {
+            "kind": "Концепция · 3D-визуализация",
+            "title": "Преображение существующего спортзала",
+            "before": "До",
+            "after": "После",
+            "beforeAlt": "Существующий спортзал с бетонными конструкциями и стандартным оборудованием.",
+            "afterAlt": "То же пространство в виде фитнес-клуба с линейным светом и фирменным стилем."
+          }
+        }
+      },
+      "details": {
+        "label": "07 / Детали",
+        "heading": "Детали создают характер.",
+        "items": [
+          {
+            "name": "Свет",
+            "text": "Линейный свет направляет и задаёт ритм пространству.",
+            "alt": "Потолок с линиями светодиодного света и подсвеченными колоннами."
+          },
+          {
+            "name": "Материалы и оборудование",
+            "text": "Износостойкие поверхности и оборудование, встроенное в маршрут.",
+            "alt": "Скамья для тренировок рядом с разметкой на полу."
+          },
+          {
+            "name": "Айдентика",
+            "text": "Бренд, встроенный в архитектуру.",
+            "alt": "Задняя стена с подсвеченным логотипом и стеллажами с медболами."
+          }
+        ]
+      },
+      "result": {
+        "label": "08 / Результат",
+        "heading": "Больше, чем спортзал.",
+        "body": "Когда архитектура, опыт клиента и бизнес-модель проектируются вместе, пространство работает на бизнес каждый день.",
+        "videoLabel": "Вход в круглосуточный спортзал с улицы."
+      },
+      "contact": {
+        "heading": "Обсудим ваш проект.",
+        "text": "Расскажите о вашем пространстве и целях. Мы ответим лично.",
+        "whatsapp": "Написать в WhatsApp",
+        "email": "Написать на email"
+      }
+    },
     "restaurantsPage": {
       "plan": {
         "eyebrow": "Планирование ресторана",
@@ -1566,7 +2056,9 @@
       "slug": "restaurants",
       "meta": {
         "title": "Дизайн интерьеров ресторанов | 3DNA",
-        "description": "Дизайн интерьеров ресторанов: планировка, потоки, освещение, эргономика и 3D-визуализация, чтобы избежать дорогих ошибок до начала работ."
+        "description": "Дизайн интерьеров ресторанов: планировка, потоки, освещение, эргономика и 3D-визуализация, чтобы избежать дорогих ошибок до начала работ.",
+        "ogTitle": "Рестораны: пространства, спроектированные для работы | 3DNA",
+        "ogImageAlt": "Интерьер ресторана 3DNA с текстом: Пространства, спроектированные для работы."
       },
       "context": {
         "back": "На главную",
@@ -1870,6 +2362,7 @@
     "meta": {
       "title": "Дизайн комерційних інтер'єрів | 3DNA",
       "description": "3DNA проєктує комерційні інтер'єри для ресторанів, фітнес-просторів, медичних закладів та офісів, поєднуючи стратегію, планування простору та 3D-візуалізацію.",
+      "ogTitle": "3DNA — Дизайн комерційних інтер’єрів",
       "ogLocale": "uk_UA",
       "ogImageAlt": "Комерційний інтер'єр 3DNA з текстом: Простори, які працюють."
     },
@@ -2065,6 +2558,167 @@
       "headingText": "Проєкт стає контентом.",
       "body": "Ті самі рендери, відеопроходи та 3D-види, які ми використовуємо під час проєктування, працюють і на просування: соцмережі, сайт, презентації для інвесторів і кампанії до відкриття."
     },
+    "designQuotes": {
+      "label": "Цінність дизайну",
+      "quoteKind": "Цитата",
+      "translatedNote": "переклад з англійської",
+      "researchKind": "Теза на основі дослідження",
+      "source": "Джерело",
+      "newTab": "відкриється в новій вкладці",
+      "items": {
+        "ibm": "Добрий дизайн — це добрий бізнес.",
+        "mckinsey-2018": "Лідери в дизайні зростають швидше.",
+        "hbr-2008": "Дизайн змінює не лише зовнішній вигляд.",
+        "design-council-economy": "Дизайн створює економічну цінність.",
+        "mckinsey-tapping": "Дизайн — це більше, ніж естетика.",
+        "design-council-value": "Цінність виходить за межі візуального."
+      }
+    },
+    "fitnessPage": {
+      "slug": "fitness",
+      "meta": {
+        "title": "Дизайн фітнес-клубів і спортзалів | 3DNA",
+        "description": "Дизайн інтер’єрів спортзалів, бутик-студій і wellness-просторів: планування, потоки, світло, матеріали та 3D-візуалізація до початку робіт.",
+        "ogTitle": "Фітнес: простори, створені для результату | 3DNA",
+        "ogImageAlt": "Фітнес-клуб від 3DNA з текстом: Простори, створені для результату."
+      },
+      "voices": {
+        "label": "Чого хочуть ваші клієнти",
+        "attribution": "Чого хочуть ваші клієнти",
+        "items": [
+          "Хочу тренуватися, коли мені зручно.",
+          "Хочу зал, який надихає.",
+          "Хочу простір, який чудово виглядає в Instagram.",
+          "Хочу створювати контент для своїх соцмереж.",
+          "Хочу щось випити після тренування.",
+          "Хочу смузі-бар і каву.",
+          "Хочу відчувати себе частиною спільноти.",
+          "Хочу тренуватися, не чекаючи на тренажер.",
+          "Хочу зручні й красиві роздягальні.",
+          "Хочу гарне світло, гарну музику й гарну енергію.",
+          "Хочу місце, де можна ще й поспілкуватися.",
+          "Хочу відчувати, що цей клуб — для мене."
+        ]
+      },
+      "hero": {
+        "eyebrow": "Дизайн фітнес-просторів",
+        "heading": [
+          "Простори,",
+          "створені для",
+          "результату."
+        ],
+        "headingText": "Простори, створені для результату.",
+        "lead": "Для людей. Для бізнесу.",
+        "videoLabel": "3D-візуалізація: наявний спортзал перетворюється на сучасний фітнес-клуб."
+      },
+      "plan": {
+        "label": "01 / Від плану до реальності",
+        "heading": "Кожен простір починається з ідеї.",
+        "body": "Від першої лінії до готової зали: планування, обладнання, світло й зонування вирішуються до початку будівництва.",
+        "videoLabel": "Від плану до простору: креслиться план, розставляється обладнання, проєктуються світло й зони, стіни зводяться до готової зали."
+      },
+      "experience": {
+        "label": "02 / Враження",
+        "heading": "Сюди хочеться повертатися.",
+        "body": "Світло, матеріали, комфорт і атмосфера перетворюють кожне тренування на досвід, який хочеться повторити.",
+        "imageAlt": "Зала фітнес-клубу з лінійним світлом, темною підлогою та розміченою біговою доріжкою."
+      },
+      "zoning": {
+        "label": "03 / Зонування",
+        "heading": "Усе на своєму місці.",
+        "body": "Рецепція, тренувальні зони, потоки, роздягальні та допоміжні приміщення — кожна зона пов’язана з іншими.",
+        "zones": [
+          "Рецепція",
+          "Тренувальні зони",
+          "Потоки",
+          "Роздягальні",
+          "Допоміжні приміщення"
+        ],
+        "planLabel": "Схема планування спортзалу із зонами: рецепція, кардіо, силова, функціональна, студії, роздягальні та допоміжні приміщення."
+      },
+      "categories": {
+        "label": "04 / Проєкти",
+        "heading": "Простір для кожної дисципліни.",
+        "items": [
+          {
+            "name": "Спортзали та фітнес-клуби",
+            "text": "Просторі зали, зрозумілі маршрути й чіткі зони."
+          },
+          {
+            "name": "Пілатес і бутик-студії",
+            "text": "Камерний масштаб, продумане світло й власний характер."
+          },
+          {
+            "name": "Спеціалізовані тренування",
+            "text": "Функціонал, сила, бокс чи сайкл — дизайн під дисципліну."
+          },
+          {
+            "name": "Wellness і відновлення",
+            "text": "Спокій, теплі матеріали й тихі маршрути."
+          }
+        ]
+      },
+      "process": {
+        "label": "05 / Процес",
+        "heading": "Від концепції до простору. Від простору до бренду.",
+        "steps": [
+          "Аналіз бізнесу",
+          "Креативна концепція",
+          "Дизайн простору",
+          "3D-візуалізація та ШІ",
+          "Айдентика й цифровий контент",
+          "Маркетинг і реклама"
+        ]
+      },
+      "work": {
+        "label": "06 / Вибране",
+        "heading": "Дизайн-концепції.",
+        "note": "Концептуальні дослідження та 3D-візуалізації. Реалізовані проєкти буде опубліковано тут.",
+        "items": {
+          "transformation": {
+            "kind": "Концепція · 3D-візуалізація",
+            "title": "Перетворення наявного спортзалу",
+            "before": "До",
+            "after": "Після",
+            "beforeAlt": "Наявний спортзал із бетонними конструкціями та стандартним обладнанням.",
+            "afterAlt": "Той самий простір у вигляді фітнес-клубу з лінійним світлом і фірмовим стилем."
+          }
+        }
+      },
+      "details": {
+        "label": "07 / Деталі",
+        "heading": "Деталі створюють характер.",
+        "items": [
+          {
+            "name": "Світло",
+            "text": "Лінійне світло скеровує й задає ритм простору.",
+            "alt": "Стеля з лініями світлодіодного світла та підсвіченими колонами."
+          },
+          {
+            "name": "Матеріали та обладнання",
+            "text": "Зносостійкі поверхні та обладнання, вбудоване в маршрут.",
+            "alt": "Лава для тренувань поруч із розміткою на підлозі."
+          },
+          {
+            "name": "Айдентика",
+            "text": "Бренд, вбудований в архітектуру.",
+            "alt": "Задня стіна з підсвіченим логотипом і стелажами з медболами."
+          }
+        ]
+      },
+      "result": {
+        "label": "08 / Результат",
+        "heading": "Більше, ніж спортзал.",
+        "body": "Коли архітектура, досвід клієнта й бізнес-модель проєктуються разом, простір працює на бізнес щодня.",
+        "videoLabel": "Вхід до цілодобового спортзалу з вулиці."
+      },
+      "contact": {
+        "heading": "Обговорімо ваш проєкт.",
+        "text": "Розкажіть про ваш простір і цілі. Ми відповімо особисто.",
+        "whatsapp": "Написати у WhatsApp",
+        "email": "Написати на email"
+      }
+    },
     "restaurantsPage": {
       "plan": {
         "eyebrow": "Планування ресторану",
@@ -2188,7 +2842,9 @@
       "slug": "restaurants",
       "meta": {
         "title": "Дизайн інтер’єрів ресторанів | 3DNA",
-        "description": "Дизайн інтер’єрів ресторанів: планування, потоки, освітлення, ергономіка та 3D-візуалізація, щоб уникнути дорогих помилок до початку робіт."
+        "description": "Дизайн інтер’єрів ресторанів: планування, потоки, освітлення, ергономіка та 3D-візуалізація, щоб уникнути дорогих помилок до початку робіт.",
+        "ogTitle": "Ресторани: простори, спроєктовані для роботи | 3DNA",
+        "ogImageAlt": "Інтер’єр ресторану 3DNA з текстом: Простори, спроєктовані для роботи."
       },
       "context": {
         "back": "На головну",

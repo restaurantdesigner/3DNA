@@ -2994,140 +2994,8 @@ margin-top: 120px;
   }
 }
 
-/* ===== SPACER #3: REVIEWS ===== */
-.spacer-reviews{
-  background: #fff;
-  display:flex;
-  align-items:center;
-  padding: 0;
-}
-
-.spacer-logos{
-  padding: 40px 0;
-}
-
-.reviews-title{
-  margin-bottom: 14px;
-}
-
-/* full width like your marquees */
-.reviews-marquee{
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  overflow: hidden;
-  position: relative;
-  --reviews-fade: clamp(20px, 4vw, 56px);
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--reviews-fade),
-    #000 calc(100% - var(--reviews-fade)),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--reviews-fade),
-    #000 calc(100% - var(--reviews-fade)),
-    transparent 100%
-  );
-  cursor: grab;
-  user-select: none;
-  touch-action: pan-y;
-}
-
-.reviews-marquee.is-dragging{
-  cursor: grabbing;
-}
-
-.reviews-track{
-  display: flex;
-  gap: 18px;
-  width: max-content;
-  padding: 8px 0;
-  will-change: transform;
-}
-
-/* review card */
-.review-card{
-  width: 320px;
-  flex: 0 0 auto;
-
-  background: rgba(255, 255, 255, 0);
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 18px;
-  padding: 14px 14px 12px 14px;
-
-  font-family: 'Roboto', sans-serif;
-  color: #111;
-  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-
-}
-
-.review-head{
-  display:flex;
-  align-items:center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-/* avatar circle */
-.avatar{
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(0,0,0,.12);
-  border: 1px solid rgba(0,0,0,.10);
-  flex: 0 0 auto;
-}
-
-.review-meta{
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* ⬅️ по горизонтали */
-  text-align: center;    /* ⬅️ текст по центру */
-  gap: 2px;
-  line-height: 1.1;
-}
-
-
-.review-name{
-  font-weight: 700;
-  font-size: .95rem;
-  color: rgb(29, 160, 184);
-
-}
-
-.review-role{
-  font-size: .78rem;
-  opacity: .65;
-}
-
-.review-stars{
-  font-size: .8rem;
-  letter-spacing: 1px;
-  opacity: .85;
-  color: #6e4405;
-}
-
-.review-text{
-  font-size: .86rem;
-  line-height: 1.35;
-  opacity: .92;
-}
-
 @media (max-width: 767px){
-  .spacer-reviews{ padding: 0; }
   .spacer-logos{ padding: 24px 0; }
-  .review-card{ width: 260px; }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .reviews-track{ animation: none; }
 }
 
 
@@ -6179,7 +6047,6 @@ section .footnote-block{
   }
 
   .spacer,
-  .spacer-reviews,
   .spacer-logos{
     margin: 0 !important;
     padding-top: 40px !important;
@@ -6227,7 +6094,6 @@ section .footnote-block{
 /* Global rhythm: 1mm gap between major section blocks */
 section,
 .spacer,
-.spacer-reviews,
 .spacer-logos{
   margin-bottom: 1mm !important;
 }
@@ -10404,4 +10270,242 @@ html[lang="ru"] .rplan3d__title, html[lang="uk"] .rplan3d__title{ font-size: cla
 }
 @media (prefers-reduced-motion: reduce){
   .rplan3d.is-enhanced .rplan3d__panel{ transition: none !important; }
+}
+
+/* =========================
+   FITNESS PAGE (/es/gimnasios/, /en|ru|uk/fitness/; templates/fitness.html)
+   A sequence of cinematic scenes in the homepage / Restaurants language:
+   warm off-white, Inter + DM Serif, thin rules, full-width imagery.
+   Mobile first. Videos lazy-load via "SECTOR SECTIONS" in main.js (.fscene).
+   ========================= */
+.fpage{
+  --f-ink: #161513;
+  --f-muted: #6b6258;
+  --f-accent: #8a6a3a;
+  --f-rule: rgba(22,21,19,.1);
+  background: #f6f3ee;
+  color: var(--f-ink);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  text-align: left;
+}
+
+/* 01 hero: homepage hero component with this page's footage */
+section#hero.sector-hero.fhero{ background: #15110d var(--fhero-poster) 50% 50% / cover no-repeat; }
+#hero.fhero .sector-hero__video{ object-position: 50% 50%; }   /* the architect walks down the centre */
+/* wide screens: crop from the right so he sits a little right of the headline */
+@media (min-width: 768px) and (min-aspect-ratio: 1/1){ #hero.fhero .sector-hero__video{ object-position: 0% 50%; } }
+@media (prefers-reduced-motion: reduce){
+  section#hero.sector-hero.fhero{ background-image: var(--fhero-still); }
+}
+
+/* shared scene typography */
+/* legacy rules centre text and whiten section headings: reset for this page */
+.fpage section.fscene, .fpage .fscene p, .fpage .fscene h2, .fpage .fscene h3, .fpage .fscene li{ text-align: left; }
+.fpage section.fscene{ color: var(--f-ink); }
+.fpage .fscene__title{ color: var(--f-ink) !important; }
+.fpage section.fwide, .fpage section.fzoning, .fpage section.fdetails{ color: #fff; }
+.fpage .fwide .fscene__title, .fpage .fzoning .fscene__title, .fpage .fdetails .fscene__title{ color: #fff !important; }
+.fpage section.fcontact, .fpage .fcontact p, .fpage .fcontact h2{ text-align: center; }
+section.fscene{ display: block; height: auto; min-height: 0; margin: 0 !important; padding: 0; scroll-snap-align: none; scroll-margin-top: 68px; }
+.fscene__inner{ max-width: 1320px; margin: 0 auto; padding: clamp(72px, 12vh, 140px) 6vw; }
+.fscene__label{ margin: 0 0 18px; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--f-accent); }
+.fscene__title{
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: clamp(38px, 5vw, 76px); line-height: 1.02; letter-spacing: -.035em;
+  text-transform: none; color: inherit; text-shadow: none;
+}
+html[lang="ru"] .fscene__title, html[lang="uk"] .fscene__title{ font-size: clamp(32px, 4.2vw, 62px); line-height: 1.06; }
+.fscene__body{ margin: 22px 0 0; max-width: 46ch; font-size: clamp(17px, 1.3vw, 20px); line-height: 1.55; color: #3d3934; }
+.fscene__tags{ display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 26px 0 0; padding: 0; list-style: none; }
+.fscene__tags li{ font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--f-muted); }
+
+/* 02 / 09 split scenes: vertical video + text */
+.fsplit__inner{
+  display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 32px;
+  max-width: 1320px; margin: 0 auto; padding: clamp(64px, 10vh, 120px) 6vw;
+}
+.fsplit__media{ position: relative; width: min(100%, 440px); aspect-ratio: 9 / 16; max-height: 82vh; justify-self: center; overflow: hidden; background: #e8e2d9; border-radius: 2px; }
+.fsplit__video{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: none !important; pointer-events: none; }
+.fsplit__text{ align-self: center; }
+@media (min-width: 901px){
+  .fsplit__inner{ grid-template-columns: minmax(0, 1fr) clamp(320px, 30vw, 440px); column-gap: clamp(48px, 8vw, 150px); align-items: center; min-height: min(88vh, 900px); }
+  .fsplit__media{ grid-column: 2; grid-row: 1; }
+  .fsplit__text{ grid-column: 1; grid-row: 1; justify-self: end; max-width: 560px; }
+  .fsplit--reverse .fsplit__inner{ grid-template-columns: clamp(320px, 30vw, 440px) minmax(0, 1fr); }
+  .fsplit--reverse .fsplit__media{ grid-column: 1; }
+  .fsplit--reverse .fsplit__text{ grid-column: 2; justify-self: start; }
+}
+
+/* 02 from plan to reality: full-width film, one cut per screen orientation
+   (same rule as the inline script: portrait screens get the 9:16 cut).
+   Natural ratio, never taller than the screen; if capped, the centred crop
+   keeps the plan and the architect in frame. */
+/* heading overlay: top-left corner of the film, white on a local shade */
+.fplan__shade{ position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(70% 60% at 0% 0%, rgba(12,10,8,.55) 0%, rgba(12,10,8,.28) 45%, rgba(12,10,8,0) 75%); }
+.fplan__head{ position: absolute; left: 0; top: 0; z-index: 2; max-width: min(620px, 52%); padding: clamp(28px, 6vh, 72px) 6vw 0; pointer-events: none; }
+.fpage .fplan__head .fscene__label{ color: rgba(255,255,255,.9); text-shadow: 0 1px 10px rgba(0,0,0,.4); }
+.fpage .fplan__head .fscene__title{ color: #fff !important; font-size: clamp(30px, 3.6vw, 58px); text-shadow: 0 1px 18px rgba(0,0,0,.35); }
+html[lang="ru"] .fpage .fplan__head .fscene__title, html[lang="uk"] .fpage .fplan__head .fscene__title{ font-size: clamp(26px, 3vw, 48px); }
+@media (max-aspect-ratio: 1/1){
+  .fplan__shade{ background: radial-gradient(110% 45% at 0% 0%, rgba(12,10,8,.55) 0%, rgba(12,10,8,.25) 50%, rgba(12,10,8,0) 80%); }
+  .fplan__head{ max-width: 88%; }
+}
+@media (max-width: 767px){
+  .fplan__head{ padding: 28px 22px 0; }
+  .fpage .fplan__head .fscene__title{ font-size: clamp(24px, 7vw, 32px); }
+  html[lang="ru"] .fpage .fplan__head .fscene__title, html[lang="uk"] .fpage .fplan__head .fscene__title{ font-size: clamp(22px, 6.2vw, 28px); }
+}
+.fplan__media{ position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 100vh; max-height: 100svh; overflow: hidden; background: #e9e9e7; }
+.fplan__video{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; filter: none !important; pointer-events: none; }
+@media (max-aspect-ratio: 1/1){
+  .fplan__media{ aspect-ratio: 9 / 16; }
+}
+
+/* 03 experience: full-bleed still with text over a soft shade */
+section.fwide{ position: relative; overflow: hidden; background: #15110d; color: #fff; }
+.fwide__img{ display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 60% 50%; }
+.fwide__shade{ position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.62) 100%); }
+.fwide__text{ position: absolute; left: 0; right: 0; bottom: 0; padding: 0 6vw clamp(36px, 7vh, 80px); max-width: 760px; }
+.fwide .fscene__label{ color: #e3c48f; }
+.fwide .fscene__body{ color: rgba(255,255,255,.92); text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+@media (min-width: 768px){
+  .fwide__img{ aspect-ratio: 16 / 9; max-height: 100vh; }
+}
+
+/* 04 zoning: dark scene with the schematic plan */
+section.fzoning{ background: #161513; color: #fff; }
+.fzoning__inner{ display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 36px; max-width: 1320px; margin: 0 auto; padding: clamp(72px, 12vh, 140px) 6vw; align-items: center; }
+.fzoning .fscene__label{ color: #e3c48f; }
+.fzoning .fscene__body{ color: rgba(255,255,255,.82); }
+.fzoning__list{ margin: 28px 0 0; padding: 0; list-style: none; counter-reset: fz; border-top: 1px solid rgba(255,255,255,.14); }
+.fzoning__list li{ counter-increment: fz; display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.14); font-size: 15px; color: rgba(255,255,255,.9); }
+.fzoning__list li::before{ content: counter(fz, decimal-leading-zero); font-size: 11px; letter-spacing: .14em; color: #e3c48f; padding-top: 3px; }
+.fzoning__plan{ width: 100%; }
+.fzoning__plan .gym-plan{ display: block; width: 100%; height: auto; }
+.fzoning__plan .gym-plan__zone{ cursor: default; pointer-events: none; }
+@media (min-width: 901px){
+  .fzoning__inner{ grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); column-gap: clamp(40px, 6vw, 110px); }
+}
+
+/* 05 categories: typographic list */
+.fcats__list{ margin: clamp(32px, 6vh, 64px) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--f-rule); }
+.fcats__item{ display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 14px; padding: 22px 0; border-bottom: 1px solid var(--f-rule); }
+.fcats__num{ grid-row: span 2; font-size: 11px; font-weight: 600; letter-spacing: .16em; color: var(--f-accent); padding-top: 8px; }
+.fcats__name{ margin: 0; font-family: "Inter", system-ui, sans-serif !important; font-weight: 500 !important; font-size: clamp(22px, 2vw, 30px); letter-spacing: -.02em; line-height: 1.15; text-transform: none; color: var(--f-ink); }
+.fcats__text{ margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: var(--f-muted); }
+@media (min-width: 901px){
+  .fcats__list{ grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(32px, 5vw, 80px); }
+  .fcats__item{ padding: 30px 0; }
+}
+
+/* 06 process: six steps on a thin line */
+section.fprocess{ border-top: 1px solid var(--f-rule); }
+.fprocess .fscene__title{ text-wrap: balance; }   /* two-sentence heading: one sentence per line */
+.fprocess__steps{ margin: clamp(32px, 6vh, 64px) 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: minmax(0, 1fr); }
+.fprocess__steps li{ display: flex; align-items: baseline; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--f-rule); font-size: clamp(18px, 1.5vw, 22px); font-weight: 500; letter-spacing: -.01em; }
+.fprocess__steps span{ font-size: 11px; font-weight: 600; letter-spacing: .16em; color: var(--f-accent); }
+@media (min-width: 901px){
+  .fprocess__steps{ grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1px solid var(--f-ink); }
+  .fprocess__steps li{ flex-direction: column; gap: 10px; padding: 18px 16px 0 0; border-bottom: 0; }
+}
+
+/* 07 selected work */
+section.fwork{ border-top: 1px solid var(--f-rule); }
+.fwork__note{ font-size: 15px; color: var(--f-muted); }
+.fwork__item{ margin-top: clamp(32px, 6vh, 64px); }
+.fwork__pair{ display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.fwork__fig{ position: relative; margin: 0; overflow: hidden; border-radius: 2px; background: #e8e2d9; }
+.fwork__fig img{ display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.fwork__fig figcaption{ position: absolute; left: 12px; top: 12px; padding: 5px 9px; background: rgba(255,255,255,.92); font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--f-ink); }
+.fwork__kind{ margin: 18px 0 0; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--f-accent); }
+.fwork__title{ margin: 8px 0 0; font-family: "Inter", system-ui, sans-serif !important; font-weight: 500 !important; font-size: clamp(22px, 2vw, 28px); letter-spacing: -.02em; text-transform: none; color: var(--f-ink); }
+@media (min-width: 768px){ .fwork__pair{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* 08 details */
+section.fdetails{ background: #161513; color: #fff; }
+.fdetails .fscene__label{ color: #e3c48f; }
+.fdetails__grid{ display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: clamp(32px, 6vh, 64px); }
+.fdetails__item{ margin: 0; }
+.fdetails__item img{ display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 2px; }
+.fdetails__item figcaption{ margin-top: 14px; font-size: 15px; line-height: 1.5; color: rgba(255,255,255,.78); }
+.fdetails__item strong{ display: block; margin-bottom: 4px; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #fff; }
+@media (min-width: 768px){ .fdetails__grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 36px); } }
+
+/* 10 contact */
+section.fcontact{ border-top: 1px solid var(--f-rule); text-align: center; }
+.fcontact .fscene__inner{ display: flex; flex-direction: column; align-items: center; }
+.fcontact__title{ max-width: 16ch; }
+.fcontact .fscene__body{ text-align: center; }
+.fcontact__actions{ display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+.fcontact__btn{
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 50px; padding: 0 24px;
+  border: 1px solid var(--f-ink); border-radius: 999px;
+  font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--f-ink) !important; text-decoration: none;
+  transition: background-color .2s ease, color .2s ease;
+}
+.fcontact__btn--primary{ background: var(--f-ink); color: #fff !important; }
+.fcontact__btn:hover{ background: var(--f-ink); color: #fff !important; }
+.fpage a:focus-visible{ outline: 2px solid var(--f-accent); outline-offset: 3px; }
+
+@media (max-width: 767px){
+  .fscene__inner, .fsplit__inner, .fzoning__inner{ padding: 64px 22px; }
+  .fwide__text{ padding: 0 22px 36px; }
+  .fscene__title{ font-size: clamp(36px, 10.5vw, 48px); }
+  html[lang="ru"] .fscene__title, html[lang="uk"] .fscene__title{ font-size: clamp(30px, 8.6vw, 40px); }
+  .fscene__body{ font-size: 17px; }
+  .fcontact__btn{ width: 100%; }
+}
+
+/* =========================
+   QUOTE SPACER (homepage, right after the hero; markup scripts/design-quotes.js)
+   White band, one centred message at a time, slow crossfade. The height is
+   fixed so messages of any length never move the page.
+   ========================= */
+section.qspacer{
+  display: flex; align-items: center; justify-content: center;
+  height: 196px !important; min-height: 0 !important;
+  margin: 0 !important; padding: 0 6vw;
+  background: #fff; overflow: hidden;
+  scroll-snap-align: none;
+}
+.qspacer__stage{ display: grid; width: 100%; max-width: 1040px; height: 100%; }
+.qspacer__item{
+  grid-area: 1 / 1; margin: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity 1.2s ease, visibility 0s linear 1.2s;
+}
+.qspacer__item.is-active{ opacity: 1; visibility: visible; transition: opacity 1.2s ease .2s, visibility 0s; }
+.qspacer__quote{ margin: 0; padding: 0; border: 0; }
+.qspacer__text{
+  margin: 0; max-width: 32ch;
+  font-family: "DM Serif Text", Georgia, serif; font-weight: 400; font-style: normal;
+  font-size: clamp(26px, 2.7vw, 40px); line-height: 1.15; letter-spacing: -.005em;
+  color: #161513; text-align: center; text-wrap: balance;
+}
+.qspacer__by{
+  margin: 12px 0 0;
+  font: 500 10.5px/1.5 "Inter", system-ui, sans-serif; letter-spacing: .2em; text-transform: uppercase;
+  color: #6b6258; text-align: center;
+}
+.qspacer__by a{ color: inherit; text-decoration: none; border-bottom: 1px solid rgba(107,98,88,.35); }
+.qspacer__by a:hover{ color: #161513; }
+.qspacer a:focus-visible{ outline: 2px solid #8a6a3a; outline-offset: 3px; }
+.qspacer__sr{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 767px){
+  section.qspacer{ height: 148px !important; padding: 0 20px; }
+  .qspacer__text{ font-size: clamp(20px, 5.8vw, 24px); line-height: 1.18; }
+  .qspacer__by{ margin-top: 8px; font-size: 9.5px; letter-spacing: .14em; }
+}
+/* compact variant (Fitness page, between the two films) */
+section.qspacer--compact{ height: 176px !important; }
+@media (max-width: 767px){ section.qspacer--compact{ height: 136px !important; } }
+@media (prefers-reduced-motion: reduce){
+  .qspacer__item, .qspacer__item.is-active{ transition: none; }
 }

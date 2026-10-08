@@ -9,6 +9,7 @@
  * Output (plain static files: GitHub Pages and the Express server serve them as-is)
  *   /en/index.html /es/index.html /ru/index.html /uk/index.html
  *   /<lang>/<restaurantsPage.slug>/index.html   Restaurants page (templates/restaurants.html)
+ *   /<lang>/<fitnessPage.slug>/index.html       Fitness page (templates/fitness.html)
  *   /index.html     entry point: English content + language redirect for visitors
  *   /sitemap.xml    every /<lang>/**\/index.html found + LEGACY_PAGES
  *   /robots.txt
@@ -24,7 +25,13 @@ const SITE_URL = "https://3dna.es";
 const SITE_NAME = "3DNA";
 const PUBLIC_EMAIL = "andrei@3dna.es"; // published in the site footer
 const LOGO_PATH = "/img/logo.png";
+// Social preview cards (1200 × 630 JPG, made by scripts/og-images.js): one per page and language
 const OG_IMAGE = { path: (lang) => `/images/og/og-${lang}.jpg`, width: 1200, height: 630 };
+const OG_PAGE_IMAGES = {
+  restaurants: (lang) => `/images/og/og-restaurants-${lang}.jpg`,
+  fitness: (lang) => `/images/og/og-fitness-${lang}.jpg`,
+};
+const ogImagePath = (page, lang) => (page && OG_PAGE_IMAGES[page] ? OG_PAGE_IMAGES[page](lang) : OG_IMAGE.path(lang));
 // Language switcher order (header): EN / ES / RU / UK
 const SWITCHER_ORDER = ["en", "es", "ru", "uk"];
 
@@ -32,7 +39,6 @@ const SWITCHER_ORDER = ["en", "es", "ru", "uk"];
 // They have no translations yet, so they go into the sitemap without hreflang.
 const DEFAULT_LANG_LEGACY = "es";
 const LEGACY_PAGES = [
-  "gimnasios-3d.html",
   "clinicas-3d.html",
   "ecosistemas-digitales.html",
   "proyecto01-restaurante.html",
@@ -50,6 +56,7 @@ const formTemplate = read("templates/form-panel.html");
 const layoutHeader = read("templates/layout/header.html");
 const layoutFooter = read("templates/layout/footer.html");
 const restaurantsTemplate = read("templates/restaurants.html");
+const fitnessTemplate = read("templates/fitness.html");
 const restaurantStories = JSON.parse(read("assets/data/restaurant-stories.json"));
 // Spanish keeps the original path, which the legacy (Spanish) pages already load
 const formPartialFile = (lang) => (lang === "es" ? "form-panel.html" : `form-panel.${lang}.html`);
@@ -87,15 +94,39 @@ const restaurantSpec = require("./restaurant-spec.js").createRestaurantSpec(
   restaurantPlanData, JSON.parse(read("assets/data/restaurant-spec.json")), JSON.parse(read("assets/i18n/restaurant-spec.json")));
 const restaurantPlan = require("./restaurant-plan.js").createRestaurantPlan(restaurantPlanData, translations, { spec: restaurantSpec });
 
+// Homepage editorial carousel "the value of design"
+const designQuotes = require("./design-quotes.js").createDesignQuotes(JSON.parse(read("assets/data/design-quotes.json")), translations);
+
 // Localized sub-pages: key -> path under /<lang>/ (slug comes from translations)
 const PAGES = {
   restaurants: {
     template: () => restaurantsTemplate,
     subPath: (lang) => `${translations[lang].restaurantsPage.slug}/`,
     meta: (lang) => translations[lang].restaurantsPage.meta
+  },
+  // Spanish keeps the historic URL /gimnasios-3d.html (the page it replaced);
+  // the other languages follow /<lang>/<slug>/.
+  fitness: {
+    template: () => fitnessTemplate,
+    subPath: (lang) => `${translations[lang].fitnessPage.slug}/`,
+    urlPath: (lang) => (lang === "es" ? "/gimnasios-3d.html" : null),
+    meta: (lang) => translations[lang].fitnessPage.meta
   }
 };
 const pageSubPath = (options, lang) => (options && options.page ? PAGES[options.page].subPath(lang) : "");
+// URL path of a page in a language: /<lang>/<subPath>, unless the page keeps a
+// historic root URL in that language (PAGES[key].urlPath)
+const pagePathFor = (key, lang) => {
+  const page = key ? PAGES[key] : null;
+  const fixed = page && page.urlPath ? page.urlPath(lang) : null;
+  return fixed || `/${lang}/${page ? page.subPath(lang) : ""}`;
+};
+const pagePath = (options, lang) => pagePathFor(options && options.page, lang);
+// file written for a page in a language
+const pageFile = (key, lang) => {
+  const fixed = PAGES[key].urlPath ? PAGES[key].urlPath(lang) : null;
+  return fixed ? fixed.replace(/^\//, "") : `${lang}/${PAGES[key].subPath(lang)}index.html`;
+};
 
 const fileVersion = (rel) =>
   crypto.createHash("sha1").update(fs.readFileSync(path.join(root, rel))).digest("hex").slice(0, 8);
@@ -103,33 +134,37 @@ const fileVersion = (rel) =>
 const jsonForScript = (data) => JSON.stringify(data).replace(/</g, "\\u003c");
 
 // ---------------------------------------------------------------- SEO: metadata
-function alternateLinks(subPathFor = () => "") {
-  const links = SUPPORTED.map((code) => `  <link rel="alternate" hreflang="${code}" href="${localeUrl(code, subPathFor(code))}">`);
-  links.push(`  <link rel="alternate" hreflang="x-default" href="${localeUrl(DEFAULT_LANG, subPathFor(DEFAULT_LANG))}">`);
+function alternateLinks(pathFor = (code) => `/${code}/`) {
+  const links = SUPPORTED.map((code) => `  <link rel="alternate" hreflang="${code}" href="${absolute(pathFor(code))}">`);
+  links.push(`  <link rel="alternate" hreflang="x-default" href="${absolute(pathFor(DEFAULT_LANG))}">`);
   return links;
 }
 
-function socialMeta(lang, t, meta = t.meta, url = localeUrl(lang)) {
-  const image = absolute(OG_IMAGE.path(lang));
+function socialMeta(lang, t, meta = t.meta, url = localeUrl(lang), page = null) {
+  const image = absolute(ogImagePath(page, lang));
+  const ogTitle = meta.ogTitle || meta.title;
+  const ogAlt = meta.ogImageAlt || t.meta.ogImageAlt;
   const lines = [
     `  <meta property="og:type" content="website">`,
     `  <meta property="og:site_name" content="${SITE_NAME}">`,
-    `  <meta property="og:title" content="${escapeHtml(meta.title)}">`,
+    `  <meta property="og:title" content="${escapeHtml(ogTitle)}">`,
     `  <meta property="og:description" content="${escapeHtml(meta.description)}">`,
     `  <meta property="og:url" content="${url}">`,
     `  <meta property="og:image" content="${image}">`,
+    `  <meta property="og:image:secure_url" content="${image}">`,
+    `  <meta property="og:image:type" content="image/jpeg">`,
     `  <meta property="og:image:width" content="${OG_IMAGE.width}">`,
     `  <meta property="og:image:height" content="${OG_IMAGE.height}">`,
-    `  <meta property="og:image:alt" content="${escapeHtml(t.meta.ogImageAlt)}">`,
+    `  <meta property="og:image:alt" content="${escapeHtml(ogAlt)}">`,
     `  <meta property="og:locale" content="${t.meta.ogLocale}">`,
     ...SUPPORTED.filter((code) => code !== lang).map(
       (code) => `  <meta property="og:locale:alternate" content="${translations[code].meta.ogLocale}">`
     ),
     `  <meta name="twitter:card" content="summary_large_image">`,
-    `  <meta name="twitter:title" content="${escapeHtml(meta.title)}">`,
+    `  <meta name="twitter:title" content="${escapeHtml(ogTitle)}">`,
     `  <meta name="twitter:description" content="${escapeHtml(meta.description)}">`,
     `  <meta name="twitter:image" content="${image}">`,
-    `  <meta name="twitter:image:alt" content="${escapeHtml(t.meta.ogImageAlt)}">`
+    `  <meta name="twitter:image:alt" content="${escapeHtml(ogAlt)}">`
   ];
   return lines;
 }
@@ -137,7 +172,7 @@ function socialMeta(lang, t, meta = t.meta, url = localeUrl(lang)) {
 // ---------------------------------------------------------------- SEO: JSON-LD
 // Only confirmed public facts. No address, phone, social profiles or Person
 // until they are published on the site.
-function structuredData(lang, t, meta = t.meta, url = localeUrl(lang)) {
+function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = null) {
   const graph = [
     {
       "@type": "Organization",
@@ -165,7 +200,7 @@ function structuredData(lang, t, meta = t.meta, url = localeUrl(lang)) {
       inLanguage: lang,
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": `${SITE_URL}/#organization` },
-      primaryImageOfPage: { "@type": "ImageObject", url: absolute(OG_IMAGE.path(lang)) }
+      primaryImageOfPage: { "@type": "ImageObject", url: absolute(ogImagePath(page, lang)) }
     }
   ];
   return `  <script type="application/ld+json">${jsonForScript({ "@context": "https://schema.org", "@graph": graph })}</script>`;
@@ -174,9 +209,9 @@ function structuredData(lang, t, meta = t.meta, url = localeUrl(lang)) {
 function headTags(lang, options = {}) {
   const { isRoot } = options;
   const t = translations[lang];
-  const subPathFor = (code) => pageSubPath(options, code);
+  const pathFor = (code) => pagePath(options, code);
   const meta = options.page ? PAGES[options.page].meta(lang) : t.meta;
-  const url = localeUrl(lang, subPathFor(lang));
+  const url = absolute(pathFor(lang));
   const detectSrc = `/assets/js/i18n-detect.js?v=${fileVersion("assets/js/i18n-detect.js")}`;
   // Only what client JS needs; all visible text is rendered into the HTML here.
   const clientI18n = { lang, languages: SUPPORTED, whatsappHref: whatsappHref(lang) };
@@ -184,9 +219,9 @@ function headTags(lang, options = {}) {
   const lines = [
     `  <meta name="description" content="${escapeHtml(meta.description)}">`,
     `  <link rel="canonical" href="${url}">`,
-    ...alternateLinks(subPathFor),
-    ...socialMeta(lang, t, meta, url),
-    structuredData(lang, t, meta, url),
+    ...alternateLinks(pathFor),
+    ...socialMeta(lang, t, meta, url, options.page),
+    structuredData(lang, t, meta, url, options.page),
     `  <script>window.I18N = ${jsonForScript(clientI18n)};</script>`
   ];
 
@@ -210,12 +245,12 @@ function headTags(lang, options = {}) {
 }
 
 // ---------------------------------------------------------------- header: language switcher
-function languageSwitcher(lang, variant, subPathFor = () => "") {
+function languageSwitcher(lang, variant, pathFor = (code) => `/${code}/`) {
   const t = translations[lang];
   const links = SWITCHER_ORDER.filter((code) => SUPPORTED.includes(code)).map((code) => {
     const current = code === lang ? ' aria-current="page"' : "";
     const name = escapeHtml(translations[code].languageName);
-    return `<a href="/${code}/${subPathFor(code)}" hreflang="${code}" lang="${code}" data-lang="${code}" aria-label="${name}"${current}>${code.toUpperCase()}</a>`;
+    return `<a href="${pathFor(code)}" hreflang="${code}" lang="${code}" data-lang="${code}" aria-label="${name}"${current}>${code.toUpperCase()}</a>`;
   });
   return [
     `      <nav class="lang-switch lang-switch--${variant}" aria-label="${escapeHtml(t.nav.language)}">`,
@@ -232,14 +267,20 @@ function render(lang, options = { isRoot: false }, tpl = template) {
   const out = tpl.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (match, key) => {
     if (key === "lang") return lang;
     if (key === "head.i18n") return headTags(lang, options);
-    if (key === "header.langSwitchBar") return languageSwitcher(lang, "bar", (code) => pageSubPath(options, code));
-    if (key === "header.langSwitchMenu") return languageSwitcher(lang, "menu", (code) => pageSubPath(options, code));
+    if (key === "header.langSwitchBar") return languageSwitcher(lang, "bar", (code) => pagePath(options, code));
+    if (key === "header.langSwitchMenu") return languageSwitcher(lang, "menu", (code) => pagePath(options, code));
     if (key === "contact.whatsappHref") return escapeHtml(whatsappHref(lang));
     if (key === "form.partialFile") return formPartialFile(lang);
     if (key === "form.partialVersion") return FORM_PARTIAL_VERSION;
     if (key === "layout.header") return renderPartial(lang, layoutHeader, options);
     if (key === "layout.footer") return renderPartial(lang, layoutFooter, options);
     if (key === "restaurants.storiesHtml") return restaurantsPage.storiesHtml(lang);
+    if (key === "fitnessPage.url") return pagePathFor("fitness", lang);
+    if (key === "designQuotes.html") return designQuotes.sectionHtml(lang);
+    if (key === "fitnessPage.voicesHtml") return designQuotes.fitnessVoicesHtml(lang);
+    // the homepage gym plan drawing, used as a static zoning diagram on the Fitness page
+    if (key === "fitnessPage.planSvg") return fitnessPlanner.planSvg(lang)
+      .replace(/aria-label="[^"]*"/, `aria-label="${escapeHtml(translations[lang].fitnessPage.zoning.planLabel)}"`);
     if (key === "restaurants.planHtml") return restaurantPlan.sectionHtml(lang);
     if (key === "footer.year") return String(new Date().getFullYear());
     if (key === "footer.mailtoHref") {
@@ -295,8 +336,9 @@ const ASSET_VERSIONS = {
   "main.js": (template.match(/main\.js\?v=([\w.-]+)/) || [])[1]
 };
 function layoutPages() {
+  const generated = new Set(Object.keys(PAGES).flatMap((key) => SUPPORTED.map((lang) => pageFile(key, lang))));
   return fs.readdirSync(root).filter((name) =>
-    name.endsWith(".html") && name !== "index.html" && !name.startsWith("index.") &&
+    name.endsWith(".html") && name !== "index.html" && !name.startsWith("index.") && !generated.has(name) &&
     fs.readFileSync(path.join(root, name), "utf8").includes("<!-- 3dna:header -->"));
 }
 
@@ -332,25 +374,37 @@ function localizedPaths() {
     const dir = path.join(root, lang);
     if (fs.existsSync(dir)) walk(dir, "");
   }
+  // pages that keep a historic root URL in some language
+  for (const [key, page] of Object.entries(PAGES)) {
+    if (!page.urlPath) continue;
+    for (const lang of SUPPORTED) {
+      const fixed = page.urlPath(lang);
+      if (!fixed || !fs.existsSync(path.join(root, fixed))) continue;
+      if (!found.has(key)) found.set(key, new Map());
+      found.get(key).set(lang, { url: fixed, file: fixed.replace(/^\//, "") });
+    }
+  }
   return found;
 }
+const entryUrl = (lang, sub) => (typeof sub === "object" ? absolute(sub.url) : localeUrl(lang, sub));
+const entryFile = (lang, sub) => (typeof sub === "object" ? sub.file : `${lang}/${sub}index.html`);
 
 function sitemapXml() {
   const lastmod = (rel) => fs.statSync(path.join(root, rel)).mtime.toISOString().slice(0, 10);
   const urls = [];
   for (const [, langs] of localizedPaths()) {
     const alternates = [...langs].map(
-      ([code, sub]) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${localeUrl(code, sub)}"/>`
+      ([code, sub]) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${entryUrl(code, sub)}"/>`
     );
     if (langs.has(DEFAULT_LANG)) {
-      alternates.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${localeUrl(DEFAULT_LANG, langs.get(DEFAULT_LANG))}"/>`);
+      alternates.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${entryUrl(DEFAULT_LANG, langs.get(DEFAULT_LANG))}"/>`);
     }
     for (const [lang, subPath] of langs) {
       urls.push(
         [
           "  <url>",
-          `    <loc>${localeUrl(lang, subPath)}</loc>`,
-          `    <lastmod>${lastmod(`${lang}/${subPath}index.html`)}</lastmod>`,
+          `    <loc>${entryUrl(lang, subPath)}</loc>`,
+          `    <lastmod>${lastmod(entryFile(lang, subPath))}</lastmod>`,
           ...alternates,
           "  </url>"
         ].join("\n")
@@ -396,7 +450,7 @@ for (const [key, page] of Object.entries(PAGES)) {
   for (const lang of SUPPORTED) {
     const html = render(lang, { page: key }, page.template())
       .replace(/(main\.(?:css|js))\?v=[\w.-]+/g, (m, file) => `${file}?v=${ASSET_VERSIONS[file]}`);
-    write(`${lang}/${page.subPath(lang)}index.html`, html);
+    write(pageFile(key, lang), html);
   }
 }
 for (const page of layoutPages()) {

@@ -384,6 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const banner = document.getElementById("cookie-consent");
   const prefs = document.getElementById("cookie-prefs");
   if (!banner || !prefs) return;
+  window.__cookieConsentReady = true; // the inline bootstrap in the footer stands down
   const toggle = prefs.querySelector('[data-consent-toggle="analytics"]');
   let lastFocus = null;
 
@@ -938,101 +939,36 @@ onFormPanelLifecycle(() => {
 
 
 // =============================================
-// 16. REVIEWS MARQUEE (RAF auto-scroll + drag)
+// QUOTE SPACER (homepage after the hero, Fitness page between the films; markup scripts/design-quotes.js)
 // =============================================
-document.addEventListener("DOMContentLoaded", () => {
-  const marquee = document.querySelector("#reviews .reviews-marquee");
-  const track = document.querySelector("#reviews .reviews-track");
-  if (!marquee || !track) return;
-
-  // Duplicate content for seamless infinite loop
-  if (!track.dataset.looped) {
-    track.innerHTML += track.innerHTML;
-    track.dataset.looped = "1";
-  }
-
-  // Remove any CSS animation — JS controls position entirely
-  track.style.animation = "none";
-
-  const SPEED = 30; // px/s
-
-  let offset = 0;       // current translateX (always negative or 0)
-  let halfW = 0;
-  let lastTs = null;
-
-  // Drag state
-  let isDragging = false;
-  let startX = 0;
-  let startY = 0;
-  let direction = null; // 'h' | 'v' | null
-  let dragDelta = 0;    // live horizontal delta during drag
-
-  function tick(ts) {
-    if (lastTs === null) lastTs = ts;
-    const dt = Math.min((ts - lastTs) / 1000, 0.05);
-    lastTs = ts;
-
-    halfW = track.scrollWidth / 2;
-
-    if (!isDragging) {
-      offset -= SPEED * dt;
-    }
-
-    // Normalize: keep offset in [-halfW, 0)
-    if (halfW > 0) {
-      while (offset <= -halfW) offset += halfW;
-      while (offset > 0)       offset -= halfW;
-    }
-
-    track.style.transform = `translateX(${offset + dragDelta}px)`;
-    requestAnimationFrame(tick);
-  }
-
-  requestAnimationFrame(tick);
-
-  // ---- Drag ----
-  marquee.addEventListener("pointerdown", (e) => {
-    if (e.pointerType === "mouse" && e.button !== 0) return;
-    isDragging = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    direction = null;
-    dragDelta = 0;
-    marquee.setPointerCapture(e.pointerId);
-  });
-
-  marquee.addEventListener("pointermove", (e) => {
-    if (!isDragging) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-
-    if (direction === null) {
-      if (Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
-      direction = Math.abs(dx) >= Math.abs(dy) ? "h" : "v";
-      if (direction === "v") { isDragging = false; return; }
-    }
-
-    if (direction !== "h") return;
-    e.preventDefault();
-
-    dragDelta = dx;
-    marquee.classList.add("is-dragging");
-  }, { passive: false });
-
-  function endDrag() {
-    if (!isDragging) return;
-    isDragging = false;
-    direction = null;
-    // Absorb drag into offset so animation continues from here
-    offset += dragDelta;
-    dragDelta = 0;
-    marquee.classList.remove("is-dragging");
-  }
-
-  marquee.addEventListener("pointerup", endDrag);
-  marquee.addEventListener("pointercancel", endDrag);
-  marquee.addEventListener("lostpointercapture", endDrag);
-  marquee.addEventListener("dragstart", (e) => e.preventDefault());
+// One message at a time; a slow crossfade every 7 s while the band is on
+// screen. Hover or keyboard focus holds the current message; no rotation with
+// reduced motion or in a hidden tab.
+document.querySelectorAll("[data-qspacer]").forEach((root) => {
+  const items = [...root.querySelectorAll("[data-qs-item]")];
+  if (items.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const INTERVAL = 7000;
+  let index = 0, timer = 0, inView = false, held = false;
+  const show = (i) => {
+    index = (i + items.length) % items.length;
+    items.forEach((el, k) => {
+      el.classList.toggle("is-active", k === index);
+      if (k === index) el.removeAttribute("aria-hidden"); else el.setAttribute("aria-hidden", "true");
+    });
+  };
+  const schedule = () => {
+    clearInterval(timer);
+    timer = 0;
+    if (inView && !held && !document.hidden) timer = setInterval(() => show(index + 1), INTERVAL);
+  };
+  root.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { held = true; schedule(); } });
+  root.addEventListener("pointerleave", () => { held = false; schedule(); });
+  root.addEventListener("focusin", () => { held = true; schedule(); });
+  root.addEventListener("focusout", (e) => { if (!root.contains(e.relatedTarget)) { held = false; schedule(); } });
+  document.addEventListener("visibilitychange", schedule);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; schedule(); }, { threshold: 0.4 }).observe(root);
+  } else { inView = true; schedule(); }
 });
 
 // =============================================
@@ -1043,7 +979,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // - reduced motion: no video (poster stays), no reveal animation
 // - one "<sector>_section_viewed" analytics hook per page view (data-track-view)
 (() => {
-  const sections = document.querySelectorAll(".sector, .transform, .fit247, .vbanner, .pcontent, .fsvideo, .rstory, .rwide");
+  const sections = document.querySelectorAll(".sector, .transform, .fit247, .vbanner, .pcontent, .fsvideo, .rstory, .rwide, .fscene");
   if (!sections.length) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasIO = "IntersectionObserver" in window;

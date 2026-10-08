@@ -1,0 +1,50 @@
+{
+  "_comment": "Homepage quote spacer after the hero. type 'quote' = verbatim quotation (in quotation marks, labelled 'direct quotation'); type 'summary' = 3DNA's own research-based statement (labelled as such, never in quotation marks). Text per language: assets/i18n/translations.json → designQuotes.items.<id>.",
+  "items": [
+    {
+      "id": "ibm",
+      "type": "quote",
+      "author": "Thomas J. Watson Jr.",
+      "org": "IBM",
+      "url": "https://www.ibm.com/history/architecture"
+    },
+    {
+      "id": "mckinsey-2018",
+      "type": "summary",
+      "org": "McKinsey & Company",
+      "title": "The Business Value of Design",
+      "year": 2018,
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-business-value-of-design"
+    },
+    {
+      "id": "hbr-2008",
+      "type": "summary",
+      "org": "Harvard Business Review",
+      "title": "Design Thinking",
+      "author": "Tim Brown",
+      "year": 2008,
+      "url": "https://hbr.org/2008/06/design-thinking"
+    },
+    {
+      "id": "design-council-economy",
+      "type": "summary",
+      "org": "Design Council",
+      "title": "Design Economy",
+      "url": "https://www.designcouncil.org.uk/our-work/design-economy/"
+    },
+    {
+      "id": "mckinsey-tapping",
+      "type": "summary",
+      "org": "McKinsey & Company",
+      "title": "Tapping into the Business Value of Design",
+      "url": "https://www.mckinsey.com/capabilities/mckinsey-design/our-insights/tapping-into-the-business-value-of-design"
+    },
+    {
+      "id": "design-council-value",
+      "type": "summary",
+      "org": "Design Council",
+      "title": "The Design Value Framework",
+      "url": "https://www.designcouncil.org.uk/resources/the-design-value-framework/"
+    }
+  ]
+}

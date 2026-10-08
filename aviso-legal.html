@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Lato&family=Ultra&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=20261016c">
+  <link rel="stylesheet" href="assets/css/main.css?v=20261017o">
   <style>
     body {
       scroll-snap-type: none !important;
@@ -305,6 +305,40 @@
     <button type="button" class="cconsent__btn cconsent__btn--text" data-consent="choose" aria-haspopup="dialog" aria-controls="cookie-prefs">Elegir cookies</button>
   </div>
 </aside>
+<script>
+/* Cookie banner bootstrap (plain ES5, runs as soon as the banner is parsed).
+   Shows the banner to visitors without a saved choice even if assets/js/main.js
+   cannot run on their browser (older mobile Safari, in-app browsers, a script
+   error); main.js takes over when it loads (window.__cookieConsentReady).
+   Keep KEY / VERSION in sync with "4. COOKIE CONSENT" in main.js. */
+(function () {
+  var KEY = '3dna_cookie_consent', VERSION = 1;
+  var banner = document.getElementById('cookie-consent');
+  if (!banner) return;
+  var decided = false;
+  try {
+    var c = JSON.parse(localStorage.getItem(KEY) || 'null');
+    decided = !!(c && c.version === VERSION) || !!localStorage.getItem('cookiesDecision');
+  } catch (e) { decided = false; }
+  if (decided) return;
+  banner.hidden = false;
+  banner.className += ' is-visible';
+  // Fallback only if main.js never wired the buttons: Accept / Reject still save a choice.
+  window.addEventListener('load', function () {
+    if (window.__cookieConsentReady) return;
+    banner.addEventListener('click', function (e) {
+      var t = e.target;
+      while (t && t !== banner && !(t.getAttribute && t.getAttribute('data-consent'))) t = t.parentNode;
+      var action = t && t.getAttribute ? t.getAttribute('data-consent') : null;
+      if (action !== 'accept' && action !== 'reject') return;
+      var payload = { version: VERSION, essential: true, analytics: action === 'accept', marketing: false, timestamp: new Date().toISOString(), source: 'fallback-' + action };
+      try { localStorage.setItem(KEY, JSON.stringify(payload)); } catch (err) {}
+      document.cookie = KEY + '=' + encodeURIComponent(JSON.stringify(payload)) + '; path=/; max-age=31536000; SameSite=Lax';
+      banner.hidden = true;
+    });
+  });
+})();
+</script>
 
 <div class="cprefs" id="cookie-prefs" role="dialog" aria-modal="true" aria-labelledby="cookie-prefs-title" hidden>
   <div class="cprefs__backdrop" data-consent="close"></div>
@@ -334,6 +368,6 @@
   </div>
 </div>
 <!-- /3dna:footer -->
-  <script src="assets/js/main.js?v=20261015a"></script>
+  <script src="assets/js/main.js?v=20261017f"></script>
 </body>
 </html>
