@@ -13,6 +13,8 @@
   <!-- The hero poster is the first paint (also the reduced-motion image) -->
   <link rel="preload" as="image" href="/images/fitness/hero-walkthrough-poster.webp" type="image/webp" fetchpriority="high">
 
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/main.css?v=20261011b">
@@ -172,26 +174,11 @@
     </div>
   </section>
 
-  <!-- 04 FUNCTIONAL ZONING: schematic plan (same data as the homepage gym planner) -->
-  <section class="fscene fzoning" id="zonificacion" aria-labelledby="f-zoning-title">
-    <div class="fzoning__inner">
-      <div class="fzoning__text">
-        <p class="fscene__label">{{fitnessPage.zoning.label}}</p>
-        <h2 class="fscene__title" id="f-zoning-title">{{fitnessPage.zoning.heading}}</h2>
-        <p class="fscene__body">{{fitnessPage.zoning.body}}</p>
-        <ol class="fzoning__list">
-          <li>{{fitnessPage.zoning.zones.0}}</li>
-          <li>{{fitnessPage.zoning.zones.1}}</li>
-          <li>{{fitnessPage.zoning.zones.2}}</li>
-          <li>{{fitnessPage.zoning.zones.3}}</li>
-          <li>{{fitnessPage.zoning.zones.4}}</li>
-        </ol>
-      </div>
-      <div class="fzoning__plan">
-{{fitnessPage.planSvg}}
-      </div>
-    </div>
-  </section>
+  <!-- 03 ZONING: interactive 3D model of a conceptual fitness club (10 zones).
+       Section HTML (header, zone buttons, specification panel, plan fallback):
+       scripts/fitness-club.js; 3D + interaction: assets/js/fitness-club-3d/.
+       Demonstration data: assets/data/fitness-club.json. -->
+{{fitnessPage.clubHtml}}
 
   <!-- 05 FITNESS CATEGORIES: typographic (no images yet — see the asset list in the report) -->
   <section class="fscene fcats" id="categorias" aria-labelledby="f-cats-title">
@@ -294,6 +281,7 @@
 {{layout.footer}}
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261011a"></script>
+<script src="/assets/js/fitness-club-3d/club-app.js?v=20261019b" defer></script>
 
 <!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
      main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->

@@ -63,6 +63,8 @@ const formPartialFile = (lang) => (lang === "es" ? "form-panel.html" : `form-pan
 const translations = JSON.parse(read("assets/i18n/translations.json"));
 const gym = JSON.parse(read("assets/data/gym-zones.json"));
 const fitnessPlanner = require("./fitness-planner.js").createFitnessPlanner(gym, translations);
+const fitnessClub = require("./fitness-club.js").createFitnessClub(
+  JSON.parse(read("assets/data/fitness-club.json")), JSON.parse(read("assets/i18n/fitness-club.json")), translations);
 const servicesPricing = require("./services-pricing.js").createServicesPricing(
   JSON.parse(read("assets/data/services.json")), translations,
   { whatsappNumber: translations.es.contact.whatsappNumber });
@@ -278,6 +280,7 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "fitnessPage.url") return pagePathFor("fitness", lang);
     if (key === "designQuotes.html") return designQuotes.sectionHtml(lang);
     if (key === "fitnessPage.voicesHtml") return designQuotes.fitnessVoicesHtml(lang);
+    if (key === "fitnessPage.clubHtml") return fitnessClub.sectionHtml(lang);
     // the homepage gym plan drawing, used as a static zoning diagram on the Fitness page
     if (key === "fitnessPage.planSvg") return fitnessPlanner.planSvg(lang)
       .replace(/aria-label="[^"]*"/, `aria-label="${escapeHtml(translations[lang].fitnessPage.zoning.planLabel)}"`);

@@ -6,10 +6,11 @@
  *
  * 1. Homepage, after the hero — the value of design.
  *    Data: assets/data/design-quotes.json; text: designQuotes.* in translations.
- *    Only items of type "quote" are quotations (quotation marks, <blockquote>,
- *    labelled as a direct quotation). Every "summary" is labelled as a
- *    research-based statement and is never in quotation marks. The attribution
- *    links the source.
+ *    Only items of type "quote" are quotations (quotation marks, <blockquote>).
+ *    Every "summary" is a research-based statement and is never in quotation
+ *    marks. The visible attribution is the organisation name only and links
+ *    the source; author, publication and the kind of statement are kept in
+ *    screen-reader text.
  * 2. Fitness page, between the hero and the process film — what fitness club
  *    customers want. Text: fitnessPage.voices.* in translations. These are
  *    ILLUSTRATIVE customer wishes, not testimonials: no quotation marks, no
@@ -47,14 +48,15 @@ function createDesignQuotes(data, translations) {
       items: data.items.map((it) => {
         const text = p.items[it.id];
         const isQuote = it.type === "quote";
-        const who = isQuote ? `${it.author} · ${it.org}` : it.org;
+        // visible attribution: the organisation only. The quote's author, the
+        // publication and the kind of statement stay available to screen readers.
         const kind = isQuote ? `${p.quoteKind}${p.translatedNote ? ` (${p.translatedNote})` : ""}` : p.researchKind;
-        const pub = [it.title, it.year].filter(Boolean).join(", ");
+        const pub = [isQuote ? it.author : "", it.title, it.year].filter(Boolean).join(", ");
         return {
           body: isQuote
             ? `<blockquote class="qspacer__quote" cite="${escapeHtml(it.url)}"><p class="qspacer__text">“${escapeHtml(text)}”</p></blockquote>`
             : `<p class="qspacer__text">${escapeHtml(text)}</p>`,
-          caption: `<a href="${escapeHtml(it.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(who)}<span class="qspacer__sr">${pub ? ` — ${escapeHtml(pub)}` : ""} (${escapeHtml(p.newTab)})</span></a> · ${escapeHtml(kind)}`
+          caption: `<a href="${escapeHtml(it.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(it.org)}<span class="qspacer__sr"> — ${pub ? `${escapeHtml(pub)} · ` : ""}${escapeHtml(kind)} (${escapeHtml(p.newTab)})</span></a>`
         };
       })
     });

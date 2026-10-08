@@ -10303,8 +10303,8 @@ section#hero.sector-hero.fhero{ background: #15110d var(--fhero-poster) 50% 50% 
 .fpage section.fscene, .fpage .fscene p, .fpage .fscene h2, .fpage .fscene h3, .fpage .fscene li{ text-align: left; }
 .fpage section.fscene{ color: var(--f-ink); }
 .fpage .fscene__title{ color: var(--f-ink) !important; }
-.fpage section.fwide, .fpage section.fzoning, .fpage section.fdetails{ color: #fff; }
-.fpage .fwide .fscene__title, .fpage .fzoning .fscene__title, .fpage .fdetails .fscene__title{ color: #fff !important; }
+.fpage section.fwide, .fpage section.fclub, .fpage section.fdetails{ color: #fff; }
+.fpage .fwide .fscene__title, .fpage .fclub .fscene__title, .fpage .fdetails .fscene__title{ color: #fff !important; }
 .fpage section.fcontact, .fpage .fcontact p, .fpage .fcontact h2{ text-align: center; }
 section.fscene{ display: block; height: auto; min-height: 0; margin: 0 !important; padding: 0; scroll-snap-align: none; scroll-margin-top: 68px; }
 .fscene__inner{ max-width: 1320px; margin: 0 auto; padding: clamp(72px, 12vh, 140px) 6vw; }
@@ -10431,18 +10431,159 @@ section.fwide{ position: relative; overflow: hidden; background: #15110d; color:
 }
 
 /* 04 zoning: dark scene with the schematic plan */
-section.fzoning{ background: #161513; color: #fff; }
-.fzoning__inner{ display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 36px; max-width: 1320px; margin: 0 auto; padding: clamp(72px, 12vh, 140px) 6vw; align-items: center; }
-.fzoning .fscene__label{ color: #e3c48f; }
-.fzoning .fscene__body{ color: rgba(255,255,255,.82); }
-.fzoning__list{ margin: 28px 0 0; padding: 0; list-style: none; counter-reset: fz; border-top: 1px solid rgba(255,255,255,.14); }
-.fzoning__list li{ counter-increment: fz; display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.14); font-size: 15px; color: rgba(255,255,255,.9); }
-.fzoning__list li::before{ content: counter(fz, decimal-leading-zero); font-size: 11px; letter-spacing: .14em; color: #e3c48f; padding-top: 3px; }
-.fzoning__plan{ width: 100%; }
-.fzoning__plan .gym-plan{ display: block; width: 100%; height: auto; }
-.fzoning__plan .gym-plan__zone{ cursor: default; pointer-events: none; }
+/* 03 zoning: interactive 3D fitness club (scripts/fitness-club.js, assets/js/fitness-club-3d/) */
+section.fclub{ background: #111214; color: #fff; }
+.fclub__inner{ max-width: 1640px; margin: 0 auto; padding: clamp(72px, 11vh, 130px) clamp(16px, 3vw, 48px); }
+.fclub__head{ max-width: 720px; margin: 0 0 clamp(28px, 4vh, 44px); padding: 0 clamp(0px, 2vw, 24px); }
+.fclub .fscene__label{ color: #e3c48f; }
+.fclub .fscene__body{ color: rgba(255,255,255,.78); }
+.fclub__stage{ --fclub-h: clamp(540px, 80vh, 880px); position: relative; }
+.fclub__viewport{
+  position: relative; height: var(--fclub-h); overflow: hidden; border-radius: 6px;
+  background: radial-gradient(120% 90% at 50% 40%, #23252a 0%, #16171a 55%, #0e0f11 100%);
+  isolation: isolate;
+}
+.fclub__canvas{ position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; outline: none; }
+.fclub-plan{ position: absolute; inset: 0; width: 100%; height: 100%; padding: 6%; box-sizing: border-box; }
+.fclub-plan__slab{ fill: #1c1d21; stroke: rgba(255,255,255,.18); stroke-width: .08; }
+.fclub-plan__corr{ fill: rgba(140,200,255,.05); }
+.fclub-plan__zone rect{ fill: rgba(255,255,255,.04); stroke: rgba(255,255,255,.22); stroke-width: .06; transition: fill .2s ease; }
+.fclub-plan__zone{ cursor: pointer; }
+.fclub-plan__zone:hover rect{ fill: rgba(140,200,255,.12); }
+.fclub-plan__zone.is-active rect{ fill: rgba(140,200,255,.2); stroke: #8cc8ff; }
+.fclub-plan__zone text{ fill: rgba(255,255,255,.8); font: 600 1px "Inter", system-ui, sans-serif; text-anchor: middle; letter-spacing: .05em; }
+
+/* zone pins (HTML over the canvas) */
+.fclub__labels{ position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.fclub__pin{
+  position: absolute; left: 0; top: 0; display: inline-flex; align-items: center; gap: 0;
+  padding: 3px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px;
+  background: rgba(14,15,17,.72); color: #fff; cursor: pointer; pointer-events: auto;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  font: 500 12px/1 "Inter", system-ui, sans-serif; letter-spacing: .02em; white-space: nowrap;
+  transition: opacity .3s ease, border-color .25s ease, background-color .25s ease;
+}
+.fclub__pin-num{
+  display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(255,255,255,.1); font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
+  transition: background-color .25s ease, color .25s ease;
+}
+.fclub__pin-name{ max-width: 0; overflow: hidden; opacity: 0; transition: max-width .35s ease, opacity .25s ease, padding .35s ease; }
+.fclub__pin.is-hover, .fclub__pin.is-selected{ border-color: rgba(140,200,255,.8); }
+.fclub__pin.is-hover .fclub__pin-name, .fclub__pin.is-selected .fclub__pin-name{ max-width: 220px; opacity: 1; padding: 0 9px 0 8px; }
+.fclub__pin.is-selected .fclub__pin-num{ background: #8cc8ff; color: #0d0e10; }
+.fclub__pin.is-dim{ opacity: .4; }
+.fclub__pin:focus-visible{ outline: 2px solid #8cc8ff; outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine){ .fclub__pin:hover{ border-color: rgba(140,200,255,.8); } }
+
+.fclub__loading, .fclub__fallback{
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; z-index: 2;
+  padding: 10px 16px; border-radius: 999px; background: rgba(10,11,13,.8); color: rgba(255,255,255,.85);
+  font: 500 13px/1.4 "Inter", system-ui, sans-serif; text-align: center !important; max-width: min(88%, 420px);
+}
+.fclub__fallback{ top: auto; bottom: 16px; transform: translateX(-50%); border-radius: 8px; }
+.fclub__reset{
+  position: absolute; left: 16px; bottom: 16px; z-index: 2; min-height: 40px; padding: 0 16px;
+  border: 1px solid rgba(255,255,255,.25); border-radius: 999px; background: rgba(14,15,17,.72); color: #fff; cursor: pointer;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  font: 500 12px/1 "Inter", system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase;
+}
+.fclub__reset:hover{ border-color: #8cc8ff; }
+.fclub__reset:focus-visible{ outline: 2px solid #8cc8ff; outline-offset: 2px; }
+.fclub__hint{
+  position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 1; margin: 0; pointer-events: none;
+  font: 400 11.5px/1.4 "Inter", system-ui, sans-serif; letter-spacing: .03em; color: rgba(255,255,255,.55);
+  text-align: center !important; white-space: nowrap;
+}
+.fclub.has-selection .fclub__hint{ opacity: 0; transition: opacity .4s ease; }
+
+/* zone buttons under the model */
+.fclub__nav{ display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+.fclub__zone{
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 4px 14px 4px 5px;
+  border: 1px solid rgba(255,255,255,.16); border-radius: 999px; background: transparent; color: rgba(255,255,255,.88); cursor: pointer;
+  font: 500 13px/1 "Inter", system-ui, sans-serif; transition: border-color .2s ease, background-color .2s ease;
+}
+.fclub__zone-num{ display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.08); font-size: 11px; font-weight: 600; letter-spacing: .06em; }
+.fclub__zone:hover{ border-color: rgba(140,200,255,.6); }
+.fclub__zone[aria-pressed="true"]{ border-color: #8cc8ff; background: rgba(140,200,255,.1); color: #fff; }
+.fclub__zone[aria-pressed="true"] .fclub__zone-num{ background: #8cc8ff; color: #0d0e10; }
+.fclub__zone:focus-visible{ outline: 2px solid #8cc8ff; outline-offset: 2px; }
+
+/* specification panel: floating on desktop, bottom sheet on phones */
+.fclub__panel{ color: #fff; }
+.fclub-z{ position: relative; }
+.fclub-z[hidden]{ display: none; }
+.fclub-z__close{
+  position: absolute; top: -6px; right: -6px; display: grid; place-items: center; width: 36px; height: 36px; padding: 0;
+  border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; font-size: 20px; line-height: 1;
+}
+.fclub-z__close:hover{ border-color: #8cc8ff; }
+.fclub-z__close:focus-visible{ outline: 2px solid #8cc8ff; outline-offset: 2px; }
+.fclub-z__kicker{ margin: 0 0 6px; font: 600 11px/1.3 "Inter", system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #8cc8ff; }
+.fpage .fclub .fclub-z__title{ text-transform: none; letter-spacing: 0; margin: 0 44px 12px 0; font: 400 clamp(26px, 2.2vw, 32px)/1.1 "DM Serif Text", Georgia, serif; color: #fff; }
+.fclub-z__desc, .fclub-z__text{ margin: 0 0 14px; font: 400 14px/1.6 "Inter", system-ui, sans-serif; color: rgba(255,255,255,.78); }
+.fclub-z__fig{ margin: 0 0 14px; }
+.fclub-z__fig img{ display: block; width: 100%; height: 150px; object-fit: cover; border-radius: 4px; }
+.fclub-z__fig figcaption{ margin-top: 6px; font: 400 10.5px/1.3 "Inter", system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+.fclub-z__facts{ display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 0 0 18px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.12); border-radius: 4px; overflow: hidden; }
+.fclub-z__facts div{ padding: 10px 12px; background: #15161a; }
+.fclub-z__facts dt{ font: 500 10px/1.3 "Inter", system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.fclub-z__facts dd{ margin: 4px 0 0; font: 500 18px/1.2 "Inter", system-ui, sans-serif; color: #fff; }
+.fclub-z__facts dd span{ font-size: 11px; color: rgba(255,255,255,.6); font-weight: 400; }
+.fpage .fclub .fclub-z__h{ margin: 18px 0 8px; font: 600 10.5px/1.3 "Inter", system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+.fclub-z__list{ margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(255,255,255,.1); }
+.fpage .fclub .fclub-z__list li{ padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.08); font: 400 13.5px/1.4 "Inter", system-ui, sans-serif; color: rgba(255,255,255,.88); }
+.fclub-z__qty{ display: inline-block; min-width: 34px; color: #8cc8ff; font-variant-numeric: tabular-nums; }
+.fclub-z__tags{ display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.fpage .fclub .fclub-z__tags li{ padding: 5px 10px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; font: 400 12px/1.3 "Inter", system-ui, sans-serif; color: rgba(255,255,255,.82); }
+.fclub-z__budget{ width: 100%; border-collapse: collapse; font: 400 13px/1.4 "Inter", system-ui, sans-serif; }
+.fclub-z__budget th{ padding: 7px 0; text-align: left; font-weight: 400; color: rgba(255,255,255,.7); border-bottom: 1px solid rgba(255,255,255,.08); }
+.fclub-z__budget td{ padding: 7px 0; text-align: right; color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; border-bottom: 1px solid rgba(255,255,255,.08); }
+.fclub-z__budget tfoot th, .fclub-z__budget tfoot td{ font-weight: 600; color: #fff; border-bottom: 0; padding-top: 10px; }
+.fclub-z__total{ margin: 0 0 12px; font: 500 16px/1.4 "Inter", system-ui, sans-serif; color: #fff; }
+.fclub-z__total span{ display: block; font: 500 10px/1.3 "Inter", system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 4px; }
+.fpage .fclub .fclub-z__note{ margin: 14px 0 0; font: 400 11.5px/1.5 "Inter", system-ui, sans-serif; color: rgba(255,255,255,.5); }
+.fclub__scrim{ position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,.5); }
+.fclub__scrim[hidden]{ display: none; }
+
 @media (min-width: 901px){
-  .fzoning__inner{ grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); column-gap: clamp(40px, 6vw, 110px); }
+  .fclub__panel{
+    position: absolute; top: 16px; right: 16px; z-index: 3; width: min(380px, 34%); max-height: calc(var(--fclub-h) - 32px);
+    overflow: auto; overscroll-behavior: contain; box-sizing: border-box; padding: 22px 22px 20px;
+    border: 1px solid rgba(255,255,255,.1); border-radius: 8px;
+    background: rgba(16,17,20,.86); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.25) transparent;
+  }
+  .fclub-z--overview .fclub-z__note{ display: none; }
+  .fclub:not(.has-selection) .fclub__panel{ width: min(320px, 30%); }
+}
+@media (max-width: 900px){
+  .fclub__stage{ --fclub-h: clamp(420px, 62vh, 600px); }
+  .fclub__viewport{ border-radius: 4px; }
+  .fclub__inner{ padding-left: 12px; padding-right: 12px; }
+  .fclub__head{ padding: 0 10px; }
+  .fclub__hint{ white-space: normal; width: calc(100% - 24px); top: 12px; bottom: auto; font-size: 10.5px; }
+  .fclub__reset{ left: 12px; bottom: 12px; }
+  .fclub__nav{ flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px; scroll-snap-type: x proximity; }
+  .fclub__nav::-webkit-scrollbar{ display: none; }
+  .fclub__nav li{ flex: 0 0 auto; scroll-snap-align: start; }
+  .fclub__panel{ margin-top: 20px; padding: 0 10px; }
+  .fclub-z--overview .fclub-z__title{ font-size: 24px; }
+  .fclub.is-sheet-open .fclub__panel{
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 1001; margin: 0; max-height: 62vh; overflow: auto; overscroll-behavior: contain;
+    padding: 26px 20px calc(24px + env(safe-area-inset-bottom)); border-radius: 14px 14px 0 0;
+    background: #16171a; box-shadow: 0 -12px 40px rgba(0,0,0,.45);
+    animation: fclub-sheet .32s cubic-bezier(.2,.8,.2,1);
+  }
+  .fclub.is-sheet-open .fclub__panel::before{ content: ""; position: sticky; top: -14px; display: block; width: 40px; height: 4px; margin: -14px auto 14px; border-radius: 2px; background: rgba(255,255,255,.25); }
+  .fclub-z__close{ top: 0; right: 0; }
+  body.fclub-sheet-open{ overflow: hidden; }
+}
+@keyframes fclub-sheet{ from{ transform: translateY(40px); opacity: .4; } to{ transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce){
+  .fclub__pin, .fclub__pin-name, .fclub__zone{ transition: none; }
+  .fclub.is-sheet-open .fclub__panel{ animation: none; }
 }
 
 /* 05 categories: typographic list */
@@ -10508,7 +10649,7 @@ section.fcontact{ border-top: 1px solid var(--f-rule); text-align: center; }
 .fpage a:focus-visible{ outline: 2px solid var(--f-accent); outline-offset: 3px; }
 
 @media (max-width: 767px){
-  .fscene__inner, .fsplit__inner, .fzoning__inner{ padding: 64px 22px; }
+  .fscene__inner, .fsplit__inner{ padding: 64px 22px; }
   .fwide__text{ padding: 0 22px 36px; }
   .fscene__title{ font-size: clamp(36px, 10.5vw, 48px); }
   html[lang="ru"] .fscene__title, html[lang="uk"] .fscene__title{ font-size: clamp(30px, 8.6vw, 40px); }

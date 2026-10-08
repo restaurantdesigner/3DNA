@@ -1,0 +1,257 @@
+{
+  "_about": "Fitness page, section 03 / Zonificación: conceptual 3D fitness club (DEMONSTRATION DATA, not a real project). Units: metres; origin at the back-left inner corner of the club, +x to the right, +z towards the street facade. 'rect' = zone footprint (x, z = back-left corner; w, d = size); the shown area is w × d. 'items' place equipment and furniture: k = model key (assets/js/fitness-club-3d/club-equipment.js), p = [x, z] position of the first copy, r = rotation in degrees (0 = the user / front side faces +z, 90 = faces +x), n = copies, s = [dx, dz] step between copies, y = raised floor level. The panel quantities are counted from these items, so the list always matches the model. 'budget' values are ILLUSTRATIVE [min, max] EUR ranges excl. VAT for the concept stage, never quotes. Texts: assets/i18n/fitness-club.json.",
+  "model": {
+    "url": null,
+    "note": "To use a professionally authored model, export a GLB with one group per zone named 'zone-<id>' (e.g. 'zone-cardio') and set url to its path (e.g. '/models/fitness/club.glb'). The procedural model below is then skipped; selection, camera, panel and labels keep working unchanged."
+  },
+  "footprint": { "w": 40, "d": 26 },
+  "zones": [
+    {
+      "id": "recepcion", "index": "01", "floor": "oak",
+      "rect": { "x": 16, "z": 18, "w": 14, "d": 8 },
+      "capacity": 14,
+      "image": null,
+      "furniture": ["receptionDesk", "loungeSofa", "loungeChairs", "shakeBar", "retail"],
+      "materials": ["oakSlats", "stoneTop", "oakFloor", "graphiteMetal"],
+      "lighting": "recepcion",
+      "budget": { "equipment": [18000, 30000], "furniture": [35000, 60000], "finishes": [25000, 40000], "lighting": [10000, 18000] },
+      "items": [
+        { "k": "slat_wall", "p": [24.6, 18.3], "r": 0 },
+        { "k": "reception_desk", "p": [24.8, 20.7], "r": 0 },
+        { "k": "speed_gate", "p": [18.5, 20.7], "r": 0, "n": 4, "s": [0.9, 0] },
+        { "k": "rug", "p": [18.6, 23.6], "r": 0 },
+        { "k": "sofa", "p": [16.9, 23.6], "r": 90 },
+        { "k": "lounge_chair", "p": [20.2, 22.9], "r": -90, "n": 2, "s": [0, 1.4] },
+        { "k": "coffee_table", "p": [18.6, 23.6], "r": 0 },
+        { "k": "shake_bar", "p": [28.3, 23.6], "r": -90 },
+        { "k": "bar_stool", "p": [27.3, 22.6], "r": 90, "n": 3, "s": [0, 1.0] },
+        { "k": "back_bar", "p": [29.65, 23.6], "r": -90 },
+        { "k": "retail_unit", "p": [28.7, 18.5], "r": 0 },
+        { "k": "planter", "p": [20.7, 25.3], "r": 0 },
+        { "k": "planter", "p": [25.5, 25.3], "r": 0 }
+      ]
+    },
+    {
+      "id": "cardio", "index": "02", "floor": "rubber",
+      "rect": { "x": 0, "z": 18, "w": 16, "d": 8 },
+      "capacity": 22,
+      "image": { "src": "/images/fitness/hero-after.webp", "w": 1280, "h": 720 },
+      "furniture": ["towelStation"],
+      "materials": ["rubberFloor", "glassFacade", "graphiteMetal"],
+      "lighting": "cardio",
+      "budget": { "equipment": [100000, 152000], "furniture": [2000, 4000], "finishes": [6000, 9000], "lighting": [8000, 14000] },
+      "items": [
+        { "k": "treadmill", "p": [1.4, 23.7], "r": 0, "n": 6, "s": [1.2, 0] },
+        { "k": "elliptical", "p": [9.0, 23.7], "r": 0, "n": 4, "s": [1.2, 0] },
+        { "k": "stair_climber", "p": [14.0, 23.8], "r": 0, "n": 2, "s": [1.15, 0] },
+        { "k": "upright_bike", "p": [1.6, 20.4], "r": 0, "n": 4, "s": [1.0, 0] },
+        { "k": "rower", "p": [6.0, 20.3], "r": 0, "n": 3, "s": [1.0, 0] },
+        { "k": "air_bike", "p": [10.0, 20.4], "r": 0, "n": 3, "s": [1.25, 0] },
+        { "k": "towel_station", "p": [14.6, 19.2], "r": 0 }
+      ]
+    },
+    {
+      "id": "fuerza", "index": "03", "floor": "rubber",
+      "rect": { "x": 30, "z": 9.2, "w": 10, "d": 16.8 },
+      "capacity": 14,
+      "image": { "src": "/images/fitness/detail-lighting.webp", "w": 460, "h": 460 },
+      "furniture": ["towelStation"],
+      "materials": ["rubberFloor", "glassFacade", "graphiteMetal", "blackUpholstery"],
+      "lighting": "fuerza",
+      "budget": { "equipment": [52000, 90000], "furniture": [1000, 3000], "finishes": [8500, 12500], "lighting": [10000, 16000] },
+      "items": [
+        { "k": "chest_press", "p": [38.7, 10.8], "r": -90 },
+        { "k": "pec_fly", "p": [38.7, 12.6], "r": -90 },
+        { "k": "shoulder_press", "p": [38.7, 14.4], "r": -90 },
+        { "k": "lat_pulldown", "p": [38.7, 16.2], "r": -90 },
+        { "k": "seated_row", "p": [38.7, 18.0], "r": -90 },
+        { "k": "leg_extension", "p": [38.7, 19.8], "r": -90 },
+        { "k": "leg_curl", "p": [38.7, 21.6], "r": -90 },
+        { "k": "hip_abductor", "p": [38.7, 23.4], "r": -90 },
+        { "k": "leg_press", "p": [34.2, 11.3], "r": 90 },
+        { "k": "hack_squat", "p": [34.2, 13.9], "r": 90 },
+        { "k": "smith_machine", "p": [34.2, 16.8], "r": 90 },
+        { "k": "dip_chin", "p": [34.2, 19.6], "r": 90 },
+        { "k": "cable_crossover", "p": [31.0, 21.6], "r": 90 },
+        { "k": "towel_station", "p": [34.2, 24.8], "r": 0 }
+      ]
+    },
+    {
+      "id": "pesolibre", "index": "04", "floor": "rubberThick",
+      "rect": { "x": 20, "z": 9.2, "w": 10, "d": 7.2 },
+      "capacity": 10,
+      "image": { "src": "/images/fitness/detail-identity.webp", "w": 420, "h": 420 },
+      "furniture": ["mirrorPartition"],
+      "materials": ["rubberThick", "oakPlatform", "mirror", "graphiteMetal"],
+      "lighting": "pesolibre",
+      "budget": { "equipment": [22000, 37000], "furniture": [500, 1500], "finishes": [7000, 11000], "lighting": [5000, 9000] },
+      "items": [
+        { "k": "mirror_partition", "p": [25.0, 9.35], "r": 0 },
+        { "k": "dumbbell_rack", "p": [22.6, 10.15], "r": 0, "n": 2, "s": [3.0, 0] },
+        { "k": "plate_tree", "p": [28.8, 10.3], "r": 0, "n": 2, "s": [0, 1.5] },
+        { "k": "adjustable_bench", "p": [21.2, 12.1], "r": 0, "n": 4, "s": [1.7, 0] },
+        { "k": "lifting_platform", "p": [22.2, 14.7], "r": 0, "n": 2, "s": [3.8, 0] },
+        { "k": "power_rack", "p": [22.2, 14.7], "r": 0, "n": 2, "s": [3.8, 0] }
+      ]
+    },
+    {
+      "id": "funcional", "index": "05", "floor": "rubber",
+      "rect": { "x": 8, "z": 9.2, "w": 10.4, "d": 7.2 },
+      "capacity": 12,
+      "image": { "src": "/images/fitness/detail-materials.webp", "w": 460, "h": 400 },
+      "furniture": ["storage"],
+      "materials": ["sledTrack", "rubberFloor", "graphiteMetal"],
+      "lighting": "funcional",
+      "budget": { "equipment": [13000, 22000], "furniture": [500, 1500], "finishes": [6000, 10000], "lighting": [4000, 7000] },
+      "items": [
+        { "k": "functional_rig", "p": [13.2, 11.0], "r": 0 },
+        { "k": "sled_lane", "p": [13.2, 15.3], "r": 0 },
+        { "k": "battle_ropes", "p": [8.5, 13.2], "r": 90 },
+        { "k": "plyo_box", "p": [17.5, 10.2], "r": 0, "n": 3, "s": [0, 0.9] },
+        { "k": "kettlebell_rack", "p": [9.0, 9.9], "r": 0 },
+        { "k": "medicine_ball", "p": [8.6, 11.2], "r": 0, "n": 4, "s": [0.42, 0] }
+      ]
+    },
+    {
+      "id": "movilidad", "index": "06", "floor": "oak",
+      "rect": { "x": 0, "z": 9.2, "w": 8, "d": 7.2 },
+      "capacity": 8,
+      "image": null,
+      "furniture": ["mobilityShelf", "mirror"],
+      "materials": ["oakFloor", "mirror", "naturalRubber"],
+      "lighting": "movilidad",
+      "budget": { "equipment": [3500, 6200], "furniture": [800, 1500], "finishes": [4000, 7000], "lighting": [3000, 5000] },
+      "items": [
+        { "k": "wall_bars", "p": [0.15, 10.4], "r": 90, "n": 3, "s": [0, 1.0] },
+        { "k": "mirror_panel", "p": [0.06, 14.7], "r": 90 },
+        { "k": "mat", "p": [2.0, 11.2], "r": 0, "n": 5, "s": [1.1, 0] },
+        { "k": "mat", "p": [2.0, 13.6], "r": 0, "n": 5, "s": [1.1, 0] },
+        { "k": "stability_ball", "p": [7.4, 10.1], "r": 0, "n": 3, "s": [0, 0.75] },
+        { "k": "mobility_shelf", "p": [7.6, 13.8], "r": -90 },
+        { "k": "stretch_station", "p": [3.2, 15.5], "r": 0 }
+      ]
+    },
+    {
+      "id": "clases", "index": "07", "floor": "sprung",
+      "rect": { "x": 20, "z": 0, "w": 10, "d": 7.6 },
+      "capacity": 12,
+      "image": null,
+      "furniture": ["storageWall", "mirrorWall"],
+      "materials": ["sprungFloor", "mirror", "acousticPanels", "glassPartition"],
+      "lighting": "clases",
+      "budget": { "equipment": [5500, 10500], "furniture": [2000, 4000], "finishes": [7500, 12000], "lighting": [6000, 11000] },
+      "items": [
+        { "k": "mirror_wall", "p": [25.0, 0.08], "r": 0 },
+        { "k": "podium", "p": [25.0, 1.3], "r": 0 },
+        { "k": "training_position", "p": [21.9, 3.3], "r": 180, "n": 4, "s": [2.05, 0] },
+        { "k": "training_position", "p": [21.9, 4.85], "r": 180, "n": 4, "s": [2.05, 0] },
+        { "k": "training_position", "p": [21.9, 6.4], "r": 180, "n": 4, "s": [2.05, 0] },
+        { "k": "storage_wall", "p": [29.75, 3.9], "r": -90 },
+        { "k": "speaker", "p": [20.5, 0.45], "r": 0 },
+        { "k": "speaker", "p": [29.5, 0.45], "r": 0 }
+      ]
+    },
+    {
+      "id": "ciclo", "index": "08", "floor": "dark",
+      "rect": { "x": 30, "z": 0, "w": 10, "d": 7.6 },
+      "capacity": 18,
+      "image": null,
+      "furniture": ["risers"],
+      "materials": ["darkFloor", "acousticPanels", "graphiteMetal"],
+      "lighting": "ciclo",
+      "budget": { "equipment": [30000, 53000], "furniture": [0, 0], "finishes": [10000, 18000], "lighting": [8000, 15000] },
+      "items": [
+        { "k": "led_screen", "p": [35.0, 0.06], "r": 0 },
+        { "k": "instructor_bike", "p": [35.0, 1.3], "r": 0 },
+        { "k": "riser", "p": [35.0, 4.9], "r": 0, "y": 0 },
+        { "k": "riser_high", "p": [35.0, 6.4], "r": 0, "y": 0 },
+        { "k": "spin_bike", "p": [31.3, 3.4], "r": 180, "n": 6, "s": [1.5, 0] },
+        { "k": "spin_bike", "p": [31.3, 4.9], "r": 180, "n": 6, "s": [1.5, 0], "y": 0.2 },
+        { "k": "spin_bike", "p": [31.3, 6.4], "r": 180, "n": 6, "s": [1.5, 0], "y": 0.4 }
+      ]
+    },
+    {
+      "id": "vestuarios", "index": "09", "floor": "tile",
+      "rect": { "x": 0, "z": 0, "w": 10, "d": 7.6 },
+      "capacity": 24,
+      "image": null,
+      "furniture": ["benches", "vanities"],
+      "materials": ["porcelainTile", "oakLockers", "stoneTop", "glassShower"],
+      "lighting": "vestuarios",
+      "budget": { "equipment": [11000, 20000], "furniture": [4000, 8000], "finishes": [30000, 50000], "lighting": [5000, 9000] },
+      "items": [
+        { "k": "shower", "p": [0.6, 0.55], "r": 0, "n": 3, "s": [1.05, 0] },
+        { "k": "locker", "p": [4.6, 1.8], "r": -90, "n": 12, "s": [0, 0.4] },
+        { "k": "changing_bench", "p": [2.4, 4.4], "r": 90 },
+        { "k": "vanity", "p": [0.3, 4.0], "r": 90, "n": 2, "s": [0, 1.2] },
+        { "k": "shower", "p": [9.4, 0.55], "r": 0, "n": 3, "s": [-1.05, 0] },
+        { "k": "locker", "p": [5.4, 1.8], "r": 90, "n": 12, "s": [0, 0.4] },
+        { "k": "changing_bench", "p": [7.6, 4.4], "r": 90 },
+        { "k": "vanity", "p": [9.7, 4.0], "r": -90, "n": 2, "s": [0, 1.2] }
+      ]
+    },
+    {
+      "id": "recuperacion", "index": "10", "floor": "oak",
+      "rect": { "x": 10, "z": 0, "w": 8.4, "d": 7.6 },
+      "capacity": 7,
+      "image": null,
+      "furniture": ["loungers", "plants"],
+      "materials": ["oakFloor", "saunaTimber", "stoneTop", "glassPartition"],
+      "lighting": "recuperacion",
+      "budget": { "equipment": [18000, 37000], "furniture": [3000, 6000], "finishes": [8000, 14000], "lighting": [3000, 6000] },
+      "items": [
+        { "k": "sauna", "p": [11.5, 1.15], "r": 0 },
+        { "k": "cold_plunge", "p": [14.4, 1.2], "r": 0 },
+        { "k": "massage_table", "p": [17.1, 1.6], "r": 0 },
+        { "k": "compression_lounger", "p": [11.1, 5.3], "r": 0, "n": 3, "s": [1.3, 0] },
+        { "k": "stretch_bench", "p": [16.6, 5.0], "r": 0 },
+        { "k": "planter", "p": [15.2, 6.9], "r": 0 }
+      ]
+    }
+  ],
+  "architecture": {
+    "wallHeight": 3.4,
+    "cutHeight": 1.25,
+    "walls": [
+      { "t": "solid", "a": [0, 0], "b": [40, 0] },
+      { "t": "solid", "a": [0, 0], "b": [0, 26] },
+      { "t": "curtain", "a": [0, 26], "b": [21, 26] },
+      { "t": "door", "a": [21, 26], "b": [25, 26] },
+      { "t": "curtain", "a": [25, 26], "b": [40, 26] },
+      { "t": "cut", "a": [40, 0], "b": [40, 7.6] },
+      { "t": "curtain", "a": [40, 7.6], "b": [40, 26] },
+      { "t": "cut", "a": [0, 7.6], "b": [2, 7.6] },
+      { "t": "cut", "a": [3.2, 7.6], "b": [6.8, 7.6] },
+      { "t": "cut", "a": [8, 7.6], "b": [10, 7.6] },
+      { "t": "cut", "a": [5, 0], "b": [5, 6.6] },
+      { "t": "cut", "a": [10, 0], "b": [10, 7.6] },
+      { "t": "glass", "a": [10, 7.6], "b": [17.2, 7.6] },
+      { "t": "glass", "a": [18.4, 0], "b": [18.4, 7.6] },
+      { "t": "glass", "a": [20, 0], "b": [20, 7.6] },
+      { "t": "glass", "a": [21.2, 7.6], "b": [30, 7.6] },
+      { "t": "cut", "a": [30, 0], "b": [30, 7.6] },
+      { "t": "cut", "a": [30, 7.6], "b": [31.4, 7.6] },
+      { "t": "cut", "a": [32.6, 7.6], "b": [40, 7.6] }
+    ],
+    "columns": [[6, 8.4], [14, 8.4], [25, 8.4], [35, 8.4], [6, 17.2], [14, 17.2], [25, 17.2]],
+    "corridors": [
+      { "x": 0, "z": 7.6, "w": 40, "d": 1.6 },
+      { "x": 0, "z": 16.4, "w": 30, "d": 1.6 },
+      { "x": 18.4, "z": 0, "w": 1.6, "d": 18 }
+    ],
+    "guideLines": [
+      { "a": [0.6, 8.4], "b": [39.4, 8.4] },
+      { "a": [0.6, 17.2], "b": [29.4, 17.2] },
+      { "a": [19.2, 0.6], "b": [19.2, 17.2] }
+    ],
+    "ceilingLines": [
+      { "a": [0.6, 19.6], "b": [15.4, 19.6] }, { "a": [0.6, 22.2], "b": [15.4, 22.2] }, { "a": [0.6, 24.9], "b": [15.4, 24.9] },
+      { "a": [32.6, 9.8], "b": [32.6, 25.4] }, { "a": [36.4, 9.8], "b": [36.4, 25.4] },
+      { "a": [20.6, 11.2], "b": [29.4, 11.2] }, { "a": [20.6, 14.4], "b": [29.4, 14.4] },
+      { "a": [8.6, 12.8], "b": [17.8, 12.8] },
+      { "a": [16.6, 21.6], "b": [29.4, 21.6] }, { "a": [16.6, 24.4], "b": [29.4, 24.4] },
+      { "a": [19.2, 0.6], "b": [19.2, 16.8] }
+    ],
+    "pilasters": [[0, 18.6], [0, 21.4], [0, 24.2], [0, 9.6]]
+  }
+}

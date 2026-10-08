@@ -42,9 +42,11 @@
   <!-- The hero poster is the first paint (also the reduced-motion image) -->
   <link rel="preload" as="image" href="/images/fitness/hero-walkthrough-poster.webp" type="image/webp" fetchpriority="high">
 
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261018b">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261019b">
 </head>
 
 <body>
@@ -313,26 +315,424 @@
     </div>
   </section>
 
-  <!-- 04 FUNCTIONAL ZONING: schematic plan (same data as the homepage gym planner) -->
-  <section class="fscene fzoning" id="zonificacion" aria-labelledby="f-zoning-title">
-    <div class="fzoning__inner">
-      <div class="fzoning__text">
+  <!-- 03 ZONING: interactive 3D model of a conceptual fitness club (10 zones).
+       Section HTML (header, zone buttons, specification panel, plan fallback):
+       scripts/fitness-club.js; 3D + interaction: assets/js/fitness-club-3d/.
+       Demonstration data: assets/data/fitness-club.json. -->
+  <section class="fscene fclub" id="zonificacion" aria-labelledby="f-zoning-title" data-fclub>
+    <div class="fclub__inner">
+      <header class="fclub__head">
         <p class="fscene__label">03 / Zoning</p>
         <h2 class="fscene__title" id="f-zoning-title">Everything in its place.</h2>
         <p class="fscene__body">Reception, training areas, circulation, changing rooms and support spaces — every zone connected to the others.</p>
-        <ol class="fzoning__list">
-          <li>Reception</li>
-          <li>Training areas</li>
-          <li>Circulation</li>
-          <li>Changing rooms</li>
-          <li>Support spaces</li>
+      </header>
+      <div class="fclub__stage">
+        <div class="fclub__viewport" data-fclub-viewport>
+          <svg class="fclub-plan" data-fclub-poster viewBox="-1 -1 42 28" role="img" aria-label="Interactive 3D model of a conceptual fitness club with ten zones"><rect class="fclub-plan__slab" x="0" y="0" width="40" height="26"/><rect class="fclub-plan__corr" x="0" y="7.6" width="40" height="1.6"/><rect class="fclub-plan__corr" x="0" y="16.4" width="30" height="1.6"/><rect class="fclub-plan__corr" x="18.4" y="0" width="1.6" height="18"/><g class="fclub-plan__zone" data-zone="recepcion"><rect x="16.1" y="18.1" width="13.8" height="7.8"/><text x="23" y="22.45">01</text></g><g class="fclub-plan__zone" data-zone="cardio"><rect x="0.1" y="18.1" width="15.8" height="7.8"/><text x="8" y="22.45">02</text></g><g class="fclub-plan__zone" data-zone="fuerza"><rect x="30.1" y="9.299999999999999" width="9.8" height="16.6"/><text x="35" y="18.05">03</text></g><g class="fclub-plan__zone" data-zone="pesolibre"><rect x="20.1" y="9.299999999999999" width="9.8" height="7"/><text x="25" y="13.249999999999998">04</text></g><g class="fclub-plan__zone" data-zone="funcional"><rect x="8.1" y="9.299999999999999" width="10.200000000000001" height="7"/><text x="13.2" y="13.249999999999998">05</text></g><g class="fclub-plan__zone" data-zone="movilidad"><rect x="0.1" y="9.299999999999999" width="7.8" height="7"/><text x="4" y="13.249999999999998">06</text></g><g class="fclub-plan__zone" data-zone="clases"><rect x="20.1" y="0.1" width="9.8" height="7.3999999999999995"/><text x="25" y="4.25">07</text></g><g class="fclub-plan__zone" data-zone="ciclo"><rect x="30.1" y="0.1" width="9.8" height="7.3999999999999995"/><text x="35" y="4.25">08</text></g><g class="fclub-plan__zone" data-zone="vestuarios"><rect x="0.1" y="0.1" width="9.8" height="7.3999999999999995"/><text x="5" y="4.25">09</text></g><g class="fclub-plan__zone" data-zone="recuperacion"><rect x="10.1" y="0.1" width="8.200000000000001" height="7.3999999999999995"/><text x="14.2" y="4.25">10</text></g></svg>
+          <div class="fclub__labels" data-fclub-labels></div>
+          <p class="fclub__loading" data-fclub-loading hidden>Loading 3D model…</p>
+          <p class="fclub__fallback" data-fclub-fallback hidden>Your browser can't display the 3D model. Select a zone in the list to see its details.</p>
+          <button type="button" class="fclub__reset" data-fclub-reset hidden>Full view</button>
+          <p class="fclub__hint" data-fclub-hint data-hint-touch="Drag to rotate · Pinch to zoom · Two fingers to pan · Tap a zone" hidden>Drag to rotate · Wheel or pinch to zoom · Right-click to pan · Click a zone</p>
+        </div>
+        <ol class="fclub__nav" aria-label="Club zones">
+        <li><button type="button" class="fclub__zone" data-zone="recepcion" aria-controls="fclub-zone-recepcion" aria-pressed="false"><span class="fclub__zone-num">01</span><span class="fclub__zone-name">Reception</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="cardio" aria-controls="fclub-zone-cardio" aria-pressed="false"><span class="fclub__zone-num">02</span><span class="fclub__zone-name">Cardio</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="fuerza" aria-controls="fclub-zone-fuerza" aria-pressed="false"><span class="fclub__zone-num">03</span><span class="fclub__zone-name">Strength machines</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="pesolibre" aria-controls="fclub-zone-pesolibre" aria-pressed="false"><span class="fclub__zone-num">04</span><span class="fclub__zone-name">Free weights</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="funcional" aria-controls="fclub-zone-funcional" aria-pressed="false"><span class="fclub__zone-num">05</span><span class="fclub__zone-name">Functional training</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="movilidad" aria-controls="fclub-zone-movilidad" aria-pressed="false"><span class="fclub__zone-num">06</span><span class="fclub__zone-name">Mobility</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="clases" aria-controls="fclub-zone-clases" aria-pressed="false"><span class="fclub__zone-num">07</span><span class="fclub__zone-name">Group studio</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="ciclo" aria-controls="fclub-zone-ciclo" aria-pressed="false"><span class="fclub__zone-num">08</span><span class="fclub__zone-name">Indoor cycling</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="vestuarios" aria-controls="fclub-zone-vestuarios" aria-pressed="false"><span class="fclub__zone-num">09</span><span class="fclub__zone-name">Changing rooms</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="recuperacion" aria-controls="fclub-zone-recuperacion" aria-pressed="false"><span class="fclub__zone-num">10</span><span class="fclub__zone-name">Recovery</span></button></li>
         </ol>
-      </div>
-      <div class="fzoning__plan">
-<svg class="gym-plan" viewBox="-0.5 -0.5 33 23" role="img" aria-label="Schematic gym plan with its zones: reception, cardio, strength, functional, studios, changing rooms and support areas."><rect class="gym-plan__service" x="26.08" y="0.08" width="5.84" height="7.84" rx="0.15"/><g class="gym-plan__zone" data-zone="reception"><rect x="0.08" y="16.08" width="5.84" height="5.84" rx="0.15"/><text x="0.45" y="16.95" class="gym-plan__num">01</text><text x="0.45" y="17.75" font-size="0.62">Reception</text></g><g class="gym-plan__zone" data-zone="cardio"><rect x="6.08" y="16.08" width="12.84" height="5.84" rx="0.15"/><text x="6.45" y="16.95" class="gym-plan__num">02</text><text x="6.45" y="17.75" font-size="0.62">Cardio</text></g><g class="gym-plan__zone" data-zone="strength"><rect x="6.08" y="8.08" width="8.84" height="7.84" rx="0.15"/><text x="6.45" y="8.95" class="gym-plan__num">03</text><text x="6.45" y="9.75" font-size="0.62">Strength machines</text></g><g class="gym-plan__zone" data-zone="freeweights"><rect x="15.08" y="8.08" width="8.84" height="7.84" rx="0.15"/><text x="15.45" y="8.95" class="gym-plan__num">04</text><text x="15.45" y="9.75" font-size="0.62">Free weights</text></g><g class="gym-plan__zone" data-zone="functional"><rect x="19.08" y="16.08" width="12.84" height="5.84" rx="0.15"/><text x="19.45" y="16.95" class="gym-plan__num">05</text><text x="19.45" y="17.75" font-size="0.62">Functional training</text></g><g class="gym-plan__zone" data-zone="stretching"><rect x="24.08" y="8.08" width="7.84" height="7.84" rx="0.15"/><text x="24.45" y="8.95" class="gym-plan__num">06</text><text x="24.45" y="9.75" font-size="0.62">Mobility</text></g><g class="gym-plan__zone" data-zone="studio"><rect x="6.08" y="0.08" width="11.84" height="7.84" rx="0.15"/><text x="6.45" y="0.95" class="gym-plan__num">07</text><text x="6.45" y="1.75" font-size="0.62">Group studio</text></g><g class="gym-plan__zone" data-zone="spin"><rect x="18.08" y="0.08" width="7.84" height="7.84" rx="0.15"/><text x="18.45" y="0.95" class="gym-plan__num">08</text><text x="18.45" y="1.75" font-size="0.62">Indoor cycling</text></g><g class="gym-plan__zone" data-zone="lockers"><rect x="0.08" y="8.08" width="5.84" height="7.84" rx="0.15"/><text x="0.45" y="8.95" class="gym-plan__num">09</text><text x="0.45" y="9.75" font-size="0.62">Changing rooms</text></g><g class="gym-plan__zone" data-zone="recovery"><rect x="0.08" y="0.08" width="5.84" height="7.84" rx="0.15"/><text x="0.45" y="0.95" class="gym-plan__num">10</text><text x="0.45" y="1.75" font-size="0.62">Recovery</text></g></svg>
+        <aside class="fclub__panel" data-fclub-panel aria-label="Club zones" aria-live="polite">
+        <article class="fclub-z fclub-z--overview" data-zone="overview">
+          <p class="fclub-z__kicker">Concept club</p>
+          <h3 class="fclub-z__title">Ten zones, one journey.</h3>
+          <p class="fclub-z__desc">Explore the model and select a zone to see its purpose, equipment, materials, lighting and an indicative investment.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Total area</dt><dd>1,040 m²</dd></div>
+            <div><dt>Zones</dt><dd>10</dd></div>
+          </dl>
+          <p class="fclub-z__total"><span>Total illustrative investment</span> €495,800 – €840,700</p>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-recepcion" data-zone="recepcion" aria-labelledby="fclub-zone-recepcion-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Close"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Zone 01</p>
+          <h3 class="fclub-z__title" id="fclub-zone-recepcion-title">Reception</h3>
+          <p class="fclub-z__desc">The club's first impression: controlled access, member service, a lounge, a shake bar and retail, in a warm space that invites people to stay.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Area</dt><dd>112 m²</dd></div>
+            <div><dt>Suggested capacity</dt><dd>14 <span>people at a time</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Main equipment</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">4 ×</span> Speed gate</li>
+          </ul>
+          <h4 class="fclub-z__h">Furniture</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Reception desk</li>
+            <li><span class="fclub-z__qty">1 ×</span> Lounge sofa</li>
+            <li><span class="fclub-z__qty">2 ×</span> Armchair</li>
+            <li><span class="fclub-z__qty">1 ×</span> Coffee table</li>
+            <li><span class="fclub-z__qty">1 ×</span> Shake bar</li>
+            <li><span class="fclub-z__qty">3 ×</span> Bar stool</li>
+            <li><span class="fclub-z__qty">1 ×</span> Back bar</li>
+            <li><span class="fclub-z__qty">1 ×</span> Retail display</li>
+            <li><span class="fclub-z__qty">2 ×</span> Planter</li>
+          </ul>
+          <h4 class="fclub-z__h">Materials and finishes</h4>
+          <ul class="fclub-z__tags"><li>Backlit oak slats</li><li>Engineered stone top</li><li>Natural oak flooring</li><li>Graphite powder-coated steel</li></ul>
+          <h4 class="fclub-z__h">Lighting concept</h4>
+          <p class="fclub-z__text">Backlit slatted wall, suspended linear lights in warm white and accent light over the desk.</p>
+          <h4 class="fclub-z__h">Illustrative investment</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Equipment</th><td>€18,000 – €30,000</td></tr>
+            <tr><th scope="row">Furniture</th><td>€35,000 – €60,000</td></tr>
+            <tr><th scope="row">Finishes</th><td>€25,000 – €40,000</td></tr>
+            <tr><th scope="row">Lighting</th><td>€10,000 – €18,000</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Illustrative total</th><td>€88,000 – €148,000</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-cardio" data-zone="cardio" aria-labelledby="fclub-zone-cardio-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Close"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Zone 02</p>
+          <h3 class="fclub-z__title" id="fclub-zone-cardio-title">Cardio</h3>
+          <figure class="fclub-z__fig"><img src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt=""><figcaption>3DNA concept visualisation</figcaption></figure>
+          <p class="fclub-z__desc">Machines facing the glazed facade, with daylight and views. Orderly rows keep aisles clear and the space easy to read.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Area</dt><dd>128 m²</dd></div>
+            <div><dt>Suggested capacity</dt><dd>22 <span>people at a time</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Main equipment</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">6 ×</span> Treadmill</li>
+            <li><span class="fclub-z__qty">4 ×</span> Elliptical trainer</li>
+            <li><span class="fclub-z__qty">2 ×</span> Stair climber</li>
+            <li><span class="fclub-z__qty">4 ×</span> Upright bike</li>
+            <li><span class="fclub-z__qty">3 ×</span> Rower</li>
+            <li><span class="fclub-z__qty">3 ×</span> Air bike</li>
+          </ul>
+          <h4 class="fclub-z__h">Furniture</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Towel station</li>
+          </ul>
+          <h4 class="fclub-z__h">Materials and finishes</h4>
+          <ul class="fclub-z__tags"><li>Speckled sports rubber</li><li>Glass facade with black frames</li><li>Graphite powder-coated steel</li></ul>
+          <h4 class="fclub-z__h">Lighting concept</h4>
+          <p class="fclub-z__text">Daylight from the facade and suspended neutral-white LED lines that don't glare on the screens.</p>
+          <h4 class="fclub-z__h">Illustrative investment</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Equipment</th><td>€100,000 – €152,000</td></tr>
+            <tr><th scope="row">Furniture</th><td>€2,000 – €4,000</td></tr>
+            <tr><th scope="row">Finishes</th><td>€6,000 – €9,000</td></tr>
+            <tr><th scope="row">Lighting</th><td>€8,000 – €14,000</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Illustrative total</th><td>€116,000 – €179,000</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-fuerza" data-zone="fuerza" aria-labelledby="fclub-zone-fuerza-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Close"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Zone 03</p>
+          <h3 class="fclub-z__title" id="fclub-zone-fuerza-title">Strength machines</h3>
+          <figure class="fclub-z__fig"><img src="/images/fitness/detail-lighting.webp" width="460" height="460" loading="lazy" decoding="async" alt=""><figcaption>3DNA concept visualisation</figcaption></figure>
+          <p class="fclub-z__desc">A full-body circuit of selectorised machines, grouped by muscle group, with clearance around every station.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Area</dt><dd>168 m²</dd></div>
+            <div><dt>Suggested capacity</dt><dd>14 <span>people at a time</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Main equipment</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Chest press</li>
+            <li><span class="fclub-z__qty">1 ×</span> Pec fly</li>
+            <li><span class="fclub-z__qty">1 ×</span> Shoulder press</li>
+            <li><span class="fclub-z__qty">1 ×</span> Lat pulldown</li>
+            <li><span class="fclub-z__qty">1 ×</span> Seated row</li>
+            <li><span class="fclub-z__qty">1 ×</span> Leg extension</li>
+            <li><span class="fclub-z__qty">1 ×</span> Leg curl</li>
+            <li><span class="fclub-z__qty">1 ×</span> Hip abductor</li>
+            <li><span class="fclub-z__qty">1 ×</span> Leg press</li>
+            <li><span class="fclub-z__qty">1 ×</span> Hack squat</li>
+            <li><span class="fclub-z__qty">1 ×</span> Smith machine</li>
+            <li><span class="fclub-z__qty">1 ×</span> Assisted dip / chin</li>
+            <li><span class="fclub-z__qty">1 ×</span> Cable crossover</li>
+          </ul>
+          <h4 class="fclub-z__h">Furniture</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Towel station</li>
+          </ul>
+          <h4 class="fclub-z__h">Materials and finishes</h4>
+          <ul class="fclub-z__tags"><li>Speckled sports rubber</li><li>Glass facade with black frames</li><li>Graphite powder-coated steel</li><li>Black technical upholstery</li></ul>
+          <h4 class="fclub-z__h">Lighting concept</h4>
+          <p class="fclub-z__text">Cool-white linear LEDs following the machine rows, with high uniformity.</p>
+          <h4 class="fclub-z__h">Illustrative investment</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Equipment</th><td>€52,000 – €90,000</td></tr>
+            <tr><th scope="row">Furniture</th><td>€1,000 – €3,000</td></tr>
+            <tr><th scope="row">Finishes</th><td>€8,500 – €12,500</td></tr>
+            <tr><th scope="row">Lighting</th><td>€10,000 – €16,000</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Illustrative total</th><td>€71,500 – €121,500</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-pesolibre" data-zone="pesolibre" aria-labelledby="fclub-zone-pesolibre-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Close"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Zone 04</p>
+          <h3 class="fclub-z__title" id="fclub-zone-pesolibre-title">Free weights</h3>
+          <figure class="fclub-z__fig"><img src="/images/fitness/detail-identity.webp" width="420" height="420" loading="lazy" decoding="async" alt=""><figcaption>3DNA concept visualisation</figcaption></figure>
+          <p class="fclub-z__desc">Racks on lifting platforms, dumbbells, benches and mirrors: the heart of strength training, on high-density flooring.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Area</dt><dd>72 m²</dd></div>
+            <div><dt>Suggested capacity</dt><dd>10 <span>people at a time</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Main equipment</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">2 ×</span> Dumbbell rack</li>
+            <li><span class="fclub-z__qty">2 ×</span> Plate tree</li>
+            <li><span class="fclub-z__qty">4 ×</span> Adjustable bench</li>
+            <li><span class="fclub-z__qty">2 ×</span> Lifting platform</li>
+            <li><span class="fclub-z__qty">2 ×</span> Power rack</li>
+          </ul>
+          <h4 class="fclub-z__h">Materials and finishes</h4>
+          <ul class="fclub-z__tags"><li>30 mm high-density rubber</li><li>Oak and rubber platforms</li><li>Safety mirror</li><li>Graphite powder-coated steel</li></ul>
+          <h4 class="fclub-z__h">Lighting concept</h4>
+          <p class="fclub-z__text">Direct cool-white light over the racks and a wall-washer on the mirror wall.</p>
+          <h4 class="fclub-z__h">Illustrative investment</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Equipment</th><td>€22,000 – €37,000</td></tr>
+            <tr><th scope="row">Furniture</th><td>€500 – €1,500</td></tr>
+            <tr><th scope="row">Finishes</th><td>€7,000 – €11,000</td></tr>
+            <tr><th scope="row">Lighting</th><td>€5,000 – €9,000</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Illustrative total</th><td>€34,500 – €58,500</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-funcional" data-zone="funcional" aria-labelledby="fclub-zone-funcional-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Close"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Zone 05</p>
+          <h3 class="fclub-z__title" id="fclub-zone-funcional-title">Functional training</h3>
+          <figure class="fclub-z__fig"><img src="/images/fitness/detail-materials.webp" width="460" height="400" loading="lazy" decoding="async" alt=""><figcaption>3DNA concept visualisation</figcaption></figure>
+          <p class="fclub-z__desc">A central rig, a sled lane and free equipment for small-group sessions, circuits and personal training.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Area</dt><dd>75 m²</dd></div>
+            <div><dt>Suggested capacity</dt><dd>12 <span>people at a time</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Main equipment</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Functional rig</li>
+            <li><span class="fclub-z__qty">1 ×</span> Sled lane</li>
+            <li><span class="fclub-z__qty">1 ×</span> Battle ropes</li>
+            <li><span class="fclub-z__qty">3 ×</span> Plyo box</li>
+            <li><span class="fclub-z__qty">1 ×</span> Kettlebell rack</li>
+            <li><span class="fclub-z__qty">4 ×</span> Medicine ball</li>
+          </ul>
+          <h4 class="fclub-z__h">Materials and finishes</h4>
+          <ul class="fclub-z__tags"><li>Marked sled track</li><li>Speckled sports rubber</li><li>Graphite powder-coated steel</li></ul>
+          <h4 class="fclub-z__h">Lighting concept</h4>
+          <p class="fclub-z__text">High-output LED lines over the rig and a blue accent along the sled lane.</p>
+          <h4 class="fclub-z__h">Illustrative investment</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Equipment</th><td>€13,000 – €22,000</td></tr>
+            <tr><th scope="row">Furniture</th><td>€500 – €1,500</td></tr>
+            <tr><th scope="row">Finishes</th><td>€6,000 – €10,000</td></tr>
+            <tr><th scope="row">Lighting</th><td>€4,000 – €7,000</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Illustrative total</th><td>€23,500 – €40,500</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-movilidad" data-zone="movilidad" aria-labelledby="fclub-zone-movilidad-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Close"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Zone 06</p>
+          <h3 class="fclub-z__title" id="fclub-zone-movilidad-title">Mobility</h3>
+          <p class="fclub-z__desc">A calmer space to stretch, warm up and work on mobility, with wall bars, mats and a mirror.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Area</dt><dd>58 m²</dd></div>
+            <div><dt>Suggested capacity</dt><dd>8 <span>people at a time</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Main equipment</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">3 ×</span> Wall bars</li>
+            <li><span class="fclub-z__qty">10 ×</span> Mat</li>
+            <li><span class="fclub-z__qty">3 ×</span> Stability ball</li>
+            <li><span class="fclub-z__qty">1 ×</span> Stretch station</li>
+          </ul>
+          <h4 class="fclub-z__h">Furniture</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Roller and accessory shelf</li>
+          </ul>
+          <h4 class="fclub-z__h">Materials and finishes</h4>
+          <ul class="fclub-z__tags"><li>Natural oak flooring</li><li>Safety mirror</li><li>Natural rubber mats</li></ul>
+          <h4 class="fclub-z__h">Lighting concept</h4>
+          <p class="fclub-z__text">Warm, dimmable indirect light with no fittings visible from the floor.</p>
+          <h4 class="fclub-z__h">Illustrative investment</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Equipment</th><td>€3,500 – €6,200</td></tr>
+            <tr><th scope="row">Furniture</th><td>€800 – €1,500</td></tr>
+            <tr><th scope="row">Finishes</th><td>€4,000 – €7,000</td></tr>
+            <tr><th scope="row">Lighting</th><td>€3,000 – €5,000</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Illustrative total</th><td>€11,300 – €19,700</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-clases" data-zone="clases" aria-labelledby="fclub-zone-clases-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Close"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Zone 07</p>
+          <h3 class="fclub-z__title" id="fclub-zone-clases-title">Group studio</h3>
+          <p class="fclub-z__desc">A glazed studio for group classes, with a mirror wall, instructor podium, built-in storage and sound.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Area</dt><dd>76 m²</dd></div>
+            <div><dt>Suggested capacity</dt><dd>12 <span>people at a time</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Main equipment</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Instructor podium</li>
+            <li><span class="fclub-z__qty">12 ×</span> Class station (mat, step and dumbbells)</li>
+            <li><span class="fclub-z__qty">2 ×</span> Speaker</li>
+          </ul>
+          <h4 class="fclub-z__h">Furniture</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Built-in storage</li>
+          </ul>
+          <h4 class="fclub-z__h">Materials and finishes</h4>
+          <ul class="fclub-z__tags"><li>Sprung sports floor</li><li>Safety mirror</li><li>Acoustic panels</li><li>Glass partitions</li></ul>
+          <h4 class="fclub-z__h">Lighting concept</h4>
+          <p class="fclub-z__text">Programmable scenes: general white light for technical classes and colour moods for high-intensity sessions.</p>
+          <h4 class="fclub-z__h">Illustrative investment</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Equipment</th><td>€5,500 – €10,500</td></tr>
+            <tr><th scope="row">Furniture</th><td>€2,000 – €4,000</td></tr>
+            <tr><th scope="row">Finishes</th><td>€7,500 – €12,000</td></tr>
+            <tr><th scope="row">Lighting</th><td>€6,000 – €11,000</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Illustrative total</th><td>€21,000 – €37,500</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-ciclo" data-zone="ciclo" aria-labelledby="fclub-zone-ciclo-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Close"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Zone 08</p>
+          <h3 class="fclub-z__title" id="fclub-zone-ciclo-title">Indoor cycling</h3>
+          <p class="fclub-z__desc">An immersive room with tiered risers, bikes facing the instructor, a screen and controlled acoustics.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Area</dt><dd>76 m²</dd></div>
+            <div><dt>Suggested capacity</dt><dd>18 <span>people at a time</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Main equipment</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> LED screen</li>
+            <li><span class="fclub-z__qty">1 ×</span> Instructor bike on podium</li>
+            <li><span class="fclub-z__qty">18 ×</span> Indoor bike</li>
+          </ul>
+          <h4 class="fclub-z__h">Materials and finishes</h4>
+          <ul class="fclub-z__tags"><li>Dark non-slip flooring</li><li>Acoustic panels</li><li>Graphite powder-coated steel</li></ul>
+          <h4 class="fclub-z__h">Lighting concept</h4>
+          <p class="fclub-z__text">A dark room with programmable RGB LED strips and the screen as the main focus; separate white cleaning light.</p>
+          <h4 class="fclub-z__h">Illustrative investment</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Equipment</th><td>€30,000 – €53,000</td></tr>
+            <tr><th scope="row">Finishes</th><td>€10,000 – €18,000</td></tr>
+            <tr><th scope="row">Lighting</th><td>€8,000 – €15,000</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Illustrative total</th><td>€48,000 – €86,000</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-vestuarios" data-zone="vestuarios" aria-labelledby="fclub-zone-vestuarios-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Close"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Zone 09</p>
+          <h3 class="fclub-z__title" id="fclub-zone-vestuarios-title">Changing rooms</h3>
+          <p class="fclub-z__desc">Two changing rooms with lockers, showers, benches and vanities. Moisture-resistant, easy-to-clean materials.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Area</dt><dd>76 m²</dd></div>
+            <div><dt>Suggested capacity</dt><dd>24 <span>people at a time</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Main equipment</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">6 ×</span> Shower</li>
+            <li><span class="fclub-z__qty">24 ×</span> Locker</li>
+          </ul>
+          <h4 class="fclub-z__h">Furniture</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">2 ×</span> Changing bench</li>
+            <li><span class="fclub-z__qty">4 ×</span> Vanity with basin</li>
+          </ul>
+          <h4 class="fclub-z__h">Materials and finishes</h4>
+          <ul class="fclub-z__tags"><li>Non-slip porcelain tile</li><li>Oak laminate lockers</li><li>Engineered stone top</li><li>Glass shower screens</li></ul>
+          <h4 class="fclub-z__h">Lighting concept</h4>
+          <p class="fclub-z__text">Even neutral-white light, shadow-free mirror lighting at the vanities and IP-rated fittings in the showers.</p>
+          <h4 class="fclub-z__h">Illustrative investment</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Equipment</th><td>€11,000 – €20,000</td></tr>
+            <tr><th scope="row">Furniture</th><td>€4,000 – €8,000</td></tr>
+            <tr><th scope="row">Finishes</th><td>€30,000 – €50,000</td></tr>
+            <tr><th scope="row">Lighting</th><td>€5,000 – €9,000</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Illustrative total</th><td>€50,000 – €87,000</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-recuperacion" data-zone="recuperacion" aria-labelledby="fclub-zone-recuperacion-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Close"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Zone 10</p>
+          <h3 class="fclub-z__title" id="fclub-zone-recuperacion-title">Recovery</h3>
+          <p class="fclub-z__desc">Sauna, cold plunge, massage table and compression therapy: a value-adding area that extends the member's visit.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Area</dt><dd>64 m²</dd></div>
+            <div><dt>Suggested capacity</dt><dd>7 <span>people at a time</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Main equipment</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Sauna</li>
+            <li><span class="fclub-z__qty">1 ×</span> Cold plunge tub</li>
+            <li><span class="fclub-z__qty">1 ×</span> Massage table</li>
+            <li><span class="fclub-z__qty">3 ×</span> Compression therapy lounger</li>
+            <li><span class="fclub-z__qty">1 ×</span> Stretching table</li>
+          </ul>
+          <h4 class="fclub-z__h">Furniture</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Planter</li>
+          </ul>
+          <h4 class="fclub-z__h">Materials and finishes</h4>
+          <ul class="fclub-z__tags"><li>Natural oak flooring</li><li>Nordic spruce</li><li>Engineered stone top</li><li>Glass partitions</li></ul>
+          <h4 class="fclub-z__h">Lighting concept</h4>
+          <p class="fclub-z__text">Soft, warm, dimmable light, with integrated lighting in the sauna.</p>
+          <h4 class="fclub-z__h">Illustrative investment</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Equipment</th><td>€18,000 – €37,000</td></tr>
+            <tr><th scope="row">Furniture</th><td>€3,000 – €6,000</td></tr>
+            <tr><th scope="row">Finishes</th><td>€8,000 – €14,000</td></tr>
+            <tr><th scope="row">Lighting</th><td>€3,000 – €6,000</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Illustrative total</th><td>€32,000 – €63,000</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Demonstration data for a conceptual club: areas, capacities and amounts are indicative (VAT not included). They are not a real project and not a quote.</p>
+        </article>
+        </aside>
+        <div class="fclub__scrim" data-fclub-scrim hidden></div>
       </div>
     </div>
   </section>
+  <script type="application/json" id="fclub-data">{"model":{"url":null,"note":"To use a professionally authored model, export a GLB with one group per zone named 'zone-\u003cid>' (e.g. 'zone-cardio') and set url to its path (e.g. '/models/fitness/club.glb'). The procedural model below is then skipped; selection, camera, panel and labels keep working unchanged."},"footprint":{"w":40,"d":26},"architecture":{"wallHeight":3.4,"cutHeight":1.25,"walls":[{"t":"solid","a":[0,0],"b":[40,0]},{"t":"solid","a":[0,0],"b":[0,26]},{"t":"curtain","a":[0,26],"b":[21,26]},{"t":"door","a":[21,26],"b":[25,26]},{"t":"curtain","a":[25,26],"b":[40,26]},{"t":"cut","a":[40,0],"b":[40,7.6]},{"t":"curtain","a":[40,7.6],"b":[40,26]},{"t":"cut","a":[0,7.6],"b":[2,7.6]},{"t":"cut","a":[3.2,7.6],"b":[6.8,7.6]},{"t":"cut","a":[8,7.6],"b":[10,7.6]},{"t":"cut","a":[5,0],"b":[5,6.6]},{"t":"cut","a":[10,0],"b":[10,7.6]},{"t":"glass","a":[10,7.6],"b":[17.2,7.6]},{"t":"glass","a":[18.4,0],"b":[18.4,7.6]},{"t":"glass","a":[20,0],"b":[20,7.6]},{"t":"glass","a":[21.2,7.6],"b":[30,7.6]},{"t":"cut","a":[30,0],"b":[30,7.6]},{"t":"cut","a":[30,7.6],"b":[31.4,7.6]},{"t":"cut","a":[32.6,7.6],"b":[40,7.6]}],"columns":[[6,8.4],[14,8.4],[25,8.4],[35,8.4],[6,17.2],[14,17.2],[25,17.2]],"corridors":[{"x":0,"z":7.6,"w":40,"d":1.6},{"x":0,"z":16.4,"w":30,"d":1.6},{"x":18.4,"z":0,"w":1.6,"d":18}],"guideLines":[{"a":[0.6,8.4],"b":[39.4,8.4]},{"a":[0.6,17.2],"b":[29.4,17.2]},{"a":[19.2,0.6],"b":[19.2,17.2]}],"ceilingLines":[{"a":[0.6,19.6],"b":[15.4,19.6]},{"a":[0.6,22.2],"b":[15.4,22.2]},{"a":[0.6,24.9],"b":[15.4,24.9]},{"a":[32.6,9.8],"b":[32.6,25.4]},{"a":[36.4,9.8],"b":[36.4,25.4]},{"a":[20.6,11.2],"b":[29.4,11.2]},{"a":[20.6,14.4],"b":[29.4,14.4]},{"a":[8.6,12.8],"b":[17.8,12.8]},{"a":[16.6,21.6],"b":[29.4,21.6]},{"a":[16.6,24.4],"b":[29.4,24.4]},{"a":[19.2,0.6],"b":[19.2,16.8]}],"pilasters":[[0,18.6],[0,21.4],[0,24.2],[0,9.6]]},"zones":[{"id":"recepcion","index":"01","name":"Reception","rect":{"x":16,"z":18,"w":14,"d":8},"floor":"oak","items":[{"k":"slat_wall","p":[24.6,18.3],"r":0},{"k":"reception_desk","p":[24.8,20.7],"r":0},{"k":"speed_gate","p":[18.5,20.7],"r":0,"n":4,"s":[0.9,0]},{"k":"rug","p":[18.6,23.6],"r":0},{"k":"sofa","p":[16.9,23.6],"r":90},{"k":"lounge_chair","p":[20.2,22.9],"r":-90,"n":2,"s":[0,1.4]},{"k":"coffee_table","p":[18.6,23.6],"r":0},{"k":"shake_bar","p":[28.3,23.6],"r":-90},{"k":"bar_stool","p":[27.3,22.6],"r":90,"n":3,"s":[0,1]},{"k":"back_bar","p":[29.65,23.6],"r":-90},{"k":"retail_unit","p":[28.7,18.5],"r":0},{"k":"planter","p":[20.7,25.3],"r":0},{"k":"planter","p":[25.5,25.3],"r":0}]},{"id":"cardio","index":"02","name":"Cardio","rect":{"x":0,"z":18,"w":16,"d":8},"floor":"rubber","items":[{"k":"treadmill","p":[1.4,23.7],"r":0,"n":6,"s":[1.2,0]},{"k":"elliptical","p":[9,23.7],"r":0,"n":4,"s":[1.2,0]},{"k":"stair_climber","p":[14,23.8],"r":0,"n":2,"s":[1.15,0]},{"k":"upright_bike","p":[1.6,20.4],"r":0,"n":4,"s":[1,0]},{"k":"rower","p":[6,20.3],"r":0,"n":3,"s":[1,0]},{"k":"air_bike","p":[10,20.4],"r":0,"n":3,"s":[1.25,0]},{"k":"towel_station","p":[14.6,19.2],"r":0}]},{"id":"fuerza","index":"03","name":"Strength machines","rect":{"x":30,"z":9.2,"w":10,"d":16.8},"floor":"rubber","items":[{"k":"chest_press","p":[38.7,10.8],"r":-90},{"k":"pec_fly","p":[38.7,12.6],"r":-90},{"k":"shoulder_press","p":[38.7,14.4],"r":-90},{"k":"lat_pulldown","p":[38.7,16.2],"r":-90},{"k":"seated_row","p":[38.7,18],"r":-90},{"k":"leg_extension","p":[38.7,19.8],"r":-90},{"k":"leg_curl","p":[38.7,21.6],"r":-90},{"k":"hip_abductor","p":[38.7,23.4],"r":-90},{"k":"leg_press","p":[34.2,11.3],"r":90},{"k":"hack_squat","p":[34.2,13.9],"r":90},{"k":"smith_machine","p":[34.2,16.8],"r":90},{"k":"dip_chin","p":[34.2,19.6],"r":90},{"k":"cable_crossover","p":[31,21.6],"r":90},{"k":"towel_station","p":[34.2,24.8],"r":0}]},{"id":"pesolibre","index":"04","name":"Free weights","rect":{"x":20,"z":9.2,"w":10,"d":7.2},"floor":"rubberThick","items":[{"k":"mirror_partition","p":[25,9.35],"r":0},{"k":"dumbbell_rack","p":[22.6,10.15],"r":0,"n":2,"s":[3,0]},{"k":"plate_tree","p":[28.8,10.3],"r":0,"n":2,"s":[0,1.5]},{"k":"adjustable_bench","p":[21.2,12.1],"r":0,"n":4,"s":[1.7,0]},{"k":"lifting_platform","p":[22.2,14.7],"r":0,"n":2,"s":[3.8,0]},{"k":"power_rack","p":[22.2,14.7],"r":0,"n":2,"s":[3.8,0]}]},{"id":"funcional","index":"05","name":"Functional training","rect":{"x":8,"z":9.2,"w":10.4,"d":7.2},"floor":"rubber","items":[{"k":"functional_rig","p":[13.2,11],"r":0},{"k":"sled_lane","p":[13.2,15.3],"r":0},{"k":"battle_ropes","p":[8.5,13.2],"r":90},{"k":"plyo_box","p":[17.5,10.2],"r":0,"n":3,"s":[0,0.9]},{"k":"kettlebell_rack","p":[9,9.9],"r":0},{"k":"medicine_ball","p":[8.6,11.2],"r":0,"n":4,"s":[0.42,0]}]},{"id":"movilidad","index":"06","name":"Mobility","rect":{"x":0,"z":9.2,"w":8,"d":7.2},"floor":"oak","items":[{"k":"wall_bars","p":[0.15,10.4],"r":90,"n":3,"s":[0,1]},{"k":"mirror_panel","p":[0.06,14.7],"r":90},{"k":"mat","p":[2,11.2],"r":0,"n":5,"s":[1.1,0]},{"k":"mat","p":[2,13.6],"r":0,"n":5,"s":[1.1,0]},{"k":"stability_ball","p":[7.4,10.1],"r":0,"n":3,"s":[0,0.75]},{"k":"mobility_shelf","p":[7.6,13.8],"r":-90},{"k":"stretch_station","p":[3.2,15.5],"r":0}]},{"id":"clases","index":"07","name":"Group studio","rect":{"x":20,"z":0,"w":10,"d":7.6},"floor":"sprung","items":[{"k":"mirror_wall","p":[25,0.08],"r":0},{"k":"podium","p":[25,1.3],"r":0},{"k":"training_position","p":[21.9,3.3],"r":180,"n":4,"s":[2.05,0]},{"k":"training_position","p":[21.9,4.85],"r":180,"n":4,"s":[2.05,0]},{"k":"training_position","p":[21.9,6.4],"r":180,"n":4,"s":[2.05,0]},{"k":"storage_wall","p":[29.75,3.9],"r":-90},{"k":"speaker","p":[20.5,0.45],"r":0},{"k":"speaker","p":[29.5,0.45],"r":0}]},{"id":"ciclo","index":"08","name":"Indoor cycling","rect":{"x":30,"z":0,"w":10,"d":7.6},"floor":"dark","items":[{"k":"led_screen","p":[35,0.06],"r":0},{"k":"instructor_bike","p":[35,1.3],"r":0},{"k":"riser","p":[35,4.9],"r":0,"y":0},{"k":"riser_high","p":[35,6.4],"r":0,"y":0},{"k":"spin_bike","p":[31.3,3.4],"r":180,"n":6,"s":[1.5,0]},{"k":"spin_bike","p":[31.3,4.9],"r":180,"n":6,"s":[1.5,0],"y":0.2},{"k":"spin_bike","p":[31.3,6.4],"r":180,"n":6,"s":[1.5,0],"y":0.4}]},{"id":"vestuarios","index":"09","name":"Changing rooms","rect":{"x":0,"z":0,"w":10,"d":7.6},"floor":"tile","items":[{"k":"shower","p":[0.6,0.55],"r":0,"n":3,"s":[1.05,0]},{"k":"locker","p":[4.6,1.8],"r":-90,"n":12,"s":[0,0.4]},{"k":"changing_bench","p":[2.4,4.4],"r":90},{"k":"vanity","p":[0.3,4],"r":90,"n":2,"s":[0,1.2]},{"k":"shower","p":[9.4,0.55],"r":0,"n":3,"s":[-1.05,0]},{"k":"locker","p":[5.4,1.8],"r":90,"n":12,"s":[0,0.4]},{"k":"changing_bench","p":[7.6,4.4],"r":90},{"k":"vanity","p":[9.7,4],"r":-90,"n":2,"s":[0,1.2]}]},{"id":"recuperacion","index":"10","name":"Recovery","rect":{"x":10,"z":0,"w":8.4,"d":7.6},"floor":"oak","items":[{"k":"sauna","p":[11.5,1.15],"r":0},{"k":"cold_plunge","p":[14.4,1.2],"r":0},{"k":"massage_table","p":[17.1,1.6],"r":0},{"k":"compression_lounger","p":[11.1,5.3],"r":0,"n":3,"s":[1.3,0]},{"k":"stretch_bench","p":[16.6,5],"r":0},{"k":"planter","p":[15.2,6.9],"r":0}]}]}</script>
 
   <!-- 05 FITNESS CATEGORIES: typographic (no images yet — see the asset list in the report) -->
   <section class="fscene fcats" id="categorias" aria-labelledby="f-cats-title">
@@ -601,6 +1001,7 @@
 </div>
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261018a"></script>
+<script src="/assets/js/fitness-club-3d/club-app.js?v=20261019b" defer></script>
 
 <!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
      main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->

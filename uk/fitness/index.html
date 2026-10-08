@@ -42,9 +42,11 @@
   <!-- The hero poster is the first paint (also the reduced-motion image) -->
   <link rel="preload" as="image" href="/images/fitness/hero-walkthrough-poster.webp" type="image/webp" fetchpriority="high">
 
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261018b">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261019b">
 </head>
 
 <body>
@@ -313,26 +315,424 @@
     </div>
   </section>
 
-  <!-- 04 FUNCTIONAL ZONING: schematic plan (same data as the homepage gym planner) -->
-  <section class="fscene fzoning" id="zonificacion" aria-labelledby="f-zoning-title">
-    <div class="fzoning__inner">
-      <div class="fzoning__text">
+  <!-- 03 ZONING: interactive 3D model of a conceptual fitness club (10 zones).
+       Section HTML (header, zone buttons, specification panel, plan fallback):
+       scripts/fitness-club.js; 3D + interaction: assets/js/fitness-club-3d/.
+       Demonstration data: assets/data/fitness-club.json. -->
+  <section class="fscene fclub" id="zonificacion" aria-labelledby="f-zoning-title" data-fclub>
+    <div class="fclub__inner">
+      <header class="fclub__head">
         <p class="fscene__label">03 / Зонування</p>
         <h2 class="fscene__title" id="f-zoning-title">Усе на своєму місці.</h2>
         <p class="fscene__body">Рецепція, тренувальні зони, потоки, роздягальні та допоміжні приміщення — кожна зона пов’язана з іншими.</p>
-        <ol class="fzoning__list">
-          <li>Рецепція</li>
-          <li>Тренувальні зони</li>
-          <li>Потоки</li>
-          <li>Роздягальні</li>
-          <li>Допоміжні приміщення</li>
+      </header>
+      <div class="fclub__stage">
+        <div class="fclub__viewport" data-fclub-viewport>
+          <svg class="fclub-plan" data-fclub-poster viewBox="-1 -1 42 28" role="img" aria-label="Інтерактивна 3D-модель концептуального фітнес-клубу з десятьма зонами"><rect class="fclub-plan__slab" x="0" y="0" width="40" height="26"/><rect class="fclub-plan__corr" x="0" y="7.6" width="40" height="1.6"/><rect class="fclub-plan__corr" x="0" y="16.4" width="30" height="1.6"/><rect class="fclub-plan__corr" x="18.4" y="0" width="1.6" height="18"/><g class="fclub-plan__zone" data-zone="recepcion"><rect x="16.1" y="18.1" width="13.8" height="7.8"/><text x="23" y="22.45">01</text></g><g class="fclub-plan__zone" data-zone="cardio"><rect x="0.1" y="18.1" width="15.8" height="7.8"/><text x="8" y="22.45">02</text></g><g class="fclub-plan__zone" data-zone="fuerza"><rect x="30.1" y="9.299999999999999" width="9.8" height="16.6"/><text x="35" y="18.05">03</text></g><g class="fclub-plan__zone" data-zone="pesolibre"><rect x="20.1" y="9.299999999999999" width="9.8" height="7"/><text x="25" y="13.249999999999998">04</text></g><g class="fclub-plan__zone" data-zone="funcional"><rect x="8.1" y="9.299999999999999" width="10.200000000000001" height="7"/><text x="13.2" y="13.249999999999998">05</text></g><g class="fclub-plan__zone" data-zone="movilidad"><rect x="0.1" y="9.299999999999999" width="7.8" height="7"/><text x="4" y="13.249999999999998">06</text></g><g class="fclub-plan__zone" data-zone="clases"><rect x="20.1" y="0.1" width="9.8" height="7.3999999999999995"/><text x="25" y="4.25">07</text></g><g class="fclub-plan__zone" data-zone="ciclo"><rect x="30.1" y="0.1" width="9.8" height="7.3999999999999995"/><text x="35" y="4.25">08</text></g><g class="fclub-plan__zone" data-zone="vestuarios"><rect x="0.1" y="0.1" width="9.8" height="7.3999999999999995"/><text x="5" y="4.25">09</text></g><g class="fclub-plan__zone" data-zone="recuperacion"><rect x="10.1" y="0.1" width="8.200000000000001" height="7.3999999999999995"/><text x="14.2" y="4.25">10</text></g></svg>
+          <div class="fclub__labels" data-fclub-labels></div>
+          <p class="fclub__loading" data-fclub-loading hidden>Завантаження 3D-моделі…</p>
+          <p class="fclub__fallback" data-fclub-fallback hidden>Ваш браузер не може показати 3D-модель. Оберіть зону в списку, щоб побачити її дані.</p>
+          <button type="button" class="fclub__reset" data-fclub-reset hidden>Загальний вигляд</button>
+          <p class="fclub__hint" data-fclub-hint data-hint-touch="Проведіть для повороту · Щипок для масштабу · Двома пальцями для зсуву · Торкніться зони" hidden>Перетягніть для повороту · Коліщатко або щипок для масштабу · Права кнопка для зсуву · Натисніть на зону</p>
+        </div>
+        <ol class="fclub__nav" aria-label="Зони клубу">
+        <li><button type="button" class="fclub__zone" data-zone="recepcion" aria-controls="fclub-zone-recepcion" aria-pressed="false"><span class="fclub__zone-num">01</span><span class="fclub__zone-name">Рецепція</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="cardio" aria-controls="fclub-zone-cardio" aria-pressed="false"><span class="fclub__zone-num">02</span><span class="fclub__zone-name">Кардіо</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="fuerza" aria-controls="fclub-zone-fuerza" aria-pressed="false"><span class="fclub__zone-num">03</span><span class="fclub__zone-name">Силові тренажери</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="pesolibre" aria-controls="fclub-zone-pesolibre" aria-pressed="false"><span class="fclub__zone-num">04</span><span class="fclub__zone-name">Вільні ваги</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="funcional" aria-controls="fclub-zone-funcional" aria-pressed="false"><span class="fclub__zone-num">05</span><span class="fclub__zone-name">Функціональний тренінг</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="movilidad" aria-controls="fclub-zone-movilidad" aria-pressed="false"><span class="fclub__zone-num">06</span><span class="fclub__zone-name">Мобільність</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="clases" aria-controls="fclub-zone-clases" aria-pressed="false"><span class="fclub__zone-num">07</span><span class="fclub__zone-name">Зал групових занять</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="ciclo" aria-controls="fclub-zone-ciclo" aria-pressed="false"><span class="fclub__zone-num">08</span><span class="fclub__zone-name">Сайкл</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="vestuarios" aria-controls="fclub-zone-vestuarios" aria-pressed="false"><span class="fclub__zone-num">09</span><span class="fclub__zone-name">Роздягальні</span></button></li>
+        <li><button type="button" class="fclub__zone" data-zone="recuperacion" aria-controls="fclub-zone-recuperacion" aria-pressed="false"><span class="fclub__zone-num">10</span><span class="fclub__zone-name">Відновлення</span></button></li>
         </ol>
-      </div>
-      <div class="fzoning__plan">
-<svg class="gym-plan" viewBox="-0.5 -0.5 33 23" role="img" aria-label="Схема планування спортзалу із зонами: рецепція, кардіо, силова, функціональна, студії, роздягальні та допоміжні приміщення."><rect class="gym-plan__service" x="26.08" y="0.08" width="5.84" height="7.84" rx="0.15"/><g class="gym-plan__zone" data-zone="reception"><rect x="0.08" y="16.08" width="5.84" height="5.84" rx="0.15"/><text x="0.45" y="16.95" class="gym-plan__num">01</text><text x="0.45" y="17.75" font-size="0.62">Рецепція</text></g><g class="gym-plan__zone" data-zone="cardio"><rect x="6.08" y="16.08" width="12.84" height="5.84" rx="0.15"/><text x="6.45" y="16.95" class="gym-plan__num">02</text><text x="6.45" y="17.75" font-size="0.62">Кардіо</text></g><g class="gym-plan__zone" data-zone="strength"><rect x="6.08" y="8.08" width="8.84" height="7.84" rx="0.15"/><text x="6.45" y="8.95" class="gym-plan__num">03</text><text x="6.45" y="9.75" font-size="0.62">Силові тренажери</text></g><g class="gym-plan__zone" data-zone="freeweights"><rect x="15.08" y="8.08" width="8.84" height="7.84" rx="0.15"/><text x="15.45" y="8.95" class="gym-plan__num">04</text><text x="15.45" y="9.75" font-size="0.62">Вільні ваги</text></g><g class="gym-plan__zone" data-zone="functional"><rect x="19.08" y="16.08" width="12.84" height="5.84" rx="0.15"/><text x="19.45" y="16.95" class="gym-plan__num">05</text><text x="19.45" y="17.75" font-size="0.62">Функціональний тренінг</text></g><g class="gym-plan__zone" data-zone="stretching"><rect x="24.08" y="8.08" width="7.84" height="7.84" rx="0.15"/><text x="24.45" y="8.95" class="gym-plan__num">06</text><text x="24.45" y="9.75" font-size="0.62">Мобільність</text></g><g class="gym-plan__zone" data-zone="studio"><rect x="6.08" y="0.08" width="11.84" height="7.84" rx="0.15"/><text x="6.45" y="0.95" class="gym-plan__num">07</text><text x="6.45" y="1.75" font-size="0.62">Зал групових програм</text></g><g class="gym-plan__zone" data-zone="spin"><rect x="18.08" y="0.08" width="7.84" height="7.84" rx="0.15"/><text x="18.45" y="0.95" class="gym-plan__num">08</text><text x="18.45" y="1.75" font-size="0.62">Сайкл</text></g><g class="gym-plan__zone" data-zone="lockers"><rect x="0.08" y="8.08" width="5.84" height="7.84" rx="0.15"/><text x="0.45" y="8.95" class="gym-plan__num">09</text><text x="0.45" y="9.75" font-size="0.62">Роздягальні</text></g><g class="gym-plan__zone" data-zone="recovery"><rect x="0.08" y="0.08" width="5.84" height="7.84" rx="0.15"/><text x="0.45" y="0.95" class="gym-plan__num">10</text><text x="0.45" y="1.75" font-size="0.62">Відновлення</text></g></svg>
+        <aside class="fclub__panel" data-fclub-panel aria-label="Зони клубу" aria-live="polite">
+        <article class="fclub-z fclub-z--overview" data-zone="overview">
+          <p class="fclub-z__kicker">Концептуальний клуб</p>
+          <h3 class="fclub-z__title">Десять зон, один маршрут.</h3>
+          <p class="fclub-z__desc">Роздивіться модель і оберіть зону, щоб побачити її призначення, обладнання, матеріали, освітлення та орієнтовні інвестиції.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Загальна площа</dt><dd>1 040 m²</dd></div>
+            <div><dt>Зони</dt><dd>10</dd></div>
+          </dl>
+          <p class="fclub-z__total"><span>Загальні орієнтовні інвестиції</span> 495 800 € – 840 700 €</p>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-recepcion" data-zone="recepcion" aria-labelledby="fclub-zone-recepcion-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Закрити"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Зона 01</p>
+          <h3 class="fclub-z__title" id="fclub-zone-recepcion-title">Рецепція</h3>
+          <p class="fclub-z__desc">Перше враження від клубу: контроль доступу, обслуговування клієнтів, лаунж, смузі-бар і магазин у теплому просторі, де хочеться затриматися.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Площа</dt><dd>112 m²</dd></div>
+            <div><dt>Рекомендована місткість</dt><dd>14 <span>осіб одночасно</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Основне обладнання</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">4 ×</span> Швидкісний турнікет</li>
+          </ul>
+          <h4 class="fclub-z__h">Меблі</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Стійка рецепції</li>
+            <li><span class="fclub-z__qty">1 ×</span> Диван</li>
+            <li><span class="fclub-z__qty">2 ×</span> Крісло</li>
+            <li><span class="fclub-z__qty">1 ×</span> Журнальний столик</li>
+            <li><span class="fclub-z__qty">1 ×</span> Смузі-бар</li>
+            <li><span class="fclub-z__qty">3 ×</span> Барний стілець</li>
+            <li><span class="fclub-z__qty">1 ×</span> Задня барна стійка</li>
+            <li><span class="fclub-z__qty">1 ×</span> Вітрина магазину</li>
+            <li><span class="fclub-z__qty">2 ×</span> Кашпо з рослиною</li>
+          </ul>
+          <h4 class="fclub-z__h">Матеріали та оздоблення</h4>
+          <ul class="fclub-z__tags"><li>Дубові ламелі з підсвіткою</li><li>Стільниця зі штучного каменю</li><li>Підлога з натурального дуба</li><li>Сталь з порошковим фарбуванням «графіт»</li></ul>
+          <h4 class="fclub-z__h">Концепція освітлення</h4>
+          <p class="fclub-z__text">Ламелі з підсвіткою, підвісні лінійні світильники теплого білого кольору та акцентне світло над стійкою.</p>
+          <h4 class="fclub-z__h">Орієнтовні інвестиції</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Обладнання</th><td>18 000 € – 30 000 €</td></tr>
+            <tr><th scope="row">Меблі</th><td>35 000 € – 60 000 €</td></tr>
+            <tr><th scope="row">Оздоблення</th><td>25 000 € – 40 000 €</td></tr>
+            <tr><th scope="row">Освітлення</th><td>10 000 € – 18 000 €</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Орієнтовний підсумок</th><td>88 000 € – 148 000 €</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-cardio" data-zone="cardio" aria-labelledby="fclub-zone-cardio-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Закрити"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Зона 02</p>
+          <h3 class="fclub-z__title" id="fclub-zone-cardio-title">Кардіо</h3>
+          <figure class="fclub-z__fig"><img src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt=""><figcaption>Концептуальна візуалізація 3DNA</figcaption></figure>
+          <p class="fclub-z__desc">Тренажери звернені до скляного фасаду — денне світло й краєвид. Рівні ряди залишають вільні проходи та чітку структуру простору.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Площа</dt><dd>128 m²</dd></div>
+            <div><dt>Рекомендована місткість</dt><dd>22 <span>осіб одночасно</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Основне обладнання</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">6 ×</span> Бігова доріжка</li>
+            <li><span class="fclub-z__qty">4 ×</span> Орбітрек</li>
+            <li><span class="fclub-z__qty">2 ×</span> Степер-драбина</li>
+            <li><span class="fclub-z__qty">4 ×</span> Велотренажер</li>
+            <li><span class="fclub-z__qty">3 ×</span> Гребний тренажер</li>
+            <li><span class="fclub-z__qty">3 ×</span> Аеробайк</li>
+          </ul>
+          <h4 class="fclub-z__h">Меблі</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Станція рушників</li>
+          </ul>
+          <h4 class="fclub-z__h">Матеріали та оздоблення</h4>
+          <ul class="fclub-z__tags"><li>Спортивна гума з крихтою</li><li>Скляний фасад з чорними профілями</li><li>Сталь з порошковим фарбуванням «графіт»</li></ul>
+          <h4 class="fclub-z__h">Концепція освітлення</h4>
+          <p class="fclub-z__text">Денне світло фасаду та підвісні світлодіодні лінії нейтрального білого кольору без відблисків на екранах.</p>
+          <h4 class="fclub-z__h">Орієнтовні інвестиції</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Обладнання</th><td>100 000 € – 152 000 €</td></tr>
+            <tr><th scope="row">Меблі</th><td>2 000 € – 4 000 €</td></tr>
+            <tr><th scope="row">Оздоблення</th><td>6 000 € – 9 000 €</td></tr>
+            <tr><th scope="row">Освітлення</th><td>8 000 € – 14 000 €</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Орієнтовний підсумок</th><td>116 000 € – 179 000 €</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-fuerza" data-zone="fuerza" aria-labelledby="fclub-zone-fuerza-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Закрити"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Зона 03</p>
+          <h3 class="fclub-z__title" id="fclub-zone-fuerza-title">Силові тренажери</h3>
+          <figure class="fclub-z__fig"><img src="/images/fitness/detail-lighting.webp" width="460" height="460" loading="lazy" decoding="async" alt=""><figcaption>Концептуальна візуалізація 3DNA</figcaption></figure>
+          <p class="fclub-z__desc">Кругова зона блокових тренажерів на всі групи м’язів, згрупованих за зонами, з вільним простором навколо кожного.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Площа</dt><dd>168 m²</dd></div>
+            <div><dt>Рекомендована місткість</dt><dd>14 <span>осіб одночасно</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Основне обладнання</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Жим від грудей</li>
+            <li><span class="fclub-z__qty">1 ×</span> Батерфляй</li>
+            <li><span class="fclub-z__qty">1 ×</span> Жим від плечей</li>
+            <li><span class="fclub-z__qty">1 ×</span> Верхня тяга</li>
+            <li><span class="fclub-z__qty">1 ×</span> Горизонтальна тяга</li>
+            <li><span class="fclub-z__qty">1 ×</span> Розгинання ніг</li>
+            <li><span class="fclub-z__qty">1 ×</span> Згинання ніг</li>
+            <li><span class="fclub-z__qty">1 ×</span> Відведення стегна</li>
+            <li><span class="fclub-z__qty">1 ×</span> Жим ногами</li>
+            <li><span class="fclub-z__qty">1 ×</span> Гак-присід</li>
+            <li><span class="fclub-z__qty">1 ×</span> Машина Сміта</li>
+            <li><span class="fclub-z__qty">1 ×</span> Гравітрон</li>
+            <li><span class="fclub-z__qty">1 ×</span> Кросовер</li>
+          </ul>
+          <h4 class="fclub-z__h">Меблі</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Станція рушників</li>
+          </ul>
+          <h4 class="fclub-z__h">Матеріали та оздоблення</h4>
+          <ul class="fclub-z__tags"><li>Спортивна гума з крихтою</li><li>Скляний фасад з чорними профілями</li><li>Сталь з порошковим фарбуванням «графіт»</li><li>Чорна технічна оббивка</li></ul>
+          <h4 class="fclub-z__h">Концепція освітлення</h4>
+          <p class="fclub-z__text">Поздовжні світлодіодні лінії холодного білого кольору вздовж рядів тренажерів з високою рівномірністю.</p>
+          <h4 class="fclub-z__h">Орієнтовні інвестиції</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Обладнання</th><td>52 000 € – 90 000 €</td></tr>
+            <tr><th scope="row">Меблі</th><td>1 000 € – 3 000 €</td></tr>
+            <tr><th scope="row">Оздоблення</th><td>8 500 € – 12 500 €</td></tr>
+            <tr><th scope="row">Освітлення</th><td>10 000 € – 16 000 €</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Орієнтовний підсумок</th><td>71 500 € – 121 500 €</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-pesolibre" data-zone="pesolibre" aria-labelledby="fclub-zone-pesolibre-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Закрити"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Зона 04</p>
+          <h3 class="fclub-z__title" id="fclub-zone-pesolibre-title">Вільні ваги</h3>
+          <figure class="fclub-z__fig"><img src="/images/fitness/detail-identity.webp" width="420" height="420" loading="lazy" decoding="async" alt=""><figcaption>Концептуальна візуалізація 3DNA</figcaption></figure>
+          <p class="fclub-z__desc">Рами на помостах, гантелі, лави й дзеркала — серце силових тренувань на покритті високої щільності.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Площа</dt><dd>72 m²</dd></div>
+            <div><dt>Рекомендована місткість</dt><dd>10 <span>осіб одночасно</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Основне обладнання</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">2 ×</span> Стійка з гантелями</li>
+            <li><span class="fclub-z__qty">2 ×</span> Стійка для дисків</li>
+            <li><span class="fclub-z__qty">4 ×</span> Регульована лава</li>
+            <li><span class="fclub-z__qty">2 ×</span> Поміст</li>
+            <li><span class="fclub-z__qty">2 ×</span> Силова рама</li>
+          </ul>
+          <h4 class="fclub-z__h">Матеріали та оздоблення</h4>
+          <ul class="fclub-z__tags"><li>Гума високої щільності 30 мм</li><li>Помости з дуба й гуми</li><li>Безпечне дзеркало</li><li>Сталь з порошковим фарбуванням «графіт»</li></ul>
+          <h4 class="fclub-z__h">Концепція освітлення</h4>
+          <p class="fclub-z__text">Пряме холодне біле світло над рамами та заливне світло на дзеркальній стіні.</p>
+          <h4 class="fclub-z__h">Орієнтовні інвестиції</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Обладнання</th><td>22 000 € – 37 000 €</td></tr>
+            <tr><th scope="row">Меблі</th><td>500 € – 1 500 €</td></tr>
+            <tr><th scope="row">Оздоблення</th><td>7 000 € – 11 000 €</td></tr>
+            <tr><th scope="row">Освітлення</th><td>5 000 € – 9 000 €</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Орієнтовний підсумок</th><td>34 500 € – 58 500 €</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-funcional" data-zone="funcional" aria-labelledby="fclub-zone-funcional-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Закрити"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Зона 05</p>
+          <h3 class="fclub-z__title" id="fclub-zone-funcional-title">Функціональний тренінг</h3>
+          <figure class="fclub-z__fig"><img src="/images/fitness/detail-materials.webp" width="460" height="400" loading="lazy" decoding="async" alt=""><figcaption>Концептуальна візуалізація 3DNA</figcaption></figure>
+          <p class="fclub-z__desc">Центральна рама, доріжка для саней і вільний інвентар для міні-груп, кругових і персональних тренувань.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Площа</dt><dd>75 m²</dd></div>
+            <div><dt>Рекомендована місткість</dt><dd>12 <span>осіб одночасно</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Основне обладнання</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Функціональна рама</li>
+            <li><span class="fclub-z__qty">1 ×</span> Доріжка для саней</li>
+            <li><span class="fclub-z__qty">1 ×</span> Канати</li>
+            <li><span class="fclub-z__qty">3 ×</span> Пліобокс</li>
+            <li><span class="fclub-z__qty">1 ×</span> Стійка з гирями</li>
+            <li><span class="fclub-z__qty">4 ×</span> Медбол</li>
+          </ul>
+          <h4 class="fclub-z__h">Матеріали та оздоблення</h4>
+          <ul class="fclub-z__tags"><li>Доріжка для саней з розміткою</li><li>Спортивна гума з крихтою</li><li>Сталь з порошковим фарбуванням «графіт»</li></ul>
+          <h4 class="fclub-z__h">Концепція освітлення</h4>
+          <p class="fclub-z__text">Потужні світлодіодні лінії над рамою та синій акцент уздовж доріжки для саней.</p>
+          <h4 class="fclub-z__h">Орієнтовні інвестиції</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Обладнання</th><td>13 000 € – 22 000 €</td></tr>
+            <tr><th scope="row">Меблі</th><td>500 € – 1 500 €</td></tr>
+            <tr><th scope="row">Оздоблення</th><td>6 000 € – 10 000 €</td></tr>
+            <tr><th scope="row">Освітлення</th><td>4 000 € – 7 000 €</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Орієнтовний підсумок</th><td>23 500 € – 40 500 €</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-movilidad" data-zone="movilidad" aria-labelledby="fclub-zone-movilidad-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Закрити"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Зона 06</p>
+          <h3 class="fclub-z__title" id="fclub-zone-movilidad-title">Мобільність</h3>
+          <p class="fclub-z__desc">Спокійніший простір для розтяжки, розминки й мобільності: шведські стінки, килимки та дзеркало.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Площа</dt><dd>58 m²</dd></div>
+            <div><dt>Рекомендована місткість</dt><dd>8 <span>осіб одночасно</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Основне обладнання</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">3 ×</span> Шведська стінка</li>
+            <li><span class="fclub-z__qty">10 ×</span> Килимок</li>
+            <li><span class="fclub-z__qty">3 ×</span> Фітбол</li>
+            <li><span class="fclub-z__qty">1 ×</span> Станція для розтяжки</li>
+          </ul>
+          <h4 class="fclub-z__h">Меблі</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Стелаж для ролів і аксесуарів</li>
+          </ul>
+          <h4 class="fclub-z__h">Матеріали та оздоблення</h4>
+          <ul class="fclub-z__tags"><li>Підлога з натурального дуба</li><li>Безпечне дзеркало</li><li>Килимки з натурального каучуку</li></ul>
+          <h4 class="fclub-z__h">Концепція освітлення</h4>
+          <p class="fclub-z__text">Тепле регульоване відбите світло без видимих з підлоги світильників.</p>
+          <h4 class="fclub-z__h">Орієнтовні інвестиції</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Обладнання</th><td>3 500 € – 6 200 €</td></tr>
+            <tr><th scope="row">Меблі</th><td>800 € – 1 500 €</td></tr>
+            <tr><th scope="row">Оздоблення</th><td>4 000 € – 7 000 €</td></tr>
+            <tr><th scope="row">Освітлення</th><td>3 000 € – 5 000 €</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Орієнтовний підсумок</th><td>11 300 € – 19 700 €</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-clases" data-zone="clases" aria-labelledby="fclub-zone-clases-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Закрити"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Зона 07</p>
+          <h3 class="fclub-z__title" id="fclub-zone-clases-title">Зал групових занять</h3>
+          <p class="fclub-z__desc">Засклений зал для групових програм: дзеркальна стіна, подіум інструктора, вбудоване зберігання та звук.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Площа</dt><dd>76 m²</dd></div>
+            <div><dt>Рекомендована місткість</dt><dd>12 <span>осіб одночасно</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Основне обладнання</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Подіум інструктора</li>
+            <li><span class="fclub-z__qty">12 ×</span> Місце для занять (килимок, степ і гантелі)</li>
+            <li><span class="fclub-z__qty">2 ×</span> Колонка</li>
+          </ul>
+          <h4 class="fclub-z__h">Меблі</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Вбудоване зберігання</li>
+          </ul>
+          <h4 class="fclub-z__h">Матеріали та оздоблення</h4>
+          <ul class="fclub-z__tags"><li>Спортивна амортизаційна підлога</li><li>Безпечне дзеркало</li><li>Акустичні панелі</li><li>Скляні перегородки</li></ul>
+          <h4 class="fclub-z__h">Концепція освітлення</h4>
+          <p class="fclub-z__text">Програмовані сценарії: загальне біле світло для технічних занять і кольорові сцени для інтенсивних.</p>
+          <h4 class="fclub-z__h">Орієнтовні інвестиції</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Обладнання</th><td>5 500 € – 10 500 €</td></tr>
+            <tr><th scope="row">Меблі</th><td>2 000 € – 4 000 €</td></tr>
+            <tr><th scope="row">Оздоблення</th><td>7 500 € – 12 000 €</td></tr>
+            <tr><th scope="row">Освітлення</th><td>6 000 € – 11 000 €</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Орієнтовний підсумок</th><td>21 000 € – 37 500 €</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-ciclo" data-zone="ciclo" aria-labelledby="fclub-zone-ciclo-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Закрити"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Зона 08</p>
+          <h3 class="fclub-z__title" id="fclub-zone-ciclo-title">Сайкл</h3>
+          <p class="fclub-z__desc">Імерсивний зал з амфітеатром, велосипедами, зверненими до інструктора, екраном і продуманою акустикою.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Площа</dt><dd>76 m²</dd></div>
+            <div><dt>Рекомендована місткість</dt><dd>18 <span>осіб одночасно</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Основне обладнання</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Світлодіодний екран</li>
+            <li><span class="fclub-z__qty">1 ×</span> Велосипед інструктора на подіумі</li>
+            <li><span class="fclub-z__qty">18 ×</span> Сайкл-велосипед</li>
+          </ul>
+          <h4 class="fclub-z__h">Матеріали та оздоблення</h4>
+          <ul class="fclub-z__tags"><li>Темне неслизьке покриття</li><li>Акустичні панелі</li><li>Сталь з порошковим фарбуванням «графіт»</li></ul>
+          <h4 class="fclub-z__h">Концепція освітлення</h4>
+          <p class="fclub-z__text">Темний зал з програмованими RGB-стрічками та екраном як головним акцентом; окреме біле світло для прибирання.</p>
+          <h4 class="fclub-z__h">Орієнтовні інвестиції</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Обладнання</th><td>30 000 € – 53 000 €</td></tr>
+            <tr><th scope="row">Оздоблення</th><td>10 000 € – 18 000 €</td></tr>
+            <tr><th scope="row">Освітлення</th><td>8 000 € – 15 000 €</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Орієнтовний підсумок</th><td>48 000 € – 86 000 €</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-vestuarios" data-zone="vestuarios" aria-labelledby="fclub-zone-vestuarios-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Закрити"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Зона 09</p>
+          <h3 class="fclub-z__title" id="fclub-zone-vestuarios-title">Роздягальні</h3>
+          <p class="fclub-z__desc">Дві роздягальні з шафками, душовими, лавами й туалетними столиками. Вологостійкі матеріали, прості в прибиранні.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Площа</dt><dd>76 m²</dd></div>
+            <div><dt>Рекомендована місткість</dt><dd>24 <span>осіб одночасно</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Основне обладнання</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">6 ×</span> Душова</li>
+            <li><span class="fclub-z__qty">24 ×</span> Шафка</li>
+          </ul>
+          <h4 class="fclub-z__h">Меблі</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">2 ×</span> Лава для роздягальні</li>
+            <li><span class="fclub-z__qty">4 ×</span> Туалетний столик з умивальником</li>
+          </ul>
+          <h4 class="fclub-z__h">Матеріали та оздоблення</h4>
+          <ul class="fclub-z__tags"><li>Неслизький керамограніт</li><li>Шафки в ламінаті «дуб»</li><li>Стільниця зі штучного каменю</li><li>Скляні душові перегородки</li></ul>
+          <h4 class="fclub-z__h">Концепція освітлення</h4>
+          <p class="fclub-z__text">Рівномірне нейтральне біле світло, безтіньове підсвічування дзеркал і вологозахищені світильники в душових.</p>
+          <h4 class="fclub-z__h">Орієнтовні інвестиції</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Обладнання</th><td>11 000 € – 20 000 €</td></tr>
+            <tr><th scope="row">Меблі</th><td>4 000 € – 8 000 €</td></tr>
+            <tr><th scope="row">Оздоблення</th><td>30 000 € – 50 000 €</td></tr>
+            <tr><th scope="row">Освітлення</th><td>5 000 € – 9 000 €</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Орієнтовний підсумок</th><td>50 000 € – 87 000 €</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        <article class="fclub-z" id="fclub-zone-recuperacion" data-zone="recuperacion" aria-labelledby="fclub-zone-recuperacion-title" hidden>
+          <button type="button" class="fclub-z__close" data-fclub-close aria-label="Закрити"><span aria-hidden="true">×</span></button>
+          <p class="fclub-z__kicker">Зона 10</p>
+          <h3 class="fclub-z__title" id="fclub-zone-recuperacion-title">Відновлення</h3>
+          <p class="fclub-z__desc">Сауна, холодна купіль, масажний стіл і пресотерапія — зона додаткової цінності, що подовжує візит клієнта.</p>
+          <dl class="fclub-z__facts">
+            <div><dt>Площа</dt><dd>64 m²</dd></div>
+            <div><dt>Рекомендована місткість</dt><dd>7 <span>осіб одночасно</span></dd></div>
+          </dl>
+          <h4 class="fclub-z__h">Основне обладнання</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Сауна</li>
+            <li><span class="fclub-z__qty">1 ×</span> Холодна купіль</li>
+            <li><span class="fclub-z__qty">1 ×</span> Масажний стіл</li>
+            <li><span class="fclub-z__qty">3 ×</span> Крісло для пресотерапії</li>
+            <li><span class="fclub-z__qty">1 ×</span> Кушетка для розтяжки</li>
+          </ul>
+          <h4 class="fclub-z__h">Меблі</h4>
+          <ul class="fclub-z__list">
+            <li><span class="fclub-z__qty">1 ×</span> Кашпо з рослиною</li>
+          </ul>
+          <h4 class="fclub-z__h">Матеріали та оздоблення</h4>
+          <ul class="fclub-z__tags"><li>Підлога з натурального дуба</li><li>Північна ялина</li><li>Стільниця зі штучного каменю</li><li>Скляні перегородки</li></ul>
+          <h4 class="fclub-z__h">Концепція освітлення</h4>
+          <p class="fclub-z__text">М’яке тепле регульоване світло та вбудоване підсвічування в сауні.</p>
+          <h4 class="fclub-z__h">Орієнтовні інвестиції</h4>
+          <table class="fclub-z__budget">
+            <tbody>
+            <tr><th scope="row">Обладнання</th><td>18 000 € – 37 000 €</td></tr>
+            <tr><th scope="row">Меблі</th><td>3 000 € – 6 000 €</td></tr>
+            <tr><th scope="row">Оздоблення</th><td>8 000 € – 14 000 €</td></tr>
+            <tr><th scope="row">Освітлення</th><td>3 000 € – 6 000 €</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Орієнтовний підсумок</th><td>32 000 € – 63 000 €</td></tr></tfoot>
+          </table>
+          <p class="fclub-z__note">Демонстраційні дані концептуального клубу: площі, місткість і суми орієнтовні (без ПДВ). Це не реальний проєкт і не кошторис.</p>
+        </article>
+        </aside>
+        <div class="fclub__scrim" data-fclub-scrim hidden></div>
       </div>
     </div>
   </section>
+  <script type="application/json" id="fclub-data">{"model":{"url":null,"note":"To use a professionally authored model, export a GLB with one group per zone named 'zone-\u003cid>' (e.g. 'zone-cardio') and set url to its path (e.g. '/models/fitness/club.glb'). The procedural model below is then skipped; selection, camera, panel and labels keep working unchanged."},"footprint":{"w":40,"d":26},"architecture":{"wallHeight":3.4,"cutHeight":1.25,"walls":[{"t":"solid","a":[0,0],"b":[40,0]},{"t":"solid","a":[0,0],"b":[0,26]},{"t":"curtain","a":[0,26],"b":[21,26]},{"t":"door","a":[21,26],"b":[25,26]},{"t":"curtain","a":[25,26],"b":[40,26]},{"t":"cut","a":[40,0],"b":[40,7.6]},{"t":"curtain","a":[40,7.6],"b":[40,26]},{"t":"cut","a":[0,7.6],"b":[2,7.6]},{"t":"cut","a":[3.2,7.6],"b":[6.8,7.6]},{"t":"cut","a":[8,7.6],"b":[10,7.6]},{"t":"cut","a":[5,0],"b":[5,6.6]},{"t":"cut","a":[10,0],"b":[10,7.6]},{"t":"glass","a":[10,7.6],"b":[17.2,7.6]},{"t":"glass","a":[18.4,0],"b":[18.4,7.6]},{"t":"glass","a":[20,0],"b":[20,7.6]},{"t":"glass","a":[21.2,7.6],"b":[30,7.6]},{"t":"cut","a":[30,0],"b":[30,7.6]},{"t":"cut","a":[30,7.6],"b":[31.4,7.6]},{"t":"cut","a":[32.6,7.6],"b":[40,7.6]}],"columns":[[6,8.4],[14,8.4],[25,8.4],[35,8.4],[6,17.2],[14,17.2],[25,17.2]],"corridors":[{"x":0,"z":7.6,"w":40,"d":1.6},{"x":0,"z":16.4,"w":30,"d":1.6},{"x":18.4,"z":0,"w":1.6,"d":18}],"guideLines":[{"a":[0.6,8.4],"b":[39.4,8.4]},{"a":[0.6,17.2],"b":[29.4,17.2]},{"a":[19.2,0.6],"b":[19.2,17.2]}],"ceilingLines":[{"a":[0.6,19.6],"b":[15.4,19.6]},{"a":[0.6,22.2],"b":[15.4,22.2]},{"a":[0.6,24.9],"b":[15.4,24.9]},{"a":[32.6,9.8],"b":[32.6,25.4]},{"a":[36.4,9.8],"b":[36.4,25.4]},{"a":[20.6,11.2],"b":[29.4,11.2]},{"a":[20.6,14.4],"b":[29.4,14.4]},{"a":[8.6,12.8],"b":[17.8,12.8]},{"a":[16.6,21.6],"b":[29.4,21.6]},{"a":[16.6,24.4],"b":[29.4,24.4]},{"a":[19.2,0.6],"b":[19.2,16.8]}],"pilasters":[[0,18.6],[0,21.4],[0,24.2],[0,9.6]]},"zones":[{"id":"recepcion","index":"01","name":"Рецепція","rect":{"x":16,"z":18,"w":14,"d":8},"floor":"oak","items":[{"k":"slat_wall","p":[24.6,18.3],"r":0},{"k":"reception_desk","p":[24.8,20.7],"r":0},{"k":"speed_gate","p":[18.5,20.7],"r":0,"n":4,"s":[0.9,0]},{"k":"rug","p":[18.6,23.6],"r":0},{"k":"sofa","p":[16.9,23.6],"r":90},{"k":"lounge_chair","p":[20.2,22.9],"r":-90,"n":2,"s":[0,1.4]},{"k":"coffee_table","p":[18.6,23.6],"r":0},{"k":"shake_bar","p":[28.3,23.6],"r":-90},{"k":"bar_stool","p":[27.3,22.6],"r":90,"n":3,"s":[0,1]},{"k":"back_bar","p":[29.65,23.6],"r":-90},{"k":"retail_unit","p":[28.7,18.5],"r":0},{"k":"planter","p":[20.7,25.3],"r":0},{"k":"planter","p":[25.5,25.3],"r":0}]},{"id":"cardio","index":"02","name":"Кардіо","rect":{"x":0,"z":18,"w":16,"d":8},"floor":"rubber","items":[{"k":"treadmill","p":[1.4,23.7],"r":0,"n":6,"s":[1.2,0]},{"k":"elliptical","p":[9,23.7],"r":0,"n":4,"s":[1.2,0]},{"k":"stair_climber","p":[14,23.8],"r":0,"n":2,"s":[1.15,0]},{"k":"upright_bike","p":[1.6,20.4],"r":0,"n":4,"s":[1,0]},{"k":"rower","p":[6,20.3],"r":0,"n":3,"s":[1,0]},{"k":"air_bike","p":[10,20.4],"r":0,"n":3,"s":[1.25,0]},{"k":"towel_station","p":[14.6,19.2],"r":0}]},{"id":"fuerza","index":"03","name":"Силові тренажери","rect":{"x":30,"z":9.2,"w":10,"d":16.8},"floor":"rubber","items":[{"k":"chest_press","p":[38.7,10.8],"r":-90},{"k":"pec_fly","p":[38.7,12.6],"r":-90},{"k":"shoulder_press","p":[38.7,14.4],"r":-90},{"k":"lat_pulldown","p":[38.7,16.2],"r":-90},{"k":"seated_row","p":[38.7,18],"r":-90},{"k":"leg_extension","p":[38.7,19.8],"r":-90},{"k":"leg_curl","p":[38.7,21.6],"r":-90},{"k":"hip_abductor","p":[38.7,23.4],"r":-90},{"k":"leg_press","p":[34.2,11.3],"r":90},{"k":"hack_squat","p":[34.2,13.9],"r":90},{"k":"smith_machine","p":[34.2,16.8],"r":90},{"k":"dip_chin","p":[34.2,19.6],"r":90},{"k":"cable_crossover","p":[31,21.6],"r":90},{"k":"towel_station","p":[34.2,24.8],"r":0}]},{"id":"pesolibre","index":"04","name":"Вільні ваги","rect":{"x":20,"z":9.2,"w":10,"d":7.2},"floor":"rubberThick","items":[{"k":"mirror_partition","p":[25,9.35],"r":0},{"k":"dumbbell_rack","p":[22.6,10.15],"r":0,"n":2,"s":[3,0]},{"k":"plate_tree","p":[28.8,10.3],"r":0,"n":2,"s":[0,1.5]},{"k":"adjustable_bench","p":[21.2,12.1],"r":0,"n":4,"s":[1.7,0]},{"k":"lifting_platform","p":[22.2,14.7],"r":0,"n":2,"s":[3.8,0]},{"k":"power_rack","p":[22.2,14.7],"r":0,"n":2,"s":[3.8,0]}]},{"id":"funcional","index":"05","name":"Функціональний тренінг","rect":{"x":8,"z":9.2,"w":10.4,"d":7.2},"floor":"rubber","items":[{"k":"functional_rig","p":[13.2,11],"r":0},{"k":"sled_lane","p":[13.2,15.3],"r":0},{"k":"battle_ropes","p":[8.5,13.2],"r":90},{"k":"plyo_box","p":[17.5,10.2],"r":0,"n":3,"s":[0,0.9]},{"k":"kettlebell_rack","p":[9,9.9],"r":0},{"k":"medicine_ball","p":[8.6,11.2],"r":0,"n":4,"s":[0.42,0]}]},{"id":"movilidad","index":"06","name":"Мобільність","rect":{"x":0,"z":9.2,"w":8,"d":7.2},"floor":"oak","items":[{"k":"wall_bars","p":[0.15,10.4],"r":90,"n":3,"s":[0,1]},{"k":"mirror_panel","p":[0.06,14.7],"r":90},{"k":"mat","p":[2,11.2],"r":0,"n":5,"s":[1.1,0]},{"k":"mat","p":[2,13.6],"r":0,"n":5,"s":[1.1,0]},{"k":"stability_ball","p":[7.4,10.1],"r":0,"n":3,"s":[0,0.75]},{"k":"mobility_shelf","p":[7.6,13.8],"r":-90},{"k":"stretch_station","p":[3.2,15.5],"r":0}]},{"id":"clases","index":"07","name":"Зал групових занять","rect":{"x":20,"z":0,"w":10,"d":7.6},"floor":"sprung","items":[{"k":"mirror_wall","p":[25,0.08],"r":0},{"k":"podium","p":[25,1.3],"r":0},{"k":"training_position","p":[21.9,3.3],"r":180,"n":4,"s":[2.05,0]},{"k":"training_position","p":[21.9,4.85],"r":180,"n":4,"s":[2.05,0]},{"k":"training_position","p":[21.9,6.4],"r":180,"n":4,"s":[2.05,0]},{"k":"storage_wall","p":[29.75,3.9],"r":-90},{"k":"speaker","p":[20.5,0.45],"r":0},{"k":"speaker","p":[29.5,0.45],"r":0}]},{"id":"ciclo","index":"08","name":"Сайкл","rect":{"x":30,"z":0,"w":10,"d":7.6},"floor":"dark","items":[{"k":"led_screen","p":[35,0.06],"r":0},{"k":"instructor_bike","p":[35,1.3],"r":0},{"k":"riser","p":[35,4.9],"r":0,"y":0},{"k":"riser_high","p":[35,6.4],"r":0,"y":0},{"k":"spin_bike","p":[31.3,3.4],"r":180,"n":6,"s":[1.5,0]},{"k":"spin_bike","p":[31.3,4.9],"r":180,"n":6,"s":[1.5,0],"y":0.2},{"k":"spin_bike","p":[31.3,6.4],"r":180,"n":6,"s":[1.5,0],"y":0.4}]},{"id":"vestuarios","index":"09","name":"Роздягальні","rect":{"x":0,"z":0,"w":10,"d":7.6},"floor":"tile","items":[{"k":"shower","p":[0.6,0.55],"r":0,"n":3,"s":[1.05,0]},{"k":"locker","p":[4.6,1.8],"r":-90,"n":12,"s":[0,0.4]},{"k":"changing_bench","p":[2.4,4.4],"r":90},{"k":"vanity","p":[0.3,4],"r":90,"n":2,"s":[0,1.2]},{"k":"shower","p":[9.4,0.55],"r":0,"n":3,"s":[-1.05,0]},{"k":"locker","p":[5.4,1.8],"r":90,"n":12,"s":[0,0.4]},{"k":"changing_bench","p":[7.6,4.4],"r":90},{"k":"vanity","p":[9.7,4],"r":-90,"n":2,"s":[0,1.2]}]},{"id":"recuperacion","index":"10","name":"Відновлення","rect":{"x":10,"z":0,"w":8.4,"d":7.6},"floor":"oak","items":[{"k":"sauna","p":[11.5,1.15],"r":0},{"k":"cold_plunge","p":[14.4,1.2],"r":0},{"k":"massage_table","p":[17.1,1.6],"r":0},{"k":"compression_lounger","p":[11.1,5.3],"r":0,"n":3,"s":[1.3,0]},{"k":"stretch_bench","p":[16.6,5],"r":0},{"k":"planter","p":[15.2,6.9],"r":0}]}]}</script>
 
   <!-- 05 FITNESS CATEGORIES: typographic (no images yet — see the asset list in the report) -->
   <section class="fscene fcats" id="categorias" aria-labelledby="f-cats-title">
@@ -601,6 +1001,7 @@
 </div>
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261018a"></script>
+<script src="/assets/js/fitness-club-3d/club-app.js?v=20261019b" defer></script>
 
 <!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
      main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->
