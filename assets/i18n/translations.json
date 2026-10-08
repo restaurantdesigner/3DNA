@@ -242,6 +242,26 @@
           "I want to feel this club is made for me."
         ]
       },
+      "access": {
+        "s1": {
+          "label": "01 / 24/7 access",
+          "heading": "Your club. Any time.",
+          "body": "Train whenever you want. A space designed to fit your rhythm of life.",
+          "videoLabel": "Presentation of 24-hour access to a fitness club, part 1."
+        },
+        "s2": {
+          "label": "02 / Experience",
+          "heading": "Freedom to train.",
+          "body": "An access experience designed for comfort, autonomy and flexibility.",
+          "videoLabel": "Presentation of 24-hour access to a fitness club, part 2."
+        },
+        "ui": {
+          "play": "Play video",
+          "pause": "Pause video",
+          "soundOn": "Turn sound on",
+          "soundOff": "Mute"
+        }
+      },
       "hero": {
         "eyebrow": "Fitness space design",
         "heading": [
@@ -1027,6 +1047,26 @@
           "Quiero un lugar donde también pueda socializar.",
           "Quiero sentir que este club es para mí."
         ]
+      },
+      "access": {
+        "s1": {
+          "label": "01 / Acceso 24/7",
+          "heading": "Tu club. A cualquier hora.",
+          "body": "Entrena cuando quieras. Un espacio pensado para adaptarse a tu ritmo de vida.",
+          "videoLabel": "Presentación del acceso 24 horas a un club fitness, parte 1."
+        },
+        "s2": {
+          "label": "02 / Experiencia",
+          "heading": "Libertad para entrenar.",
+          "body": "Una experiencia de acceso diseñada para ofrecer comodidad, autonomía y flexibilidad.",
+          "videoLabel": "Presentación del acceso 24 horas a un club fitness, parte 2."
+        },
+        "ui": {
+          "play": "Reproducir vídeo",
+          "pause": "Pausar vídeo",
+          "soundOn": "Activar sonido",
+          "soundOff": "Silenciar"
+        }
       },
       "hero": {
         "eyebrow": "Diseño de espacios fitness",
@@ -1814,6 +1854,26 @@
           "Хочу чувствовать, что этот клуб — для меня."
         ]
       },
+      "access": {
+        "s1": {
+          "label": "01 / Доступ 24/7",
+          "heading": "Ваш клуб. В любое время.",
+          "body": "Тренируйтесь, когда хотите. Пространство, которое подстраивается под ваш ритм жизни.",
+          "videoLabel": "Презентация круглосуточного доступа в фитнес-клуб, часть 1."
+        },
+        "s2": {
+          "label": "02 / Впечатление",
+          "heading": "Свобода тренироваться.",
+          "body": "Доступ, продуманный для удобства, самостоятельности и гибкости.",
+          "videoLabel": "Презентация круглосуточного доступа в фитнес-клуб, часть 2."
+        },
+        "ui": {
+          "play": "Воспроизвести видео",
+          "pause": "Поставить видео на паузу",
+          "soundOn": "Включить звук",
+          "soundOff": "Выключить звук"
+        }
+      },
       "hero": {
         "eyebrow": "Дизайн фитнес-пространств",
         "heading": [
@@ -2599,6 +2659,26 @@
           "Хочу місце, де можна ще й поспілкуватися.",
           "Хочу відчувати, що цей клуб — для мене."
         ]
+      },
+      "access": {
+        "s1": {
+          "label": "01 / Доступ 24/7",
+          "heading": "Ваш клуб. У будь-який час.",
+          "body": "Тренуйтеся, коли хочете. Простір, що підлаштовується під ваш ритм життя.",
+          "videoLabel": "Презентація цілодобового доступу до фітнес-клубу, частина 1."
+        },
+        "s2": {
+          "label": "02 / Враження",
+          "heading": "Свобода тренуватися.",
+          "body": "Доступ, продуманий для зручності, самостійності та гнучкості.",
+          "videoLabel": "Презентація цілодобового доступу до фітнес-клубу, частина 2."
+        },
+        "ui": {
+          "play": "Відтворити відео",
+          "pause": "Поставити відео на паузу",
+          "soundOn": "Увімкнути звук",
+          "soundOff": "Вимкнути звук"
+        }
       },
       "hero": {
         "eyebrow": "Дизайн фітнес-просторів",

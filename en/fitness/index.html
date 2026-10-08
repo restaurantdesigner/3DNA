@@ -44,7 +44,7 @@
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261017o">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261018b">
 </head>
 
 <body>
@@ -252,6 +252,52 @@
           if (mq.addEventListener) mq.addEventListener('change', apply); else if (mq.addListener) mq.addListener(apply);
         })();
       </script>
+    </div>
+  </section>
+
+  <!-- 24/7 ACCESS, parts 1 and 2 (vertical presentation videos, right after the
+       plan-to-reality film). Black and white by CSS only. Desktop: plays on hover
+       (muted), pauses on leave keeping its position; phones: tap the play button.
+       Each video has its own sound button; sound is never turned on by hover, and
+       only one video has sound at a time. Files load only on first interaction
+       (preload="none" + poster). Behaviour: main.js "HOVER VIDEOS". -->
+  <section class="fscene faccess" id="acceso-24-7-1" aria-labelledby="f-access-1-title">
+    <div class="faccess__inner">
+      <div class="faccess__media" data-hvideo>
+        <video class="faccess__video" playsinline webkit-playsinline muted preload="none" tabindex="-1"
+          width="720" height="1280" poster="/images/fitness/access-24-7-part1.webp"
+          data-video="/videos/fitness/access/access-24-7-part1.mp4" aria-label="Presentation of 24-hour access to a fitness club, part 1."></video>
+        <span class="faccess__hint" aria-hidden="true"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
+        <button type="button" class="faccess__btn faccess__btn--play" data-hv-play aria-pressed="false"
+          aria-label="Play video" data-label-play="Play video" data-label-pause="Pause video"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="faccess__i faccess__i--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
+        <button type="button" class="faccess__btn faccess__btn--sound" data-hv-sound aria-pressed="false"
+          aria-label="Turn sound on" data-label-on="Turn sound on" data-label-off="Mute"><svg class="faccess__i faccess__i--muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><svg class="faccess__i faccess__i--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>
+      </div>
+      <div class="faccess__text">
+        <p class="fscene__label">01 / 24/7 access</p>
+        <h2 class="fscene__title" id="f-access-1-title">Your club. Any time.</h2>
+        <p class="fscene__body">Train whenever you want. A space designed to fit your rhythm of life.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fscene faccess faccess--reverse" id="acceso-24-7-2" aria-labelledby="f-access-2-title">
+    <div class="faccess__inner">
+      <div class="faccess__text">
+        <p class="fscene__label">02 / Experience</p>
+        <h2 class="fscene__title" id="f-access-2-title">Freedom to train.</h2>
+        <p class="fscene__body">An access experience designed for comfort, autonomy and flexibility.</p>
+      </div>
+      <div class="faccess__media" data-hvideo>
+        <video class="faccess__video" playsinline webkit-playsinline muted preload="none" tabindex="-1"
+          width="720" height="1280" poster="/images/fitness/access-24-7-part2.webp"
+          data-video="/videos/fitness/access/access-24-7-part2.mp4" aria-label="Presentation of 24-hour access to a fitness club, part 2."></video>
+        <span class="faccess__hint" aria-hidden="true"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
+        <button type="button" class="faccess__btn faccess__btn--play" data-hv-play aria-pressed="false"
+          aria-label="Play video" data-label-play="Play video" data-label-pause="Pause video"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="faccess__i faccess__i--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
+        <button type="button" class="faccess__btn faccess__btn--sound" data-hv-sound aria-pressed="false"
+          aria-label="Turn sound on" data-label-on="Turn sound on" data-label-off="Mute"><svg class="faccess__i faccess__i--muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><svg class="faccess__i faccess__i--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>
+      </div>
     </div>
   </section>
 
@@ -554,7 +600,7 @@
   </div>
 </div>
 <!-- /3dna:footer -->
-<script src="/assets/js/main.js?v=20261017f"></script>
+<script src="/assets/js/main.js?v=20261018a"></script>
 
 <!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
      main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->

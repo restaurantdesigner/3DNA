@@ -114,6 +114,52 @@
     </div>
   </section>
 
+  <!-- 24/7 ACCESS, parts 1 and 2 (vertical presentation videos, right after the
+       plan-to-reality film). Black and white by CSS only. Desktop: plays on hover
+       (muted), pauses on leave keeping its position; phones: tap the play button.
+       Each video has its own sound button; sound is never turned on by hover, and
+       only one video has sound at a time. Files load only on first interaction
+       (preload="none" + poster). Behaviour: main.js "HOVER VIDEOS". -->
+  <section class="fscene faccess" id="acceso-24-7-1" aria-labelledby="f-access-1-title">
+    <div class="faccess__inner">
+      <div class="faccess__media" data-hvideo>
+        <video class="faccess__video" playsinline webkit-playsinline muted preload="none" tabindex="-1"
+          width="720" height="1280" poster="/images/fitness/access-24-7-part1.webp"
+          data-video="/videos/fitness/access/access-24-7-part1.mp4" aria-label="{{fitnessPage.access.s1.videoLabel}}"></video>
+        <span class="faccess__hint" aria-hidden="true"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
+        <button type="button" class="faccess__btn faccess__btn--play" data-hv-play aria-pressed="false"
+          aria-label="{{fitnessPage.access.ui.play}}" data-label-play="{{fitnessPage.access.ui.play}}" data-label-pause="{{fitnessPage.access.ui.pause}}"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="faccess__i faccess__i--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
+        <button type="button" class="faccess__btn faccess__btn--sound" data-hv-sound aria-pressed="false"
+          aria-label="{{fitnessPage.access.ui.soundOn}}" data-label-on="{{fitnessPage.access.ui.soundOn}}" data-label-off="{{fitnessPage.access.ui.soundOff}}"><svg class="faccess__i faccess__i--muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><svg class="faccess__i faccess__i--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>
+      </div>
+      <div class="faccess__text">
+        <p class="fscene__label">{{fitnessPage.access.s1.label}}</p>
+        <h2 class="fscene__title" id="f-access-1-title">{{fitnessPage.access.s1.heading}}</h2>
+        <p class="fscene__body">{{fitnessPage.access.s1.body}}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fscene faccess faccess--reverse" id="acceso-24-7-2" aria-labelledby="f-access-2-title">
+    <div class="faccess__inner">
+      <div class="faccess__text">
+        <p class="fscene__label">{{fitnessPage.access.s2.label}}</p>
+        <h2 class="fscene__title" id="f-access-2-title">{{fitnessPage.access.s2.heading}}</h2>
+        <p class="fscene__body">{{fitnessPage.access.s2.body}}</p>
+      </div>
+      <div class="faccess__media" data-hvideo>
+        <video class="faccess__video" playsinline webkit-playsinline muted preload="none" tabindex="-1"
+          width="720" height="1280" poster="/images/fitness/access-24-7-part2.webp"
+          data-video="/videos/fitness/access/access-24-7-part2.mp4" aria-label="{{fitnessPage.access.s2.videoLabel}}"></video>
+        <span class="faccess__hint" aria-hidden="true"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
+        <button type="button" class="faccess__btn faccess__btn--play" data-hv-play aria-pressed="false"
+          aria-label="{{fitnessPage.access.ui.play}}" data-label-play="{{fitnessPage.access.ui.play}}" data-label-pause="{{fitnessPage.access.ui.pause}}"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="faccess__i faccess__i--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
+        <button type="button" class="faccess__btn faccess__btn--sound" data-hv-sound aria-pressed="false"
+          aria-label="{{fitnessPage.access.ui.soundOn}}" data-label-on="{{fitnessPage.access.ui.soundOn}}" data-label-off="{{fitnessPage.access.ui.soundOff}}"><svg class="faccess__i faccess__i--muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><svg class="faccess__i faccess__i--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>
+      </div>
+    </div>
+  </section>
+
   <!-- 03 EXPERIENCE: full-width cinematic still (final frame of the hero visualization) -->
   <section class="fscene fwide" id="experiencia" aria-labelledby="f-exp-title">
     <img class="fwide__img" src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async"

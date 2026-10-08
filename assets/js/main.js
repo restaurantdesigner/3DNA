@@ -972,6 +972,78 @@ document.querySelectorAll("[data-qspacer]").forEach((root) => {
 });
 
 // =============================================
+// HOVER VIDEOS (Fitness page 24/7 access sections; markup templates/fitness.html)
+// =============================================
+// Paused by default (poster only, nothing downloaded until first use).
+// Desktop: hover plays muted and leaving pauses, keeping the position.
+// Everywhere: a play/pause button (the only way on touch screens) and a sound
+// button. Sound is never switched on by hover; giving one video sound mutes
+// the others, and starting one video pauses the others, so audio never overlaps.
+(() => {
+  const roots = [...document.querySelectorAll("[data-hvideo]")];
+  if (!roots.length) return;
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const players = roots.map((root) => {
+    const video = root.querySelector("video");
+    const playBtn = root.querySelector("[data-hv-play]");
+    const soundBtn = root.querySelector("[data-hv-sound]");
+    video.controls = false;
+    video.muted = true;
+    const attach = () => {
+      if (!video.getAttribute("src") && video.dataset.video) { video.preload = "auto"; video.src = video.dataset.video; }
+    };
+    const sync = () => {
+      const playing = !video.paused && !video.ended;
+      root.classList.toggle("is-playing", playing);
+      playBtn.setAttribute("aria-pressed", String(playing));
+      playBtn.setAttribute("aria-label", playing ? playBtn.dataset.labelPause : playBtn.dataset.labelPlay);
+      soundBtn.setAttribute("aria-pressed", String(!video.muted));
+      soundBtn.setAttribute("aria-label", video.muted ? soundBtn.dataset.labelOn : soundBtn.dataset.labelOff);
+    };
+    const p = { root, video, playBtn, soundBtn, attach, sync };
+    p.play = () => {
+      attach();
+      players.forEach((o) => { if (o !== p && !o.video.paused) o.video.pause(); });
+      const r = video.play();
+      if (r && r.catch) r.catch(() => sync());
+    };
+    p.pause = () => video.pause();
+    return p;
+  });
+
+  players.forEach((p) => {
+    const { root, video, playBtn, soundBtn } = p;
+    ["play", "pause", "ended", "volumechange"].forEach((ev) => video.addEventListener(ev, p.sync));
+    playBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      p.held = !video.paused ? false : true; // a click on play keeps it playing after the pointer leaves
+      if (video.paused) p.play(); else p.pause();
+    });
+    soundBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (video.muted) {
+        players.forEach((o) => { if (o !== p) { o.video.muted = true; if (!o.video.paused) o.video.pause(); } });
+        video.muted = false;
+        p.held = true;
+        if (video.paused) p.play();
+      } else {
+        video.muted = true;
+      }
+    });
+    if (canHover && !reduced) {
+      root.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") p.play(); });
+      root.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse" && !p.held) p.pause(); });
+    }
+    // leaving the screen always pauses (and drops the sticky state)
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => { if (!entry.isIntersecting && !video.paused) { p.held = false; p.pause(); } }, { threshold: 0.15 }).observe(root);
+    }
+    p.sync();
+  });
+})();
+
+// =============================================
 // SECTOR SECTIONS (.sector: 01 Restaurants, later 02–04; also .transform)
 // =============================================
 // - background video loads only near the viewport, plays only while visible,

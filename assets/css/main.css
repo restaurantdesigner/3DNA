@@ -10364,6 +10364,61 @@ html[lang="ru"] .fpage .fplan__head .fscene__title, html[lang="uk"] .fpage .fpla
   .fplan__media{ aspect-ratio: 9 / 16; }
 }
 
+/* 24/7 access (two vertical presentation videos after the plan-to-reality film).
+   Black and white (CSS only) while paused; fades to colour while playing or
+   hovered. Native controls hidden, own play + sound buttons. */
+.faccess__inner{
+  display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 28px;
+  max-width: 1320px; margin: 0 auto; padding: clamp(64px, 10vh, 120px) 6vw;
+}
+.faccess + .faccess .faccess__inner{ padding-top: 0; }
+.faccess__media{
+  position: relative; justify-self: center;
+  width: min(100%, 400px); aspect-ratio: 9 / 16;
+  overflow: hidden; border-radius: 2px; background: #161513;
+}
+.faccess__video{ position: absolute !important; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) !important; transition: filter .6s ease; }
+/* colour while playing (tap or hover), and as soon as the mouse is over it */
+.faccess__media.is-playing .faccess__video{ filter: grayscale(0%) !important; }
+@media (hover: hover) and (pointer: fine){ .faccess__media:hover .faccess__video{ filter: grayscale(0%) !important; } }
+.faccess__hint{
+  position: absolute; left: 50%; top: 50%; width: 68px; height: 68px; margin: -34px 0 0 -34px;
+  display: grid; place-items: center; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.7); background: rgba(22,21,19,.28); color: #fff;
+  pointer-events: none; transition: opacity .3s ease;
+}
+.faccess__hint svg{ width: 22px; height: 22px; margin-left: 3px; }
+.faccess__media.is-playing .faccess__hint{ opacity: 0; }
+.faccess__btn{
+  position: absolute; bottom: 14px; z-index: 2;
+  display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
+  border: 1px solid rgba(255,255,255,.35); border-radius: 50%;
+  background: rgba(22,21,19,.55); color: #fff; cursor: pointer;
+  transition: opacity .25s ease, background-color .2s ease;
+}
+.faccess__btn:hover{ background: rgba(22,21,19,.8); }
+.faccess__btn:focus-visible{ outline: 2px solid #fff; outline-offset: 2px; }
+.faccess__btn--play{ left: 14px; }
+.faccess__btn--sound{ right: 14px; }
+.faccess__i--pause, .faccess__i--on{ display: none; }
+.faccess__btn[aria-pressed="true"] .faccess__i--play, .faccess__btn[aria-pressed="true"] .faccess__i--muted{ display: none; }
+.faccess__btn[aria-pressed="true"] .faccess__i--pause, .faccess__btn[aria-pressed="true"] .faccess__i--on{ display: block; }
+@media (hover: hover) and (pointer: fine){
+  .faccess__media{ cursor: pointer; }
+  .faccess__media.is-playing .faccess__btn--play{ opacity: .55; }
+}
+.faccess__text{ align-self: center; max-width: 520px; }
+@media (min-width: 901px){
+  .faccess__inner{ grid-template-columns: clamp(300px, 28vw, 400px) minmax(0, 1fr); column-gap: clamp(48px, 8vw, 140px); align-items: center; }
+  .faccess--reverse .faccess__inner{ grid-template-columns: minmax(0, 1fr) clamp(300px, 28vw, 400px); }
+  .faccess--reverse .faccess__text{ justify-self: end; }
+}
+@media (max-width: 767px){
+  .faccess__inner{ padding: 56px 22px; row-gap: 24px; }
+  .faccess + .faccess .faccess__inner{ padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce){ .faccess__hint, .faccess__btn, .faccess__video{ transition: none; } }
+
 /* 03 experience: full-bleed still with text over a soft shade */
 section.fwide{ position: relative; overflow: hidden; background: #15110d; color: #fff; }
 .fwide__img{ display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 60% 50%; }
