@@ -169,7 +169,7 @@ function createRestaurantPlan(data, translations, { spec } = {}) {
       `    <header class="rplan3d__text">`,
       `      <div class="rplan3d__lead">`,
       `        <p class="rplan3d__eyebrow">${escapeHtml(p.eyebrow)}</p>`,
-      `        <h1 class="rplan3d__title" id="rplan3d-title">${escapeHtml(p.heading)}</h1>`,
+      `        <h2 class="rplan3d__title" id="rplan3d-title">${escapeHtml(p.heading)}</h2>`,
       `      </div>`,
       `      <div class="rplan3d__copy">`,
       ...p.body.map((x) => `        <p class="rplan3d__body">${escapeHtml(x)}</p>`),

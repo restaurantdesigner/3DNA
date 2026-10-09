@@ -30,12 +30,15 @@
   })();
   function showFail() {
     clearTimeout(failTimer);
-    stage.classList.remove("is-loading");
+    stage.classList.remove("is-loading", "is-flow");
     stage.classList.add("is-failed");
     status.hidden = true; fail.hidden = false;
     if (frame) frame.hidden = true;
   }
   const tellActive = () => { if (ready && frame && frame.contentWindow) frame.contentWindow.postMessage({ type: "centro-deportivo:active", on: onScreen || stage.classList.contains("is-full") }, location.origin); };
+  // the viewer lays itself out from the screen height and the full-window state (phones: details below the model)
+  const tellHost = () => { if (frame && frame.contentWindow) frame.contentWindow.postMessage({ type: "centro-deportivo:host", vh: window.innerHeight, full: stage.classList.contains("is-full") }, location.origin); };
+  let viewerAskedFull = false;
 
   function load() {
     if (frame || !webgl) { if (!webgl) showFail(); return; }
@@ -45,6 +48,7 @@
     frame.title = stage.dataset.title || "";
     frame.setAttribute("allow", "fullscreen");
     stage.appendChild(frame);
+    frame.addEventListener("load", tellHost);
     stage.classList.add("is-loading");
     // no answer from the scene in time: offer the standalone viewer instead
     failTimer = setTimeout(() => { if (!ready) showFail(); }, 30000);
@@ -55,9 +59,22 @@
       ready = true; clearTimeout(failTimer);
       stage.classList.remove("is-loading"); stage.classList.add("is-ready");
       status.hidden = true;
-      tellActive();
+      tellActive(); tellHost();
     } else if (e.data.type === "centro-deportivo:error") showFail();
+    else if (e.data.type === "centro-deportivo:height") {
+      // phones / tablets: the frame grows with its content, so the room details sit below the model
+      // in the normal page flow (the page scrolls them; nothing covers the model)
+      if (e.data.flow && !stage.classList.contains("is-full") && !stage.classList.contains("is-failed")) {
+        stage.classList.add("is-flow");
+        stage.style.setProperty("--frame-h", Math.max(200, +e.data.h || 0) + "px");
+      } else { stage.classList.remove("is-flow"); stage.style.removeProperty("--frame-h"); }
+    }
+    // the room media viewer needs the whole screen: borrow the full-window mode while it is open
+    else if (e.data.type === "centro-deportivo:request-full") { if (!stage.classList.contains("is-full")) { viewerAskedFull = true; enterFull({ quiet: true }); } }
+    else if (e.data.type === "centro-deportivo:release-full") { if (viewerAskedFull) { viewerAskedFull = false; exitFull({ quiet: true }); } }
   });
+  let resizeT = 0;
+  window.addEventListener("resize", () => { clearTimeout(resizeT); resizeT = setTimeout(tellHost, 120); });
 
   if (!("IntersectionObserver" in window)) load();
   else {
@@ -78,23 +95,27 @@
   // element fullscreen does not exist); native fullscreen is requested on top when available.
   const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
   const isFull = () => stage.classList.contains("is-full");
-  function enterFull() {
+  function enterFull(opts) {
+    const quiet = !!(opts && opts.quiet === true);
     load();
     stage.classList.add("is-full");
+    stage.classList.remove("is-flow");
     document.documentElement.classList.add("fcase-lock");
     exitBtn.hidden = false;
-    tellActive();
+    tellActive(); tellHost();
     const req = stage.requestFullscreen || stage.webkitRequestFullscreen;
-    if (req) { try { const p = req.call(stage); if (p && p.catch) p.catch(() => {}); } catch (e) { /* expanded mode stays */ } }
-    exitBtn.focus({ preventScroll: true });
+    if (req && !quiet) { try { const p = req.call(stage); if (p && p.catch) p.catch(() => {}); } catch (e) { /* expanded mode stays */ } }
+    if (!quiet) exitBtn.focus({ preventScroll: true });
   }
-  function exitFull() {
+  function exitFull(opts) {
+    const quiet = !!(opts && opts.quiet === true);
+    viewerAskedFull = false;
     if (fsEl() === stage) { try { (document.exitFullscreen || document.webkitExitFullscreen).call(document); } catch (e) { /* ignore */ } }
     stage.classList.remove("is-full");
     document.documentElement.classList.remove("fcase-lock");
     exitBtn.hidden = true;
-    tellActive();
-    fullBtn.focus({ preventScroll: true });
+    tellActive(); tellHost();
+    if (!quiet) fullBtn.focus({ preventScroll: true });
   }
   fullBtn.addEventListener("click", enterFull);
   exitBtn.addEventListener("click", exitFull);

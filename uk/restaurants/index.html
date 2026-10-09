@@ -45,7 +45,7 @@
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261021i">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261022f">
 </head>
 
 <body>
@@ -115,6 +115,33 @@
 <!-- /3dna:header -->
 
 <main id="main" tabindex="-1" class="rpage">
+  <!-- 00 HERO (homepage hero structure and classes: sector-hero). One section, one player. restaurant-hero.js attaches ONE source:
+       phones (shortest screen side < 600 px, touch) get the vertical film, tablets and computers
+       (iPads and Android tablets in any orientation) the 16:9 film. The poster is that film's
+       first frame, so the start is seamless. Headline in HTML. -->
+  <section id="hero" class="sector-hero rhero" aria-labelledby="hero-title" data-rhero>
+    <picture class="rhero__poster">
+      <source media="(max-width: 599px)" srcset="/images/restaurants/hero/hero-poster-mobile.webp" type="image/webp">
+      <img src="/images/restaurants/hero/hero-poster-desktop.webp" width="854" height="480" fetchpriority="high" decoding="async" alt="Дизайнер 3DNA проходить рестораном, інтер'єр якого змінюється: дерев'яні панелі, глиняні стіни та підсвічена центральна барна стійка.">
+    </picture>
+    <video class="sector-hero__video rhero__video" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture disableremoteplayback
+      width="854" height="480" aria-hidden="true" tabindex="-1"
+      data-src-desktop="/videos/restaurants/hero/restaurant-hero-tablet-desktop.mp4" data-src-mobile="/videos/restaurants/hero/restaurant-hero-mobile.mp4"
+      data-poster-desktop="/images/restaurants/hero/hero-poster-desktop.webp" data-poster-mobile="/images/restaurants/hero/hero-poster-mobile.webp"></video>
+    <div class="sector-hero__overlay" aria-hidden="true"></div>
+    <div class="sector-hero__inner">
+      <div class="sector-hero__content">
+        <p class="sector-hero__eyebrow">3DNA · Restaurant Design</p>
+        <h1 class="sector-hero__title" id="hero-title" aria-label="Кожен ресторан має свою історію. Ми створюємо для неї сцену.">
+          <span class="sector-hero__line" aria-hidden="true">Кожен ресторан має свою історію.</span>
+          <span class="sector-hero__line" aria-hidden="true"><em>Ми створюємо для неї сцену.</em></span>
+        </h1>
+        <p class="sector-hero__lead">Дизайн ресторанів · 3D-візуалізація · Концепції зі ШІ</p>
+      </div>
+    </div>
+  </section>
+  <!-- choose the hero variant before the first paint (layout + poster), from the device, not the window -->
+  <script>(function(h){var s=window.screen||{},a=Math.min(s.width||innerWidth,s.height||innerHeight),t=navigator.maxTouchPoints>0||"ontouchstart" in window,m=a<600&&t;h.setAttribute("data-variant",m?"mobile":"desktop");var v=h.querySelector("video"),i=h.querySelector(".rhero__poster img"),o=h.querySelector(".rhero__poster source"),p=m?v.getAttribute("data-poster-mobile"):v.getAttribute("data-poster-desktop");if(o)o.parentNode.removeChild(o);if(i.getAttribute("src")!==p)i.setAttribute("src",p);i.width=m?480:854;i.height=m?854:480;})(document.querySelector("[data-rhero]"));</script>
   <nav class="rpage-context" aria-label="Навігаційний ланцюжок">
     <a class="rpage-context__back" href="/uk/"><span aria-hidden="true">&larr;</span> На головну</a>
     <span class="rpage-context__current" aria-current="page">Ресторани</span>
@@ -126,7 +153,7 @@
     <header class="rplan3d__text">
       <div class="rplan3d__lead">
         <p class="rplan3d__eyebrow">Планування ресторану</p>
-        <h1 class="rplan3d__title" id="rplan3d-title">Простори, спроєктовані для роботи.</h1>
+        <h2 class="rplan3d__title" id="rplan3d-title">Простори, спроєктовані для роботи.</h2>
       </div>
       <div class="rplan3d__copy">
         <p class="rplan3d__body">Перш ніж думати про матеріали й атмосферу, ми вирішуємо планування, місткість, потоки та операційну логіку.</p>
@@ -548,6 +575,11 @@
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261018a"></script>
 <script src="/assets/js/restaurant-3d/spec-panel.js?v=20261016a" defer></script>
+<script src="/assets/js/restaurant-hero.js?v=20261022b" defer></script>
 <script src="/assets/js/restaurant-3d/plan-app.js?v=20261016d" defer></script>
+
+<!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
+     main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->
+<div id="deployment-db155617-f1fa-45ba-aa43-27eb97edb751"></div>
 </body>
 </html>

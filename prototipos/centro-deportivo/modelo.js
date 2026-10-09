@@ -24,7 +24,7 @@ const PARAMS = new URLSearchParams(location.search);
 const EMBED = PARAMS.has("embed");
 if (EMBED) document.documentElement.classList.add("embed");
 // embedded: tell the host page when the scene is ready (or failed), same origin only
-const notifyHost = (type) => { if (EMBED && window.parent !== window) window.parent.postMessage({ type: "centro-deportivo:" + type }, location.origin); };
+const notifyHost = (type, data = {}) => { if (EMBED && window.parent !== window) window.parent.postMessage({ ...data, type: "centro-deportivo:" + type }, location.origin); };
 
 const ui = {
   viewport: document.getElementById("viewport"),
@@ -53,7 +53,9 @@ async function main() {
   const [EX, MODEL, FURN, GYM, SITE, SPEC] = await Promise.all(["plan-extracted.json", "plan-model.json", "plan-furniture.json", "concepto-gimnasio.json", "emplazamiento.json", "equipamiento-especificaciones.json"].map((u) =>
     fetch(u).then((r) => { if (!r.ok) throw new Error(`${u}: HTTP ${r.status}`); return r.json(); })));
 
-  if (window.matchMedia("(max-width: 900px)").matches) { document.body.classList.add("panel-closed"); document.getElementById("btn-panel").setAttribute("aria-expanded", "false"); }
+  // phones and tablets (portrait or landscape, any touch-first screen): the model starts unobstructed, details closed
+  const COMPACT = window.matchMedia("(max-width: 900px), (max-height: 560px), (pointer: coarse)");
+  if (COMPACT.matches) { document.body.classList.add("panel-closed"); document.getElementById("btn-panel").setAttribute("aria-expanded", "false"); }
   function lowPowerEarly() { return window.matchMedia("(pointer: coarse)").matches || (navigator.hardwareConcurrency || 8) <= 4; }
   const touch = window.matchMedia("(pointer: coarse)").matches;
   const lowPower = touch || (navigator.hardwareConcurrency || 8) <= 4;
@@ -216,7 +218,8 @@ async function main() {
     applyHighlight();
     renderPanel();
     if (id && document.body.classList.contains("panel-closed")) document.getElementById("btn-panel").click();
-    if (!id) { setView(state.view); return; }
+    if (id) ui.panel.parentElement.scrollTop = 0;   // a newly selected room's details start at its title
+    if (!id) return;   // closing a room's details keeps the current camera
     if (!fly) return;
     const r = rooms.find((q) => q.id === id);
     const b = r.poly.reduce((a, [x, y]) => [Math.min(a[0], x), Math.min(a[1], y), Math.max(a[2], x), Math.max(a[3], y)], [1e9, 1e9, -1e9, -1e9]);
@@ -351,6 +354,24 @@ async function main() {
     document.getElementById("btn-panel").setAttribute("aria-expanded", String(!closed));
     applyPanelOffset(ui.viewport.clientWidth, ui.viewport.clientHeight); dirty = true;
   });
+  // "Cerrar detalles": hides every piece of room information, clears the selection, keeps the camera
+  function closeDetails() {
+    state.selected = null; state.zone = null;
+    if (state.eq) { state.eq = null; showEquipment(null); }
+    applyHighlight(); renderPanel();
+    document.body.classList.remove("sheet-expanded");
+    document.getElementById("btn-sheet").setAttribute("aria-expanded", "false");
+    if (!document.body.classList.contains("panel-closed")) document.getElementById("btn-panel").click();
+    dirty = true;
+  }
+  bind("btn-close-details", closeDetails);
+  // phones: the details sheet opens compact and can be expanded
+  bind("btn-sheet", (e) => {
+    const on = document.body.classList.toggle("sheet-expanded");
+    e.currentTarget.setAttribute("aria-expanded", String(on));
+    e.currentTarget.setAttribute("aria-label", on ? "Reducir detalles" : "Ampliar detalles");
+    e.currentTarget.title = e.currentTarget.getAttribute("aria-label");
+  });
   bind("btn-roof", (e) => { state.roof = !state.roof; groups.roof.visible = state.roof; e.currentTarget.setAttribute("aria-pressed", state.roof); dirty = true; });
   bind("btn-cut", (e) => { state.cut = !state.cut; e.currentTarget.setAttribute("aria-pressed", state.cut); rebuildWalls(); rebuildGymWalls(); dirty = true; });
   bind("btn-est", (e) => {
@@ -385,6 +406,34 @@ async function main() {
     camera.aspect = (w + p) / h;
     camera.updateProjectionMatrix();
     camera.userData.fitAspect = (w - p) / h;
+  }
+  const host = { vh: 0, full: false };
+  let flowOn = null;
+  const FLOW = window.matchMedia("(max-width: 900px)");
+  function applyFlow() {
+    const on = EMBED && FLOW.matches && !host.full;
+    if (on !== flowOn) {
+      flowOn = on;
+      document.documentElement.classList.toggle("embed-flow", on);
+      if (!on) notifyHost("height", { flow: false });
+    }
+    if (on) {
+      // viewer height inside the page: tall enough to explore, leaving room for the page around it
+      const h = Math.round(Math.max(320, Math.min(window.innerWidth * 1.25, (host.vh || 800) * 0.72, 640)));
+      document.documentElement.style.setProperty("--flow-h", h + "px");
+      reportHeight();
+    }
+  }
+  function reportHeight() { if (flowOn) notifyHost("height", { flow: true, h: Math.ceil(document.body.getBoundingClientRect().height) }); }
+  if (EMBED) {
+    window.addEventListener("message", (e) => {
+      if (e.origin !== location.origin || !e.data || e.data.type !== "centro-deportivo:host") return;
+      host.vh = +e.data.vh || host.vh; host.full = !!e.data.full;
+      applyFlow();
+    });
+    FLOW.addEventListener("change", applyFlow);
+    new ResizeObserver(reportHeight).observe(document.body);
+    applyFlow();
   }
   thinPlanting(state.view === "edificio");
   new ResizeObserver(resize).observe(ui.viewport);
@@ -997,6 +1046,7 @@ async function main() {
     tabs.querySelectorAll("[data-lb-tab]").forEach((b) => b.addEventListener("click", () => showMedia(+b.dataset.lbTab)));
     el.hidden = false;
     document.documentElement.classList.add("lb-open");
+    if (document.documentElement.classList.contains("embed-flow")) { viewer.askedFull = true; notifyHost("request-full"); }
     showMedia(i);
     el.querySelector("[data-lb-close]").focus({ preventScroll: true });
   }
@@ -1006,6 +1056,7 @@ async function main() {
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
     viewer.el.hidden = true;
     document.documentElement.classList.remove("lb-open");
+    if (viewer.askedFull) { viewer.askedFull = false; notifyHost("release-full"); }
     if (viewer.opener && document.contains(viewer.opener)) viewer.opener.focus({ preventScroll: true });
     dirty = true;                               // camera and selection were never touched
   }
@@ -1040,7 +1091,7 @@ async function main() {
       const items = FURN.items.filter((it) => it.room === r.id && !zone);
       const fin = FINISHES[r.id] || [];
       ui.panel.innerHTML = `
-        <button type="button" class="close" data-room="" aria-label="Volver a la vista general">×</button>
+        <button type="button" class="close" data-room="" aria-label="Volver al resumen del edificio" title="Volver al resumen">‹</button>
         <p class="kicker">Recinto ${r.n} · programa de usos</p>
         <h2>${r.name}</h2>
         <dl class="facts">

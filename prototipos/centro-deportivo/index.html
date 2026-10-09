@@ -78,8 +78,13 @@
   .close{ position:absolute; top:14px; right:14px; width:34px; height:34px; border:1px solid var(--line); border-radius:50%; background:#fff; font-size:18px; cursor:pointer; }
   /* panel tabs + "Presupuesto y energía" */
   .ptabs{ position:sticky; top:-16px; z-index:2; display:flex; gap:4px; margin:-16px -16px 14px; padding:10px 12px; background:rgba(251,250,248,.98); border-bottom:1px solid var(--line); }
-  .ptabs button{ flex:1; min-height:32px; border:1px solid var(--line); border-radius:999px; background:#fff; font:500 12px/1 Inter, system-ui, sans-serif; cursor:pointer; color:var(--ink); }
-  .ptabs button[aria-selected="true"]{ background:var(--ink); border-color:var(--ink); color:#fff; }
+  .ptabs{ align-items:center; }
+  .ptabs__tabs{ flex:1; display:flex; gap:4px; min-width:0; }
+  .pt-icon{ flex:0 0 auto; display:grid; place-items:center; width:34px; height:34px; padding:0; border:1px solid var(--line); border-radius:50%; background:#fff; color:var(--ink); font:400 20px/1 Inter, system-ui, sans-serif; cursor:pointer; }
+  .pt-icon:hover{ background:#f3f0ea; } .pt-icon:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .pt-expand{ display:none !important; }
+  .ptabs__tabs button{ flex:1; min-height:32px; border:1px solid var(--line); border-radius:999px; background:#fff; font:500 12px/1 Inter, system-ui, sans-serif; cursor:pointer; color:var(--ink); }
+  .ptabs__tabs button[aria-selected="true"]{ background:var(--ink); border-color:var(--ink); color:#fff; }
   .close{ top:62px !important; }
   .close.sm{ position:absolute; top:8px !important; right:8px; width:28px; height:28px; font-size:15px; }
   .seg2{ display:flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; margin:0 0 10px; }
@@ -187,12 +192,34 @@
   .lb-tabs span{ padding:0 4px 3px; }
   .lb-note{ margin:0; text-align:center; font:400 11.5px/1.4 Inter, system-ui, sans-serif; color:rgba(242,239,232,.6); }
   @media (max-width: 600px){ .lb-tabs img{ width:76px; height:43px; } .lb-tabs i{ top:25px; } .lb-stage{ max-height:calc(100vh - 210px); } }
+  /* landscape phones: no fixed minimum height, compact header, details as a slim side sheet on the right */
+  @media (max-height: 560px){
+    #viewport{ min-height:0; }
+    header{ padding:6px 10px; } header p{ display:none; } header h1{ font-size:13px; }
+  }
+  @media (max-width: 900px) and (max-height: 560px) and (orientation: landscape){
+    html body aside{ top:8px; bottom:8px; left:auto; right:8px; width:min(340px, 46vw); max-height:none; }
+    html body.panel-closed aside{ transform:translateX(calc(100% + 16px)); }
+    html .pt-expand{ display:none !important; }
+  }
+  /* embedded on a page, phones and tablets: details in the normal flow BELOW the viewer, never over the model */
+  html.embed-flow, html.embed-flow body{ height:auto; }
+  html.embed-flow main{ display:block; overflow:visible; }
+  html.embed-flow #viewport{ height:var(--flow-h, 460px); min-height:0; }
+  html.embed-flow aside{ position:relative; inset:auto; width:auto; max-height:none; overflow:visible; transform:none; opacity:1; pointer-events:auto; border:0; border-top:1px solid var(--line); border-radius:0; box-shadow:none; background:#fbfaf8; padding:16px 16px 28px; transition:none; }
+  html.embed-flow body.panel-closed aside{ display:none; }
+  html.embed-flow .ptabs{ position:static; margin-top:-16px; }
+  html.embed-flow .pt-expand{ display:none !important; }
   /* embed mode (inside the Fitness page): no page title, no internal review tools */
   .embed header > div:first-child, .embed #btn-overlay, .embed #btn-adjust, .embed #adjust, .embed nav a[href="plano-revision.html"]{ display:none !important; }
   .embed header{ padding:8px 12px; }
   .embed body{ background:#0e1626; }
   @media (max-width: 900px){
-    aside{ top:auto; left:8px; right:8px; bottom:8px; width:auto; max-height:46%; }
+    /* phones: compact details sheet (about a third of the screen), expandable, closable */
+    aside{ top:auto; left:8px; right:8px; bottom:8px; width:auto; max-height:40%; overscroll-behavior:contain; transition:transform .3s ease, opacity .3s ease, max-height .3s ease; }
+    body.sheet-expanded aside{ max-height:calc(100% - 16px); }
+    .pt-expand{ display:grid !important; }
+    body.sheet-expanded .pt-expand svg{ transform:rotate(180deg); }
     body.panel-closed aside{ transform:translateY(calc(100% + 16px)); }
     header{ padding:8px 10px; gap:6px; } header p{ display:none; } header h1{ font-size:14px; }
     nav{ flex-wrap:nowrap; overflow-x:auto; width:100%; scrollbar-width:none; padding-bottom:2px; } nav::-webkit-scrollbar{ display:none; }
@@ -238,9 +265,13 @@
     <p class="hint">Arrastrar: girar · Rueda / pellizco: zoom · Botón derecho / dos dedos: desplazar · Clic: recinto · en Presupuesto y energía, clic: equipo</p>
   </div>
   <aside id="panel">
-    <div class="ptabs" role="tablist" aria-label="Contenido del panel">
-      <button type="button" role="tab" data-tab="info" aria-selected="true">Información</button>
-      <button type="button" role="tab" data-tab="budget" aria-selected="false">Presupuesto y energía</button>
+    <div class="ptabs">
+      <div class="ptabs__tabs" role="tablist" aria-label="Contenido del panel">
+        <button type="button" role="tab" data-tab="info" aria-selected="true">Información</button>
+        <button type="button" role="tab" data-tab="budget" aria-selected="false">Presupuesto y energía</button>
+      </div>
+      <button type="button" class="pt-icon pt-expand" id="btn-sheet" aria-expanded="false" aria-label="Ampliar detalles" title="Ampliar detalles"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M6 15l6-6 6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="pt-icon" id="btn-close-details" aria-label="Cerrar detalles" title="Cerrar detalles">&times;</button>
     </div>
     <div id="panel-body" aria-live="polite"></div>
   </aside>

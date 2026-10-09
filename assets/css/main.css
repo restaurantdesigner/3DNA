@@ -10807,6 +10807,9 @@ section.qspacer--compact{ height: 176px !important; }
 @keyframes fcaseSpin{ to{ transform: rotate(360deg); } }
 .fcase__exit[hidden]{ display: none; }
 .fcase__exit{ position: absolute; right: 14px; top: 14px; z-index: 5; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; background: rgba(12,20,38,.7); color: #fff; font-size: 22px; line-height: 1; cursor: pointer; }
+/* phones / tablets: the viewer frame grows with its content (room details below the model, in the page flow) */
+.fcase__stage.is-flow{ height: auto; min-height: 0; overflow: visible; }
+.fcase__stage.is-flow .fcase__frame{ position: relative; display: block; height: var(--frame-h, 480px); }
 .fcase__stage.is-full{ position: fixed; inset: 0; z-index: 2147483000; width: 100vw; height: 100vh; height: 100dvh; min-height: 0; border-radius: 0; }
 html.fcase-lock, html.fcase-lock body{ overflow: hidden; }
 .fcase__btn{ display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border: 1px solid var(--f-ink); border-radius: 999px; background: transparent; color: var(--f-ink); font: 500 14px/1 "Inter", system-ui, sans-serif; cursor: pointer; transition: background .2s ease, color .2s ease; }
@@ -10918,4 +10921,46 @@ html[lang="ru"] .fcierre__title, html[lang="uk"] .fcierre__title{ font-size: cla
   .fcierre__media img{ height: auto; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%); mask-image: linear-gradient(180deg, transparent 0%, #000 12%); }
   .fcierre__title{ font-size: clamp(28px, 7.4vw, 40px); }
   html[lang="ru"] .fcierre__title, html[lang="uk"] .fcierre__title{ font-size: clamp(24px, 6.4vw, 34px); }
+}
+
+/* =====================================================================
+   Restaurants page · hero. Same component as the homepage hero (sector-hero:
+   typography, sizes, spacing, shade, halo, header behaviour); only the
+   differences live here. The designer walks in the left third of the film,
+   so the text column is mirrored to the right (same gutter and width).
+   Video source chosen per device by restaurant-hero.js (data-variant).
+   ===================================================================== */
+section#hero.sector-hero.rhero{ background: #120e0b; }   /* poster comes from the picture below */
+.rhero__poster, .rhero__poster img{ position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+.rhero__poster img{ object-fit: cover; }
+#hero.rhero .rhero__video{ opacity: 0; transition: opacity .6s ease; }
+#hero.rhero.is-playing .rhero__video{ opacity: 1; }
+/* poster and film share one framing, so the start of playback is invisible */
+#hero.rhero .rhero__video, #hero.rhero .rhero__poster img{ object-position: 34% 50%; }
+/* the homepage layout (upper-left column, corner shade) mirrored: the designer walks on the left */
+@media (min-width: 768px){
+  #hero.rhero .sector-hero__inner{ justify-content: flex-end; }
+  #hero.rhero .sector-hero__overlay{ transform: scaleX(-1); }
+}
+/* portrait tablets: frame the designer, copy low (an upper column would cross his face) */
+@media (min-width: 600px) and (orientation: portrait){
+  #hero.rhero .rhero__video, #hero.rhero .rhero__poster img{ object-position: 26% 50%; }
+  #hero.rhero .sector-hero__inner{ align-items: flex-end; padding-bottom: 9vh; }
+  #hero.rhero .sector-hero__overlay{ transform: none;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.42) 68%, rgba(0,0,0,.7) 100%); }
+}
+/* phones: the homepage phone layout (upper-left copy); the restaurant lines are full sentences,
+   so they wrap and run a little smaller, ending above the designer's face */
+@media (max-width: 767px){
+  #hero.rhero .sector-hero__line{ white-space: normal; }
+  #hero.rhero .sector-hero__title{ font-size: clamp(26px, 7.6vw, 32px); line-height: .98; }
+  html[lang="ru"] #hero.rhero .sector-hero__title, html[lang="uk"] #hero.rhero .sector-hero__title{ font-size: clamp(23px, 6.6vw, 28px); }
+  #hero.rhero .sector-hero__lead{ font-size: 15px; }
+}
+#hero.rhero[data-variant="mobile"] .rhero__video, #hero.rhero[data-variant="mobile"] .rhero__poster img{ object-position: 50% 40%; }
+/* phones held sideways: the whole vertical film on the left, copy on the right */
+@media (orientation: landscape){
+  #hero.rhero[data-variant="mobile"] .rhero__video, #hero.rhero[data-variant="mobile"] .rhero__poster img{ object-fit: contain; object-position: 18% 50%; }
+  #hero.rhero[data-variant="mobile"] .sector-hero__inner{ justify-content: flex-end; align-items: center; padding-bottom: 24px; }
+  #hero.rhero[data-variant="mobile"] .sector-hero__content{ max-width: 50vw; }
 }

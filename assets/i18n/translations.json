@@ -620,6 +620,13 @@
         "ogTitle": "Restaurants: spaces designed to perform | 3DNA",
         "ogImageAlt": "Restaurant interior by 3DNA with the words: Spaces designed to work."
       },
+      "hero": {
+        "eyebrow": "3DNA · Restaurant Design",
+        "line1": "Every restaurant has a story.",
+        "line2": "We design the stage.",
+        "sub": "Restaurant design · 3D visualisation · AI-assisted concepts",
+        "alt": "3DNA designer walking through a restaurant whose interior transforms: timber panels, clay walls and a lit central bar."
+      },
       "context": {
         "back": "Back to Home",
         "current": "Restaurants",
@@ -1560,6 +1567,13 @@
         "description": "Diseño de interiores para restaurantes: distribución, circulación, iluminación, ergonomía y visualización 3D para evitar errores costosos antes de la obra.",
         "ogTitle": "Restaurantes: espacios diseñados para funcionar | 3DNA",
         "ogImageAlt": "Interior de restaurante de 3DNA con el texto: Espacios diseñados para funcionar."
+      },
+      "hero": {
+        "eyebrow": "3DNA · Restaurant Design",
+        "line1": "Cada restaurante tiene una historia.",
+        "line2": "Nosotros diseñamos el escenario.",
+        "sub": "Diseño de restaurantes · Visualización 3D · Conceptos con IA",
+        "alt": "Diseñador de 3DNA recorriendo un restaurante cuyo interior se transforma: paneles de madera, muros de arcilla y una barra central iluminada."
       },
       "context": {
         "back": "Volver al inicio",
@@ -2502,6 +2516,13 @@
         "ogTitle": "Рестораны: пространства, спроектированные для работы | 3DNA",
         "ogImageAlt": "Интерьер ресторана 3DNA с текстом: Пространства, спроектированные для работы."
       },
+      "hero": {
+        "eyebrow": "3DNA · Restaurant Design",
+        "line1": "У каждого ресторана своя история.",
+        "line2": "Мы создаём для неё сцену.",
+        "sub": "Дизайн ресторанов · 3D-визуализация · Концепции с ИИ",
+        "alt": "Дизайнер 3DNA идёт по ресторану, интерьер которого меняется: деревянные панели, глиняные стены и подсвеченная центральная барная стойка."
+      },
       "context": {
         "back": "На главную",
         "current": "Рестораны",
@@ -3442,6 +3463,13 @@
         "description": "Дизайн інтер’єрів ресторанів: планування, потоки, освітлення, ергономіка та 3D-візуалізація, щоб уникнути дорогих помилок до початку робіт.",
         "ogTitle": "Ресторани: простори, спроєктовані для роботи | 3DNA",
         "ogImageAlt": "Інтер’єр ресторану 3DNA з текстом: Простори, спроєктовані для роботи."
+      },
+      "hero": {
+        "eyebrow": "3DNA · Restaurant Design",
+        "line1": "Кожен ресторан має свою історію.",
+        "line2": "Ми створюємо для неї сцену.",
+        "sub": "Дизайн ресторанів · 3D-візуалізація · Концепції зі ШІ",
+        "alt": "Дизайнер 3DNA проходить рестораном, інтер'єр якого змінюється: дерев'яні панелі, глиняні стіни та підсвічена центральна барна стійка."
       },
       "context": {
         "back": "На головну",
