@@ -50,7 +50,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261029d">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261030a">
 </head>
 
 <body>
@@ -268,6 +268,43 @@
   </div>
 </section>
 
+<!-- ===== SECTOR 02: GYMS — video showcase =====
+     Same chapter component as 01 Restaurants (.sector): label, headline and CTA only.
+     Text: homeGym in assets/i18n/translations.json. The film walks one person through
+     changing gym interiors; on phones the headline sits up top and the CTA low,
+     so the figure keeps the middle of the frame.
+     Video loading, reveal and view tracking: "SECTOR SECTIONS" in main.js. -->
+<section class="sector sector--gym" id="sector-gym-showcase" data-sector="fitness"
+  data-track-view="fitness_video_section_viewed" aria-labelledby="sector-gym-showcase-title"
+  style="--sector-poster: url('/images/fitness/home/gym-showcase-poster.webp')">
+  <div class="sector__media" aria-hidden="true">
+    <video class="sector__video" muted loop playsinline preload="none" tabindex="-1"
+      width="854" height="480"
+      poster="/images/fitness/home/gym-showcase-poster.webp"
+      data-src="/videos/fitness/home/gym-showcase.mp4"></video>
+  </div>
+  <div class="sector__overlay" aria-hidden="true"></div>
+
+  <div class="sector__inner">
+    <div class="sector__content">
+      <p class="sector__label">
+        <span class="sector__index">02</span>
+        <span class="sector__slash" aria-hidden="true">/</span>
+        <span>Fitness</span>
+      </p>
+      <h2 class="sector__title" id="sector-gym-showcase-title" aria-label="Spaces designed for movement.">
+        <span class="sector__line" aria-hidden="true">Spaces</span>
+        <span class="sector__line" aria-hidden="true">designed for</span>
+        <span class="sector__line" aria-hidden="true"><em>movement.</em></span>
+      </h2>
+      <a class="sector__cta" href="/en/fitness/"
+        data-track="view_projects_clicked" data-track-location="sector_gym_showcase">
+        <span class="sector__cta-text">View fitness projects</span><span class="sector__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" focusable="false"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
 
 
 <!-- ===== TRANSFORMATION (personal conversion section) =====
@@ -304,7 +341,7 @@
 
 
 
-<!-- ===== SECTOR 02: FITNESS — interactive 3D planner =====
+<!-- ===== SECTOR 03: FITNESS — interactive 3D planner =====
      Copy: sectors[1] + "fitness" in assets/i18n/translations.json.
      Zone data: assets/data/gym-zones.json (area, capacity, equipment, layout).
      All zone information is real HTML below (list + articles); the 3D scene in
@@ -313,7 +350,7 @@
   aria-labelledby="sector-fitness-title">
   <div class="gym3d__head">
     <p class="sector__label gym3d__label">
-      <span class="sector__index">02</span>
+      <span class="sector__index">03</span>
       <span class="sector__slash" aria-hidden="true">/</span>
       <span>Fitness</span>
     </p>
@@ -790,7 +827,7 @@
   <div class="sector__inner">
     <div class="sector__content">
       <p class="sector__label">
-        <span class="sector__index">03</span>
+        <span class="sector__index">04</span>
         <span class="sector__slash" aria-hidden="true">/</span>
         <span>Healthcare</span>
       </p>

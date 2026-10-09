@@ -1605,7 +1605,7 @@
         }
       },
       {
-        "id": "fitness", "index": "02", "title": "Fitness", "slug": "fitness",
+        "id": "fitness", "index": "03", "title": "Fitness", "slug": "fitness",
         "section": {
           "heading": ["Spaces", "designed to", "perform."],
           "headingText": "Spaces designed to perform.",
@@ -1618,7 +1618,7 @@
         }
       },
       {
-        "id": "healthcare", "index": "03", "title": "Healthcare", "slug": "healthcare",
+        "id": "healthcare", "index": "04", "title": "Healthcare", "slug": "healthcare",
         "section": {
           "heading": ["Spaces", "designed to", "care."],
           "headingText": "Spaces designed to care.",
@@ -1628,7 +1628,7 @@
           "services": ["Patient journey", "Space planning", "Lighting", "Materials", "3D visualization"]
         }
       },
-      { "id": "workplaces", "index": "04", "title": "Workplaces", "slug": "workplaces" }
+      { "id": "workplaces", "index": "05", "title": "Workplaces", "slug": "workplaces" }
     ],
     "calcCommon": {
        "ui": {
@@ -1870,6 +1870,17 @@
         "cta": "Let's talk about your project",
         "whatsapp": "Or message me on WhatsApp"
       }
+    },
+    "homeGym": {
+      "index": "02",
+      "title": "Fitness",
+      "heading": [
+        "Spaces",
+        "designed for",
+        "movement."
+      ],
+      "headingText": "Spaces designed for movement.",
+      "cta": "View fitness projects"
     }
   },
   "es": {
@@ -3478,7 +3489,7 @@
         }
       },
       {
-        "id": "fitness", "index": "02", "title": "Gimnasios", "slug": "gimnasios",
+        "id": "fitness", "index": "03", "title": "Gimnasios", "slug": "gimnasios",
         "section": {
           "heading": ["Espacios", "diseñados para", "rendir."],
           "headingText": "Espacios diseñados para rendir.",
@@ -3491,7 +3502,7 @@
         }
       },
       {
-        "id": "healthcare", "index": "03", "title": "Salud", "slug": "salud",
+        "id": "healthcare", "index": "04", "title": "Salud", "slug": "salud",
         "section": {
           "heading": ["Espacios", "diseñados para", "cuidar."],
           "headingText": "Espacios diseñados para cuidar.",
@@ -3501,7 +3512,7 @@
           "services": ["Recorrido del paciente", "Planificación del espacio", "Iluminación", "Materiales", "Visualización 3D"]
         }
       },
-      { "id": "workplaces", "index": "04", "title": "Oficinas", "slug": "oficinas" }
+      { "id": "workplaces", "index": "05", "title": "Oficinas", "slug": "oficinas" }
     ],
     "calcCommon": {
        "ui": {
@@ -3743,6 +3754,17 @@
         "cta": "Hablemos de tu proyecto",
         "whatsapp": "O escríbeme por WhatsApp"
       }
+    },
+    "homeGym": {
+      "index": "02",
+      "title": "Gimnasios",
+      "heading": [
+        "Espacios",
+        "diseñados para",
+        "el movimiento."
+      ],
+      "headingText": "Espacios diseñados para el movimiento.",
+      "cta": "Ver proyectos de gimnasios"
     }
   },
   "ru": {
@@ -5351,7 +5373,7 @@
         }
       },
       {
-        "id": "fitness", "index": "02", "title": "Фитнес", "slug": "fitness",
+        "id": "fitness", "index": "03", "title": "Фитнес", "slug": "fitness",
         "section": {
           "heading": ["Пространства,", "созданные для", "результата."],
           "headingText": "Пространства, созданные для результата.",
@@ -5364,7 +5386,7 @@
         }
       },
       {
-        "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare",
+        "id": "healthcare", "index": "04", "title": "Медицина", "slug": "healthcare",
         "section": {
           "heading": ["Пространства,", "которые", "заботятся."],
           "headingText": "Пространства, которые заботятся.",
@@ -5374,7 +5396,7 @@
           "services": ["Маршрут пациента", "Планировка", "Освещение", "Материалы", "3D-визуализация"]
         }
       },
-      { "id": "workplaces", "index": "04", "title": "Офисы", "slug": "workplaces" }
+      { "id": "workplaces", "index": "05", "title": "Офисы", "slug": "workplaces" }
     ],
     "calcCommon": {
        "ui": {
@@ -5616,6 +5638,17 @@
         "cta": "Обсудим ваш проект",
         "whatsapp": "Или напишите мне в WhatsApp"
       }
+    },
+    "homeGym": {
+      "index": "02",
+      "title": "Фитнес-клубы",
+      "heading": [
+        "Пространства,",
+        "созданные",
+        "для движения."
+      ],
+      "headingText": "Пространства, созданные для движения.",
+      "cta": "Смотреть фитнес-проекты"
     }
   },
   "uk": {
@@ -7224,7 +7257,7 @@
         }
       },
       {
-        "id": "fitness", "index": "02", "title": "Фітнес", "slug": "fitness",
+        "id": "fitness", "index": "03", "title": "Фітнес", "slug": "fitness",
         "section": {
           "heading": ["Простори,", "створені для", "результату."],
           "headingText": "Простори, створені для результату.",
@@ -7237,7 +7270,7 @@
         }
       },
       {
-        "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare",
+        "id": "healthcare", "index": "04", "title": "Медицина", "slug": "healthcare",
         "section": {
           "heading": ["Простори,", "які", "піклуються."],
           "headingText": "Простори, які піклуються.",
@@ -7247,7 +7280,7 @@
           "services": ["Маршрут пацієнта", "Планування", "Освітлення", "Матеріали", "3D-візуалізація"]
         }
       },
-      { "id": "workplaces", "index": "04", "title": "Офіси", "slug": "workplaces" }
+      { "id": "workplaces", "index": "05", "title": "Офіси", "slug": "workplaces" }
     ],
     "calcCommon": {
        "ui": {
@@ -7489,6 +7522,17 @@
         "cta": "Обговорімо ваш проєкт",
         "whatsapp": "Або напишіть мені у WhatsApp"
       }
+    },
+    "homeGym": {
+      "index": "02",
+      "title": "Фітнес-клуби",
+      "heading": [
+        "Простори,",
+        "створені",
+        "для руху."
+      ],
+      "headingText": "Простори, створені для руху.",
+      "cta": "Переглянути фітнес-проєкти"
     }
   }
 }
