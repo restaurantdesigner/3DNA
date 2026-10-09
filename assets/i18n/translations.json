@@ -1683,7 +1683,194 @@
          "projectLine": "Project: {name}",
          "calcLink": "Open this calculation"
        }
-     }
+     },
+    "aboutPage": {
+      "slug": "about",
+      "meta": {
+        "title": "About | Andrei Yafimenka — Founder of 3DNA",
+        "description": "Meet Andrei Yafimenka, founder of 3DNA: 25 years of experience in restaurants, commercial design, engineering, marketing and technology.",
+        "ogTitle": "Andrei Yafimenka — Founder of 3DNA",
+        "ogImageAlt": "Andrei Yafimenka, founder of 3DNA, working on a terrace by the sea"
+      },
+      "jobTitle": "Founder of 3DNA",
+      "hero": {
+        "label": "About",
+        "line1": "I don't just design spaces.",
+        "line2": "I understand the businesses that live inside them.",
+        "sub": "25 years between restaurants, architecture, technology and people.",
+        "name": "Andrei Yafimenka",
+        "role": "Founder of 3DNA",
+        "alt": "Andrei Yafimenka, founder of 3DNA, working on a terrace by the sea"
+      },
+      "intro": {
+        "label": "Behind 3DNA",
+        "lead": "I'm Andrei Yafimenka, founder of 3DNA.",
+        "paras": [
+          "For 25 years I have worked in the restaurant industry. And if there is one thing I have learned in all that time, it is that a restaurant is never simply a place where food is served."
+        ],
+        "statement": "It is a system in which architecture, technology, people, processes, marketing and economics live together.",
+        "after": [
+          "Designing that system takes far more than choosing materials, colours or furniture.",
+          "It takes understanding how a business works."
+        ]
+      },
+      "origins": {
+        "label": "Origins and education",
+        "title": "A story that began long before 3DNA",
+        "paras": [
+          "I was born in Belarus, where I spent the first nine years of my life. Then I moved to Ukraine, the country where I grew up, studied and built much of my professional career.",
+          "I studied Business Economics at the National University of Food Technologies in Kyiv and continued my training in industrial construction at the Kyiv National University of Construction and Architecture.",
+          "Over time I discovered that economics, engineering and design had much more in common than it seemed.",
+          "All of these disciplines try to answer the same question:"
+        ],
+        "question": "How do you make something work better?",
+        "after": "That question became the common thread of my career."
+      },
+      "restaurants": {
+        "label": "25 years in restaurants",
+        "title": "25 years inside the restaurant business",
+        "statement": [
+          "25 years inside the business.",
+          "Not just behind the drawings."
+        ],
+        "paras": [
+          "My experience in restaurants has never been limited to interior design.",
+          "I have worked with restaurants, cafés, bars and restaurant chains from different angles: concept development, technology planning, design, engineering, marketing and the organisation of commercial spaces.",
+          "I have also taken part in the development and growth of restaurant chains, and in processes related to their expansion and preparation for franchising.",
+          "That let me know the business from the inside."
+        ],
+        "list": [
+          "Understanding how a kitchen works during service.",
+          "How staff relate to the space.",
+          "How the layout affects productivity.",
+          "How the atmosphere shapes the customer experience.",
+          "And how every design decision can have economic consequences."
+        ],
+        "close": "A restaurant can be visually spectacular and, at the same time, work badly.",
+        "lead2": "That is why my approach always starts with one question:",
+        "question": "Will this space work for people and for the business?"
+      },
+      "psychology": {
+        "label": "Psychology of spaces",
+        "title": "The psychology behind spaces",
+        "intro": "I have always been interested in the relationship between people and the places they inhabit.",
+        "questions": [
+          "Why do we want to stay for hours in some restaurants?",
+          "Why do certain spaces earn our trust from the very first moment?",
+          "Why can a small change in lighting, circulation or layout completely transform an experience?"
+        ],
+        "paras": [
+          "These questions led me to take a growing interest in marketing, the psychology of perception, consumer behaviour and business economics.",
+          "Today I believe a good commercial space has to balance three dimensions: people, experience and business results."
+        ],
+        "triad": [
+          {
+            "k": "People",
+            "t": "Who lives the space: customers and teams, their routes, their comfort and what they feel."
+          },
+          {
+            "k": "Experience",
+            "t": "What the place conveys: atmosphere, light, circulation and trust from the first moment."
+          },
+          {
+            "k": "Business",
+            "t": "What the space has to sustain: productivity, service, costs and results."
+          }
+        ]
+      },
+      "quote": {
+        "text": "Design begins long before the first drawing. It begins when we understand people.",
+        "by": "Andrei Yafimenka"
+      },
+      "international": {
+        "label": "International experience",
+        "title": "From Ukraine to the world",
+        "paras": [
+          "My career led me to work with clients and teams from different countries, including the United States, Canada and Qatar.",
+          "Working internationally taught me that cultures, markets and expectations may differ, but good ideas share something fundamental: they must answer real needs.",
+          "Today I live in southern Spain, on the coast of Granada, by the Alboran Sea.",
+          "I work on international projects and speak Russian, Ukrainian, English and Spanish."
+        ],
+        "places": [
+          "United States",
+          "Canada",
+          "Qatar",
+          "Spain"
+        ]
+      },
+      "technology": {
+        "label": "Technology and innovation",
+        "title": "When architecture meets technology",
+        "paras": [
+          "Over the years, my curiosity led me to explore new tools.",
+          "3D modelling, architectural visualization, interactive walkthroughs, virtual environments, programming and, more recently, artificial intelligence.",
+          "I am especially interested in how these technologies can transform the design process.",
+          "It is not only about creating attractive images.",
+          "It is about exploring ideas faster, studying spaces before they are built, communicating decisions better and shortening the distance between an idea and its realisation."
+        ],
+        "statement": [
+          "Technology does not replace experience.",
+          "It amplifies it."
+        ]
+      },
+      "collaboration": {
+        "label": "Funding Matters and iShare",
+        "title": "Innovation and international collaboration",
+        "paras": [
+          "I also collaborate with the Canadian organisation Funding Matters and am part of the development team behind the iShare platform, which works on technology solutions for philanthropy.",
+          "I am also named as one of four co-inventors on a patent application for a method and system that matches giving opportunities with individualised, tax-efficient strategies.",
+          "This experience has let me take part in projects where technology, economics, visualization and social innovation come together."
+        ]
+      },
+      "why": {
+        "label": "Why 3DNA exists",
+        "title": "How 3DNA was born",
+        "lead": "3DNA is the result of this whole journey.",
+        "disciplines": [
+          "Economics",
+          "Engineering",
+          "Architecture",
+          "Marketing",
+          "Psychology",
+          "Technology"
+        ],
+        "lines": [
+          "Economics taught me to understand businesses.",
+          "Engineering taught me to understand systems.",
+          "Architecture taught me to think in space.",
+          "Marketing and psychology helped me understand people.",
+          "And technology opened new ways to connect all these disciplines."
+        ],
+        "paras": [
+          "Today I apply this experience to commercial design, restaurants, fitness spaces, 3D visualization and the development of digital solutions."
+        ],
+        "belief": [
+          "I don't believe design is simply about making something beautiful.",
+          "I believe it has to solve problems, improve experiences and bring real value."
+        ]
+      },
+      "personal": {
+        "label": "Personal",
+        "title": "A little more personal",
+        "paras": [
+          "After many years in Ukraine, life brought me to southern Spain.",
+          "Today I live by the Alboran Sea, on the coast of Granada.",
+          "I am the father of two children and share my everyday life with a dog and a parrot.",
+          "I love the sea, architecture, good food and conversations that begin with a question and end up becoming a new idea.",
+          "I keep learning, exploring technologies and looking for new ways of doing things.",
+          "And after 25 years in the restaurant industry, starting a new project still excites me."
+        ],
+        "closing": [
+          "3DNA is not simply my company.",
+          "It is the result of my experience, my curiosity and the way I look at the world."
+        ],
+        "sigName": "Andrei Yafimenka",
+        "sigRole": "Founder of 3DNA",
+        "ctaLead": "Have a project in mind?",
+        "cta": "Let's talk about your project",
+        "whatsapp": "Or message me on WhatsApp"
+      }
+    }
   },
   "es": {
     "languageName": "Español",
@@ -3369,7 +3556,194 @@
          "projectLine": "Proyecto: {name}",
          "calcLink": "Abrir este cálculo"
        }
-     }
+     },
+    "aboutPage": {
+      "slug": "nosotros",
+      "meta": {
+        "title": "Nosotros | Andrei Yafimenka — Fundador de 3DNA",
+        "description": "Conoce a Andrei Yafimenka, fundador de 3DNA. 25 años de experiencia en restauración, diseño comercial, ingeniería, marketing y tecnología.",
+        "ogTitle": "Andrei Yafimenka — Fundador de 3DNA",
+        "ogImageAlt": "Andrei Yafimenka, fundador de 3DNA, trabajando en una terraza junto al mar"
+      },
+      "jobTitle": "Fundador de 3DNA",
+      "hero": {
+        "label": "Nosotros",
+        "line1": "No solo diseño espacios.",
+        "line2": "Entiendo los negocios que viven dentro de ellos.",
+        "sub": "25 años entre restaurantes, arquitectura, tecnología y personas.",
+        "name": "Andrei Yafimenka",
+        "role": "Fundador de 3DNA",
+        "alt": "Andrei Yafimenka, fundador de 3DNA, trabajando en una terraza junto al mar"
+      },
+      "intro": {
+        "label": "Detrás de 3DNA",
+        "lead": "Soy Andrei Yafimenka, fundador de 3DNA.",
+        "paras": [
+          "Durante 25 años he trabajado en el sector de la restauración. Y si algo he aprendido en todo este tiempo es que un restaurante nunca es simplemente un lugar donde se sirve comida."
+        ],
+        "statement": "Es un sistema en el que conviven arquitectura, tecnología, personas, procesos, marketing y economía.",
+        "after": [
+          "Diseñar ese sistema exige mucho más que elegir materiales, colores o mobiliario.",
+          "Exige comprender cómo funciona un negocio."
+        ]
+      },
+      "origins": {
+        "label": "Orígenes y formación",
+        "title": "Una historia que comenzó mucho antes de 3DNA",
+        "paras": [
+          "Nací en Bielorrusia, donde pasé los primeros nueve años de mi vida. Después me trasladé a Ucrania, el país en el que crecí, estudié y desarrollé gran parte de mi trayectoria profesional.",
+          "Estudié Economía de la Empresa en la Universidad Nacional de Tecnologías Alimentarias de Kyiv y continué mi formación en el ámbito de la construcción industrial en la Universidad Nacional de Construcción y Arquitectura de Kyiv.",
+          "Con el tiempo descubrí que la economía, la ingeniería y el diseño tenían mucho más en común de lo que parecía.",
+          "Todas estas disciplinas intentan responder a una misma pregunta:"
+        ],
+        "question": "¿Cómo hacer que algo funcione mejor?",
+        "after": "Esa pregunta terminó convirtiéndose en el hilo conductor de mi carrera."
+      },
+      "restaurants": {
+        "label": "25 años en restauración",
+        "title": "25 años dentro del negocio de la restauración",
+        "statement": [
+          "25 años dentro del negocio.",
+          "No solo detrás de los planos."
+        ],
+        "paras": [
+          "Mi experiencia en restauración nunca se ha limitado al diseño de interiores.",
+          "He trabajado con restaurantes, cafeterías, bares y cadenas de restauración desde distintas perspectivas: desarrollo de conceptos, planificación tecnológica, diseño, ingeniería, marketing y organización de espacios comerciales.",
+          "También he participado en el desarrollo y crecimiento de cadenas de restaurantes, así como en procesos relacionados con su expansión y preparación para franquicias.",
+          "Esto me permitió conocer el negocio desde dentro."
+        ],
+        "list": [
+          "Entender cómo funciona una cocina durante el servicio.",
+          "Cómo se relacionan los empleados con el espacio.",
+          "Cómo influye la distribución en la productividad.",
+          "Cómo afecta la atmósfera a la experiencia del cliente.",
+          "Y cómo cada decisión de diseño puede tener consecuencias económicas."
+        ],
+        "close": "Un restaurante puede ser visualmente espectacular y, al mismo tiempo, funcionar mal.",
+        "lead2": "Por eso mi enfoque siempre comienza con una pregunta:",
+        "question": "¿Funcionará este espacio para las personas y para el negocio?"
+      },
+      "psychology": {
+        "label": "Psicología de los espacios",
+        "title": "La psicología detrás de los espacios",
+        "intro": "Siempre me ha interesado la relación entre las personas y los lugares que habitan.",
+        "questions": [
+          "¿Por qué en algunos restaurantes queremos quedarnos durante horas?",
+          "¿Por qué ciertos espacios nos transmiten confianza desde el primer momento?",
+          "¿Por qué un pequeño cambio en la iluminación, la circulación o la distribución puede transformar completamente una experiencia?"
+        ],
+        "paras": [
+          "Estas preguntas me llevaron a interesarme cada vez más por el marketing, la psicología de la percepción, el comportamiento del consumidor y la economía de los negocios.",
+          "Hoy considero que un buen espacio comercial debe equilibrar tres dimensiones: las personas, la experiencia y el resultado empresarial."
+        ],
+        "triad": [
+          {
+            "k": "Personas",
+            "t": "Quién vive el espacio: clientes y equipos, sus recorridos, su comodidad y lo que sienten."
+          },
+          {
+            "k": "Experiencia",
+            "t": "Lo que el lugar transmite: atmósfera, luz, circulación y confianza desde el primer momento."
+          },
+          {
+            "k": "Negocio",
+            "t": "Lo que el espacio tiene que sostener: productividad, servicio, costes y resultados."
+          }
+        ]
+      },
+      "quote": {
+        "text": "El diseño empieza mucho antes del primer dibujo. Empieza cuando comprendemos a las personas.",
+        "by": "Andrei Yafimenka"
+      },
+      "international": {
+        "label": "Experiencia internacional",
+        "title": "De Ucrania al mundo",
+        "paras": [
+          "Mi trayectoria profesional me llevó a colaborar con clientes y equipos de distintos países, incluyendo Estados Unidos, Canadá y Catar.",
+          "Trabajar internacionalmente me enseñó que las culturas, los mercados y las expectativas pueden ser diferentes, pero que las buenas ideas comparten algo fundamental: deben responder a necesidades reales.",
+          "Actualmente vivo en el sur de España, en la costa de Granada, junto al mar de Alborán.",
+          "Trabajo con proyectos internacionales y me comunico en ruso, ucraniano, inglés y español."
+        ],
+        "places": [
+          "Estados Unidos",
+          "Canadá",
+          "Catar",
+          "España"
+        ]
+      },
+      "technology": {
+        "label": "Tecnología e innovación",
+        "title": "Cuando la arquitectura se encuentra con la tecnología",
+        "paras": [
+          "Con los años, mi curiosidad me llevó a explorar nuevas herramientas.",
+          "El modelado 3D, la visualización arquitectónica, los recorridos interactivos, los entornos virtuales, la programación y, más recientemente, la inteligencia artificial.",
+          "Me interesa especialmente cómo estas tecnologías pueden transformar el proceso de diseño.",
+          "No se trata únicamente de crear imágenes atractivas.",
+          "Se trata de explorar ideas más rápido, estudiar espacios antes de construirlos, comunicar mejor las decisiones y reducir la distancia entre una idea y su realización."
+        ],
+        "statement": [
+          "La tecnología no sustituye la experiencia.",
+          "La amplifica."
+        ]
+      },
+      "collaboration": {
+        "label": "Funding Matters e iShare",
+        "title": "Innovación y colaboración internacional",
+        "paras": [
+          "También colaboro con la organización canadiense Funding Matters y formo parte del equipo de desarrollo de la plataforma iShare, relacionada con soluciones tecnológicas para la filantropía.",
+          "Además, figuro como uno de los cuatro coinventores en una solicitud de patente sobre un método y sistema para relacionar oportunidades de donación con estrategias individualizadas y fiscalmente eficientes.",
+          "Esta experiencia me ha permitido participar en proyectos donde convergen tecnología, economía, visualización e innovación social."
+        ]
+      },
+      "why": {
+        "label": "Por qué existe 3DNA",
+        "title": "Así nació 3DNA",
+        "lead": "3DNA es el resultado de todo este recorrido.",
+        "disciplines": [
+          "Economía",
+          "Ingeniería",
+          "Arquitectura",
+          "Marketing",
+          "Psicología",
+          "Tecnología"
+        ],
+        "lines": [
+          "La economía me enseñó a comprender los negocios.",
+          "La ingeniería me enseñó a entender los sistemas.",
+          "La arquitectura me enseñó a pensar en el espacio.",
+          "El marketing y la psicología me ayudaron a comprender a las personas.",
+          "Y la tecnología abrió nuevas posibilidades para conectar todas estas disciplinas."
+        ],
+        "paras": [
+          "Hoy aplico esta experiencia al diseño comercial, los restaurantes, los espacios de fitness, la visualización 3D y el desarrollo de soluciones digitales."
+        ],
+        "belief": [
+          "No creo que el diseño consista simplemente en crear algo bonito.",
+          "Creo que debe resolver problemas, mejorar experiencias y aportar valor real."
+        ]
+      },
+      "personal": {
+        "label": "Personal",
+        "title": "Un poco más personal",
+        "paras": [
+          "Después de muchos años en Ucrania, la vida me llevó al sur de España.",
+          "Hoy vivo junto al mar de Alborán, en la costa de Granada.",
+          "Soy padre de dos hijos y comparto mi vida cotidiana con un perro y un loro.",
+          "Me gusta el mar, la arquitectura, la buena comida y las conversaciones que comienzan con una pregunta y terminan convirtiéndose en una nueva idea.",
+          "Sigo aprendiendo, explorando tecnologías y buscando nuevas maneras de hacer las cosas.",
+          "Y después de 25 años en el sector de la restauración, todavía me entusiasma empezar un nuevo proyecto."
+        ],
+        "closing": [
+          "3DNA no es simplemente mi empresa.",
+          "Es el resultado de mi experiencia, mi curiosidad y mi forma de mirar el mundo."
+        ],
+        "sigName": "Andrei Yafimenka",
+        "sigRole": "Fundador de 3DNA",
+        "ctaLead": "¿Tienes un proyecto en mente?",
+        "cta": "Hablemos de tu proyecto",
+        "whatsapp": "O escríbeme por WhatsApp"
+      }
+    }
   },
   "ru": {
     "languageName": "Русский",
@@ -5055,7 +5429,194 @@
          "projectLine": "Проект: {name}",
          "calcLink": "Открыть этот расчёт"
        }
-     }
+     },
+    "aboutPage": {
+      "slug": "about",
+      "meta": {
+        "title": "О нас | Andrei Yafimenka — основатель 3DNA",
+        "description": "Знакомьтесь: Andrei Yafimenka, основатель 3DNA. 25 лет опыта в ресторанном бизнесе, коммерческом дизайне, инженерии, маркетинге и технологиях.",
+        "ogTitle": "Andrei Yafimenka — основатель 3DNA",
+        "ogImageAlt": "Andrei Yafimenka, основатель 3DNA, работает на террасе у моря"
+      },
+      "jobTitle": "Основатель 3DNA",
+      "hero": {
+        "label": "О нас",
+        "line1": "Я не просто проектирую пространства.",
+        "line2": "Я понимаю бизнес, который в них живёт.",
+        "sub": "25 лет между ресторанами, архитектурой, технологиями и людьми.",
+        "name": "Andrei Yafimenka",
+        "role": "Основатель 3DNA",
+        "alt": "Andrei Yafimenka, основатель 3DNA, работает на террасе у моря"
+      },
+      "intro": {
+        "label": "За 3DNA",
+        "lead": "Меня зовут Andrei Yafimenka, я основатель 3DNA.",
+        "paras": [
+          "25 лет я работаю в ресторанной сфере. И если я чему-то научился за это время, так это тому, что ресторан — никогда не просто место, где подают еду."
+        ],
+        "statement": "Это система, в которой соединяются архитектура, технологии, люди, процессы, маркетинг и экономика.",
+        "after": [
+          "Спроектировать такую систему — значит сделать гораздо больше, чем выбрать материалы, цвета или мебель.",
+          "Нужно понимать, как работает бизнес."
+        ]
+      },
+      "origins": {
+        "label": "Истоки и образование",
+        "title": "История, которая началась задолго до 3DNA",
+        "paras": [
+          "Я родился в Беларуси, где прожил первые девять лет. Потом переехал в Украину — страну, где я вырос, учился и построил значительную часть своей профессиональной карьеры.",
+          "Я изучал экономику предприятия в Национальном университете пищевых технологий в Киеве, а затем продолжил обучение в области промышленного строительства в Киевском национальном университете строительства и архитектуры.",
+          "Со временем я понял, что у экономики, инженерии и дизайна гораздо больше общего, чем кажется.",
+          "Все эти дисциплины пытаются ответить на один и тот же вопрос:"
+        ],
+        "question": "Как сделать так, чтобы что-то работало лучше?",
+        "after": "Этот вопрос стал сквозной нитью всей моей карьеры."
+      },
+      "restaurants": {
+        "label": "25 лет в ресторанах",
+        "title": "25 лет внутри ресторанного бизнеса",
+        "statement": [
+          "25 лет внутри бизнеса.",
+          "А не только за чертежами."
+        ],
+        "paras": [
+          "Мой опыт в ресторанной сфере никогда не ограничивался дизайном интерьеров.",
+          "Я работал с ресторанами, кафе, барами и ресторанными сетями с разных сторон: разработка концепций, технологическое планирование, дизайн, инженерия, маркетинг и организация коммерческих пространств.",
+          "Я также участвовал в развитии и росте ресторанных сетей, а также в процессах, связанных с их расширением и подготовкой к франчайзингу.",
+          "Это позволило мне узнать бизнес изнутри."
+        ],
+        "list": [
+          "Понимать, как работает кухня во время сервиса.",
+          "Как сотрудники взаимодействуют с пространством.",
+          "Как планировка влияет на производительность.",
+          "Как атмосфера влияет на впечатления гостя.",
+          "И как каждое дизайнерское решение может иметь экономические последствия."
+        ],
+        "close": "Ресторан может быть визуально эффектным и при этом плохо работать.",
+        "lead2": "Поэтому мой подход всегда начинается с одного вопроса:",
+        "question": "Будет ли это пространство работать для людей и для бизнеса?"
+      },
+      "psychology": {
+        "label": "Психология пространства",
+        "title": "Психология, которая стоит за пространством",
+        "intro": "Меня всегда интересовала связь между людьми и местами, в которых они находятся.",
+        "questions": [
+          "Почему в одних ресторанах нам хочется остаться на несколько часов?",
+          "Почему некоторые пространства вызывают доверие с первой минуты?",
+          "Почему небольшое изменение освещения, маршрутов или планировки может полностью изменить впечатление?"
+        ],
+        "paras": [
+          "Эти вопросы привели меня к всё большему интересу к маркетингу, психологии восприятия, поведению потребителей и экономике бизнеса.",
+          "Сегодня я считаю, что хорошее коммерческое пространство должно уравновешивать три измерения: людей, впечатления и результат бизнеса."
+        ],
+        "triad": [
+          {
+            "k": "Люди",
+            "t": "Кто проживает пространство: гости и команда, их маршруты, комфорт и ощущения."
+          },
+          {
+            "k": "Впечатления",
+            "t": "Что передаёт место: атмосфера, свет, движение и доверие с первой минуты."
+          },
+          {
+            "k": "Бизнес",
+            "t": "Что пространство должно обеспечить: производительность, сервис, затраты и результат."
+          }
+        ]
+      },
+      "quote": {
+        "text": "Дизайн начинается задолго до первого эскиза. Он начинается, когда мы понимаем людей.",
+        "by": "Andrei Yafimenka"
+      },
+      "international": {
+        "label": "Международный опыт",
+        "title": "Из Украины — в мир",
+        "paras": [
+          "Профессиональный путь привёл меня к работе с клиентами и командами из разных стран, в том числе из США, Канады и Катара.",
+          "Международная работа научила меня тому, что культуры, рынки и ожидания могут различаться, но у хороших идей есть общее: они должны отвечать реальным потребностям.",
+          "Сейчас я живу на юге Испании, на побережье Гранады, у моря Альборан.",
+          "Я работаю с международными проектами и говорю на русском, украинском, английском и испанском."
+        ],
+        "places": [
+          "США",
+          "Канада",
+          "Катар",
+          "Испания"
+        ]
+      },
+      "technology": {
+        "label": "Технологии и инновации",
+        "title": "Когда архитектура встречается с технологиями",
+        "paras": [
+          "С годами любопытство привело меня к новым инструментам.",
+          "3D-моделирование, архитектурная визуализация, интерактивные прогулки, виртуальные среды, программирование, а в последнее время — искусственный интеллект.",
+          "Особенно меня интересует, как эти технологии могут изменить сам процесс проектирования.",
+          "Речь идёт не только о красивых изображениях.",
+          "Речь о том, чтобы быстрее исследовать идеи, изучать пространства до их строительства, лучше объяснять решения и сокращать путь от идеи до её воплощения."
+        ],
+        "statement": [
+          "Технологии не заменяют опыт.",
+          "Они его усиливают."
+        ]
+      },
+      "collaboration": {
+        "label": "Funding Matters и iShare",
+        "title": "Инновации и международное сотрудничество",
+        "paras": [
+          "Я также сотрудничаю с канадской организацией Funding Matters и вхожу в команду разработки платформы iShare, которая создаёт технологические решения для благотворительности.",
+          "Кроме того, я указан как один из четырёх соавторов изобретения в патентной заявке на метод и систему, которые сопоставляют возможности для пожертвований с индивидуальными налогово-эффективными стратегиями.",
+          "Этот опыт позволил мне участвовать в проектах, где соединяются технологии, экономика, визуализация и социальные инновации."
+        ]
+      },
+      "why": {
+        "label": "Зачем существует 3DNA",
+        "title": "Так появилась 3DNA",
+        "lead": "3DNA — результат всего этого пути.",
+        "disciplines": [
+          "Экономика",
+          "Инженерия",
+          "Архитектура",
+          "Маркетинг",
+          "Психология",
+          "Технологии"
+        ],
+        "lines": [
+          "Экономика научила меня понимать бизнес.",
+          "Инженерия научила понимать системы.",
+          "Архитектура научила мыслить пространством.",
+          "Маркетинг и психология помогли понимать людей.",
+          "А технологии открыли новые возможности, чтобы соединить все эти дисциплины."
+        ],
+        "paras": [
+          "Сегодня я применяю этот опыт в коммерческом дизайне, ресторанах, фитнес-пространствах, 3D-визуализации и разработке цифровых решений."
+        ],
+        "belief": [
+          "Я не думаю, что дизайн — это просто создание чего-то красивого.",
+          "Я уверен, что он должен решать задачи, улучшать впечатления и приносить реальную ценность."
+        ]
+      },
+      "personal": {
+        "label": "Лично",
+        "title": "Немного личного",
+        "paras": [
+          "После многих лет в Украине жизнь привела меня на юг Испании.",
+          "Сегодня я живу у моря Альборан, на побережье Гранады.",
+          "Я отец двоих детей, и в повседневной жизни со мной собака и попугай.",
+          "Я люблю море, архитектуру, хорошую кухню и разговоры, которые начинаются с вопроса и превращаются в новую идею.",
+          "Я продолжаю учиться, осваивать технологии и искать новые способы делать вещи.",
+          "И спустя 25 лет в ресторанной сфере новый проект по-прежнему меня вдохновляет."
+        ],
+        "closing": [
+          "3DNA — не просто моя компания.",
+          "Это результат моего опыта, любопытства и того, как я смотрю на мир."
+        ],
+        "sigName": "Andrei Yafimenka",
+        "sigRole": "Основатель 3DNA",
+        "ctaLead": "Есть проект на примете?",
+        "cta": "Обсудим ваш проект",
+        "whatsapp": "Или напишите мне в WhatsApp"
+      }
+    }
   },
   "uk": {
     "languageName": "Українська",
@@ -6741,6 +7302,193 @@
          "projectLine": "Проєкт: {name}",
          "calcLink": "Відкрити цей розрахунок"
        }
-     }
+     },
+    "aboutPage": {
+      "slug": "about",
+      "meta": {
+        "title": "Про нас | Andrei Yafimenka — засновник 3DNA",
+        "description": "Знайомтеся: Andrei Yafimenka, засновник 3DNA. 25 років досвіду в ресторанному бізнесі, комерційному дизайні, інженерії, маркетингу й технологіях.",
+        "ogTitle": "Andrei Yafimenka — засновник 3DNA",
+        "ogImageAlt": "Andrei Yafimenka, засновник 3DNA, працює на терасі біля моря"
+      },
+      "jobTitle": "Засновник 3DNA",
+      "hero": {
+        "label": "Про нас",
+        "line1": "Я не просто проєктую простори.",
+        "line2": "Я розумію бізнес, який у них живе.",
+        "sub": "25 років між ресторанами, архітектурою, технологіями та людьми.",
+        "name": "Andrei Yafimenka",
+        "role": "Засновник 3DNA",
+        "alt": "Andrei Yafimenka, засновник 3DNA, працює на терасі біля моря"
+      },
+      "intro": {
+        "label": "За 3DNA",
+        "lead": "Мене звати Andrei Yafimenka, я засновник 3DNA.",
+        "paras": [
+          "25 років я працюю в ресторанній сфері. І якщо чогось я навчився за цей час, то це того, що ресторан — ніколи не просто місце, де подають їжу."
+        ],
+        "statement": "Це система, у якій поєднуються архітектура, технології, люди, процеси, маркетинг і економіка.",
+        "after": [
+          "Спроєктувати таку систему — означає зробити значно більше, ніж обрати матеріали, кольори чи меблі.",
+          "Потрібно розуміти, як працює бізнес."
+        ]
+      },
+      "origins": {
+        "label": "Витоки та освіта",
+        "title": "Історія, що почалася задовго до 3DNA",
+        "paras": [
+          "Я народився в Білорусі, де прожив перші дев'ять років. Потім переїхав до України — країни, де я виріс, навчався й побудував значну частину своєї професійної кар'єри.",
+          "Я вивчав економіку підприємства в Національному університеті харчових технологій у Києві, а згодом продовжив навчання у сфері промислового будівництва в Київському національному університеті будівництва і архітектури.",
+          "З часом я зрозумів, що в економіки, інженерії та дизайну значно більше спільного, ніж здається.",
+          "Усі ці дисципліни намагаються відповісти на одне й те саме запитання:"
+        ],
+        "question": "Як зробити так, щоб щось працювало краще?",
+        "after": "Це запитання стало наскрізною ниткою всієї моєї кар'єри."
+      },
+      "restaurants": {
+        "label": "25 років у ресторанах",
+        "title": "25 років усередині ресторанного бізнесу",
+        "statement": [
+          "25 років усередині бізнесу.",
+          "А не лише за кресленнями."
+        ],
+        "paras": [
+          "Мій досвід у ресторанній сфері ніколи не обмежувався дизайном інтер'єрів.",
+          "Я працював із ресторанами, кав'ярнями, барами та ресторанними мережами з різних боків: розробка концепцій, технологічне планування, дизайн, інженерія, маркетинг і організація комерційних просторів.",
+          "Я також брав участь у розвитку та зростанні ресторанних мереж, а також у процесах, пов'язаних з їхнім розширенням і підготовкою до франчайзингу.",
+          "Це дозволило мені пізнати бізнес зсередини."
+        ],
+        "list": [
+          "Розуміти, як працює кухня під час сервісу.",
+          "Як працівники взаємодіють із простором.",
+          "Як планування впливає на продуктивність.",
+          "Як атмосфера впливає на враження гостя.",
+          "І як кожне дизайнерське рішення може мати економічні наслідки."
+        ],
+        "close": "Ресторан може бути візуально ефектним і водночас погано працювати.",
+        "lead2": "Тому мій підхід завжди починається з одного запитання:",
+        "question": "Чи працюватиме цей простір для людей і для бізнесу?"
+      },
+      "psychology": {
+        "label": "Психологія простору",
+        "title": "Психологія, що стоїть за простором",
+        "intro": "Мене завжди цікавив зв'язок між людьми та місцями, у яких вони перебувають.",
+        "questions": [
+          "Чому в деяких ресторанах нам хочеться залишитися на кілька годин?",
+          "Чому деякі простори викликають довіру з першої хвилини?",
+          "Чому невелика зміна освітлення, маршрутів чи планування може повністю змінити враження?"
+        ],
+        "paras": [
+          "Ці запитання привели мене до дедалі більшого інтересу до маркетингу, психології сприйняття, поведінки споживачів та економіки бізнесу.",
+          "Сьогодні я вважаю, що добрий комерційний простір має врівноважувати три виміри: людей, враження та результат бізнесу."
+        ],
+        "triad": [
+          {
+            "k": "Люди",
+            "t": "Хто проживає простір: гості й команда, їхні маршрути, комфорт і відчуття."
+          },
+          {
+            "k": "Враження",
+            "t": "Що передає місце: атмосфера, світло, рух і довіра з першої хвилини."
+          },
+          {
+            "k": "Бізнес",
+            "t": "Що простір має забезпечити: продуктивність, сервіс, витрати й результат."
+          }
+        ]
+      },
+      "quote": {
+        "text": "Дизайн починається задовго до першого ескізу. Він починається, коли ми розуміємо людей.",
+        "by": "Andrei Yafimenka"
+      },
+      "international": {
+        "label": "Міжнародний досвід",
+        "title": "З України — у світ",
+        "paras": [
+          "Професійний шлях привів мене до співпраці з клієнтами та командами з різних країн, зокрема зі США, Канади й Катару.",
+          "Міжнародна робота навчила мене, що культури, ринки й очікування можуть різнитися, але добрі ідеї мають спільне: вони повинні відповідати реальним потребам.",
+          "Нині я живу на півдні Іспанії, на узбережжі Гранади, біля моря Альборан.",
+          "Я працюю з міжнародними проєктами й розмовляю російською, українською, англійською та іспанською."
+        ],
+        "places": [
+          "США",
+          "Канада",
+          "Катар",
+          "Іспанія"
+        ]
+      },
+      "technology": {
+        "label": "Технології та інновації",
+        "title": "Коли архітектура зустрічається з технологіями",
+        "paras": [
+          "З роками допитливість привела мене до нових інструментів.",
+          "3D-моделювання, архітектурна візуалізація, інтерактивні прогулянки, віртуальні середовища, програмування, а останнім часом — штучний інтелект.",
+          "Особливо мене цікавить, як ці технології можуть змінити сам процес проєктування.",
+          "Ідеться не лише про гарні зображення.",
+          "Ідеться про те, щоб швидше досліджувати ідеї, вивчати простори ще до будівництва, краще пояснювати рішення й скорочувати шлях від ідеї до її втілення."
+        ],
+        "statement": [
+          "Технології не замінюють досвід.",
+          "Вони його підсилюють."
+        ]
+      },
+      "collaboration": {
+        "label": "Funding Matters та iShare",
+        "title": "Інновації та міжнародна співпраця",
+        "paras": [
+          "Я також співпрацюю з канадською організацією Funding Matters і входжу до команди розробки платформи iShare, яка створює технологічні рішення для філантропії.",
+          "Крім того, я зазначений як один із чотирьох співавторів винаходу в патентній заявці на метод і систему, що зіставляють можливості для пожертв з індивідуальними податково-ефективними стратегіями.",
+          "Цей досвід дозволив мені брати участь у проєктах, де поєднуються технології, економіка, візуалізація та соціальні інновації."
+        ]
+      },
+      "why": {
+        "label": "Навіщо існує 3DNA",
+        "title": "Так з'явилася 3DNA",
+        "lead": "3DNA — результат усього цього шляху.",
+        "disciplines": [
+          "Економіка",
+          "Інженерія",
+          "Архітектура",
+          "Маркетинг",
+          "Психологія",
+          "Технології"
+        ],
+        "lines": [
+          "Економіка навчила мене розуміти бізнес.",
+          "Інженерія навчила розуміти системи.",
+          "Архітектура навчила мислити простором.",
+          "Маркетинг і психологія допомогли розуміти людей.",
+          "А технології відкрили нові можливості, щоб поєднати всі ці дисципліни."
+        ],
+        "paras": [
+          "Сьогодні я застосовую цей досвід у комерційному дизайні, ресторанах, фітнес-просторах, 3D-візуалізації та розробці цифрових рішень."
+        ],
+        "belief": [
+          "Я не вважаю, що дизайн — це просто створення чогось гарного.",
+          "Я переконаний, що він має розв'язувати задачі, покращувати враження й приносити реальну цінність."
+        ]
+      },
+      "personal": {
+        "label": "Особисте",
+        "title": "Трохи особистого",
+        "paras": [
+          "Після багатьох років в Україні життя привело мене на південь Іспанії.",
+          "Сьогодні я живу біля моря Альборан, на узбережжі Гранади.",
+          "Я батько двох дітей, а в повсякденному житті зі мною собака й папуга.",
+          "Я люблю море, архітектуру, добру кухню й розмови, які починаються із запитання й перетворюються на нову ідею.",
+          "Я продовжую вчитися, опановувати технології та шукати нові способи робити речі.",
+          "І після 25 років у ресторанній сфері новий проєкт досі мене надихає."
+        ],
+        "closing": [
+          "3DNA — не просто моя компанія.",
+          "Це результат мого досвіду, допитливості й того, як я дивлюся на світ."
+        ],
+        "sigName": "Andrei Yafimenka",
+        "sigRole": "Засновник 3DNA",
+        "ctaLead": "Маєте проєкт на думці?",
+        "cta": "Обговорімо ваш проєкт",
+        "whatsapp": "Або напишіть мені у WhatsApp"
+      }
+    }
   }
 }

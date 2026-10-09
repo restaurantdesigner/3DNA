@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Built by scripts/build-i18n.js from templates/about.html +
+       assets/i18n/translations.json (aboutPage.*) + scripts/about-page.js -->
+  <title>{{aboutPage.meta.title}}</title>
+{{head.i18n}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap">
+  <!-- the founder photograph is the first paint -->
+  <link rel="preload" as="image" type="image/webp" fetchpriority="high"
+    imagesrcset="/images/about/andrei-yafimenka-860.webp 860w, /images/about/andrei-yafimenka-1280.webp 1280w, /images/about/andrei-yafimenka-1672.webp 1672w" imagesizes="100vw">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261028a">
+</head>
+
+<body>
+<!-- 3dna:header -->
+{{layout.header}}
+<!-- /3dna:header -->
+
+<main id="main" tabindex="-1" class="apage">
+
+  <!-- 01 HERO: the approved founder photograph (unaltered; every word is HTML).
+       sector-hero gives the shared transparent header with the white logo over it. -->
+  <section class="sector-hero ahero" aria-labelledby="about-title">
+    <picture class="ahero__media">
+      <source type="image/webp" srcset="/images/about/andrei-yafimenka-860.webp 860w, /images/about/andrei-yafimenka-1280.webp 1280w, /images/about/andrei-yafimenka-1672.webp 1672w" sizes="100vw">
+      <img src="/images/about/andrei-yafimenka-1672.webp" width="1672" height="941" fetchpriority="high" decoding="async" alt="{{aboutPage.hero.alt}}">
+    </picture>
+    <div class="ahero__shade" aria-hidden="true"></div>
+    <div class="ahero__copy">
+      <p class="ahero__label">{{aboutPage.hero.label}}</p>
+      <h1 class="ahero__title" id="about-title"><span>{{aboutPage.hero.line1}}</span> <em>{{aboutPage.hero.line2}}</em></h1>
+      <p class="ahero__sub">{{aboutPage.hero.sub}}</p>
+      <p class="ahero__who"><span class="ahero__name">{{aboutPage.hero.name}}</span><span class="ahero__role">{{aboutPage.hero.role}}</span></p>
+    </div>
+  </section>
+
+{{about.bodyHtml}}
+
+</main>
+
+<!-- 3dna:footer -->
+{{layout.footer}}
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=20261028a"></script>
+
+<!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
+     main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->
+<div id="deployment-db155617-f1fa-45ba-aa43-27eb97edb751"></div>
+</body>
+</html>

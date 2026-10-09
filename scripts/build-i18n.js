@@ -30,6 +30,7 @@ const OG_IMAGE = { path: (lang) => `/images/og/og-${lang}.jpg`, width: 1200, hei
 const OG_PAGE_IMAGES = {
   restaurants: (lang) => `/images/og/og-restaurants-${lang}.jpg`,
   fitness: (lang) => `/images/og/og-fitness-${lang}.jpg`,
+  about: () => "/images/about/og-andrei-yafimenka.jpg",   // the approved photograph, cropped, no text
 };
 const ogImagePath = (page, lang) => (page && OG_PAGE_IMAGES[page] ? OG_PAGE_IMAGES[page](lang) : OG_IMAGE.path(lang));
 // Language switcher order (header): EN / ES / RU / UK
@@ -57,6 +58,7 @@ const layoutHeader = read("templates/layout/header.html");
 const layoutFooter = read("templates/layout/footer.html");
 const restaurantsTemplate = read("templates/restaurants.html");
 const fitnessTemplate = read("templates/fitness.html");
+const aboutTemplate = read("templates/about.html");
 const restaurantStories = JSON.parse(read("assets/data/restaurant-stories.json"));
 // Spanish keeps the original path, which the legacy (Spanish) pages already load
 const formPartialFile = (lang) => (lang === "es" ? "form-panel.html" : `form-panel.${lang}.html`);
@@ -88,6 +90,7 @@ const whatsappHref = (lang) => {
   return `https://wa.me/${c.whatsappNumber}?text=${encodeURIComponent(c.whatsappMessage)}`;
 };
 
+const aboutPage = require("./about-page.js").createAboutPage(translations, { whatsappHref: (lang) => whatsappHref(lang) });
 const restaurantsPage = require("./restaurants-page.js").createRestaurantsPage(
   restaurantStories, translations, { whatsappHref: (lang) => whatsappHref(lang) });
 const restaurantPlanData = JSON.parse(read("assets/data/restaurant-plan.json"));
@@ -123,6 +126,12 @@ const PAGES = {
     subPath: (lang) => `${translations[lang].fitnessPage.slug}/`,
     urlPath: (lang) => (lang === "es" ? "/gimnasios-3d.html" : null),
     meta: (lang) => translations[lang].fitnessPage.meta
+  },
+  // the founder's story: /es/nosotros/, /en|ru|uk/about/
+  about: {
+    template: () => aboutTemplate,
+    subPath: (lang) => `${translations[lang].aboutPage.slug}/`,
+    meta: (lang) => translations[lang].aboutPage.meta
   }
 };
 const pageSubPath = (options, lang) => (options && options.page ? PAGES[options.page].subPath(lang) : "");
@@ -217,6 +226,21 @@ function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = nu
       primaryImageOfPage: { "@type": "ImageObject", url: absolute(ogImagePath(page, lang)) }
     }
   ];
+  // the founder's page: an AboutPage whose main entity is the founder (only stated facts)
+  if (page === "about") {
+    graph[2]["@type"] = "AboutPage";
+    graph[2].mainEntity = { "@id": `${SITE_URL}/#founder` };
+    graph.push({
+      "@type": "Person",
+      "@id": `${SITE_URL}/#founder`,
+      name: "Andrei Yafimenka",
+      jobTitle: t.aboutPage.jobTitle,
+      image: absolute("/images/about/andrei-yafimenka-1280.webp"),
+      url,
+      worksFor: { "@id": `${SITE_URL}/#organization` },
+      knowsLanguage: ["ru", "uk", "en", "es"]
+    });
+  }
   // service pages: what the page offers + where it sits in the site
   if (page && t.schema.services && t.schema.services[page]) {
     graph[2].breadcrumb = { "@id": `${url}#breadcrumb` };
@@ -314,6 +338,8 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "layout.footer") return renderPartial(lang, layoutFooter, options);
     if (key === "restaurants.storiesHtml") return restaurantsPage.storiesHtml(lang);
     if (key === "fitnessPage.url") return pagePathFor("fitness", lang);
+    if (key === "aboutPage.url") return pagePathFor("about", lang);
+    if (key === "about.bodyHtml") return aboutPage.bodyHtml(lang);
     if (key === "designQuotes.html") return designQuotes.sectionHtml(lang);
     if (key === "fitnessPage.voicesHtml") return designQuotes.fitnessVoicesHtml(lang);
     if (key === "fitnessPage.clubHtml") return fitnessClub.sectionHtml(lang);

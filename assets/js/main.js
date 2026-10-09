@@ -1149,6 +1149,18 @@ document.querySelectorAll("[data-qspacer]").forEach((root) => {
   });
 })();
 
+// About page: editorial blocks fade up once as they enter (none with reduced motion)
+(() => {
+  const blocks = document.querySelectorAll(".apage [data-reveal]");
+  if (!blocks.length || !("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add("is-in");
+    io.unobserve(e.target);
+  }), { rootMargin: "0px 0px -12% 0px" });
+  blocks.forEach((el) => { el.classList.add("reveal-wait"); io.observe(el); });
+})();
+
 // Restaurants: cinematic copy over the full-width film gets the same fade-up reveal
 (() => {
   if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
