@@ -1,0 +1,922 @@
+{
+ "_about": "Room model of the multipurpose building (Centro Deportivo). Units: metres, same frame as plan-extracted.json (origin: outer top-left corner of the multipurpose hall, x east, y south in plan). Names, numbers and official areas: plano 04 (programa de usos + cuadro de superficies). Room polygons follow the extracted wall faces and the printed dimensions. 'status': verified = from the vector drawing / printed dimensions; estimated = inferred.",
+ "rooms": [
+  {
+   "id": "sala",
+   "n": "7",
+   "name": "Sala multiusos",
+   "area": 150.07,
+   "status": "verified",
+   "poly": [
+    [
+     0.19,
+     0.15
+    ],
+    [
+     17.06,
+     0.15
+    ],
+    [
+     17.06,
+     11.01
+    ],
+    [
+     12.72,
+     11.01
+    ],
+    [
+     12.72,
+     8.36
+    ],
+    [
+     0.19,
+     8.36
+    ]
+   ],
+   "label": [
+    8.6,
+    4.3
+   ],
+   "media": {
+    "note": "Visualizaciones del diseño propuesto para esta sala (concepto 3DNA); no son fotografías de un espacio construido.",
+    "items": [
+     {
+      "id": "sala-recorrido",
+      "type": "video",
+      "label": "Recorrido en vídeo",
+      "src": "/videos/fitness/sala-multiusos/sala-multiusos-recorrido.mp4",
+      "poster": "/images/fitness/sala-multiusos/vista-interior.webp",
+      "thumb": "/images/fitness/sala-multiusos/thumbs/vista-interior-640.webp",
+      "w": 854,
+      "h": 480,
+      "duration": 5.06,
+      "alt": "Recorrido en vídeo por la sala multiusos equipada como gimnasio."
+     },
+     {
+      "id": "sala-interior",
+      "type": "image",
+      "label": "Vista interior",
+      "src": "/images/fitness/sala-multiusos/vista-interior.webp",
+      "thumb": "/images/fitness/sala-multiusos/thumbs/vista-interior-480.webp",
+      "w": 1280,
+      "h": 720,
+      "alt": "Vista interior a la altura de los ojos: cintas de correr junto a la fachada acristalada, rack de potencia y paneles de madera."
+     },
+     {
+      "id": "sala-arquitectonica",
+      "type": "image",
+      "label": "Vista arquitectónica",
+      "src": "/images/fitness/sala-multiusos/vista-arquitectonica.webp",
+      "thumb": "/images/fitness/sala-multiusos/thumbs/vista-arquitectonica-480.webp",
+      "w": 1200,
+      "h": 900,
+      "alt": "Vista cenital de la sala multiusos con su distribución de cardio, fuerza, peso libre y funcional."
+     }
+    ]
+   }
+  },
+  {
+   "id": "instalaciones",
+   "n": "9",
+   "name": "Cuarto instalaciones",
+   "area": 6.78,
+   "status": "verified",
+   "poly": [
+    [
+     0.19,
+     8.51
+    ],
+    [
+     2.82,
+     8.51
+    ],
+    [
+     2.82,
+     11.01
+    ],
+    [
+     0.19,
+     11.01
+    ]
+   ]
+  },
+  {
+   "id": "aseoM",
+   "n": "4",
+   "name": "Aseo masculino",
+   "area": 8.61,
+   "status": "verified",
+   "assignment": "estimated (masc./fem. not marked on the plan; order of the area table)",
+   "poly": [
+    [
+     2.97,
+     8.51
+    ],
+    [
+     6.37,
+     8.51
+    ],
+    [
+     6.37,
+     11.01
+    ],
+    [
+     2.97,
+     11.01
+    ]
+   ]
+  },
+  {
+   "id": "aseoF",
+   "n": "4",
+   "name": "Aseo femenino",
+   "area": 8.64,
+   "status": "verified",
+   "assignment": "estimated",
+   "poly": [
+    [
+     6.52,
+     8.51
+    ],
+    [
+     9.92,
+     8.51
+    ],
+    [
+     9.92,
+     11.01
+    ],
+    [
+     6.52,
+     11.01
+    ]
+   ]
+  },
+  {
+   "id": "botiquin",
+   "n": "8",
+   "name": "Botiquín",
+   "area": 6.36,
+   "status": "verified",
+   "poly": [
+    [
+     10.07,
+     8.51
+    ],
+    [
+     12.57,
+     8.51
+    ],
+    [
+     12.57,
+     11.01
+    ],
+    [
+     10.07,
+     11.01
+    ]
+   ]
+  },
+  {
+   "id": "pasillo",
+   "n": "3",
+   "name": "Pasillo distribuidor",
+   "area": 22.36,
+   "status": "verified",
+   "poly": [
+    [
+     0.19,
+     11.16
+    ],
+    [
+     17.12,
+     11.16
+    ],
+    [
+     17.12,
+     12.46
+    ],
+    [
+     0.19,
+     12.46
+    ]
+   ],
+   "label": [
+    8.6,
+    11.95
+   ]
+  },
+  {
+   "id": "sauna",
+   "n": "6",
+   "name": "Sauna, ducha, baño de vapor",
+   "area": 16.66,
+   "status": "verified",
+   "poly": [
+    [
+     3.59,
+     12.61
+    ],
+    [
+     6.83,
+     12.61
+    ],
+    [
+     6.83,
+     17.71
+    ],
+    [
+     3.59,
+     17.71
+    ]
+   ]
+  },
+  {
+   "id": "vestM",
+   "n": "5",
+   "name": "Vestuario masculino",
+   "area": 25.52,
+   "status": "verified",
+   "assignment": "estimated (order of the area table)",
+   "poly": [
+    [
+     6.98,
+     12.61
+    ],
+    [
+     11.98,
+     12.61
+    ],
+    [
+     11.98,
+     17.71
+    ],
+    [
+     6.98,
+     17.71
+    ]
+   ]
+  },
+  {
+   "id": "vestF",
+   "n": "5",
+   "name": "Vestuario femenino",
+   "area": 25.49,
+   "status": "verified",
+   "assignment": "estimated",
+   "poly": [
+    [
+     12.13,
+     12.61
+    ],
+    [
+     17.13,
+     12.61
+    ],
+    [
+     17.13,
+     17.71
+    ],
+    [
+     12.13,
+     17.71
+    ]
+   ]
+  },
+  {
+   "id": "acceso",
+   "n": "1",
+   "name": "Acceso",
+   "area": 6.07,
+   "status": "verified",
+   "poly": [
+    [
+     17.29,
+     11.16
+    ],
+    [
+     19.14,
+     11.16
+    ],
+    [
+     19.14,
+     14.44
+    ],
+    [
+     17.29,
+     14.44
+    ]
+   ]
+  },
+  {
+   "id": "control",
+   "n": "2",
+   "name": "Zona de control",
+   "area": 9.59,
+   "status": "verified",
+   "poly": [
+    [
+     17.29,
+     14.51
+    ],
+    [
+     20.29,
+     14.51
+    ],
+    [
+     20.29,
+     17.71
+    ],
+    [
+     17.29,
+     17.71
+    ]
+   ]
+  }
+ ],
+ "manualWalls": [
+  {
+   "id": "sala-rooms",
+   "status": "verified (dimensions 2,62 / 3,40 / 3,40 / 2,50, line drawn on the plan)",
+   "poly": [
+    [
+     1.1,
+     8.36
+    ],
+    [
+     12.72,
+     8.36
+    ],
+    [
+     12.72,
+     8.51
+    ],
+    [
+     1.1,
+     8.51
+    ]
+   ]
+  },
+  {
+   "id": "sauna-vestM",
+   "status": "verified (dimensions 3,24 / 0,15 / 5,00)",
+   "poly": [
+    [
+     6.83,
+     12.61
+    ],
+    [
+     6.98,
+     12.61
+    ],
+    [
+     6.98,
+     17.71
+    ],
+    [
+     6.83,
+     17.71
+    ]
+   ]
+  },
+  {
+   "id": "vestM-vestF",
+   "status": "verified (dimensions 5,00 / 0,15 / 5,00)",
+   "poly": [
+    [
+     11.98,
+     12.61
+    ],
+    [
+     12.13,
+     12.61
+    ],
+    [
+     12.13,
+     17.71
+    ],
+    [
+     11.98,
+     17.71
+    ]
+   ]
+  },
+  {
+   "id": "corr-bottom-a",
+   "status": "verified",
+   "poly": [
+    [
+     0.3,
+     12.46
+    ],
+    [
+     3.59,
+     12.46
+    ],
+    [
+     3.59,
+     12.61
+    ],
+    [
+     0.3,
+     12.61
+    ]
+   ]
+  },
+  {
+   "id": "corr-bottom-b",
+   "status": "verified; door position estimated",
+   "poly": [
+    [
+     6.99,
+     12.46
+    ],
+    [
+     10.6,
+     12.46
+    ],
+    [
+     10.6,
+     12.61
+    ],
+    [
+     6.99,
+     12.61
+    ]
+   ]
+  },
+  {
+   "id": "corr-bottom-c",
+   "status": "verified; door position estimated",
+   "poly": [
+    [
+     11.5,
+     12.46
+    ],
+    [
+     12.13,
+     12.46
+    ],
+    [
+     12.13,
+     12.61
+    ],
+    [
+     11.5,
+     12.61
+    ]
+   ]
+  },
+  {
+   "id": "acceso-control",
+   "status": "verified",
+   "poly": [
+    [
+     17.29,
+     14.44
+    ],
+    [
+     20.29,
+     14.44
+    ],
+    [
+     20.29,
+     14.51
+    ],
+    [
+     17.29,
+     14.51
+    ]
+   ]
+  },
+  {
+   "id": "acceso-east",
+   "status": "estimated (glazed vestíbulo front, steel frame, 4+4 glass)",
+   "glass": true,
+   "poly": [
+    [
+     19.14,
+     11.16
+    ],
+    [
+     19.22,
+     11.16
+    ],
+    [
+     19.22,
+     14.44
+    ],
+    [
+     19.14,
+     14.44
+    ]
+   ]
+  },
+  {
+   "id": "sala-rooms-w",
+   "status": "verified",
+   "poly": [
+    [
+     0.19,
+     8.36
+    ],
+    [
+     0.3,
+     8.36
+    ],
+    [
+     0.3,
+     8.51
+    ],
+    [
+     0.19,
+     8.51
+    ]
+   ]
+  }
+ ],
+ "openings": [
+  {
+   "kind": "window",
+   "id": "N-glazing",
+   "ab": [
+    [
+     1.62,
+     0.07
+    ],
+    [
+     15.62,
+     0.07
+    ]
+   ],
+   "sill": 0.6,
+   "head": 3.2,
+   "status": "verified width (1,81 / 3,33 / 3,33 / 3,33 / 1,80 between steel columns); height from elevation ~2,6 (approx.)"
+  },
+  {
+   "kind": "window",
+   "id": "W-1",
+   "ab": [
+    [
+     0.09,
+     0.7
+    ],
+    [
+     0.09,
+     2.4
+    ]
+   ],
+   "sill": 1.6,
+   "head": 2.2,
+   "status": "verified width 1,70; height from elevation"
+  },
+  {
+   "kind": "window",
+   "id": "W-2",
+   "ab": [
+    [
+     0.09,
+     3.5
+    ],
+    [
+     0.09,
+     5.2
+    ]
+   ],
+   "head": 2.2,
+   "status": "verified width 1,70; window (furnished plan shows the double door further south)",
+   "sill": 1.6
+  },
+  {
+   "kind": "door",
+   "id": "W-3",
+   "ab": [
+    [
+     0.09,
+     6.31
+    ],
+    [
+     0.09,
+     8.01
+    ]
+   ],
+   "head": 2.25,
+   "status": "verified: double door drawn outside the west wall (furnished plan); height from elevation (approx.)"
+  },
+  {
+   "kind": "window",
+   "id": "E-1",
+   "ab": [
+    [
+     17.15,
+     0.7
+    ],
+    [
+     17.15,
+     2.4
+    ]
+   ],
+   "sill": 1.6,
+   "head": 2.2,
+   "status": "verified width 1,70"
+  },
+  {
+   "kind": "window",
+   "id": "E-2",
+   "ab": [
+    [
+     17.15,
+     3.5
+    ],
+    [
+     17.15,
+     5.2
+    ]
+   ],
+   "sill": 1.6,
+   "head": 2.2,
+   "status": "verified width 1,70"
+  },
+  {
+   "kind": "window",
+   "id": "E-3",
+   "ab": [
+    [
+     17.15,
+     6.31
+    ],
+    [
+     17.15,
+     8.01
+    ]
+   ],
+   "sill": 1.6,
+   "head": 2.2,
+   "status": "verified width 1,70"
+  },
+  {
+   "kind": "window",
+   "id": "inst-ext",
+   "ab": [
+    [
+     0.09,
+     8.36
+    ],
+    [
+     0.09,
+     10.82
+    ]
+   ],
+   "head": 2.2,
+   "status": "estimated: gap in the west wall of the plant room (louvre / window)",
+   "sill": 1.6
+  },
+  {
+   "kind": "door",
+   "id": "W-corridor",
+   "ab": [
+    [
+     0.09,
+     11.16
+    ],
+    [
+     0.09,
+     12.46
+    ]
+   ],
+   "head": 2.25,
+   "status": "verified opening (to the pool area, memoria)"
+  },
+  {
+   "kind": "door",
+   "id": "aseoM",
+   "ab": [
+    [
+     3.01,
+     11.08
+    ],
+    [
+     3.93,
+     11.08
+    ]
+   ],
+   "head": 2.05,
+   "status": "verified opening"
+  },
+  {
+   "kind": "door",
+   "id": "aseoF",
+   "ab": [
+    [
+     8.96,
+     11.08
+    ],
+    [
+     9.92,
+     11.08
+    ]
+   ],
+   "head": 2.05,
+   "status": "verified opening"
+  },
+  {
+   "kind": "door",
+   "id": "botiquin",
+   "ab": [
+    [
+     10.12,
+     11.08
+    ],
+    [
+     11.04,
+     11.08
+    ]
+   ],
+   "head": 2.05,
+   "status": "verified opening"
+  },
+  {
+   "kind": "door",
+   "id": "sala-pasillo",
+   "ab": [
+    [
+     13.74,
+     11.08
+    ],
+    [
+     14.97,
+     11.08
+    ]
+   ],
+   "head": 2.05,
+   "status": "verified opening (1,22)"
+  },
+  {
+   "kind": "door",
+   "id": "sauna",
+   "ab": [
+    [
+     3.64,
+     12.53
+    ],
+    [
+     4.56,
+     12.53
+    ]
+   ],
+   "head": 2.05,
+   "status": "verified opening"
+  },
+  {
+   "kind": "door",
+   "id": "vestM",
+   "ab": [
+    [
+     10.6,
+     12.53
+    ],
+    [
+     11.5,
+     12.53
+    ]
+   ],
+   "head": 2.05,
+   "status": "estimated position"
+  },
+  {
+   "kind": "door",
+   "id": "vestF",
+   "ab": [
+    [
+     12.65,
+     12.53
+    ],
+    [
+     13.73,
+     12.53
+    ]
+   ],
+   "head": 2.05,
+   "status": "verified opening"
+  },
+  {
+   "kind": "window",
+   "id": "S-vestM",
+   "ab": [
+    [
+     8.38,
+     17.8
+    ],
+    [
+     10.08,
+     17.8
+    ]
+   ],
+   "sill": 1.6,
+   "head": 2.2,
+   "status": "verified width 1,70"
+  },
+  {
+   "kind": "window",
+   "id": "S-vestF",
+   "ab": [
+    [
+     14.03,
+     17.8
+    ],
+    [
+     15.72,
+     17.8
+    ]
+   ],
+   "sill": 1.6,
+   "head": 2.2,
+   "status": "verified width 1,69"
+  },
+  {
+   "kind": "window",
+   "id": "W-sauna",
+   "ab": [
+    [
+     3.5,
+     14.48
+    ],
+    [
+     3.5,
+     17.53
+    ]
+   ],
+   "sill": 1.6,
+   "head": 2.2,
+   "status": "estimated (gap in the west wall of the sauna room)"
+  },
+  {
+   "kind": "door",
+   "id": "entrance",
+   "ab": [
+    [
+     19.08,
+     11.08
+    ],
+    [
+     20.29,
+     11.08
+    ]
+   ],
+   "head": 2.2,
+   "status": "estimated: main entrance under the canopy (glazed vestíbulo, double door 1,70 in the memoria)"
+  },
+  {
+   "kind": "door",
+   "id": "instalaciones",
+   "ab": [
+    [
+     0.3,
+     8.43
+    ],
+    [
+     1.1,
+     8.43
+    ]
+   ],
+   "head": 2.05,
+   "status": "verified: door swing drawn from the hall into the plant room"
+  }
+ ],
+ "heights": {
+  "sala": {
+   "clear": [
+    3.0,
+    3.8
+   ],
+   "status": "approx. from section B-B (3,00 south … higher north); exterior 4,20 / 4,35 (elevations)"
+  },
+  "lowBlocks": {
+   "clear": 2.6,
+   "parapet": 0.7,
+   "status": "verified (memoria / sections)"
+  },
+  "acceso": {
+   "clear": 2.75,
+   "status": "verified (memoria)"
+  },
+  "plinth": {
+   "h": 0.6,
+   "status": "verified (façade plinth 0,60)"
+  },
+  "floorAboveGround": {
+   "h": 0.15,
+   "status": "verified"
+  },
+  "rule": "Wall heights in the 3D model: hall envelope 4,20 (façade, plinth included); hall/rooms wall 3,60; low blocks exterior 3,60 (2,60 clear + 0,30 slab + 0,70 parapet); interior partitions 2,60 (clear height)."
+ },
+ "notes": [
+  "<b>Verificado</b>: muros extraídos del dibujo vectorial (escala 1:100) y comprobados con las cotas impresas (p. ej. sala 16,87 × 8,21 m; aseos 3,40 m; vestuarios 5,00 × 5,10 m).",
+  "<b>Verificado</b>: nombres y superficies del programa de usos y del cuadro de superficies del plano 04.",
+  "<b>Verificado</b>: pórticos metálicos cada ~3,43 m (símbolos de pilar del plano), cubierta de panel sándwich en la sala y cubierta plana en los bloques bajos (memoria).",
+  "<b>Estimado</b>: qué aseo y qué vestuario son masculino / femenino (el plano no lo indica; se sigue el orden del cuadro).",
+  "<b>Estimado</b>: posición exacta de la puerta del vestuario 1, del hueco exterior del cuarto de instalaciones y de la ventana de la sauna.",
+  "<b>Estimado</b>: alturas libres de la sala (≈3,0–3,8 m, cubierta inclinada) y alturas de ventanas, leídas en alzados / secciones a baja resolución.",
+  "<b>Pendiente</b>: el anexo con línea discontinua (Este) se interpreta como marquesina de acceso sobre el vestíbulo acristalado y la zona de control."
+ ]
+}

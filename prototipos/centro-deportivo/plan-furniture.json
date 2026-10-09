@@ -1,0 +1,570 @@
+{
+ "_about": "Furniture and fixtures of the 3D model, placed from the architect's furnished plan (plano 04, planta amueblamiento). Units: metres, plan frame (x east, y south). p = centre, r = rotation in degrees (0 = front faces south / +y; 90 = faces east / +x), size = [w, d] where given. status: 'verified' = position and size drawn on the plan; 'estimated' = the plan draws the element but its exact type / detail is interpreted. Nothing is added that the plan does not draw. Edit this file to correct items; the 3D model reads it on load.",
+ "items": [
+  {
+   "id": "fx-instalaciones-water-tank",
+   "room": "instalaciones",
+   "k": "water_tank",
+   "p": [
+    2.14,
+    10.37
+   ],
+   "r": 0,
+   "label": "Depósito / acumulador (círculo Ø1,25)",
+   "status": "estimated",
+   "note": "el plano dibuja un círculo de Ø1,25 m; la memoria prevé instalación solar térmica"
+  },
+  {
+   "id": "fx-instalaciones-tech-cabinet",
+   "room": "instalaciones",
+   "k": "tech_cabinet",
+   "p": [
+    2.58,
+    8.9
+   ],
+   "r": -90,
+   "label": "Armario / cuadro técnico",
+   "status": "estimated"
+  },
+  {
+   "id": "fx-aseoM-washbasin",
+   "room": "aseoM",
+   "k": "washbasin",
+   "p": [
+    3.2,
+    9.17
+   ],
+   "r": 90,
+   "label": "Lavabo",
+   "status": "verified"
+  },
+  {
+   "id": "fx-aseoM-wc-1",
+   "room": "aseoM",
+   "k": "wc",
+   "p": [
+    6.02,
+    8.9
+   ],
+   "r": -90,
+   "label": "Inodoro",
+   "status": "verified"
+  },
+  {
+   "id": "fx-aseoM-wc-2",
+   "room": "aseoM",
+   "k": "wc",
+   "p": [
+    6.02,
+    10.55
+   ],
+   "r": -90,
+   "label": "Inodoro",
+   "status": "verified"
+  },
+  {
+   "id": "fx-aseoM-cubicles",
+   "room": "aseoM",
+   "k": "cubicles",
+   "p": [
+    5.46,
+    9.76
+   ],
+   "r": 0,
+   "size": [
+    1.82,
+    2.5
+   ],
+   "front": "west",
+   "label": "Cabinas de inodoro",
+   "status": "estimated",
+   "note": "divisiones dibujadas; alturas y puertas estimadas"
+  },
+  {
+   "id": "fx-aseoF-washbasin",
+   "room": "aseoF",
+   "k": "washbasin",
+   "p": [
+    9.66,
+    9.17
+   ],
+   "r": -90,
+   "label": "Lavabo",
+   "status": "verified"
+  },
+  {
+   "id": "fx-aseoF-wc-1",
+   "room": "aseoF",
+   "k": "wc",
+   "p": [
+    6.87,
+    8.9
+   ],
+   "r": 90,
+   "label": "Inodoro",
+   "status": "verified"
+  },
+  {
+   "id": "fx-aseoF-wc-2",
+   "room": "aseoF",
+   "k": "wc",
+   "p": [
+    6.87,
+    10.55
+   ],
+   "r": 90,
+   "label": "Inodoro",
+   "status": "verified"
+  },
+  {
+   "id": "fx-aseoF-cubicles",
+   "room": "aseoF",
+   "k": "cubicles",
+   "p": [
+    7.43,
+    9.76
+   ],
+   "r": 0,
+   "size": [
+    1.82,
+    2.5
+   ],
+   "front": "east",
+   "label": "Cabinas de inodoro",
+   "status": "estimated"
+  },
+  {
+   "id": "fx-botiquin-shelving",
+   "room": "botiquin",
+   "k": "shelving",
+   "p": [
+    10.3,
+    8.98
+   ],
+   "r": 90,
+   "size": [
+    0.93,
+    0.45
+   ],
+   "label": "Estantería",
+   "status": "verified"
+  },
+  {
+   "id": "fx-botiquin-exam-couch",
+   "room": "botiquin",
+   "k": "exam_couch",
+   "p": [
+    12.24,
+    10.0
+   ],
+   "r": 0,
+   "label": "Camilla de exploración",
+   "status": "verified"
+  },
+  {
+   "id": "fx-botiquin-stool",
+   "room": "botiquin",
+   "k": "stool",
+   "p": [
+    11.44,
+    10.73
+   ],
+   "r": 0,
+   "label": "Taburete",
+   "status": "estimated"
+  },
+  {
+   "id": "fx-sala-sink-cabinet",
+   "room": "sala",
+   "k": "sink_cabinet",
+   "p": [
+    12.95,
+    8.62
+   ],
+   "r": 90,
+   "label": "Mueble con fregadero",
+   "status": "verified",
+   "note": "pila dibujada en la esquina SE de la sala"
+  },
+  {
+   "id": "fx-sala-tall-cabinets",
+   "room": "sala",
+   "k": "tall_cabinets",
+   "p": [
+    13.17,
+    9.98
+   ],
+   "r": 90,
+   "size": [
+    2.13,
+    0.87
+   ],
+   "label": "Armarios altos (almacenaje)",
+   "status": "estimated",
+   "note": "rectángulo de 0,87 × 2,13 con líneas interiores"
+  },
+  {
+   "id": "fx-sauna-hot-tub",
+   "room": "sauna",
+   "k": "hot_tub",
+   "p": [
+    5.83,
+    13.61
+   ],
+   "r": 0,
+   "label": "Vaso octogonal de hidromasaje",
+   "status": "estimated",
+   "note": "octógono de Ø2,06 con patrón de chorros; uso exacto (hidromasaje / vapor) por confirmar"
+  },
+  {
+   "id": "fx-sauna-tub-step",
+   "room": "sauna",
+   "k": "tub_step",
+   "p": [
+    6.36,
+    15.02
+   ],
+   "r": 0,
+   "size": [
+    0.94,
+    0.55
+   ],
+   "label": "Peldaño de acceso al vaso",
+   "status": "estimated"
+  },
+  {
+   "id": "fx-sauna-bench",
+   "room": "sauna",
+   "k": "bench",
+   "p": [
+    3.79,
+    15.33
+   ],
+   "r": 90,
+   "size": [
+    1.76,
+    0.4
+   ],
+   "label": "Banco",
+   "status": "verified"
+  },
+  {
+   "id": "fx-sauna-shower-corner",
+   "room": "sauna",
+   "k": "shower_corner",
+   "p": [
+    4.21,
+    17.1
+   ],
+   "r": 0,
+   "size": [
+    1.15,
+    1.1
+   ],
+   "label": "Ducha",
+   "status": "verified"
+  },
+  {
+   "id": "fx-sauna-sauna-cabin",
+   "room": "sauna",
+   "k": "sauna_cabin",
+   "p": [
+    5.86,
+    17.02
+   ],
+   "r": 0,
+   "size": [
+    1.94,
+    1.36
+   ],
+   "label": "Cabina de sauna (bancos de lamas y estufa)",
+   "status": "verified",
+   "note": "bancos de lamas, estufa y puerta dibujados; madera según sección C-C"
+  },
+  {
+   "id": "fx-vestM-shower-open",
+   "room": "vestM",
+   "k": "shower_open",
+   "p": [
+    7.74,
+    13.33
+   ],
+   "r": 0,
+   "size": [
+    1.5,
+    1.42
+   ],
+   "label": "Ducha accesible",
+   "status": "verified"
+  },
+  {
+   "id": "fx-vestM-shower-stalls",
+   "room": "vestM",
+   "k": "shower_stalls",
+   "p": [
+    7.59,
+    15.9
+   ],
+   "r": 0,
+   "size": [
+    1.22,
+    3.64
+   ],
+   "n": 4,
+   "label": "Duchas (4 cabinas)",
+   "status": "verified"
+  },
+  {
+   "id": "fx-vestM-basin-counter",
+   "room": "vestM",
+   "k": "basin_counter",
+   "p": [
+    9.42,
+    12.96
+   ],
+   "r": 0,
+   "size": [
+    1.97,
+    0.7
+   ],
+   "basins": [
+    -0.36,
+    0.38
+   ],
+   "label": "Encimera con 2 lavabos",
+   "status": "verified"
+  },
+  {
+   "id": "fx-vestM-bench-back-1",
+   "room": "vestM",
+   "k": "bench_back",
+   "p": [
+    11.76,
+    16.05
+   ],
+   "r": -90,
+   "size": [
+    2.3,
+    0.44
+   ],
+   "label": "Banco con respaldo junto a la división",
+   "status": "estimated"
+  },
+  {
+   "id": "fx-vestM-bench-back-2",
+   "room": "vestM",
+   "k": "bench_back",
+   "p": [
+    11.25,
+    14.78
+   ],
+   "r": 180,
+   "size": [
+    1.45,
+    0.3
+   ],
+   "label": "Banco (tramo transversal)",
+   "status": "estimated"
+  },
+  {
+   "id": "fx-vestM-bench-slats",
+   "room": "vestM",
+   "k": "bench_slats",
+   "p": [
+    11.14,
+    17.46
+   ],
+   "r": 180,
+   "size": [
+    1.68,
+    0.5
+   ],
+   "label": "Banco de lamas",
+   "status": "verified"
+  },
+  {
+   "id": "fx-vestF-shower-open",
+   "room": "vestF",
+   "k": "shower_open",
+   "p": [
+    16.38,
+    13.33
+   ],
+   "r": 0,
+   "size": [
+    1.5,
+    1.42
+   ],
+   "label": "Ducha accesible",
+   "status": "verified"
+  },
+  {
+   "id": "fx-vestF-shower-stalls",
+   "room": "vestF",
+   "k": "shower_stalls",
+   "p": [
+    16.52,
+    15.9
+   ],
+   "r": 0,
+   "size": [
+    1.22,
+    3.64
+   ],
+   "n": 4,
+   "label": "Duchas (4 cabinas)",
+   "status": "verified"
+  },
+  {
+   "id": "fx-vestF-basin-counter",
+   "room": "vestF",
+   "k": "basin_counter",
+   "p": [
+    14.69,
+    12.96
+   ],
+   "r": 0,
+   "size": [
+    1.97,
+    0.7
+   ],
+   "basins": [
+    -0.38,
+    0.36
+   ],
+   "label": "Encimera con 2 lavabos",
+   "status": "verified"
+  },
+  {
+   "id": "fx-vestF-bench-back-1",
+   "room": "vestF",
+   "k": "bench_back",
+   "p": [
+    12.35,
+    16.05
+   ],
+   "r": 90,
+   "size": [
+    2.3,
+    0.44
+   ],
+   "label": "Banco con respaldo junto a la división",
+   "status": "estimated"
+  },
+  {
+   "id": "fx-vestF-bench-back-2",
+   "room": "vestF",
+   "k": "bench_back",
+   "p": [
+    12.86,
+    14.78
+   ],
+   "r": 180,
+   "size": [
+    1.45,
+    0.3
+   ],
+   "label": "Banco (tramo transversal)",
+   "status": "estimated"
+  },
+  {
+   "id": "fx-vestF-bench-slats",
+   "room": "vestF",
+   "k": "bench_slats",
+   "p": [
+    13.12,
+    17.46
+   ],
+   "r": 180,
+   "size": [
+    1.98,
+    0.5
+   ],
+   "label": "Banco de lamas",
+   "status": "verified"
+  },
+  {
+   "id": "fx-control-control-desk",
+   "room": "control",
+   "k": "control_desk",
+   "p": [
+    19.45,
+    15.02
+   ],
+   "r": 180,
+   "size": [
+    1.68,
+    0.72
+   ],
+   "label": "Mostrador / puesto de control con ordenador",
+   "status": "verified"
+  },
+  {
+   "id": "fx-control-task-chair",
+   "room": "control",
+   "k": "task_chair",
+   "p": [
+    19.2,
+    15.7
+   ],
+   "r": 180,
+   "label": "Silla de trabajo",
+   "status": "verified"
+  },
+  {
+   "id": "fx-control-equipment-table",
+   "room": "control",
+   "k": "equipment_table",
+   "p": [
+    18.26,
+    17.41
+   ],
+   "r": 180,
+   "size": [
+    0.95,
+    0.6
+   ],
+   "label": "Mesa auxiliar con equipo",
+   "status": "estimated"
+  },
+  {
+   "id": "fx-acceso-glass-screen",
+   "room": "acceso",
+   "k": "glass_screen",
+   "p": [
+    19.3,
+    13.2
+   ],
+   "r": 90,
+   "size": [
+    2.4,
+    0.04
+   ],
+   "label": "Mampara de vidrio",
+   "status": "estimated"
+  }
+ ],
+ "skylights": {
+  "label": "Lucernarios circulares (4, memoria y plano de cubiertas)",
+  "status": "verified count; positions from the dotted circles of the furnished plan",
+  "at": [
+   [
+    3.8,
+    9.9
+   ],
+   [
+    9.25,
+    9.9
+   ],
+   [
+    5.98,
+    11.85
+   ],
+   [
+    12.2,
+    11.85
+   ]
+  ],
+  "r": 0.3
+ }
+}

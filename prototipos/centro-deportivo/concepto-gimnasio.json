@@ -1,0 +1,443 @@
+{
+ "_about": "CONCEPT (3DNA proposal, not part of the architectural project): the Sala multiusos (150,07 m²) fitted out as a fitness gym. Building geometry is unchanged. Units: metres, plan frame (x east, y south). Equipment models: assets/js/fitness-club-3d/club-equipment.js (Fitness page library) + prototype extras. p = centre, r = degrees (0 = user / front side faces south), n copies with step s. Clear zones kept: west double door (x 0, y 6,31–8,01), plant-room door (x 0,30–1,10 on the south wall), corridor door (SE bay).",
+ "status": "concept",
+ "zones": [
+  {
+   "id": "cardio",
+   "name": "Cardio",
+   "desc": "Máquinas orientadas al acristalamiento norte, con luz natural y vistas a la pista.",
+   "poly": [
+    [
+     0.19,
+     0.15
+    ],
+    [
+     11.4,
+     0.15
+    ],
+    [
+     11.4,
+     2.9
+    ],
+    [
+     0.19,
+     2.9
+    ]
+   ]
+  },
+  {
+   "id": "fuerza",
+   "name": "Máquinas de fuerza",
+   "desc": "Máquinas guiadas y poleas junto a la fachada este.",
+   "poly": [
+    [
+     11.4,
+     0.15
+    ],
+    [
+     17.06,
+     0.15
+    ],
+    [
+     17.06,
+     6.8
+    ],
+    [
+     15.6,
+     6.8
+    ],
+    [
+     15.6,
+     3.2
+    ],
+    [
+     11.4,
+     3.2
+    ]
+   ]
+  },
+  {
+   "id": "pesolibre",
+   "name": "Peso libre",
+   "desc": "Rack sobre plataforma, mancuernas, bancos y espejo; suelo de caucho de alta densidad.",
+   "poly": [
+    [
+     8.0,
+     4.6
+    ],
+    [
+     15.6,
+     4.6
+    ],
+    [
+     15.6,
+     8.36
+    ],
+    [
+     8.0,
+     8.36
+    ]
+   ]
+  },
+  {
+   "id": "funcional",
+   "name": "Entrenamiento funcional",
+   "desc": "Zona libre para circuitos, estiramientos y clases reducidas; acceso despejado a la puerta oeste.",
+   "poly": [
+    [
+     0.19,
+     3.3
+    ],
+    [
+     8.0,
+     3.3
+    ],
+    [
+     8.0,
+     8.36
+    ],
+    [
+     0.19,
+     8.36
+    ]
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "gym-treadmill",
+   "k": "treadmill",
+   "p": [
+    1.9,
+    1.6
+   ],
+   "r": 180,
+   "n": 4,
+   "s": [
+    1.15,
+    0
+   ],
+   "label": "Cinta de correr"
+  },
+  {
+   "id": "gym-elliptical",
+   "k": "elliptical",
+   "p": [
+    6.7,
+    1.6
+   ],
+   "r": 180,
+   "n": 2,
+   "s": [
+    1.1,
+    0
+   ],
+   "label": "Elíptica"
+  },
+  {
+   "id": "gym-upright-bike",
+   "k": "upright_bike",
+   "p": [
+    9.0,
+    1.75
+   ],
+   "r": 180,
+   "n": 3,
+   "s": [
+    0.95,
+    0
+   ],
+   "label": "Bicicleta"
+  },
+  {
+   "id": "gym-lat-pulldown",
+   "k": "lat_pulldown",
+   "p": [
+    12.7,
+    1.15
+   ],
+   "r": 0,
+   "label": "Jalón al pecho"
+  },
+  {
+   "id": "gym-leg-press",
+   "k": "leg_press",
+   "p": [
+    14.65,
+    1.65
+   ],
+   "r": 0,
+   "label": "Prensa de piernas"
+  },
+  {
+   "id": "gym-cable-crossover",
+   "k": "cable_crossover",
+   "p": [
+    16.45,
+    4.3
+   ],
+   "r": -90,
+   "label": "Cruce de poleas"
+  },
+  {
+   "id": "gym-lifting-platform",
+   "k": "lifting_platform",
+   "p": [
+    9.9,
+    6.2
+   ],
+   "r": 0,
+   "label": "Plataforma de levantamiento"
+  },
+  {
+   "id": "gym-power-rack",
+   "k": "power_rack",
+   "p": [
+    9.9,
+    6.2
+   ],
+   "r": 0,
+   "label": "Power rack con barra y discos"
+  },
+  {
+   "id": "gym-plate-tree",
+   "k": "plate_tree",
+   "p": [
+    11.95,
+    7.45
+   ],
+   "r": 0,
+   "label": "Soporte de discos"
+  },
+  {
+   "id": "gym-dumbbell-rack",
+   "k": "dumbbell_rack",
+   "p": [
+    13.9,
+    7.85
+   ],
+   "r": 180,
+   "label": "Rack de mancuernas"
+  },
+  {
+   "id": "gym-adjustable-bench",
+   "k": "adjustable_bench",
+   "p": [
+    13.25,
+    5.85
+   ],
+   "r": 0,
+   "n": 2,
+   "s": [
+    1.5,
+    0
+   ],
+   "label": "Banco regulable"
+  },
+  {
+   "id": "gym-mirror-panel-1",
+   "k": "mirror_panel",
+   "p": [
+    13.9,
+    8.33
+   ],
+   "r": 180,
+   "label": "Espejo de gimnasio"
+  },
+  {
+   "id": "gym-mat",
+   "k": "mat",
+   "p": [
+    2.2,
+    4.6
+   ],
+   "r": 0,
+   "n": 4,
+   "s": [
+    0.9,
+    0
+   ],
+   "label": "Esterilla"
+  },
+  {
+   "id": "gym-plyo-box",
+   "k": "plyo_box",
+   "p": [
+    6.0,
+    4.0
+   ],
+   "r": 0,
+   "n": 3,
+   "s": [
+    0,
+    0.8
+   ],
+   "label": "Cajón pliométrico"
+  },
+  {
+   "id": "gym-kettlebell-rack",
+   "k": "kettlebell_rack",
+   "p": [
+    3.6,
+    7.95
+   ],
+   "r": 180,
+   "label": "Rack de kettlebells"
+  },
+  {
+   "id": "gym-medicine-ball",
+   "k": "medicine_ball",
+   "p": [
+    5.2,
+    7.9
+   ],
+   "r": 0,
+   "n": 4,
+   "s": [
+    0.42,
+    0
+   ],
+   "label": "Balón medicinal"
+  },
+  {
+   "id": "gym-battle-ropes",
+   "k": "battle_ropes",
+   "p": [
+    7.4,
+    8.0
+   ],
+   "r": 180,
+   "label": "Cuerdas de batalla"
+  },
+  {
+   "id": "gym-mirror-panel-2",
+   "k": "mirror_panel",
+   "p": [
+    3.6,
+    8.33
+   ],
+   "r": 180,
+   "label": "Espejo de gimnasio"
+  },
+  {
+   "id": "gym-towel-station",
+   "k": "towel_station",
+   "p": [
+    16.45,
+    10.2
+   ],
+   "r": -90,
+   "label": "Estación de toallas (madera)"
+  },
+  {
+   "id": "gym-mobility-shelf",
+   "k": "mobility_shelf",
+   "p": [
+    0.45,
+    4.35
+   ],
+   "r": 90,
+   "label": "Almacenaje de accesorios"
+  }
+ ],
+ "interior": {
+  "acoustic": [
+   {
+    "p": [
+     3.6,
+     8.32
+    ],
+    "w": 3.0
+   },
+   {
+    "p": [
+     8.9,
+     8.32
+    ],
+    "w": 3.4
+   },
+   {
+    "p": [
+     13.9,
+     8.32
+    ],
+    "w": 3.0
+   }
+  ],
+  "ledLines": [
+   {
+    "a": [
+     0.9,
+     2.1
+    ],
+    "b": [
+     16.3,
+     2.1
+    ]
+   },
+   {
+    "a": [
+     0.9,
+     4.3
+    ],
+    "b": [
+     16.3,
+     4.3
+    ]
+   },
+   {
+    "a": [
+     0.9,
+     6.5
+    ],
+    "b": [
+     16.3,
+     6.5
+    ]
+   }
+  ],
+  "ledHeight": 3.25,
+  "floor": {
+   "hall": "rubber",
+   "weights": "rubberThick"
+  },
+  "ledLinesId": "gym-led-lines",
+  "ledGroups": {
+   "luminairesPerLine": 5,
+   "luminaireLength": 1.5,
+   "status": "Configuración preliminar (3 líneas × 5 luminarias), sujeta a verificación del proyecto de alumbrado"
+  }
+ },
+ "interiorItems": [
+  {
+   "id": "int-vestM-lockers",
+   "room": "vestM",
+   "k": "lockers",
+   "p": [
+    9.25,
+    17.45
+   ],
+   "r": 180,
+   "size": [
+    1.6,
+    0.48
+   ],
+   "label": "Taquillas de roble (bajo ventana)"
+  },
+  {
+   "id": "int-vestF-lockers",
+   "room": "vestF",
+   "k": "lockers",
+   "p": [
+    14.95,
+    17.45
+   ],
+   "r": 180,
+   "size": [
+    1.6,
+    0.48
+   ],
+   "label": "Taquillas de roble (bajo ventana)"
+  }
+ ]
+}

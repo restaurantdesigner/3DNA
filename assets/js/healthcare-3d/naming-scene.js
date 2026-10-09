@@ -4,8 +4,12 @@
  * Model source
  *   - data.model.enabled === true  -> loads data.model.url (.glb / .gltf; Draco and
  *                                     Meshopt compression supported)
- *   - otherwise                    -> PLACEHOLDER floor built here from the zone
- *                                     rectangles in assets/data/hospital-naming.json
+ *   - otherwise                    -> PROCEDURAL floor built here: architecture
+ *                                     from the zone rectangles in
+ *                                     assets/data/hospital-naming.json, detailed
+ *                                     furniture / equipment from hospital-equipment.js
+ *   Rendering: shared kit assets/js/shared-3d/archviz.js (image-based light, soft
+ *   shadows, canvas textures, geometry baked per material).
  *
  * Naming contract (same for both sources)
  *   ZONE_<Name>     group per room / area (ZONE_Lobby, ZONE_MRI, ...)
@@ -17,31 +21,49 @@
  */
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+// same ?v= for every module of this scene (shared kit: assets/js/shared-3d/archviz.js)
+const V = new URL(import.meta.url).search;
+const K = await import(`/assets/js/shared-3d/archviz.js${V}`);
+const { defineHospitalModels } = await import(`./hospital-equipment.js${V}`);
 
-// bright, architectural palette: warm whites, light oak, glass, soft teal accents
-const COLOR = {
-  slab: 0xcbc5ba,
-  wall: 0xf7f5f1,
-  wood: 0xcfa97d,
-  woodDark: 0xa98762,
-  white: 0xfbfaf8,
-  fabric: 0xaec3bd,       // soft sage
-  fabricWarm: 0xd2c1ab,   // warm linen
-  fabricBlue: 0xa9c0cf,   // pale blue bedding
-  metal: 0xbcc1c4,
-  dark: 0x454b4f,
-  screen: 0x252b2f,
-  glass: 0xcfe4ea,
-  curtain: 0xb4d6d0,
-  plant: 0x7d9b79,
-  brass: 0xc9a668,
-  accent: 0x6aa79e,       // healthcare teal-green (wayfinding)
-  accentSoft: 0xc5e0db,
-  paving: 0xe6e2da,
-  light: 0xfffaf0,
+// bright healthcare palette: warm whites, light oak, sage and teal accents, brushed metal
+const HOSPITAL_MATS = {
+  white:       { color: 0xf7f6f3, roughness: 0.45 },
+  wood:        { color: 0xc49b6c, roughness: 0.55 },
+  woodDark:    { color: 0x8a6747, roughness: 0.55 },
+  stone:       { color: 0xeeebe5, roughness: 0.3 },
+  fabric:      { color: 0x9fb8b0, roughness: 0.95 },
+  fabricWarm:  { color: 0xcdbca5, roughness: 0.95 },
+  fabricLight: { color: 0xe4dccf, roughness: 0.95 },
+  fabricBlue:  { color: 0xa9c1d1, roughness: 0.95 },
+  fabricDark:  { color: 0x3f4549, roughness: 0.9 },
+  metal:       { color: 0xb8bec2, roughness: 0.3, metalness: 0.75 },
+  chrome:      { color: 0xe4e7ea, roughness: 0.16, metalness: 1 },
+  dark:        { color: 0x3d4347, roughness: 0.5, metalness: 0.2 },
+  screen:      { color: 0x0a1014, roughness: 0.2, emissive: 0x2e6f78, emissiveIntensity: 0.7 },
+  screenOff:   { color: 0x15191c, roughness: 0.15, metalness: 0.3 },
+  screenLight: { color: 0x0a1014, roughness: 0.2, emissive: 0xd8efe9, emissiveIntensity: 0.55 },
+  glass:       { color: 0xd3e8ee, roughness: 0.04, metalness: 0.1, transparent: true, opacity: 0.22, depthWrite: false },
+  curtain:     { color: 0xb4d6d0, roughness: 0.9, transparent: true, opacity: 0.7, side: THREE.DoubleSide, depthWrite: false },
+  mirror:      { color: 0xa7b3ba, roughness: 0.05, metalness: 1 },
+  leaf:        { color: 0x5f8a5a, roughness: 0.75 },
+  trunk:       { color: 0x6b5442, roughness: 0.9 },
+  soil:        { color: 0x4a3f36, roughness: 1 },
+  brass:       { color: 0xc9a668, roughness: 0.32, metalness: 0.8 },
+  accent:      { color: 0x3f8f85, roughness: 0.55 },
+  accentSoft:  { color: 0xc5e0db, roughness: 0.8 },
+  accentRed:   { color: 0xc4473c, roughness: 0.5 },
+  lightWarm:   { color: 0x000000, emissive: 0xffe2bd, emissiveIntensity: 1.8 },
+  lightTeal:   { color: 0x000000, emissive: 0x7fd6c8, emissiveIntensity: 1.8 },
+  matDark:     { color: 0x4a4d50, roughness: 1 },
+  rug:         { color: 0xffffff, roughness: 1, map: "rugLight" },
+  glassBlue:   { color: 0x9fd0e0, roughness: 0.05, metalness: 0.1, transparent: true, opacity: 0.55, depthWrite: false },
+  planterStone:{ color: 0xb9b2a6, roughness: 0.85 },
+  leafLight:   { color: 0x7fa36f, roughness: 0.75 },
+  sage:        { color: 0xb7c9bf, roughness: 0.9 },
 };
-const FINISH = { stone: 0xebe9e4, wood: 0xd6b88e, warm: 0xe8dfd0, clinical: 0xd9e6e4, corridor: 0xe2dfd8, service: 0xdcd7ce };
+// fictional demonstration project: the name used on all signage in the model
+const CENTER_NAME = "CENTRO MÉDICO GRANADA";
 const HIGHLIGHT = 0x3f8f85;
 
 export async function createNamingScene({ container, spotsEl, data, reducedMotion = false, ariaLabel = "", onSelect }) {
@@ -49,53 +71,49 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
   const { width: FW, depth: FD } = data.floor;
 
   // ---------- renderer ----------
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowPower ? 1.5 : 2));
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.94;
-  renderer.shadowMap.enabled = !lowPower;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  const renderer = K.createRenderer({ lowPower, exposure: 1.0, className: "hnaming__canvas" });
   const canvas = renderer.domElement;
-  canvas.className = "hnaming__canvas";
   canvas.setAttribute("role", "img");
   canvas.setAttribute("aria-label", ariaLabel);
   container.insertBefore(canvas, container.firstChild);
+  const TEX = K.makeTextures(renderer, 5);
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(32, 1, 0.5, 400);
-  const HOME_TARGET = new THREE.Vector3(FW / 2, 0, FD / 2 + 1.5);
-  const HOME_OFFSET = new THREE.Vector3(3, 37, 47.5);
+  const camera = new THREE.PerspectiveCamera(32, 1, 0.3, 400);
+  // elevated three-quarter view from the entrance side; distance fitted to the building
+  const HOME_TARGET = new THREE.Vector3(FW / 2, 0, FD / 2 + 1.0);
   const narrow = () => camera.aspect < 1.2; // phones: square viewport
-  const homePos = () => HOME_TARGET.clone().add(HOME_OFFSET.clone().multiplyScalar(narrow() ? 1.22 : 1));
+  const homeDir = () => (narrow() ? new THREE.Vector3(0.16, 0.86, 0.5) : new THREE.Vector3(0.3, 0.7, 0.66)).normalize();
+  let homeDist = 60;
+  const homePos = () => HOME_TARGET.clone().addScaledVector(homeDir(), homeDist);
+  const corners = [];
+  [0, FW].forEach((x) => [0, FD + 4.6].forEach((z) => [0, 3.0].forEach((y) => corners.push(new THREE.Vector3(x, y, z)))));
   camera.position.copy(homePos());
 
-  // ---------- lights: soft daylight ----------
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xcfc6b8, 1.35));
-  scene.add(new THREE.AmbientLight(0xffffff, 0.2));
-  const sun = new THREE.DirectionalLight(0xfff2e2, 2.0);
-  sun.position.set(FW * 0.1, 34, FD + 14);
-  sun.target.position.set(FW / 2, 0, FD / 2);
-  scene.add(sun, sun.target);
-  if (renderer.shadowMap.enabled) {
-    sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
-    Object.assign(sun.shadow.camera, { left: -30, right: 30, top: 24, bottom: -24, near: 5, far: 120 });
-    sun.shadow.bias = -0.0006;
-    sun.shadow.normalBias = 0.02;
-    sun.shadow.radius = 3;
-  }
+  // ---------- lights: image-based daylight + one soft shadowed sun ----------
+  K.setupLighting(renderer, scene, {
+    center: new THREE.Vector3(FW / 2, 0, FD / 2), span: Math.hypot(FW, FD),
+    hemi: [0xffffff, 0xcfc4b3, 0.75], key: 0xfff1e0, keyIntensity: 2.7, keyFrom: [-0.45, 1, 0.6], fill: [0xdbe8ff, 0.3],
+  });
 
   // ---------- controls: orbit, zoom, pan with limits ----------
+  // the wheel scrolls the page until the visitor engages with the model (click
+  // or drag inside it); a pinch (ctrl + wheel) always zooms
+  let engaged = false;
+  canvas.addEventListener("wheel", (e) => { if (!engaged && !e.ctrlKey) e.stopImmediatePropagation(); }, { capture: true });
+  canvas.addEventListener("pointerdown", () => { engaged = true; });
+  container.addEventListener("pointerleave", () => { engaged = false; });
+
   const controls = new OrbitControls(camera, canvas);
   controls.target.copy(HOME_TARGET);
+  controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
   controls.enableDamping = !reducedMotion;
   controls.dampingFactor = 0.08;
   controls.rotateSpeed = 0.7;
   controls.zoomSpeed = 0.9;
   controls.panSpeed = 0.8;
   controls.minDistance = 9;
-  controls.maxDistance = 85;
+  controls.maxDistance = 110;
   controls.minPolarAngle = 0.2;        // never straight down...
   controls.maxPolarAngle = 1.15;       // ...nor at floor level
   controls.minAzimuthAngle = -1.25;    // keep the entrance side towards the viewer
@@ -104,6 +122,8 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
   controls.update();
 
   // ---------- model ----------
+  // signage is drawn with the site font: wait for it (max 1.5 s)
+  if (document.fonts && document.fonts.load) await Promise.race([document.fonts.load('600 64px "Inter"'), new Promise((r) => setTimeout(r, 1500))]).catch(() => {});
   const root = data.model && data.model.enabled ? await loadModel(data.model.url) : buildPlaceholder();
   scene.add(root);
   const naming = indexNaming(root); // id -> entry
@@ -148,7 +168,7 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
       const isSel = id === selected;
       const isHover = id === hovered && !isSel;
       if (n.overlay) {
-        n.overlay.material.opacity = isSel ? 0.3 : isHover ? 0.16 : selected ? 0 : 0.07;
+        n.overlay.material.opacity = isSel ? 0.09 : isHover ? 0.06 : selected ? 0 : 0.03;
         n.outline.visible = isSel || isHover;
         n.outline.material.opacity = isSel ? 1 : 0.6;
       }
@@ -188,7 +208,7 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
     applyHighlight();
     const dir = camera.position.clone().sub(controls.target).normalize();
     if (dir.y < 0.62) { dir.y = 0.62; dir.normalize(); }
-    const dist = THREE.MathUtils.clamp(Math.max(n.size.x, n.size.z) * 1.15 + 8, 13, 34) * (narrow() ? 1.3 : 1);
+    const dist = Math.min(THREE.MathUtils.clamp(Math.max(n.size.x, n.size.z) * 1.45 + 9, 14, 40) * (narrow() ? 1.15 : 1), homeDist * 0.56);
     flyTo(n.center.clone().add(dir.multiplyScalar(dist)), n.center.clone(), animate);
     if (notify && onSelect) onSelect(id);
   }
@@ -205,18 +225,14 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
     const r = canvas.getBoundingClientRect();
     pointer.set(((clientX - r.left) / r.width) * 2 - 1, -((clientY - r.top) / r.height) * 2 + 1);
     raycaster.setFromCamera(pointer, camera);
-    // meshes only (outline lines have a 1 m pick tolerance), and nothing hidden
-    const shown = (o) => { for (; o; o = o.parent) if (!o.visible) return false; return true; };
-    const hit = raycaster.intersectObject(root, true).find((h) => h.object.isMesh && shown(h.object));
-    if (!hit) return null;
-    for (let o = hit.object; o; o = o.parent) if (o.userData && o.userData.naming) return o.userData.naming;
-    // furniture / walls: fall back to the footprint the hit point lies in
-    let best = null, bestArea = Infinity;
+    // nearest footprint volume (floor to 1.2 m) hit by the ray; equipment,
+    // ceiling lights and signage never stand in the way of a room
+    let best = null, bestD = Infinity;
+    const hit = new THREE.Vector3();
     naming.forEach((n, id) => {
-      const b = n.box;
-      if (hit.point.x < b.min.x || hit.point.x > b.max.x || hit.point.z < b.min.z || hit.point.z > b.max.z) return;
-      const area = (b.max.x - b.min.x) * (b.max.z - b.min.z);
-      if (area < bestArea) { bestArea = area; best = id; }
+      if (!raycaster.ray.intersectBox(n.pickBox, hit)) return;
+      const d = hit.distanceToSquared(raycaster.ray.origin);
+      if (d < bestD) { bestD = d; best = id; }
     });
     return best;
   }
@@ -256,6 +272,8 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
     camera.aspect = w / h;
     camera.fov = narrow() ? 40 : 32;
     camera.updateProjectionMatrix();
+    homeDist = K.fitDistance(camera, HOME_TARGET, homeDir(), corners, 0.98, 0.94);
+    controls.maxDistance = Math.max(homeDist * 1.3, 40);
     if (!userMoved && !selected && !tween) { camera.position.copy(homePos()); controls.target.copy(HOME_TARGET); controls.update(); }
     dirty = true;
   }
@@ -273,7 +291,7 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
   function updateOverlay() {
     const w = container.clientWidth, h = container.clientHeight;
     spots.forEach((el, id) => place(el, naming.get(id).hotspot, w, h));
-    const close = camera.position.distanceTo(controls.target) < 36;
+    const close = camera.position.distanceTo(controls.target) < homeDist * 0.62;
     spotsEl.classList.toggle("show-zones", close);
     if (close) zoneLabels.forEach((z) => place(z.el, z.pos, w, h));
   }
@@ -291,7 +309,10 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
     if (controls.update()) dirty = true;
     if (!dirty) return;
     dirty = false;
-    if (root.userData.canopy) root.userData.canopy.visible = camera.position.distanceTo(controls.target) >= 36;
+    const far = camera.position.distanceTo(controls.target) >= homeDist * 0.62;
+    // the canopy carries the centre's name: it only steps aside for very close views
+    if (root.userData.canopy) root.userData.canopy.visible = camera.position.distanceTo(controls.target) >= homeDist * 0.35;
+    if (root.userData.ceiling) root.userData.ceiling.visible = far;
     renderer.render(scene, camera);
     updateOverlay();
   }
@@ -341,7 +362,8 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
       const hotspot = !(data.model && data.model.enabled) && o.hotspot
         ? new THREE.Vector3(o.hotspot.x, 1.7, o.hotspot.z)
         : new THREE.Vector3(center.x, Math.min(box.max.y, 3) + 0.5, center.z);
-      map.set(o.id, { obj, overlay, outline, materials, box, size, center, hotspot });
+      const pickBox = new THREE.Box3(new THREE.Vector3(box.min.x, Math.min(box.min.y, 0), box.min.z), new THREE.Vector3(box.max.x, Math.max(box.min.y, 0) + 1.2, box.max.z));
+      map.set(o.id, { obj, overlay, outline, materials, box, size, center, hotspot, pickBox });
     });
     return map;
   }
@@ -385,148 +407,151 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
   }
 
   // ---------------------------------------------------------------------
-  // PLACEHOLDER hospital floor (dollhouse cut-away: no ceilings, low
-  // partitions). Static geometry is merged per material, so the whole
-  // floor draws in ~25 calls; small details are skipped on phones.
+  // PROCEDURAL hospital floor (dollhouse cut-away: no ceilings, low
+  // partitions). Detailed furniture and medical equipment from
+  // hospital-equipment.js; everything is baked per material, so the whole
+  // floor draws in a few dozen calls.
   // ---------------------------------------------------------------------
+  // canvas text for architectural signage (letter-spaced, uppercase)
+  function signTexture(text, { color = "#fff", bg = null, accent = null, weight = 600, size = 80, spacing = 0.2, w = 2048, h = 160 } = {}) {
+    const c = document.createElement("canvas");
+    c.width = w; c.height = h;
+    const g = c.getContext("2d");
+    if (bg) { g.fillStyle = bg; g.fillRect(0, 0, w, h); }
+    let pad = 0;
+    if (accent) { g.fillStyle = accent; g.fillRect(h * 0.32, h * 0.32, h * 0.36, h * 0.36); g.fillStyle = bg || "#000"; g.fillRect(h * 0.47, h * 0.38, h * 0.06, h * 0.24); g.fillRect(h * 0.38, h * 0.47, h * 0.24, h * 0.06); pad = h * 0.45; }
+    g.fillStyle = color;
+    g.textBaseline = "middle";
+    let fs = size;
+    const measure = () => { g.font = `${weight} ${fs}px Inter, "Helvetica Neue", Arial, sans-serif`; let t = 0; for (const ch of text) t += g.measureText(ch).width + fs * spacing; return t - fs * spacing; };
+    while (measure() > w - pad - h * 0.5 && fs > 10) fs -= 2;
+    let x = (w + pad - measure()) / 2;
+    for (const ch of text) { g.fillText(ch, x, h / 2 + fs * 0.04); x += g.measureText(ch).width + fs * spacing; }
+    const t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+    return t;
+  }
+
   function buildPlaceholder() {
     const group = new THREE.Group();
     group.name = "HOSPITAL_Placeholder";
-    const std = (color, extra = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.8, metalness: 0, ...extra });
-    const M = {
-      slab: std(COLOR.slab, { roughness: 0.95 }),
-      wall: std(COLOR.wall, { roughness: 0.9 }),
-      wood: std(COLOR.wood, { roughness: 0.6 }),
-      woodDark: std(COLOR.woodDark, { roughness: 0.6 }),
-      white: std(COLOR.white, { roughness: 0.45 }),
-      fabric: std(COLOR.fabric, { roughness: 0.95 }),
-      fabricWarm: std(COLOR.fabricWarm, { roughness: 0.95 }),
-      fabricBlue: std(COLOR.fabricBlue, { roughness: 0.95 }),
-      metal: std(COLOR.metal, { roughness: 0.35, metalness: 0.6 }),
-      dark: std(COLOR.dark, { roughness: 0.5 }),
-      screen: std(COLOR.screen, { roughness: 0.25, metalness: 0.2 }),
-      glass: std(COLOR.glass, { roughness: 0.05, metalness: 0.1, transparent: true, opacity: 0.26, depthWrite: false }),
-      curtain: std(COLOR.curtain, { roughness: 0.9, transparent: true, opacity: 0.62, side: THREE.DoubleSide, depthWrite: false }),
-      plant: std(COLOR.plant, { roughness: 0.9, flatShading: true }),
-      brass: std(COLOR.brass, { roughness: 0.35, metalness: 0.7 }),
-      accent: std(COLOR.accent, { roughness: 0.6 }),
-      accentSoft: std(COLOR.accentSoft, { roughness: 0.8 }),
-      paving: std(COLOR.paving, { roughness: 1 }),
-      light: std(COLOR.light, { emissive: COLOR.light, emissiveIntensity: 0.9 }),
+    const kit = K.createModelKit();
+    defineHospitalModels(kit);
+    const MAT = K.createMaterials(TEX, HOSPITAL_MATS);
+    const plain = (hex, roughness = 0.85) => K.surfaceMat(TEX, null, { color: hex, roughness });
+    const add = (geo, mat, { cast = true, receive = true, order = 0 } = {}) => {
+      const m = new THREE.Mesh(geo, mat);
+      m.castShadow = cast && !lowPower;
+      m.receiveShadow = receive && !lowPower;
+      if (order) m.renderOrder = order;
+      group.add(m);
+      return m;
     };
-    const NO_SHADOW = new Set(["glass", "curtain", "light", "accent", "paving", "slab"]);
 
-    // ---- merged static geometry ----
-    const buckets = new Map(); // material key -> geometries
-    const baseGeo = new Map();
-    const geoFor = (spec) => {
-      const key = spec.join("|");
-      if (!baseGeo.has(key)) {
-        const [type, a, b, c, d] = spec;
-        baseGeo.set(key,
-          type === "box" ? new THREE.BoxGeometry(a, b, c)
-          : type === "cyl" ? new THREE.CylinderGeometry(a, b, c, d || 20)
-          : type === "cylz" ? new THREE.CylinderGeometry(a, b, c, d || 28).rotateX(Math.PI / 2)
-          : new THREE.SphereGeometry(a, 10, 8));
-      }
-      return baseGeo.get(key);
-    };
-    const B = (w, h, d, m, ox = 0, oy = 0, oz = 0, detail = false) => ({ spec: ["box", w, h, d], m, o: [ox, oy, oz], detail });
-    const C = (rt, rb, h, m, ox = 0, oy = 0, oz = 0, detail = false) => ({ spec: ["cyl", rt, rb, h, 20], m, o: [ox, oy, oz], detail });
-    const CZ = (r, len, m, ox = 0, oy = 0, oz = 0) => ({ spec: ["cylz", r, r, len, 28], m, o: [ox, oy, oz], detail: false });
-    const S = (r, m, ox = 0, oy = 0, oz = 0, detail = false) => ({ spec: ["sph", r], m, o: [ox, oy, oz], detail });
-    function put(parts, x, z, rot = 0) {
-      parts.forEach((p) => {
-        if (p.detail && lowPower) return;
-        const g = geoFor(p.spec).clone();
-        g.translate(p.o[0], p.o[1], p.o[2]);
-        if (rot) g.rotateY(rot);
-        g.translate(x, 0, z);
-        if (!buckets.has(p.m)) buckets.set(p.m, []);
-        buckets.get(p.m).push(g);
-      });
-    }
-    const box = (w, h, d, m, x, y, z, rot = 0) => put([B(w, h, d, m, 0, y, 0)], x, z, rot);
+    // ---- plinth, soft contact shadow, street paving ----
+    const plinth = new THREE.BoxGeometry(FW + 1.4, 0.4, FD + 6.6);
+    plinth.translate(FW / 2, -0.2, FD / 2 + 2.6);
+    add(plinth, plain(0xc4bcb0, 0.95), { cast: false });
+    const shadow = new THREE.Mesh(new THREE.PlaneGeometry(FW * 1.8, FD * 2.2), new THREE.MeshBasicMaterial({ map: TEX.shadow, transparent: true, depthWrite: false, opacity: 0.5 }));
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.set(FW / 2, -0.41, FD / 2 + 2.6);
+    group.add(shadow);
+    const pave = new THREE.PlaneGeometry(FW + 1.4, 5.6).rotateX(-Math.PI / 2);
+    pave.translate(FW / 2, 0.002, FD + 2.8);
+    add(pave, K.surfaceMat(TEX, "concreteLight", { roughness: 0.9, repeat: [(FW + 1.4) / 4, 5.6 / 4] }), { cast: false });
 
-    // ---- walls (cut-away heights) ----
-    const T = 0.12, H_INT = 1.15, H_SIDE = 1.6, H_BACK = 2.4, H_FRONT = 1.0;
-    const segments = (a0, a1, gaps) => {
-      const out = [];
-      let cur = a0;
-      [...gaps].sort((p, q) => p[0] - q[0]).forEach(([g0, g1]) => {
-        if (g0 > cur + 0.01) out.push([cur, g0]);
-        cur = Math.max(cur, g1);
-      });
-      if (a1 > cur + 0.01) out.push([cur, a1]);
-      return out;
-    };
-    const wallX = (x0, x1, z, h, gaps = [], m = "wall") =>
-      segments(x0, x1, gaps).forEach(([a, b]) => box(b - a, h, T, m, (a + b) / 2, h / 2, z));
-    const wallZ = (z0, z1, x, h, gaps = [], m = "wall") =>
-      segments(z0, z1, gaps).forEach(([a, b]) => box(T, h, b - a, m, x, h / 2, (a + b) / 2));
-
-    // ---- base slab, outside paving, zone floors ----
-    box(FW + 1.2, 0.3, FD + 1.2, "slab", FW / 2, -0.15, FD / 2);
-    box(14, 0.1, 5.5, "paving", 18, -0.05, FD + 2.9);
-
+    // ---- zone floors (textured finishes) ----
+    const FLOOR = { stone: ["terrazzo", 3, 0.3], wood: ["oakLight", 2.4, 0.5], warm: ["vinylWarm", 2, 0.45], clinical: ["vinyl", 2, 0.35], corridor: ["vinyl", 2, 0.35], service: ["tileWhite", 2.4, 0.4] };
     const zoneGroups = new Map();
+    const floorOf = (rect, finish) => {
+      const [tex, tile, rough] = FLOOR[finish] || FLOOR.stone;
+      const m = K.surfaceMat(TEX, tex, { roughness: rough, repeat: [rect.w / tile, rect.d / tile] });
+      const g = new THREE.PlaneGeometry(rect.w - 0.02, rect.d - 0.02).rotateX(-Math.PI / 2);
+      g.translate(rect.x + rect.w / 2, 0.004, rect.z + rect.d / 2);
+      const mesh = new THREE.Mesh(g, m);
+      mesh.receiveShadow = !lowPower;
+      return mesh;
+    };
     data.zones.forEach((z) => {
       const zg = new THREE.Group();
       zg.name = z.mesh;
       zg.userData.zone = z.id;
-      const floor = new THREE.Mesh(new THREE.BoxGeometry(z.rect.w - 0.04, 0.05, z.rect.d - 0.04),
-        std(FINISH[z.finish] || FINISH.stone, { roughness: 0.85 }));
-      floor.position.set(z.rect.x + z.rect.w / 2, 0.025, z.rect.z + z.rect.d / 2);
-      floor.receiveShadow = !lowPower;
+      const floor = floorOf(z.rect, z.finish);
       floor.name = `${z.mesh}_floor`;
       zg.add(floor);
       zoneGroups.set(z.id, zg);
       group.add(zg);
     });
-    (data.serviceAreas || []).forEach((s) => {
-      const floor = new THREE.Mesh(new THREE.BoxGeometry(s.rect.w - 0.04, 0.05, s.rect.d - 0.04), std(FINISH.service, { roughness: 0.9 }));
-      floor.position.set(s.rect.x + s.rect.w / 2, 0.025, s.rect.z + s.rect.d / 2);
-      floor.receiveShadow = !lowPower;
-      group.add(floor);
-    });
-
+    (data.serviceAreas || []).forEach((s) => group.add(floorOf(s.rect, "service")));
     // naming footprints live inside their zone: ZONE_Lobby > NAMING_MainLobby
     data.opportunities.forEach((o) => (zoneGroups.get(o.zone) || group).add(footprintOverlay(o)));
 
+    // ---- walls (cut-away heights) with caps, skirting and glazed partitions ----
+    const T = 0.14, H_INT = 1.3, H_FAR = 3.0, H_NEAR = 1.3, H_BACK = 3.0, H_FRONT = 1.0;
+    const walls = [], caps = [], glassG = [], mull = [], leds = [], skirt = [];
+    const segments = (a0, a1, gaps) => {
+      const out = [];
+      let cur = a0;
+      [...gaps].sort((p, q) => p[0] - q[0]).forEach(([g0, g1]) => { if (g0 > cur + 0.01) out.push([cur, g0]); cur = Math.max(cur, g1); });
+      if (a1 > cur + 0.01) out.push([cur, a1]);
+      return out;
+    };
+    const wall = (a, b, h) => {
+      walls.push(K.segment(a, b, h, T));
+      caps.push(K.segment(a, b, 0.025, T + 0.02, h));
+      skirt.push(K.segment(a, b, 0.08, T + 0.02, 0));
+    };
+    const wallX = (x0, x1, z, h, gaps = []) => segments(x0, x1, gaps).forEach(([a, b]) => wall([a, z], [b, z], h));
+    const wallZ = (z0, z1, x, h, gaps = []) => segments(z0, z1, gaps).forEach(([a, b]) => wall([x, a], [x, b], h));
+    const glass = (a, b, h, gaps = []) => {
+      const horiz = a[1] === b[1];
+      const a0 = horiz ? a[0] : a[1], a1 = horiz ? b[0] : b[1];
+      segments(a0, a1, gaps).forEach(([p, q]) => {
+        const A = horiz ? [p, a[1]] : [a[0], p], Bp = horiz ? [q, a[1]] : [a[0], q];
+        glassG.push(K.segment(A, Bp, h - 0.08, 0.02, 0.04));
+        mull.push(K.segment(A, Bp, 0.05, 0.07, 0), K.segment(A, Bp, 0.06, 0.07, h - 0.06));
+        const len = q - p, n = Math.max(1, Math.round(len / 1.2));
+        for (let i = 0; i <= n; i++) {
+          const t = p + (len * i) / n;
+          const g = new THREE.BoxGeometry(0.05, h, 0.06);
+          g.translate(horiz ? t : a[0], h / 2, horiz ? a[1] : t);
+          mull.push(g);
+        }
+      });
+    };
+
     // exterior
-    wallX(0, FW, 0, H_BACK);
-    box(FW, 0.05, 0.1, "light", FW / 2, H_BACK + 0.02, 0.1);                 // cove light strip
-    wallZ(0, FD, 0, H_SIDE);
-    wallZ(0, FD, FW, H_SIDE);
+    // perimeter with window bands (sill 0.9 m, head 2.5 m) where rooms have daylight
+    const windowed = (a, b, h, t = T) => {
+      walls.push(K.segment(a, b, 0.9, t), K.segment(a, b, h - 2.5, t, 2.5));
+      caps.push(K.segment(a, b, 0.025, t + 0.02, h));
+      skirt.push(K.segment(a, b, 0.08, t + 0.02, 0));
+      glassG.push(K.segment(a, b, 1.6, 0.02, 0.9));
+      mull.push(K.segment(a, b, 0.05, t + 0.02, 0.9), K.segment(a, b, 0.05, t + 0.02, 2.45));
+      const len = Math.hypot(b[0] - a[0], b[1] - a[1]), n = Math.max(1, Math.round(len / 1.5));
+      for (let i = 0; i <= n; i++) {
+        const x = a[0] + (b[0] - a[0]) * i / n, z = a[1] + (b[1] - a[1]) * i / n;
+        const g = new THREE.BoxGeometry(0.06, 1.6, 0.06); g.translate(x, 1.7, z); mull.push(g);
+      }
+    };
+    windowed([0, 0], [22, 0], H_BACK);
+    wallX(22, FW, 0, H_BACK);
+    leds.push(K.segment([0, 0.1], [FW, 0.1], 0.04, 0.04, H_BACK - 0.2));
+    windowed([0, 0], [0, 12], H_FAR);
+    wallZ(12, 15, 0, H_FAR);
+    windowed([0, 15], [0, FD], H_FAR);
+    wallZ(0, FD, FW, H_NEAR);
+    leds.push(K.segment([0.1, 0], [0.1, FD], 0.04, 0.04, H_FAR - 0.2));
     wallX(0, 10, FD, H_FRONT);
     wallX(26, FW, FD, H_FRONT);
-    // glazed entrance facade (lobby) with mullions and a door opening
-    [[10, 16], [20, 26]].forEach(([a, b]) => {
-      box(b - a, 2.8, 0.05, "glass", (a + b) / 2, 1.45, FD);
-      box(b - a, 0.08, 0.12, "dark", (a + b) / 2, 2.86, FD);
-      for (let x = a; x <= b + 0.01; x += 2) box(0.06, 2.9, 0.1, "dark", x, 1.45, FD);
-    });
-    // entrance canopy + columns + sign band (own group: hidden when the camera
-    // comes close, so it never blocks the lobby)
-    const canopy = new THREE.Group();
-    canopy.name = "ENTRANCE_Canopy";
-    const cm = (geo, mat, x, y, z) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = !lowPower; canopy.add(m); };
-    cm(new THREE.BoxGeometry(7.6, 0.18, 3.4), M.white, 18, 3.3, FD + 1.7);
-    cm(new THREE.CylinderGeometry(0.1, 0.1, 3.2, 16), M.metal, 14.6, 1.6, FD + 3.1);
-    cm(new THREE.CylinderGeometry(0.1, 0.1, 3.2, 16), M.metal, 21.4, 1.6, FD + 3.1);
-    cm(new THREE.BoxGeometry(3.2, 0.36, 0.06), M.accent, 18, 3.62, FD + 3.42);
-    group.add(canopy);
-    group.userData.canopy = canopy;
+    glass([10, FD], [26, FD], 2.9, [[16, 20]]);
+    glass([16, FD], [20, FD], 2.9);                  // automatic doors
+    mull.push(K.segment([16, FD], [20, FD], 0.22, 0.12, 2.68));
 
     // corridor (wayfinding spine): north wall with doors, south wall open to public areas
-    wallX(0, FW, 12, H_INT, [
-      [1.2, 2.3], [4.7, 5.8], [8.2, 9.3], [11.7, 12.8],     // patient rooms
-      [15.2, 16.3], [19.2, 20.3],                          // consultation
-      [24.6, 26.4], [32.0, 33.8], [39.4, 41.6],            // imaging, MRI, recovery
-    ]);
+    wallX(0, FW, 12, H_INT, [[1.2, 2.3], [4.7, 5.8], [8.2, 9.3], [11.7, 12.8], [15.2, 16.3], [19.2, 20.3], [24.6, 26.4], [32.0, 33.8], [39.4, 41.6]]);
     wallX(0, FW, 15, H_INT, [[1, 9], [10.6, 29], [31, 33], [38.5, 40.5]]);
-    box(FW - 0.6, 0.012, 0.16, "accent", FW / 2, 0.058, 13.5);                // floor wayfinding line
-
     // back row partitions
     wallX(0, 22, 4, H_INT, [[10.6, 12.2], [19.8, 21.4]]);
     [3.5, 7, 10.5, 18].forEach((x) => wallZ(4, 12, x, H_INT));
@@ -534,143 +559,219 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
     [22, 30, 37].forEach((x) => wallZ(0, 12, x, H_INT));
     wallX(37, FW, 6, H_INT, [[40, 42]]);
     // control rooms (glass)
-    wallX(22, 24.6, 9, 2.2, [], "glass");
-    wallZ(9, 12, 24.6, 2.2, [[10.1, 11.1]], "glass");
-    wallX(30, 33.4, 8.6, 2.2, [], "glass");
-    wallZ(8.6, 12, 33.4, 2.2, [[9.6, 10.6]], "glass");
-
+    glass([22, 9], [24.6, 9], 2.2);
+    glass([24.6, 9], [24.6, 12], 2.2, [[10.1, 11.1]]);
+    glass([30, 8.6], [33.4, 8.6], 2.2);
+    glass([33.4, 8.6], [33.4, 12], 2.2, [[9.6, 10.6]]);
     // front row partitions
     wallZ(22.5, FD, 10, H_INT);
     wallZ(15, 17.5, 29, H_INT);
     wallZ(25.5, FD, 29, H_INT);
     wallZ(15, FD, 36.5, H_INT, [[20, 21.2]]);
 
-    // ---- furniture (bright, simplified) ----
-    const BED = [B(0.95, 0.45, 2.05, "white", 0, 0.225, 0), B(0.9, 0.14, 1.95, "fabricBlue", 0, 0.52, 0.02),
-      B(0.95, 0.8, 0.06, "wood", 0, 0.6, -1.0), B(0.6, 0.08, 0.32, "white", 0, 0.63, -0.76, true)];
-    const SIDE = [B(0.45, 0.6, 0.45, "wood", 0, 0.3, 0)];
-    const ARMCHAIR = [B(0.72, 0.42, 0.72, "fabricWarm", 0, 0.21, 0), B(0.72, 0.42, 0.14, "fabricWarm", 0, 0.63, -0.29)];
-    const SEAT = [B(0.52, 0.08, 0.5, "fabric", 0, 0.45, 0), B(0.52, 0.42, 0.06, "fabric", 0, 0.7, -0.22), B(0.46, 0.41, 0.04, "metal", 0, 0.205, 0, true)];
-    const SOFA = [B(2, 0.42, 0.85, "fabricWarm", 0, 0.21, 0), B(2, 0.4, 0.18, "fabricWarm", 0, 0.62, -0.335),
-      B(0.16, 0.56, 0.85, "fabricWarm", -0.92, 0.28, 0), B(0.16, 0.56, 0.85, "fabricWarm", 0.92, 0.28, 0)];
-    const COFFEE = [B(1.1, 0.36, 0.6, "wood", 0, 0.18, 0)];
-    const DESK = [B(1.6, 0.05, 0.75, "wood", 0, 0.735, 0), B(0.45, 0.71, 0.7, "white", 0.55, 0.355, 0),
-      B(0.04, 0.71, 0.7, "white", -0.76, 0.355, 0), B(0.5, 0.32, 0.03, "screen", -0.2, 0.92, -0.25, true)];
-    const CHAIR = [B(0.48, 0.06, 0.48, "dark", 0, 0.46, 0), B(0.48, 0.45, 0.05, "dark", 0, 0.72, -0.21), C(0.03, 0.03, 0.43, "metal", 0, 0.215, 0, true)];
-    const COUCH = [B(0.66, 0.55, 1.9, "white", 0, 0.275, 0), B(0.62, 0.1, 1.85, "accentSoft", 0, 0.6, 0)];
-    const PLANT = [C(0.26, 0.2, 0.5, "white", 0, 0.25, 0), S(0.48, "plant", 0, 0.95, 0)];
-    const TOTEM = [B(0.5, 1.9, 0.12, "dark", 0, 0.95, 0), B(0.5, 0.14, 0.13, "accent", 0, 1.72, 0),
-      B(0.36, 0.04, 0.13, "white", 0, 1.35, 0, true), B(0.36, 0.04, 0.13, "white", 0, 1.2, 0, true)];
-    const TABLE = [B(1.6, 0.05, 0.6, "white", 0, 0.735, 0), B(1.5, 0.7, 0.04, "metal", 0, 0.36, -0.26)];
-    const RECEPTION = [B(5, 1.05, 0.9, "wood", 0, 0.525, 0), B(5.1, 0.04, 1.0, "white", 0, 1.07, 0), B(4.6, 0.7, 0.03, "accent", 0, 0.5, 0.46)];
-    const NURSE = [B(6, 1.05, 0.8, "wood", 0, 0.525, 0), B(6.1, 0.04, 0.9, "white", 0, 1.07, 0)];
-    const KITCHEN = [B(3, 0.9, 0.6, "white", 0, 0.45, 0), B(3, 0.04, 0.62, "wood", 0, 0.92, 0)];
-    const BENCH = [B(2.2, 0.44, 0.5, "wood", 0, 0.22, 0)];
-    const MRI = [B(2.3, 2.2, 1.5, "white", 0, 1.1, 0), CZ(0.46, 1.54, "dark", 0, 1.0, 0), CZ(0.62, 0.04, "accent", 0, 1.0, 0.77),
-      B(0.62, 0.72, 2.3, "white", 0, 0.36, 1.9), B(0.56, 0.08, 2.2, "accentSoft", 0, 0.76, 1.9)];
-    const XRAY = [B(0.9, 0.8, 2.2, "white", 0, 0.4, 0), B(0.86, 0.06, 2.1, "accentSoft", 0, 0.83, 0),
-      B(0.24, 2.4, 0.24, "metal", -1.0, 1.2, 0), B(1.15, 0.12, 0.24, "metal", -0.45, 2.2, 0), B(0.42, 0.32, 0.42, "white", 0.1, 1.98, 0)];
-    const DETECTOR = [B(0.6, 1.9, 0.14, "white", 0, 0.95, 0), B(0.5, 0.5, 0.03, "dark", 0, 1.3, 0.08)];
-    const TRAUMA = [...BED, B(0.32, 2.5, 0.32, "metal", -1.15, 1.25, -0.6), B(0.7, 0.45, 0.08, "screen", -1.15, 1.75, -0.38),
-      B(1.1, 0.1, 0.12, "metal", -0.6, 2.45, -0.6), C(0.42, 0.42, 0.08, "white", 0, 2.38, -0.6), B(0.6, 0.95, 0.5, "white", 1.25, 0.475, -0.6)];
-    const CURTAIN = [B(0.02, 1.9, 2.3, "curtain", 0, 0.95, 0)];
-    const SCREEN = [B(2.4, 1.35, 0.06, "screen", 0, 1.55, 0)];
-    const FEATURE = [B(6.5, 2.4, 0.18, "woodDark", 0, 1.2, 0), B(3.6, 0.1, 0.03, "accent", 0, 1.85, 0.1)];
+    add(K.mergeGeometries(walls), plain(0xf6f3ee, 0.9));
+    add(K.mergeGeometries(caps), plain(0xd9d3c9, 0.8), { cast: false });
+    add(K.mergeGeometries(skirt), MAT.shared("woodDark"), { cast: false });
+    add(K.mergeGeometries(glassG), MAT.shared("glass"), { cast: false, receive: false, order: 3 });
+    add(K.mergeGeometries(mull), MAT.shared("dark"));
+    add(K.mergeGeometries(leds), MAT.shared("lightWarm"), { cast: false, receive: false });
+    // corridor wayfinding line
+    const line = new THREE.BoxGeometry(FW - 0.6, 0.008, 0.14); line.translate(FW / 2, 0.01, 13.5);
+    add(line, MAT.shared("accent"), { cast: false });
 
+    // accent finishes: sage paint behind the beds, oak panels in the consultation rooms
+    const sageG = [], oakG = [];
+    sageG.push(K.segment([0.1, 4.09], [13.9, 4.09], H_INT - 0.05, 0.02));
+    oakG.push(K.segment([14.1, 4.09], [21.9, 4.09], H_INT - 0.05, 0.02));
+    [38.3, 40.6, 42.9].forEach((x) => sageG.push(K.segment([x - 1.0, 6.08], [x + 1.0, 6.08], H_INT - 0.05, 0.02)));
+    add(K.mergeGeometries(sageG), MAT.shared("sage"), { cast: false });
+    add(K.mergeGeometries(oakG), MAT.shared("wood"), { cast: false });
+
+    // corridor handrails (both walls, broken at the doors)
+    const rails = [];
+    const railX = (x0, x1, z, gaps) => segments(x0, x1, gaps).forEach(([a, b]) => {
+      if (b - a < 0.6) return;
+      const g = new THREE.CylinderGeometry(0.025, 0.025, b - a - 0.2, 10).rotateZ(Math.PI / 2);
+      g.translate((a + b) / 2, 0.9, z);
+      rails.push(g);
+    });
+    railX(0, FW, 12.12, [[1.2, 2.3], [4.7, 5.8], [8.2, 9.3], [11.7, 12.8], [15.2, 16.3], [19.2, 20.3], [24.6, 26.4], [32.0, 33.8], [39.4, 41.6]]);
+    railX(0, FW, 14.88, [[1, 9], [10.6, 29], [31, 33], [38.5, 40.5]]);
+    add(K.mergeGeometries(rails), MAT.shared("wood"), { cast: false });
+
+    // suspended ceiling luminaires (the roof is removed): hidden in close-ups
+    const ceil = [], ceilFrame = [];
+    const lum = (a, b, y = 2.85) => { ceil.push(K.segment(a, b, 0.03, 0.12, y)); ceilFrame.push(K.segment(a, b, 0.05, 0.16, y + 0.03)); };
+    lum([0.8, 13.5], [43.2, 13.5]);
+    [[1.4, 17.6], [1.4, 21.0], [1.4, 25.2]].forEach(([x, z]) => lum([x, z], [x + 7.2, z]));
+    [[38, 17.0], [38, 19.6], [38, 22.2], [38, 24.8]].forEach(([x, z]) => lum([x, z], [x + 5.4, z]));
+    [[1.75, 8.6], [5.25, 8.6], [8.75, 8.6], [12.25, 8.6]].forEach(([x, z]) => lum([x - 0.5, z], [x + 0.5, z]));
+    [[16, 8], [20, 8]].forEach(([x, z]) => lum([x - 0.7, z], [x + 0.7, z]));
+    const ringG = [];
+    [[12.9, 23.5], [23.1, 23.5], [18, 20.6]].forEach(([x, z], i) => {
+      const r = i === 2 ? 1.6 : 1.1;
+      const t = new THREE.TorusGeometry(r, 0.035, 8, 48).rotateX(Math.PI / 2); t.translate(x, 3.0, z); ringG.push(t);
+    });
+    const ceiling = new THREE.Group();
+    ceiling.name = "CEILING_Lights";
+    const cMesh = (geo, mat) => { const m = new THREE.Mesh(geo, mat); ceiling.add(m); };
+    cMesh(K.mergeGeometries(ceil), MAT.shared("lightWarm"));
+    cMesh(K.mergeGeometries(ceilFrame), MAT.shared("white"));
+    cMesh(K.mergeGeometries(ringG), MAT.shared("lightWarm"));
+    group.add(ceiling);
+    group.userData.ceiling = ceiling;
+
+    // ---- signage: CENTRO MÉDICO GRANADA (fictional demonstration project) ----
+    const signMat = (canvasTex, { transparent = false, glow = 0.6 } = {}) => {
+      const m = new THREE.MeshStandardMaterial({ map: canvasTex, roughness: 0.5, metalness: 0.1, transparent, alphaTest: transparent ? 0.4 : 0 });
+      m.emissive = new THREE.Color(0xffffff); m.emissiveMap = canvasTex; m.emissiveIntensity = glow;
+      return m;
+    };
+    const signPlane = (w, h, mat, x, y, z, ry = 0, parent = group) => {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+      m.position.set(x, y, z); m.rotation.y = ry; parent.add(m); return m;
+    };
+    // reception wall: brass letters on a dark band
+    signPlane(4.3, 0.42, signMat(signTexture(CENTER_NAME, { color: "#d8b77a", bg: null, weight: 600, size: 92, spacing: 0.22, h: 160 }), { transparent: true, glow: 0.35 }), 18, 2.05, 15.6 + 0.165);
+    // wayfinding blade signs over the corridor doors (zone names, localized)
+    const zname = (id) => (data.zones.find((z) => z.id === id) || {}).name || "";
+    [[7, "patientrooms"], [18, "consultation"], [26, "imaging"], [33.5, "mri"], [40.5, "recovery"]].forEach(([x, id]) => {
+      const tex = signTexture(zname(id).toUpperCase(), { color: "#ffffff", bg: "#2f3b3a", accent: "#5fb3a6", weight: 600, size: 64, spacing: 0.16, h: 140, w: 1400 });
+      const sm = signMat(tex, { glow: 0.5 });
+      signPlane(2.2, 0.22, sm, x, 2.45, 13.5 + 0.02);
+      const back = signPlane(2.2, 0.22, sm, x, 2.45, 13.5 - 0.02, Math.PI);
+      back.userData.sign = true;
+      const rodA = new THREE.CylinderGeometry(0.008, 0.008, 0.42, 6); rodA.translate(x - 0.9, 2.77, 13.5);
+      const rodB = new THREE.CylinderGeometry(0.008, 0.008, 0.42, 6); rodB.translate(x + 0.9, 2.77, 13.5);
+      ceiling.add(new THREE.Mesh(K.mergeGeometries([rodA, rodB]), MAT.shared("metal")));
+    });
+
+    // entrance canopy + columns + sign band (own group: hidden when the camera
+    // comes close, so it never blocks the lobby)
+    const canopy = new THREE.Group();
+    canopy.name = "ENTRANCE_Canopy";
+    const cm = (geo, mat, x, y, z, cast = true) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = cast && !lowPower; canopy.add(m); };
+    cm(new K.RoundedBoxGeometry(7.6, 0.2, 3.4, 2, 0.04), MAT.shared("white"), 18, 3.3, FD + 1.7);
+    cm(new THREE.BoxGeometry(7.2, 0.02, 3.0), MAT.shared("wood"), 18, 3.19, FD + 1.7, false);
+    cm(new THREE.CylinderGeometry(0.1, 0.1, 3.2, 20), MAT.shared("metal"), 14.6, 1.6, FD + 3.1);
+    cm(new THREE.CylinderGeometry(0.1, 0.1, 3.2, 20), MAT.shared("metal"), 21.4, 1.6, FD + 3.1);
+    cm(new THREE.BoxGeometry(7.4, 0.62, 0.08), MAT.shared("dark"), 18, 3.68, FD + 3.36);
+    signPlane(7.2, 0.5, signMat(signTexture(CENTER_NAME, { color: "#ffffff", bg: "#3d4347", accent: "#5fb3a6", weight: 600, size: 96, spacing: 0.24, h: 150, w: 2400 }), { glow: 0.7 }), 18, 3.68, FD + 3.405, 0, canopy);
+    cm(new THREE.BoxGeometry(7.2, 0.02, 0.04), MAT.shared("lightWarm"), 18, 3.19, FD + 3.35, false);
+    group.add(canopy);
+    group.userData.canopy = canopy;
+
+    // ---- furniture and equipment (p = [x, z], r in degrees) ----
+    const items = [];
+    const put = (k, x, z, r = 0) => items.push({ k, p: [x, z], r });
     // nurse station / service strip
-    put(NURSE, 6, 2.2);
-    put(CHAIR, 4.6, 1.3); put(CHAIR, 7.4, 1.3);
-    box(3, 2.0, 0.6, "white", 17, 1.0, 0.45);
-    box(2.2, 2.0, 0.6, "white", 12.6, 1.0, 0.45);
-
+    put("nurse_station", 6, 2.2);
+    put("task_chair", 4.6, 1.3); put("task_chair", 7.4, 1.3);
+    put("shelving", 17, 0.3);
+    put("cabinet_tall", 12.6, 0.35); put("cabinet_tall", 14.0, 0.35);
     // patient rooms
     for (let i = 0; i < 4; i++) {
       const x0 = i * 3.5;
-      put(BED, x0 + 1.75, 5.35);
-      put(SIDE, x0 + 0.55, 4.5);
-      put(ARMCHAIR, x0 + 2.8, 7.6, -Math.PI / 2);
-      box(1.0, 2.0, 0.5, "wood", x0 + 2.4, 1.0, 11.6);           // wardrobe by the door
+      put("headwall", x0 + 1.75, 4.12);
+      put("bed", x0 + 1.75, 5.35);
+      put("bedside", x0 + 0.55, 4.45);
+      put("overbed_table", x0 + 0.62, 6.7, 90);
+      put("armchair", x0 + 2.8, 7.6, -90);
+      put("tv", x0 + 3.42, 6.2, -90);
+      put("wardrobe", x0 + 2.4, 11.6, 180);
+    }
+    for (let i = 0; i < 4; i++) {
+      const x0 = i * 3.5;
+      put("iv_pole", x0 + 2.75, 4.6);
+      put("privacy_curtain", x0 + 1.75, 5.35);
+      put("sanitizer", x0 + 1.2, 11.9, 180);
     }
     // consultation rooms
     for (let j = 0; j < 2; j++) {
       const x0 = 14 + j * 4;
-      put(DESK, x0 + 2.1, 6.2);
-      put(CHAIR, x0 + 2.1, 5.4);
-      put(CHAIR, x0 + 1.6, 7.3, Math.PI); put(CHAIR, x0 + 2.6, 7.3, Math.PI);
-      put(COUCH, x0 + 0.6, 9.7);
-      put(SIDE, x0 + 3.5, 11.4);
+      put("desk", x0 + 2.1, 6.2, 180);
+      put("task_chair", x0 + 2.1, 5.35);
+      put("visitor_chair", x0 + 1.6, 7.3, 180); put("visitor_chair", x0 + 2.6, 7.3, 180);
+      put("exam_couch", x0 + 0.6, 9.6);
+      put("sink_unit", x0 + 3.62, 11.2, -90);
+      put("doctor_shelf", x0 + 0.62, 4.35);
     }
     // diagnostic imaging
-    put(XRAY, 27, 4.4);
-    put(DETECTOR, 27, 0.45);
-    put(COUCH, 29.2, 9.6);
-    put(DESK, 23.3, 10.5, Math.PI / 2);
-    put(CHAIR, 24.0, 10.5, -Math.PI / 2);
+    put("xray_table", 27, 4.4);
+    put("wall_bucky", 27, 0.45);
+    put("lead_screen", 29.2, 9.4, 180);
+    put("control_desk", 23.3, 10.5, 90);
+    put("task_chair", 24.05, 10.5, -90);
     // MRI suite
-    put(MRI, 34.2, 2.6);
-    put(DESK, 31.7, 10.9, Math.PI);
-    put(CHAIR, 31.7, 11.5, Math.PI);
+    put("mri", 34.2, 2.6);
+    put("cabinet_tall", 36.35, 5.6, -90);
+    put("ventilator", 31.2, 2.2, 90);
+    put("control_desk", 31.7, 10.9, 180);
+    put("task_chair", 31.7, 11.55, 180);
     // trauma / resuscitation
-    put(TRAUMA, 40.5, 2.8);
+    put("trauma_bed", 40.5, 2.8);
+    put("ceiling_pendant", 39.0, 1.9);
+    put("surgical_light", 41.1, 3.0);
+    put("crash_cart", 43.4, 1.0, -90);
+    put("ventilator", 39.2, 4.0, 90);
+    put("iv_pole", 41.9, 1.6);
+    put("med_cart", 43.4, 4.6, -90);
     // preparation & recovery bays
-    [38.3, 40.6, 42.9].forEach((x) => { put(BED, x, 7.45); });
-    [39.45, 41.75].forEach((x) => put(CURTAIN, x, 7.5));
+    [38.3, 40.6, 42.9].forEach((x) => { put("headwall", x, 6.12); put("bed", x, 7.45); put("iv_pole", x + 0.75, 6.6); });
+    put("med_cart", 37.6, 11.2, 90);
+    [39.45, 41.75].forEach((x) => put("curtain", x, 7.5));
     // corridor signage
-    [5.2, 34.2].forEach((x) => put(TOTEM, x, 14.45));
-    // waiting area
-    [[18.6, 0], [19.25, Math.PI], [22.8, 0], [23.45, Math.PI]].forEach(([z, r]) => {
-      for (let x = 1.7; x <= 8.4; x += 0.6) put(SEAT, x, z, r);
-    });
-    put(COFFEE, 5, 26.3);
-    [[1.0, 27.0], [9.0, 27.0], [9.2, 16.1]].forEach(([x, z]) => put(PLANT, x, z));
+    [5.2, 34.2].forEach((x) => put("totem", x, 14.45));
+    // waiting area: back-to-back beam seating
+    [[18.6, 0], [19.25, 180], [22.8, 0], [23.45, 180]].forEach(([z, r]) => [2.4, 5.1, 7.8].forEach((x) => put("beam_seating", x, z, r)));
+    put("coffee_table", 5, 26.3);
+    put("wall_tv", 0.12, 21.0, 90);
+    put("water_dispenser", 9.5, 17.6, -90);
+    [[2.2, 21.0], [7.6, 21.0]].forEach(([x, z]) => put("side_table", x, z));
+    [[1.0, 27.0], [9.0, 27.0], [9.2, 16.1]].forEach(([x, z]) => put("planter", x, z));
     // main lobby
-    put(FEATURE, 18, 15.6);
-    put(RECEPTION, 18, 17.7);
-    [12.9, 23.1].forEach((x) => {
-      put(SOFA, x, 22.0); put(SOFA, x, 25.0, Math.PI); put(COFFEE, x, 23.5);
-    });
-    [[11, 27.1], [25, 27.1], [11, 16.2], [25, 16.2]].forEach(([x, z]) => put(PLANT, x, z));
-    box(4, 0.012, 1.6, "dark", 18, 0.058, 27.1);                                // entrance mat
-    put(TOTEM, 15.4, 26.4);
+    put("feature_wall", 18, 15.6);
+    put("reception", 18, 17.7);
+    [12.9, 23.1].forEach((x) => { put("rug", x, 23.5); put("sofa", x, 22.0); put("sofa", x, 25.0, 180); put("coffee_table", x, 23.5); });
+    [[11, 27.1], [25, 27.1], [11, 16.2], [25, 16.2]].forEach(([x, z]) => put("planter", x, z));
+    put("entrance_mat", 18, 27.1);
+    [16.4, 17.2, 18.8, 19.6].forEach((x) => put("kiosk", x, 25.3));
+    put("planter_bench", 18, 21.6);
+    put("cafe", 12.6, 17.3);
+    [[11.0, 18.9], [14.2, 18.9]].forEach(([x, z]) => put("round_table", x, z));
+    put("totem", 15.4, 26.4);
     // donor recognition wall (faces the lobby)
-    box(0.3, 2.6, 7, "wood", 28.85, 1.3, 21.5);
-    box(0.04, 0.12, 6.4, "brass", 28.68, 2.35, 21.5);
-    for (let r = 0; r < 5; r++) {
-      for (let c = 0; c < 15; c++) put([B(0.02, 0.16, 0.3, "brass", 0, 0.95 + r * 0.3, 0, true)], 28.69, 18.56 + c * 0.42);
-    }
-    put(BENCH, 27.2, 21.5, Math.PI / 2);
-    put(PLANT, 27.3, 16.4);
+    put("donor_wall", 28.85, 21.5, -90);
+    put("bench", 27.2, 21.5, 90);
+    put("planter", 27.3, 16.4);
     // family lounge
-    put(SOFA, 32.2, 19.6); put(SOFA, 32.2, 23.2, Math.PI); put(COFFEE, 32.2, 21.4);
-    put(ARMCHAIR, 34.6, 21.4, -Math.PI / 2);
-    put(KITCHEN, 35.9, 25.6, -Math.PI / 2);
-    put(PLANT, 30.0, 27.1);
+    put("bookshelf", 29.3, 16.3, 90);
+    put("sofa", 32.2, 19.6); put("sofa", 32.2, 23.2, 180); put("coffee_table", 32.2, 21.4);
+    put("lounge_chair", 34.7, 21.4, -90);
+    put("dining", 31.7, 26.0);
+    put("kitchenette", 35.9, 25.6, -90);
+    put("planter", 30.0, 27.3);
     // education / learning room
-    put(SCREEN, 40.25, 15.16);
-    [18.0, 20.6, 23.2].forEach((z) => {
-      [38.7, 41.8].forEach((x) => {
-        put(TABLE, x, z, Math.PI);
-        put(CHAIR, x - 0.42, z + 0.62, Math.PI); put(CHAIR, x + 0.42, z + 0.62, Math.PI);
-      });
-    });
-    put(PLANT, 43.3, 27.1);
+    put("big_screen", 40.25, 15.16);
+    put("lectern", 42.9, 16.3, 200);
+    [18.0, 20.6, 23.2].forEach((z) => [38.7, 41.8].forEach((x) => {
+      put("training_table", x, z, 180);
+      put("visitor_chair", x - 0.42, z + 0.62, 180); put("visitor_chair", x + 0.42, z + 0.62, 180);
+    }));
+    put("planter", 43.3, 27.1);
+    // corridor: hand-sanitizer stations
+    [3.5, 14.2, 22.6, 30.3, 37.3].forEach((x) => put("sanitizer", x, 12.2));
+    // street side landscaping
+    [[2.6, FD + 4.0], [8.4, FD + 4.3], [27.6, FD + 4.3], [34.2, FD + 4.0], [41.0, FD + 4.3]].forEach(([x, z]) => put("tree", x, z));
+    [[5.5, FD + 1.5], [30.5, FD + 1.5], [38.0, FD + 1.5]].forEach(([x, z]) => put("hedge", x, z));
+    put("bench_outdoor", 11.6, FD + 4.2); put("bench_outdoor", 24.4, FD + 4.2);
 
-    // ---- merge per material ----
-    const statics = new THREE.Group();
-    statics.name = "STRUCTURE_AND_FURNITURE";
-    buckets.forEach((geos, key) => {
-      const merged = mergeGeometries(geos, false);
-      geos.forEach((g) => g.dispose());
-      if (!merged) return;
-      const mesh = new THREE.Mesh(merged, M[key]);
-      mesh.name = `merged-${key}`;
-      mesh.castShadow = !lowPower && !NO_SHADOW.has(key);
-      mesh.receiveShadow = !lowPower && key !== "glass" && key !== "light";
-      if (key === "glass" || key === "curtain") mesh.renderOrder = 3;
-      statics.add(mesh);
+    const NO_SHADOW = new Set(["glass", "curtain", "lightWarm", "lightTeal", "screen", "screenOff", "screenLight", "rug", "matDark", "mirror"]);
+    K.bakeItems(items, (k) => kit.get(k)).forEach((geo, key) => {
+      const m = add(geo, MAT.shared(key), { cast: !NO_SHADOW.has(key), receive: !key.startsWith("light") });
+      m.name = `merged-${key}`;
+      if (key === "glass" || key === "curtain") m.renderOrder = 3;
     });
-    baseGeo.forEach((g) => g.dispose());
-    group.add(statics);
     return group;
   }
 }

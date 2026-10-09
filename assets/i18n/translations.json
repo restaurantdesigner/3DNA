@@ -379,6 +379,118 @@
         "text": "Tell us about your space and your goals. We reply personally.",
         "whatsapp": "Message us on WhatsApp",
         "email": "Send an email"
+      },
+      "closing": {
+        "label": "3DNA · Fitness Design",
+        "line1": "We don't just design gyms.",
+        "line2": "We design experiences.",
+        "sub": "From concept to space. From plan to reality.",
+        "alt": "3DNA designer holding a miniature model of the sports club, with the equipped fitness hall."
+      },
+      "caseStudy": {
+        "label": "Case study · 3DNA",
+        "heading": "From a PDF plan to an interactive digital project.",
+        "body": "See how we turn architectural documentation into a navigable 3D model with information on spaces, equipment, indicative costs and estimated energy use.",
+        "steps": [
+          {
+            "kicker": "01 — You send",
+            "title": "You send us your plans.",
+            "text": "We start from PDF plans, architectural documentation and whatever information is available about your space.",
+            "alt": "Anonymised floor plan of a sports centre: fitness hall, changing rooms, spa, toilets and reception."
+          },
+          {
+            "kicker": "02 — We create",
+            "title": "We turn them into a digital space.",
+            "text": "We rebuild the geometry, organise the spaces and add design, materials and equipment.",
+            "alt": "Transition from the 2D plan to the top view of the rebuilt 3D model, in the same frame."
+          },
+          {
+            "kicker": "03 — You receive",
+            "title": "You receive an interactive presentation.",
+            "text": "Explore the building, check every space and share a clear picture of the project with your team, clients or investors.",
+            "alt": "Perspective view of the 3D model of the building with the equipped fitness hall.",
+            "chips": [
+              "Spaces",
+              "Equipment",
+              "Budget & energy"
+            ]
+          }
+        ],
+        "viewer": {
+          "loading": "Loading the 3D model…",
+          "error": "The 3D model could not be loaded in this browser.",
+          "title": "Sports centre · interactive model",
+          "fullscreen": "Explore full screen",
+          "exitFullscreen": "Exit full screen",
+          "newTab": "Open in a new tab",
+          "frameTitle": "Interactive 3D model of the sports centre",
+          "hint": "Drag to rotate · click the model and scroll, or pinch, to zoom · tap a space to see its information.",
+          "uiLang": "The viewer interface is in Spanish."
+        },
+        "contains": {
+          "heading": "What the digital project contains",
+          "items": [
+            "Spaces and floor areas",
+            "Interactive 3D model",
+            "Equipment and furniture",
+            "Indicative budget",
+            "Installed electrical power",
+            "Estimated energy use"
+          ],
+          "desc": [
+            "Every space with its usable area",
+            "Building, fitness hall and surroundings to explore",
+            "Inventory by space and category",
+            "Equipment cost by space and category",
+            "Power of the equipment in the inventory",
+            "Annual consumption from hours and usage"
+          ],
+          "est": "Estimate",
+          "locale": "en-GB",
+          "fmt": {
+            "spaces": "{n} spaces · {area} m² usable",
+            "equipment": "{lines} line items · {units} units",
+            "cost": "{cost} excl. VAT",
+            "kwh": "{kwh} kWh/year"
+          },
+          "note": "Figures calculated live from the model data. Preliminary equipment estimate: not a construction budget or a commercial offer, and it excludes building work, installation and building services."
+        },
+        "compare": {
+          "heading": "Original plan and rebuilt model",
+          "text": "Same frame, same scale: slide to move from the 2D plan to the 3D model.",
+          "labelPlan": "2D plan",
+          "label3d": "3D model",
+          "range": "Slide to compare the plan and the 3D model",
+          "altPlan": "Anonymised 2D plan of the building.",
+          "alt3d": "Top view of the rebuilt 3D model, aligned with the plan."
+        },
+        "share": {
+          "heading": "A presentation you can share",
+          "text": "The model opens in the browser, with nothing to install. Share the link with your team, clients or investors: anyone can walk through the building, check the spaces and review the equipment and indicative figures.",
+          "alt": "Overview of the 3D model: the building and sports courts on a floating base."
+        },
+        "sala": {
+          "heading": "Multipurpose hall — from plan to experience",
+          "lead": "Three views of the same hall, with the same interior design and the same layout: from the architectural plan to the experience at eye level.",
+          "items": [
+            {
+              "name": "Architectural view",
+              "text": "Overhead visualisation of the hall: cardio, strength, free-weight and functional training zones on the real layout.",
+              "alt": "Overhead visualisation of the multipurpose hall fitted out as a gym, with toilets, changing rooms and spa in the foreground."
+            },
+            {
+              "name": "Interior view",
+              "text": "The same hall at eye level: materials, lighting and equipment as they will be experienced.",
+              "alt": "Interior visualisation of the multipurpose hall: treadmills along the glazed façade, power rack and timber panelling."
+            },
+            {
+              "name": "Virtual walkthrough",
+              "text": "A short cinematic walkthrough of the same space to present the project before construction.",
+              "alt": "Video walkthrough of the multipurpose hall fitted out as a gym."
+            }
+          ],
+          "note": "Visualisations of the proposed design; not photographs of a built space."
+        }
       }
     },
     "restaurantsPage": {
@@ -697,6 +809,29 @@
           "cta": "Start a project"
         }
       }
+    },
+    "namingExplain": {
+      "eyebrow": "Recognition and funding",
+      "lead": "Three concepts common in nonprofit project funding, explained simply.",
+      "items": [
+        {
+          "label": "01 / Naming rights",
+          "title": "The value of giving a space a name.",
+          "text": "A recognition strategy that links the name of a donor or sponsor to a space, facility or project."
+        },
+        {
+          "label": "02 / Naming capitalization",
+          "title": "Turning recognition into funding opportunities.",
+          "text": "We identify the recognition potential of different spaces and present it visually as an opportunity to attract funding."
+        },
+        {
+          "label": "03 / Donations and fundraising",
+          "title": "Connecting projects with the people who want to make them happen.",
+          "text": "Donations help fund projects with social impact. Fundraising connects an organisation’s needs with people and institutions willing to support it."
+        }
+      ],
+      "role": "Our contribution: spatial concepts, 3D visualisation, interactive donor recognition experiences and digital storytelling. Legal, tax and fundraising terms are set by each organisation with its advisers.",
+      "link": "See an interactive example"
     },
     "naming": {
       "eyebrow": "Naming opportunities",
@@ -1185,6 +1320,118 @@
         "text": "Cuéntanos tu espacio y tus objetivos. Te respondemos personalmente.",
         "whatsapp": "Escribir por WhatsApp",
         "email": "Enviar un email"
+      },
+      "closing": {
+        "label": "3DNA · Fitness Design",
+        "line1": "No diseñamos solo gimnasios.",
+        "line2": "Diseñamos experiencias.",
+        "sub": "Del concepto al espacio. Del plano a la realidad.",
+        "alt": "Diseñador de 3DNA sosteniendo una maqueta en miniatura del club deportivo, con la sala de fitness equipada."
+      },
+      "caseStudy": {
+        "label": "Caso práctico · 3DNA",
+        "heading": "De un plano PDF a un proyecto digital interactivo.",
+        "body": "Descubre cómo transformamos documentación arquitectónica en un modelo 3D navegable con información de espacios, equipamiento, costes orientativos y consumo energético estimado.",
+        "steps": [
+          {
+            "kicker": "01 — Envías",
+            "title": "Nos envías tus planos.",
+            "text": "Partimos de planos PDF, documentación arquitectónica y la información disponible sobre tu espacio.",
+            "alt": "Plano de planta anonimizado de un centro deportivo: sala de fitness, vestuarios, spa, aseos y recepción."
+          },
+          {
+            "kicker": "02 — Creamos",
+            "title": "Lo convertimos en un espacio digital.",
+            "text": "Reconstruimos la geometría, organizamos los espacios e incorporamos diseño, materiales y equipamiento.",
+            "alt": "Transición del plano 2D a la vista superior del modelo 3D reconstruido, con el mismo encuadre."
+          },
+          {
+            "kicker": "03 — Recibes",
+            "title": "Recibes una presentación interactiva.",
+            "text": "Explora el edificio, consulta cada espacio y comparte una visión clara del proyecto con tu equipo, clientes o inversores.",
+            "alt": "Vista en perspectiva del modelo 3D del edificio, con la sala de fitness equipada.",
+            "chips": [
+              "Espacios",
+              "Equipamiento",
+              "Presupuesto y energía"
+            ]
+          }
+        ],
+        "viewer": {
+          "loading": "Cargando el modelo 3D…",
+          "error": "No se ha podido cargar el modelo 3D en este navegador.",
+          "title": "Centro Deportivo · modelo interactivo",
+          "fullscreen": "Explorar en pantalla completa",
+          "exitFullscreen": "Salir de pantalla completa",
+          "newTab": "Abrir en una pestaña nueva",
+          "frameTitle": "Modelo 3D interactivo del centro deportivo",
+          "hint": "Arrastra para girar · haz clic en el modelo y usa la rueda, o pellizca, para acercar · pulsa un espacio para ver su información.",
+          "uiLang": ""
+        },
+        "contains": {
+          "heading": "Qué contiene el proyecto digital",
+          "items": [
+            "Espacios y superficies",
+            "Modelo 3D interactivo",
+            "Equipamiento y mobiliario",
+            "Presupuesto orientativo",
+            "Potencia eléctrica instalada",
+            "Consumo energético estimado"
+          ],
+          "desc": [
+            "Cada espacio con su superficie útil",
+            "Edificio, sala de fitness y entorno navegables",
+            "Inventario por espacio y categoría",
+            "Coste del equipamiento por espacio y categoría",
+            "Potencia de los equipos del inventario",
+            "Consumo anual según horas y uso"
+          ],
+          "est": "Estimación",
+          "locale": "es-ES",
+          "fmt": {
+            "spaces": "{n} espacios · {area} m² útiles",
+            "equipment": "{lines} partidas · {units} unidades",
+            "cost": "{cost} sin IVA",
+            "kwh": "{kwh} kWh/año"
+          },
+          "note": "Cifras calculadas en directo a partir de los datos del modelo. Estimación preliminar del equipamiento: no constituye presupuesto de obra ni oferta comercial y no incluye obra, montaje ni instalaciones del edificio."
+        },
+        "compare": {
+          "heading": "Plano original y modelo reconstruido",
+          "text": "Mismo encuadre y misma escala: desliza para pasar del plano 2D al modelo 3D.",
+          "labelPlan": "Plano 2D",
+          "label3d": "Modelo 3D",
+          "range": "Desliza para comparar el plano y el modelo 3D",
+          "altPlan": "Plano 2D anonimizado del edificio.",
+          "alt3d": "Vista superior del modelo 3D reconstruido, alineada con el plano."
+        },
+        "share": {
+          "heading": "Una presentación para compartir",
+          "text": "El modelo se abre en el navegador, sin instalar nada. Comparte el enlace con tu equipo, clientes o inversores: cada persona puede recorrer el edificio, consultar los espacios y revisar el equipamiento y las cifras orientativas.",
+          "alt": "Vista general del modelo 3D: el edificio y las pistas deportivas sobre una base flotante."
+        },
+        "sala": {
+          "heading": "Sala Multiusos — Del plano a la experiencia",
+          "lead": "Tres vistas de la misma sala, con el mismo diseño interior y la misma distribución: de la planta arquitectónica a la experiencia a la altura de los ojos.",
+          "items": [
+            {
+              "name": "Vista arquitectónica",
+              "text": "Visualización cenital de la sala: zonas de cardio, fuerza, peso libre y entrenamiento funcional sobre la distribución real.",
+              "alt": "Visualización cenital de la sala multiusos equipada como gimnasio, con aseos, vestuarios y spa en primer plano."
+            },
+            {
+              "name": "Vista interior",
+              "text": "La misma sala a la altura de los ojos: materiales, iluminación y equipamiento tal como se percibirán.",
+              "alt": "Visualización interior de la sala multiusos: cintas de correr junto a la fachada acristalada, rack de potencia y paneles de madera."
+            },
+            {
+              "name": "Recorrido virtual",
+              "text": "Un breve recorrido cinematográfico por el mismo espacio para presentar el proyecto antes de la obra.",
+              "alt": "Recorrido virtual en vídeo por la sala multiusos equipada como gimnasio."
+            }
+          ],
+          "note": "Visualizaciones del diseño propuesto; no son fotografías de un espacio construido."
+        }
       }
     },
     "restaurantsPage": {
@@ -1503,6 +1750,29 @@
           "cta": "Empezar un proyecto"
         }
       }
+    },
+    "namingExplain": {
+      "eyebrow": "Reconocimiento y financiación",
+      "lead": "Tres conceptos habituales en la financiación de proyectos sin ánimo de lucro, explicados de forma sencilla.",
+      "items": [
+        {
+          "label": "01 / Naming rights",
+          "title": "El valor de dar nombre a un espacio.",
+          "text": "Una estrategia de reconocimiento que permite vincular el nombre de un donante o patrocinador a un espacio, instalación o proyecto."
+        },
+        {
+          "label": "02 / Naming capitalization",
+          "title": "Transformar reconocimiento en oportunidades de financiación.",
+          "text": "Identificamos el potencial de reconocimiento de diferentes espacios y lo presentamos visualmente como una oportunidad para atraer financiación."
+        },
+        {
+          "label": "03 / Donaciones y fundraising",
+          "title": "Conectar proyectos con quienes quieren hacerlos posibles.",
+          "text": "Las donaciones ayudan a financiar proyectos con impacto social. La captación de fondos conecta las necesidades de una organización con personas y entidades dispuestas a apoyarla."
+        }
+      ],
+      "role": "Nuestra aportación: conceptos espaciales, visualización 3D, experiencias interactivas de reconocimiento de donantes y narrativa digital. Las condiciones legales, fiscales y de captación las define cada organización con sus asesores.",
+      "link": "Ver un ejemplo interactivo"
     },
     "naming": {
       "eyebrow": "Naming opportunities",
@@ -1991,6 +2261,118 @@
         "text": "Расскажите о вашем пространстве и целях. Мы ответим лично.",
         "whatsapp": "Написать в WhatsApp",
         "email": "Написать на email"
+      },
+      "closing": {
+        "label": "3DNA · Fitness Design",
+        "line1": "Мы проектируем не просто спортзалы.",
+        "line2": "Мы создаём впечатления.",
+        "sub": "От концепции к пространству. От плана к реальности.",
+        "alt": "Дизайнер 3DNA держит миниатюрный макет спортивного клуба с оборудованным фитнес-залом."
+      },
+      "caseStudy": {
+        "label": "Кейс · 3DNA",
+        "heading": "От PDF-плана к интерактивному цифровому проекту.",
+        "body": "Посмотрите, как мы превращаем архитектурную документацию в 3D-модель, по которой можно перемещаться, — с информацией о помещениях, оборудовании, ориентировочной стоимости и расчётном энергопотреблении.",
+        "steps": [
+          {
+            "kicker": "01 — Вы присылаете",
+            "title": "Вы присылаете нам планы.",
+            "text": "Мы начинаем с PDF-планов, архитектурной документации и всей доступной информации о вашем пространстве.",
+            "alt": "Анонимизированный план спортивного центра: фитнес-зал, раздевалки, спа, санузлы и ресепшн."
+          },
+          {
+            "kicker": "02 — Мы создаём",
+            "title": "Мы превращаем их в цифровое пространство.",
+            "text": "Восстанавливаем геометрию, организуем помещения и добавляем дизайн, материалы и оборудование.",
+            "alt": "Переход от 2D-плана к виду сверху восстановленной 3D-модели в том же кадре."
+          },
+          {
+            "kicker": "03 — Вы получаете",
+            "title": "Вы получаете интерактивную презентацию.",
+            "text": "Исследуйте здание, изучайте каждое помещение и делитесь понятной картиной проекта с командой, клиентами или инвесторами.",
+            "alt": "Перспективный вид 3D-модели здания с оборудованным фитнес-залом.",
+            "chips": [
+              "Помещения",
+              "Оборудование",
+              "Бюджет и энергия"
+            ]
+          }
+        ],
+        "viewer": {
+          "loading": "Загрузка 3D-модели…",
+          "error": "Не удалось загрузить 3D-модель в этом браузере.",
+          "title": "Спортивный центр · интерактивная модель",
+          "fullscreen": "Открыть на весь экран",
+          "exitFullscreen": "Выйти из полноэкранного режима",
+          "newTab": "Открыть в новой вкладке",
+          "frameTitle": "Интерактивная 3D-модель спортивного центра",
+          "hint": "Перетаскивайте, чтобы вращать · нажмите на модель и прокрутите колесо или сведите пальцы для масштаба · нажмите на помещение, чтобы увидеть информацию.",
+          "uiLang": "Интерфейс просмотрщика на испанском языке."
+        },
+        "contains": {
+          "heading": "Что содержит цифровой проект",
+          "items": [
+            "Помещения и площади",
+            "Интерактивная 3D-модель",
+            "Оборудование и мебель",
+            "Ориентировочный бюджет",
+            "Установленная электрическая мощность",
+            "Расчётное энергопотребление"
+          ],
+          "desc": [
+            "Каждое помещение с полезной площадью",
+            "Здание, фитнес-зал и окружение для просмотра",
+            "Перечень по помещениям и категориям",
+            "Стоимость оборудования по помещениям и категориям",
+            "Мощность оборудования из перечня",
+            "Годовое потребление по часам и загрузке"
+          ],
+          "est": "Оценка",
+          "locale": "ru-RU",
+          "fmt": {
+            "spaces": "{n} помещений · {area} м² полезной площади",
+            "equipment": "{lines} позиций · {units} единиц",
+            "cost": "{cost} без НДС",
+            "kwh": "{kwh} кВт·ч/год"
+          },
+          "note": "Цифры рассчитываются в реальном времени по данным модели. Предварительная оценка оборудования: не является сметой строительства или коммерческим предложением и не включает строительные работы, монтаж и инженерные системы здания."
+        },
+        "compare": {
+          "heading": "Исходный план и восстановленная модель",
+          "text": "Тот же кадр и тот же масштаб: сдвиньте, чтобы перейти от 2D-плана к 3D-модели.",
+          "labelPlan": "2D-план",
+          "label3d": "3D-модель",
+          "range": "Сдвиньте, чтобы сравнить план и 3D-модель",
+          "altPlan": "Анонимизированный 2D-план здания.",
+          "alt3d": "Вид сверху восстановленной 3D-модели, совмещённый с планом."
+        },
+        "share": {
+          "heading": "Презентация, которой можно поделиться",
+          "text": "Модель открывается в браузере, ничего устанавливать не нужно. Поделитесь ссылкой с командой, клиентами или инвесторами: каждый сможет пройтись по зданию, изучить помещения, оборудование и ориентировочные цифры.",
+          "alt": "Общий вид 3D-модели: здание и спортивные корты на парящем основании."
+        },
+        "sala": {
+          "heading": "Многофункциональный зал — от плана к впечатлению",
+          "lead": "Три вида одного и того же зала с одинаковым интерьером и планировкой: от архитектурного плана до восприятия на уровне глаз.",
+          "items": [
+            {
+              "name": "Архитектурный вид",
+              "text": "Визуализация зала сверху: зоны кардио, силовых тренажёров, свободных весов и функционального тренинга на реальной планировке.",
+              "alt": "Визуализация сверху многофункционального зала, оборудованного как спортзал, с санузлами, раздевалками и спа на переднем плане."
+            },
+            {
+              "name": "Вид интерьера",
+              "text": "Тот же зал на уровне глаз: материалы, освещение и оборудование такими, какими их увидят посетители.",
+              "alt": "Визуализация интерьера многофункционального зала: беговые дорожки у остеклённого фасада, силовая рама и деревянные панели."
+            },
+            {
+              "name": "Виртуальная прогулка",
+              "text": "Короткий кинематографичный проход по тому же пространству, чтобы представить проект до начала работ.",
+              "alt": "Видео-прогулка по многофункциональному залу, оборудованному как спортзал."
+            }
+          ],
+          "note": "Визуализации предлагаемого дизайна, а не фотографии построенного помещения."
+        }
       }
     },
     "restaurantsPage": {
@@ -2309,6 +2691,29 @@
           "cta": "Начать проект"
         }
       }
+    },
+    "namingExplain": {
+      "eyebrow": "Признание и финансирование",
+      "lead": "Три понятия, распространённые в финансировании некоммерческих проектов, простыми словами.",
+      "items": [
+        {
+          "label": "01 / Naming rights",
+          "title": "Ценность имени, данного пространству.",
+          "text": "Стратегия признания, которая связывает имя донора или спонсора с пространством, объектом или проектом."
+        },
+        {
+          "label": "02 / Naming capitalization",
+          "title": "Превратить признание в возможности финансирования.",
+          "text": "Мы определяем потенциал признания разных пространств и визуально представляем его как возможность привлечь финансирование."
+        },
+        {
+          "label": "03 / Пожертвования и фандрайзинг",
+          "title": "Соединять проекты с теми, кто хочет их воплотить.",
+          "text": "Пожертвования помогают финансировать проекты с социальным эффектом. Фандрайзинг соединяет потребности организации с людьми и компаниями, готовыми её поддержать."
+        }
+      ],
+      "role": "Наш вклад: пространственные концепции, 3D-визуализация, интерактивные решения для признания доноров и цифровой сторителлинг. Юридические, налоговые условия и условия привлечения средств организация определяет со своими консультантами.",
+      "link": "Посмотреть интерактивный пример"
     },
     "naming": {
       "eyebrow": "Именные пространства",
@@ -2797,6 +3202,118 @@
         "text": "Розкажіть про ваш простір і цілі. Ми відповімо особисто.",
         "whatsapp": "Написати у WhatsApp",
         "email": "Написати на email"
+      },
+      "closing": {
+        "label": "3DNA · Fitness Design",
+        "line1": "Ми проєктуємо не просто спортзали.",
+        "line2": "Ми створюємо враження.",
+        "sub": "Від концепції до простору. Від плану до реальності.",
+        "alt": "Дизайнер 3DNA тримає мініатюрний макет спортивного клубу з обладнаною фітнес-залою."
+      },
+      "caseStudy": {
+        "label": "Кейс · 3DNA",
+        "heading": "Від PDF-плану до інтерактивного цифрового проєкту.",
+        "body": "Подивіться, як ми перетворюємо архітектурну документацію на 3D-модель, якою можна переміщатися, — з інформацією про приміщення, обладнання, орієнтовну вартість і розрахункове енергоспоживання.",
+        "steps": [
+          {
+            "kicker": "01 — Ви надсилаєте",
+            "title": "Ви надсилаєте нам плани.",
+            "text": "Ми починаємо з PDF-планів, архітектурної документації та всієї доступної інформації про ваш простір.",
+            "alt": "Анонімізований план спортивного центру: фітнес-зал, роздягальні, спа, санвузли та рецепція."
+          },
+          {
+            "kicker": "02 — Ми створюємо",
+            "title": "Ми перетворюємо їх на цифровий простір.",
+            "text": "Відновлюємо геометрію, організовуємо приміщення та додаємо дизайн, матеріали й обладнання.",
+            "alt": "Перехід від 2D-плану до виду згори відновленої 3D-моделі в тому самому кадрі."
+          },
+          {
+            "kicker": "03 — Ви отримуєте",
+            "title": "Ви отримуєте інтерактивну презентацію.",
+            "text": "Досліджуйте будівлю, переглядайте кожне приміщення та діліться зрозумілою картиною проєкту з командою, клієнтами чи інвесторами.",
+            "alt": "Перспективний вид 3D-моделі будівлі з обладнаним фітнес-залом.",
+            "chips": [
+              "Приміщення",
+              "Обладнання",
+              "Бюджет і енергія"
+            ]
+          }
+        ],
+        "viewer": {
+          "loading": "Завантаження 3D-моделі…",
+          "error": "Не вдалося завантажити 3D-модель у цьому браузері.",
+          "title": "Спортивний центр · інтерактивна модель",
+          "fullscreen": "Відкрити на весь екран",
+          "exitFullscreen": "Вийти з повноекранного режиму",
+          "newTab": "Відкрити в новій вкладці",
+          "frameTitle": "Інтерактивна 3D-модель спортивного центру",
+          "hint": "Перетягуйте, щоб обертати · натисніть на модель і прокрутіть коліщатко або зведіть пальці для масштабу · натисніть на приміщення, щоб побачити інформацію.",
+          "uiLang": "Інтерфейс переглядача іспанською мовою."
+        },
+        "contains": {
+          "heading": "Що містить цифровий проєкт",
+          "items": [
+            "Приміщення та площі",
+            "Інтерактивна 3D-модель",
+            "Обладнання та меблі",
+            "Орієнтовний бюджет",
+            "Встановлена електрична потужність",
+            "Розрахункове енергоспоживання"
+          ],
+          "desc": [
+            "Кожне приміщення з корисною площею",
+            "Будівля, фітнес-зал і оточення для перегляду",
+            "Перелік за приміщеннями та категоріями",
+            "Вартість обладнання за приміщеннями та категоріями",
+            "Потужність обладнання з переліку",
+            "Річне споживання за годинами та завантаженням"
+          ],
+          "est": "Оцінка",
+          "locale": "uk-UA",
+          "fmt": {
+            "spaces": "{n} приміщень · {area} м² корисної площі",
+            "equipment": "{lines} позицій · {units} одиниць",
+            "cost": "{cost} без ПДВ",
+            "kwh": "{kwh} кВт·год/рік"
+          },
+          "note": "Цифри розраховуються в реальному часі за даними моделі. Попередня оцінка обладнання: не є кошторисом будівництва чи комерційною пропозицією і не включає будівельні роботи, монтаж та інженерні системи будівлі."
+        },
+        "compare": {
+          "heading": "Вихідний план і відновлена модель",
+          "text": "Той самий кадр і той самий масштаб: посуньте, щоб перейти від 2D-плану до 3D-моделі.",
+          "labelPlan": "2D-план",
+          "label3d": "3D-модель",
+          "range": "Посуньте, щоб порівняти план і 3D-модель",
+          "altPlan": "Анонімізований 2D-план будівлі.",
+          "alt3d": "Вид згори відновленої 3D-моделі, суміщений із планом."
+        },
+        "share": {
+          "heading": "Презентація, якою можна поділитися",
+          "text": "Модель відкривається в браузері, нічого встановлювати не потрібно. Поділіться посиланням із командою, клієнтами чи інвесторами: кожен зможе пройтися будівлею, переглянути приміщення, обладнання та орієнтовні цифри.",
+          "alt": "Загальний вигляд 3D-моделі: будівля та спортивні корти на ширяючій основі."
+        },
+        "sala": {
+          "heading": "Багатофункціональна зала — від плану до враження",
+          "lead": "Три види тієї самої зали з однаковим інтер'єром і плануванням: від архітектурного плану до сприйняття на рівні очей.",
+          "items": [
+            {
+              "name": "Архітектурний вигляд",
+              "text": "Візуалізація зали згори: зони кардіо, силових тренажерів, вільних ваг і функціонального тренінгу на реальному плануванні.",
+              "alt": "Візуалізація згори багатофункціональної зали, обладнаної як спортзал, із санвузлами, роздягальнями та спа на передньому плані."
+            },
+            {
+              "name": "Вигляд інтер'єру",
+              "text": "Та сама зала на рівні очей: матеріали, освітлення та обладнання такими, якими їх побачать відвідувачі.",
+              "alt": "Візуалізація інтер'єру багатофункціональної зали: бігові доріжки біля заскленого фасаду, силова рама та дерев'яні панелі."
+            },
+            {
+              "name": "Віртуальна прогулянка",
+              "text": "Коротка кінематографічна прогулянка тим самим простором, щоб представити проєкт до початку робіт.",
+              "alt": "Відео-прогулянка багатофункціональною залою, обладнаною як спортзал."
+            }
+          ],
+          "note": "Візуалізації запропонованого дизайну, а не фотографії збудованого приміщення."
+        }
       }
     },
     "restaurantsPage": {
@@ -3115,6 +3632,29 @@
           "cta": "Почати проєкт"
         }
       }
+    },
+    "namingExplain": {
+      "eyebrow": "Визнання та фінансування",
+      "lead": "Три поняття, поширені у фінансуванні неприбуткових проєктів, простими словами.",
+      "items": [
+        {
+          "label": "01 / Naming rights",
+          "title": "Цінність імені, даного простору.",
+          "text": "Стратегія визнання, що пов’язує ім’я донора або спонсора з простором, об’єктом чи проєктом."
+        },
+        {
+          "label": "02 / Naming capitalization",
+          "title": "Перетворити визнання на можливості фінансування.",
+          "text": "Ми визначаємо потенціал визнання різних просторів і візуально представляємо його як можливість залучити фінансування."
+        },
+        {
+          "label": "03 / Пожертви та фандрейзинг",
+          "title": "Поєднувати проєкти з тими, хто хоче їх втілити.",
+          "text": "Пожертви допомагають фінансувати проєкти із соціальним впливом. Фандрейзинг поєднує потреби організації з людьми та компаніями, готовими її підтримати."
+        }
+      ],
+      "role": "Наш внесок: просторові концепції, 3D-візуалізація, інтерактивні рішення для визнання донорів і цифровий сторітелінг. Юридичні, податкові умови та умови залучення коштів організація визначає зі своїми консультантами.",
+      "link": "Переглянути інтерактивний приклад"
     },
     "naming": {
       "eyebrow": "Іменні простори",

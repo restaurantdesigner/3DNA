@@ -101,8 +101,10 @@ function createFitnessPlanner(gym, translations) {
       model: gym.model,
       floor: gym.floor,
       serviceAreas: gym.serviceAreas || [],
+      serviceLayout: gym.serviceLayout || [],
+      architecture: gym.architecture || null,
       zones: gym.zones.map((z) => ({
-        id: z.id, mesh: z.mesh, index: z.index, rect: z.rect, floorFinish: z.floorFinish,
+        id: z.id, mesh: z.mesh, index: z.index, rect: z.rect, floorFinish: z.floorFinish, layout: z.layout || [],
         name: f.zones[z.id].name,
         equipment: z.equipment.map((e) => ({ key: e.key, quantity: e.quantity }))
       }))

@@ -17,7 +17,7 @@
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261011b">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261021i">
 </head>
 
 <body>
@@ -263,6 +263,129 @@
     </div>
   </section>
 
+  <!-- 09b CASE STUDY: PDF plan -> interactive digital project (live embed of /prototipos/centro-deportivo/) -->
+  <section class="fscene fcase" id="caso-practico" aria-labelledby="f-case-title" data-fcase>
+    <div class="fscene__inner fcase__intro">
+      <p class="fscene__label">{{fitnessPage.caseStudy.label}}</p>
+      <h2 class="fscene__title" id="f-case-title">{{fitnessPage.caseStudy.heading}}</h2>
+      <p class="fscene__body">{{fitnessPage.caseStudy.body}}</p>
+
+      <ol class="fcase__flow">
+        <li class="fcase__step">
+          <figure class="fcase__fig fcase__fig--plan"><img src="/images/fitness/case-study/plan-2d.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="{{fitnessPage.caseStudy.steps.0.alt}}"></figure>
+          <p class="fcase__num">{{fitnessPage.caseStudy.steps.0.kicker}}</p>
+          <h3 class="fcase__h">{{fitnessPage.caseStudy.steps.0.title}}</h3>
+          <p class="fcase__p">{{fitnessPage.caseStudy.steps.0.text}}</p>
+        </li>
+        <li class="fcase__step">
+          <figure class="fcase__fig fcase__fig--morph" aria-label="{{fitnessPage.caseStudy.steps.1.alt}}" role="img">
+            <img src="/images/fitness/case-study/plan-2d.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="">
+            <img class="fcase__morph" src="/images/fitness/case-study/plan-3d-top.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="">
+          </figure>
+          <p class="fcase__num">{{fitnessPage.caseStudy.steps.1.kicker}}</p>
+          <h3 class="fcase__h">{{fitnessPage.caseStudy.steps.1.title}}</h3>
+          <p class="fcase__p">{{fitnessPage.caseStudy.steps.1.text}}</p>
+        </li>
+        <li class="fcase__step">
+          <figure class="fcase__fig fcase__fig--viewer">
+            <img src="/images/fitness/case-study/model-building.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="{{fitnessPage.caseStudy.steps.2.alt}}">
+            <span class="fcase__chips" aria-hidden="true"><span>{{fitnessPage.caseStudy.steps.2.chips.0}}</span><span>{{fitnessPage.caseStudy.steps.2.chips.1}}</span><span>{{fitnessPage.caseStudy.steps.2.chips.2}}</span></span>
+          </figure>
+          <p class="fcase__num">{{fitnessPage.caseStudy.steps.2.kicker}}</p>
+          <h3 class="fcase__h">{{fitnessPage.caseStudy.steps.2.title}}</h3>
+          <p class="fcase__p">{{fitnessPage.caseStudy.steps.2.text}}</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- live viewer: nothing heavy loads until the visitor asks for it -->
+    <div class="fcase__viewer">
+      <!-- the live model loads by itself shortly before the section is reached (no click needed) -->
+      <div class="fcase__stage" data-fcase-stage data-src="/prototipos/centro-deportivo/?embed=1" data-title="{{fitnessPage.caseStudy.viewer.frameTitle}}">
+        <p class="fcase__status" data-fcase-status role="status"><span class="fcase__spin" aria-hidden="true"></span><span data-fcase-status-text>{{fitnessPage.caseStudy.viewer.loading}}</span></p>
+        <p class="fcase__fail" data-fcase-fail hidden>{{fitnessPage.caseStudy.viewer.error}} <a href="/prototipos/centro-deportivo/" target="_blank" rel="noopener">{{fitnessPage.caseStudy.viewer.newTab}} <span aria-hidden="true">&#8599;</span></a></p>
+        <button type="button" class="fcase__exit" data-fcase-exit hidden aria-label="{{fitnessPage.caseStudy.viewer.exitFullscreen}}">&times;</button>
+      </div>
+      <div class="fcase__bar">
+        <p class="fcase__hint">{{fitnessPage.caseStudy.viewer.hint}} <span class="fcase__uilang">{{fitnessPage.caseStudy.viewer.uiLang}}</span></p>
+        <div class="fcase__actions">
+          <button type="button" class="fcase__btn" data-fcase-full>{{fitnessPage.caseStudy.viewer.fullscreen}}</button>
+          <a class="fcase__link" href="/prototipos/centro-deportivo/" target="_blank" rel="noopener">{{fitnessPage.caseStudy.viewer.newTab}} <span aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sala Multiusos: the same hall from the plan to the experience (overhead image, interior image, video) -->
+    <div class="fscene__inner fcase__sala" role="group" aria-labelledby="f-sala-title">
+      <h3 class="fcase__sala-title" id="f-sala-title">{{fitnessPage.caseStudy.sala.heading}}</h3>
+      <p class="fcase__p fcase__sala-lead">{{fitnessPage.caseStudy.sala.lead}}</p>
+      <div class="fcase__sala-grid">
+        <figure class="fcase__stg fcase__stg--a">
+          <img src="/images/fitness/sala-multiusos/vista-arquitectonica.webp" width="1200" height="900" loading="lazy" decoding="async" alt="{{fitnessPage.caseStudy.sala.items.0.alt}}">
+          <figcaption class="fcase__chip"><span>01</span> {{fitnessPage.caseStudy.sala.items.0.name}}</figcaption>
+        </figure>
+        <figure class="fcase__stg fcase__stg--b">
+          <img src="/images/fitness/sala-multiusos/vista-interior.webp" width="1280" height="720" loading="lazy" decoding="async" alt="{{fitnessPage.caseStudy.sala.items.1.alt}}">
+          <figcaption class="fcase__chip"><span>02</span> {{fitnessPage.caseStudy.sala.items.1.name}}</figcaption>
+        </figure>
+        <figure class="fcase__stg fcase__stg--v" data-fcase-video>
+          <video class="fcase__video" playsinline webkit-playsinline muted preload="none" width="854" height="480"
+            data-fcase-poster="/images/fitness/sala-multiusos/vista-interior.webp" data-fcase-src="/videos/fitness/sala-multiusos/sala-multiusos-recorrido.mp4"
+            aria-label="{{fitnessPage.caseStudy.sala.items.2.alt}}"></video>
+          <figcaption class="fcase__chip"><span>03</span> {{fitnessPage.caseStudy.sala.items.2.name}}</figcaption>
+          <div class="fcase__vctl">
+            <button type="button" class="fcase__vbtn" data-v-play aria-pressed="false"
+              aria-label="{{fitnessPage.access.ui.play}}" data-label-play="{{fitnessPage.access.ui.play}}" data-label-pause="{{fitnessPage.access.ui.pause}}"><svg class="fcase__vi fcase__vi--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="fcase__vi fcase__vi--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
+            <button type="button" class="fcase__vbtn" data-v-sound aria-pressed="false"
+              aria-label="{{fitnessPage.access.ui.soundOn}}" data-label-on="{{fitnessPage.access.ui.soundOn}}" data-label-off="{{fitnessPage.access.ui.soundOff}}"><svg class="fcase__vi fcase__vi--muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><svg class="fcase__vi fcase__vi--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>
+          </div>
+        </figure>
+      </div>
+      <ol class="fcase__sala-steps">
+        <li><span class="fcase__num">01 — {{fitnessPage.caseStudy.sala.items.0.name}}</span><p class="fcase__p">{{fitnessPage.caseStudy.sala.items.0.text}}</p></li>
+        <li><span class="fcase__num">02 — {{fitnessPage.caseStudy.sala.items.1.name}}</span><p class="fcase__p">{{fitnessPage.caseStudy.sala.items.1.text}}</p></li>
+        <li><span class="fcase__num">03 — {{fitnessPage.caseStudy.sala.items.2.name}}</span><p class="fcase__p">{{fitnessPage.caseStudy.sala.items.2.text}}</p></li>
+      </ol>
+      <p class="fcase__note">{{fitnessPage.caseStudy.sala.note}}</p>
+    </div>
+
+    <div class="fscene__inner fcase__details">
+      <div class="fcase__contains">
+        <h3 class="fcase__sub">{{fitnessPage.caseStudy.contains.heading}}</h3>
+        <dl class="fcase__facts" data-fcase-facts data-locale="{{fitnessPage.caseStudy.contains.locale}}" data-f-spaces="{{fitnessPage.caseStudy.contains.fmt.spaces}}" data-f-equipment="{{fitnessPage.caseStudy.contains.fmt.equipment}}" data-f-cost="{{fitnessPage.caseStudy.contains.fmt.cost}}" data-f-kwh="{{fitnessPage.caseStudy.contains.fmt.kwh}}">
+          <div><dt>{{fitnessPage.caseStudy.contains.items.0}}</dt><dd data-fact="spaces">{{fitnessPage.caseStudy.contains.desc.0}}</dd></div>
+          <div><dt>{{fitnessPage.caseStudy.contains.items.1}}</dt><dd>{{fitnessPage.caseStudy.contains.desc.1}}</dd></div>
+          <div><dt>{{fitnessPage.caseStudy.contains.items.2}}</dt><dd data-fact="equipment">{{fitnessPage.caseStudy.contains.desc.2}}</dd></div>
+          <div><dt>{{fitnessPage.caseStudy.contains.items.3}} <span class="fcase__est">{{fitnessPage.caseStudy.contains.est}}</span></dt><dd data-fact="cost">{{fitnessPage.caseStudy.contains.desc.3}}</dd></div>
+          <div><dt>{{fitnessPage.caseStudy.contains.items.4}} <span class="fcase__est">{{fitnessPage.caseStudy.contains.est}}</span></dt><dd data-fact="kw">{{fitnessPage.caseStudy.contains.desc.4}}</dd></div>
+          <div><dt>{{fitnessPage.caseStudy.contains.items.5}} <span class="fcase__est">{{fitnessPage.caseStudy.contains.est}}</span></dt><dd data-fact="kwh">{{fitnessPage.caseStudy.contains.desc.5}}</dd></div>
+        </dl>
+        <p class="fcase__note">{{fitnessPage.caseStudy.contains.note}}</p>
+      </div>
+
+      <div class="fcase__compare">
+        <h3 class="fcase__sub">{{fitnessPage.caseStudy.compare.heading}}</h3>
+        <p class="fcase__p">{{fitnessPage.caseStudy.compare.text}}</p>
+        <div class="fcase__slider" data-fcase-compare style="--pos:50%">
+          <img src="/images/fitness/case-study/plan-3d-top.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="{{fitnessPage.caseStudy.compare.alt3d}}">
+          <div class="fcase__slider-top"><img src="/images/fitness/case-study/plan-2d.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="{{fitnessPage.caseStudy.compare.altPlan}}"></div>
+          <span class="fcase__tag fcase__tag--l">{{fitnessPage.caseStudy.compare.labelPlan}}</span>
+          <span class="fcase__tag fcase__tag--r">{{fitnessPage.caseStudy.compare.label3d}}</span>
+          <span class="fcase__handle" aria-hidden="true"></span>
+          <input type="range" min="0" max="100" value="50" aria-label="{{fitnessPage.caseStudy.compare.range}}">
+        </div>
+      </div>
+
+      <div class="fcase__share">
+        <figure class="fcase__share-fig"><img src="/images/fitness/case-study/model-island.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="{{fitnessPage.caseStudy.share.alt}}"></figure>
+        <div>
+          <h3 class="fcase__sub">{{fitnessPage.caseStudy.share.heading}}</h3>
+          <p class="fcase__p">{{fitnessPage.caseStudy.share.text}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 10 CONTACT -->
   <section class="fscene fcontact" id="contacto" aria-labelledby="f-contact-title">
     <div class="fscene__inner">
@@ -275,6 +398,19 @@
       </div>
     </div>
   </section>
+
+  <!-- 11 CLOSING BANNER (last section: the footer starts right below it) -->
+  <section class="fscene fcierre" id="cierre" aria-labelledby="f-cierre-title">
+    <picture class="fcierre__media">
+      <source media="(max-width: 700px)" srcset="/images/fitness/cierre/disenador-maqueta-960.webp" type="image/webp">
+      <img src="/images/fitness/cierre/disenador-maqueta-1672.webp" width="1672" height="941" loading="lazy" decoding="async" alt="{{fitnessPage.closing.alt}}">
+    </picture>
+    <div class="fcierre__text">
+      <p class="fscene__label fcierre__label">{{fitnessPage.closing.label}}</p>
+      <h2 class="fcierre__title" id="f-cierre-title"><span>{{fitnessPage.closing.line1}}</span> <span>{{fitnessPage.closing.line2}}</span></h2>
+      <p class="fcierre__sub">{{fitnessPage.closing.sub}}</p>
+    </div>
+  </section>
 </main>
 
 <!-- 3dna:footer -->
@@ -282,6 +418,7 @@
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261011a"></script>
 <script src="/assets/js/fitness-club-3d/club-app.js?v=20261019b" defer></script>
+<script src="/assets/js/fitness-case-study.js?v=20261021h" defer></script>
 
 <!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
      main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->

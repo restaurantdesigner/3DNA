@@ -46,7 +46,7 @@
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261019b">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261021i">
 </head>
 
 <body>
@@ -817,6 +817,129 @@
     </div>
   </section>
 
+  <!-- 09b CASE STUDY: PDF plan -> interactive digital project (live embed of /prototipos/centro-deportivo/) -->
+  <section class="fscene fcase" id="caso-practico" aria-labelledby="f-case-title" data-fcase>
+    <div class="fscene__inner fcase__intro">
+      <p class="fscene__label">Case study · 3DNA</p>
+      <h2 class="fscene__title" id="f-case-title">From a PDF plan to an interactive digital project.</h2>
+      <p class="fscene__body">See how we turn architectural documentation into a navigable 3D model with information on spaces, equipment, indicative costs and estimated energy use.</p>
+
+      <ol class="fcase__flow">
+        <li class="fcase__step">
+          <figure class="fcase__fig fcase__fig--plan"><img src="/images/fitness/case-study/plan-2d.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="Anonymised floor plan of a sports centre: fitness hall, changing rooms, spa, toilets and reception."></figure>
+          <p class="fcase__num">01 — You send</p>
+          <h3 class="fcase__h">You send us your plans.</h3>
+          <p class="fcase__p">We start from PDF plans, architectural documentation and whatever information is available about your space.</p>
+        </li>
+        <li class="fcase__step">
+          <figure class="fcase__fig fcase__fig--morph" aria-label="Transition from the 2D plan to the top view of the rebuilt 3D model, in the same frame." role="img">
+            <img src="/images/fitness/case-study/plan-2d.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="">
+            <img class="fcase__morph" src="/images/fitness/case-study/plan-3d-top.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="">
+          </figure>
+          <p class="fcase__num">02 — We create</p>
+          <h3 class="fcase__h">We turn them into a digital space.</h3>
+          <p class="fcase__p">We rebuild the geometry, organise the spaces and add design, materials and equipment.</p>
+        </li>
+        <li class="fcase__step">
+          <figure class="fcase__fig fcase__fig--viewer">
+            <img src="/images/fitness/case-study/model-building.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Perspective view of the 3D model of the building with the equipped fitness hall.">
+            <span class="fcase__chips" aria-hidden="true"><span>Spaces</span><span>Equipment</span><span>Budget &amp; energy</span></span>
+          </figure>
+          <p class="fcase__num">03 — You receive</p>
+          <h3 class="fcase__h">You receive an interactive presentation.</h3>
+          <p class="fcase__p">Explore the building, check every space and share a clear picture of the project with your team, clients or investors.</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- live viewer: nothing heavy loads until the visitor asks for it -->
+    <div class="fcase__viewer">
+      <!-- the live model loads by itself shortly before the section is reached (no click needed) -->
+      <div class="fcase__stage" data-fcase-stage data-src="/prototipos/centro-deportivo/?embed=1" data-title="Interactive 3D model of the sports centre">
+        <p class="fcase__status" data-fcase-status role="status"><span class="fcase__spin" aria-hidden="true"></span><span data-fcase-status-text>Loading the 3D model…</span></p>
+        <p class="fcase__fail" data-fcase-fail hidden>The 3D model could not be loaded in this browser. <a href="/prototipos/centro-deportivo/" target="_blank" rel="noopener">Open in a new tab <span aria-hidden="true">&#8599;</span></a></p>
+        <button type="button" class="fcase__exit" data-fcase-exit hidden aria-label="Exit full screen">&times;</button>
+      </div>
+      <div class="fcase__bar">
+        <p class="fcase__hint">Drag to rotate · click the model and scroll, or pinch, to zoom · tap a space to see its information. <span class="fcase__uilang">The viewer interface is in Spanish.</span></p>
+        <div class="fcase__actions">
+          <button type="button" class="fcase__btn" data-fcase-full>Explore full screen</button>
+          <a class="fcase__link" href="/prototipos/centro-deportivo/" target="_blank" rel="noopener">Open in a new tab <span aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sala Multiusos: the same hall from the plan to the experience (overhead image, interior image, video) -->
+    <div class="fscene__inner fcase__sala" role="group" aria-labelledby="f-sala-title">
+      <h3 class="fcase__sala-title" id="f-sala-title">Multipurpose hall — from plan to experience</h3>
+      <p class="fcase__p fcase__sala-lead">Three views of the same hall, with the same interior design and the same layout: from the architectural plan to the experience at eye level.</p>
+      <div class="fcase__sala-grid">
+        <figure class="fcase__stg fcase__stg--a">
+          <img src="/images/fitness/sala-multiusos/vista-arquitectonica.webp" width="1200" height="900" loading="lazy" decoding="async" alt="Overhead visualisation of the multipurpose hall fitted out as a gym, with toilets, changing rooms and spa in the foreground.">
+          <figcaption class="fcase__chip"><span>01</span> Architectural view</figcaption>
+        </figure>
+        <figure class="fcase__stg fcase__stg--b">
+          <img src="/images/fitness/sala-multiusos/vista-interior.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Interior visualisation of the multipurpose hall: treadmills along the glazed façade, power rack and timber panelling.">
+          <figcaption class="fcase__chip"><span>02</span> Interior view</figcaption>
+        </figure>
+        <figure class="fcase__stg fcase__stg--v" data-fcase-video>
+          <video class="fcase__video" playsinline webkit-playsinline muted preload="none" width="854" height="480"
+            data-fcase-poster="/images/fitness/sala-multiusos/vista-interior.webp" data-fcase-src="/videos/fitness/sala-multiusos/sala-multiusos-recorrido.mp4"
+            aria-label="Video walkthrough of the multipurpose hall fitted out as a gym."></video>
+          <figcaption class="fcase__chip"><span>03</span> Virtual walkthrough</figcaption>
+          <div class="fcase__vctl">
+            <button type="button" class="fcase__vbtn" data-v-play aria-pressed="false"
+              aria-label="Play video" data-label-play="Play video" data-label-pause="Pause video"><svg class="fcase__vi fcase__vi--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="fcase__vi fcase__vi--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
+            <button type="button" class="fcase__vbtn" data-v-sound aria-pressed="false"
+              aria-label="Turn sound on" data-label-on="Turn sound on" data-label-off="Mute"><svg class="fcase__vi fcase__vi--muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><svg class="fcase__vi fcase__vi--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>
+          </div>
+        </figure>
+      </div>
+      <ol class="fcase__sala-steps">
+        <li><span class="fcase__num">01 — Architectural view</span><p class="fcase__p">Overhead visualisation of the hall: cardio, strength, free-weight and functional training zones on the real layout.</p></li>
+        <li><span class="fcase__num">02 — Interior view</span><p class="fcase__p">The same hall at eye level: materials, lighting and equipment as they will be experienced.</p></li>
+        <li><span class="fcase__num">03 — Virtual walkthrough</span><p class="fcase__p">A short cinematic walkthrough of the same space to present the project before construction.</p></li>
+      </ol>
+      <p class="fcase__note">Visualisations of the proposed design; not photographs of a built space.</p>
+    </div>
+
+    <div class="fscene__inner fcase__details">
+      <div class="fcase__contains">
+        <h3 class="fcase__sub">What the digital project contains</h3>
+        <dl class="fcase__facts" data-fcase-facts data-locale="en-GB" data-f-spaces="{n} spaces · {area} m² usable" data-f-equipment="{lines} line items · {units} units" data-f-cost="{cost} excl. VAT" data-f-kwh="{kwh} kWh/year">
+          <div><dt>Spaces and floor areas</dt><dd data-fact="spaces">Every space with its usable area</dd></div>
+          <div><dt>Interactive 3D model</dt><dd>Building, fitness hall and surroundings to explore</dd></div>
+          <div><dt>Equipment and furniture</dt><dd data-fact="equipment">Inventory by space and category</dd></div>
+          <div><dt>Indicative budget <span class="fcase__est">Estimate</span></dt><dd data-fact="cost">Equipment cost by space and category</dd></div>
+          <div><dt>Installed electrical power <span class="fcase__est">Estimate</span></dt><dd data-fact="kw">Power of the equipment in the inventory</dd></div>
+          <div><dt>Estimated energy use <span class="fcase__est">Estimate</span></dt><dd data-fact="kwh">Annual consumption from hours and usage</dd></div>
+        </dl>
+        <p class="fcase__note">Figures calculated live from the model data. Preliminary equipment estimate: not a construction budget or a commercial offer, and it excludes building work, installation and building services.</p>
+      </div>
+
+      <div class="fcase__compare">
+        <h3 class="fcase__sub">Original plan and rebuilt model</h3>
+        <p class="fcase__p">Same frame, same scale: slide to move from the 2D plan to the 3D model.</p>
+        <div class="fcase__slider" data-fcase-compare style="--pos:50%">
+          <img src="/images/fitness/case-study/plan-3d-top.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="Top view of the rebuilt 3D model, aligned with the plan.">
+          <div class="fcase__slider-top"><img src="/images/fitness/case-study/plan-2d.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="Anonymised 2D plan of the building."></div>
+          <span class="fcase__tag fcase__tag--l">2D plan</span>
+          <span class="fcase__tag fcase__tag--r">3D model</span>
+          <span class="fcase__handle" aria-hidden="true"></span>
+          <input type="range" min="0" max="100" value="50" aria-label="Slide to compare the plan and the 3D model">
+        </div>
+      </div>
+
+      <div class="fcase__share">
+        <figure class="fcase__share-fig"><img src="/images/fitness/case-study/model-island.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Overview of the 3D model: the building and sports courts on a floating base."></figure>
+        <div>
+          <h3 class="fcase__sub">A presentation you can share</h3>
+          <p class="fcase__p">The model opens in the browser, with nothing to install. Share the link with your team, clients or investors: anyone can walk through the building, check the spaces and review the equipment and indicative figures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 10 CONTACT -->
   <section class="fscene fcontact" id="contacto" aria-labelledby="f-contact-title">
     <div class="fscene__inner">
@@ -827,6 +950,19 @@
           data-track="whatsapp_clicked" data-track-location="fitness_contact">Message us on WhatsApp <span aria-hidden="true">&rarr;</span></a>
         <a class="fcontact__btn" href="mailto:andrei@3dna.es?subject=Enquiry%20from%203dna.es&amp;body=Hello%2C%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20services." data-track="email_clicked" data-track-location="fitness_contact">Send an email</a>
       </div>
+    </div>
+  </section>
+
+  <!-- 11 CLOSING BANNER (last section: the footer starts right below it) -->
+  <section class="fscene fcierre" id="cierre" aria-labelledby="f-cierre-title">
+    <picture class="fcierre__media">
+      <source media="(max-width: 700px)" srcset="/images/fitness/cierre/disenador-maqueta-960.webp" type="image/webp">
+      <img src="/images/fitness/cierre/disenador-maqueta-1672.webp" width="1672" height="941" loading="lazy" decoding="async" alt="3DNA designer holding a miniature model of the sports club, with the equipped fitness hall.">
+    </picture>
+    <div class="fcierre__text">
+      <p class="fscene__label fcierre__label">3DNA · Fitness Design</p>
+      <h2 class="fcierre__title" id="f-cierre-title"><span>We don't just design gyms.</span> <span>We design experiences.</span></h2>
+      <p class="fcierre__sub">From concept to space. From plan to reality.</p>
     </div>
   </section>
 </main>
@@ -1002,6 +1138,7 @@
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261018a"></script>
 <script src="/assets/js/fitness-club-3d/club-app.js?v=20261019b" defer></script>
+<script src="/assets/js/fitness-case-study.js?v=20261021h" defer></script>
 
 <!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
      main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->

@@ -46,7 +46,7 @@
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261019b">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261021i">
 </head>
 
 <body>
@@ -817,6 +817,129 @@
     </div>
   </section>
 
+  <!-- 09b CASE STUDY: PDF plan -> interactive digital project (live embed of /prototipos/centro-deportivo/) -->
+  <section class="fscene fcase" id="caso-practico" aria-labelledby="f-case-title" data-fcase>
+    <div class="fscene__inner fcase__intro">
+      <p class="fscene__label">Кейс · 3DNA</p>
+      <h2 class="fscene__title" id="f-case-title">Від PDF-плану до інтерактивного цифрового проєкту.</h2>
+      <p class="fscene__body">Подивіться, як ми перетворюємо архітектурну документацію на 3D-модель, якою можна переміщатися, — з інформацією про приміщення, обладнання, орієнтовну вартість і розрахункове енергоспоживання.</p>
+
+      <ol class="fcase__flow">
+        <li class="fcase__step">
+          <figure class="fcase__fig fcase__fig--plan"><img src="/images/fitness/case-study/plan-2d.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="Анонімізований план спортивного центру: фітнес-зал, роздягальні, спа, санвузли та рецепція."></figure>
+          <p class="fcase__num">01 — Ви надсилаєте</p>
+          <h3 class="fcase__h">Ви надсилаєте нам плани.</h3>
+          <p class="fcase__p">Ми починаємо з PDF-планів, архітектурної документації та всієї доступної інформації про ваш простір.</p>
+        </li>
+        <li class="fcase__step">
+          <figure class="fcase__fig fcase__fig--morph" aria-label="Перехід від 2D-плану до виду згори відновленої 3D-моделі в тому самому кадрі." role="img">
+            <img src="/images/fitness/case-study/plan-2d.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="">
+            <img class="fcase__morph" src="/images/fitness/case-study/plan-3d-top.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="">
+          </figure>
+          <p class="fcase__num">02 — Ми створюємо</p>
+          <h3 class="fcase__h">Ми перетворюємо їх на цифровий простір.</h3>
+          <p class="fcase__p">Відновлюємо геометрію, організовуємо приміщення та додаємо дизайн, матеріали й обладнання.</p>
+        </li>
+        <li class="fcase__step">
+          <figure class="fcase__fig fcase__fig--viewer">
+            <img src="/images/fitness/case-study/model-building.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Перспективний вид 3D-моделі будівлі з обладнаним фітнес-залом.">
+            <span class="fcase__chips" aria-hidden="true"><span>Приміщення</span><span>Обладнання</span><span>Бюджет і енергія</span></span>
+          </figure>
+          <p class="fcase__num">03 — Ви отримуєте</p>
+          <h3 class="fcase__h">Ви отримуєте інтерактивну презентацію.</h3>
+          <p class="fcase__p">Досліджуйте будівлю, переглядайте кожне приміщення та діліться зрозумілою картиною проєкту з командою, клієнтами чи інвесторами.</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- live viewer: nothing heavy loads until the visitor asks for it -->
+    <div class="fcase__viewer">
+      <!-- the live model loads by itself shortly before the section is reached (no click needed) -->
+      <div class="fcase__stage" data-fcase-stage data-src="/prototipos/centro-deportivo/?embed=1" data-title="Інтерактивна 3D-модель спортивного центру">
+        <p class="fcase__status" data-fcase-status role="status"><span class="fcase__spin" aria-hidden="true"></span><span data-fcase-status-text>Завантаження 3D-моделі…</span></p>
+        <p class="fcase__fail" data-fcase-fail hidden>Не вдалося завантажити 3D-модель у цьому браузері. <a href="/prototipos/centro-deportivo/" target="_blank" rel="noopener">Відкрити в новій вкладці <span aria-hidden="true">&#8599;</span></a></p>
+        <button type="button" class="fcase__exit" data-fcase-exit hidden aria-label="Вийти з повноекранного режиму">&times;</button>
+      </div>
+      <div class="fcase__bar">
+        <p class="fcase__hint">Перетягуйте, щоб обертати · натисніть на модель і прокрутіть коліщатко або зведіть пальці для масштабу · натисніть на приміщення, щоб побачити інформацію. <span class="fcase__uilang">Інтерфейс переглядача іспанською мовою.</span></p>
+        <div class="fcase__actions">
+          <button type="button" class="fcase__btn" data-fcase-full>Відкрити на весь екран</button>
+          <a class="fcase__link" href="/prototipos/centro-deportivo/" target="_blank" rel="noopener">Відкрити в новій вкладці <span aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sala Multiusos: the same hall from the plan to the experience (overhead image, interior image, video) -->
+    <div class="fscene__inner fcase__sala" role="group" aria-labelledby="f-sala-title">
+      <h3 class="fcase__sala-title" id="f-sala-title">Багатофункціональна зала — від плану до враження</h3>
+      <p class="fcase__p fcase__sala-lead">Три види тієї самої зали з однаковим інтер'єром і плануванням: від архітектурного плану до сприйняття на рівні очей.</p>
+      <div class="fcase__sala-grid">
+        <figure class="fcase__stg fcase__stg--a">
+          <img src="/images/fitness/sala-multiusos/vista-arquitectonica.webp" width="1200" height="900" loading="lazy" decoding="async" alt="Візуалізація згори багатофункціональної зали, обладнаної як спортзал, із санвузлами, роздягальнями та спа на передньому плані.">
+          <figcaption class="fcase__chip"><span>01</span> Архітектурний вигляд</figcaption>
+        </figure>
+        <figure class="fcase__stg fcase__stg--b">
+          <img src="/images/fitness/sala-multiusos/vista-interior.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Візуалізація інтер'єру багатофункціональної зали: бігові доріжки біля заскленого фасаду, силова рама та дерев'яні панелі.">
+          <figcaption class="fcase__chip"><span>02</span> Вигляд інтер'єру</figcaption>
+        </figure>
+        <figure class="fcase__stg fcase__stg--v" data-fcase-video>
+          <video class="fcase__video" playsinline webkit-playsinline muted preload="none" width="854" height="480"
+            data-fcase-poster="/images/fitness/sala-multiusos/vista-interior.webp" data-fcase-src="/videos/fitness/sala-multiusos/sala-multiusos-recorrido.mp4"
+            aria-label="Відео-прогулянка багатофункціональною залою, обладнаною як спортзал."></video>
+          <figcaption class="fcase__chip"><span>03</span> Віртуальна прогулянка</figcaption>
+          <div class="fcase__vctl">
+            <button type="button" class="fcase__vbtn" data-v-play aria-pressed="false"
+              aria-label="Відтворити відео" data-label-play="Відтворити відео" data-label-pause="Поставити відео на паузу"><svg class="fcase__vi fcase__vi--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="fcase__vi fcase__vi--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
+            <button type="button" class="fcase__vbtn" data-v-sound aria-pressed="false"
+              aria-label="Увімкнути звук" data-label-on="Увімкнути звук" data-label-off="Вимкнути звук"><svg class="fcase__vi fcase__vi--muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><svg class="fcase__vi fcase__vi--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>
+          </div>
+        </figure>
+      </div>
+      <ol class="fcase__sala-steps">
+        <li><span class="fcase__num">01 — Архітектурний вигляд</span><p class="fcase__p">Візуалізація зали згори: зони кардіо, силових тренажерів, вільних ваг і функціонального тренінгу на реальному плануванні.</p></li>
+        <li><span class="fcase__num">02 — Вигляд інтер'єру</span><p class="fcase__p">Та сама зала на рівні очей: матеріали, освітлення та обладнання такими, якими їх побачать відвідувачі.</p></li>
+        <li><span class="fcase__num">03 — Віртуальна прогулянка</span><p class="fcase__p">Коротка кінематографічна прогулянка тим самим простором, щоб представити проєкт до початку робіт.</p></li>
+      </ol>
+      <p class="fcase__note">Візуалізації запропонованого дизайну, а не фотографії збудованого приміщення.</p>
+    </div>
+
+    <div class="fscene__inner fcase__details">
+      <div class="fcase__contains">
+        <h3 class="fcase__sub">Що містить цифровий проєкт</h3>
+        <dl class="fcase__facts" data-fcase-facts data-locale="uk-UA" data-f-spaces="{n} приміщень · {area} м² корисної площі" data-f-equipment="{lines} позицій · {units} одиниць" data-f-cost="{cost} без ПДВ" data-f-kwh="{kwh} кВт·год/рік">
+          <div><dt>Приміщення та площі</dt><dd data-fact="spaces">Кожне приміщення з корисною площею</dd></div>
+          <div><dt>Інтерактивна 3D-модель</dt><dd>Будівля, фітнес-зал і оточення для перегляду</dd></div>
+          <div><dt>Обладнання та меблі</dt><dd data-fact="equipment">Перелік за приміщеннями та категоріями</dd></div>
+          <div><dt>Орієнтовний бюджет <span class="fcase__est">Оцінка</span></dt><dd data-fact="cost">Вартість обладнання за приміщеннями та категоріями</dd></div>
+          <div><dt>Встановлена електрична потужність <span class="fcase__est">Оцінка</span></dt><dd data-fact="kw">Потужність обладнання з переліку</dd></div>
+          <div><dt>Розрахункове енергоспоживання <span class="fcase__est">Оцінка</span></dt><dd data-fact="kwh">Річне споживання за годинами та завантаженням</dd></div>
+        </dl>
+        <p class="fcase__note">Цифри розраховуються в реальному часі за даними моделі. Попередня оцінка обладнання: не є кошторисом будівництва чи комерційною пропозицією і не включає будівельні роботи, монтаж та інженерні системи будівлі.</p>
+      </div>
+
+      <div class="fcase__compare">
+        <h3 class="fcase__sub">Вихідний план і відновлена модель</h3>
+        <p class="fcase__p">Той самий кадр і той самий масштаб: посуньте, щоб перейти від 2D-плану до 3D-моделі.</p>
+        <div class="fcase__slider" data-fcase-compare style="--pos:50%">
+          <img src="/images/fitness/case-study/plan-3d-top.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="Вид згори відновленої 3D-моделі, суміщений із планом.">
+          <div class="fcase__slider-top"><img src="/images/fitness/case-study/plan-2d.webp" width="1400" height="1283" loading="lazy" decoding="async" alt="Анонімізований 2D-план будівлі."></div>
+          <span class="fcase__tag fcase__tag--l">2D-план</span>
+          <span class="fcase__tag fcase__tag--r">3D-модель</span>
+          <span class="fcase__handle" aria-hidden="true"></span>
+          <input type="range" min="0" max="100" value="50" aria-label="Посуньте, щоб порівняти план і 3D-модель">
+        </div>
+      </div>
+
+      <div class="fcase__share">
+        <figure class="fcase__share-fig"><img src="/images/fitness/case-study/model-island.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Загальний вигляд 3D-моделі: будівля та спортивні корти на ширяючій основі."></figure>
+        <div>
+          <h3 class="fcase__sub">Презентація, якою можна поділитися</h3>
+          <p class="fcase__p">Модель відкривається в браузері, нічого встановлювати не потрібно. Поділіться посиланням із командою, клієнтами чи інвесторами: кожен зможе пройтися будівлею, переглянути приміщення, обладнання та орієнтовні цифри.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 10 CONTACT -->
   <section class="fscene fcontact" id="contacto" aria-labelledby="f-contact-title">
     <div class="fscene__inner">
@@ -827,6 +950,19 @@
           data-track="whatsapp_clicked" data-track-location="fitness_contact">Написати у WhatsApp <span aria-hidden="true">&rarr;</span></a>
         <a class="fcontact__btn" href="mailto:andrei@3dna.es?subject=%D0%97%D0%B0%D0%BF%D0%B8%D1%82%20%D1%96%D0%B7%20%D1%81%D0%B0%D0%B9%D1%82%D1%83%203dna.es&amp;body=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B4%D1%96%D0%B7%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D1%8F%20%D0%B1%D1%96%D0%BB%D1%8C%D1%88%D0%B5%20%D0%BF%D1%80%D0%BE%20%D0%B2%D0%B0%D1%88%D1%96%20%D0%BF%D0%BE%D1%81%D0%BB%D1%83%D0%B3%D0%B8." data-track="email_clicked" data-track-location="fitness_contact">Написати на email</a>
       </div>
+    </div>
+  </section>
+
+  <!-- 11 CLOSING BANNER (last section: the footer starts right below it) -->
+  <section class="fscene fcierre" id="cierre" aria-labelledby="f-cierre-title">
+    <picture class="fcierre__media">
+      <source media="(max-width: 700px)" srcset="/images/fitness/cierre/disenador-maqueta-960.webp" type="image/webp">
+      <img src="/images/fitness/cierre/disenador-maqueta-1672.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Дизайнер 3DNA тримає мініатюрний макет спортивного клубу з обладнаною фітнес-залою.">
+    </picture>
+    <div class="fcierre__text">
+      <p class="fscene__label fcierre__label">3DNA · Fitness Design</p>
+      <h2 class="fcierre__title" id="f-cierre-title"><span>Ми проєктуємо не просто спортзали.</span> <span>Ми створюємо враження.</span></h2>
+      <p class="fcierre__sub">Від концепції до простору. Від плану до реальності.</p>
     </div>
   </section>
 </main>
@@ -1002,6 +1138,7 @@
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261018a"></script>
 <script src="/assets/js/fitness-club-3d/club-app.js?v=20261019b" defer></script>
+<script src="/assets/js/fitness-case-study.js?v=20261021h" defer></script>
 
 <!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
      main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->

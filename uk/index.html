@@ -50,7 +50,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261019b">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261021i">
 </head>
 
 <body>
@@ -259,7 +259,7 @@
       <p class="sector__text">Від планування та маршрутів руху до атмосфери, освітлення й шляху гостя — ми створюємо інтер'єри ресторанів, у яких приємно перебувати, які ефективно працюють і підтримують бізнес.</p>
       <a class="sector__cta" href="/uk/restaurants/"
         data-track="view_projects_clicked" data-track-location="sector_restaurants">
-        Переглянути проєкти ресторанів <span class="sector__arrow" aria-hidden="true">&rarr;</span>
+        <span class="sector__cta-text">Переглянути проєкти ресторанів</span><span class="sector__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" focusable="false"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <ul class="sector__services" aria-label="Послуги">
         <li>Планування</li>
@@ -728,7 +728,7 @@
   <div class="gym3d__foot">
     <a class="sector__cta gym3d__projects" href="/uk/fitness/"
       data-track="view_projects_clicked" data-track-location="sector_fitness">
-      Переглянути фітнес-проєкти <span class="sector__arrow" aria-hidden="true">&rarr;</span>
+      <span class="sector__cta-text">Переглянути фітнес-проєкти</span><span class="sector__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" focusable="false"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     </a>
     <ul class="sector__services gym3d__services" aria-label="Послуги">
       <li>Планування</li>
@@ -739,7 +739,7 @@
     </ul>
   </div>
 
-  <script type="application/json" id="gym-data">{"model":{"url":"/models/gym/gym.glb","enabled":false,"note":"Set enabled to true once /models/gym/gym.glb exists. While false, the built-in placeholder geometry is used and no request is made."},"floor":{"width":32,"depth":22,"unit":"m"},"serviceAreas":[{"id":"service","rect":{"x":26,"z":0,"w":6,"d":8}}],"zones":[{"id":"reception","mesh":"zone-reception","index":"01","rect":{"x":0,"z":16,"w":6,"d":6},"floorFinish":"wood","name":"Рецепція","equipment":[{"key":"reception_desk","quantity":1},{"key":"access_gate","quantity":2},{"key":"waiting_bench","quantity":2},{"key":"retail_wall","quantity":1}]},{"id":"cardio","mesh":"zone-cardio","index":"02","rect":{"x":6,"z":16,"w":13,"d":6},"floorFinish":"rubber","name":"Кардіо","equipment":[{"key":"treadmill","quantity":6},{"key":"elliptical","quantity":4},{"key":"upright_bike","quantity":3},{"key":"rower","quantity":2},{"key":"stair_climber","quantity":2}]},{"id":"strength","mesh":"zone-strength","index":"03","rect":{"x":6,"z":8,"w":9,"d":8},"floorFinish":"rubber","name":"Силові тренажери","equipment":[{"key":"chest_press","quantity":1},{"key":"shoulder_press","quantity":1},{"key":"lat_pulldown","quantity":1},{"key":"seated_row","quantity":1},{"key":"leg_press","quantity":1},{"key":"leg_extension","quantity":1},{"key":"leg_curl","quantity":1},{"key":"cable_crossover","quantity":1}]},{"id":"freeweights","mesh":"zone-freeweights","index":"04","rect":{"x":15,"z":8,"w":9,"d":8},"floorFinish":"impact","name":"Вільні ваги","equipment":[{"key":"power_rack","quantity":2},{"key":"adjustable_bench","quantity":2},{"key":"dumbbell_rack","quantity":1},{"key":"plate_storage","quantity":1},{"key":"lifting_platform","quantity":1}]},{"id":"functional","mesh":"zone-functional","index":"05","rect":{"x":19,"z":16,"w":13,"d":6},"floorFinish":"turf","name":"Функціональний тренінг","equipment":[{"key":"functional_rig","quantity":1},{"key":"kettlebell_set","quantity":4},{"key":"medicine_ball","quantity":6},{"key":"plyo_box","quantity":4},{"key":"sled_lane","quantity":2},{"key":"suspension_point","quantity":6}]},{"id":"stretching","mesh":"zone-stretching","index":"06","rect":{"x":24,"z":8,"w":8,"d":8},"floorFinish":"wood","name":"Мобільність","equipment":[{"key":"mat","quantity":10},{"key":"foam_roller","quantity":10},{"key":"stretch_station","quantity":2}]},{"id":"studio","mesh":"zone-studio","index":"07","rect":{"x":6,"z":0,"w":12,"d":8},"floorFinish":"wood","name":"Зал групових програм","equipment":[{"key":"training_position","quantity":20},{"key":"storage_wall","quantity":1},{"key":"mirror_wall","quantity":1},{"key":"audio_system","quantity":1}]},{"id":"spin","mesh":"zone-spin","index":"08","rect":{"x":18,"z":0,"w":8,"d":8},"floorFinish":"rubber","name":"Сайкл","equipment":[{"key":"spin_bike","quantity":15},{"key":"instructor_platform","quantity":1},{"key":"lighting_control","quantity":1}]},{"id":"lockers","mesh":"zone-lockers","index":"09","rect":{"x":0,"z":8,"w":6,"d":8},"floorFinish":"tile","name":"Роздягальні","equipment":[{"key":"locker","quantity":80},{"key":"shower","quantity":8},{"key":"changing_bench","quantity":6},{"key":"vanity_station","quantity":4}]},{"id":"recovery","mesh":"zone-recovery","index":"10","rect":{"x":0,"z":0,"w":6,"d":8},"floorFinish":"wood","name":"Відновлення","equipment":[{"key":"stretch_bench","quantity":2},{"key":"recovery_station","quantity":2},{"key":"massage_table","quantity":1}]}]}</script>
+  <script type="application/json" id="gym-data">{"model":{"url":"/models/gym/gym.glb","enabled":false,"note":"Set enabled to true once /models/gym/gym.glb exists. While false, the built-in placeholder geometry is used and no request is made."},"floor":{"width":32,"depth":22,"unit":"m"},"serviceAreas":[{"id":"service","rect":{"x":26,"z":0,"w":6,"d":8}}],"serviceLayout":[{"k":"storage_wall","p":[29,0.3],"r":0},{"k":"towel_station","p":[27.2,6.9],"r":180}],"architecture":{"_about":"Walls of the 3D model (types: solid = full-height perimeter, cut = low partition, glass, curtain = glazed facade, door = glazed entrance). Columns: [x, z].","wallHeight":3.2,"cutHeight":1.2,"walls":[{"t":"solid","a":[0,0],"b":[32,0]},{"t":"solid","a":[0,0],"b":[0,22]},{"t":"curtain","a":[0,22],"b":[1.6,22]},{"t":"door","a":[1.6,22],"b":[4.8,22]},{"t":"curtain","a":[4.8,22],"b":[32,22]},{"t":"curtain","a":[32,0],"b":[32,22]},{"t":"cut","a":[6,0],"b":[6,8]},{"t":"cut","a":[0,8],"b":[1.8,8]},{"t":"cut","a":[2.6,8],"b":[6,8]},{"t":"cut","a":[6,8],"b":[6,16]},{"t":"cut","a":[0,16],"b":[4.4,16]},{"t":"cut","a":[5.4,16],"b":[6,16]},{"t":"glass","a":[6,8],"b":[15,8]},{"t":"glass","a":[16.2,8],"b":[18,8]},{"t":"cut","a":[18,0],"b":[18,8]},{"t":"glass","a":[18,8],"b":[24.4,8]},{"t":"glass","a":[25.6,8],"b":[26,8]},{"t":"cut","a":[26,0],"b":[26,8]},{"t":"cut","a":[26,8],"b":[28.4,8]},{"t":"cut","a":[29.6,8],"b":[32,8]}],"columns":[[15,16],[24,16]],"ceilingLines":[{"a":[6.6,18.8],"b":[18.4,18.8]},{"a":[6.6,21.2],"b":[18.4,21.2]},{"a":[6.6,12],"b":[14,12]},{"a":[15.6,10.4],"b":[23.4,10.4]},{"a":[15.6,13.6],"b":[23.4,13.6]},{"a":[19.6,18.8],"b":[31.4,18.8]},{"a":[24.6,11.4],"b":[31.4,11.4]}]},"zones":[{"id":"reception","mesh":"zone-reception","index":"01","rect":{"x":0,"z":16,"w":6,"d":6},"floorFinish":"wood","layout":[{"k":"retail_unit","p":[1.4,16.25],"r":0},{"k":"reception_desk","p":[3.2,18.3],"r":0},{"k":"speed_gate","p":[5.45,19.7],"r":90,"n":2,"s":[0,0.95]},{"k":"waiting_bench","p":[0.6,18.4],"r":90,"n":2,"s":[0,2]},{"k":"planter","p":[0.75,21.65],"r":0},{"k":"planter","p":[5.3,16.7],"r":0}],"name":"Рецепція","equipment":[{"key":"reception_desk","quantity":1},{"key":"access_gate","quantity":2},{"key":"waiting_bench","quantity":2},{"key":"retail_wall","quantity":1}]},{"id":"cardio","mesh":"zone-cardio","index":"02","rect":{"x":6,"z":16,"w":13,"d":6},"floorFinish":"rubber","layout":[{"k":"treadmill","p":[7,20.5],"r":0,"n":6,"s":[1.2,0]},{"k":"elliptical","p":[14.6,20.5],"r":0,"n":4,"s":[1.15,0]},{"k":"upright_bike","p":[7,17.4],"r":0,"n":3,"s":[1,0]},{"k":"rower","p":[10.6,17.6],"r":0,"n":2,"s":[1,0]},{"k":"stair_climber","p":[13.2,17.5],"r":0,"n":2,"s":[1.15,0]},{"k":"towel_station","p":[17.6,17.2],"r":0}],"name":"Кардіо","equipment":[{"key":"treadmill","quantity":6},{"key":"elliptical","quantity":4},{"key":"upright_bike","quantity":3},{"key":"rower","quantity":2},{"key":"stair_climber","quantity":2}]},{"id":"strength","mesh":"zone-strength","index":"03","rect":{"x":6,"z":8,"w":9,"d":8},"floorFinish":"rubber","layout":[{"k":"chest_press","p":[7,9.3],"r":0},{"k":"shoulder_press","p":[8.6,9.3],"r":0},{"k":"lat_pulldown","p":[10.2,9.3],"r":0},{"k":"seated_row","p":[11.8,9.3],"r":0},{"k":"leg_press","p":[7.2,14.6],"r":180},{"k":"leg_extension","p":[9.1,14.8],"r":180},{"k":"leg_curl","p":[10.7,14.8],"r":180},{"k":"cable_crossover","p":[14.5,12],"r":-90}],"name":"Силові тренажери","equipment":[{"key":"chest_press","quantity":1},{"key":"shoulder_press","quantity":1},{"key":"lat_pulldown","quantity":1},{"key":"seated_row","quantity":1},{"key":"leg_press","quantity":1},{"key":"leg_extension","quantity":1},{"key":"leg_curl","quantity":1},{"key":"cable_crossover","quantity":1}]},{"id":"freeweights","mesh":"zone-freeweights","index":"04","rect":{"x":15,"z":8,"w":9,"d":8},"floorFinish":"impact","layout":[{"k":"dumbbell_rack","p":[19.5,8.6],"r":0},{"k":"mirror_panel","p":[19.5,8.06],"r":0},{"k":"adjustable_bench","p":[16.8,11.2],"r":0},{"k":"adjustable_bench","p":[22.6,11.2],"r":0},{"k":"lifting_platform","p":[19.5,14.1],"r":0},{"k":"power_rack","p":[19.5,14.1],"r":0},{"k":"power_rack","p":[22.85,14.3],"r":0},{"k":"plate_tree","p":[16.2,14.6],"r":0}],"name":"Вільні ваги","equipment":[{"key":"power_rack","quantity":2},{"key":"adjustable_bench","quantity":2},{"key":"dumbbell_rack","quantity":1},{"key":"plate_storage","quantity":1},{"key":"lifting_platform","quantity":1}]},{"id":"functional","mesh":"zone-functional","index":"05","rect":{"x":19,"z":16,"w":13,"d":6},"floorFinish":"turf","layout":[{"k":"functional_rig","p":[25.5,17.4],"r":0},{"k":"sled_lane","p":[25.5,19.75],"r":0},{"k":"sled_lane","p":[25.5,21.2],"r":0},{"k":"kettlebell_rack","p":[20.6,17.3],"r":0},{"k":"plyo_box","p":[29.4,16.8],"r":0,"n":2,"s":[0.85,0]},{"k":"plyo_box","p":[29.4,17.5],"r":0,"n":2,"s":[0.85,0]},{"k":"medicine_ball","p":[31.4,16.7],"r":0,"n":4,"s":[0,0.42]}],"name":"Функціональний тренінг","equipment":[{"key":"functional_rig","quantity":1},{"key":"kettlebell_set","quantity":4},{"key":"medicine_ball","quantity":6},{"key":"plyo_box","quantity":4},{"key":"sled_lane","quantity":2},{"key":"suspension_point","quantity":6}]},{"id":"stretching","mesh":"zone-stretching","index":"06","rect":{"x":24,"z":8,"w":8,"d":8},"floorFinish":"wood","layout":[{"k":"mat","p":[25,10.2],"r":0,"n":5,"s":[1.1,0]},{"k":"mat","p":[25,12.4],"r":0,"n":5,"s":[1.1,0]},{"k":"mobility_shelf","p":[31.6,12.2],"r":-90},{"k":"stretch_station","p":[26,14.9],"r":0,"n":2,"s":[3,0]},{"k":"stability_ball","p":[31.4,9],"r":0,"n":2,"s":[0,0.75]}],"name":"Мобільність","equipment":[{"key":"mat","quantity":10},{"key":"foam_roller","quantity":10},{"key":"stretch_station","quantity":2}]},{"id":"studio","mesh":"zone-studio","index":"07","rect":{"x":6,"z":0,"w":12,"d":8},"floorFinish":"wood","layout":[{"k":"mirror_wall","p":[12,0.08],"r":0},{"k":"training_position","p":[7.6,2.4],"r":180,"n":5,"s":[2,0]},{"k":"training_position","p":[7.6,3.9],"r":180,"n":5,"s":[2,0]},{"k":"training_position","p":[7.6,5.4],"r":180,"n":5,"s":[2,0]},{"k":"training_position","p":[7.6,6.9],"r":180,"n":5,"s":[2,0]},{"k":"storage_wall","p":[17.7,4],"r":-90},{"k":"speaker","p":[6.5,0.45],"r":0},{"k":"speaker","p":[16.9,0.45],"r":0}],"name":"Зал групових програм","equipment":[{"key":"training_position","quantity":20},{"key":"storage_wall","quantity":1},{"key":"mirror_wall","quantity":1},{"key":"audio_system","quantity":1}]},{"id":"spin","mesh":"zone-spin","index":"08","rect":{"x":18,"z":0,"w":8,"d":8},"floorFinish":"rubber","layout":[{"k":"led_screen","p":[22,0.06],"r":0},{"k":"instructor_bike","p":[22,1.3],"r":0},{"k":"spin_bike","p":[19.4,3.6],"r":180,"n":5,"s":[1.3,0]},{"k":"spin_bike","p":[19.4,5.1],"r":180,"n":5,"s":[1.3,0]},{"k":"spin_bike","p":[19.4,6.6],"r":180,"n":5,"s":[1.3,0]},{"k":"lighting_control","p":[25.7,2.6],"r":-90}],"name":"Сайкл","equipment":[{"key":"spin_bike","quantity":15},{"key":"instructor_platform","quantity":1},{"key":"lighting_control","quantity":1}]},{"id":"lockers","mesh":"zone-lockers","index":"09","rect":{"x":0,"z":8,"w":6,"d":8},"floorFinish":"tile","layout":[{"k":"locker","p":[0.3,8.7],"r":90,"n":15,"s":[0,0.4]},{"k":"locker","p":[2.9,10],"r":-90,"n":8,"s":[0,0.4]},{"k":"locker","p":[3.4,10],"r":90,"n":8,"s":[0,0.4]},{"k":"shower","p":[5.45,8.7],"r":-90,"n":4,"s":[0,1.05]},{"k":"changing_bench","p":[1.6,11.2],"r":90},{"k":"changing_bench","p":[4.6,13.9],"r":90},{"k":"vanity","p":[1.2,15.7],"r":180,"n":3,"s":[1.15,0]}],"name":"Роздягальні","equipment":[{"key":"locker","quantity":80},{"key":"shower","quantity":8},{"key":"changing_bench","quantity":6},{"key":"vanity_station","quantity":4}]},{"id":"recovery","mesh":"zone-recovery","index":"10","rect":{"x":0,"z":0,"w":6,"d":8},"floorFinish":"wood","layout":[{"k":"stretch_bench","p":[1.2,2.1],"r":0,"n":2,"s":[1.4,0]},{"k":"massage_table","p":[4.8,2.1],"r":0},{"k":"compression_lounger","p":[1.4,5.6],"r":0,"n":2,"s":[1.5,0]},{"k":"planter","p":[5.4,7.3],"r":0}],"name":"Відновлення","equipment":[{"key":"stretch_bench","quantity":2},{"key":"recovery_station","quantity":2},{"key":"massage_table","quantity":1}]}]}</script>
 </section>
 
 
@@ -806,7 +806,7 @@
       <p class="sector__text">Ми проєктуємо клініки та медичні простори, де маршрут пацієнта, приватність, світло й матеріали працюють разом: створюють спокій, викликають довіру та полегшують щоденну роботу.</p>
       <a class="sector__cta" href="/clinicas-3d.html"
         data-track="view_projects_clicked" data-track-location="sector_healthcare">
-        Переглянути проєкти клінік <span class="sector__arrow" aria-hidden="true">&rarr;</span>
+        <span class="sector__cta-text">Переглянути проєкти клінік</span><span class="sector__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" focusable="false"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
       <ul class="sector__services" aria-label="Послуги">
         <li>Маршрут пацієнта</li>
@@ -815,6 +815,41 @@
         <li>Матеріали</li>
         <li>3D-візуалізація</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== NAMING, NAMING CAPITALIZATION, FUNDRAISING (short explainer before the
+     interactive naming model). Text: "namingExplain" in assets/i18n/translations.json.
+     Educational only: 3DNA's role is spatial concept, 3D visualisation, interactive
+     donor recognition and digital storytelling (see "role"). -->
+<section class="nexplain" id="naming-explicado" aria-labelledby="nexplain-title">
+  <div class="nexplain__inner">
+    <header class="nexplain__head">
+      <p class="nexplain__eyebrow" id="nexplain-title">Визнання та фінансування</p>
+      <p class="nexplain__lead">Три поняття, поширені у фінансуванні неприбуткових проєктів, простими словами.</p>
+    </header>
+    <ol class="nexplain__list">
+      <li class="nexplain__item">
+        <p class="nexplain__label">01 / Naming rights</p>
+        <h3 class="nexplain__title">Цінність імені, даного простору.</h3>
+        <p class="nexplain__text">Стратегія визнання, що пов’язує ім’я донора або спонсора з простором, об’єктом чи проєктом.</p>
+      </li>
+      <li class="nexplain__item">
+        <p class="nexplain__label">02 / Naming capitalization</p>
+        <h3 class="nexplain__title">Перетворити визнання на можливості фінансування.</h3>
+        <p class="nexplain__text">Ми визначаємо потенціал визнання різних просторів і візуально представляємо його як можливість залучити фінансування.</p>
+      </li>
+      <li class="nexplain__item">
+        <p class="nexplain__label">03 / Пожертви та фандрейзинг</p>
+        <h3 class="nexplain__title">Поєднувати проєкти з тими, хто хоче їх втілити.</h3>
+        <p class="nexplain__text">Пожертви допомагають фінансувати проєкти із соціальним впливом. Фандрейзинг поєднує потреби організації з людьми та компаніями, готовими її підтримати.</p>
+      </li>
+    </ol>
+    <div class="nexplain__foot">
+      <p class="nexplain__role">Наш внесок: просторові концепції, 3D-візуалізація, інтерактивні рішення для визнання донорів і цифровий сторітелінг. Юридичні, податкові умови та умови залучення коштів організація визначає зі своїми консультантами.</p>
+      <a class="nexplain__link" href="#healthcare-naming">Переглянути інтерактивний приклад <span aria-hidden="true">&darr;</span></a>
     </div>
   </div>
 </section>
@@ -1661,8 +1696,8 @@
 </div>
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261018a"></script>
-<script src="/assets/js/fitness-3d/gym-app.js?v=20261007f" defer></script>
-<script src="/assets/js/healthcare-3d/naming-app.js?v=20261009a" defer></script>
+<script src="/assets/js/fitness-3d/gym-app.js?v=20261020b" defer></script>
+<script src="/assets/js/healthcare-3d/naming-app.js?v=20261020c" defer></script>
 <!-- Spotlight video tile: restaurantes -->
 <script>
 (function () {

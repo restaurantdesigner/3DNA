@@ -1,0 +1,1665 @@
+{
+ "_about": "Especificación de equipamiento del modelo 3D (Centro Deportivo · edificio multiusos). Cada partida enlaza con los objetos 3D por su id estable (objects). Ningún precio, fabricante, modelo ni potencia está documentado: los valores de 'estimate' son estimaciones preliminares (Estimado — referencia orientativa) para una presentación conceptual, con su base y fecha; requieren confirmación técnica y comercial. 'inherent' = el elemento no tiene suministro eléctrico por naturaleza (0 kW). 'services' = instalaciones del edificio: opcional y fuera del total de equipamiento.",
+ "version": 2,
+ "disclaimer": "Estimación preliminar. Precios y consumos sujetos a confirmación técnica y comercial.",
+ "disclaimerBudget": "Estimación preliminar — no constituye presupuesto de obra ni oferta comercial.",
+ "pricing": {
+  "currency": "EUR",
+  "vat": "excluded",
+  "vatRate": 0.21,
+  "scope": "Solo el equipamiento y mobiliario representado en el modelo. No incluye obra, instalaciones, montaje, transporte, licencias ni honorarios, y no es el presupuesto del proyecto (PEM 130.722,90 € según la memoria, p. 58)."
+ },
+ "energy": {
+  "priceEurKwh": null,
+  "simultaneity": null,
+  "formula": "kWh = kW × horas × factor de uso",
+  "estimate": {
+   "priceEurKwh": 0.19,
+   "simultaneity": 0.6,
+   "date": "2026-10-09",
+   "basis": {
+    "priceEurKwh": "Ofertas 3.0TD para pymes publicadas por Selectra: precio plano ≈0,1936 €/kWh; por periodos ≈0,10–0,21 €/kWh (término de energía, sin término de potencia ni impuestos)",
+    "simultaneity": "Criterio 3DNA para un gimnasio pequeño con sauna; solo afecta a la demanda máxima (kW), no al consumo anual"
+   }
+  }
+ },
+ "items": [
+  {
+   "id": "eq-cinta",
+   "name": "Cinta de correr",
+   "category": "Cardio",
+   "room": "sala",
+   "zone": "cardio",
+   "objects": [
+    "gym-treadmill"
+   ],
+   "qty": 4,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "note": "Factor de uso 0,25: fracción de las horas de apertura equivalente a funcionamiento a potencia nominal (ocupación × carga media).",
+   "estimate": {
+    "unitPrice": 3800,
+    "ratedKw": 2.2,
+    "hoursYear": 4000,
+    "utilization": 0.25,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-eliptica",
+   "name": "Elíptica",
+   "category": "Cardio",
+   "room": "sala",
+   "zone": "cardio",
+   "objects": [
+    "gym-elliptical"
+   ],
+   "qty": 2,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "note": "Existen modelos autoalimentados (sin conexión a red): si se eligen, potencia = 0 kW.",
+   "estimate": {
+    "unitPrice": 2900,
+    "ratedKw": 0.15,
+    "hoursYear": 4000,
+    "utilization": 0.25,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-bicicleta",
+   "name": "Bicicleta vertical",
+   "category": "Cardio",
+   "room": "sala",
+   "zone": "cardio",
+   "objects": [
+    "gym-upright-bike"
+   ],
+   "qty": 3,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "note": "Existen modelos autoalimentados (sin conexión a red): si se eligen, potencia = 0 kW.",
+   "estimate": {
+    "unitPrice": 1800,
+    "ratedKw": 0.1,
+    "hoursYear": 4000,
+    "utilization": 0.25,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-jalon",
+   "name": "Jalón al pecho",
+   "category": "Fuerza (máquinas)",
+   "room": "sala",
+   "zone": "fuerza",
+   "objects": [
+    "gym-lat-pulldown"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "note": "Máquina de placas sin motor: 0 kW salvo que el modelo elegido incorpore consola o pantalla.",
+   "estimate": {
+    "unitPrice": 2600,
+    "ratedKw": 0,
+    "hoursYear": 4000,
+    "utilization": 0,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-prensa",
+   "name": "Prensa de piernas",
+   "category": "Fuerza (máquinas)",
+   "room": "sala",
+   "zone": "fuerza",
+   "objects": [
+    "gym-leg-press"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "note": "Máquina de placas sin motor: 0 kW salvo que el modelo elegido incorpore consola o pantalla.",
+   "estimate": {
+    "unitPrice": 2600,
+    "ratedKw": 0,
+    "hoursYear": 4000,
+    "utilization": 0,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-poleas",
+   "name": "Cruce de poleas",
+   "category": "Fuerza (máquinas)",
+   "room": "sala",
+   "zone": "fuerza",
+   "objects": [
+    "gym-cable-crossover"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "note": "Máquina de placas sin motor: 0 kW salvo que el modelo elegido incorpore consola o pantalla.",
+   "estimate": {
+    "unitPrice": 2600,
+    "ratedKw": 0,
+    "hoursYear": 4000,
+    "utilization": 0,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-rack",
+   "name": "Power rack con barra y discos",
+   "category": "Peso libre",
+   "room": "sala",
+   "zone": "pesolibre",
+   "objects": [
+    "gym-power-rack"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 1700,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos) (rack de sentadillas)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-plataforma",
+   "name": "Plataforma de levantamiento",
+   "category": "Peso libre",
+   "room": "sala",
+   "zone": "pesolibre",
+   "objects": [
+    "gym-lifting-platform"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 900,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-discos",
+   "name": "Soporte de discos",
+   "category": "Peso libre",
+   "room": "sala",
+   "zone": "pesolibre",
+   "objects": [
+    "gym-plate-tree"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 300,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-mancuernas",
+   "name": "Rack de mancuernas",
+   "category": "Peso libre",
+   "room": "sala",
+   "zone": "pesolibre",
+   "objects": [
+    "gym-dumbbell-rack"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 3500,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos) (juego de mancuernas con rack)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-banco",
+   "name": "Banco regulable",
+   "category": "Peso libre",
+   "room": "sala",
+   "zone": "pesolibre",
+   "objects": [
+    "gym-adjustable-bench"
+   ],
+   "qty": 2,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 450,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-esterilla",
+   "name": "Esterilla",
+   "category": "Funcional",
+   "room": "sala",
+   "zone": "funcional",
+   "objects": [
+    "gym-mat"
+   ],
+   "qty": 4,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 45,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-cajon",
+   "name": "Cajón pliométrico",
+   "category": "Funcional",
+   "room": "sala",
+   "zone": "funcional",
+   "objects": [
+    "gym-plyo-box"
+   ],
+   "qty": 3,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 165,
+    "basis": "Decathlon España: cajón pliométrico de madera ≈164 €",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-kettlebells",
+   "name": "Rack de kettlebells",
+   "category": "Funcional",
+   "room": "sala",
+   "zone": "funcional",
+   "objects": [
+    "gym-kettlebell-rack"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 900,
+    "basis": "Decathlon España: kettlebells ≈28–197 €/ud; juego de competición ≈357 €; rack por criterio 3DNA",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-balon",
+   "name": "Balón medicinal",
+   "category": "Funcional",
+   "room": "sala",
+   "zone": "funcional",
+   "objects": [
+    "gym-medicine-ball"
+   ],
+   "qty": 4,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 60,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-cuerdas",
+   "name": "Cuerdas de batalla",
+   "category": "Funcional",
+   "room": "sala",
+   "zone": "funcional",
+   "objects": [
+    "gym-battle-ropes"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 120,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-almacen",
+   "name": "Almacenaje de accesorios",
+   "category": "Mobiliario",
+   "room": "sala",
+   "zone": "funcional",
+   "objects": [
+    "gym-mobility-shelf"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 450,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-espejos",
+   "name": "Espejo de gimnasio",
+   "category": "Acabados interiores",
+   "room": "sala",
+   "zone": null,
+   "objects": [
+    "gym-mirror-panel-1",
+    "gym-mirror-panel-2"
+   ],
+   "qty": 2,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 600,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-toallas",
+   "name": "Estación de toallas (madera)",
+   "category": "Mobiliario",
+   "room": "sala",
+   "zone": null,
+   "objects": [
+    "gym-towel-station"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "estimate": {
+    "unitPrice": 800,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-led",
+   "name": "Luminaria LED lineal suspendida",
+   "category": "Iluminación",
+   "room": "sala",
+   "zone": null,
+   "objects": [
+    "gym-led-lines"
+   ],
+   "qty": 15,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "note": "Cantidad = 15 luminarias (3 líneas × 5). Esta carga no se repite en «Instalaciones».",
+   "estimate": {
+    "unitPrice": 120,
+    "ratedKw": 0.04,
+    "hoursYear": 4000,
+    "utilization": 1.0,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos) (luminaria LED, 40 W)",
+    "date": "2026-10-09"
+   },
+   "group": {
+    "lines": 3,
+    "perLine": 5,
+    "status": "Configuración preliminar, sujeta a verificación del proyecto de alumbrado"
+   }
+  },
+  {
+   "id": "eq-led-calida",
+   "name": "Línea de luz cálida (pared sur)",
+   "category": "Iluminación",
+   "room": "sala",
+   "zone": null,
+   "objects": [
+    "gym-led-cove"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "note": "Esta carga no se repite en «Instalaciones».",
+   "estimate": {
+    "unitPrice": 120,
+    "ratedKw": 0.04,
+    "hoursYear": 4000,
+    "utilization": 1.0,
+    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos) (luminaria LED)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-taquillas-m",
+   "name": "Taquillas de roble",
+   "category": "Mobiliario",
+   "room": "vestM",
+   "zone": null,
+   "objects": [
+    "int-vestM-lockers"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "note": "Conjunto de 1,60 m dibujado en el modelo = 4 módulos de 2 puertas (8 puertas); acabado roble. Cerraduras supuestas mecánicas o a pilas (sin red): 0 kW.",
+   "estimate": {
+    "unitPrice": 1100,
+    "ratedKw": 0,
+    "hoursYear": 4000,
+    "utilization": 0,
+    "basis": "Generador de precios CYPE (generadordeprecios.info): taquilla fenólica HPL de 2 puertas, ≈204–231 €/ud instalada; 4 módulos + suplemento de acabado por criterio 3DNA",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "eq-taquillas-f",
+   "name": "Taquillas de roble",
+   "category": "Mobiliario",
+   "room": "vestF",
+   "zone": null,
+   "objects": [
+    "int-vestF-lockers"
+   ],
+   "qty": 1,
+   "qtyStatus": "concept",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
+   "note": "Conjunto de 1,60 m dibujado en el modelo = 4 módulos de 2 puertas (8 puertas); acabado roble. Cerraduras supuestas mecánicas o a pilas (sin red): 0 kW.",
+   "estimate": {
+    "unitPrice": 1100,
+    "ratedKw": 0,
+    "hoursYear": 4000,
+    "utilization": 0,
+    "basis": "Generador de precios CYPE (generadordeprecios.info): taquilla fenólica HPL de 2 puertas, ≈204–231 €/ud instalada; 4 módulos + suplemento de acabado por criterio 3DNA",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-deposito",
+   "name": "Depósito / acumulador (Ø1,25 m)",
+   "category": "Instalaciones",
+   "room": "instalaciones",
+   "zone": null,
+   "objects": [
+    "fx-instalaciones-water-tank"
+   ],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "La memoria prevé instalación solar térmica. Se supone sin resistencia eléctrica de apoyo; el apoyo de ACS, si existe, se recoge en «Instalaciones — ACS» para no duplicarlo.",
+   "estimate": {
+    "unitPrice": 2500,
+    "ratedKw": 0,
+    "hoursYear": 4000,
+    "utilization": 0,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-cuadro",
+   "name": "Armario / cuadro técnico",
+   "category": "Instalaciones",
+   "room": "instalaciones",
+   "zone": null,
+   "objects": [
+    "fx-instalaciones-tech-cabinet"
+   ],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "El consumo propio del cuadro es despreciable; las cargas que alimenta se cuentan en cada partida.",
+   "estimate": {
+    "unitPrice": 1200,
+    "ratedKw": 0,
+    "hoursYear": 4000,
+    "utilization": 0,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-lavabo-M",
+   "name": "Lavabo",
+   "category": "Sanitarios",
+   "room": "aseoM",
+   "zone": null,
+   "objects": [
+    "fx-aseoM-washbasin"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 350,
+    "basis": "Generador de precios CYPE (generadordeprecios.info): lavabo mural de porcelana, ≈156 € (sin grifería) a ≈544 € (con grifería)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-inodoro-M",
+   "name": "Inodoro",
+   "category": "Sanitarios",
+   "room": "aseoM",
+   "zone": null,
+   "objects": [
+    "fx-aseoM-wc-1",
+    "fx-aseoM-wc-2"
+   ],
+   "qty": 2,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 300,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-cabinas-M",
+   "name": "Cabinas de inodoro",
+   "category": "Sanitarios",
+   "room": "aseoM",
+   "zone": null,
+   "objects": [
+    "fx-aseoM-cubicles"
+   ],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "Cantidad = 1 conjunto de 2 cabinas.",
+   "estimate": {
+    "unitPrice": 1640,
+    "basis": "Generador de precios CYPE (generadordeprecios.info): cabina sanitaria fenólica HPL, ≈816–819 €/ud; conjunto de 2 cabinas",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-lavabo-F",
+   "name": "Lavabo",
+   "category": "Sanitarios",
+   "room": "aseoF",
+   "zone": null,
+   "objects": [
+    "fx-aseoF-washbasin"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 350,
+    "basis": "Generador de precios CYPE (generadordeprecios.info): lavabo mural de porcelana, ≈156 € (sin grifería) a ≈544 € (con grifería)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-inodoro-F",
+   "name": "Inodoro",
+   "category": "Sanitarios",
+   "room": "aseoF",
+   "zone": null,
+   "objects": [
+    "fx-aseoF-wc-1",
+    "fx-aseoF-wc-2"
+   ],
+   "qty": 2,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 300,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-cabinas-F",
+   "name": "Cabinas de inodoro",
+   "category": "Sanitarios",
+   "room": "aseoF",
+   "zone": null,
+   "objects": [
+    "fx-aseoF-cubicles"
+   ],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "Cantidad = 1 conjunto de 2 cabinas.",
+   "estimate": {
+    "unitPrice": 1640,
+    "basis": "Generador de precios CYPE (generadordeprecios.info): cabina sanitaria fenólica HPL, ≈816–819 €/ud; conjunto de 2 cabinas",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-estanteria",
+   "name": "Estantería",
+   "category": "Mobiliario",
+   "room": "botiquin",
+   "zone": null,
+   "objects": [
+    "fx-botiquin-shelving"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 200,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-camilla",
+   "name": "Camilla de exploración",
+   "category": "Equipamiento sanitario",
+   "room": "botiquin",
+   "zone": null,
+   "objects": [
+    "fx-botiquin-exam-couch"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "Se supone camilla fija (sin motor): 0 kW. Una camilla eléctrica requeriría revisar la potencia.",
+   "estimate": {
+    "unitPrice": 450,
+    "ratedKw": 0,
+    "hoursYear": 4000,
+    "utilization": 0,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-taburete",
+   "name": "Taburete",
+   "category": "Mobiliario",
+   "room": "botiquin",
+   "zone": null,
+   "objects": [
+    "fx-botiquin-stool"
+   ],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 90,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-fregadero",
+   "name": "Mueble con fregadero",
+   "category": "Mobiliario",
+   "room": "sala",
+   "zone": null,
+   "objects": [
+    "fx-sala-sink-cabinet"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 900,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-armarios",
+   "name": "Armarios altos (almacenaje)",
+   "category": "Mobiliario",
+   "room": "sala",
+   "zone": null,
+   "objects": [
+    "fx-sala-tall-cabinets"
+   ],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 1500,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-hidromasaje",
+   "name": "Vaso octogonal de hidromasaje",
+   "category": "Spa y bienestar",
+   "room": "sauna",
+   "zone": null,
+   "objects": [
+    "fx-sauna-hot-tub"
+   ],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "Uso del vaso interpretado. 6 kW = bombas, soplante y calentamiento (orientativo); factor de uso 0,35 por funcionamiento intermitente del calentador y las bombas.",
+   "estimate": {
+    "unitPrice": 12000,
+    "ratedKw": 6.0,
+    "hoursYear": 4000,
+    "utilization": 0.35,
+    "basis": "Habitissimo (guía de precios): jacuzzi prefabricado ≈3.500 €, equipado hasta ≈15.000 €; uso público requiere más filtración; potencia por criterio 3DNA",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-peldano",
+   "name": "Peldaño de acceso al vaso",
+   "category": "Spa y bienestar",
+   "room": "sauna",
+   "zone": null,
+   "objects": [
+    "fx-sauna-tub-step"
+   ],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 300,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-banco-spa",
+   "name": "Banco",
+   "category": "Mobiliario",
+   "room": "sauna",
+   "zone": null,
+   "objects": [
+    "fx-sauna-bench"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 400,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-ducha-spa",
+   "name": "Ducha",
+   "category": "Sanitarios",
+   "room": "sauna",
+   "zone": null,
+   "objects": [
+    "fx-sauna-shower-corner"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "La energía del agua caliente corresponde a la instalación de ACS, no a este elemento.",
+   "estimate": {
+    "unitPrice": 600,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-sauna",
+   "name": "Cabina de sauna (bancos de lamas y estufa)",
+   "category": "Spa y bienestar",
+   "room": "sauna",
+   "zone": null,
+   "objects": [
+    "fx-sauna-sauna-cabin"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "9 kW sujeto a verificación del volumen de la cabina. 2.000 h/año de sauna encendida y factor 0,5 por el ciclo del termostato. Esta carga no se repite en «Instalaciones».",
+   "estimate": {
+    "unitPrice": 7500,
+    "ratedKw": 9.0,
+    "hoursYear": 2000,
+    "utilization": 0.5,
+    "basis": "Estufa: supuesto de partida 3DNA (1.500 € / 9 kW); cabina de madera ≈6.000 € por criterio 3DNA (no se encontró precio en euros de referencia)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-ducha-acc-M",
+   "name": "Ducha accesible",
+   "category": "Sanitarios",
+   "room": "vestM",
+   "zone": null,
+   "objects": [
+    "fx-vestM-shower-open"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "La energía del agua caliente corresponde a la instalación de ACS, no a este elemento.",
+   "estimate": {
+    "unitPrice": 800,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-duchas-M",
+   "name": "Duchas (4 cabinas)",
+   "category": "Sanitarios",
+   "room": "vestM",
+   "zone": null,
+   "objects": [
+    "fx-vestM-shower-stalls"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "Cantidad = 1 conjunto de 4 cabinas. La energía del agua caliente corresponde a la instalación de ACS, no a este elemento.",
+   "estimate": {
+    "unitPrice": 4500,
+    "basis": "Generador de precios CYPE (generadordeprecios.info): cabina sanitaria fenólica HPL, ≈816–819 €/ud como referencia de separación; grifería por criterio 3DNA",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-encimera-M",
+   "name": "Encimera con 2 lavabos",
+   "category": "Sanitarios",
+   "room": "vestM",
+   "zone": null,
+   "objects": [
+    "fx-vestM-basin-counter"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 1200,
+    "basis": "Generador de precios CYPE (generadordeprecios.info): lavabo mural de porcelana, ≈156 € (sin grifería) a ≈544 € (con grifería); encimera por criterio 3DNA",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-banco-resp-M",
+   "name": "Banco con respaldo",
+   "category": "Mobiliario",
+   "room": "vestM",
+   "zone": null,
+   "objects": [
+    "fx-vestM-bench-back-1",
+    "fx-vestM-bench-back-2"
+   ],
+   "qty": 2,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 600,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-banco-lamas-M",
+   "name": "Banco de lamas",
+   "category": "Mobiliario",
+   "room": "vestM",
+   "zone": null,
+   "objects": [
+    "fx-vestM-bench-slats"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 450,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-ducha-acc-F",
+   "name": "Ducha accesible",
+   "category": "Sanitarios",
+   "room": "vestF",
+   "zone": null,
+   "objects": [
+    "fx-vestF-shower-open"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "La energía del agua caliente corresponde a la instalación de ACS, no a este elemento.",
+   "estimate": {
+    "unitPrice": 800,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-duchas-F",
+   "name": "Duchas (4 cabinas)",
+   "category": "Sanitarios",
+   "room": "vestF",
+   "zone": null,
+   "objects": [
+    "fx-vestF-shower-stalls"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "Cantidad = 1 conjunto de 4 cabinas. La energía del agua caliente corresponde a la instalación de ACS, no a este elemento.",
+   "estimate": {
+    "unitPrice": 4500,
+    "basis": "Generador de precios CYPE (generadordeprecios.info): cabina sanitaria fenólica HPL, ≈816–819 €/ud como referencia de separación; grifería por criterio 3DNA",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-encimera-F",
+   "name": "Encimera con 2 lavabos",
+   "category": "Sanitarios",
+   "room": "vestF",
+   "zone": null,
+   "objects": [
+    "fx-vestF-basin-counter"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 1200,
+    "basis": "Generador de precios CYPE (generadordeprecios.info): lavabo mural de porcelana, ≈156 € (sin grifería) a ≈544 € (con grifería); encimera por criterio 3DNA",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-banco-resp-F",
+   "name": "Banco con respaldo",
+   "category": "Mobiliario",
+   "room": "vestF",
+   "zone": null,
+   "objects": [
+    "fx-vestF-bench-back-1",
+    "fx-vestF-bench-back-2"
+   ],
+   "qty": 2,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 600,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-banco-lamas-F",
+   "name": "Banco de lamas",
+   "category": "Mobiliario",
+   "room": "vestF",
+   "zone": null,
+   "objects": [
+    "fx-vestF-bench-slats"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 450,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-mostrador",
+   "name": "Mostrador / puesto de control con ordenador",
+   "category": "Control y TIC",
+   "room": "control",
+   "zone": null,
+   "objects": [
+    "fx-control-control-desk"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 1250,
+    "ratedKw": 0.15,
+    "hoursYear": 4000,
+    "utilization": 0.8,
+    "basis": "Carrefour / MediaMarkt España: mostradores de recepción ≈298–547 €; ordenador según supuesto de partida 3DNA (850 € / 0,15 kW)",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-silla",
+   "name": "Silla de trabajo",
+   "category": "Mobiliario",
+   "room": "control",
+   "zone": null,
+   "objects": [
+    "fx-control-task-chair"
+   ],
+   "qty": 1,
+   "qtyStatus": "verified",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 200,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-mesa-equipo",
+   "name": "Mesa auxiliar con equipo",
+   "category": "Control y TIC",
+   "room": "control",
+   "zone": null,
+   "objects": [
+    "fx-control-equipment-table"
+   ],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "note": "El tipo de equipo no está definido en el plano (se supone impresora / red).",
+   "estimate": {
+    "unitPrice": 600,
+    "ratedKw": 0.1,
+    "hoursYear": 4000,
+    "utilization": 0.5,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  },
+  {
+   "id": "fx-mampara",
+   "name": "Mampara de vidrio",
+   "category": "Acabados interiores",
+   "room": "acceso",
+   "zone": null,
+   "objects": [
+    "fx-acceso-glass-screen"
+   ],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": 0,
+   "powerStatus": "inherent",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Plano 04 del proyecto básico, planta de amueblamiento",
+   "estimate": {
+    "unitPrice": 900,
+    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+    "date": "2026-10-09"
+   }
+  }
+ ],
+ "services": [
+  {
+   "id": "svc-hvac",
+   "name": "Climatización (HVAC)",
+   "category": "Instalaciones — estimación preliminar",
+   "room": "edificio",
+   "objects": [],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Marcador de posición 3DNA; requiere proyecto de instalaciones",
+   "scope": "Calefacción y refrigeración de todo el edificio",
+   "note": "Pendiente de proyecto de instalaciones."
+  },
+  {
+   "id": "svc-ventilacion",
+   "name": "Ventilación",
+   "category": "Instalaciones — estimación preliminar",
+   "room": "edificio",
+   "objects": [],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Marcador de posición 3DNA; requiere proyecto de instalaciones",
+   "scope": "Renovación de aire (RITE), recuperación de calor y extracción de aseos y vestuarios",
+   "note": "Pendiente de proyecto de instalaciones."
+  },
+  {
+   "id": "svc-iluminacion",
+   "name": "Iluminación general",
+   "category": "Instalaciones — estimación preliminar",
+   "room": "edificio",
+   "objects": [],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Marcador de posición 3DNA; requiere proyecto de instalaciones",
+   "scope": "Alumbrado de aseos, vestuarios, pasillo, acceso, control, botiquín, spa e instalaciones",
+   "note": "Excluye las luminarias del gimnasio ya contadas en el equipamiento (eq-led, eq-led-calida)."
+  },
+  {
+   "id": "svc-acs",
+   "name": "Agua caliente sanitaria (ACS)",
+   "category": "Instalaciones — estimación preliminar",
+   "room": "edificio",
+   "objects": [],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Marcador de posición 3DNA; requiere proyecto de instalaciones",
+   "scope": "Producción y apoyo de ACS de duchas y lavabos",
+   "note": "La memoria prevé captadores solares térmicos; el apoyo (si existe) está pendiente."
+  },
+  {
+   "id": "svc-sauna",
+   "name": "Calefacción de sauna",
+   "category": "Instalaciones — estimación preliminar",
+   "room": "edificio",
+   "objects": [],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Marcador de posición 3DNA; requiere proyecto de instalaciones",
+   "scope": "Estufa de la cabina de sauna",
+   "note": "Ya incluida en el equipamiento (fx-sauna): 0 aquí para no duplicarla.",
+   "includedIn": "fx-sauna"
+  },
+  {
+   "id": "svc-auxiliar",
+   "name": "Sistemas eléctricos auxiliares",
+   "category": "Instalaciones — estimación preliminar",
+   "room": "edificio",
+   "objects": [],
+   "qty": 1,
+   "qtyStatus": "estimated",
+   "manufacturer": null,
+   "model": null,
+   "unitPrice": null,
+   "priceStatus": "pending",
+   "ratedKw": null,
+   "powerStatus": "pending",
+   "hoursYear": null,
+   "utilization": null,
+   "source": "Marcador de posición 3DNA; requiere proyecto de instalaciones",
+   "scope": "Control de accesos, CCTV, megafonía, red de datos, alumbrado de emergencia, bombas y servicios generales",
+   "note": "Pendiente de proyecto de instalaciones."
+  }
+ ]
+}

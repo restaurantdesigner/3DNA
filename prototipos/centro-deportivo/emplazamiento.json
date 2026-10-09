@@ -1,0 +1,380 @@
+{
+ "_about": "Site of the sports centre reconstructed from sheet 02 'Planta general conjunto - vista aérea' (PDF page 74, scale 1:200) and the memoria (p. 7). Units: metres in the plan frame of the 3D model (origin: NW outer corner of the multipurpose hall; x east, y south). Registration: the hall roof in the illustration (north edge) matched to plano 04; the drawing is rotated 6,82° against the sheet. Check: the building's light-grey footprint in the illustration measures 20,8 × 18,6 m centred at (10,36; 9,09), matching the reconstructed building. status: 'documented' = measured on sheet 02 (illustration, ±0,5 m); 'standard' = official sports dimensions applied to a documented court; 'concept' = 3DNA proposal.",
+ "registration": {
+  "rotationDeg": 6.82,
+  "method": "north edge of the hall roof on sheet 02 ↔ north façade of plano 04",
+  "accuracy": "±0,5 m (illustration, 1:200)",
+  "adjust": {
+   "dx": 0,
+   "dy": 0,
+   "rot": 0
+  }
+ },
+ "overlay": {
+  "src": "source_p74_conjunto.png",
+  "corners": {
+   "tl": [
+    -19.65,
+    -28.84
+   ],
+   "tr": [
+    56.47,
+    -37.94
+   ],
+   "br": [
+    65.07,
+    34.02
+   ],
+   "bl": [
+    -11.05,
+    43.11
+   ]
+  },
+  "label": "Plano 02 · Planta general conjunto (vista aérea, 1:200)"
+ },
+ "memoria": "Parcela de 16.666,50 m² en dos plataformas (desnivel ≈0,70 m). Plataforma baja: aparcamiento, 3 pistas de tenis, 3 de pádel, minitenis (ocupada por el nuevo edificio) y campo pequeño de fútbol. Plataforma alta: club social, zona infantil, 3 pistas de tenis y vestuarios. El plano 02 muestra solo una parte del conjunto.",
+ "tennis": [
+  {
+   "id": "T1",
+   "center": [
+    -8.83,
+    -9.94
+   ],
+   "axisDeg": 0.7,
+   "status": "documented",
+   "note": "court lines measured 23,93 × 11,20 m (ITF 23,77 × 10,97 + line width)"
+  },
+  {
+   "id": "T2",
+   "center": [
+    32.93,
+    -9.67
+   ],
+   "axisDeg": 0.7,
+   "status": "documented"
+  },
+  {
+   "id": "T3",
+   "center": [
+    51.09,
+    -9.48
+   ],
+   "axisDeg": 0.7,
+   "status": "documented"
+  }
+ ],
+ "padel": [
+  {
+   "id": "P1",
+   "center": [
+    8.62,
+    -14.44
+   ],
+   "axisDeg": 0,
+   "status": "documented",
+   "note": "green surface 9,95 × 19,7 m on the blue platform north of the building (memoria: building next to a padel court)"
+  },
+  {
+   "id": "P2",
+   "center": [
+    38.09,
+    33.14
+   ],
+   "axisDeg": 0,
+   "status": "documented (south end outside the sheet; standard 20 m length applied)"
+  },
+  {
+   "id": "P3",
+   "center": [
+    50.09,
+    33.14
+   ],
+   "axisDeg": 0,
+   "status": "documented (south end outside the sheet; standard 20 m length applied)"
+  }
+ ],
+ "surfaces": [
+  {
+   "kind": "platformBlue",
+   "label": "Plataforma de pista (azul)",
+   "poly": [
+    [
+     17.32,
+     -0.25
+    ],
+    [
+     17.32,
+     -28.34
+    ],
+    [
+     -0.45,
+     -28.35
+    ],
+    [
+     -0.46,
+     -0.25
+    ]
+   ],
+   "status": "documented"
+  },
+  {
+   "kind": "courtGreen",
+   "label": "Zona de pistas (verde)",
+   "poly": [
+    [
+     17.38,
+     -27.87
+    ],
+    [
+     17.36,
+     10.48
+    ],
+    [
+     57.97,
+     9.77
+    ],
+    [
+     59.79,
+     9.37
+    ],
+    [
+     59.79,
+     -2.21
+    ],
+    [
+     59.3,
+     -12.77
+    ],
+    [
+     57.57,
+     -27.22
+    ]
+   ],
+   "status": "documented"
+  },
+  {
+   "kind": "courtGreen",
+   "label": "Zona de pista T1 (verde)",
+   "poly": [
+    [
+     -17.61,
+     -28.7
+    ],
+    [
+     -17.89,
+     -15.65
+    ],
+    [
+     -13.96,
+     16.83
+    ],
+    [
+     3.26,
+     18.13
+    ],
+    [
+     3.26,
+     12.83
+    ],
+    [
+     -0.52,
+     -28.21
+    ]
+   ],
+   "status": "documented"
+  },
+  {
+   "kind": "plantedStrip",
+   "label": "Franja arbolada junto al pasillo central",
+   "poly": [
+    [
+     19.4,
+     -27.15
+    ],
+    [
+     18.63,
+     10.65
+    ],
+    [
+     23.67,
+     10.75
+    ],
+    [
+     24.44,
+     -27.05
+    ]
+   ],
+   "status": "documented"
+  },
+  {
+   "kind": "garden",
+   "label": "Zona verde con arbolado (sur)",
+   "poly": [
+    [
+     1.99,
+     18.05
+    ],
+    [
+     0.11,
+     41.45
+    ],
+    [
+     22.57,
+     38.87
+    ],
+    [
+     23.44,
+     29.89
+    ],
+    [
+     23.51,
+     25.78
+    ],
+    [
+     22.88,
+     20.28
+    ],
+    [
+     20.99,
+     19.43
+    ]
+   ],
+   "status": "documented"
+  },
+  {
+   "kind": "hedge",
+   "label": "Seto con arbolado",
+   "poly": [
+    [
+     25.95,
+     20.82
+    ],
+    [
+     25.37,
+     38.53
+    ],
+    [
+     28.41,
+     38.63
+    ],
+    [
+     29.0,
+     20.92
+    ]
+   ],
+   "status": "documented"
+  },
+  {
+   "kind": "deck",
+   "label": "Playa de piscina",
+   "poly": [
+    [
+     -13.97,
+     17.17
+    ],
+    [
+     -13.43,
+     21.27
+    ],
+    [
+     -1.5,
+     41.64
+    ],
+    [
+     -0.28,
+     41.57
+    ],
+    [
+     1.59,
+     18.27
+    ]
+   ],
+   "status": "documented"
+  },
+  {
+   "kind": "pool",
+   "label": "Piscina",
+   "poly": [
+    [
+     -13.42,
+     21.76
+    ],
+    [
+     -10.9,
+     42.87
+    ],
+    [
+     -0.13,
+     41.58
+    ],
+    [
+     -2.65,
+     20.47
+    ]
+   ],
+   "status": "documented"
+  },
+  {
+   "kind": "plaza",
+   "label": "Pavimento / pasillo central (este)",
+   "poly": [
+    [
+     41.46,
+     9.65
+    ],
+    [
+     29.83,
+     12.06
+    ],
+    [
+     29.68,
+     16.58
+    ],
+    [
+     29.84,
+     38.1
+    ],
+    [
+     64.8,
+     33.92
+    ],
+    [
+     60.07,
+     7.65
+    ]
+   ],
+   "status": "documented"
+  },
+  {
+   "kind": "gravel",
+   "label": "Banda de grava y arbolado (norte)",
+   "poly": [
+    [
+     -16.65,
+     -28.81
+    ],
+    [
+     17.76,
+     -27.94
+    ],
+    [
+     55.97,
+     -27.34
+    ],
+    [
+     57.64,
+     -27.49
+    ],
+    [
+     56.47,
+     -37.27
+    ],
+    [
+     56.18,
+     -37.52
+    ]
+   ],
+   "status": "documented"
+  }
+ ]
+}
