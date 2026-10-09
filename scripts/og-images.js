@@ -45,7 +45,7 @@ const CARDS = {
     image: "images/sector-restaurants-still.webp", position: "62% 50%",
     eyebrow: (l) => t[l].hero.eyebrow,
     title: (l) => t[l].hero.headline,
-    line: (l) => t[l].hero.subheadline,
+    line: () => "",
   },
   restaurants: {
     file: (l) => `og-restaurants-${l}.jpg`,
@@ -59,7 +59,7 @@ const CARDS = {
     image: "images/fitness/hero-after.webp", position: "60% 50%",
     eyebrow: (l) => t[l].fitnessPage.hero.eyebrow,
     title: (l) => t[l].fitnessPage.hero.heading,
-    line: (l) => t[l].fitnessPage.hero.lead,
+    line: () => "",
   },
 };
 
@@ -82,7 +82,7 @@ const html = (card, l) => `<!doctype html><html lang="${l}"><head><meta charset=
 <img class="bg" src="${fileUrl(card.image)}" alt="">
 <div class="shade"></div>
 <img class="logo" src="file:///${logo.replace(/\\/g, "/")}" alt="">
-<div class="text"><p class="eyebrow">${esc(card.eyebrow(l))}</p><h1>${headline(card.title(l))}</h1><p class="line">${esc(card.line(l))}</p></div>
+<div class="text"><p class="eyebrow">${esc(card.eyebrow(l))}</p><h1>${headline(card.title(l))}</h1>${card.line(l) ? `<p class="line">${esc(card.line(l))}</p>` : ""}</div>
 <div class="url">3dna.es</div>
 </body></html>`;
 

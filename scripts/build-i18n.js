@@ -514,7 +514,7 @@ for (const page of layoutPages()) {
 // calculator with the shared values. noindex; canonical = the language's page.
 const CALC_SHARES = [
   { page: "restaurants", trans: "restaurantsPage", path: restaurantCalcSharePath, image: "/images/og/restaurant-calculator-og.jpg", type: "image/jpeg" },
-  { page: "fitness", trans: "fitnessPage", path: fitnessCalcSharePath, image: "/images/og/fitness-calculator-og.png", type: "image/png" },
+  { page: "fitness", trans: "fitnessPage", path: fitnessCalcSharePath, image: "/images/og/fitness-calculator-og.jpg", type: "image/jpeg" },
 ];
 for (const cs of CALC_SHARES) for (const lang of SUPPORTED) {
   const CALC_OG_IMAGE = cs.image;

@@ -29,7 +29,7 @@ function createBusinessCalcs(translations, { whatsappHref, email, restaurantShar
       locale: LOCALE[lang] || "en-GB",
       ui: { ...T.calcCommon.ui, ...T[page].calc.ui },
       report: { ...block(E), ...block(T) },   // English fills any report string not yet translated
-      reportEn: block(E),
+      reportEn: ["es", "en"].includes(lang) ? null : block(E),   // fallback for RU / UK PDFs only
       contact: { whatsapp: whatsappHref(lang), email },
     })}</script>`;
   }
@@ -233,9 +233,8 @@ function createBusinessCalcs(translations, { whatsappHref, email, restaurantShar
       `      <div class="rpc-report__inner">`,
       `        <p class="rpc-report__intro">${esc(ui.reportIntro)}</p>`,
       `        <ul class="rpc-legend">${["in", "est", "scn"].map((k) => `<li><span class="rpc-tag rpc-tag--${k}">${esc(rt.tags[k])}</span> ${esc(rt.tagsHelp[k])}</li>`).join("")}</ul>`,
-      `        <div class="rpc-report__body" data-rpc-report>`,
-      indent(M.renderHtml(r._an, rt, fmt), 10),
-      `        </div>`,
+      // filled from the live calculation the first time the report is opened
+      `        <div class="rpc-report__body" data-rpc-report></div>`,
       `      </div>`,
       `    </details>`,
       `    ${i18nScript(lang, "restaurantsPage")}`,
@@ -306,9 +305,7 @@ function createBusinessCalcs(translations, { whatsappHref, email, restaurantShar
       `      <div class="rpc-report__inner">`,
       `        <p class="rpc-report__intro">${esc(ui.reportIntro)}</p>`,
       `        <ul class="rpc-legend">${["in", "est", "max", "scn"].map((k) => `<li><span class="rpc-tag rpc-tag--${k}">${esc(rt.tags[k])}</span> ${esc(rt.tagsHelp[k])}</li>`).join("")}</ul>`,
-      `        <div class="rpc-report__body" data-rpc-report>`,
-      indent(M.renderHtml(an, rt, fmt), 10),
-      `        </div>`,
+      `        <div class="rpc-report__body" data-rpc-report></div>`,
       `      </div>`,
       `    </details>`,
       `    ${i18nScript(lang, "fitnessPage")}`,

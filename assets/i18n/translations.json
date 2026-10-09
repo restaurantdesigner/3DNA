@@ -61,7 +61,6 @@
       "eyebrow": "Commercial interior design",
       "headline": ["Spaces", "designed to", "work."],
       "headlineText": "Spaces designed to work.",
-      "subheadline": "For people. For business. For growth.",
       "body": "We design commercial interiors that combine strategy, space planning, strong visual identity and immersive 3D visualization — creating environments that work better for people and perform better for business.",
       "ctaPrimary": "Start a project",
       "ctaSecondary": "View projects",
@@ -275,7 +274,6 @@
           "perform."
         ],
         "headingText": "Spaces designed to perform.",
-        "lead": "For people. For business.",
         "videoLabel": "3D visualization: an existing gym transforms into a contemporary fitness club."
       },
       "plan": {
@@ -1749,7 +1747,6 @@
       "eyebrow": "Diseño de interiores comerciales",
       "headline": ["Espacios", "diseñados para", "funcionar."],
       "headlineText": "Espacios diseñados para funcionar.",
-      "subheadline": "Para las personas. Para el negocio. Para crecer.",
       "body": "Diseñamos interiores comerciales que combinan estrategia, planificación del espacio, una identidad visual sólida y visualización 3D inmersiva, creando espacios que funcionan mejor para las personas y ofrecen mejores resultados para el negocio.",
       "ctaPrimary": "Iniciar un proyecto",
       "ctaSecondary": "Ver proyectos",
@@ -1963,7 +1960,6 @@
           "rendir."
         ],
         "headingText": "Espacios diseñados para rendir.",
-        "lead": "Para las personas. Para el negocio.",
         "videoLabel": "Visualización 3D: un gimnasio existente se transforma en un club fitness contemporáneo."
       },
       "plan": {
@@ -3437,7 +3433,6 @@
       "eyebrow": "Дизайн коммерческих интерьеров",
       "headline": ["Пространства,", "которые", "работают."],
       "headlineText": "Пространства, которые работают.",
-      "subheadline": "Для людей. Для бизнеса. Для роста.",
       "body": "Мы создаём коммерческие интерьеры, объединяя стратегию, планирование пространства, сильную визуальную идентичность и иммерсивную 3D-визуализацию — чтобы пространство было удобнее для людей и эффективнее для бизнеса.",
       "ctaPrimary": "Начать проект",
       "ctaSecondary": "Смотреть проекты",
@@ -3651,7 +3646,6 @@
           "результата."
         ],
         "headingText": "Пространства, созданные для результата.",
-        "lead": "Для людей. Для бизнеса.",
         "videoLabel": "3D-визуализация: существующий спортзал превращается в современный фитнес-клуб."
       },
       "plan": {
@@ -5125,7 +5119,6 @@
       "eyebrow": "Дизайн комерційних інтер'єрів",
       "headline": ["Простори,", "які", "працюють."],
       "headlineText": "Простори, які працюють.",
-      "subheadline": "Для людей. Для бізнесу. Для зростання.",
       "body": "Ми створюємо комерційні інтер'єри, поєднуючи стратегію, планування простору, сильну візуальну ідентичність та імерсивну 3D-візуалізацію — щоб простір краще працював для людей і приносив більше користі бізнесу.",
       "ctaPrimary": "Розпочати проєкт",
       "ctaSecondary": "Переглянути проєкти",
@@ -5339,7 +5332,6 @@
           "результату."
         ],
         "headingText": "Простори, створені для результату.",
-        "lead": "Для людей. Для бізнесу.",
         "videoLabel": "3D-візуалізація: наявний спортзал перетворюється на сучасний фітнес-клуб."
       },
       "plan": {

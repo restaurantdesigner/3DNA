@@ -30,6 +30,8 @@
 (function (root) {
   const SITE = "https://3dna.es";
   const JSPDF_SRC = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+  // Subresource Integrity: the browser refuses the file if the CDN copy ever changes
+  const JSPDF_SRI = "sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk";
   const STORE_VERSION = 1;
   const MAX_SAVED = 20;
 
@@ -223,10 +225,11 @@
     });
     return logoCache;
   }
-  function loadScript(src) {
+  function loadScript(src, integrity) {
     return new Promise((resolve, reject) => {
       const s = document.createElement("script");
       s.src = src; s.async = true; s.crossOrigin = "anonymous";
+      if (integrity) s.integrity = integrity;
       s.onload = resolve; s.onerror = () => reject(new Error("script failed: " + src));
       document.head.appendChild(s);
     });
@@ -238,8 +241,12 @@
   let fontsReady = null;
   function interFonts() {
     if (!fontsReady) {
-      fontsReady = Promise.all(["Inter_400Regular.ttf", "Inter_700Bold.ttf"].map((n) =>
-        fetch(FONT_BASE + n, { mode: "cors" }).then((r) => { if (!r.ok) throw new Error(n); return r.arrayBuffer(); }).then(toB64)))
+      const FONTS = [
+        ["Inter_400Regular.ttf", "sha384-P2Gq+rpyyB2bU3/pqo9x6dOr5W5hnyEBpWmCTKaITSJ6ZDYf2i230VrSRzQvf4Pg"],
+        ["Inter_700Bold.ttf", "sha384-CUZvmP26v8gKHWnd3BhEqt/lENwT+bcn3s91voyRrzfBrrOjccz9EecW8+Z/GfoK"],
+      ];
+      fontsReady = Promise.all(FONTS.map(([n, integrity]) =>
+        fetch(FONT_BASE + n, { mode: "cors", integrity }).then((r) => { if (!r.ok) throw new Error(n); return r.arrayBuffer(); }).then(toB64)))
         .catch(() => { fontsReady = null; return null; });
     }
     return fontsReady;
@@ -247,7 +254,7 @@
   let jspdfReady = null;
   function jsPDFLib() {
     if (window.jspdf && window.jspdf.jsPDF) return Promise.resolve(window.jspdf.jsPDF);
-    if (!jspdfReady) jspdfReady = loadScript(JSPDF_SRC).then(() => window.jspdf.jsPDF);
+    if (!jspdfReady) jspdfReady = loadScript(JSPDF_SRC, JSPDF_SRI).then(() => window.jspdf.jsPDF).catch((e) => { jspdfReady = null; throw e; });
     return jspdfReady;
   }
 
@@ -618,7 +625,10 @@
     if (!sheet) { sheet = document.createElement("div"); sheet.id = "calc-print"; sheet.className = "crp"; document.body.appendChild(sheet); }
     sheet.innerHTML = printHtml(report);
     const html = document.documentElement;
-    const done = () => { html.classList.remove("is-calc-print"); window.removeEventListener("afterprint", done); };
+    const done = () => {
+      html.classList.remove("is-calc-print"); window.removeEventListener("afterprint", done);
+      setTimeout(() => { if (!html.classList.contains("is-calc-print")) sheet.innerHTML = ""; }, 2000);   // free the sheet
+    };
     const go = () => { html.classList.add("is-calc-print"); window.addEventListener("afterprint", done); window.print(); setTimeout(done, 1500); };
     const img = sheet.querySelector("img");
     if (img && !img.complete) { img.onload = img.onerror = go; setTimeout(() => { if (!html.classList.contains("is-calc-print")) go(); }, 1500); }
@@ -691,6 +701,7 @@
         const bad = v === null || (field.type === "number" && el.value.trim() === "");
         el.setAttribute("aria-invalid", String(bad && el.value.trim() !== ""));
         if (bad) return;
+        if (values[field.key] === v) return;                        // nothing changed: no recalculation
         values = { ...values, [field.key]: v };
         // other controls of the same field (a slider and its number box) follow at once
         inputs.forEach((o) => {
@@ -698,12 +709,18 @@
           o.value = o.type === "range" ? String(v) : f.input(v, field.decimals || 0);
           o.removeAttribute("aria-invalid");
         });
-        paint();
+        schedulePaint();
       };
       el.addEventListener(el.type === "radio" ? "change" : "input", onInput);
       if (el.type !== "radio" && el.type !== "range") el.addEventListener("change", () => { el.removeAttribute("aria-invalid"); if (field.type === "number") el.value = f.input(values[field.key], field.decimals || 0); });
     });
     box.querySelectorAll("form").forEach((fm) => fm.addEventListener("submit", (e) => e.preventDefault()));
+    // many input events in one frame (dragging the slider) → one recalculation and repaint
+    let frame = 0;
+    function schedulePaint() {
+      if (frame) return;
+      frame = requestAnimationFrame(() => { frame = 0; paint(); });
+    }
     showInputs();
     paint();
 
@@ -787,7 +804,7 @@
       // the report is in the page language; only a PDF without the Inter fonts (standard
       // fonts are Latin only) falls back to English on the RU / UK pages
       const latin = !forPdf || fontsOk || ["es", "en"].includes(lang);
-      const rt = latin ? i18n.report : i18n.reportEn;
+      const rt = latin || !i18n.reportEn ? i18n.report : i18n.reportEn;
       const loc = latin ? i18n.locale : "en-GB";
       const rf = formatter(loc);
       const now = new Date();
@@ -805,6 +822,7 @@
     box.querySelectorAll("[data-ca]").forEach((btn) => {
       btn.hidden = false;
       btn.addEventListener("click", async () => {
+        if (frame) { cancelAnimationFrame(frame); frame = 0; paint(); }
         const a = btn.dataset.ca;
         if (a === "share-section") share(false);
         else if (a === "share-calc") share(true);
