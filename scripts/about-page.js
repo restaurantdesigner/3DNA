@@ -12,7 +12,9 @@ const esc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</
 
 function createAboutPage(translations, { whatsappHref }) {
   const t = (lang) => translations[lang].aboutPage;
-  const ps = (arr, cls = "ab-p") => arr.map((x) => `<p class="${cls}">${esc(x)}</p>`).join("\n");
+  // the partner platform's name opens its site
+  const linkify = (h) => h.replace(/\bishare\.ca\b/g, '<a class="ab-link" href="https://ishare.ca" target="_blank" rel="noopener">ishare.ca</a>');
+  const ps = (arr, cls = "ab-p") => arr.map((x) => `<p class="${cls}">${linkify(esc(x))}</p>`).join("\n");
   const head = (num, label, title, id) => [
     `<p class="ab-label"><span class="ab-num">${num}</span> ${esc(label)}</p>`,
     title ? `<h2 class="ab-h2" id="${id}">${esc(title)}</h2>` : "",

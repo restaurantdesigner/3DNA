@@ -11517,3 +11517,5 @@ input.rpc-slider__val[aria-invalid="true"]{ outline: 2px solid var(--bc-neg); }
   .ab-cta__btn{ width: 100%; justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce){ .apage .reveal-wait{ opacity: 1; transform: none; transition: none; } }
+.apage .ab-link{ color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.apage .ab-link:hover{ text-decoration-thickness: 2px; }
