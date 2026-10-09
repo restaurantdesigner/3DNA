@@ -498,125 +498,405 @@
         }
       },
       "calc": {
-         "ui": {
-           "eyebrow": "3DNA / Fitness Business Tools",
-           "title": "Profitability Calculator",
-           "subtitle": "Discover your gym's economic potential. Enter your figures and calculate revenue, expenses and profitability.",
-           "example": "Illustrative example values: replace them with your project's figures.",
-           "pdf": "Download 3DNA PDF",
-           "gSpace": "Space and members",
-           "gOps": "Operation",
-           "gCosts": "Monthly expenses (excl. VAT)",
-           "gTax": "VAT and project",
-           "fields": {
-             "area": "Available floor area",
-             "capacity": "Simultaneous capacity",
-             "members": "Active paying members",
-             "price": "Monthly fee (incl. VAT)",
-             "model": "Operating model",
-             "visits": "Visits per member",
-             "duration": "Average visit length",
-             "hours": "Opening hours per day",
-             "staff": "Staff",
-             "rent": "Rent",
-             "utilities": "Utilities",
-             "cleaning": "Cleaning",
-             "maintenance": "Maintenance",
-             "security": "Security and access control",
-             "insurance": "Insurance and other costs",
-             "iva": "VAT (IVA)",
-             "project": "Project name (optional)"
-           },
-           "model247": "Automated 24/7 access",
-           "modelConv": "Conventional, staffed reception",
-           "hRevenue": "Revenue",
-           "grossMonthly": "Monthly revenue (incl. VAT)",
-           "netMonthly": "Net revenue (excl. VAT)",
-           "grossAnnual": "Annual revenue (incl. VAT)",
-           "hProfit": "Operating profit",
-           "profitMonthly": "Monthly profit",
-           "profitAnnual": "Annual profit",
-           "margin": "Operating margin",
-           "hMetrics": "Indicators",
-           "revenuePerM2": "Net revenue per m² (month)",
-           "profitPerM2": "Profit per m² (month)",
-           "capacity": "Simultaneous capacity",
-           "peak": "Estimated peak attendance",
-           "breakEven": "Members to cover expenses",
-           "overCapacity": "Estimated peak attendance exceeds the simultaneous capacity.",
-           "hChart": "Monthly expenses against net revenue",
-           "expenses": "Operating expenses",
-           "hCompare": "24/7 vs conventional",
-           "compareProfit": "Monthly profit",
-           "compareBreakEven": "Break-even members",
-           "assumptions": "Assumptions: the fee includes VAT and expenses do not; peak attendance = average occupancy over opening hours × peak factor (3 for 24/7, 2 for conventional). Hours, staff and security are kept per model so both scenarios can be compared.",
-           "netAnnual": "Annual net revenue"
-         },
-         "report": {
-           "title": "Preliminary profitability analysis",
-           "subtitle": "Gym · an indicative projection produced with the 3DNA calculator from the values entered.",
-           "keywords": "gym, profitability, 24/7, 3DNA",
-           "footerLeft": "© 3DNA · Commercial Space Design",
-           "grossMonthly": "Monthly revenue (incl. VAT)",
-           "grossAnnual": "Annual revenue (incl. VAT)",
-           "profitMonthly": "Monthly operating profit",
-           "profitAnnual": "Annual operating profit",
-           "area": "Available floor area",
-           "modelLabel": "Operating model",
-           "members": "Active paying members",
-           "price": "Monthly fee",
-           "ivaIncl": "incl. VAT",
-           "model247": "Automated 24/7",
-           "modelConv": "Conventional",
-           "hSummary": "Executive summary",
-           "vat": "Output VAT (monthly)",
-           "netMonthly": "Monthly net revenue (excl. VAT)",
-           "netAnnual": "Annual net revenue (excl. VAT)",
-           "expensesMonthly": "Monthly operating expenses",
-           "margin": "Operating margin",
-           "hInputs": "Input assumptions",
-           "capacity": "Simultaneous capacity",
-           "visits": "Visits per member per month",
-           "duration": "Average visit length",
-           "hours": "Opening hours per day",
-           "iva": "VAT (IVA) applied",
-           "hExpenses": "Monthly operating expenses (excl. VAT)",
-           "staff": "Staff",
-           "rent": "Rent",
-           "utilities": "Utilities",
-           "cleaning": "Cleaning",
-           "maintenance": "Maintenance",
-           "security": "Security and access control",
-           "insurance": "Insurance and other costs",
-           "hChart": "Expense breakdown against net revenue",
-           "hOperation": "Operating analysis",
-           "revenuePerM2": "Net revenue per m²",
-           "profitPerM2": "Operating profit per m²",
-           "visitsDay": "Estimated visits per day",
-           "peak": "Estimated peak attendance",
-           "ofCapacity": "{p} of capacity",
-           "breakEven": "Members needed to cover expenses",
-           "overCapacityNote": "Estimated peak attendance exceeds the stated simultaneous capacity: review the capacity, opening hours or member count.",
-           "hCompare": "24/7 vs conventional operation",
-           "compareIntro": "Same members, fee and shared costs; opening hours, staff and security change with each model.",
-           "compareItem": "Item",
-           "hMethod": "Methodology, assumptions and limits",
-           "method": [
-             "Gross revenue (VAT included) = active members × monthly fee. This is what members pay, including VAT.",
-             "Net revenue (excl. VAT) = gross revenue ÷ (1 + VAT). This is the business income before expenses; the VAT collected is paid to the tax authority.",
-             "Estimated operating profit = net revenue − operating expenses (staff, rent, utilities, cleaning, maintenance, security and access control, insurance and other). It excludes the initial investment, depreciation, interest and income tax.",
-             "Attendance: visits per day = members × visits per member per month ÷ 30.4. Average occupancy = visits per day × visit length ÷ opening hours. Peak attendance = average occupancy × peak factor (3 for 24/7, because night hours lower the average; 2 for conventional).",
-             "Break-even members = monthly operating expenses ÷ fee excl. VAT, rounded up. Annual figures are monthly figures × 12, with no seasonality or member churn."
-           ],
-           "disclaimer": "These results are preliminary estimates based on the values entered in the 3DNA calculator. They are not guaranteed financial outcomes, a business plan, an independently verified assessment or a quote. The data entered belongs to the person who entered it.",
-           "ctaHeading": "Want to turn these numbers into a real gym?",
-           "ctaLines": [
-             "At 3DNA we design commercial spaces that combine experience, functionality and business potential.",
-             "Request a professional design proposal for your gym: concept, layout, zoning and 3D visualization."
-           ],
-           "ctaButton": "Request a 3DNA proposal"
-         }
-       }
+        "ui": {
+          "eyebrow": "3DNA / Fitness Business Tools",
+          "title": "Gym Planner",
+          "subtitle": "Enter just the floor area. 3DNA proposes the concept, layout, equipment and business model.",
+          "inputLabel": "Total floor area of the premises",
+          "inputHint": "Between 40 and 5,000 m². Everything else is estimated automatically.",
+          "pdf": "Download 3DNA PDF",
+          "save": "Save analysis",
+          "shareCalc": "Share my analysis",
+          "copiedCalc": "Link with your analysis copied.",
+          "saved": "Analysis saved in this browser.",
+          "savedTitle": "Saved analyses",
+          "opened": "Saved analysis opened.",
+          "deleted": "Analysis deleted.",
+          "untitled": "Analysis",
+          "fullTitle": "Full planning report",
+          "fullSub": "Concept, spaces, equipment, capacity, staffing, investment and financial scenarios",
+          "reportIntro": "Generated automatically from the floor area and the 3DNA model assumptions. Each value shows whether it is your input, an estimate, a theoretical maximum or a scenario.",
+          "cards": {
+            "concept": "Recommended concept",
+            "capacity": "Simultaneous capacity",
+            "members": "Potential members",
+            "investment": "Estimated initial investment",
+            "gross": "Monthly revenue (incl. VAT)",
+            "profit": "Monthly operating result"
+          },
+          "cardsNote": "Base scenario. Capacity (people at once) and members (monthly fees) are different metrics."
+        },
+        "report": {
+          "pdfTitle": "Gym Planning & Preliminary Feasibility",
+          "pdfSubtitle": "Report generated by the 3DNA planner from the floor area of the premises.",
+          "keywords": "gym, planning, feasibility, 3DNA",
+          "footerLeft": "© 3DNA · Commercial Space Design",
+          "inputsTitle": "Analysis summary",
+          "na": "Not available",
+          "tags": {
+            "in": "Your input",
+            "est": "Estimate",
+            "max": "Theoretical max",
+            "scn": "Scenario"
+          },
+          "tagsHelp": {
+            "in": "A value you entered.",
+            "est": "Calculated by the model from its assumptions.",
+            "max": "A physical limit of the space, not demand.",
+            "scn": "A scenario projection."
+          },
+          "levels": {
+            "alert": "Alert",
+            "warn": "Watch",
+            "opp": "Opportunity",
+            "ok": "Recommendation"
+          },
+          "cards": {
+            "gross": "Monthly revenue",
+            "investment": "Estimated initial investment",
+            "profit": "Monthly operating result",
+            "profitAnnual": "Annual operating result",
+            "ivaIncl": "incl. VAT",
+            "note": "Base scenario. Revenue includes VAT (21 %); the result is calculated on revenue excluding VAT and excludes financing, depreciation and income tax."
+          },
+          "summary": {
+            "title": "Executive summary",
+            "intro": "For {a}, the model proposes this format: {c}. This is preliminary guidance: other formats may work depending on location, audience and project.",
+            "area": "Total (gross) floor area",
+            "concept": "Recommended concept",
+            "usable": "Usable training area",
+            "capacity": "Simultaneous capacity",
+            "members": "Potential members (scenario range)",
+            "investment": "Estimated initial investment",
+            "gross": "Monthly revenue (incl. VAT)",
+            "result": "Monthly operating result"
+          },
+          "concept": {
+            "title": "Recommended gym concept",
+            "intro": "Floor area guides the format but does not decide the business model on its own. Default recommendation: {c} (★).",
+            "format": "Format",
+            "range": "Ideal area",
+            "suit": "Fit",
+            "suits": {
+              "ideal": "Very suitable",
+              "viable": "Viable",
+              "oversized": "Surplus space",
+              "no": "Too little space"
+            },
+            "note": "Location, competition, target audience and budget may make another viable format preferable."
+          },
+          "concepts": {
+            "pt": {
+              "name": "Personal training studio",
+              "desc": "One-to-one or very small group sessions; high fee, few members and an open, flexible space."
+            },
+            "boutique": {
+              "name": "Boutique studio",
+              "desc": "Instructor-led classes with a strong identity (functional, cycling, HIIT); the class studio is the core and the experience is curated."
+            },
+            "functional": {
+              "name": "Functional training gym",
+              "desc": "A large functional area with rig and free weights, plus supporting cardio and strength; community and coached training."
+            },
+            "conventional": {
+              "name": "Conventional fitness club",
+              "desc": "Cardio, machines, free weights and a group studio; mid-range fee and member volume."
+            },
+            "large": {
+              "name": "Large multipurpose fitness centre",
+              "desc": "Several studios and specialised zones, long opening hours and extra services; needs professional management."
+            }
+          },
+          "space": {
+            "title": "Space planning",
+            "intro": "Preliminary area schedule. It always adds up to exactly 100 % of the gross area; zones adapt to the size of the premises.",
+            "zone": "Zone",
+            "equipment": "Main equipment or furniture",
+            "total": "Total",
+            "gross": "Gross floor area",
+            "usable": "Usable training area",
+            "note": "Conceptual allocation: the final layout depends on geometry, structure, accessibility, means of escape and fire safety, ventilation and applicable regulations."
+          },
+          "zones": {
+            "reception": {
+              "name": "Reception and access",
+              "eq": "Desk, access control",
+              "purpose": "Welcome, access control and sales.",
+              "rec": "Visible from the entrance with a view over the floor."
+            },
+            "cardio": {
+              "name": "Cardio",
+              "eq": "Treadmills, bikes, ellipticals, rowers",
+              "purpose": "Cardiovascular training.",
+              "rec": "Near the façade or daylight; floor sockets for treadmills."
+            },
+            "strength": {
+              "name": "Strength machines",
+              "eq": "Selectorised machines, cables",
+              "purpose": "Guided strength for all levels.",
+              "rec": "A logical circuit by muscle group and walkways of at least 60 cm."
+            },
+            "free": {
+              "name": "Free weights",
+              "eq": "Racks, benches, dumbbells",
+              "purpose": "Barbell and dumbbell training.",
+              "rec": "High-density technical flooring and impact and vibration control."
+            },
+            "functional": {
+              "name": "Functional training",
+              "eq": "Rig, mats, accessories",
+              "purpose": "Functional work, mobility and coached training.",
+              "rec": "An open space with enough clear height and storage at hand."
+            },
+            "studio": {
+              "name": "Group studio",
+              "eq": "Mats, class equipment, sound",
+              "purpose": "Instructor-led classes with controlled capacity.",
+              "rec": "Acoustic insulation, mirrors and its own climate control."
+            },
+            "changing": {
+              "name": "Changing rooms",
+              "eq": "Lockers, benches",
+              "purpose": "Changing and storing belongings.",
+              "rec": "A clear clean/dirty route and mechanical ventilation."
+            },
+            "showers": {
+              "name": "Showers and toilets",
+              "eq": "Showers, WCs, basins",
+              "purpose": "User hygiene.",
+              "rec": "Waterproofing, extraction and slip-resistant finishes."
+            },
+            "storage": {
+              "name": "Storage",
+              "eq": "Shelving",
+              "purpose": "Equipment, cleaning and spares.",
+              "rec": "Close to the training areas."
+            },
+            "staff": {
+              "name": "Staff and support",
+              "eq": "Office, rest area",
+              "purpose": "Management and staff rest.",
+              "rec": "Separate from the customer route."
+            },
+            "technical": {
+              "name": "Technical and services",
+              "eq": "HVAC, switchboards, cleaning room",
+              "purpose": "Building services and maintenance.",
+              "rec": "Maintenance access without crossing the training floors."
+            },
+            "circulation": {
+              "name": "Circulation",
+              "eq": "—",
+              "purpose": "Corridors, entrances and escape routes.",
+              "rec": "Accessible widths and clear escape routes."
+            }
+          },
+          "equipment": {
+            "title": "Recommended equipment",
+            "intro": "Quantities that fit the proposed zones (footprint including working space). Indicative budgets, not supplier quotes.",
+            "item": "Item",
+            "qty": "Quantity",
+            "budget": "Indicative budget",
+            "total": "Total",
+            "items": {
+              "treadmill": "Treadmills",
+              "bike": "Bikes",
+              "elliptical": "Ellipticals",
+              "rower": "Rowers",
+              "selectorized": "Selectorised machines",
+              "cable": "Cable stations",
+              "rack": "Racks",
+              "bench": "Benches",
+              "dumbbells": "Dumbbell sets",
+              "rig": "Functional rigs",
+              "mats": "Mats and floor stations",
+              "kit": "Accessory kits",
+              "studioKit": "Class stations (equipment)",
+              "lockers": "Lockers",
+              "receptionDesk": "Reception furniture",
+              "access": "Access control",
+              "lighting": "LED lighting",
+              "cameras": "Security cameras",
+              "sound": "Sound zones"
+            },
+            "groups": {
+              "cardio": "Cardio",
+              "strength": "Strength and free weights",
+              "functional": "Functional and classes",
+              "support": "Support and services"
+            },
+            "maintenance": {
+              "cardio": "Quarterly preventive maintenance; treadmills need dedicated circuits.",
+              "strength": "Check cables and pulleys; upholstery and fixings.",
+              "functional": "Inspect rig fixings and replace accessories.",
+              "support": "Maintenance contracts for access control, CCTV and HVAC."
+            },
+            "note": "Indicative prices and power ratings; they depend on brand, range and supplier."
+          },
+          "capacity": {
+            "title": "Capacity and membership",
+            "intro": "Simultaneous capacity is a physical limit of the space; members are people paying a monthly fee. They are different metrics.",
+            "usable": "Usable training area",
+            "perUser": "Area per active user",
+            "simultaneous": "Simultaneous capacity",
+            "peak": "Users at peak time (target)",
+            "hours": "Daily opening hours",
+            "session": "Average session length",
+            "daily": "Indicative daily visits",
+            "monthly": "Indicative monthly visits",
+            "visits": "Visits per member per month",
+            "members": "Potential paying members",
+            "note": "The legal occupancy is set by the project (escape, ventilation). Real demand depends on location and competition."
+          },
+          "staff": {
+            "title": "Staffing and operations",
+            "intro": "Cover for {h} h a day in shifts; reception, trainers, cleaning, management and maintenance as full-time equivalents.",
+            "role": "Function",
+            "positions": "Simultaneous positions",
+            "cost": "Monthly cost",
+            "roles": {
+              "reception": "Reception",
+              "trainer": "Floor trainers",
+              "cleaning": "Cleaning",
+              "manager": "Management",
+              "maintenance": "Maintenance"
+            },
+            "total": "Total",
+            "autoReception": "Reception with automated access (FTE)",
+            "autoSaving": "Monthly reception saving with automated access",
+            "note": "Automated access reduces reception hours but requires access control, CCTV and remote supervision; cleaning, trainers and management remain, and demand does not increase."
+          },
+          "investment": {
+            "title": "Initial investment",
+            "intro": "Indicative range excluding VAT to fit out and equip the premises.",
+            "item": "Item",
+            "low": "Low",
+            "high": "High",
+            "items": {
+              "fitout": "Fit-out and finishes",
+              "flooring": "Sports flooring",
+              "wet": "Changing rooms and showers",
+              "electrical": "Electrical and lighting",
+              "hvac": "Ventilation and HVAC",
+              "equipment": "Fitness and support equipment",
+              "access": "Access control",
+              "signage": "Signage and branding",
+              "contingency": "Contingency"
+            },
+            "total": "Total",
+            "perM2": "Investment per m²",
+            "note": "Excludes purchase or key money for the premises, licences, fees and financing. Not a quote."
+          },
+          "opex": {
+            "title": "Monthly operating costs",
+            "intro": "Base scenario, amounts excluding VAT. Preliminary estimates: rent, wages and utilities vary by location.",
+            "items": {
+              "payroll": "Payroll",
+              "rent": "Rent",
+              "energy": "Electricity",
+              "water": "Water",
+              "cleaning": "Cleaning (products and services)",
+              "maintenance": "Maintenance",
+              "insurance": "Insurance",
+              "software": "Management software",
+              "marketing": "Marketing",
+              "overhead": "Other overheads"
+            },
+            "total": "Total operating costs",
+            "net": "Revenue excl. VAT"
+          },
+          "scenarios": {
+            "title": "Revenue scenarios",
+            "intro": "Same premises and model; the fee and the number of members change. VAT applied: {i}.",
+            "item": "Item",
+            "conservative": "Conservative",
+            "base": "Base",
+            "optimistic": "Optimistic",
+            "fee": "Monthly fee (incl. VAT)",
+            "members": "Paying members",
+            "gross": "Monthly revenue (incl. VAT)",
+            "vat": "VAT",
+            "net": "Revenue excl. VAT",
+            "costs": "Operating costs",
+            "result": "Monthly operating result",
+            "annual": "Annual operating result",
+            "margin": "Margin",
+            "breakEven": "Break-even members",
+            "revPerM2": "Revenue excl. VAT per m² (month)",
+            "profitPerM2": "Result per m² (month)",
+            "note": "Standard 21 % VAT on gym memberships; some entities or services (e.g. non-profit entities or exempt sports services) may be taxed differently."
+          },
+          "breakeven": {
+            "title": "Break-even",
+            "intro": "Members needed to cover operating costs at the base scenario fee.",
+            "members": "Break-even members",
+            "share": "Share of base-scenario potential members",
+            "capacityNote": "Simultaneous capacity (physical reference)",
+            "payback": "Indicative investment payback",
+            "years": "years",
+            "note": "Payback is an indicative calculation (mid investment ÷ annual result) and is not a guarantee."
+          },
+          "recs": {
+            "title": "Architectural recommendations",
+            "intro": "Generated from the floor area and the recommended concept.",
+            "texts": {
+              "tiny": "Very small premises: one flexible training space and a compact changing room work better than many zones.",
+              "boutiqueIdentity": "In boutique formats, visual identity, scenic lighting and sound are part of the product.",
+              "studioAcoustics": "The group studio needs acoustic separation from changing rooms and neighbours, and its own climate control.",
+              "noStudio": "No class studio is reserved: a flexible functional area can host small classes.",
+              "treadmillPower": "Equipment power ≈ {kw} kW: plan dedicated circuits and floor sockets for treadmills.",
+              "freeWeightsFloor": "The free-weight area needs technical flooring and a check of loads and impact on the structure.",
+              "ventilation": "With about {p} users at peak time, ventilation must be sized by occupancy (air quality and CO₂).",
+              "zoningLarge": "In large centres, separating member, class and service routes improves peak-time flow.",
+              "breakEvenOver": "In the base scenario the members do not cover the costs: review concept, fee or costs before investing.",
+              "breakEvenTight": "Break-even sits above the conservative scenario: little headroom if demand is lower.",
+              "regulations": "Before investing: activity licence, accessibility, means of escape and fire safety, and an acoustic study."
+            }
+          },
+          "method": {
+            "title": "Methodology and limitations",
+            "intro": "Internal assumptions of model {version}: illustrative values for a preliminary study in Spain, not verified market data, quotes, rents or agreed wages.",
+            "a": {
+              "iva": "VAT on gym memberships",
+              "perUser": "m² per active user (PT studio / boutique / functional / conventional / multipurpose)",
+              "fee": "Base fee per format",
+              "visits": "Visits per member per month per format",
+              "hours": "Opening hours per format",
+              "peak": "Peak load · peak-hour share of daily visits",
+              "scenarios": "Scenarios: members × fee (conservative / base / optimistic)",
+              "salaries": "Reference gross monthly salary, 14 payments: reception / trainer / cleaning / management / maintenance",
+              "onCost": "Employer social security",
+              "rent": "Rent",
+              "energy": "Electricity and HVAC",
+              "investment": "Fit-out · HVAC · electrical",
+              "contingency": "Contingency on investment",
+              "marketing": "Marketing · other overheads on revenue excl. VAT"
+            },
+            "paragraphs": [
+              "Zones: a fixed base plus a share of the area; training zones are split by concept. A zone that is too small joins the functional area and rounding goes to circulation, so the total is always 100 %.",
+              "Capacity = usable area ÷ m² per user. Daily visits = users at peak ÷ (peak-hour share × session length). Members = monthly visits ÷ visits per member.",
+              "Revenue = members × fee (VAT included); revenue excl. VAT = revenue ÷ 1.21. Result = revenue excl. VAT − operating costs; excludes financing, depreciation and income tax.",
+              "Break-even members = fixed costs ÷ (fee excl. VAT − variable costs per member). Payback = mid investment ÷ annual result (indicative)."
+            ],
+            "disclaimer": "This report is a preliminary estimate from a single figure and 3DNA's internal assumptions. It is not a design, a quote, a verified assessment or a guarantee of results. The data entered belongs to the person who entered it."
+          },
+          "cta": {
+            "heading": "We don't just design gyms. We design experiences.",
+            "lines": [
+              "Turn this analysis into a project: concept, layout, zoning and 3D visualization with 3DNA."
+            ],
+            "button": "Contact 3DNA",
+            "calcLink": "Open this analysis"
+          }
+        },
+        "share": {
+          "slug": "calculator",
+          "title": "Gym Planning Calculator | 3DNA",
+          "description": "Enter your floor area and discover your gym's potential: space planning, equipment, investment and financial analysis.",
+          "imageAlt": "The 3DNA gym planner on a tablet inside a gym",
+          "open": "Open the calculator"
+        }
+      }
     },
     "restaurantsPage": {
       "plan": {
@@ -832,103 +1112,265 @@
       "calc": {
          "ui": {
            "eyebrow": "3DNA / Restaurant Business Tools",
-           "title": "Profitability Calculator",
-           "subtitle": "Calculate your restaurant's potential revenue, expenses and profit.",
-           "example": "Example values based on the 3D restaurant above: replace them with your project's figures.",
-           "pdf": "Download 3DNA PDF",
-           "gBasic": "Restaurant details",
-           "gCosts": "Operating expenses",
-           "gCostsIntro": "Monthly amounts excluding VAT; food & beverage as a percentage of net sales.",
-           "gReport": "Report",
+           "title": "Commercial Potential Calculator",
+           "subtitle": "Enter 5 figures. 3DNA works out the rest.",
+           "inputsLabel": "Your 5 figures",
+           "pdf": "Download PDF",
+           "seatsShort": "seats",
            "fields": {
-             "area": "Restaurant floor area",
+             "area": "Total floor area",
              "seats": "Number of seats",
-             "check": "Average check (incl. VAT)",
-             "occupancy": "Average seat occupancy",
-             "turns": "Seat turns",
-             "days": "Operating days per month",
-             "fb": "Food & beverage",
-             "staff": "Staff",
-             "rent": "Monthly rent",
-             "utilities": "Utilities",
-             "other": "Other operating costs",
-             "iva": "VAT (IVA)",
-             "project": "Project name (optional)"
+             "ticket": "Average check (incl. VAT)",
+             "days": "Open days per month",
+             "rotation": "Daily turns per seat"
            },
-           "hRevenue": "Revenue",
-           "grossMonthly": "Monthly sales (incl. VAT)",
-           "netMonthly": "Net sales (excl. VAT)",
-           "grossAnnual": "Annual sales (incl. VAT)",
-           "netAnnual": "Annual net sales",
-           "hProfit": "Operating profit",
-           "profitMonthly": "Monthly profit",
-           "profitAnnual": "Annual profit",
-           "margin": "Operating margin",
-           "hMetrics": "Indicators",
-           "visits": "Customer visits per month",
-           "grossPerM2": "Sales per m² (month)",
-           "breakEven": "Break-even (net sales/month)",
-           "breakEvenOccupancy": "Break-even occupancy",
-           "hChart": "Monthly net sales and expenses",
-           "hAssumptions": "Calculation assumptions",
-           "assumptions": "Visits = seats × occupancy × seat turns × days. The check includes VAT; expenses do not. Operating profit before depreciation, interest and income tax. Annual figures = monthly × 12."
+           "rotationUnit": "turns per seat per day",
+           "reportTitle": "Preliminary feasibility report",
+           "reportIntro": "Generated automatically from your 5 figures and the 3DNA model assumptions. Each value shows whether it is your input, an estimate, a theoretical maximum or a scenario.",
+           "fullTitle": "Full feasibility report",
+           "fullSub": "Financial, operational and spatial analysis of your restaurant"
          },
          "report": {
-           "title": "Restaurant Profitability Analysis",
-           "subtitle": "An indicative projection produced with the 3DNA calculator from the values entered.",
-           "keywords": "restaurant, profitability, revenue, 3DNA",
+           "pdfTitle": "Commercial Potential Analysis · Restaurant",
+           "pdfSubtitle": "Preliminary feasibility report produced with the 3DNA calculator from five figures.",
+           "keywords": "restaurant, feasibility, commercial potential, 3DNA",
            "footerLeft": "© 3DNA · Restaurant Design & Visualization",
-           "grossMonthly": "Monthly sales (incl. VAT)",
-           "grossAnnual": "Annual sales (incl. VAT)",
-           "netMonthly": "Monthly net sales (excl. VAT)",
-           "netAnnual": "Annual net sales (excl. VAT)",
-           "profitMonthly": "Monthly operating profit",
-           "profitAnnual": "Annual operating profit",
-           "margin": "Operating margin",
-           "hProject": "Parameters entered",
-           "area": "Restaurant floor area",
-           "seats": "Seats",
-           "check": "Average check",
-           "ivaIncl": "VAT included",
-           "occupancy": "Average seat occupancy",
-           "turns": "Seat turns per day",
-           "days": "Operating days per month",
-           "iva": "VAT (IVA) applied",
-           "hResults": "Financial results",
-           "vat": "Output VAT (monthly)",
-           "expensesMonthly": "Monthly operating expenses",
-           "hExpenses": "Operating expenses",
-           "expensesIntro": "Monthly amounts excluding VAT. Food & beverage is a percentage of net sales; the rest are monthly amounts.",
-           "fb": "Food & beverage",
-           "staff": "Staff",
-           "rent": "Rent",
-           "utilities": "Utilities",
-           "other": "Other operating costs",
-           "ofNet": "{p} of net sales",
-           "hChart": "Monthly net sales and expenses",
-           "hOperation": "Operating analysis",
-           "visits": "Customer visits",
-           "visitsDay": "Customer visits per day",
-           "grossPerM2": "Sales (incl. VAT) per m²",
-           "netPerM2": "Net sales per m²",
-           "breakEven": "Break-even (net sales)",
-           "breakEvenVisits": "Daily customers to break even",
-           "breakEvenOccupancy": "Break-even occupancy",
-           "hMethod": "Methodology and assumptions",
-           "method": [
-             "Customer visits per month = seats × average occupancy × seat turns per day × operating days.",
-             "Gross sales (VAT included) = visits × average check. This is what customers pay, including VAT.",
-             "Net sales (excl. VAT) = gross sales ÷ (1 + VAT). This is the business income before expenses; the VAT collected is paid to the tax authority.",
-             "Estimated operating profit = net sales − (food & beverage + staff + rent + utilities + other costs). It excludes the initial investment, depreciation, interest and income tax.",
-             "Break-even = (staff + rent + utilities + other costs) ÷ (1 − food & beverage %): the monthly net sales needed to cover expenses under these assumptions. Annual figures are monthly × 12, with no seasonality."
-           ],
-           "disclaimer": "This report is an illustrative projection based on the values entered in the 3DNA calculator. It does not guarantee future profitability and is not a business plan, an independently verified financial assessment or a quote. The data entered belongs to the person who entered it.",
-           "ctaHeading": "Your restaurant starts with a good idea.",
-           "ctaLines": [
-             "The numbers show the potential. Design turns that potential into an experience.",
-             "Contact 3DNA to develop your restaurant's concept, layout and visualization."
-           ],
-           "ctaButton": "Contact 3DNA"
+           "inputsTitle": "Figures entered",
+           "na": "Not available",
+           "fields": {
+             "area": "Total floor area",
+             "seats": "Seats",
+             "ticket": "Average check (incl. VAT)",
+             "days": "Open days per month",
+             "rotation": "Turns per seat per day"
+           },
+           "cards": {
+             "grossMonthly": "Monthly revenue",
+             "grossAnnual": "Annual revenue",
+             "profitMonthly": "Estimated monthly operating profit",
+             "profitAnnual": "Estimated annual operating profit",
+             "ivaIncl": "incl. VAT",
+             "note": "Base scenario: revenue = seats × average check × daily turns × open days (VAT included). Profit is calculated on sales excluding VAT.",
+             "staff": "Estimated staff requirement",
+             "staffValue": "{v} full-time equivalents"
+           },
+           "tags": {
+             "in": "Your input",
+             "est": "Estimate",
+             "max": "Theoretical max",
+             "scn": "Scenario"
+           },
+           "tagsHelp": {
+             "in": "A value you entered.",
+             "est": "Calculated by the model from its assumptions.",
+             "max": "Every seat taken in every turn.",
+             "scn": "Projection with the figures entered or a demand scenario."
+           },
+           "space": {
+             "title": "Space and seating",
+             "intro": "A conceptual split of the floor area for a table-service restaurant. It is not a floor plan or an actual layout.",
+             "area": "Total floor area",
+             "seats": "Seats",
+             "perSeat": "Total area per seat",
+             "dining": "Dining room, estimated",
+             "kitchen": "Kitchen and storage, estimated",
+             "support": "Circulation, toilets and support, estimated",
+             "diningPerSeat": "Dining area per seat",
+             "seatsPer100": "Seats per 100 m²",
+             "density": "Seating density",
+             "levels": {
+               "veryHigh": "Very high",
+               "high": "High",
+               "adequate": "Adequate",
+               "ample": "Generous"
+             }
+           },
+           "customers": {
+             "title": "Customers and capacity",
+             "intro": "The rotation entered already reflects average seat occupancy: no additional percentage is applied. Customers = seats × turns × days.",
+             "rotation": "Daily turns per seat",
+             "days": "Open days per month",
+             "theoDaily": "Theoretical daily capacity",
+             "theoMonthly": "Theoretical monthly capacity",
+             "theoAnnual": "Theoretical annual capacity",
+             "theoSales": "Theoretical maximum monthly sales (incl. VAT)",
+             "utilization": "Utilization applied",
+             "expDaily": "Expected customers per day",
+             "expMonthly": "Expected customers per month",
+             "expAnnual": "Expected customers per year"
+           },
+           "revenue": {
+             "title": "Revenue",
+             "intro": "The average check includes Spanish hospitality VAT ({i}). Sales excluding VAT are the business's real income.",
+             "ticket": "Average check (incl. VAT)",
+             "dailyGross": "Daily revenue (incl. VAT)",
+             "monthlyGross": "Monthly revenue (incl. VAT)",
+             "annualGross": "Annual revenue (incl. VAT)",
+             "vatMonthly": "VAT included in revenue (month)",
+             "netMonthly": "Sales excl. VAT (month)",
+             "netAnnual": "Sales excl. VAT (year)",
+             "perSeat": "Revenue per seat (month)",
+             "perM2": "Revenue per m² (month)",
+             "netPerM2Year": "Sales excl. VAT per m² (year)"
+           },
+           "product": {
+             "title": "Product cost",
+             "intro": "Food and beverage as an illustrative percentage of sales excluding VAT.",
+             "ratio": "Food and beverage cost",
+             "monthly": "Product cost (month)",
+             "annual": "Product cost (year)",
+             "contribution": "Gross margin after product (month)"
+           },
+           "staff": {
+             "title": "Staffing and labour cost",
+             "intro": "Demand-based estimate: {s} services a day of {h} h, about {c} customers per service, productivity per position and cover for every open day.",
+             "role": "Position",
+             "perService": "Per service",
+             "fte": "Full-time equivalents (FTE)",
+             "cost": "Monthly cost",
+             "roles": {
+               "waiter": "Floor staff",
+               "cook": "Cooks",
+               "assistant": "Kitchen assistants",
+               "bar": "Bar",
+               "supervisor": "Manager / supervision"
+             },
+             "total": "Total",
+             "monthly": "Monthly labour cost",
+             "annual": "Annual labour cost",
+             "ratio": "Labour cost on sales excl. VAT",
+             "note": "Full-time equivalents, not an exact headcount: the real number depends on opening hours, shifts, the collective agreement and the menu."
+           },
+           "opex": {
+             "title": "Operating expenses",
+             "intro": "Monthly amounts excluding VAT. Preliminary estimates, not quotes or verified market prices; rent and wages vary widely by location.",
+             "staff": "Staff",
+             "rent": "Rent",
+             "electricity": "Electricity",
+             "water": "Water",
+             "gas": "Gas (kitchen)",
+             "cleaning": "Cleaning",
+             "maintenance": "Maintenance",
+             "insurance": "Insurance",
+             "software": "Software and card payments",
+             "marketing": "Marketing",
+             "consumables": "Consumables",
+             "overhead": "Other overheads",
+             "total": "Total operating expenses",
+             "product": "Product cost",
+             "totalCosts": "Total costs",
+             "net": "Sales excl. VAT"
+           },
+           "profit": {
+             "title": "Profitability and break-even",
+             "intro": "Operating result = sales excl. VAT − product cost − operating expenses.",
+             "monthly": "Monthly operating result",
+             "annual": "Annual operating result",
+             "margin": "Operating margin",
+             "perM2": "Result per m² (year)",
+             "perSeat": "Result per seat (year)",
+             "beRevenue": "Break-even revenue (incl. VAT, month)",
+             "beNet": "Break-even sales excl. VAT (month)",
+             "beCustomers": "Break-even customers per month",
+             "beDaily": "Break-even customers per day",
+             "beUtilization": "Break-even demand (share of expected)",
+             "excluded": "Excludes the initial investment, depreciation, financing and income tax. At break-even, staff and fixed costs stay at the base scenario level."
+           },
+           "scenarios": {
+             "title": "Scenarios",
+             "intro": "The same five figures; the base scenario uses your rotation as entered and the conservative and optimistic scenarios assume 15 % less or more demand. Staffing and variable costs are recalculated with the same model.",
+             "item": "Item",
+             "conservative": "Conservative",
+             "base": "Base",
+             "optimistic": "Optimistic",
+             "utilization": "Demand vs expected",
+             "customers": "Customers per month",
+             "gross": "Revenue (incl. VAT)",
+             "net": "Sales excl. VAT",
+             "product": "Product cost",
+             "staff": "Staff",
+             "fte": "Full-time equivalents",
+             "other": "Other expenses",
+             "result": "Monthly result",
+             "annual": "Annual result",
+             "margin": "Margin"
+           },
+           "insights": {
+             "title": "Design observations",
+             "intro": "Generated from your figures and the model thresholds; they guide the project, they do not replace it.",
+             "levels": {
+               "alert": "Alert",
+               "warn": "Watch",
+               "opp": "Opportunity",
+               "ok": "Sound"
+             },
+             "texts": {
+               "density_veryHigh": "Very high density: {d} m² of dining area per seat. Below 1 m² it is hard to keep clear routes, accessibility and comfort; consider fewer seats or more dining area.",
+               "density_high": "High density: {d} m² of dining area per seat. Circulation and compact furniture will be decisive.",
+               "density_adequate": "Adequate density for table service: {d} m² of dining area per seat.",
+               "density_ample": "Generous dining room: {d} m² per seat. There is room for more seats, a waiting area or a retail counter.",
+               "circulation": "Low total area per seat ({p} m²): risk of crossings between dining room, kitchen and toilets; the service route must be resolved from the start.",
+               "kitchenTight": "With {r} turns a day, the conceptual kitchen ({k} m² per seat) may fall short: study the production line and back-of-house.",
+               "kitchenLarge": "The conceptual kitchen ({k} m² per seat) is large for this capacity: part of it could become dining or storage space.",
+               "revenueLow": "Sales excl. VAT of {e} per m² a year: low potential for the floor area; the design should lift the check or the turns.",
+               "revenueHigh": "Sales excl. VAT of {e} per m² a year: high productivity of the space; protect comfort and flows at peak times.",
+               "rotationHigh": "High turnover ({r} per seat a day): the space should be designed for fast flow (counter, pick-up, modular tables).",
+               "breakEvenOver": "Covering costs would take {b} of the expected customers: with these figures the business does not break even.",
+               "breakEvenNone": "At this check, each customer does not cover their variable costs: no break-even point is possible.",
+               "breakEvenTight": "Break-even needs {b} of the expected customers: little headroom if demand drops.",
+               "breakEvenOk": "Break-even comes at {b} of the expected customers."
+             }
+           },
+           "method": {
+             "title": "Methodology and assumptions",
+             "intro": "Internal assumptions of model {version}. They are illustrative values for a preliminary estimate in Spain, not verified market data, quotes or agreed wages.",
+             "a": {
+               "iva": "Hospitality VAT (food and drink service)",
+               "utilization": "Demand per scenario relative to the entered rotation: conservative / base / optimistic",
+               "zoning": "Conceptual split: dining / kitchen and storage / support",
+               "services": "Services per day × hours per service",
+               "fteHours": "Hours per full-time month",
+               "productivity": "Customers per service per position: floor / kitchen / assistant / bar",
+               "salaries": "Reference gross monthly salary, 14 payments: floor / kitchen / assistant / bar / manager",
+               "onCost": "Employer social security",
+               "fb": "Food and beverage on sales excl. VAT",
+               "rent": "Rent",
+               "electricity": "Electricity: per m² + per customer",
+               "water": "Water: fixed + per customer",
+               "gas": "Gas per customer",
+               "cleaning": "Cleaning · maintenance",
+               "insurance": "Insurance: fixed + per m²",
+               "software": "Software: fixed + card fee on revenue",
+               "marketing": "Marketing on sales excl. VAT · consumables per customer",
+               "overhead": "Other overheads: fixed + on sales excl. VAT"
+             },
+             "formulas": [
+               "Customers per month = seats × daily turns × open days (the rotation already includes average occupancy). The conservative and optimistic scenarios apply −15 % and +15 % demand.",
+               "Revenue (VAT included) = customers × average check. Sales excl. VAT = revenue ÷ (1 + VAT); the VAT is paid to the tax authority.",
+               "Staffing: customers per service ÷ productivity of each position (at least one), times services and hours, for every open day; converted to full-time equivalents and costed with salary and employer contributions.",
+               "Operating result = sales excl. VAT − food and beverage − staff − rent − utilities − other expenses. Annual figures = monthly × 12, with no seasonality.",
+               "Break-even = fixed costs ÷ margin per customer (check excl. VAT − variable costs per customer). Break-even demand = break-even customers ÷ expected customers."
+             ],
+             "disclaimer": "This report is an illustrative projection based on five figures and the internal assumptions of the 3DNA model. It does not guarantee future results and is not a business plan, a verified financial assessment or a quote. The data entered belongs to the person who entered it."
+           },
+           "cta": {
+             "heading": "Your restaurant starts with a good idea.",
+             "lines": [
+               "The numbers show the potential. Design turns that potential into an experience."
+             ],
+             "button": "Contact 3DNA",
+             "calcLink": "Open this calculation"
+           },
+           "groups": {
+             "volume": "Customer volume and revenue"
+           }
+         },
+         "share": {
+           "slug": "calculator",
+           "title": "Restaurant Business Calculator | 3DNA",
+           "description": "Enter 5 values and explore your restaurant's potential: revenue, staffing, expenses and a complete financial analysis.",
+           "imageAlt": "The 3DNA restaurant calculator on a tablet on a restaurant table",
+           "open": "Open the calculator"
          }
        },
       "wideOverlay": {
@@ -1744,125 +2186,405 @@
         }
       },
       "calc": {
-         "ui": {
-           "eyebrow": "3DNA / Fitness Business Tools",
-           "title": "Calculadora de Rentabilidad",
-           "subtitle": "Descubre el potencial económico de tu gimnasio. Introduce tus datos y calcula ingresos, gastos y rentabilidad.",
-           "example": "Valores de ejemplo ilustrativos: sustitúyelos por los de tu proyecto.",
-           "pdf": "Descargar PDF 3DNA",
-           "gSpace": "Espacio y socios",
-           "gOps": "Operación",
-           "gCosts": "Gastos mensuales (sin IVA)",
-           "gTax": "IVA y proyecto",
-           "fields": {
-             "area": "Superficie disponible",
-             "capacity": "Aforo simultáneo",
-             "members": "Socios activos de pago",
-             "price": "Cuota mensual (IVA incl.)",
-             "model": "Modelo de operación",
-             "visits": "Visitas por socio",
-             "duration": "Duración media de la visita",
-             "hours": "Horas de apertura al día",
-             "staff": "Personal",
-             "rent": "Alquiler",
-             "utilities": "Suministros",
-             "cleaning": "Limpieza",
-             "maintenance": "Mantenimiento",
-             "security": "Seguridad y control de accesos",
-             "insurance": "Seguros y otros gastos",
-             "iva": "IVA",
-             "project": "Nombre del proyecto (opcional)"
-           },
-           "model247": "Acceso 24/7 automatizado",
-           "modelConv": "Convencional con recepción",
-           "hRevenue": "Ingresos",
-           "grossMonthly": "Ingresos mensuales (IVA incl.)",
-           "netMonthly": "Ingresos netos (sin IVA)",
-           "grossAnnual": "Ingresos anuales (IVA incl.)",
-           "hProfit": "Beneficio operativo",
-           "profitMonthly": "Beneficio mensual",
-           "profitAnnual": "Beneficio anual",
-           "margin": "Margen operativo",
-           "hMetrics": "Indicadores",
-           "revenuePerM2": "Ingresos netos por m² (mes)",
-           "profitPerM2": "Beneficio por m² (mes)",
-           "capacity": "Aforo simultáneo",
-           "peak": "Asistencia punta estimada",
-           "breakEven": "Socios para cubrir gastos",
-           "overCapacity": "La asistencia punta estimada supera el aforo simultáneo.",
-           "hChart": "Gastos mensuales frente a ingresos netos",
-           "expenses": "Gastos operativos",
-           "hCompare": "24/7 frente a convencional",
-           "compareProfit": "Beneficio mensual",
-           "compareBreakEven": "Socios de equilibrio",
-           "assumptions": "Supuestos: la cuota incluye IVA y los gastos no; asistencia punta = ocupación media durante el horario × factor de hora punta (3 en 24/7, 2 en convencional). Horario, personal y seguridad se guardan por modelo para comparar ambos escenarios.",
-           "netAnnual": "Ingresos netos anuales"
-         },
-         "report": {
-           "title": "Análisis preliminar de rentabilidad",
-           "subtitle": "Gimnasio · proyección orientativa elaborada con la calculadora de 3DNA a partir de los datos introducidos.",
-           "keywords": "gimnasio, rentabilidad, 24/7, 3DNA",
-           "footerLeft": "© 3DNA · Commercial Space Design",
-           "grossMonthly": "Ingresos mensuales (IVA incl.)",
-           "grossAnnual": "Ingresos anuales (IVA incl.)",
-           "profitMonthly": "Beneficio operativo mensual",
-           "profitAnnual": "Beneficio operativo anual",
-           "area": "Superficie disponible",
-           "modelLabel": "Modelo de operación",
-           "members": "Socios activos de pago",
-           "price": "Cuota mensual",
-           "ivaIncl": "IVA incl.",
-           "model247": "24/7 automatizado",
-           "modelConv": "Convencional",
-           "hSummary": "Resumen ejecutivo",
-           "vat": "IVA repercutido (mensual)",
-           "netMonthly": "Ingresos netos mensuales (sin IVA)",
-           "netAnnual": "Ingresos netos anuales (sin IVA)",
-           "expensesMonthly": "Gastos operativos mensuales",
-           "margin": "Margen operativo",
-           "hInputs": "Supuestos introducidos",
-           "capacity": "Aforo simultáneo",
-           "visits": "Visitas por socio al mes",
-           "duration": "Duración media de la visita",
-           "hours": "Horas de apertura al día",
-           "iva": "IVA aplicado",
-           "hExpenses": "Gastos operativos mensuales (sin IVA)",
-           "staff": "Personal",
-           "rent": "Alquiler",
-           "utilities": "Suministros",
-           "cleaning": "Limpieza",
-           "maintenance": "Mantenimiento",
-           "security": "Seguridad y control de accesos",
-           "insurance": "Seguros y otros gastos",
-           "hChart": "Desglose de gastos frente a ingresos netos",
-           "hOperation": "Análisis operativo",
-           "revenuePerM2": "Ingresos netos por m²",
-           "profitPerM2": "Beneficio operativo por m²",
-           "visitsDay": "Visitas estimadas al día",
-           "peak": "Asistencia punta estimada",
-           "ofCapacity": "{p} del aforo",
-           "breakEven": "Socios necesarios para cubrir gastos",
-           "overCapacityNote": "La asistencia punta estimada supera el aforo simultáneo indicado: conviene revisar el aforo, el horario o el número de socios.",
-           "hCompare": "24/7 frente a operación convencional",
-           "compareIntro": "Mismos socios, cuota y gastos comunes; cambian el horario, el personal y la seguridad de cada modelo.",
-           "compareItem": "Concepto",
-           "hMethod": "Metodología, supuestos y límites",
-           "method": [
-             "Ingresos brutos (IVA incluido) = socios activos × cuota mensual. Es lo que pagan los socios, con IVA.",
-             "Ingresos netos (sin IVA) = ingresos brutos ÷ (1 + IVA). Es el ingreso del negocio antes de gastos; el IVA repercutido se liquida a Hacienda.",
-             "Beneficio operativo estimado = ingresos netos − gastos operativos (personal, alquiler, suministros, limpieza, mantenimiento, seguridad y control de accesos, seguros y otros). No incluye inversión inicial, amortizaciones, intereses ni impuestos sobre beneficios.",
-             "Asistencia: visitas al día = socios × visitas por socio al mes ÷ 30,4. Ocupación media = visitas al día × duración de la visita ÷ horas de apertura. Asistencia punta = ocupación media × factor de hora punta (3 en 24/7, porque las horas nocturnas reducen la media; 2 en convencional).",
-             "Socios de equilibrio = gastos operativos mensuales ÷ cuota sin IVA, redondeado al alza. Las cifras anuales son las mensuales × 12, sin estacionalidad ni bajas de socios."
-           ],
-           "disclaimer": "Estos resultados son estimaciones preliminares basadas en los valores introducidos en la calculadora de 3DNA. No son resultados financieros garantizados, ni un plan de negocio, ni una valoración verificada de forma independiente, ni un presupuesto. Los datos introducidos pertenecen a quien los introduce.",
-           "ctaHeading": "¿Quieres convertir estos números en un gimnasio real?",
-           "ctaLines": [
-             "En 3DNA diseñamos espacios comerciales que combinan experiencia, funcionalidad y potencial de negocio.",
-             "Solicita una propuesta profesional de diseño para tu gimnasio: concepto, distribución, zonificación y visualización 3D."
-           ],
-           "ctaButton": "Solicitar propuesta a 3DNA"
-         }
-       }
+        "ui": {
+          "eyebrow": "3DNA / Fitness Business Tools",
+          "title": "Planificador de Gimnasio",
+          "subtitle": "Introduce solo la superficie. 3DNA propone el concepto, la distribución, el equipamiento y el modelo económico.",
+          "inputLabel": "Superficie total del local",
+          "inputHint": "Entre 40 y 5000 m². Todo lo demás se estima automáticamente.",
+          "pdf": "Descargar PDF 3DNA",
+          "save": "Guardar análisis",
+          "shareCalc": "Compartir mi análisis",
+          "copiedCalc": "Enlace con tu análisis copiado.",
+          "saved": "Análisis guardado en este navegador.",
+          "savedTitle": "Análisis guardados",
+          "opened": "Análisis guardado abierto.",
+          "deleted": "Análisis eliminado.",
+          "untitled": "Análisis",
+          "fullTitle": "Informe completo de planificación",
+          "fullSub": "Concepto, espacios, equipamiento, capacidad, plantilla, inversión y escenarios económicos",
+          "reportIntro": "Generado automáticamente a partir de la superficie y de los supuestos del modelo 3DNA. Cada valor indica si es tu dato, una estimación, un máximo teórico o un escenario.",
+          "cards": {
+            "concept": "Concepto recomendado",
+            "capacity": "Aforo simultáneo",
+            "members": "Socios potenciales",
+            "investment": "Inversión inicial estimada",
+            "gross": "Ingresos mensuales (IVA incl.)",
+            "profit": "Resultado operativo mensual"
+          },
+          "cardsNote": "Escenario base. Aforo (personas a la vez) y socios (cuotas al mes) son métricas distintas."
+        },
+        "report": {
+          "pdfTitle": "Planificación y Viabilidad Preliminar · Gimnasio",
+          "pdfSubtitle": "Informe generado por el planificador de 3DNA a partir de la superficie del local.",
+          "keywords": "gimnasio, planificación, viabilidad, 3DNA",
+          "footerLeft": "© 3DNA · Commercial Space Design",
+          "inputsTitle": "Resumen del análisis",
+          "na": "No disponible",
+          "tags": {
+            "in": "Tu dato",
+            "est": "Estimación",
+            "max": "Máx. teórico",
+            "scn": "Escenario"
+          },
+          "tagsHelp": {
+            "in": "Valor introducido por ti.",
+            "est": "Calculado por el modelo con sus supuestos.",
+            "max": "Límite físico del espacio, no demanda.",
+            "scn": "Proyección de un escenario."
+          },
+          "levels": {
+            "alert": "Alerta",
+            "warn": "Atención",
+            "opp": "Oportunidad",
+            "ok": "Recomendación"
+          },
+          "cards": {
+            "gross": "Ingresos mensuales",
+            "investment": "Inversión inicial estimada",
+            "profit": "Resultado operativo mensual",
+            "profitAnnual": "Resultado operativo anual",
+            "ivaIncl": "IVA incl.",
+            "note": "Escenario base. Los ingresos incluyen IVA (21 %); el resultado se calcula sobre ingresos sin IVA y excluye financiación, amortizaciones e impuesto sobre beneficios."
+          },
+          "summary": {
+            "title": "Resumen ejecutivo",
+            "intro": "Para {a}, el modelo propone como formato: {c}. Es una orientación preliminar: otros formatos pueden ser viables según ubicación, público y proyecto.",
+            "area": "Superficie total (bruta)",
+            "concept": "Concepto recomendado",
+            "usable": "Superficie útil de entrenamiento",
+            "capacity": "Aforo simultáneo",
+            "members": "Socios potenciales (rango de escenarios)",
+            "investment": "Inversión inicial estimada",
+            "gross": "Ingresos mensuales (IVA incl.)",
+            "result": "Resultado operativo mensual"
+          },
+          "concept": {
+            "title": "Concepto de gimnasio recomendado",
+            "intro": "La superficie orienta el formato, pero no decide por sí sola el modelo de negocio. Recomendación por defecto: {c} (★).",
+            "format": "Formato",
+            "range": "Superficie ideal",
+            "suit": "Encaje",
+            "suits": {
+              "ideal": "Muy adecuado",
+              "viable": "Viable",
+              "oversized": "Superficie sobrante",
+              "no": "Poco espacio"
+            },
+            "note": "Ubicación, competencia, público objetivo y presupuesto pueden hacer preferible otro formato viable."
+          },
+          "concepts": {
+            "pt": {
+              "name": "Estudio de entrenamiento personal",
+              "desc": "Sesiones individuales o en grupos muy pequeños; cuota alta, pocos socios y un espacio abierto y flexible."
+            },
+            "boutique": {
+              "name": "Estudio boutique",
+              "desc": "Clases dirigidas con identidad fuerte (funcional, ciclo, HIIT); sala de clases como núcleo y experiencia cuidada."
+            },
+            "functional": {
+              "name": "Gimnasio de entrenamiento funcional",
+              "desc": "Gran zona funcional con rig y peso libre, más cardio y fuerza de apoyo; comunidad y entrenamiento guiado."
+            },
+            "conventional": {
+              "name": "Club de fitness convencional",
+              "desc": "Cardio, máquinas, peso libre y sala de actividades; cuota media y volumen de socios."
+            },
+            "large": {
+              "name": "Centro de fitness multiusos",
+              "desc": "Varias salas y zonas especializadas, horario amplio y servicios complementarios; requiere gestión profesional."
+            }
+          },
+          "space": {
+            "title": "Planificación de espacios",
+            "intro": "Programa preliminar de superficies. Suma exactamente el 100 % de la superficie bruta; las zonas se adaptan al tamaño del local.",
+            "zone": "Zona",
+            "equipment": "Equipamiento o mobiliario principal",
+            "total": "Total",
+            "gross": "Superficie bruta",
+            "usable": "Superficie útil de entrenamiento",
+            "note": "Distribución conceptual: el diseño final depende de la geometría, la estructura, la accesibilidad, la evacuación y protección contra incendios, la ventilación y la normativa aplicable."
+          },
+          "zones": {
+            "reception": {
+              "name": "Recepción y acceso",
+              "eq": "Mostrador, control de acceso",
+              "purpose": "Bienvenida, control de acceso y venta.",
+              "rec": "Visible desde la entrada y con vista sobre la sala."
+            },
+            "cardio": {
+              "name": "Cardio",
+              "eq": "Cintas, bicis, elípticas, remos",
+              "purpose": "Trabajo cardiovascular.",
+              "rec": "Junto a fachada o luz natural; tomas eléctricas en suelo para las cintas."
+            },
+            "strength": {
+              "name": "Máquinas de fuerza",
+              "eq": "Máquinas guiadas, poleas",
+              "purpose": "Fuerza guiada para todos los niveles.",
+              "rec": "Circuito lógico por grupos musculares y pasos de al menos 60 cm."
+            },
+            "free": {
+              "name": "Peso libre",
+              "eq": "Racks, bancos, mancuernas",
+              "purpose": "Entrenamiento con barras y mancuernas.",
+              "rec": "Pavimento técnico de alta densidad y control de impacto y vibraciones."
+            },
+            "functional": {
+              "name": "Entrenamiento funcional",
+              "eq": "Rig, esterillas, accesorios",
+              "purpose": "Trabajo funcional, movilidad y entrenamiento guiado.",
+              "rec": "Espacio diáfano, altura libre suficiente y almacenaje a mano."
+            },
+            "studio": {
+              "name": "Sala de actividades",
+              "eq": "Esterillas, material de clase, sonido",
+              "purpose": "Clases dirigidas con aforo controlado.",
+              "rec": "Aislamiento acústico, espejos y climatización propia."
+            },
+            "changing": {
+              "name": "Vestuarios",
+              "eq": "Taquillas, bancos",
+              "purpose": "Cambio y guardado de objetos.",
+              "rec": "Recorrido limpio–sucio claro y ventilación forzada."
+            },
+            "showers": {
+              "name": "Duchas y aseos",
+              "eq": "Duchas, inodoros, lavabos",
+              "purpose": "Higiene de los usuarios.",
+              "rec": "Impermeabilización, extracción y materiales antideslizantes."
+            },
+            "storage": {
+              "name": "Almacén",
+              "eq": "Estanterías",
+              "purpose": "Material, limpieza y repuestos.",
+              "rec": "Cerca de las zonas de entrenamiento."
+            },
+            "staff": {
+              "name": "Personal y apoyo",
+              "eq": "Oficina, zona de descanso",
+              "purpose": "Gestión y descanso del equipo.",
+              "rec": "Separado del recorrido de clientes."
+            },
+            "technical": {
+              "name": "Técnico e instalaciones",
+              "eq": "Climatización, cuadros, cuarto de limpieza",
+              "purpose": "Instalaciones y mantenimiento.",
+              "rec": "Acceso para mantenimiento sin cruzar las salas."
+            },
+            "circulation": {
+              "name": "Circulación",
+              "eq": "—",
+              "purpose": "Pasillos, accesos y recorridos de evacuación.",
+              "rec": "Anchos accesibles y recorridos de evacuación libres."
+            }
+          },
+          "equipment": {
+            "title": "Equipamiento recomendado",
+            "intro": "Cantidades que caben en las zonas propuestas (huella con espacio de uso). Presupuestos orientativos, no ofertas de proveedores.",
+            "item": "Elemento",
+            "qty": "Cantidad",
+            "budget": "Presupuesto orientativo",
+            "total": "Total",
+            "items": {
+              "treadmill": "Cintas de correr",
+              "bike": "Bicicletas",
+              "elliptical": "Elípticas",
+              "rower": "Remos",
+              "selectorized": "Máquinas guiadas",
+              "cable": "Estaciones de poleas",
+              "rack": "Racks",
+              "bench": "Bancos",
+              "dumbbells": "Juegos de mancuernas",
+              "rig": "Rigs funcionales",
+              "mats": "Esterillas y zonas de suelo",
+              "kit": "Kits de accesorios",
+              "studioKit": "Puestos de clase (material)",
+              "lockers": "Taquillas",
+              "receptionDesk": "Mobiliario de recepción",
+              "access": "Control de acceso",
+              "lighting": "Iluminación LED",
+              "cameras": "Cámaras de seguridad",
+              "sound": "Zonas de sonido"
+            },
+            "groups": {
+              "cardio": "Cardio",
+              "strength": "Fuerza y peso libre",
+              "functional": "Funcional y clases",
+              "support": "Apoyo e instalaciones"
+            },
+            "maintenance": {
+              "cardio": "Mantenimiento preventivo trimestral; las cintas requieren circuito eléctrico dedicado.",
+              "strength": "Revisión de cables y poleas; tapicerías y anclajes.",
+              "functional": "Revisión de anclajes del rig y reposición de accesorios.",
+              "support": "Contratos de mantenimiento de acceso, CCTV y climatización."
+            },
+            "note": "Precios y potencias indicativos; dependen de la marca, la gama y el proveedor."
+          },
+          "capacity": {
+            "title": "Capacidad y socios",
+            "intro": "El aforo simultáneo es un límite físico del espacio; los socios son personas que pagan una cuota al mes. Son métricas distintas.",
+            "usable": "Superficie útil de entrenamiento",
+            "perUser": "Superficie por usuario activo",
+            "simultaneous": "Aforo simultáneo",
+            "peak": "Usuarios en hora punta (objetivo)",
+            "hours": "Horario de apertura diario",
+            "session": "Duración media de la sesión",
+            "daily": "Visitas diarias orientativas",
+            "monthly": "Visitas mensuales orientativas",
+            "visits": "Visitas por socio al mes",
+            "members": "Socios de pago potenciales",
+            "note": "El aforo legal lo fija el proyecto (evacuación, ventilación). La demanda real depende de la ubicación y la competencia."
+          },
+          "staff": {
+            "title": "Plantilla y operación",
+            "intro": "Cobertura de {h} h diarias con turnos; recepción, entrenadores, limpieza, gestión y mantenimiento en jornadas completas equivalentes.",
+            "role": "Función",
+            "positions": "Puestos simultáneos",
+            "cost": "Coste mensual",
+            "roles": {
+              "reception": "Recepción",
+              "trainer": "Entrenadores en sala",
+              "cleaning": "Limpieza",
+              "manager": "Dirección",
+              "maintenance": "Mantenimiento"
+            },
+            "total": "Total",
+            "autoReception": "Recepción con acceso automatizado (FTE)",
+            "autoSaving": "Ahorro mensual de recepción con acceso automatizado",
+            "note": "El acceso automatizado reduce horas de recepción, pero exige control de acceso, CCTV y supervisión remota; limpieza, entrenadores y gestión se mantienen y no aumenta la demanda."
+          },
+          "investment": {
+            "title": "Inversión inicial",
+            "intro": "Horquilla orientativa sin IVA para acondicionar e equipar el local.",
+            "item": "Partida",
+            "low": "Mínimo",
+            "high": "Máximo",
+            "items": {
+              "fitout": "Acondicionamiento y acabados",
+              "flooring": "Pavimentos deportivos",
+              "wet": "Vestuarios y duchas",
+              "electrical": "Electricidad e iluminación",
+              "hvac": "Ventilación y climatización",
+              "equipment": "Equipamiento deportivo y de apoyo",
+              "access": "Control de acceso",
+              "signage": "Señalética e imagen",
+              "contingency": "Imprevistos"
+            },
+            "total": "Total",
+            "perM2": "Inversión por m²",
+            "note": "No incluye compra o traspaso del local, licencias, honorarios ni financiación. No es un presupuesto."
+          },
+          "opex": {
+            "title": "Gastos operativos mensuales",
+            "intro": "Escenario base, importes sin IVA. Estimaciones preliminares: alquiler, salarios y suministros varían según la ubicación.",
+            "items": {
+              "payroll": "Personal",
+              "rent": "Alquiler",
+              "energy": "Electricidad",
+              "water": "Agua",
+              "cleaning": "Limpieza (productos y servicios)",
+              "maintenance": "Mantenimiento",
+              "insurance": "Seguros",
+              "software": "Software de gestión",
+              "marketing": "Marketing",
+              "overhead": "Otros gastos generales"
+            },
+            "total": "Total gastos operativos",
+            "net": "Ingresos sin IVA"
+          },
+          "scenarios": {
+            "title": "Escenarios de ingresos",
+            "intro": "Mismo local y mismo modelo; cambian la cuota y el número de socios. IVA aplicado: {i}.",
+            "item": "Concepto",
+            "conservative": "Conservador",
+            "base": "Base",
+            "optimistic": "Optimista",
+            "fee": "Cuota mensual (IVA incl.)",
+            "members": "Socios de pago",
+            "gross": "Ingresos mensuales (IVA incl.)",
+            "vat": "IVA",
+            "net": "Ingresos sin IVA",
+            "costs": "Gastos operativos",
+            "result": "Resultado operativo mensual",
+            "annual": "Resultado operativo anual",
+            "margin": "Margen",
+            "breakEven": "Socios de equilibrio",
+            "revPerM2": "Ingresos sin IVA por m² (mes)",
+            "profitPerM2": "Resultado por m² (mes)",
+            "note": "IVA general del 21 % para cuotas de gimnasio; algunas entidades o servicios (p. ej. entidades sin ánimo de lucro o servicios deportivos exentos) pueden tener otro tratamiento."
+          },
+          "breakeven": {
+            "title": "Punto de equilibrio",
+            "intro": "Socios necesarios para cubrir los gastos operativos con la cuota del escenario base.",
+            "members": "Socios de equilibrio",
+            "share": "Sobre los socios potenciales del escenario base",
+            "capacityNote": "Aforo simultáneo (referencia física)",
+            "payback": "Recuperación indicativa de la inversión",
+            "years": "años",
+            "note": "La recuperación es un cálculo indicativo (inversión media ÷ resultado anual) y no es una garantía."
+          },
+          "recs": {
+            "title": "Recomendaciones de arquitectura",
+            "intro": "Generadas a partir de la superficie y del concepto recomendado.",
+            "texts": {
+              "tiny": "Local muy pequeño: conviene un único espacio de entrenamiento flexible y vestuario compacto antes que muchas zonas.",
+              "boutiqueIdentity": "En formatos boutique la identidad visual, la iluminación escénica y el sonido son parte del producto.",
+              "studioAcoustics": "La sala de actividades necesita aislamiento acústico respecto a vestuarios y vecinos y climatización propia.",
+              "noStudio": "No se reserva sala de clases: una zona funcional flexible puede acoger clases pequeñas.",
+              "treadmillPower": "Potencia del equipamiento ≈ {kw} kW: prever circuitos dedicados y tomas en suelo para las cintas.",
+              "freeWeightsFloor": "La zona de peso libre necesita pavimento técnico y estudio de cargas e impacto sobre la estructura.",
+              "ventilation": "Con unos {p} usuarios en hora punta, la ventilación debe dimensionarse por ocupación (calidad de aire y CO₂).",
+              "zoningLarge": "En centros grandes, separar recorridos de socios, clases y servicios mejora el flujo en hora punta.",
+              "breakEvenOver": "En el escenario base los socios no cubren los gastos: revisar concepto, cuota o costes antes de invertir.",
+              "breakEvenTight": "El equilibrio queda por encima del escenario conservador: margen reducido ante una demanda menor.",
+              "regulations": "Antes de invertir: licencia de actividad, accesibilidad, evacuación y protección contra incendios y estudio acústico."
+            }
+          },
+          "method": {
+            "title": "Metodología y limitaciones",
+            "intro": "Supuestos internos del modelo {version}: valores ilustrativos para un estudio preliminar en España, no datos de mercado verificados, ofertas, alquileres ni salarios de convenio.",
+            "a": {
+              "iva": "IVA de cuotas de gimnasio",
+              "perUser": "m² por usuario activo (estudio PT / boutique / funcional / convencional / multiusos)",
+              "fee": "Cuota base por formato",
+              "visits": "Visitas por socio al mes por formato",
+              "hours": "Horas de apertura por formato",
+              "peak": "Carga en hora punta · peso de la hora punta en las visitas diarias",
+              "scenarios": "Escenarios: socios × cuota (conservador / base / optimista)",
+              "salaries": "Salario bruto mensual de referencia, 14 pagas: recepción / entrenador / limpieza / dirección / mantenimiento",
+              "onCost": "Cotizaciones a cargo de la empresa",
+              "rent": "Alquiler",
+              "energy": "Electricidad y climatización",
+              "investment": "Acondicionamiento · climatización · electricidad",
+              "contingency": "Imprevistos sobre la inversión",
+              "marketing": "Marketing · otros gastos sobre ingresos sin IVA"
+            },
+            "paragraphs": [
+              "Zonas: base fija + porcentaje de la superficie; las de entrenamiento se reparten según el concepto. Una zona demasiado pequeña se integra en el área funcional y el redondeo se asigna a circulación, de modo que el total es siempre el 100 %.",
+              "Aforo = superficie útil ÷ m² por usuario. Visitas diarias = usuarios en hora punta ÷ (peso de la hora punta × duración de la sesión). Socios = visitas mensuales ÷ visitas por socio.",
+              "Ingresos = socios × cuota (IVA incluido); ingresos sin IVA = ingresos ÷ 1,21. Resultado = ingresos sin IVA − gastos operativos; excluye financiación, amortizaciones e impuesto sobre beneficios.",
+              "Socios de equilibrio = gastos fijos ÷ (cuota sin IVA − costes variables por socio). Recuperación = inversión media ÷ resultado anual (indicativa)."
+            ],
+            "disclaimer": "Este informe es una estimación preliminar a partir de un único dato y de supuestos internos de 3DNA. No es un proyecto, un presupuesto, una valoración verificada ni una garantía de resultados. Los datos introducidos pertenecen a quien los introduce."
+          },
+          "cta": {
+            "heading": "No diseñamos solo gimnasios. Diseñamos experiencias.",
+            "lines": [
+              "Convierte este análisis en un proyecto: concepto, distribución, zonificación y visualización 3D con 3DNA."
+            ],
+            "button": "Contactar con 3DNA",
+            "calcLink": "Abrir este análisis"
+          }
+        },
+        "share": {
+          "slug": "calculadora",
+          "title": "Calculadora de Gimnasios | 3DNA",
+          "description": "Introduce los m² de tu local y descubre qué gimnasio puedes crear: distribución, equipamiento, inversión y análisis financiero.",
+          "imageAlt": "Planificador de gimnasios de 3DNA en una tableta dentro de un gimnasio",
+          "open": "Abrir la calculadora"
+        }
+      }
     },
     "restaurantsPage": {
       "plan": {
@@ -2078,103 +2800,265 @@
       "calc": {
          "ui": {
            "eyebrow": "3DNA / Restaurant Business Tools",
-           "title": "Calculadora de Rentabilidad",
-           "subtitle": "Calcula los ingresos, gastos y beneficios potenciales de tu restaurante.",
-           "example": "Valores de ejemplo basados en el restaurante 3D de arriba: sustitúyelos por los de tu proyecto.",
-           "pdf": "Descargar PDF 3DNA",
-           "gBasic": "Datos del restaurante",
-           "gCosts": "Gastos operativos",
-           "gCostsIntro": "Importes mensuales sin IVA; comida y bebida como porcentaje de las ventas netas.",
-           "gReport": "Informe",
+           "title": "Calculadora de Potencial Comercial",
+           "subtitle": "Introduce 5 datos. 3DNA calcula el resto.",
+           "inputsLabel": "Tus 5 datos",
+           "pdf": "Descargar PDF",
+           "seatsShort": "plazas",
            "fields": {
-             "area": "Superficie del restaurante",
+             "area": "Superficie total",
              "seats": "Número de plazas",
-             "check": "Ticket medio (IVA incl.)",
-             "occupancy": "Ocupación media de las plazas",
-             "turns": "Rotaciones por plaza",
-             "days": "Días de apertura al mes",
-             "fb": "Comida y bebida",
-             "staff": "Personal",
-             "rent": "Alquiler mensual",
-             "utilities": "Suministros",
-             "other": "Otros gastos operativos",
-             "iva": "IVA",
-             "project": "Nombre del proyecto (opcional)"
+             "ticket": "Ticket medio (IVA incl.)",
+             "days": "Días abiertos al mes",
+             "rotation": "Rotación diaria por plaza"
            },
-           "hRevenue": "Ingresos",
-           "grossMonthly": "Ventas mensuales (IVA incl.)",
-           "netMonthly": "Ventas netas (sin IVA)",
-           "grossAnnual": "Ventas anuales (IVA incl.)",
-           "netAnnual": "Ventas netas anuales",
-           "hProfit": "Beneficio operativo",
-           "profitMonthly": "Beneficio mensual",
-           "profitAnnual": "Beneficio anual",
-           "margin": "Margen operativo",
-           "hMetrics": "Indicadores",
-           "visits": "Visitas de clientes al mes",
-           "grossPerM2": "Ventas por m² (mes)",
-           "breakEven": "Equilibrio (ventas netas/mes)",
-           "breakEvenOccupancy": "Ocupación de equilibrio",
-           "hChart": "Ventas netas y gastos mensuales",
-           "hAssumptions": "Supuestos del cálculo",
-           "assumptions": "Visitas = plazas × ocupación × rotaciones × días. El ticket incluye IVA; los gastos no. Beneficio operativo antes de amortizaciones, intereses e impuestos sobre beneficios. Cifras anuales = mensuales × 12."
+           "rotationUnit": "rotaciones por plaza y día",
+           "reportTitle": "Informe de viabilidad preliminar",
+           "reportIntro": "Generado automáticamente a partir de tus 5 datos y de los supuestos del modelo 3DNA. Cada valor indica si es un dato tuyo, una estimación, un máximo teórico o un escenario.",
+           "fullTitle": "Informe completo de viabilidad",
+           "fullSub": "Análisis financiero, operativo y espacial de tu restaurante"
          },
          "report": {
-           "title": "Análisis de Rentabilidad de Restaurantes",
-           "subtitle": "Proyección orientativa elaborada con la calculadora de 3DNA a partir de los datos introducidos.",
-           "keywords": "restaurante, rentabilidad, facturación, 3DNA",
+           "pdfTitle": "Análisis de Potencial Comercial · Restaurante",
+           "pdfSubtitle": "Informe de viabilidad preliminar elaborado con la calculadora de 3DNA a partir de cinco datos.",
+           "keywords": "restaurante, viabilidad, potencial comercial, 3DNA",
            "footerLeft": "© 3DNA · Restaurant Design & Visualization",
-           "grossMonthly": "Ventas mensuales (IVA incl.)",
-           "grossAnnual": "Ventas anuales (IVA incl.)",
-           "netMonthly": "Ventas netas mensuales (sin IVA)",
-           "netAnnual": "Ventas netas anuales (sin IVA)",
-           "profitMonthly": "Beneficio operativo mensual",
-           "profitAnnual": "Beneficio operativo anual",
-           "margin": "Margen operativo",
-           "hProject": "Parámetros introducidos",
-           "area": "Superficie del restaurante",
-           "seats": "Plazas",
-           "check": "Ticket medio",
-           "ivaIncl": "IVA incluido",
-           "occupancy": "Ocupación media de las plazas",
-           "turns": "Rotaciones por plaza y día",
-           "days": "Días de apertura al mes",
-           "iva": "IVA aplicado",
-           "hResults": "Resultados financieros",
-           "vat": "IVA repercutido (mensual)",
-           "expensesMonthly": "Gastos operativos mensuales",
-           "hExpenses": "Gastos operativos",
-           "expensesIntro": "Importes mensuales sin IVA. Comida y bebida se calcula como porcentaje de las ventas netas; el resto son importes mensuales.",
-           "fb": "Comida y bebida",
-           "staff": "Personal",
-           "rent": "Alquiler",
-           "utilities": "Suministros",
-           "other": "Otros gastos operativos",
-           "ofNet": "{p} de ventas netas",
-           "hChart": "Ventas netas y gastos mensuales",
-           "hOperation": "Análisis operativo",
-           "visits": "Visitas de clientes",
-           "visitsDay": "Visitas de clientes al día",
-           "grossPerM2": "Ventas (IVA incl.) por m²",
-           "netPerM2": "Ventas netas por m²",
-           "breakEven": "Punto de equilibrio (ventas netas)",
-           "breakEvenVisits": "Clientes diarios para el equilibrio",
-           "breakEvenOccupancy": "Ocupación de equilibrio",
-           "hMethod": "Metodología y supuestos",
-           "method": [
-             "Visitas de clientes al mes = plazas × ocupación media × rotaciones por plaza y día × días de apertura.",
-             "Ventas brutas (IVA incluido) = visitas × ticket medio. Es lo que pagan los clientes, con IVA.",
-             "Ventas netas (sin IVA) = ventas brutas ÷ (1 + IVA). Es el ingreso del negocio antes de gastos; el IVA repercutido se liquida a Hacienda.",
-             "Beneficio operativo estimado = ventas netas − (comida y bebida + personal + alquiler + suministros + otros gastos). No incluye inversión inicial, amortizaciones, intereses ni impuestos sobre beneficios.",
-             "Punto de equilibrio = (personal + alquiler + suministros + otros gastos) ÷ (1 − % comida y bebida): ventas netas mensuales necesarias para cubrir los gastos con estos supuestos. Las cifras anuales son las mensuales × 12, sin estacionalidad."
-           ],
-           "disclaimer": "Este informe es una proyección ilustrativa basada en los valores introducidos en la calculadora de 3DNA. No garantiza la rentabilidad futura y no es un plan de negocio, una valoración financiera verificada de forma independiente ni un presupuesto. Los datos introducidos pertenecen a quien los introduce.",
-           "ctaHeading": "Tu restaurante empieza con una buena idea.",
-           "ctaLines": [
-             "Los números muestran el potencial. El diseño transforma ese potencial en una experiencia.",
-             "Contacta con 3DNA para desarrollar el concepto, la distribución y la visualización de tu restaurante."
-           ],
-           "ctaButton": "Contactar con 3DNA"
+           "inputsTitle": "Datos introducidos",
+           "na": "No disponible",
+           "fields": {
+             "area": "Superficie total",
+             "seats": "Plazas",
+             "ticket": "Ticket medio (IVA incl.)",
+             "days": "Días abiertos al mes",
+             "rotation": "Rotación por plaza y día"
+           },
+           "cards": {
+             "grossMonthly": "Facturación mensual",
+             "grossAnnual": "Facturación anual",
+             "profitMonthly": "Beneficio operativo mensual estimado",
+             "profitAnnual": "Beneficio operativo anual estimado",
+             "ivaIncl": "IVA incl.",
+             "note": "Escenario base: facturación = plazas × ticket medio × rotación diaria × días abiertos (IVA incluido). El beneficio se calcula sobre las ventas sin IVA.",
+             "staff": "Plantilla estimada",
+             "staffValue": "{v} jornadas completas"
+           },
+           "tags": {
+             "in": "Tu dato",
+             "est": "Estimación",
+             "max": "Máx. teórico",
+             "scn": "Escenario"
+           },
+           "tagsHelp": {
+             "in": "Valor introducido por ti.",
+             "est": "Calculado por el modelo con sus supuestos.",
+             "max": "Todas las plazas ocupadas en todas las rotaciones.",
+             "scn": "Proyección con los datos introducidos o un escenario de demanda."
+           },
+           "space": {
+             "title": "Espacio y plazas",
+             "intro": "Reparto conceptual de la superficie para un restaurante con servicio en mesa. No es un plano ni una distribución real.",
+             "area": "Superficie total",
+             "seats": "Plazas",
+             "perSeat": "Superficie total por plaza",
+             "dining": "Sala (comedor), estimada",
+             "kitchen": "Cocina y almacén, estimados",
+             "support": "Circulación, aseos y apoyo, estimados",
+             "diningPerSeat": "Sala por plaza",
+             "seatsPer100": "Plazas por cada 100 m²",
+             "density": "Densidad de ocupación",
+             "levels": {
+               "veryHigh": "Muy alta",
+               "high": "Alta",
+               "adequate": "Adecuada",
+               "ample": "Holgada"
+             }
+           },
+           "customers": {
+             "title": "Clientes y capacidad",
+             "intro": "La rotación introducida ya refleja la ocupación media de las plazas: no se aplica ningún porcentaje adicional. Clientes = plazas × rotación × días.",
+             "rotation": "Rotación diaria por plaza",
+             "days": "Días abiertos al mes",
+             "theoDaily": "Capacidad teórica diaria",
+             "theoMonthly": "Capacidad teórica mensual",
+             "theoAnnual": "Capacidad teórica anual",
+             "theoSales": "Ventas máximas teóricas al mes (IVA incl.)",
+             "utilization": "Utilización aplicada",
+             "expDaily": "Clientes esperados al día",
+             "expMonthly": "Clientes esperados al mes",
+             "expAnnual": "Clientes esperados al año"
+           },
+           "revenue": {
+             "title": "Ingresos",
+             "intro": "El ticket medio incluye el IVA de hostelería ({i}). Las ventas sin IVA son el ingreso real del negocio.",
+             "ticket": "Ticket medio (IVA incl.)",
+             "dailyGross": "Facturación diaria (IVA incl.)",
+             "monthlyGross": "Facturación mensual (IVA incl.)",
+             "annualGross": "Facturación anual (IVA incl.)",
+             "vatMonthly": "IVA incluido en la facturación (mes)",
+             "netMonthly": "Ventas sin IVA (mes)",
+             "netAnnual": "Ventas sin IVA (año)",
+             "perSeat": "Facturación por plaza (mes)",
+             "perM2": "Facturación por m² (mes)",
+             "netPerM2Year": "Ventas sin IVA por m² (año)"
+           },
+           "product": {
+             "title": "Coste de producto",
+             "intro": "Comida y bebida como porcentaje ilustrativo de las ventas sin IVA.",
+             "ratio": "Coste de comida y bebida",
+             "monthly": "Coste de producto (mes)",
+             "annual": "Coste de producto (año)",
+             "contribution": "Margen bruto tras producto (mes)"
+           },
+           "staff": {
+             "title": "Plantilla y coste laboral",
+             "intro": "Estimación por demanda: {s} servicios al día de {h} h, unos {c} clientes por servicio, productividad por puesto y cobertura de todos los días de apertura.",
+             "role": "Puesto",
+             "perService": "Por servicio",
+             "fte": "Jornadas completas (FTE)",
+             "cost": "Coste mensual",
+             "roles": {
+               "waiter": "Camareros de sala",
+               "cook": "Cocina",
+               "assistant": "Ayudantes de cocina",
+               "bar": "Barra",
+               "supervisor": "Encargado / supervisión"
+             },
+             "total": "Total",
+             "monthly": "Coste laboral mensual",
+             "annual": "Coste laboral anual",
+             "ratio": "Coste laboral sobre ventas sin IVA",
+             "note": "Equivalentes a jornada completa, no una plantilla exacta: la cifra real depende del horario, los turnos, el convenio y la carta."
+           },
+           "opex": {
+             "title": "Gastos operativos",
+             "intro": "Importes mensuales sin IVA. Estimaciones preliminares, no presupuestos ni precios de mercado verificados; el alquiler y los salarios varían mucho según la ubicación.",
+             "staff": "Personal",
+             "rent": "Alquiler",
+             "electricity": "Electricidad",
+             "water": "Agua",
+             "gas": "Gas (cocina)",
+             "cleaning": "Limpieza",
+             "maintenance": "Mantenimiento",
+             "insurance": "Seguros",
+             "software": "Software y cobro con tarjeta",
+             "marketing": "Marketing",
+             "consumables": "Consumibles",
+             "overhead": "Otros gastos generales",
+             "total": "Total gastos operativos",
+             "product": "Coste de producto",
+             "totalCosts": "Total costes",
+             "net": "Ventas sin IVA"
+           },
+           "profit": {
+             "title": "Rentabilidad y punto de equilibrio",
+             "intro": "Resultado operativo = ventas sin IVA − coste de producto − gastos operativos.",
+             "monthly": "Resultado operativo mensual",
+             "annual": "Resultado operativo anual",
+             "margin": "Margen operativo",
+             "perM2": "Resultado por m² (año)",
+             "perSeat": "Resultado por plaza (año)",
+             "beRevenue": "Facturación de equilibrio (IVA incl., mes)",
+             "beNet": "Ventas sin IVA de equilibrio (mes)",
+             "beCustomers": "Clientes de equilibrio al mes",
+             "beDaily": "Clientes de equilibrio al día",
+             "beUtilization": "Demanda de equilibrio (sobre la prevista)",
+             "excluded": "No incluye inversión inicial, amortizaciones, financiación ni impuesto sobre beneficios. En el equilibrio, personal y gastos fijos se mantienen al nivel del escenario base."
+           },
+           "scenarios": {
+             "title": "Escenarios",
+             "intro": "Los mismos cinco datos; el escenario base usa tu rotación tal cual y los escenarios conservador y optimista suponen un 15 % menos o más de demanda. Plantilla y gastos variables se recalculan con el mismo modelo.",
+             "item": "Concepto",
+             "conservative": "Conservador",
+             "base": "Base",
+             "optimistic": "Optimista",
+             "utilization": "Demanda sobre la prevista",
+             "customers": "Clientes al mes",
+             "gross": "Facturación (IVA incl.)",
+             "net": "Ventas sin IVA",
+             "product": "Coste de producto",
+             "staff": "Personal",
+             "fte": "Jornadas completas",
+             "other": "Otros gastos",
+             "result": "Resultado mensual",
+             "annual": "Resultado anual",
+             "margin": "Margen"
+           },
+           "insights": {
+             "title": "Observaciones de diseño",
+             "intro": "Generadas a partir de tus datos y de los umbrales del modelo; orientan el proyecto, no lo sustituyen.",
+             "levels": {
+               "alert": "Alerta",
+               "warn": "Atención",
+               "opp": "Oportunidad",
+               "ok": "Correcto"
+             },
+             "texts": {
+               "density_veryHigh": "Densidad muy alta: {d} m² de sala por plaza. Por debajo de 1 m² es difícil cumplir pasos libres, accesibilidad y confort; conviene reducir plazas o ganar sala.",
+               "density_high": "Densidad alta: {d} m² de sala por plaza. Las circulaciones y un mobiliario compacto serán decisivos.",
+               "density_adequate": "Densidad adecuada para servicio en mesa: {d} m² de sala por plaza.",
+               "density_ample": "Sala holgada: {d} m² por plaza. Hay margen para más plazas, una zona de espera o una barra de venta.",
+               "circulation": "Superficie total por plaza baja ({p} m²): riesgo de cruces entre sala, cocina y aseos; el recorrido del servicio debe resolverse desde el inicio.",
+               "kitchenTight": "Con {r} rotaciones al día, la cocina conceptual ({k} m² por plaza) puede quedarse corta: conviene estudiar la línea de producción y el office.",
+               "kitchenLarge": "La cocina conceptual ({k} m² por plaza) es amplia para este aforo: parte del espacio podría ganar sala o almacenaje.",
+               "revenueLow": "Ventas sin IVA de {e} por m² y año: potencial bajo para la superficie; el diseño debería impulsar el ticket o la rotación.",
+               "revenueHigh": "Ventas sin IVA de {e} por m² y año: alta productividad del espacio; hay que cuidar el confort y los flujos en hora punta.",
+               "rotationHigh": "Rotación alta ({r} por plaza y día): el espacio debe pensarse para el flujo rápido (barra, recogida, mesas modulares).",
+               "breakEvenOver": "Para cubrir costes harían falta {b} de los clientes previstos: con estos datos el negocio no llega al equilibrio.",
+               "breakEvenNone": "Con este ticket, cada cliente no cubre sus costes variables: no hay punto de equilibrio posible.",
+               "breakEvenTight": "El equilibrio exige {b} de los clientes previstos: poco margen ante una caída de la demanda.",
+               "breakEvenOk": "El equilibrio llega con {b} de los clientes previstos."
+             }
+           },
+           "method": {
+             "title": "Metodología y supuestos",
+             "intro": "Supuestos internos del modelo {version}. Son valores ilustrativos para una estimación preliminar en España, no datos de mercado verificados, presupuestos ni salarios de convenio.",
+             "a": {
+               "iva": "IVA de hostelería (servicio de comidas y bebidas)",
+               "utilization": "Demanda por escenario sobre la rotación introducida: conservador / base / optimista",
+               "zoning": "Reparto conceptual: sala / cocina y almacén / apoyo",
+               "services": "Servicios al día × horas por servicio",
+               "fteHours": "Horas por jornada completa al mes",
+               "productivity": "Clientes por servicio y puesto: sala / cocina / ayudante / barra",
+               "salaries": "Salario bruto mensual de referencia, 14 pagas: sala / cocina / ayudante / barra / encargado",
+               "onCost": "Cotizaciones a cargo de la empresa",
+               "fb": "Comida y bebida sobre ventas sin IVA",
+               "rent": "Alquiler",
+               "electricity": "Electricidad: por m² + por cliente",
+               "water": "Agua: fijo + por cliente",
+               "gas": "Gas por cliente",
+               "cleaning": "Limpieza · mantenimiento",
+               "insurance": "Seguros: fijo + por m²",
+               "software": "Software: fijo + comisión de tarjeta sobre facturación",
+               "marketing": "Marketing sobre ventas sin IVA · consumibles por cliente",
+               "overhead": "Otros gastos generales: fijo + sobre ventas sin IVA"
+             },
+             "formulas": [
+               "Clientes al mes = plazas × rotación diaria × días abiertos (la rotación ya incluye la ocupación media). Los escenarios conservador y optimista aplican −15 % y +15 % de demanda.",
+               "Facturación (IVA incluido) = clientes × ticket medio. Ventas sin IVA = facturación ÷ (1 + IVA); el IVA se liquida a Hacienda.",
+               "Plantilla: clientes por servicio ÷ productividad de cada puesto (mínimo uno), por el número de servicios y horas, para todos los días de apertura; convertido a jornadas completas y valorado con salario y cotizaciones.",
+               "Resultado operativo = ventas sin IVA − comida y bebida − personal − alquiler − suministros − resto de gastos. Cifras anuales = mensuales × 12, sin estacionalidad.",
+               "Punto de equilibrio = gastos fijos ÷ margen por cliente (ticket sin IVA − costes variables por cliente). Demanda de equilibrio = clientes de equilibrio ÷ clientes previstos."
+             ],
+             "disclaimer": "Este informe es una proyección ilustrativa basada en cinco datos y en supuestos internos del modelo de 3DNA. No garantiza resultados futuros y no es un plan de negocio, una valoración financiera verificada ni un presupuesto. Los datos introducidos pertenecen a quien los introduce."
+           },
+           "cta": {
+             "heading": "Tu restaurante empieza con una buena idea.",
+             "lines": [
+               "Los números muestran el potencial. El diseño transforma ese potencial en una experiencia."
+             ],
+             "button": "Contactar con 3DNA",
+             "calcLink": "Abrir este cálculo"
+           },
+           "groups": {
+             "volume": "Clientes e ingresos"
+           }
+         },
+         "share": {
+           "slug": "calculadora",
+           "title": "Calculadora de Restaurantes | 3DNA",
+           "description": "Introduce 5 datos y descubre el potencial de tu restaurante. Ingresos, personal, gastos y análisis financiero completo.",
+           "imageAlt": "Calculadora de restaurantes de 3DNA en una tableta sobre la mesa de un restaurante",
+           "open": "Abrir la calculadora"
          }
        },
       "wideOverlay": {
@@ -2990,62 +3874,405 @@
         }
       },
       "calc": {
-         "ui": {
-           "eyebrow": "3DNA / Fitness Business Tools",
-           "title": "Калькулятор рентабельности",
-           "subtitle": "Оцените экономический потенциал вашего спортзала. Введите свои данные и рассчитайте выручку, расходы и рентабельность.",
-           "example": "Значения указаны для примера: замените их данными вашего проекта.",
-           "pdf": "Скачать PDF 3DNA",
-           "gSpace": "Пространство и участники",
-           "gOps": "Работа клуба",
-           "gCosts": "Расходы в месяц (без НДС)",
-           "gTax": "НДС и проект",
-           "fields": {
-             "area": "Доступная площадь",
-             "capacity": "Единовременная вместимость",
-             "members": "Активные платящие участники",
-             "price": "Абонемент в месяц (с НДС)",
-             "model": "Модель работы",
-             "visits": "Посещений на участника",
-             "duration": "Средняя длительность визита",
-             "hours": "Часов работы в день",
-             "staff": "Персонал",
-             "rent": "Аренда",
-             "utilities": "Коммунальные услуги",
-             "cleaning": "Уборка",
-             "maintenance": "Обслуживание",
-             "security": "Охрана и контроль доступа",
-             "insurance": "Страхование и прочие расходы",
-             "iva": "НДС (IVA)",
-             "project": "Название проекта (необязательно)"
-           },
-           "model247": "Автоматизированный доступ 24/7",
-           "modelConv": "Традиционный, с ресепшеном",
-           "hRevenue": "Выручка",
-           "grossMonthly": "Выручка в месяц (с НДС)",
-           "netMonthly": "Чистая выручка (без НДС)",
-           "grossAnnual": "Выручка за год (с НДС)",
-           "hProfit": "Операционная прибыль",
-           "profitMonthly": "Прибыль в месяц",
-           "profitAnnual": "Прибыль за год",
-           "margin": "Операционная маржа",
-           "hMetrics": "Показатели",
-           "revenuePerM2": "Чистая выручка на м² (мес.)",
-           "profitPerM2": "Прибыль на м² (мес.)",
-           "capacity": "Единовременная вместимость",
-           "peak": "Оценка пиковой посещаемости",
-           "breakEven": "Участников для покрытия расходов",
-           "overCapacity": "Оценка пиковой посещаемости превышает вместимость.",
-           "hChart": "Расходы в месяц и чистая выручка",
-           "expenses": "Операционные расходы",
-           "hCompare": "24/7 и традиционная модель",
-           "compareProfit": "Прибыль в месяц",
-           "compareBreakEven": "Участников для безубыточности",
-           "assumptions": "Допущения: абонемент указан с НДС, расходы — без НДС; пиковая посещаемость = средняя загрузка за часы работы × коэффициент пика (3 для 24/7, 2 для традиционной модели). Часы работы, персонал и охрана хранятся отдельно для каждой модели.",
-           "netAnnual": "Чистая выручка за год"
-         },
-         "report": {}
-       }
+        "ui": {
+          "eyebrow": "3DNA / Fitness Business Tools",
+          "title": "Планировщик спортзала",
+          "subtitle": "Введите только площадь. 3DNA предложит концепцию, планировку, оборудование и экономическую модель.",
+          "inputLabel": "Общая площадь помещения",
+          "inputHint": "От 40 до 5000 м². Всё остальное оценивается автоматически.",
+          "pdf": "Скачать PDF 3DNA",
+          "save": "Сохранить анализ",
+          "shareCalc": "Поделиться моим анализом",
+          "copiedCalc": "Ссылка на ваш анализ скопирована.",
+          "saved": "Анализ сохранён в этом браузере.",
+          "savedTitle": "Сохранённые анализы",
+          "opened": "Сохранённый анализ открыт.",
+          "deleted": "Анализ удалён.",
+          "untitled": "Анализ",
+          "fullTitle": "Полный отчёт о планировании",
+          "fullSub": "Концепция, зоны, оборудование, вместимость, персонал, инвестиции и экономические сценарии",
+          "reportIntro": "Формируется автоматически по площади и допущениям модели 3DNA. У каждого значения указано: ваши данные, оценка, теоретический максимум или сценарий.",
+          "cards": {
+            "concept": "Рекомендуемая концепция",
+            "capacity": "Единовременная вместимость",
+            "members": "Потенциальные участники",
+            "investment": "Оценка начальных инвестиций",
+            "gross": "Выручка в месяц (с НДС)",
+            "profit": "Операционный результат в месяц"
+          },
+          "cardsNote": "Базовый сценарий. Вместимость (людей одновременно) и участники (абонементы в месяц) — разные показатели."
+        },
+        "report": {
+          "pdfTitle": "Планирование и предварительная оценка · Спортзал",
+          "pdfSubtitle": "Отчёт планировщика 3DNA по площади помещения.",
+          "keywords": "спортзал, планирование, целесообразность, 3DNA",
+          "footerLeft": "© 3DNA · Commercial Space Design",
+          "inputsTitle": "Итоги анализа",
+          "na": "Нет данных",
+          "tags": {
+            "in": "Ваши данные",
+            "est": "Оценка",
+            "max": "Теор. максимум",
+            "scn": "Сценарий"
+          },
+          "tagsHelp": {
+            "in": "Значение, введённое вами.",
+            "est": "Рассчитано моделью по её допущениям.",
+            "max": "Физический предел пространства, а не спрос.",
+            "scn": "Прогноз сценария."
+          },
+          "levels": {
+            "alert": "Тревога",
+            "warn": "Внимание",
+            "opp": "Возможность",
+            "ok": "Рекомендация"
+          },
+          "cards": {
+            "gross": "Выручка в месяц",
+            "investment": "Оценка начальных инвестиций",
+            "profit": "Операционный результат в месяц",
+            "profitAnnual": "Операционный результат за год",
+            "ivaIncl": "с НДС",
+            "note": "Базовый сценарий. Выручка указана с НДС (21 %); результат рассчитан от выручки без НДС и не учитывает финансирование, амортизацию и налог на прибыль."
+          },
+          "summary": {
+            "title": "Краткое резюме",
+            "intro": "Для {a} модель предлагает формат: {c}. Это предварительный ориентир: в зависимости от места, аудитории и проекта могут подойти и другие форматы.",
+            "area": "Общая площадь (брутто)",
+            "concept": "Рекомендуемая концепция",
+            "usable": "Полезная тренировочная площадь",
+            "capacity": "Единовременная вместимость",
+            "members": "Потенциальные участники (диапазон сценариев)",
+            "investment": "Оценка начальных инвестиций",
+            "gross": "Выручка в месяц (с НДС)",
+            "result": "Операционный результат в месяц"
+          },
+          "concept": {
+            "title": "Рекомендуемая концепция спортзала",
+            "intro": "Площадь задаёт направление, но сама по себе не определяет бизнес-модель. Рекомендация по умолчанию: {c} (★).",
+            "format": "Формат",
+            "range": "Идеальная площадь",
+            "suit": "Соответствие",
+            "suits": {
+              "ideal": "Очень подходит",
+              "viable": "Возможен",
+              "oversized": "Избыток площади",
+              "no": "Мало места"
+            },
+            "note": "Расположение, конкуренция, целевая аудитория и бюджет могут сделать предпочтительным другой возможный формат."
+          },
+          "concepts": {
+            "pt": {
+              "name": "Студия персональных тренировок",
+              "desc": "Индивидуальные или мини-групповые занятия; высокая цена, мало участников и открытое гибкое пространство."
+            },
+            "boutique": {
+              "name": "Бутик-студия",
+              "desc": "Групповые занятия с сильной идентичностью (функционал, сайкл, HIIT); зал для занятий — ядро, продуманный опыт."
+            },
+            "functional": {
+              "name": "Зал функционального тренинга",
+              "desc": "Большая функциональная зона с ригом и свободными весами плюс кардио и силовые; сообщество и тренировки с тренером."
+            },
+            "conventional": {
+              "name": "Классический фитнес-клуб",
+              "desc": "Кардио, тренажёры, свободные веса и зал групповых занятий; средняя цена и объём участников."
+            },
+            "large": {
+              "name": "Многофункциональный фитнес-центр",
+              "desc": "Несколько залов и специализированных зон, длинный график и доп. услуги; требует профессионального управления."
+            }
+          },
+          "space": {
+            "title": "Планирование пространства",
+            "intro": "Предварительная программа площадей. Всегда даёт ровно 100 % общей площади; зоны подстраиваются под размер помещения.",
+            "zone": "Зона",
+            "equipment": "Основное оборудование или мебель",
+            "total": "Итого",
+            "gross": "Общая площадь (брутто)",
+            "usable": "Полезная тренировочная площадь",
+            "note": "Условное распределение: итоговая планировка зависит от геометрии, конструкций, доступности, эвакуации и пожарной безопасности, вентиляции и действующих норм."
+          },
+          "zones": {
+            "reception": {
+              "name": "Ресепшен и вход",
+              "eq": "Стойка, контроль доступа",
+              "purpose": "Встреча, контроль доступа и продажи.",
+              "rec": "Виден от входа и с обзором зала."
+            },
+            "cardio": {
+              "name": "Кардио",
+              "eq": "Беговые дорожки, велотренажёры, эллипсы, гребные",
+              "purpose": "Кардиотренировки.",
+              "rec": "У фасада или естественного света; напольные розетки для дорожек."
+            },
+            "strength": {
+              "name": "Силовые тренажёры",
+              "eq": "Блочные тренажёры, кроссоверы",
+              "purpose": "Управляемые силовые для любого уровня.",
+              "rec": "Логичный круг по группам мышц и проходы не уже 60 см."
+            },
+            "free": {
+              "name": "Свободные веса",
+              "eq": "Рамы, скамьи, гантели",
+              "purpose": "Тренировки со штангой и гантелями.",
+              "rec": "Плотное спортивное покрытие и контроль ударов и вибраций."
+            },
+            "functional": {
+              "name": "Функциональный тренинг",
+              "eq": "Риг, коврики, аксессуары",
+              "purpose": "Функциональная работа, мобильность и тренинг с тренером.",
+              "rec": "Свободное пространство, достаточная высота и хранение рядом."
+            },
+            "studio": {
+              "name": "Зал групповых занятий",
+              "eq": "Коврики, инвентарь, звук",
+              "purpose": "Групповые занятия с контролем числа участников.",
+              "rec": "Звукоизоляция, зеркала и отдельный климат."
+            },
+            "changing": {
+              "name": "Раздевалки",
+              "eq": "Шкафчики, скамьи",
+              "purpose": "Переодевание и хранение вещей.",
+              "rec": "Понятный «чистый/грязный» маршрут и принудительная вентиляция."
+            },
+            "showers": {
+              "name": "Душевые и санузлы",
+              "eq": "Души, унитазы, раковины",
+              "purpose": "Гигиена посетителей.",
+              "rec": "Гидроизоляция, вытяжка и нескользкие покрытия."
+            },
+            "storage": {
+              "name": "Склад",
+              "eq": "Стеллажи",
+              "purpose": "Инвентарь, уборка и запчасти.",
+              "rec": "Рядом с тренировочными зонами."
+            },
+            "staff": {
+              "name": "Персонал и подсобные",
+              "eq": "Офис, зона отдыха",
+              "purpose": "Управление и отдых команды.",
+              "rec": "Отдельно от маршрута клиентов."
+            },
+            "technical": {
+              "name": "Технические помещения",
+              "eq": "Климат, щиты, помещение уборки",
+              "purpose": "Инженерные системы и обслуживание.",
+              "rec": "Доступ для обслуживания без прохода через залы."
+            },
+            "circulation": {
+              "name": "Проходы",
+              "eq": "—",
+              "purpose": "Коридоры, входы и пути эвакуации.",
+              "rec": "Доступная ширина и свободные пути эвакуации."
+            }
+          },
+          "equipment": {
+            "title": "Рекомендуемое оборудование",
+            "intro": "Количество, которое помещается в предложенных зонах (с рабочим пространством). Ориентировочные бюджеты, а не предложения поставщиков.",
+            "item": "Позиция",
+            "qty": "Кол-во",
+            "budget": "Ориентировочный бюджет",
+            "total": "Итого",
+            "items": {
+              "treadmill": "Беговые дорожки",
+              "bike": "Велотренажёры",
+              "elliptical": "Эллипсы",
+              "rower": "Гребные тренажёры",
+              "selectorized": "Блочные тренажёры",
+              "cable": "Кроссоверы",
+              "rack": "Силовые рамы",
+              "bench": "Скамьи",
+              "dumbbells": "Наборы гантелей",
+              "rig": "Функциональные риги",
+              "mats": "Коврики и напольные места",
+              "kit": "Наборы аксессуаров",
+              "studioKit": "Места для занятий (инвентарь)",
+              "lockers": "Шкафчики",
+              "receptionDesk": "Мебель ресепшена",
+              "access": "Контроль доступа",
+              "lighting": "LED-освещение",
+              "cameras": "Камеры видеонаблюдения",
+              "sound": "Звуковые зоны"
+            },
+            "groups": {
+              "cardio": "Кардио",
+              "strength": "Силовые и свободные веса",
+              "functional": "Функционал и занятия",
+              "support": "Обеспечение и системы"
+            },
+            "maintenance": {
+              "cardio": "Плановое обслуживание раз в квартал; дорожкам нужны отдельные линии питания.",
+              "strength": "Проверка тросов и блоков, обивки и креплений.",
+              "functional": "Проверка креплений рига и замена аксессуаров.",
+              "support": "Договоры обслуживания доступа, видеонаблюдения и климата."
+            },
+            "note": "Цены и мощности ориентировочные; зависят от бренда, линейки и поставщика."
+          },
+          "capacity": {
+            "title": "Вместимость и участники",
+            "intro": "Единовременная вместимость — физический предел пространства; участники — люди, платящие абонемент в месяц. Это разные показатели.",
+            "usable": "Полезная тренировочная площадь",
+            "perUser": "Площадь на активного пользователя",
+            "simultaneous": "Единовременная вместимость",
+            "peak": "Пользователи в час пик (цель)",
+            "hours": "Часы работы в день",
+            "session": "Средняя длительность тренировки",
+            "daily": "Ориентировочные визиты в день",
+            "monthly": "Ориентировочные визиты в месяц",
+            "visits": "Визитов на участника в месяц",
+            "members": "Потенциальные платящие участники",
+            "note": "Допустимую вместимость задаёт проект (эвакуация, вентиляция). Реальный спрос зависит от места и конкуренции."
+          },
+          "staff": {
+            "title": "Персонал и эксплуатация",
+            "intro": "Покрытие {h} ч в день по сменам; ресепшен, тренеры, уборка, управление и обслуживание в полных ставках.",
+            "role": "Функция",
+            "positions": "Одновременных мест",
+            "cost": "Затраты в месяц",
+            "roles": {
+              "reception": "Ресепшен",
+              "trainer": "Тренеры в зале",
+              "cleaning": "Уборка",
+              "manager": "Управление",
+              "maintenance": "Обслуживание"
+            },
+            "total": "Итого",
+            "autoReception": "Ресепшен при автоматическом доступе (FTE)",
+            "autoSaving": "Экономия на ресепшене в месяц при автоматическом доступе",
+            "note": "Автоматический доступ сокращает часы ресепшена, но требует контроля доступа, видеонаблюдения и удалённого контроля; уборка, тренеры и управление остаются, а спрос не растёт."
+          },
+          "investment": {
+            "title": "Начальные инвестиции",
+            "intro": "Ориентировочный диапазон без НДС на отделку и оснащение помещения.",
+            "item": "Статья",
+            "low": "Минимум",
+            "high": "Максимум",
+            "items": {
+              "fitout": "Отделка и обустройство",
+              "flooring": "Спортивные покрытия",
+              "wet": "Раздевалки и душевые",
+              "electrical": "Электрика и освещение",
+              "hvac": "Вентиляция и климат",
+              "equipment": "Спортивное и вспомогательное оборудование",
+              "access": "Контроль доступа",
+              "signage": "Навигация и фирменный стиль",
+              "contingency": "Непредвиденные расходы"
+            },
+            "total": "Итого",
+            "perM2": "Инвестиции на м²",
+            "note": "Не включает покупку или передачу помещения, лицензии, гонорары и финансирование. Это не смета."
+          },
+          "opex": {
+            "title": "Операционные расходы в месяц",
+            "intro": "Базовый сценарий, суммы без НДС. Предварительные оценки: аренда, зарплаты и коммунальные услуги зависят от места.",
+            "items": {
+              "payroll": "Персонал",
+              "rent": "Аренда",
+              "energy": "Электричество",
+              "water": "Вода",
+              "cleaning": "Уборка (средства и услуги)",
+              "maintenance": "Обслуживание",
+              "insurance": "Страхование",
+              "software": "ПО для управления",
+              "marketing": "Маркетинг",
+              "overhead": "Прочие общие расходы"
+            },
+            "total": "Итого операционные расходы",
+            "net": "Выручка без НДС"
+          },
+          "scenarios": {
+            "title": "Сценарии выручки",
+            "intro": "То же помещение и модель; меняются цена абонемента и число участников. НДС: {i}.",
+            "item": "Показатель",
+            "conservative": "Консервативный",
+            "base": "Базовый",
+            "optimistic": "Оптимистичный",
+            "fee": "Абонемент в месяц (с НДС)",
+            "members": "Платящие участники",
+            "gross": "Выручка в месяц (с НДС)",
+            "vat": "НДС",
+            "net": "Выручка без НДС",
+            "costs": "Операционные расходы",
+            "result": "Операционный результат в месяц",
+            "annual": "Операционный результат за год",
+            "margin": "Маржа",
+            "breakEven": "Участников для безубыточности",
+            "revPerM2": "Выручка без НДС на м² (месяц)",
+            "profitPerM2": "Результат на м² (месяц)",
+            "note": "Общая ставка НДС 21 % для абонементов в спортзал; для некоторых организаций или услуг (например, некоммерческих или освобождённых спортивных услуг) режим может отличаться."
+          },
+          "breakeven": {
+            "title": "Точка безубыточности",
+            "intro": "Сколько участников нужно для покрытия операционных расходов при цене базового сценария.",
+            "members": "Участников для безубыточности",
+            "share": "Доля от потенциальных участников базового сценария",
+            "capacityNote": "Единовременная вместимость (физический ориентир)",
+            "payback": "Ориентировочная окупаемость инвестиций",
+            "years": "лет",
+            "note": "Окупаемость — ориентировочный расчёт (средние инвестиции ÷ годовой результат), а не гарантия."
+          },
+          "recs": {
+            "title": "Архитектурные рекомендации",
+            "intro": "Сформированы по площади и рекомендуемой концепции.",
+            "texts": {
+              "tiny": "Очень маленькое помещение: лучше одно гибкое тренировочное пространство и компактная раздевалка, чем много зон.",
+              "boutiqueIdentity": "В бутик-форматах фирменный стиль, сценический свет и звук — часть продукта.",
+              "studioAcoustics": "Залу групповых занятий нужна звукоизоляция от раздевалок и соседей и собственный климат.",
+              "noStudio": "Отдельный зал занятий не выделен: гибкая функциональная зона может принимать небольшие группы.",
+              "treadmillPower": "Мощность оборудования ≈ {kw} кВт: нужны отдельные линии и напольные розетки для дорожек.",
+              "freeWeightsFloor": "Зоне свободных весов нужно спортивное покрытие и проверка нагрузок и ударов на конструкции.",
+              "ventilation": "Около {p} пользователей в час пик: вентиляцию нужно рассчитывать по заполняемости (качество воздуха и CO₂).",
+              "zoningLarge": "В больших центрах разделение маршрутов участников, занятий и служб улучшает поток в часы пик.",
+              "breakEvenOver": "В базовом сценарии участники не покрывают расходы: пересмотрите концепцию, цену или затраты до инвестиций.",
+              "breakEvenTight": "Безубыточность выше консервативного сценария: мало запаса при более низком спросе.",
+              "regulations": "До инвестиций: лицензия на деятельность, доступность, эвакуация и пожарная безопасность, акустическое исследование."
+            }
+          },
+          "method": {
+            "title": "Методология и ограничения",
+            "intro": "Внутренние допущения модели {version}: условные значения для предварительной оценки в Испании, а не проверенные рыночные данные, предложения, аренда или зарплаты по договору.",
+            "a": {
+              "iva": "НДС на абонементы",
+              "perUser": "м² на активного пользователя (PT-студия / бутик / функционал / классический / многофункциональный)",
+              "fee": "Базовая цена по формату",
+              "visits": "Визитов на участника в месяц по формату",
+              "hours": "Часы работы по формату",
+              "peak": "Нагрузка в час пик · доля часа пик в дневных визитах",
+              "scenarios": "Сценарии: участники × цена (консервативный / базовый / оптимистичный)",
+              "salaries": "Ориентировочная зарплата брутто в месяц, 14 выплат: ресепшен / тренер / уборка / управление / обслуживание",
+              "onCost": "Взносы работодателя",
+              "rent": "Аренда",
+              "energy": "Электричество и климат",
+              "investment": "Обустройство · климат · электрика",
+              "contingency": "Непредвиденные расходы к инвестициям",
+              "marketing": "Маркетинг · прочие расходы от выручки без НДС"
+            },
+            "paragraphs": [
+              "Зоны: фиксированная база + доля площади; тренировочные зоны делятся по концепции. Слишком маленькая зона входит в функциональную, а округление уходит в проходы, поэтому итог всегда 100 %.",
+              "Вместимость = полезная площадь ÷ м² на пользователя. Визиты в день = пользователи в час пик ÷ (доля часа пик × длительность). Участники = визиты в месяц ÷ визиты на участника.",
+              "Выручка = участники × абонемент (с НДС); без НДС = выручка ÷ 1,21. Результат = выручка без НДС − операционные расходы; без финансирования, амортизации и налога на прибыль.",
+              "Участники для безубыточности = постоянные расходы ÷ (абонемент без НДС − переменные затраты на участника). Окупаемость = средние инвестиции ÷ годовой результат (ориентир)."
+            ],
+            "disclaimer": "Этот отчёт — предварительная оценка по одному показателю и внутренним допущениям 3DNA. Это не проект, не смета, не проверенная оценка и не гарантия результатов. Введённые данные принадлежат тому, кто их ввёл."
+          },
+          "cta": {
+            "heading": "Мы проектируем не просто спортзалы. Мы проектируем впечатления.",
+            "lines": [
+              "Превратите этот анализ в проект: концепция, планировка, зонирование и 3D-визуализация с 3DNA."
+            ],
+            "button": "Связаться с 3DNA",
+            "calcLink": "Открыть этот анализ"
+          }
+        },
+        "share": {
+          "slug": "calculator",
+          "title": "Калькулятор фитнес-клуба | 3DNA",
+          "description": "Введите площадь помещения и получите рекомендации по планировке, оборудованию, инвестициям и финансовым показателям.",
+          "imageAlt": "Планировщик спортзала 3DNA на планшете в спортзале",
+          "open": "Открыть калькулятор"
+        }
+      }
     },
     "restaurantsPage": {
       "plan": {
@@ -3261,48 +4488,266 @@
       "calc": {
          "ui": {
            "eyebrow": "3DNA / Restaurant Business Tools",
-           "title": "Калькулятор рентабельности",
-           "subtitle": "Рассчитайте потенциальную выручку, расходы и прибыль вашего ресторана.",
-           "example": "Значения для примера взяты из 3D-ресторана выше: замените их данными вашего проекта.",
-           "pdf": "Скачать PDF 3DNA",
-           "gBasic": "Данные ресторана",
-           "gCosts": "Операционные расходы",
-           "gCostsIntro": "Суммы в месяц без НДС; еда и напитки — процент от чистой выручки.",
-           "gReport": "Отчёт",
+           "title": "Калькулятор коммерческого потенциала",
+           "subtitle": "Введите 5 данных. Остальное рассчитает 3DNA.",
+           "inputsLabel": "Ваши 5 данных",
+           "pdf": "Скачать PDF",
+           "seatsShort": "мест",
            "fields": {
-             "area": "Площадь ресторана",
+             "area": "Общая площадь",
              "seats": "Количество мест",
-             "check": "Средний чек (с НДС)",
-             "occupancy": "Средняя заполняемость мест",
-             "turns": "Оборачиваемость места",
+             "ticket": "Средний чек (с НДС)",
              "days": "Рабочих дней в месяц",
-             "fb": "Еда и напитки",
-             "staff": "Персонал",
-             "rent": "Аренда в месяц",
-             "utilities": "Коммунальные услуги",
-             "other": "Прочие операционные расходы",
-             "iva": "НДС (IVA)",
-             "project": "Название проекта (необязательно)"
+             "rotation": "Оборачиваемость места в день"
            },
-           "hRevenue": "Выручка",
-           "grossMonthly": "Продажи в месяц (с НДС)",
-           "netMonthly": "Чистая выручка (без НДС)",
-           "grossAnnual": "Продажи за год (с НДС)",
-           "netAnnual": "Чистая выручка за год",
-           "hProfit": "Операционная прибыль",
-           "profitMonthly": "Прибыль в месяц",
-           "profitAnnual": "Прибыль за год",
-           "margin": "Операционная маржа",
-           "hMetrics": "Показатели",
-           "visits": "Гостей в месяц",
-           "grossPerM2": "Продажи на м² (мес.)",
-           "breakEven": "Безубыточность (чистая выручка/мес.)",
-           "breakEvenOccupancy": "Заполняемость безубыточности",
-           "hChart": "Чистая выручка и расходы в месяц",
-           "hAssumptions": "Допущения расчёта",
-           "assumptions": "Гости = места × заполняемость × оборачиваемость × дни. Чек включает НДС, расходы — нет. Операционная прибыль до амортизации, процентов и налога на прибыль. Годовые суммы = месячные × 12."
+           "rotationUnit": "оборотов места в день",
+           "reportTitle": "Предварительный отчёт о целесообразности",
+           "reportIntro": "Формируется автоматически по вашим 5 данным и допущениям модели 3DNA. У каждого значения указано: ваши данные, оценка, теоретический максимум или сценарий.",
+           "fullTitle": "Полный отчёт о целесообразности",
+           "fullSub": "Финансовый, операционный и пространственный анализ вашего ресторана"
          },
-         "report": {}
+         "report": {
+           "pdfTitle": "Анализ коммерческого потенциала · Ресторан",
+           "pdfSubtitle": "Предварительный отчёт о целесообразности, подготовленный калькулятором 3DNA по пяти данным.",
+           "keywords": "ресторан, целесообразность, коммерческий потенциал, 3DNA",
+           "footerLeft": "© 3DNA · Restaurant Design & Visualization",
+           "inputsTitle": "Введённые данные",
+           "na": "Нет данных",
+           "fields": {
+             "area": "Общая площадь",
+             "seats": "Места",
+             "ticket": "Средний чек (с НДС)",
+             "days": "Рабочих дней в месяц",
+             "rotation": "Оборотов места в день"
+           },
+           "cards": {
+             "grossMonthly": "Выручка в месяц",
+             "grossAnnual": "Выручка за год",
+             "profitMonthly": "Оценка операционной прибыли в месяц",
+             "profitAnnual": "Оценка операционной прибыли за год",
+             "ivaIncl": "с НДС",
+             "note": "Базовый сценарий: выручка = места × средний чек × оборачиваемость в день × рабочие дни (с НДС). Прибыль рассчитана от продаж без НДС.",
+             "staff": "Оценка численности персонала",
+             "staffValue": "{v} полных ставок"
+           },
+           "tags": {
+             "in": "Ваши данные",
+             "est": "Оценка",
+             "max": "Теор. максимум",
+             "scn": "Сценарий"
+           },
+           "tagsHelp": {
+             "in": "Значение, введённое вами.",
+             "est": "Рассчитано моделью по её допущениям.",
+             "max": "Все места заняты в каждом обороте.",
+             "scn": "Прогноз по введённым данным или сценарий спроса."
+           },
+           "space": {
+             "title": "Пространство и места",
+             "intro": "Условное распределение площади для ресторана с обслуживанием за столами. Это не план и не реальная планировка.",
+             "area": "Общая площадь",
+             "seats": "Места",
+             "perSeat": "Общая площадь на место",
+             "dining": "Зал, оценка",
+             "kitchen": "Кухня и склад, оценка",
+             "support": "Проходы, санузлы и подсобные зоны, оценка",
+             "diningPerSeat": "Площадь зала на место",
+             "seatsPer100": "Мест на 100 м²",
+             "density": "Плотность рассадки",
+             "levels": {
+               "veryHigh": "Очень высокая",
+               "high": "Высокая",
+               "adequate": "Нормальная",
+               "ample": "Свободная"
+             }
+           },
+           "customers": {
+             "title": "Гости и вместимость",
+             "intro": "Введённая оборачиваемость уже учитывает среднюю заполняемость: дополнительный процент не применяется. Гости = места × оборачиваемость × дни.",
+             "rotation": "Оборачиваемость места в день",
+             "days": "Рабочих дней в месяц",
+             "theoDaily": "Теоретическая вместимость в день",
+             "theoMonthly": "Теоретическая вместимость в месяц",
+             "theoAnnual": "Теоретическая вместимость в год",
+             "theoSales": "Теоретический максимум продаж в месяц (с НДС)",
+             "utilization": "Применённая загрузка",
+             "expDaily": "Ожидаемые гости в день",
+             "expMonthly": "Ожидаемые гости в месяц",
+             "expAnnual": "Ожидаемые гости в год"
+           },
+           "revenue": {
+             "title": "Выручка",
+             "intro": "Средний чек включает испанский НДС для общепита ({i}). Продажи без НДС — реальный доход бизнеса.",
+             "ticket": "Средний чек (с НДС)",
+             "dailyGross": "Выручка в день (с НДС)",
+             "monthlyGross": "Выручка в месяц (с НДС)",
+             "annualGross": "Выручка за год (с НДС)",
+             "vatMonthly": "НДС в составе выручки (месяц)",
+             "netMonthly": "Продажи без НДС (месяц)",
+             "netAnnual": "Продажи без НДС (год)",
+             "perSeat": "Выручка на место (месяц)",
+             "perM2": "Выручка на м² (месяц)",
+             "netPerM2Year": "Продажи без НДС на м² (год)"
+           },
+           "product": {
+             "title": "Себестоимость продукции",
+             "intro": "Еда и напитки как условный процент от продаж без НДС.",
+             "ratio": "Себестоимость еды и напитков",
+             "monthly": "Себестоимость (месяц)",
+             "annual": "Себестоимость (год)",
+             "contribution": "Валовая маржа после продукции (месяц)"
+           },
+           "staff": {
+             "title": "Персонал и затраты на оплату труда",
+             "intro": "Оценка по спросу: {s} сервиса в день по {h} ч, около {c} гостей за сервис, производительность по должностям и покрытие всех рабочих дней.",
+             "role": "Должность",
+             "perService": "На сервис",
+             "fte": "Полные ставки (FTE)",
+             "cost": "Затраты в месяц",
+             "roles": {
+               "waiter": "Официанты",
+               "cook": "Повара",
+               "assistant": "Помощники повара",
+               "bar": "Бар",
+               "supervisor": "Управляющий / контроль"
+             },
+             "total": "Итого",
+             "monthly": "Затраты на персонал в месяц",
+             "annual": "Затраты на персонал за год",
+             "ratio": "Затраты на персонал от продаж без НДС",
+             "note": "Эквиваленты полной ставки, а не точная численность: реальное число зависит от графика, смен, коллективного договора и меню."
+           },
+           "opex": {
+             "title": "Операционные расходы",
+             "intro": "Суммы в месяц без НДС. Предварительные оценки, а не сметы или проверенные рыночные цены; аренда и зарплаты сильно зависят от места.",
+             "staff": "Персонал",
+             "rent": "Аренда",
+             "electricity": "Электричество",
+             "water": "Вода",
+             "gas": "Газ (кухня)",
+             "cleaning": "Уборка",
+             "maintenance": "Обслуживание",
+             "insurance": "Страхование",
+             "software": "ПО и оплата картами",
+             "marketing": "Маркетинг",
+             "consumables": "Расходные материалы",
+             "overhead": "Прочие общие расходы",
+             "total": "Итого операционные расходы",
+             "product": "Себестоимость продукции",
+             "totalCosts": "Итого затраты",
+             "net": "Продажи без НДС"
+           },
+           "profit": {
+             "title": "Рентабельность и точка безубыточности",
+             "intro": "Операционный результат = продажи без НДС − себестоимость − операционные расходы.",
+             "monthly": "Операционный результат в месяц",
+             "annual": "Операционный результат за год",
+             "margin": "Операционная маржа",
+             "perM2": "Результат на м² (год)",
+             "perSeat": "Результат на место (год)",
+             "beRevenue": "Выручка безубыточности (с НДС, месяц)",
+             "beNet": "Продажи без НДС для безубыточности (месяц)",
+             "beCustomers": "Гостей для безубыточности в месяц",
+             "beDaily": "Гостей для безубыточности в день",
+             "beUtilization": "Спрос безубыточности (доля от ожидаемого)",
+             "excluded": "Не включает начальные вложения, амортизацию, финансирование и налог на прибыль. В точке безубыточности персонал и постоянные расходы остаются на уровне базового сценария."
+           },
+           "scenarios": {
+             "title": "Сценарии",
+             "intro": "Те же пять данных; базовый сценарий использует вашу оборачиваемость как есть, консервативный и оптимистичный — на 15 % меньше или больше спроса. Персонал и переменные расходы пересчитываются по той же модели.",
+             "item": "Показатель",
+             "conservative": "Консервативный",
+             "base": "Базовый",
+             "optimistic": "Оптимистичный",
+             "utilization": "Спрос к ожидаемому",
+             "customers": "Гостей в месяц",
+             "gross": "Выручка (с НДС)",
+             "net": "Продажи без НДС",
+             "product": "Себестоимость",
+             "staff": "Персонал",
+             "fte": "Полные ставки",
+             "other": "Прочие расходы",
+             "result": "Результат в месяц",
+             "annual": "Результат за год",
+             "margin": "Маржа"
+           },
+           "insights": {
+             "title": "Наблюдения по дизайну",
+             "intro": "Сформированы по вашим данным и порогам модели; они помогают в проекте, но не заменяют его.",
+             "levels": {
+               "alert": "Тревога",
+               "warn": "Внимание",
+               "opp": "Возможность",
+               "ok": "Норма"
+             },
+             "texts": {
+               "density_veryHigh": "Очень высокая плотность: {d} м² зала на место. Меньше 1 м² трудно обеспечить проходы, доступность и комфорт; стоит сократить места или увеличить зал.",
+               "density_high": "Высокая плотность: {d} м² зала на место. Решающими будут проходы и компактная мебель.",
+               "density_adequate": "Нормальная плотность для обслуживания за столами: {d} м² зала на место.",
+               "density_ample": "Свободный зал: {d} м² на место. Есть резерв для дополнительных мест, зоны ожидания или прилавка.",
+               "circulation": "Мало общей площади на место ({p} м²): риск пересечения потоков между залом, кухней и санузлами; маршрут обслуживания нужно продумать с самого начала.",
+               "kitchenTight": "При {r} оборотах в день условная кухня ({k} м² на место) может оказаться мала: стоит проработать производственную линию и мойку.",
+               "kitchenLarge": "Условная кухня ({k} м² на место) велика для такой вместимости: часть площади можно отдать залу или складу.",
+               "revenueLow": "Продажи без НДС {e} на м² в год: низкий потенциал для такой площади; дизайн должен повышать чек или оборачиваемость.",
+               "revenueHigh": "Продажи без НДС {e} на м² в год: высокая отдача пространства; важно сохранить комфорт и потоки в часы пик.",
+               "rotationHigh": "Высокая оборачиваемость ({r} на место в день): пространство нужно проектировать под быстрый поток (стойка, выдача, модульные столы).",
+               "breakEvenOver": "Для покрытия затрат нужно {b} от ожидаемых гостей: при этих данных бизнес не выходит на безубыточность.",
+               "breakEvenNone": "При таком чеке каждый гость не покрывает свои переменные затраты: точки безубыточности нет.",
+               "breakEvenTight": "Безубыточность требует {b} от ожидаемых гостей: мало запаса при падении спроса.",
+               "breakEvenOk": "Безубыточность достигается при {b} от ожидаемых гостей."
+             }
+           },
+           "method": {
+             "title": "Методология и допущения",
+             "intro": "Внутренние допущения модели {version}. Это условные значения для предварительной оценки в Испании, а не проверенные рыночные данные, сметы или зарплаты по договору.",
+             "a": {
+               "iva": "НДС общепита (услуги питания)",
+               "utilization": "Спрос по сценариям к введённой оборачиваемости: консервативный / базовый / оптимистичный",
+               "zoning": "Условное деление: зал / кухня и склад / подсобные зоны",
+               "services": "Сервисов в день × часов на сервис",
+               "fteHours": "Часов на полную ставку в месяц",
+               "productivity": "Гостей за сервис на должность: зал / кухня / помощник / бар",
+               "salaries": "Ориентировочная зарплата брутто в месяц, 14 выплат: зал / кухня / помощник / бар / управляющий",
+               "onCost": "Взносы работодателя",
+               "fb": "Еда и напитки от продаж без НДС",
+               "rent": "Аренда",
+               "electricity": "Электричество: за м² + за гостя",
+               "water": "Вода: фикс. + за гостя",
+               "gas": "Газ за гостя",
+               "cleaning": "Уборка · обслуживание",
+               "insurance": "Страхование: фикс. + за м²",
+               "software": "ПО: фикс. + комиссия за карты от выручки",
+               "marketing": "Маркетинг от продаж без НДС · расходники за гостя",
+               "overhead": "Прочие общие расходы: фикс. + от продаж без НДС"
+             },
+             "formulas": [
+               "Гостей в месяц = места × оборачиваемость в день × рабочие дни (оборачиваемость уже учитывает среднюю заполняемость). Консервативный и оптимистичный сценарии: −15 % и +15 % спроса.",
+               "Выручка (с НДС) = гости × средний чек. Продажи без НДС = выручка ÷ (1 + НДС); НДС уплачивается в бюджет.",
+               "Персонал: гости за сервис ÷ производительность каждой должности (не меньше одного), умножено на сервисы и часы, на все рабочие дни; переведено в полные ставки и оценено по зарплате и взносам.",
+               "Операционный результат = продажи без НДС − еда и напитки − персонал − аренда − коммунальные услуги − прочие расходы. Годовые суммы = месячные × 12, без сезонности.",
+               "Точка безубыточности = постоянные расходы ÷ маржа на гостя (чек без НДС − переменные затраты на гостя). Спрос безубыточности = гости безубыточности ÷ ожидаемые гости."
+             ],
+             "disclaimer": "Этот отчёт — условный прогноз на основе пяти данных и внутренних допущений модели 3DNA. Он не гарантирует будущих результатов и не является бизнес-планом, проверенной финансовой оценкой или сметой. Введённые данные принадлежат тому, кто их ввёл."
+           },
+           "cta": {
+             "heading": "Ваш ресторан начинается с хорошей идеи.",
+             "lines": [
+               "Цифры показывают потенциал. Дизайн превращает этот потенциал во впечатление."
+             ],
+             "button": "Связаться с 3DNA",
+             "calcLink": "Открыть этот расчёт"
+           },
+           "groups": {
+             "volume": "Гости и выручка"
+           }
+         },
+         "share": {
+           "slug": "calculator",
+           "title": "Калькулятор ресторана | 3DNA",
+           "description": "Введите 5 параметров и получите подробный расчёт выручки, персонала, расходов и финансовых показателей ресторана.",
+           "imageAlt": "Калькулятор ресторана 3DNA на планшете на столе ресторана",
+           "open": "Открыть калькулятор"
+         }
        },
       "wideOverlay": {
         "full-width-01": {
@@ -4117,62 +5562,405 @@
         }
       },
       "calc": {
-         "ui": {
-           "eyebrow": "3DNA / Fitness Business Tools",
-           "title": "Калькулятор рентабельності",
-           "subtitle": "Оцініть економічний потенціал вашого спортзалу. Введіть свої дані й розрахуйте виручку, витрати та рентабельність.",
-           "example": "Значення наведено для прикладу: замініть їх даними вашого проєкту.",
-           "pdf": "Завантажити PDF 3DNA",
-           "gSpace": "Простір і учасники",
-           "gOps": "Робота клубу",
-           "gCosts": "Витрати на місяць (без ПДВ)",
-           "gTax": "ПДВ і проєкт",
-           "fields": {
-             "area": "Доступна площа",
-             "capacity": "Одночасна місткість",
-             "members": "Активні учасники, що платять",
-             "price": "Абонемент на місяць (з ПДВ)",
-             "model": "Модель роботи",
-             "visits": "Відвідувань на учасника",
-             "duration": "Середня тривалість візиту",
-             "hours": "Годин роботи на день",
-             "staff": "Персонал",
-             "rent": "Оренда",
-             "utilities": "Комунальні послуги",
-             "cleaning": "Прибирання",
-             "maintenance": "Обслуговування",
-             "security": "Охорона й контроль доступу",
-             "insurance": "Страхування та інші витрати",
-             "iva": "ПДВ (IVA)",
-             "project": "Назва проєкту (необов'язково)"
-           },
-           "model247": "Автоматизований доступ 24/7",
-           "modelConv": "Традиційний, з рецепцією",
-           "hRevenue": "Виручка",
-           "grossMonthly": "Виручка на місяць (з ПДВ)",
-           "netMonthly": "Чиста виручка (без ПДВ)",
-           "grossAnnual": "Виручка за рік (з ПДВ)",
-           "hProfit": "Операційний прибуток",
-           "profitMonthly": "Прибуток на місяць",
-           "profitAnnual": "Прибуток за рік",
-           "margin": "Операційна маржа",
-           "hMetrics": "Показники",
-           "revenuePerM2": "Чиста виручка на м² (міс.)",
-           "profitPerM2": "Прибуток на м² (міс.)",
-           "capacity": "Одночасна місткість",
-           "peak": "Оцінка пікової відвідуваності",
-           "breakEven": "Учасників для покриття витрат",
-           "overCapacity": "Оцінка пікової відвідуваності перевищує місткість.",
-           "hChart": "Витрати на місяць і чиста виручка",
-           "expenses": "Операційні витрати",
-           "hCompare": "24/7 і традиційна модель",
-           "compareProfit": "Прибуток на місяць",
-           "compareBreakEven": "Учасників для беззбитковості",
-           "assumptions": "Припущення: абонемент указано з ПДВ, витрати — без ПДВ; пікова відвідуваність = середнє завантаження за години роботи × коефіцієнт піку (3 для 24/7, 2 для традиційної моделі). Години роботи, персонал і охорона зберігаються окремо для кожної моделі.",
-           "netAnnual": "Чиста виручка за рік"
-         },
-         "report": {}
-       }
+        "ui": {
+          "eyebrow": "3DNA / Fitness Business Tools",
+          "title": "Планувальник спортзалу",
+          "subtitle": "Введіть лише площу. 3DNA запропонує концепцію, планування, обладнання та економічну модель.",
+          "inputLabel": "Загальна площа приміщення",
+          "inputHint": "Від 40 до 5000 м². Усе інше оцінюється автоматично.",
+          "pdf": "Завантажити PDF 3DNA",
+          "save": "Зберегти аналіз",
+          "shareCalc": "Поділитися моїм аналізом",
+          "copiedCalc": "Посилання на ваш аналіз скопійовано.",
+          "saved": "Аналіз збережено в цьому браузері.",
+          "savedTitle": "Збережені аналізи",
+          "opened": "Збережений аналіз відкрито.",
+          "deleted": "Аналіз видалено.",
+          "untitled": "Аналіз",
+          "fullTitle": "Повний звіт про планування",
+          "fullSub": "Концепція, зони, обладнання, місткість, персонал, інвестиції та економічні сценарії",
+          "reportIntro": "Формується автоматично за площею та припущеннями моделі 3DNA. Біля кожного значення вказано: ваші дані, оцінка, теоретичний максимум чи сценарій.",
+          "cards": {
+            "concept": "Рекомендована концепція",
+            "capacity": "Одночасна місткість",
+            "members": "Потенційні учасники",
+            "investment": "Оцінка початкових інвестицій",
+            "gross": "Виручка на місяць (з ПДВ)",
+            "profit": "Операційний результат на місяць"
+          },
+          "cardsNote": "Базовий сценарій. Місткість (людей одночасно) і учасники (абонементи на місяць) — різні показники."
+        },
+        "report": {
+          "pdfTitle": "Планування та попередня оцінка · Спортзал",
+          "pdfSubtitle": "Звіт планувальника 3DNA за площею приміщення.",
+          "keywords": "спортзал, планування, доцільність, 3DNA",
+          "footerLeft": "© 3DNA · Commercial Space Design",
+          "inputsTitle": "Підсумки аналізу",
+          "na": "Немає даних",
+          "tags": {
+            "in": "Ваші дані",
+            "est": "Оцінка",
+            "max": "Теор. максимум",
+            "scn": "Сценарій"
+          },
+          "tagsHelp": {
+            "in": "Значення, яке ви ввели.",
+            "est": "Розраховано моделлю за її припущеннями.",
+            "max": "Фізична межа простору, а не попит.",
+            "scn": "Прогноз сценарію."
+          },
+          "levels": {
+            "alert": "Тривога",
+            "warn": "Увага",
+            "opp": "Можливість",
+            "ok": "Рекомендація"
+          },
+          "cards": {
+            "gross": "Виручка на місяць",
+            "investment": "Оцінка початкових інвестицій",
+            "profit": "Операційний результат на місяць",
+            "profitAnnual": "Операційний результат за рік",
+            "ivaIncl": "з ПДВ",
+            "note": "Базовий сценарій. Виручку вказано з ПДВ (21 %); результат розраховано від виручки без ПДВ і без урахування фінансування, амортизації та податку на прибуток."
+          },
+          "summary": {
+            "title": "Стислий підсумок",
+            "intro": "Для {a} модель пропонує формат: {c}. Це попередній орієнтир: залежно від місця, аудиторії та проєкту можуть підійти й інші формати.",
+            "area": "Загальна площа (брутто)",
+            "concept": "Рекомендована концепція",
+            "usable": "Корисна тренувальна площа",
+            "capacity": "Одночасна місткість",
+            "members": "Потенційні учасники (діапазон сценаріїв)",
+            "investment": "Оцінка початкових інвестицій",
+            "gross": "Виручка на місяць (з ПДВ)",
+            "result": "Операційний результат на місяць"
+          },
+          "concept": {
+            "title": "Рекомендована концепція спортзалу",
+            "intro": "Площа задає напрям, але сама не визначає бізнес-модель. Рекомендація за замовчуванням: {c} (★).",
+            "format": "Формат",
+            "range": "Ідеальна площа",
+            "suit": "Відповідність",
+            "suits": {
+              "ideal": "Дуже підходить",
+              "viable": "Можливий",
+              "oversized": "Надлишок площі",
+              "no": "Замало місця"
+            },
+            "note": "Розташування, конкуренція, цільова аудиторія та бюджет можуть зробити кращим інший можливий формат."
+          },
+          "concepts": {
+            "pt": {
+              "name": "Студія персональних тренувань",
+              "desc": "Індивідуальні або міні-групові заняття; висока ціна, мало учасників і відкритий гнучкий простір."
+            },
+            "boutique": {
+              "name": "Бутик-студія",
+              "desc": "Групові заняття з сильною ідентичністю (функціонал, сайкл, HIIT); зал для занять — ядро, продуманий досвід."
+            },
+            "functional": {
+              "name": "Зал функціонального тренінгу",
+              "desc": "Велика функціональна зона з ригом і вільними вагами плюс кардіо та силові; спільнота й тренування з тренером."
+            },
+            "conventional": {
+              "name": "Класичний фітнес-клуб",
+              "desc": "Кардіо, тренажери, вільні ваги та зал групових занять; середня ціна й обсяг учасників."
+            },
+            "large": {
+              "name": "Багатофункціональний фітнес-центр",
+              "desc": "Кілька залів і спеціалізованих зон, довгий графік і додаткові послуги; потребує професійного управління."
+            }
+          },
+          "space": {
+            "title": "Планування простору",
+            "intro": "Попередня програма площ. Завжди дає рівно 100 % загальної площі; зони підлаштовуються під розмір приміщення.",
+            "zone": "Зона",
+            "equipment": "Основне обладнання чи меблі",
+            "total": "Разом",
+            "gross": "Загальна площа (брутто)",
+            "usable": "Корисна тренувальна площа",
+            "note": "Умовний розподіл: остаточне планування залежить від геометрії, конструкцій, доступності, евакуації та пожежної безпеки, вентиляції й чинних норм."
+          },
+          "zones": {
+            "reception": {
+              "name": "Рецепція та вхід",
+              "eq": "Стійка, контроль доступу",
+              "purpose": "Зустріч, контроль доступу та продажі.",
+              "rec": "Видно від входу й з оглядом залу."
+            },
+            "cardio": {
+              "name": "Кардіо",
+              "eq": "Бігові доріжки, велотренажери, еліпси, гребні",
+              "purpose": "Кардіотренування.",
+              "rec": "Біля фасаду чи природного світла; підлогові розетки для доріжок."
+            },
+            "strength": {
+              "name": "Силові тренажери",
+              "eq": "Блочні тренажери, кросовери",
+              "purpose": "Керовані силові для будь-якого рівня.",
+              "rec": "Логічне коло за групами м'язів і проходи не вужчі за 60 см."
+            },
+            "free": {
+              "name": "Вільні ваги",
+              "eq": "Рами, лави, гантелі",
+              "purpose": "Тренування зі штангою та гантелями.",
+              "rec": "Щільне спортивне покриття й контроль ударів і вібрацій."
+            },
+            "functional": {
+              "name": "Функціональний тренінг",
+              "eq": "Риг, килимки, аксесуари",
+              "purpose": "Функціональна робота, мобільність і тренінг з тренером.",
+              "rec": "Вільний простір, достатня висота й зберігання поруч."
+            },
+            "studio": {
+              "name": "Зал групових занять",
+              "eq": "Килимки, інвентар, звук",
+              "purpose": "Групові заняття з контролем кількості учасників.",
+              "rec": "Звукоізоляція, дзеркала та окремий клімат."
+            },
+            "changing": {
+              "name": "Роздягальні",
+              "eq": "Шафки, лави",
+              "purpose": "Перевдягання та зберігання речей.",
+              "rec": "Зрозумілий «чистий/брудний» маршрут і примусова вентиляція."
+            },
+            "showers": {
+              "name": "Душові та вбиральні",
+              "eq": "Душі, унітази, умивальники",
+              "purpose": "Гігієна відвідувачів.",
+              "rec": "Гідроізоляція, витяжка й неслизькі покриття."
+            },
+            "storage": {
+              "name": "Склад",
+              "eq": "Стелажі",
+              "purpose": "Інвентар, прибирання та запчастини.",
+              "rec": "Поруч із тренувальними зонами."
+            },
+            "staff": {
+              "name": "Персонал і допоміжні",
+              "eq": "Офіс, зона відпочинку",
+              "purpose": "Управління й відпочинок команди.",
+              "rec": "Окремо від маршруту клієнтів."
+            },
+            "technical": {
+              "name": "Технічні приміщення",
+              "eq": "Клімат, щити, приміщення прибирання",
+              "purpose": "Інженерні системи й обслуговування.",
+              "rec": "Доступ для обслуговування без проходу через зали."
+            },
+            "circulation": {
+              "name": "Проходи",
+              "eq": "—",
+              "purpose": "Коридори, входи та шляхи евакуації.",
+              "rec": "Доступна ширина й вільні шляхи евакуації."
+            }
+          },
+          "equipment": {
+            "title": "Рекомендоване обладнання",
+            "intro": "Кількість, що вміщується в запропонованих зонах (з робочим простором). Орієнтовні бюджети, а не пропозиції постачальників.",
+            "item": "Позиція",
+            "qty": "К-сть",
+            "budget": "Орієнтовний бюджет",
+            "total": "Разом",
+            "items": {
+              "treadmill": "Бігові доріжки",
+              "bike": "Велотренажери",
+              "elliptical": "Еліпси",
+              "rower": "Гребні тренажери",
+              "selectorized": "Блочні тренажери",
+              "cable": "Кросовери",
+              "rack": "Силові рами",
+              "bench": "Лави",
+              "dumbbells": "Набори гантелей",
+              "rig": "Функціональні риги",
+              "mats": "Килимки та підлогові місця",
+              "kit": "Набори аксесуарів",
+              "studioKit": "Місця для занять (інвентар)",
+              "lockers": "Шафки",
+              "receptionDesk": "Меблі рецепції",
+              "access": "Контроль доступу",
+              "lighting": "LED-освітлення",
+              "cameras": "Камери відеоспостереження",
+              "sound": "Звукові зони"
+            },
+            "groups": {
+              "cardio": "Кардіо",
+              "strength": "Силові та вільні ваги",
+              "functional": "Функціонал і заняття",
+              "support": "Забезпечення й системи"
+            },
+            "maintenance": {
+              "cardio": "Планове обслуговування щокварталу; доріжкам потрібні окремі лінії живлення.",
+              "strength": "Перевірка тросів і блоків, оббивки та кріплень.",
+              "functional": "Перевірка кріплень ригу й заміна аксесуарів.",
+              "support": "Договори обслуговування доступу, відеоспостереження та клімату."
+            },
+            "note": "Ціни та потужності орієнтовні; залежать від бренду, лінійки й постачальника."
+          },
+          "capacity": {
+            "title": "Місткість і учасники",
+            "intro": "Одночасна місткість — фізична межа простору; учасники — люди, що платять абонемент щомісяця. Це різні показники.",
+            "usable": "Корисна тренувальна площа",
+            "perUser": "Площа на активного користувача",
+            "simultaneous": "Одночасна місткість",
+            "peak": "Користувачі в годину пік (мета)",
+            "hours": "Години роботи на день",
+            "session": "Середня тривалість тренування",
+            "daily": "Орієнтовні візити на день",
+            "monthly": "Орієнтовні візити на місяць",
+            "visits": "Візитів на учасника на місяць",
+            "members": "Потенційні учасники, що платять",
+            "note": "Допустиму місткість визначає проєкт (евакуація, вентиляція). Реальний попит залежить від місця й конкуренції."
+          },
+          "staff": {
+            "title": "Персонал і експлуатація",
+            "intro": "Покриття {h} год на день змінами; рецепція, тренери, прибирання, управління й обслуговування в повних ставках.",
+            "role": "Функція",
+            "positions": "Одночасних місць",
+            "cost": "Витрати на місяць",
+            "roles": {
+              "reception": "Рецепція",
+              "trainer": "Тренери в залі",
+              "cleaning": "Прибирання",
+              "manager": "Управління",
+              "maintenance": "Обслуговування"
+            },
+            "total": "Разом",
+            "autoReception": "Рецепція за автоматизованого доступу (FTE)",
+            "autoSaving": "Економія на рецепції на місяць за автоматизованого доступу",
+            "note": "Автоматизований доступ скорочує години рецепції, але потребує контролю доступу, відеоспостереження й віддаленого нагляду; прибирання, тренери й управління лишаються, а попит не зростає."
+          },
+          "investment": {
+            "title": "Початкові інвестиції",
+            "intro": "Орієнтовний діапазон без ПДВ на облаштування й оснащення приміщення.",
+            "item": "Стаття",
+            "low": "Мінімум",
+            "high": "Максимум",
+            "items": {
+              "fitout": "Облаштування й оздоблення",
+              "flooring": "Спортивні покриття",
+              "wet": "Роздягальні й душові",
+              "electrical": "Електрика й освітлення",
+              "hvac": "Вентиляція та клімат",
+              "equipment": "Спортивне й допоміжне обладнання",
+              "access": "Контроль доступу",
+              "signage": "Навігація й фірмовий стиль",
+              "contingency": "Непередбачені витрати"
+            },
+            "total": "Разом",
+            "perM2": "Інвестиції на м²",
+            "note": "Не включає купівлю чи передачу приміщення, ліцензії, гонорари й фінансування. Це не кошторис."
+          },
+          "opex": {
+            "title": "Операційні витрати на місяць",
+            "intro": "Базовий сценарій, суми без ПДВ. Попередні оцінки: оренда, зарплати й комунальні послуги залежать від місця.",
+            "items": {
+              "payroll": "Персонал",
+              "rent": "Оренда",
+              "energy": "Електроенергія",
+              "water": "Вода",
+              "cleaning": "Прибирання (засоби й послуги)",
+              "maintenance": "Обслуговування",
+              "insurance": "Страхування",
+              "software": "ПЗ для управління",
+              "marketing": "Маркетинг",
+              "overhead": "Інші загальні витрати"
+            },
+            "total": "Разом операційні витрати",
+            "net": "Виручка без ПДВ"
+          },
+          "scenarios": {
+            "title": "Сценарії виручки",
+            "intro": "Те саме приміщення й модель; змінюються ціна абонемента та кількість учасників. ПДВ: {i}.",
+            "item": "Показник",
+            "conservative": "Консервативний",
+            "base": "Базовий",
+            "optimistic": "Оптимістичний",
+            "fee": "Абонемент на місяць (з ПДВ)",
+            "members": "Учасники, що платять",
+            "gross": "Виручка на місяць (з ПДВ)",
+            "vat": "ПДВ",
+            "net": "Виручка без ПДВ",
+            "costs": "Операційні витрати",
+            "result": "Операційний результат на місяць",
+            "annual": "Операційний результат за рік",
+            "margin": "Маржа",
+            "breakEven": "Учасників для беззбитковості",
+            "revPerM2": "Виручка без ПДВ на м² (місяць)",
+            "profitPerM2": "Результат на м² (місяць)",
+            "note": "Загальна ставка ПДВ 21 % для абонементів у спортзал; для деяких організацій чи послуг (наприклад, неприбуткових або звільнених спортивних послуг) режим може відрізнятися."
+          },
+          "breakeven": {
+            "title": "Точка беззбитковості",
+            "intro": "Скільки учасників потрібно для покриття операційних витрат за ціни базового сценарію.",
+            "members": "Учасників для беззбитковості",
+            "share": "Частка від потенційних учасників базового сценарію",
+            "capacityNote": "Одночасна місткість (фізичний орієнтир)",
+            "payback": "Орієнтовна окупність інвестицій",
+            "years": "років",
+            "note": "Окупність — орієнтовний розрахунок (середні інвестиції ÷ річний результат), а не гарантія."
+          },
+          "recs": {
+            "title": "Архітектурні рекомендації",
+            "intro": "Сформовані за площею та рекомендованою концепцією.",
+            "texts": {
+              "tiny": "Дуже маленьке приміщення: краще один гнучкий тренувальний простір і компактна роздягальня, ніж багато зон.",
+              "boutiqueIdentity": "У бутик-форматах фірмовий стиль, сценічне світло й звук — частина продукту.",
+              "studioAcoustics": "Залу групових занять потрібна звукоізоляція від роздягалень і сусідів та власний клімат.",
+              "noStudio": "Окремий зал занять не виділено: гнучка функціональна зона може приймати невеликі групи.",
+              "treadmillPower": "Потужність обладнання ≈ {kw} кВт: потрібні окремі лінії та підлогові розетки для доріжок.",
+              "freeWeightsFloor": "Зоні вільних ваг потрібне спортивне покриття й перевірка навантажень і ударів на конструкції.",
+              "ventilation": "Близько {p} користувачів у годину пік: вентиляцію слід розраховувати за заповненістю (якість повітря й CO₂).",
+              "zoningLarge": "У великих центрах розділення маршрутів учасників, занять і служб покращує потік у години пік.",
+              "breakEvenOver": "У базовому сценарії учасники не покривають витрати: перегляньте концепцію, ціну чи витрати до інвестицій.",
+              "breakEvenTight": "Беззбитковість вища за консервативний сценарій: мало запасу за нижчого попиту.",
+              "regulations": "До інвестицій: ліцензія на діяльність, доступність, евакуація й пожежна безпека, акустичне дослідження."
+            }
+          },
+          "method": {
+            "title": "Методологія та обмеження",
+            "intro": "Внутрішні припущення моделі {version}: умовні значення для попередньої оцінки в Іспанії, а не перевірені ринкові дані, пропозиції, оренда чи зарплати за договором.",
+            "a": {
+              "iva": "ПДВ на абонементи",
+              "perUser": "м² на активного користувача (PT-студія / бутик / функціонал / класичний / багатофункціональний)",
+              "fee": "Базова ціна за форматом",
+              "visits": "Візитів на учасника на місяць за форматом",
+              "hours": "Години роботи за форматом",
+              "peak": "Навантаження в годину пік · частка години пік у денних візитах",
+              "scenarios": "Сценарії: учасники × ціна (консервативний / базовий / оптимістичний)",
+              "salaries": "Орієнтовна зарплата брутто на місяць, 14 виплат: рецепція / тренер / прибирання / управління / обслуговування",
+              "onCost": "Внески роботодавця",
+              "rent": "Оренда",
+              "energy": "Електроенергія та клімат",
+              "investment": "Облаштування · клімат · електрика",
+              "contingency": "Непередбачені витрати до інвестицій",
+              "marketing": "Маркетинг · інші витрати від виручки без ПДВ"
+            },
+            "paragraphs": [
+              "Зони: фіксована база + частка площі; тренувальні зони діляться за концепцією. Замала зона входить до функціональної, а округлення йде в проходи, тому разом завжди 100 %.",
+              "Місткість = корисна площа ÷ м² на користувача. Візити на день = користувачі в годину пік ÷ (частка години пік × тривалість). Учасники = візити на місяць ÷ візити на учасника.",
+              "Виручка = учасники × абонемент (з ПДВ); без ПДВ = виручка ÷ 1,21. Результат = виручка без ПДВ − операційні витрати; без фінансування, амортизації й податку на прибуток.",
+              "Учасники для беззбитковості = постійні витрати ÷ (абонемент без ПДВ − змінні витрати на учасника). Окупність = середні інвестиції ÷ річний результат (орієнтир)."
+            ],
+            "disclaimer": "Цей звіт — попередня оцінка за одним показником і внутрішніми припущеннями 3DNA. Це не проєкт, не кошторис, не перевірена оцінка й не гарантія результатів. Введені дані належать тому, хто їх увів."
+          },
+          "cta": {
+            "heading": "Ми проєктуємо не просто спортзали. Ми проєктуємо враження.",
+            "lines": [
+              "Перетворіть цей аналіз на проєкт: концепція, планування, зонування та 3D-візуалізація з 3DNA."
+            ],
+            "button": "Зв'язатися з 3DNA",
+            "calcLink": "Відкрити цей аналіз"
+          }
+        },
+        "share": {
+          "slug": "calculator",
+          "title": "Калькулятор фітнес-клубу | 3DNA",
+          "description": "Введіть площу приміщення й отримайте рекомендації щодо планування, обладнання, інвестицій і фінансових показників.",
+          "imageAlt": "Планувальник спортзалу 3DNA на планшеті в спортзалі",
+          "open": "Відкрити калькулятор"
+        }
+      }
     },
     "restaurantsPage": {
       "plan": {
@@ -4388,48 +6176,266 @@
       "calc": {
          "ui": {
            "eyebrow": "3DNA / Restaurant Business Tools",
-           "title": "Калькулятор рентабельності",
-           "subtitle": "Розрахуйте потенційну виручку, витрати й прибуток вашого ресторану.",
-           "example": "Значення для прикладу взято з 3D-ресторану вище: замініть їх даними вашого проєкту.",
-           "pdf": "Завантажити PDF 3DNA",
-           "gBasic": "Дані ресторану",
-           "gCosts": "Операційні витрати",
-           "gCostsIntro": "Суми на місяць без ПДВ; їжа та напої — відсоток від чистої виручки.",
-           "gReport": "Звіт",
+           "title": "Калькулятор комерційного потенціалу",
+           "subtitle": "Введіть 5 даних. Решту розрахує 3DNA.",
+           "inputsLabel": "Ваші 5 даних",
+           "pdf": "Завантажити PDF",
+           "seatsShort": "місць",
            "fields": {
-             "area": "Площа ресторану",
+             "area": "Загальна площа",
              "seats": "Кількість місць",
-             "check": "Середній чек (з ПДВ)",
-             "occupancy": "Середня заповненість місць",
-             "turns": "Оборотність місця",
+             "ticket": "Середній чек (з ПДВ)",
              "days": "Робочих днів на місяць",
-             "fb": "Їжа та напої",
-             "staff": "Персонал",
-             "rent": "Оренда на місяць",
-             "utilities": "Комунальні послуги",
-             "other": "Інші операційні витрати",
-             "iva": "ПДВ (IVA)",
-             "project": "Назва проєкту (необов'язково)"
+             "rotation": "Оборотність місця на день"
            },
-           "hRevenue": "Виручка",
-           "grossMonthly": "Продажі на місяць (з ПДВ)",
-           "netMonthly": "Чиста виручка (без ПДВ)",
-           "grossAnnual": "Продажі за рік (з ПДВ)",
-           "netAnnual": "Чиста виручка за рік",
-           "hProfit": "Операційний прибуток",
-           "profitMonthly": "Прибуток на місяць",
-           "profitAnnual": "Прибуток за рік",
-           "margin": "Операційна маржа",
-           "hMetrics": "Показники",
-           "visits": "Гостей на місяць",
-           "grossPerM2": "Продажі на м² (міс.)",
-           "breakEven": "Беззбитковість (чиста виручка/міс.)",
-           "breakEvenOccupancy": "Заповненість беззбитковості",
-           "hChart": "Чиста виручка й витрати на місяць",
-           "hAssumptions": "Припущення розрахунку",
-           "assumptions": "Гості = місця × заповненість × оборотність × дні. Чек містить ПДВ, витрати — ні. Операційний прибуток до амортизації, відсотків і податку на прибуток. Річні суми = місячні × 12."
+           "rotationUnit": "оборотів місця на день",
+           "reportTitle": "Попередній звіт про доцільність",
+           "reportIntro": "Формується автоматично за вашими 5 даними та припущеннями моделі 3DNA. Біля кожного значення вказано: ваші дані, оцінка, теоретичний максимум чи сценарій.",
+           "fullTitle": "Повний звіт про доцільність",
+           "fullSub": "Фінансовий, операційний і просторовий аналіз вашого ресторану"
          },
-         "report": {}
+         "report": {
+           "pdfTitle": "Аналіз комерційного потенціалу · Ресторан",
+           "pdfSubtitle": "Попередній звіт про доцільність, підготовлений калькулятором 3DNA за п'ятьма даними.",
+           "keywords": "ресторан, доцільність, комерційний потенціал, 3DNA",
+           "footerLeft": "© 3DNA · Restaurant Design & Visualization",
+           "inputsTitle": "Введені дані",
+           "na": "Немає даних",
+           "fields": {
+             "area": "Загальна площа",
+             "seats": "Місця",
+             "ticket": "Середній чек (з ПДВ)",
+             "days": "Робочих днів на місяць",
+             "rotation": "Оборотів місця на день"
+           },
+           "cards": {
+             "grossMonthly": "Виручка на місяць",
+             "grossAnnual": "Виручка за рік",
+             "profitMonthly": "Оцінка операційного прибутку на місяць",
+             "profitAnnual": "Оцінка операційного прибутку за рік",
+             "ivaIncl": "з ПДВ",
+             "note": "Базовий сценарій: виручка = місця × середній чек × оборотність на день × робочі дні (з ПДВ). Прибуток розраховано від продажів без ПДВ.",
+             "staff": "Оцінка чисельності персоналу",
+             "staffValue": "{v} повних ставок"
+           },
+           "tags": {
+             "in": "Ваші дані",
+             "est": "Оцінка",
+             "max": "Теор. максимум",
+             "scn": "Сценарій"
+           },
+           "tagsHelp": {
+             "in": "Значення, яке ви ввели.",
+             "est": "Розраховано моделлю за її припущеннями.",
+             "max": "Усі місця зайняті в кожному обороті.",
+             "scn": "Прогноз за введеними даними або сценарій попиту."
+           },
+           "space": {
+             "title": "Простір і місця",
+             "intro": "Умовний розподіл площі для ресторану з обслуговуванням за столами. Це не план і не реальне планування.",
+             "area": "Загальна площа",
+             "seats": "Місця",
+             "perSeat": "Загальна площа на місце",
+             "dining": "Зал, оцінка",
+             "kitchen": "Кухня та склад, оцінка",
+             "support": "Проходи, вбиральні та допоміжні зони, оцінка",
+             "diningPerSeat": "Площа залу на місце",
+             "seatsPer100": "Місць на 100 м²",
+             "density": "Щільність розсадки",
+             "levels": {
+               "veryHigh": "Дуже висока",
+               "high": "Висока",
+               "adequate": "Нормальна",
+               "ample": "Вільна"
+             }
+           },
+           "customers": {
+             "title": "Гості та місткість",
+             "intro": "Введена оборотність уже враховує середню заповненість: додатковий відсоток не застосовується. Гості = місця × оборотність × дні.",
+             "rotation": "Оборотність місця на день",
+             "days": "Робочих днів на місяць",
+             "theoDaily": "Теоретична місткість на день",
+             "theoMonthly": "Теоретична місткість на місяць",
+             "theoAnnual": "Теоретична місткість на рік",
+             "theoSales": "Теоретичний максимум продажів на місяць (з ПДВ)",
+             "utilization": "Застосоване завантаження",
+             "expDaily": "Очікувані гості на день",
+             "expMonthly": "Очікувані гості на місяць",
+             "expAnnual": "Очікувані гості на рік"
+           },
+           "revenue": {
+             "title": "Виручка",
+             "intro": "Середній чек містить іспанський ПДВ для громадського харчування ({i}). Продажі без ПДВ — реальний дохід бізнесу.",
+             "ticket": "Середній чек (з ПДВ)",
+             "dailyGross": "Виручка на день (з ПДВ)",
+             "monthlyGross": "Виручка на місяць (з ПДВ)",
+             "annualGross": "Виручка за рік (з ПДВ)",
+             "vatMonthly": "ПДВ у складі виручки (місяць)",
+             "netMonthly": "Продажі без ПДВ (місяць)",
+             "netAnnual": "Продажі без ПДВ (рік)",
+             "perSeat": "Виручка на місце (місяць)",
+             "perM2": "Виручка на м² (місяць)",
+             "netPerM2Year": "Продажі без ПДВ на м² (рік)"
+           },
+           "product": {
+             "title": "Собівартість продукції",
+             "intro": "Їжа та напої як умовний відсоток від продажів без ПДВ.",
+             "ratio": "Собівартість їжі та напоїв",
+             "monthly": "Собівартість (місяць)",
+             "annual": "Собівартість (рік)",
+             "contribution": "Валова маржа після продукції (місяць)"
+           },
+           "staff": {
+             "title": "Персонал і витрати на оплату праці",
+             "intro": "Оцінка за попитом: {s} сервіси на день по {h} год, близько {c} гостей за сервіс, продуктивність за посадами й покриття всіх робочих днів.",
+             "role": "Посада",
+             "perService": "На сервіс",
+             "fte": "Повні ставки (FTE)",
+             "cost": "Витрати на місяць",
+             "roles": {
+               "waiter": "Офіціанти",
+               "cook": "Кухарі",
+               "assistant": "Помічники кухаря",
+               "bar": "Бар",
+               "supervisor": "Керуючий / контроль"
+             },
+             "total": "Разом",
+             "monthly": "Витрати на персонал на місяць",
+             "annual": "Витрати на персонал за рік",
+             "ratio": "Витрати на персонал від продажів без ПДВ",
+             "note": "Еквіваленти повної ставки, а не точна чисельність: реальна кількість залежить від графіка, змін, колективного договору та меню."
+           },
+           "opex": {
+             "title": "Операційні витрати",
+             "intro": "Суми на місяць без ПДВ. Попередні оцінки, а не кошториси чи перевірені ринкові ціни; оренда й зарплати сильно залежать від місця.",
+             "staff": "Персонал",
+             "rent": "Оренда",
+             "electricity": "Електроенергія",
+             "water": "Вода",
+             "gas": "Газ (кухня)",
+             "cleaning": "Прибирання",
+             "maintenance": "Обслуговування",
+             "insurance": "Страхування",
+             "software": "ПЗ та оплата картками",
+             "marketing": "Маркетинг",
+             "consumables": "Витратні матеріали",
+             "overhead": "Інші загальні витрати",
+             "total": "Разом операційні витрати",
+             "product": "Собівартість продукції",
+             "totalCosts": "Разом витрати",
+             "net": "Продажі без ПДВ"
+           },
+           "profit": {
+             "title": "Рентабельність і точка беззбитковості",
+             "intro": "Операційний результат = продажі без ПДВ − собівартість − операційні витрати.",
+             "monthly": "Операційний результат на місяць",
+             "annual": "Операційний результат за рік",
+             "margin": "Операційна маржа",
+             "perM2": "Результат на м² (рік)",
+             "perSeat": "Результат на місце (рік)",
+             "beRevenue": "Виручка беззбитковості (з ПДВ, місяць)",
+             "beNet": "Продажі без ПДВ для беззбитковості (місяць)",
+             "beCustomers": "Гостей для беззбитковості на місяць",
+             "beDaily": "Гостей для беззбитковості на день",
+             "beUtilization": "Попит беззбитковості (частка від очікуваного)",
+             "excluded": "Не включає початкові вкладення, амортизацію, фінансування та податок на прибуток. У точці беззбитковості персонал і постійні витрати лишаються на рівні базового сценарію."
+           },
+           "scenarios": {
+             "title": "Сценарії",
+             "intro": "Ті самі п'ять даних; базовий сценарій використовує вашу оборотність як є, консервативний і оптимістичний — на 15 % менше чи більше попиту. Персонал і змінні витрати перераховуються за тією самою моделлю.",
+             "item": "Показник",
+             "conservative": "Консервативний",
+             "base": "Базовий",
+             "optimistic": "Оптимістичний",
+             "utilization": "Попит до очікуваного",
+             "customers": "Гостей на місяць",
+             "gross": "Виручка (з ПДВ)",
+             "net": "Продажі без ПДВ",
+             "product": "Собівартість",
+             "staff": "Персонал",
+             "fte": "Повні ставки",
+             "other": "Інші витрати",
+             "result": "Результат на місяць",
+             "annual": "Результат за рік",
+             "margin": "Маржа"
+           },
+           "insights": {
+             "title": "Спостереження щодо дизайну",
+             "intro": "Сформовані за вашими даними та порогами моделі; вони допомагають у проєкті, але не замінюють його.",
+             "levels": {
+               "alert": "Тривога",
+               "warn": "Увага",
+               "opp": "Можливість",
+               "ok": "Норма"
+             },
+             "texts": {
+               "density_veryHigh": "Дуже висока щільність: {d} м² залу на місце. Менше 1 м² важко забезпечити проходи, доступність і комфорт; варто зменшити кількість місць або збільшити зал.",
+               "density_high": "Висока щільність: {d} м² залу на місце. Вирішальними будуть проходи та компактні меблі.",
+               "density_adequate": "Нормальна щільність для обслуговування за столами: {d} м² залу на місце.",
+               "density_ample": "Вільний зал: {d} м² на місце. Є резерв для додаткових місць, зони очікування чи прилавка.",
+               "circulation": "Мало загальної площі на місце ({p} м²): ризик перетину потоків між залом, кухнею та вбиральнями; маршрут обслуговування треба продумати від початку.",
+               "kitchenTight": "За {r} оборотів на день умовна кухня ({k} м² на місце) може виявитися замалою: варто опрацювати виробничу лінію та мийку.",
+               "kitchenLarge": "Умовна кухня ({k} м² на місце) велика для такої місткості: частину площі можна віддати залу чи складу.",
+               "revenueLow": "Продажі без ПДВ {e} на м² на рік: низький потенціал для такої площі; дизайн має підвищувати чек або оборотність.",
+               "revenueHigh": "Продажі без ПДВ {e} на м² на рік: висока віддача простору; важливо зберегти комфорт і потоки в години пік.",
+               "rotationHigh": "Висока оборотність ({r} на місце на день): простір треба проєктувати під швидкий потік (стійка, видача, модульні столи).",
+               "breakEvenOver": "Для покриття витрат потрібно {b} від очікуваних гостей: за цих даних бізнес не виходить на беззбитковість.",
+               "breakEvenNone": "За такого чека кожен гість не покриває свої змінні витрати: точки беззбитковості немає.",
+               "breakEvenTight": "Беззбитковість потребує {b} від очікуваних гостей: мало запасу в разі падіння попиту.",
+               "breakEvenOk": "Беззбитковість досягається за {b} від очікуваних гостей."
+             }
+           },
+           "method": {
+             "title": "Методологія та припущення",
+             "intro": "Внутрішні припущення моделі {version}. Це умовні значення для попередньої оцінки в Іспанії, а не перевірені ринкові дані, кошториси чи зарплати за договором.",
+             "a": {
+               "iva": "ПДВ громадського харчування (послуги харчування)",
+               "utilization": "Попит за сценаріями до введеної оборотності: консервативний / базовий / оптимістичний",
+               "zoning": "Умовний поділ: зал / кухня та склад / допоміжні зони",
+               "services": "Сервісів на день × годин на сервіс",
+               "fteHours": "Годин на повну ставку на місяць",
+               "productivity": "Гостей за сервіс на посаду: зал / кухня / помічник / бар",
+               "salaries": "Орієнтовна зарплата брутто на місяць, 14 виплат: зал / кухня / помічник / бар / керуючий",
+               "onCost": "Внески роботодавця",
+               "fb": "Їжа та напої від продажів без ПДВ",
+               "rent": "Оренда",
+               "electricity": "Електроенергія: за м² + за гостя",
+               "water": "Вода: фікс. + за гостя",
+               "gas": "Газ за гостя",
+               "cleaning": "Прибирання · обслуговування",
+               "insurance": "Страхування: фікс. + за м²",
+               "software": "ПЗ: фікс. + комісія за картки від виручки",
+               "marketing": "Маркетинг від продажів без ПДВ · витратні матеріали за гостя",
+               "overhead": "Інші загальні витрати: фікс. + від продажів без ПДВ"
+             },
+             "formulas": [
+               "Гостей на місяць = місця × оборотність на день × робочі дні (оборотність уже враховує середню заповненість). Консервативний і оптимістичний сценарії: −15 % і +15 % попиту.",
+               "Виручка (з ПДВ) = гості × середній чек. Продажі без ПДВ = виручка ÷ (1 + ПДВ); ПДВ сплачується до бюджету.",
+               "Персонал: гості за сервіс ÷ продуктивність кожної посади (не менше одного), помножено на сервіси та години, на всі робочі дні; переведено в повні ставки й оцінено за зарплатою та внесками.",
+               "Операційний результат = продажі без ПДВ − їжа та напої − персонал − оренда − комунальні послуги − інші витрати. Річні суми = місячні × 12, без сезонності.",
+               "Точка беззбитковості = постійні витрати ÷ маржа на гостя (чек без ПДВ − змінні витрати на гостя). Попит беззбитковості = гості беззбитковості ÷ очікувані гості."
+             ],
+             "disclaimer": "Цей звіт — умовний прогноз на основі п'яти даних і внутрішніх припущень моделі 3DNA. Він не гарантує майбутніх результатів і не є бізнес-планом, перевіреною фінансовою оцінкою чи кошторисом. Введені дані належать тому, хто їх увів."
+           },
+           "cta": {
+             "heading": "Ваш ресторан починається з гарної ідеї.",
+             "lines": [
+               "Цифри показують потенціал. Дизайн перетворює цей потенціал на враження."
+             ],
+             "button": "Зв'язатися з 3DNA",
+             "calcLink": "Відкрити цей розрахунок"
+           },
+           "groups": {
+             "volume": "Гості та виручка"
+           }
+         },
+         "share": {
+           "slug": "calculator",
+           "title": "Калькулятор ресторану | 3DNA",
+           "description": "Введіть 5 параметрів і отримайте детальний розрахунок виручки, персоналу, витрат та фінансових показників ресторану.",
+           "imageAlt": "Калькулятор ресторану 3DNA на планшеті на столі ресторану",
+           "open": "Відкрити калькулятор"
+         }
        },
       "wideOverlay": {
         "full-width-01": {

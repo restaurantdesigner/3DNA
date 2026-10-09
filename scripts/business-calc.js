@@ -21,7 +21,7 @@ const LOCALE = { es: "es-ES", en: "en-GB", ru: "ru-RU", uk: "uk-UA" };
 const json = (v) => JSON.stringify(v).replace(/</g, "\\u003c");
 const indent = (s, n) => s.replace(/^/gm, " ".repeat(n));
 
-function createBusinessCalcs(translations, { whatsappHref, email }) {
+function createBusinessCalcs(translations, { whatsappHref, email, restaurantSharePath, fitnessSharePath }) {
   function i18nScript(lang, page) {
     const T = translations[lang], E = translations.en;
     const block = (tr) => ({ ...tr.calcCommon.report, ...tr[page].calc.report });
@@ -160,80 +160,161 @@ function createBusinessCalcs(translations, { whatsappHref, email }) {
     ].filter((x) => x !== "").join("\n");
   }
 
+  // Restaurants: "Calculadora de Potencial Comercial" — five inputs, summary, full report
   function restaurantHtml(lang) {
-    const ui = translations[lang].restaurantsPage.calc.ui;
-    return dashboard({
-      model: restaurantModel, page: "restaurantsPage", prefix: "rc", theme: "restaurant",
-      groups: [
-        { title: ui.gBasic, items: [
-          { key: "area", unit: "m2" }, { key: "seats", unit: "seats" },
-          { key: "check", unit: "eur" }, { key: "occupancy", unit: "pct" },
-          { key: "turns", unit: "turns" }, { key: "days", unit: "days" },
-        ] },
-        { title: ui.gCosts, intro: ui.gCostsIntro, items: [
-          { key: "fb", unit: "pctNet" }, { key: "staff", unit: "eurMonth" },
-          { key: "rent", unit: "eurMonth" }, { key: "utilities", unit: "eurMonth" },
-          { key: "other", unit: "eurMonth" }, { key: "iva", unit: "pct" },
-        ] },
-        { title: ui.gReport, items: [{ key: "project", wide: true }] },
-      ],
-      results: [
-        { head: ui.hRevenue, big: [[ui.grossMonthly, "gross", "eur"], [ui.netMonthly, "net", "eur"], [ui.grossAnnual, "grossAnnual", "eur"], [ui.netAnnual, "netAnnual", "eur"]] },
-        { head: ui.hProfit, big: [[ui.profitMonthly, "profit", "eur"], [ui.profitAnnual, "profitAnnual", "eur"], [ui.margin, "margin", "pct"]] },
-        { head: ui.hMetrics, list: [[ui.visits, "visits", "int"], [ui.grossPerM2, "grossPerM2", "eurm2"], [ui.breakEven, "breakEvenNet", "eur"], [ui.breakEvenOccupancy, "breakEvenOccupancy", "pct"]] },
-      ],
-      barsHead: ui.hChart,
-      bars: [[ui.netMonthly, "net", "ink"], [ui.fields.fb, "fbCost", "accent"], [ui.fields.staff, "staffCost", "accent"], [ui.fields.rent, "rentCost", "accent"],
-        [ui.fields.utilities, "utilitiesCost", "accent"], [ui.fields.other, "otherCost", "accent"], [ui.profitMonthly, "profit", "pos"]],
-      assumptionsHead: ui.hAssumptions, assumptions: ui.assumptions,
-    }, lang);
+    const M = restaurantModel;
+    const T = translations[lang], E = translations.en;
+    const ui = { ...T.calcCommon.ui, ...T.restaurantsPage.calc.ui };
+    const rt = { ...E.calcCommon.report, ...E.restaurantsPage.calc.report, ...T.calcCommon.report, ...T.restaurantsPage.calc.report };
+    const fmt = tools.formatter(LOCALE[lang]);
+    const r = M.compute(M.defaults);
+    const fieldOf = (key) => M.fields.find((f) => f.key === key);
+    const box = (key, unit) => {
+      const f = fieldOf(key);
+      return [
+        `<div class="bcalc__field">`,
+        `  <label for="rc-${key}">${esc(ui.fields[key])}</label>`,
+        `  <div class="bcalc__box has-unit">`,
+        `    <input id="rc-${key}" name="${f.param}" type="text" inputmode="${f.decimals ? "decimal" : "numeric"}" autocomplete="off" spellcheck="false" value="${esc(fmt.input(M.defaults[key], f.decimals || 0))}" data-cf="${key}" aria-describedby="rc-${key}-u">`,
+        `    <span class="bcalc__unit" id="rc-${key}-u">${esc(ui.units[unit])}</span>`,
+        `  </div>`,
+        `</div>`,
+      ].join("\n");
+    };
+    const rot = fieldOf("rotation");
+    const card = (label, key, note, strong) =>
+      `<div class="rpc-card${strong ? " rpc-card--strong" : ""}"><dt>${esc(label)}</dt><dd data-co="${key}" data-fmt="eur"${r[key] < 0 ? ' class="is-neg"' : ""}>${esc(fmt.eur(r[key]))}</dd><p class="rpc-card__note">${esc(note)}</p></div>`;
+    return [
+      `  <section class="bcalc bcalc--restaurant rpc" id="calculadora" data-calc="restaurant" aria-labelledby="rc-title"${restaurantSharePath ? ` data-share-url="${esc(restaurantSharePath(lang))}"` : ""}>`,
+      `    <div class="bcalc__inner">`,
+      `    <header class="bcalc__head">`,
+      `      <p class="bcalc__eyebrow">${esc(ui.eyebrow)}</p>`,
+      `      <h2 class="bcalc__title" id="rc-title">${esc(ui.title)}</h2>`,
+      `      <p class="bcalc__sub">${esc(ui.subtitle)}</p>`,
+      `    </header>`,
+      `    <form class="rpc-inputs" aria-label="${esc(ui.inputsLabel)}" novalidate>`,
+      indent([box("area", "m2"), box("seats", "seats"), box("ticket", "eur"), box("days", "days")].join("\n"), 6),
+      `      <div class="bcalc__field rpc-slider">`,
+      `        <label for="rc-rotation">${esc(ui.fields.rotation)}</label>`,
+      `        <div class="rpc-slider__row">`,
+      `          <input id="rc-rotation" name="${rot.param}" type="range" min="${rot.min}" max="${rot.max}" step="0.1" value="${M.defaults.rotation}" autocomplete="off" data-cf="rotation" aria-describedby="rc-rotation-u">`,
+      `          <input class="rpc-slider__val" id="rc-rotation-n" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="${esc(fmt.input(M.defaults.rotation, 1))}" data-cf="rotation" aria-label="${esc(ui.fields.rotation)}">`,
+      `        </div>`,
+      `        <span class="rpc-slider__unit" id="rc-rotation-u"><span aria-hidden="true">${rot.min}</span><span>${esc(ui.rotationUnit)}</span><span aria-hidden="true">${rot.max}</span></span>`,
+      `      </div>`,
+      `    </form>`,
+      `    <dl class="rpc-cards">`,
+      `      ${card(rt.cards.grossMonthly, "gross", rt.cards.ivaIncl, true)}`,
+      `      ${card(rt.cards.grossAnnual, "grossAnnual", rt.cards.ivaIncl, true)}`,
+      `      ${card(rt.cards.profitMonthly, "profit", rt.tags.scn)}`,
+      `      <div class="rpc-card"><dt>${esc(rt.cards.staff)}</dt><dd data-co="staffFte" data-fmt="num1" data-tpl="${esc(rt.cards.staffValue)}">${esc(rt.cards.staffValue.replace("{v}", fmt.num1(r.staffFte)))}</dd><p class="rpc-card__note">${esc(rt.tags.est)}</p></div>`,
+      `    </dl>`,
+      `    <p class="rpc-cards__note">${esc(rt.cards.note.replace("{u}", fmt.pct(M.ASSUMPTIONS.utilization.base)))}</p>`,
+      `    <div class="ccalc-tools" role="group" aria-label="${esc(ui.toolbarLabel)}">`,
+      `      <button type="button" class="bcalc__btn bcalc__btn--primary" data-ca="pdf" hidden>${esc(ui.pdf)}</button>`,
+      `      <button type="button" class="bcalc__btn" data-ca="save" hidden>${esc(ui.save)}</button>`,
+      `      <button type="button" class="bcalc__btn" data-ca="print" hidden>${esc(ui.print)}</button>`,
+      `      <button type="button" class="bcalc__btn" data-ca="share-calc" hidden>${esc(ui.shareCalc)}</button>`,
+      `      <button type="button" class="bcalc__btn" data-ca="share-section" hidden>${esc(ui.shareSection)}</button>`,
+      `    </div>`,
+      `    <p class="ccalc-status" data-cstatus role="status" aria-live="polite"></p>`,
+      `    <input class="ccalc-link" data-clink type="text" readonly hidden aria-label="${esc(ui.linkLabel)}">`,
+      `    <details class="ccalc-saved" data-csaved hidden>`,
+      `      <summary>${esc(ui.savedTitle)} (<span data-csaved-count>0</span>)</summary>`,
+      `      <p class="ccalc-saved__note">${esc(ui.savedNote)}</p>`,
+      `      <ul class="ccalc-saved__list" data-csaved-list></ul>`,
+      `    </details>`,
+      // the full report: one accordion, closed on every load (the PDF always holds all of it)
+      `    <details class="rpc-report" data-rpc-full>`,
+      `      <summary class="rpc-report__head">`,
+      `        <span class="rpc-report__titles"><span class="rpc-report__title">${esc(ui.fullTitle)}</span><span class="rpc-report__sub">${esc(ui.fullSub)}</span></span>`,
+      `        <svg class="rpc-report__chev" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+      `      </summary>`,
+      `      <div class="rpc-report__inner">`,
+      `        <p class="rpc-report__intro">${esc(ui.reportIntro)}</p>`,
+      `        <ul class="rpc-legend">${["in", "est", "scn"].map((k) => `<li><span class="rpc-tag rpc-tag--${k}">${esc(rt.tags[k])}</span> ${esc(rt.tagsHelp[k])}</li>`).join("")}</ul>`,
+      `        <div class="rpc-report__body" data-rpc-report>`,
+      indent(M.renderHtml(r._an, rt, fmt), 10),
+      `        </div>`,
+      `      </div>`,
+      `    </details>`,
+      `    ${i18nScript(lang, "restaurantsPage")}`,
+      `    </div>`,
+      `  </section>`,
+    ].join("\n");
   }
 
+  // Fitness: one input (floor area) → concept, spaces, equipment, capacity, staff, investment, scenarios
   function fitnessHtml(lang) {
-    const ui = translations[lang].fitnessPage.calc.ui;
-    const labels = { "247": ui.model247, conv: ui.modelConv };
-    return dashboard({
-      model: fitnessModel, page: "fitnessPage", prefix: "fc", theme: "fitness",
-      groups: [
-        { title: ui.gSpace, items: [
-          { key: "area", unit: "m2" }, { key: "capacity", unit: "people" },
-          { key: "members", unit: "members" }, { key: "price", unit: "eurMonth" },
-        ] },
-        { title: ui.gOps, items: [
-          { radio: "model", labels },
-          { key: "visits", unit: "perMonth" }, { key: "duration", unit: "min" },
-          { key: "hours247", label: ui.fields.hours, unit: "h", when: "model=247" },
-          { key: "hoursConv", label: ui.fields.hours, unit: "h", when: "model=conv" },
-        ] },
-        { title: ui.gCosts, items: [
-          { key: "staff247", label: ui.fields.staff, unit: "eurMonth", when: "model=247" },
-          { key: "staffConv", label: ui.fields.staff, unit: "eurMonth", when: "model=conv" },
-          { key: "rent", unit: "eurMonth" }, { key: "utilities", unit: "eurMonth" },
-          { key: "cleaning", unit: "eurMonth" }, { key: "maintenance", unit: "eurMonth" },
-          { key: "sec247", label: ui.fields.security, unit: "eurMonth", when: "model=247" },
-          { key: "secConv", label: ui.fields.security, unit: "eurMonth", when: "model=conv" },
-          { key: "insurance", unit: "eurMonth" },
-        ] },
-        { title: ui.gTax, items: [{ key: "iva", unit: "pct" }, { key: "project" }] },
-      ],
-      results: [
-        { head: ui.hRevenue, big: [[ui.grossMonthly, "gross", "eur"], [ui.netMonthly, "net", "eur"], [ui.grossAnnual, "grossAnnual", "eur"], [ui.netAnnual, "netAnnual", "eur"]] },
-        { head: ui.hProfit, big: [[ui.profitMonthly, "profit", "eur"], [ui.profitAnnual, "profitAnnual", "eur"], [ui.margin, "margin", "pct"]] },
-        { head: ui.hMetrics, list: [[ui.revenuePerM2, "revenuePerM2", "eurm2"], [ui.profitPerM2, "profitPerM2", "eurm2"], [ui.capacity, "capacity", "int"], [ui.peak, "peak", "int"], [ui.breakEven, "breakEven", "int"]] },
-      ],
-      flag: ["overCapacity", ui.overCapacity],
-      barsHead: ui.hChart,
-      bars: [[ui.netMonthly, "net", "ink"], [ui.fields.staff, "staffCost", "accent"], [ui.fields.rent, "rentCost", "accent"], [ui.fields.utilities, "utilitiesCost", "accent"],
-        [ui.fields.cleaning, "cleaningCost", "accent"], [ui.fields.maintenance, "maintenanceCost", "accent"], [ui.fields.security, "securityCost", "accent"],
-        [ui.fields.insurance, "insuranceCost", "accent"], [ui.profitMonthly, "profit", "pos"]],
-      compare: { head: ui.hCompare, cols: [ui.model247, ui.modelConv], rows: [
-        [ui.expenses, ["expenses247", "expensesConv"], "eur"],
-        [ui.compareProfit, ["profit247", "profitConv"], "eur"],
-        [ui.peak, ["peak247", "peakConv"], "int"],
-        [ui.compareBreakEven, ["breakEven247", "breakEvenConv"], "int"],
-      ] },
-      assumptions: ui.assumptions,
-    }, lang);
+    const M = fitnessModel;
+    const T = translations[lang], E = translations.en;
+    const ui = { ...T.calcCommon.ui, ...T.fitnessPage.calc.ui };
+    const rt = { ...E.calcCommon.report, ...E.fitnessPage.calc.report, ...T.calcCommon.report, ...T.fitnessPage.calc.report };
+    const fmt = tools.formatter(LOCALE[lang]);
+    const r = M.compute(M.defaults);
+    const an = r._an;
+    const f = M.fields[0];
+    const card = (label, inner, strong) => `<div class="rpc-card${strong ? " rpc-card--strong" : ""}"><dt>${esc(label)}</dt>${inner}</div>`;
+    return [
+      `  <section class="bcalc bcalc--fitness rpc fpc" id="calculadora" data-calc="fitness" aria-labelledby="fc-title"${fitnessSharePath ? ` data-share-url="${esc(fitnessSharePath(lang))}"` : ""}>`,
+      `    <div class="bcalc__inner">`,
+      `    <header class="bcalc__head">`,
+      `      <p class="bcalc__eyebrow">${esc(ui.eyebrow)}</p>`,
+      `      <h2 class="bcalc__title" id="fc-title">${esc(ui.title)}</h2>`,
+      `      <p class="bcalc__sub">${esc(ui.subtitle)}</p>`,
+      `    </header>`,
+      `    <div class="fpc-top">`,
+      `      <form class="fpc-input" novalidate aria-labelledby="fc-title">`,
+      `        <div class="bcalc__field">`,
+      `          <label for="fc-area">${esc(ui.inputLabel)}</label>`,
+      `          <div class="bcalc__box has-unit fpc-box">`,
+      `            <input id="fc-area" name="${f.param}" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" value="${esc(fmt.input(M.defaults.area, 0))}" data-cf="area" aria-describedby="fc-area-u fc-area-h">`,
+      `            <span class="bcalc__unit" id="fc-area-u">${esc(ui.units.m2)}</span>`,
+      `          </div>`,
+      `          <p class="fpc-hint" id="fc-area-h">${esc(ui.inputHint)}</p>`,
+      `        </div>`,
+      `      </form>`,
+      `      <dl class="rpc-cards fpc-cards">`,
+      `        ${card(ui.cards.concept, `<dd class="fpc-concept" data-fpc-concept>${esc(rt.concepts[an.key].name)}</dd>`, true)}`,
+      `        ${card(ui.cards.capacity, `<dd data-co="capacity" data-fmt="int">${esc(fmt.int(r.capacity))}</dd>`)}`,
+      `        ${card(ui.cards.members, `<dd data-fpc-members>${esc(`${fmt.int(an.sc.conservative.members)} – ${fmt.int(an.sc.optimistic.members)}`)}</dd>`)}`,
+      `        ${card(ui.cards.investment, `<dd data-fpc-inv>${esc(`${fmt.keur(an.invTotal[0])} – ${fmt.keur(an.invTotal[1])}`)}</dd>`)}`,
+      `        ${card(ui.cards.gross, `<dd data-co="gross" data-fmt="eur">${esc(fmt.eur(r.gross))}</dd>`)}`,
+      `        ${card(ui.cards.profit, `<dd data-co="profit" data-fmt="eur"${r.profit < 0 ? ' class="is-neg"' : ""}>${esc(fmt.eur(r.profit))}</dd>`)}`,
+      `      </dl>`,
+      `    </div>`,
+      `    <p class="rpc-cards__note">${esc(ui.cardsNote)}</p>`,
+      `    <div class="ccalc-tools" role="group" aria-label="${esc(ui.toolbarLabel)}">`,
+      `      <button type="button" class="bcalc__btn bcalc__btn--primary" data-ca="pdf" hidden>${esc(ui.pdf)}</button>`,
+      `      <button type="button" class="bcalc__btn" data-ca="save" hidden>${esc(ui.save)}</button>`,
+      `      <button type="button" class="bcalc__btn" data-ca="print" hidden>${esc(ui.print)}</button>`,
+      `      <button type="button" class="bcalc__btn" data-ca="share-calc" hidden>${esc(ui.shareCalc)}</button>`,
+      `      <button type="button" class="bcalc__btn" data-ca="share-section" hidden>${esc(ui.shareSection)}</button>`,
+      `    </div>`,
+      `    <p class="ccalc-status" data-cstatus role="status" aria-live="polite"></p>`,
+      `    <input class="ccalc-link" data-clink type="text" readonly hidden aria-label="${esc(ui.linkLabel)}">`,
+      `    <details class="ccalc-saved" data-csaved hidden>`,
+      `      <summary>${esc(ui.savedTitle)} (<span data-csaved-count>0</span>)</summary>`,
+      `      <p class="ccalc-saved__note">${esc(ui.savedNote)}</p>`,
+      `      <ul class="ccalc-saved__list" data-csaved-list></ul>`,
+      `    </details>`,
+      `    <details class="rpc-report" data-rpc-full>`,
+      `      <summary class="rpc-report__head">`,
+      `        <span class="rpc-report__titles"><span class="rpc-report__title">${esc(ui.fullTitle)}</span><span class="rpc-report__sub">${esc(ui.fullSub)}</span></span>`,
+      `        <svg class="rpc-report__chev" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+      `      </summary>`,
+      `      <div class="rpc-report__inner">`,
+      `        <p class="rpc-report__intro">${esc(ui.reportIntro)}</p>`,
+      `        <ul class="rpc-legend">${["in", "est", "max", "scn"].map((k) => `<li><span class="rpc-tag rpc-tag--${k}">${esc(rt.tags[k])}</span> ${esc(rt.tagsHelp[k])}</li>`).join("")}</ul>`,
+      `        <div class="rpc-report__body" data-rpc-report>`,
+      indent(M.renderHtml(an, rt, fmt), 10),
+      `        </div>`,
+      `      </div>`,
+      `    </details>`,
+      `    ${i18nScript(lang, "fitnessPage")}`,
+      `    </div>`,
+      `  </section>`,
+    ].join("\n");
   }
 
   return { restaurantHtml, fitnessHtml };

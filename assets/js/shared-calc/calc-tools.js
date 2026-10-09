@@ -73,7 +73,8 @@
   function toQuery(model, values) {
     return model.fields
       .filter((f) => !(f.type === "text" && !values[f.key]))
-      .map((f) => `${f.param}=${encodeURIComponent(String(values[f.key]))}`).join("&");
+      .map((f) => `${f.param}=${encodeURIComponent(String(values[f.key]))}`)
+      .concat(model.version ? [`v=${model.version}`] : []).join("&");   // the model version travels with the link
   }
 
   // ---------------- formatting ----------------
@@ -88,6 +89,7 @@
     const f = {
       eur: (v) => (v == null || !Number.isFinite(v) ? "—" : cur.format(Math.round(v))),
       eur2: (v) => (v == null || !Number.isFinite(v) ? "—" : cur2.format(v)),
+      keur: (v) => (v == null || !Number.isFinite(v) ? "—" : `${n(v >= 100000 ? 0 : 1).format(v / 1000)} k€`),   // compact ranges
       int: (v) => (v == null || !Number.isFinite(v) ? "—" : n(0).format(Math.round(v))),
       num1: (v) => (v == null || !Number.isFinite(v) ? "—" : n(1).format(v)),
       num2: (v) => (v == null || !Number.isFinite(v) ? "—" : n(2).format(v)),
@@ -169,6 +171,10 @@
   // ---------------- local storage (versioned, validated) ----------------
   function store(model) {
     const key = `3dna.calc.${model.id}`;
+    function readAll() {
+      try { const d = JSON.parse(localStorage.getItem(key) || "null"); return d && d.v === STORE_VERSION && Array.isArray(d.items) ? d.items : []; }
+      catch (e) { return []; }
+    }
     function read() {
       try {
         const raw = localStorage.getItem(key);
@@ -177,19 +183,21 @@
         if (!data || data.v !== STORE_VERSION || !Array.isArray(data.items)) return [];
         return data.items
           .filter((it) => it && typeof it.id === "string" && /^[\w-]{1,40}$/.test(it.id) && Number.isFinite(it.savedAt))
+          .filter((it) => (it.mv || 1) === (model.version || 1))      // only saves made with this model version
           .slice(0, MAX_SAVED)
-          .map((it) => ({ id: it.id, savedAt: it.savedAt, name: parseField(it.name, { type: "text", max: 80 }) || "", values: sanitize(model, it.values) }));
+          .map((it) => ({ id: it.id, savedAt: it.savedAt, mv: it.mv || 1, name: parseField(it.name, { type: "text", max: 80 }) || "", values: sanitize(model, it.values) }));
       } catch (e) { return []; }
     }
     function write(items) {
-      try { localStorage.setItem(key, JSON.stringify({ v: STORE_VERSION, items: items.slice(0, MAX_SAVED) })); return true; }
+      const others = readAll().filter((it) => it && (it.mv || 1) !== (model.version || 1));
+      try { localStorage.setItem(key, JSON.stringify({ v: STORE_VERSION, items: [...items.slice(0, MAX_SAVED), ...others.slice(0, MAX_SAVED)] })); return true; }
       catch (e) { return false; }
     }
     return {
       list: read,
       add(name, values) {
         const items = read();
-        const item = { id: `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`, savedAt: Date.now(), name, values: sanitize(model, values) };
+        const item = { id: `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`, savedAt: Date.now(), mv: model.version || 1, name, values: sanitize(model, values) };
         return write([item, ...items]) ? item : null;
       },
       remove(id) { return write(read().filter((it) => it.id !== id)); },
@@ -223,6 +231,19 @@
       document.head.appendChild(s);
     });
   }
+  // the site's typeface for the PDF (Latin + Cyrillic): static Inter TTFs, fetched only
+  // when a report is generated; without them the PDF falls back to Helvetica (Latin only)
+  const FONT_BASE = "https://cdn.jsdelivr.net/npm/@expo-google-fonts/inter@0.2.3/";
+  const toB64 = (buf) => { const u = new Uint8Array(buf); let str = ""; for (let i = 0; i < u.length; i += 0x8000) str += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(str); };
+  let fontsReady = null;
+  function interFonts() {
+    if (!fontsReady) {
+      fontsReady = Promise.all(["Inter_400Regular.ttf", "Inter_700Bold.ttf"].map((n) =>
+        fetch(FONT_BASE + n, { mode: "cors" }).then((r) => { if (!r.ok) throw new Error(n); return r.arrayBuffer(); }).then(toB64)))
+        .catch(() => { fontsReady = null; return null; });
+    }
+    return fontsReady;
+  }
   let jspdfReady = null;
   function jsPDFLib() {
     if (window.jspdf && window.jspdf.jsPDF) return Promise.resolve(window.jspdf.jsPDF);
@@ -239,26 +260,46 @@
 
   const C = { ink: [22, 21, 19], muted: [107, 98, 88], rule: [222, 216, 207], accent: [138, 106, 58], paper: [246, 243, 238], neg: [163, 58, 42], pos: [46, 106, 79] };
 
-  async function renderPdf(report) {
+  async function renderPdf(report, fonts) {
     const [JsPDF, logo] = await Promise.all([jsPDFLib(), logoPng()]);
     const doc = new JsPDF({ unit: "mm", format: "a4", orientation: "portrait", compress: true });
-    doc.setProperties({ title: pdfText(report.title), subject: pdfText(report.subtitle), author: "3DNA", creator: "3DNA · 3dna.es", keywords: pdfText(report.keywords || "") });
+    let FAMILY = "helvetica";
+    if (fonts) {
+      try {
+        doc.addFileToVFS("Inter-Regular.ttf", fonts[0]); doc.addFont("Inter-Regular.ttf", "Inter", "normal");
+        doc.addFileToVFS("Inter-Bold.ttf", fonts[1]); doc.addFont("Inter-Bold.ttf", "Inter", "bold");
+        FAMILY = "Inter";
+      } catch (e) { FAMILY = "helvetica"; }
+    }
+    const T = FAMILY === "Inter" ? (x) => String(x == null ? "" : x).replace(/[\u202f\u2009]/g, " ") : pdfText;
+    doc.setProperties({ title: T(report.title), subject: T(report.subtitle), author: "3DNA", creator: "3DNA · 3dna.es", keywords: T(report.keywords || "") });
     const W = 210, H = 297, L = 18, R = 18, TOP = 18, BOTTOM = 24, CW = W - L - R;
     let y = TOP;
     const color = (c, kind = "text") => (kind === "text" ? doc.setTextColor(...c) : kind === "fill" ? doc.setFillColor(...c) : doc.setDrawColor(...c));
-    const font = (style, size) => { doc.setFont("helvetica", style); doc.setFontSize(size); };
+    const font = (style, size) => { doc.setFont(FAMILY, style); doc.setFontSize(size); };
     const lh = (size, k = 1.35) => (size * 0.3528) * k;
-    const newPage = () => { doc.addPage(); y = TOP; };
+    const fill = [];   // how far down each page the content reaches (checked by the tests)
+    const newPage = () => { fill.push(Math.round(y)); doc.addPage(); y = TOP; };
     const room = (h) => { if (y + h > H - BOTTOM) newPage(); };
     function para(text, { size = 9.5, style = "normal", col = C.ink, width = CW, x = L, gap = 2.2 } = {}) {
       font(style, size); color(col);
-      const lines = doc.splitTextToSize(pdfText(text), width);
+      const lines = doc.splitTextToSize(T(text), width);
       lines.forEach((ln) => { room(lh(size)); doc.text(ln, x, y + lh(size) * 0.78); y += lh(size); });
       y += gap;
     }
+    const TAG = { in: C.accent, est: C.muted, max: C.ink, scn: C.pos, alert: C.neg, warn: C.accent, opp: C.pos, ok: C.muted };
+    function tagChip(kind, label, x, yy) {
+      font("bold", 6.2); doc.setCharSpace(0.3);
+      const txt = T(label).toUpperCase();
+      const w = doc.getTextWidth(txt) + 0.3 * (txt.length - 1) + 3;
+      color(TAG[kind] || C.muted, "draw"); doc.setLineWidth(0.25); doc.rect(x, yy - 2.6, w, 3.6);
+      color(TAG[kind] || C.muted); doc.text(txt, x + 1.5, yy);
+      doc.setCharSpace(0);
+      return w;
+    }
     function kicker(text, x = L) {
       font("bold", 7.5); color(C.accent); doc.setCharSpace(0.6);
-      doc.text(pdfText(text).toUpperCase(), x, y); doc.setCharSpace(0);
+      doc.text(T(text).toUpperCase(), x, y); doc.setCharSpace(0);
     }
     function heading(text) {
       room(16);
@@ -272,15 +313,15 @@
     // ---- page 1 header ----
     if (logo) { const lw = 30, lhh = lw * logo.h / logo.w; doc.addImage(logo.data, "PNG", L - 1, y - 4, lw, lhh); }
     font("bold", 7.5); color(C.muted);
-    const kick = pdfText(report.kicker).toUpperCase();
+    const kick = T(report.kicker).toUpperCase();
     doc.setCharSpace(0.5);
     doc.text(kick, W - R - doc.getTextWidth(kick) - 0.5 * (kick.length - 1), y + 2);
     doc.setCharSpace(0);
     font("normal", 8.5); color(C.muted);
-    doc.text(pdfText(report.dateLine), W - R, y + 7, { align: "right" });
+    doc.text(T(report.dateLine), W - R, y + 7, { align: "right" });
     y += 24;
     font("bold", 21); color(C.ink);
-    doc.splitTextToSize(pdfText(report.title), CW).forEach((ln) => { doc.text(ln, L, y); y += 8.6; });
+    doc.splitTextToSize(T(report.title), CW).forEach((ln) => { doc.text(ln, L, y); y += 8.6; });
     y += 0.5;
     para(report.subtitle, { size: 10.5, col: C.muted, gap: 1.5 });
     if (report.project) para(report.project, { size: 10, style: "bold", gap: 1 });
@@ -295,26 +336,59 @@
         const x = L + j * (tw + gapX);
         color(t.strong ? C.ink : C.paper, "fill"); doc.rect(x, y, tw, th, "F");
         font("bold", 7); color(t.strong ? [214, 205, 192] : C.muted); doc.setCharSpace(0.4);
-        doc.text(pdfText(t.label).toUpperCase(), x + 5, y + 6.5, { maxWidth: tw - 10 }); doc.setCharSpace(0);
+        doc.text(T(t.label).toUpperCase(), x + 5, y + 6.5, { maxWidth: tw - 10 }); doc.setCharSpace(0);
         font("bold", 16); color(t.strong ? [255, 255, 255] : t.negative ? C.neg : C.ink);
-        doc.text(pdfText(t.value), x + 5, y + 15);
-        if (t.note) { font("normal", 7); color(t.strong ? [214, 205, 192] : C.muted); doc.text(pdfText(t.note), x + tw - 5, y + 15, { align: "right", maxWidth: tw / 2 }); }
+        doc.text(T(t.value), x + 5, y + 15);
+        if (t.note) { font("normal", 7); color(t.strong ? [214, 205, 192] : C.muted); doc.text(T(t.note), x + tw - 5, y + 15, { align: "right", maxWidth: tw / 2 }); }
       });
       y += th + 4;
+    }
+    if (report.summaryNote) para(report.summaryNote, { size: 8.4, col: C.muted, gap: 3 });
+    // entered values (a strip of five)
+    (report.intro || []).forEach((box) => {
+      const n = box.rows.length, cw = CW / n;
+      // values wrap inside their cell (a long concept name never runs into the next one)
+      const vals = box.rows.map(([, value]) => { font("bold", 10.5); return doc.splitTextToSize(T(value), cw - 6).slice(0, 3); });
+      const extra = (Math.max(...vals.map((v) => v.length)) - 1) * lh(10.5, 1.15);
+      const bh = 17 + extra;
+      room(bh + 10);
+      font("bold", 7.5); color(C.accent); doc.setCharSpace(0.5); doc.text(T(box.label).toUpperCase(), L, y + 2); doc.setCharSpace(0);
+      y += 4.5;
+      color(C.rule, "draw"); doc.setLineWidth(0.3); doc.rect(L, y, CW, bh);
+      box.rows.forEach(([label], i) => {
+        const x = L + i * cw;
+        if (i) doc.line(x, y, x, y + bh);
+        font("normal", 7); color(C.muted); doc.text(doc.splitTextToSize(T(label), cw - 6).slice(0, 2), x + 3, y + 5);
+        font("bold", 10.5); color(C.ink); vals[i].forEach((ln, k) => doc.text(ln, x + 3, y + 13.5 + k * lh(10.5, 1.15)));
+      });
+      y += bh + 5;
+    });
+    // legend of value types
+    if (report.legend) {
+      room(8 + report.legend.length * 5);
+      report.legend.forEach((g) => {
+        tagChip(g.key, g.label, L, y + 3.2);
+        font("normal", 8); color(C.muted);
+        doc.text(T(g.text), L + 34, y + 3.2, { maxWidth: CW - 34 });
+        y += 5.2;
+      });
+      y += 2;
     }
 
     // ---- blocks ----
     function table(rows) {
-      const labelW = CW * 0.62;
+      const tagged = rows.some((r) => r.tag);
+      const labelW = CW * (tagged ? 0.5 : 0.62);
       rows.forEach((r) => {
         font(r.strong ? "bold" : "normal", 9.2);
-        const lines = doc.splitTextToSize(pdfText(r.label), labelW - 2);
+        const lines = doc.splitTextToSize(T(r.label), labelW - 2);
         const h = Math.max(lines.length * lh(9.2), lh(9.2)) + 2.6;
         room(h);
         color(C.ink); lines.forEach((ln, k) => doc.text(ln, L, y + 3.3 + k * lh(9.2)));
         font(r.strong ? "bold" : "normal", 9.2); color(r.negative ? C.neg : C.ink);
-        doc.text(pdfText(r.value), W - R, y + 3.3, { align: "right" });
-        if (r.note) { font("normal", 7.4); color(C.muted); doc.text(pdfText(r.note), L + labelW, y + 3.3, { maxWidth: CW - labelW - 28 }); }
+        doc.text(T(r.value), W - R, y + 3.3, { align: "right" });
+        if (r.note) { font("normal", 7.4); color(C.muted); doc.text(T(r.note), L + labelW, y + 3.3, { maxWidth: tagged ? CW * 0.16 : CW - labelW - 28 }); }
+        if (r.tag) tagChip(r.tagKind, r.tag, L + CW * 0.67, y + 3.3);
         y += h;
         color(C.rule, "draw"); doc.setLineWidth(0.2); doc.line(L, y - 0.8, W - R, y - 0.8);
       });
@@ -326,38 +400,78 @@
       chart.items.forEach((it) => {
         room(7);
         font("normal", 8.6); color(C.ink);
-        doc.text(pdfText(it.label), L, y + 3.8, { maxWidth: labelW - 2 });
+        doc.text(T(it.label), L, y + 3.8, { maxWidth: labelW - 2 });
         const w = Math.max(0.6, barW * Math.abs(it.value) / max);
         color(it.tone === "ink" ? C.ink : it.tone === "neg" ? C.neg : it.tone === "pos" ? C.pos : C.accent, "fill");
         doc.rect(L + labelW, y + 1, w, 3.8, "F");
         font("bold", 8.6); color(it.tone === "neg" ? C.neg : C.ink);
-        doc.text(pdfText(it.display), W - R, y + 3.8, { align: "right" });
+        doc.text(T(it.display), W - R, y + 3.8, { align: "right" });
         y += 6.4;
       });
       y += 2;
     }
+    function gridCols(c) {
+      const n = c.columns.length;
+      const w = c.widths || [0.4, ...Array(n - 1).fill(0.6 / (n - 1))];
+      const al = c.align || ["l", ...Array(n - 1).fill("r")];
+      let x = L;
+      return w.map((f, i) => { const cw = CW * f; const pad = i && al[i] === "l" ? 3 : 0; const o = { x0: x + pad, w: cw - pad, al: al[i] }; x += cw; return o; });
+    }
+    function cellLines(c, row, sizes) {
+      const cs = gridCols(c);
+      return row.map((cell, i) => {
+        const txt = T(typeof cell === "object" ? cell.text : cell);
+        font(sizes.style(cell, i), sizes.size);
+        return doc.splitTextToSize(txt, cs[i].w - 3);
+      });
+    }
     function compare(c) {
-      const n = c.columns.length, first = CW * 0.4, colW = (CW - first) / (n - 1);
+      const cs = gridCols(c);
+      const size = 9, LH = lh(size, 1.25);
+      const style = (cell, i) => ((typeof cell === "object" && cell.strong) || (c.boldValues && i > 0) ? "bold" : "normal");
       room(10);
       font("bold", 7.4); color(C.muted);
-      c.columns.forEach((h, i) => doc.text(pdfText(h).toUpperCase(), i === 0 ? L : L + first + colW * i - 1, y + 3, { align: i === 0 ? "left" : "right", maxWidth: i === 0 ? first : colW - 2 }));
-      y += 5.5;
+      const heads = c.columns.map((h, i) => doc.splitTextToSize(T(h).toUpperCase(), cs[i].w - 3));
+      const hh = Math.max(...heads.map((l) => l.length)) * lh(7.4, 1.2);
+      heads.forEach((lines, i) => lines.forEach((ln, k) => doc.text(ln, cs[i].al === "l" ? cs[i].x0 : cs[i].x0 + cs[i].w - 1.5, y + 3 + k * lh(7.4, 1.2), { align: cs[i].al === "l" ? "left" : "right" })));
+      y += hh + 2.5;
       c.rows.forEach((r) => {
-        room(7);
+        const lines = cellLines(c, r, { size, style });
+        const rh = Math.max(...lines.map((l) => l.length)) * LH + 3;
+        room(rh);
         r.forEach((cell, i) => {
           const neg = typeof cell === "object" && cell.negative;
-          const txt = typeof cell === "object" ? cell.text : cell;
-          font(i === 0 ? "normal" : "bold", 9); color(neg ? C.neg : C.ink);
-          doc.text(pdfText(txt), i === 0 ? L : L + first + colW * i - 1, y + 3.6, { align: i === 0 ? "left" : "right", maxWidth: i === 0 ? first - 2 : colW - 2 });
+          font(style(cell, i), size); color(neg ? C.neg : C.ink);
+          lines[i].forEach((ln, k) => doc.text(ln, cs[i].al === "l" ? cs[i].x0 : cs[i].x0 + cs[i].w - 1.5, y + 3.6 + k * LH, { align: cs[i].al === "l" ? "left" : "right" }));
         });
-        y += 6.6;
+        y += rh;
         color(C.rule, "draw"); doc.setLineWidth(0.2); doc.line(L, y - 1.4, W - R, y - 1.4);
+      });
+      y += 2;
+    }
+    function chipW(label) {
+      font("bold", 6.2); doc.setCharSpace(0.3);
+      const txt = T(label).toUpperCase(); const w = doc.getTextWidth(txt) + 0.3 * (txt.length - 1) + 3;
+      doc.setCharSpace(0); return w;
+    }
+    function bullets(items) {
+      items.forEach((it) => {
+        const wide = chipW(it.label) > 28;            // a long label sits on its own line; the text then takes the full width
+        font("normal", 8.9);
+        const lines = doc.splitTextToSize(T(it.text), wide ? CW : CW - 30);
+        const h = lines.length * lh(8.9) + 3 + (wide ? 4.6 : 0);
+        room(h);
+        tagChip(it.level, it.label, L, y + 3.2);
+        const ty = y + 3.2 + (wide ? 4.6 : 0);
+        font("normal", 8.9); color(C.ink);
+        lines.forEach((ln, k) => doc.text(ln, wide ? L : L + 30, ty + k * lh(8.9)));
+        y += h;
       });
       y += 2;
     }
     function note(text) {
       font("normal", 8.4);
-      const lines = doc.splitTextToSize(pdfText(text), CW - 10);
+      const lines = doc.splitTextToSize(T(text), CW - 10);
       const h = lines.length * lh(8.4) + 7;
       room(h);
       color(C.paper, "fill"); doc.rect(L, y, CW, h, "F");
@@ -367,18 +481,18 @@
     }
     function cta(c) {
       font("normal", 9.6);
-      const lines = c.lines.flatMap((t) => doc.splitTextToSize(pdfText(t), CW - 20));
+      const lines = c.lines.flatMap((t) => doc.splitTextToSize(T(t), CW - 20));
       const h = 19 + lines.length * lh(9.6) + 15 + (c.links ? 7 : 0);
       room(h + 4);
       color(C.ink, "fill"); doc.rect(L, y, CW, h, "F");
       let yy = y + 9;
       font("bold", 13.5); color([255, 255, 255]);
-      doc.splitTextToSize(pdfText(c.heading).toUpperCase(), CW - 20).forEach((ln) => { doc.text(ln, L + 10, yy); yy += 6; });
+      doc.splitTextToSize(T(c.heading).toUpperCase(), CW - 20).forEach((ln) => { doc.text(ln, L + 10, yy); yy += 6; });
       yy += 1.5;
       font("normal", 9.6); color([214, 205, 192]);
       lines.forEach((ln) => { doc.text(ln, L + 10, yy); yy += lh(9.6); });
       yy += 3;
-      const label = pdfText(c.button.label).toUpperCase();
+      const label = T(c.button.label).toUpperCase();
       font("bold", 8.6); doc.setCharSpace(0.6);
       const bw = doc.getTextWidth(label) + label.length * 0.6 + 14, bh = 9;
       color(C.accent, "fill"); doc.rect(L + 10, yy, bw, bh, "F");
@@ -389,7 +503,7 @@
       if (c.links) {
         font("normal", 8.6); let x = L + 10;
         c.links.forEach((lk, i) => {
-          const txt = pdfText(lk.label);
+          const txt = T(lk.label);
           color([255, 255, 255]); doc.textWithLink(txt, x, yy, { url: lk.url });
           x += doc.getTextWidth(txt) + 4;
           if (i < c.links.length - 1) { color([150, 140, 128]); doc.text("·", x, yy); x += 4; }
@@ -401,13 +515,16 @@
     const ROW = lh(9.2) + 2.6;
     function estimate(b) {
       let h = b.heading ? 15.5 : 0;
-      if (b.intro) { font("normal", 9); h += doc.splitTextToSize(pdfText(b.intro), CW).length * lh(9) + 2.2; }
+      if (b.intro) { font("normal", 9); h += doc.splitTextToSize(T(b.intro), CW).length * lh(9) + 2.2; }
       if (b.rows) h += b.rows.length * ROW + 2;
       if (b.chart) h += b.chart.items.length * 6.4 + 2;
-      if (b.compare) h += 5.5 + b.compare.rows.length * 6.6 + 2;
-      if (b.paragraphs) { font("normal", 8.8); b.paragraphs.forEach((t) => { h += doc.splitTextToSize(pdfText(t), CW).length * lh(8.8) + 1.8; }); }
-      if (b.note) { font("normal", 8.4); h += doc.splitTextToSize(pdfText(b.note), CW - 10).length * lh(8.4) + 11; }
-      if (b.cta) { font("normal", 9.6); h += 45 + b.cta.lines.flatMap((t) => doc.splitTextToSize(pdfText(t), CW - 20)).length * lh(9.6); }
+      const tableH = (c) => 8 + c.rows.reduce((s2, r) => s2 + Math.max(...cellLines(c, r, { size: 9, style: () => "normal" }).map((l) => l.length)) * lh(9, 1.25) + 3, 0) + 2;
+      if (b.compare) h += tableH(b.compare);
+      if (b.table) h += tableH(b.table);
+      if (b.bullets) { b.bullets.forEach((it) => { const wide = chipW(it.label) > 28; font("normal", 8.9); h += doc.splitTextToSize(T(it.text), wide ? CW : CW - 30).length * lh(8.9) + 3 + (wide ? 4.6 : 0); }); }
+      if (b.paragraphs) { font("normal", 8.8); b.paragraphs.forEach((t) => { h += doc.splitTextToSize(T(t), CW).length * lh(8.8) + 1.8; }); }
+      if (b.note) { font("normal", 8.4); h += doc.splitTextToSize(T(b.note), CW - 10).length * lh(8.4) + 11; }
+      if (b.cta) { font("normal", 9.6); h += 45 + b.cta.lines.flatMap((t) => doc.splitTextToSize(T(t), CW - 20)).length * lh(9.6); }
       return h;
     }
     const usable = H - BOTTOM - TOP;
@@ -416,14 +533,18 @@
       else { const h = estimate(b); if (h <= usable && y + h > H - BOTTOM) newPage(); }
       if (b.heading) heading(b.heading);
       if (b.intro) para(b.intro, { size: 9, col: C.muted });
+      if (b.table) compare(b.table);
       if (b.rows) table(b.rows);
       if (b.chart) bars(b.chart);
-      if (b.compare) compare(b.compare);
+      if (b.compare) compare({ ...b.compare, boldValues: true });
+      if (b.bullets) bullets(b.bullets);
       if (b.paragraphs) b.paragraphs.forEach((p) => para(p, { size: 8.8, gap: 1.8 }));
       if (b.note) note(b.note);
       if (b.cta) cta(b.cta);
     });
 
+    fill.push(Math.round(y));
+    doc.pageFill = fill;
     // ---- footer + page numbers on every page ----
     const pages = doc.getNumberOfPages();
     for (let i = 1; i <= pages; i++) {
@@ -431,13 +552,13 @@
       const fy = H - 13;
       color(C.rule, "draw"); doc.setLineWidth(0.25); doc.line(L, fy - 4, W - R, fy - 4);
       font("normal", 7.6); color(C.muted);
-      doc.text(pdfText(report.footer.left), L, fy);
+      doc.text(T(report.footer.left), L, fy);
       font("bold", 7.6); color(C.ink);
-      const site = pdfText(report.footer.site);
+      const site = T(report.footer.site);
       const sw = doc.getTextWidth(site);
       doc.textWithLink(site, (W - sw) / 2, fy, { url: report.footer.siteUrl });
       font("normal", 7.6); color(C.muted);
-      doc.text(pdfText(report.footer.page.replace("{n}", i).replace("{total}", pages)), W - R, fy, { align: "right" });
+      doc.text(T(report.footer.page.replace("{n}", i).replace("{total}", pages)), W - R, fy, { align: "right" });
     }
     return doc;
   }
@@ -445,19 +566,22 @@
   // ---------------- print sheet (same report, HTML) ----------------
   const esc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   function printHtml(report) {
-    const rows = (rs) => `<table class="crp__table">${rs.map((r) => `<tr class="${r.strong ? "is-strong" : ""}"><th scope="row">${esc(r.label)}${r.note ? `<span class="crp__rnote">${esc(r.note)}</span>` : ""}</th><td class="${r.negative ? "is-neg" : ""}">${esc(r.value)}</td></tr>`).join("")}</table>`;
+    const chip = (kind, label) => `<span class="crp__tag crp__tag--${esc(kind)}">${esc(label)}</span>`;
+    const rows = (rs) => `<table class="crp__table">${rs.map((r) => `<tr class="${r.strong ? "is-strong" : ""}"><th scope="row">${esc(r.label)}${r.note ? `<span class="crp__rnote">${esc(r.note)}</span>` : ""}</th>${rs.some((x) => x.tag) ? `<td class="crp__tagc">${r.tag ? chip(r.tagKind, r.tag) : ""}</td>` : ""}<td class="${r.negative ? "is-neg" : ""}">${esc(r.value)}</td></tr>`).join("")}</table>`;
     const chart = (c) => {
       const max = Math.max(1, ...c.items.map((it) => Math.abs(it.value)));
       return `<div class="crp__bars">${c.items.map((it) => `<div class="crp__bar"><span class="crp__bar-l">${esc(it.label)}</span><span class="crp__bar-t"><i class="tone-${esc(it.tone || "accent")}" style="width:${(Math.max(0.5, 100 * Math.abs(it.value) / max)).toFixed(1)}%"></i></span><span class="crp__bar-v${it.tone === "neg" ? " is-neg" : ""}">${esc(it.display)}</span></div>`).join("")}</div>`;
     };
-    const cmp = (c) => `<table class="crp__cmp"><thead><tr>${c.columns.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${c.rows.map((r) => `<tr>${r.map((cell, i) => { const o = typeof cell === "object" ? cell : { text: cell }; return i === 0 ? `<th scope="row">${esc(o.text)}</th>` : `<td class="${o.negative ? "is-neg" : ""}">${esc(o.text)}</td>`; }).join("")}</tr>`).join("")}</tbody></table>`;
+    const cmp = (c) => `<table class="crp__cmp"><thead><tr>${c.columns.map((h, i) => `<th${c.align && c.align[i] === "l" ? ' style="text-align:left"' : ""}>${esc(h)}</th>`).join("")}</tr></thead><tbody>${c.rows.map((r) => `<tr${r.some((x) => x && x.strong) ? ' class="is-strong"' : ""}>${r.map((cell, i) => { const o = typeof cell === "object" ? cell : { text: cell }; return i === 0 ? `<th scope="row">${esc(o.text)}</th>` : `<td class="${o.negative ? "is-neg" : ""}"${c.align && c.align[i] === "l" ? ' style="text-align:left"' : ""}>${esc(o.text)}</td>`; }).join("")}</tr>`).join("")}</tbody></table>`;
     const blocks = (report.blocks || []).map((b) => `
       <div class="crp__block${b.pageBreak ? " is-break" : ""}">
         ${b.heading ? `<h2 class="crp__h">${esc(b.heading)}</h2>` : ""}
         ${b.intro ? `<p class="crp__intro">${esc(b.intro)}</p>` : ""}
+        ${b.table ? cmp(b.table) : ""}
         ${b.rows ? rows(b.rows) : ""}
         ${b.chart ? chart(b.chart) : ""}
         ${b.compare ? cmp(b.compare) : ""}
+        ${b.bullets ? `<ul class="crp__bullets">${b.bullets.map((it) => `<li>${chip(it.level, it.label)} ${esc(it.text)}</li>`).join("")}</ul>` : ""}
         ${b.paragraphs ? b.paragraphs.map((p) => `<p class="crp__p">${esc(p)}</p>`).join("") : ""}
         ${b.note ? `<p class="crp__note">${esc(b.note)}</p>` : ""}
         ${b.cta ? `<div class="crp__cta"><p class="crp__cta-h">${esc(b.cta.heading)}</p>${b.cta.lines.map((l) => `<p>${esc(l)}</p>`).join("")}<p class="crp__cta-b"><a href="${esc(b.cta.button.url)}">${esc(b.cta.button.label)}</a></p>${b.cta.links ? `<p class="crp__cta-l">${b.cta.links.map((l) => `<a href="${esc(l.url)}">${esc(l.label)}</a>`).join(" · ")}</p>` : ""}</div>` : ""}
@@ -471,6 +595,9 @@
       <p class="crp__sub">${esc(report.subtitle)}</p>
       ${report.project ? `<p class="crp__project">${esc(report.project)}</p>` : ""}
       <div class="crp__tiles">${(report.summary || []).map((t) => `<div class="crp__tile${t.strong ? " is-strong" : ""}"><span>${esc(t.label)}</span><strong class="${t.negative ? "is-neg" : ""}">${esc(t.value)}</strong>${t.note ? `<em>${esc(t.note)}</em>` : ""}</div>`).join("")}</div>
+      ${report.summaryNote ? `<p class="crp__intro">${esc(report.summaryNote)}</p>` : ""}
+      ${(report.intro || []).map((box) => `<p class="crp__h crp__h--small">${esc(box.label)}</p><div class="crp__inputs">${box.rows.map(([l, v]) => `<div><span>${esc(l)}</span><strong>${esc(v)}</strong></div>`).join("")}</div>`).join("")}
+      ${report.legend ? `<ul class="crp__legend">${report.legend.map((g) => `<li>${chip(g.key, g.label)} ${esc(g.text)}</li>`).join("")}</ul>` : ""}
       ${blocks}
       ${pageMargins(report)}`;
   }
@@ -520,6 +647,7 @@
         const field = fieldOf(el.dataset.cf);
         if (!field) return;
         if (el.type === "radio") el.checked = el.value === String(values[field.key]);
+        else if (el.type === "range") el.value = String(values[field.key]);
         else el.value = field.type === "number" ? f.input(values[field.key], field.decimals || 0) : values[field.key];
         el.removeAttribute("aria-invalid");
       });
@@ -553,6 +681,7 @@
         el.hidden = String(values[k]) !== v;
       });
       box.querySelectorAll("[data-cflag]").forEach((el) => { el.hidden = !results[el.dataset.cflag]; });
+      if (model.paint) model.paint(box, results, { ui, t: i18n.report, f });
     }
     inputs.forEach((el) => {
       const field = fieldOf(el.dataset.cf);
@@ -563,10 +692,16 @@
         el.setAttribute("aria-invalid", String(bad && el.value.trim() !== ""));
         if (bad) return;
         values = { ...values, [field.key]: v };
+        // other controls of the same field (a slider and its number box) follow at once
+        inputs.forEach((o) => {
+          if (o === el || o.dataset.cf !== field.key || o.type === "radio") return;
+          o.value = o.type === "range" ? String(v) : f.input(v, field.decimals || 0);
+          o.removeAttribute("aria-invalid");
+        });
         paint();
       };
       el.addEventListener(el.type === "radio" ? "change" : "input", onInput);
-      if (el.type !== "radio") el.addEventListener("change", () => { el.removeAttribute("aria-invalid"); if (field.type === "number") el.value = f.input(values[field.key], field.decimals || 0); });
+      if (el.type !== "radio" && el.type !== "range") el.addEventListener("change", () => { el.removeAttribute("aria-invalid"); if (field.type === "number") el.value = f.input(values[field.key], field.decimals || 0); });
     });
     box.querySelectorAll("form").forEach((fm) => fm.addEventListener("submit", (e) => e.preventDefault()));
     showInputs();
@@ -585,7 +720,22 @@
       try { const c = canonical && new URL(canonical.href); if (c && c.origin === location.origin) return c.origin + c.pathname; } catch (e) { /* fall through */ }
       return location.origin + location.pathname;
     }
-    const linkFor = (withValues) => `${pageUrl()}${withValues ? `?${toQuery(model, values)}` : ""}#${box.id}`;
+    // a section with data-share-url is shared through that page (it carries the social preview and
+    // forwards to #calculadora with the values); otherwise the page URL + #anchor
+    function shareBase() {
+      if (!box.dataset.shareUrl) return null;
+      try {
+        const u = new URL(box.dataset.shareUrl, location.origin);
+        const canonical = document.querySelector('link[rel="canonical"]');
+        const origin = canonical && new URL(canonical.href).origin === location.origin ? location.origin : location.origin;
+        return origin + u.pathname;
+      } catch (e) { return null; }
+    }
+    const linkFor = (withValues) => {
+      const q = withValues ? `?${toQuery(model, values)}` : "";
+      const base = shareBase();
+      return base ? `${base}${q}` : `${pageUrl()}${q}#${box.id}`;
+    };
 
     async function share(withValues) {
       if (linkField) linkField.hidden = true;
@@ -633,9 +783,10 @@
     });
     renderSaved();
 
-    function reportFor(forPdf) {
-      // the standard PDF fonts are Latin only: RU / UK reports (PDF and print, kept identical) are in English
-      const latin = ["es", "en"].includes(lang);
+    function reportFor(forPdf, fontsOk) {
+      // the report is in the page language; only a PDF without the Inter fonts (standard
+      // fonts are Latin only) falls back to English on the RU / UK pages
+      const latin = !forPdf || fontsOk || ["es", "en"].includes(lang);
       const rt = latin ? i18n.report : i18n.reportEn;
       const loc = latin ? i18n.locale : "en-GB";
       const rf = formatter(loc);
@@ -658,7 +809,7 @@
         if (a === "share-section") share(false);
         else if (a === "share-calc") share(true);
         else if (a === "save") {
-          const item = saved.add(values.project || "", values);
+          const item = saved.add(values.project || "", values);   // the list also shows the figures
           if (item) { renderSaved(); say(ui.saved); }
           else say(ui.saveFailed);
         } else if (a === "print") {
@@ -667,7 +818,8 @@
           btn.setAttribute("aria-busy", "true"); btn.disabled = true;
           say(ui.pdfWorking, true);
           try {
-            const doc = await renderPdf(reportFor(true));
+            const fonts = await interFonts();
+            const doc = await renderPdf(reportFor(true, !!fonts), fonts);
             doc.save(fileName());
             say(ui.pdfDone);
             if (window.track) window.track("calculator_pdf", { calculator: model.id, language: lang });
@@ -686,10 +838,12 @@
     window.addEventListener("hashchange", () => { if (location.hash === `#${box.id}`) settleOn(box); });
 
     // test / support hook
-    box.calc = { get values() { return { ...values }; }, get results() { return results; }, report: reportFor, pdf: () => renderPdf(reportFor(true)), set(v) { values = sanitize(model, { ...values, ...v }); showInputs(); paint(); } };
+    box.calc = { get values() { return { ...values }; }, get results() { return results; }, report: reportFor,
+      pdf: async () => { const fonts = await interFonts(); return renderPdf(reportFor(true, !!fonts), fonts); },
+      set(v) { values = sanitize(model, { ...values, ...v }); showInputs(); paint(); } };
   }
 
-  const api = { parseField, sanitize, fromQuery, toQuery, formatter, mount, renderPdf, printReport };
+  const api = { parseField, sanitize, fromQuery, toQuery, formatter, mount, renderPdf, printReport, interFonts };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.CalcTools = api;
 })(typeof window !== "undefined" ? window : this);

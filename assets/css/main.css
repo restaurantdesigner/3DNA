@@ -11185,3 +11185,182 @@ section.bcalc .is-neg{ color: var(--bc-neg); }
 .crp__cta-b a{ display: inline-block; margin-top: 2mm; padding: 2.5mm 5mm; background: #8a6a3a; color: #fff; text-decoration: none; font-weight: 700; font-size: 8.6pt; letter-spacing: .1em; text-transform: uppercase; }
 .crp__cta-l a{ color: #fff; }
 .crp__foot{ position: fixed; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding-top: 2mm; border-top: .25mm solid #ded8cf; background: #fff; font-size: 7.6pt; color: #6b6258; }
+
+
+/* ---- Restaurants: "Calculadora de Potencial Comercial" (5 inputs → full report) ---- */
+.rpc-inputs{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.4fr); gap: 16px 18px; align-items: end;
+  margin: clamp(24px, 3.5vh, 36px) 0 0; padding: 20px; background: #fff; border: 1px solid var(--bc-line); }
+.rpc-slider{ justify-content: flex-start; }
+.rpc-slider__row{ display: flex; align-items: center; gap: 14px; min-height: 44px; }
+.rpc-slider input[type="range"]{ flex: 1; min-width: 0; height: 28px; margin: 0; accent-color: var(--bc-ink); cursor: pointer; }
+.rpc-slider input[type="range"]:focus-visible{ outline: 2px solid var(--bc-accent); outline-offset: 3px; }
+.rpc-slider__val{ min-width: 2.4ch; padding: 4px 10px; border-radius: 3px; background: var(--bc-ink); color: #fff; text-align: center;
+  font-family: "DM Serif Text", Georgia, serif; font-size: 26px; line-height: 1.1; font-variant-numeric: lining-nums; }
+.rpc-slider__unit{ display: flex; justify-content: space-between; gap: 8px; font-size: 11.5px; color: var(--bc-muted); }
+.rpc-cards{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 16px 0 0; }
+.rpc-card{ min-width: 0; padding: 18px 18px 16px; background: #fff; border: 1px solid var(--bc-line); }
+.rpc-card--strong{ background: var(--bc-ink); border-color: var(--bc-ink); }
+.rpc-card dt{ font-size: 11.5px; font-weight: 500; line-height: 1.3; color: var(--bc-text); }
+.rpc-card dd{ margin: 6px 0 0; font-family: "DM Serif Text", Georgia, serif; font-size: clamp(26px, 2.3vw, 36px); line-height: 1.05; color: var(--bc-ink); font-variant-numeric: lining-nums; overflow-wrap: anywhere; }
+.rpc-card--strong dt{ color: rgba(255,255,255,.7); }
+.rpc-card--strong dd{ color: #fff; }
+.rpc-card__note{ margin: 6px 0 0; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--bc-muted); }
+.rpc-card--strong .rpc-card__note{ color: #c9b48f; }
+.rpc-cards__note{ margin: 10px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--bc-muted); }
+.rpc .ccalc-tools{ margin-top: 20px; }
+
+.rpc-report{ margin-top: clamp(32px, 5vh, 52px); padding-top: clamp(24px, 3vh, 32px); border-top: 1px solid rgba(22,21,19,.14); }
+.rpc-report__title{ margin: 0; font-family: "DM Serif Text", Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.2vw, 34px); line-height: 1.1; color: var(--bc-ink); text-transform: none; }
+.rpc-report__intro{ margin: 8px 0 0; max-width: 72ch; font-size: 14px; line-height: 1.55; color: var(--bc-text); }
+.rpc-legend{ display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 0; padding: 0; list-style: none; font-size: 12px; color: var(--bc-muted); }
+.rpc-tag{ display: inline-block; padding: 2px 6px; border: 1px solid currentColor; border-radius: 2px; font-size: 9.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; line-height: 1.4; white-space: nowrap; vertical-align: middle; }
+.rpc-tag--in{ color: var(--bc-accent); }
+.rpc-tag--est{ color: var(--bc-muted); }
+.rpc-tag--max{ color: var(--bc-ink); }
+.rpc-tag--scn{ color: var(--bc-pos); }
+.rpc-report__body{ display: grid; gap: 10px; margin-top: 18px; }
+.rpc-sec{ background: #fff; border: 1px solid var(--bc-line); }
+.rpc-sec__head{ display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; cursor: pointer; list-style: none; }
+.rpc-sec__head::-webkit-details-marker{ display: none; }
+.rpc-sec__head::after{ content: "+"; font-size: 20px; line-height: 1; color: var(--bc-muted); }
+.rpc-sec[open] > .rpc-sec__head::after{ content: "−"; }
+.rpc-sec__head:focus-visible{ outline: 2px solid var(--bc-accent); outline-offset: -2px; }
+.rpc-sec__title{ font-size: 11.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--bc-accent); }
+.rpc-sec__body{ padding: 0 18px 18px; }
+.rpc-intro, .rpc-p{ margin: 0 0 10px; font-size: 13px; line-height: 1.55; color: var(--bc-text); max-width: 80ch; }
+.rpc-sec__note{ margin: 10px 0 0; padding: 10px 12px; background: var(--bc-paper); border-left: 2px solid var(--bc-accent); font-size: 12.5px; line-height: 1.5; color: var(--bc-text); }
+.rpc-scroll{ overflow-x: auto; margin: 0 0 12px; }
+.rpc-table{ width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.rpc-table th, .rpc-table td{ padding: 8px 0; border-bottom: 1px solid rgba(22,21,19,.08); vertical-align: middle; text-align: left; }
+.rpc-table th{ font-weight: 400; color: var(--bc-text); padding-right: 12px; }
+.rpc-table td:nth-child(2){ width: 1%; padding-right: 14px; }
+.rpc-table .rpc-num{ text-align: right; font-weight: 600; color: var(--bc-ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rpc-table tr.is-strong th, .rpc-table tr.is-strong td{ font-weight: 700; color: var(--bc-ink); }
+.rpc-table--grid thead th{ font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--bc-muted); }
+.rpc-table--grid td{ padding-left: 12px; }
+.rpc-note{ font-size: 11.5px; color: var(--bc-muted); }
+.rpc-table .is-neg, .rpc-bar.is-neg .rpc-bar__v{ color: var(--bc-neg); }
+.rpc-bars{ display: grid; gap: 7px; margin-top: 14px; }
+.rpc-bar{ display: grid; grid-template-columns: minmax(130px, 1.1fr) minmax(0, 2fr) minmax(86px, auto); gap: 12px; align-items: center; font-size: 12.5px; color: var(--bc-text); }
+.rpc-bar__t{ height: 9px; background: rgba(22,21,19,.06); }
+.rpc-bar__t i{ display: block; height: 100%; background: var(--bc-accent); }
+.rpc-bar--ink .rpc-bar__t i{ background: var(--bc-ink); }
+.rpc-bar--pos .rpc-bar__t i{ background: var(--bc-pos); }
+.rpc-bar.is-neg .rpc-bar__t i{ background: var(--bc-neg); }
+.rpc-bar__v{ text-align: right; font-weight: 600; color: var(--bc-ink); font-variant-numeric: tabular-nums; }
+.rpc-insights{ display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.rpc-insight{ padding: 10px 12px; border-left: 3px solid var(--bc-muted); background: var(--bc-paper); font-size: 13.5px; line-height: 1.5; color: var(--bc-text); }
+.rpc-insight__l{ display: inline-block; margin-right: 6px; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.rpc-insight--alert{ border-left-color: var(--bc-neg); } .rpc-insight--alert .rpc-insight__l{ color: var(--bc-neg); }
+.rpc-insight--warn{ border-left-color: var(--bc-accent); } .rpc-insight--warn .rpc-insight__l{ color: var(--bc-accent); }
+.rpc-insight--opp{ border-left-color: var(--bc-pos); } .rpc-insight--opp .rpc-insight__l{ color: var(--bc-pos); }
+.rpc-insight--ok .rpc-insight__l{ color: var(--bc-muted); }
+@media (max-width: 1100px){
+  .rpc-inputs{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rpc-slider{ grid-column: 1 / -1; }
+  .rpc-cards{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px){
+  .rpc-inputs{ padding: 14px; gap: 12px; }
+  .rpc-cards{ gap: 8px; }
+  .rpc-card{ padding: 14px 12px; }
+  .rpc-card dd{ font-size: 22px; }
+  .rpc-sec__head{ padding: 13px 14px; }
+  .rpc-sec__body{ padding: 0 14px 14px; }
+  .rpc-table{ font-size: 13px; }
+  .rpc-table td:nth-child(2){ display: none; }
+  .rpc-table--grid td:nth-child(2){ display: table-cell; }
+  .rpc-bar{ grid-template-columns: minmax(0, 1fr) minmax(76px, auto); row-gap: 3px; }
+  .rpc-bar__t{ grid-column: 1 / -1; grid-row: 2; }
+}
+/* print sheet: value-type chips, entered values, legend, insights */
+.crp__tag{ display: inline-block; padding: 0 1.2mm; border: .2mm solid currentColor; font-size: 6.4pt; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.crp__tag--in, .crp__tag--warn{ color: #8a6a3a; } .crp__tag--est, .crp__tag--ok{ color: #6b6258; } .crp__tag--max{ color: #161513; } .crp__tag--scn, .crp__tag--opp{ color: #2e6a4f; } .crp__tag--alert{ color: #a33a2a; }
+.crp__tagc{ width: 1%; padding-right: 3mm !important; text-align: right !important; }
+.crp__inputs{ display: grid; grid-template-columns: repeat(5, 1fr); border: .3mm solid #ded8cf; margin: 0 0 3mm; }
+.crp__inputs div{ padding: 2mm 3mm; border-left: .3mm solid #ded8cf; }
+.crp__inputs div:first-child{ border-left: 0; }
+.crp__inputs span{ display: block; font-size: 7pt; color: #6b6258; }
+.crp__inputs strong{ font-size: 11pt; }
+.crp .crp__h--small{ margin-top: 4mm; border-bottom: 0; padding-bottom: 0; }
+.crp__legend, .crp__bullets{ margin: 2mm 0 0; padding: 0; list-style: none; font-size: 8.4pt; color: #3d3934; }
+.crp__legend li, .crp__bullets li{ margin: 0 0 1.4mm; break-inside: avoid; }
+.crp__cmp tr.is-strong th, .crp__cmp tr.is-strong td{ font-weight: 700; }
+
+/* restaurants: the full report is one accordion (closed by default) with eight nested groups */
+details.rpc-report{ margin-top: clamp(28px, 4vh, 40px); padding-top: 0; border-top: 0; background: #fff; border: 1px solid var(--bc-line); }
+.rpc-report__head{ display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; cursor: pointer; list-style: none; transition: background-color .2s ease; }
+.rpc-report__head::-webkit-details-marker{ display: none; }
+.rpc-report__head:hover{ background: rgba(22,21,19,.025); }
+.rpc-report__head:focus-visible{ outline: 2px solid var(--bc-accent); outline-offset: -2px; }
+.rpc-report__titles{ display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.rpc-report__title{ font-family: "DM Serif Text", Georgia, serif; font-size: clamp(22px, 2vw, 30px); line-height: 1.1; color: var(--bc-ink); }
+.rpc-report__sub{ font-size: 13.5px; line-height: 1.4; color: var(--bc-muted); }
+.rpc-report__chev{ flex: none; color: var(--bc-ink); transition: transform .25s ease; }
+details.rpc-report[open] > .rpc-report__head .rpc-report__chev{ transform: rotate(180deg); }
+.rpc-report__inner{ padding: 0 22px 22px; border-top: 1px solid var(--bc-line); }
+.rpc-report__inner .rpc-report__intro{ margin-top: 16px; }
+.rpc-report__body .rpc-sec{ background: var(--bc-paper); border-color: rgba(22,21,19,.08); }
+.rpc-sec__head{ justify-content: flex-start; }
+.rpc-sec__head::after{ margin-left: auto; }
+.rpc-sec__num{ font-family: "DM Serif Text", Georgia, serif; font-size: 15px; color: var(--bc-muted); min-width: 2ch; }
+.rpc-sub{ margin: 18px 0 8px; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--bc-ink); }
+.rpc-sec__body > .rpc-sub:first-child{ margin-top: 2px; }
+@media (max-width: 600px){
+  .rpc-report__head{ padding: 18px 16px; }
+  .rpc-report__inner{ padding: 0 12px 14px; }
+  .rpc-report__body .rpc-sec__body{ padding: 0 12px 14px; }
+  .rpc-scroll{ overflow-x: visible; }
+  .rpc-table--grid{ font-size: 12px; }
+  .rpc-table--grid th, .rpc-table--grid td{ padding-left: 6px; }
+  .rpc-table--grid thead th{ font-size: 9px; letter-spacing: .02em; }
+}
+@media (prefers-reduced-motion: reduce){ .rpc-report__chev{ transition: none; } }
+
+/* fitness planner: one input beside the live summary */
+.fpc-top{ display: grid; grid-template-columns: minmax(240px, 0.9fr) minmax(0, 2.1fr); gap: 16px; align-items: stretch; margin-top: clamp(24px, 3.5vh, 36px); }
+.fpc-input{ margin: 0; padding: 22px; background: #fff; border: 1px solid var(--bc-line); display: flex; flex-direction: column; justify-content: center; }
+.fpc-box input{ font-size: 28px; font-family: "DM Serif Text", Georgia, serif; padding: 12px 14px; }
+.fpc-box .bcalc__unit{ font-size: 16px; }
+.fpc-hint{ margin: 8px 0 0; font-size: 12px; line-height: 1.45; color: var(--bc-muted); }
+.fpc-cards{ margin: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fpc-cards .fpc-concept{ font-size: clamp(18px, 1.5vw, 22px); line-height: 1.2; }
+.rpc-insight--zone{ border-left-color: rgba(22,21,19,.18); }
+.rpc-insight--zone .rpc-insight__l{ color: var(--bc-ink); }
+@media (max-width: 1000px){
+  .fpc-top{ grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px){
+  .fpc-cards{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fpc-cards .rpc-card:first-child{ grid-column: 1 / -1; }
+  .fpc-input{ padding: 16px; }
+}
+.rpc-table .rpc-txt{ font-size: 12.5px; color: var(--bc-text); }
+@media (max-width: 600px){
+  /* report tables fit the phone width: values and headings wrap instead of scrolling */
+  .rpc-table--grid{ table-layout: auto; }
+  .rpc-table--grid th, .rpc-table--grid td, .rpc-table--grid .rpc-num{ white-space: normal; overflow-wrap: normal; word-break: normal; }
+  .rpc-table--grid td{ padding-left: 5px; font-size: 11.5px; }
+  .rpc-table--grid .rpc-txt{ font-size: 11.5px; }
+  .rpc-table--grid tbody th{ font-size: 12px; }
+}
+/* grid items may shrink below their content (wide tables wrap instead of widening the report) */
+.rpc-report__body > *, .rpc-sec__body, .rpc-report__inner{ min-width: 0; }
+@media (max-width: 600px){
+  .rpc-report__body .rpc-sec__body{ padding: 0 8px 12px; }
+  .rpc-report__inner{ padding: 0 8px 12px; }
+  .rpc-table--grid td, .rpc-table--grid .rpc-txt{ padding-left: 4px; font-size: 11px; }
+  .rpc-table--grid thead th{ padding-left: 4px; }
+}
+@media (max-width: 600px){
+  .rpc-table .rpc-num{ white-space: normal; }
+  .rpc-table:not(.rpc-table--grid) tbody th{ width: 46%; }
+  .rpc-table--grid thead th{ letter-spacing: 0; font-size: 8.5px; overflow-wrap: anywhere; hyphens: auto; }
+  .rpc-table--grid tbody th{ overflow-wrap: anywhere; hyphens: auto; }
+}
+.crp__cmp td[style*="left"], .crp__cmp th[style*="left"]{ padding-left: 3mm; }
+/* restaurants: rotation slider (0.1 steps) + editable value box, kept in sync */
+input.rpc-slider__val{ width: 4.2ch; min-width: 64px; margin: 0; padding: 6px 8px; border: 1px solid var(--bc-ink); border-radius: 3px; background: var(--bc-ink); color: #fff; text-align: center;
+  font-family: "DM Serif Text", Georgia, serif; font-size: 24px; line-height: 1.1; font-variant-numeric: lining-nums; -webkit-appearance: none; appearance: none; }
+input.rpc-slider__val:focus{ outline: 2px solid var(--bc-accent); outline-offset: 2px; background: #fff; color: var(--bc-ink); }
+input.rpc-slider__val[aria-invalid="true"]{ outline: 2px solid var(--bc-neg); }

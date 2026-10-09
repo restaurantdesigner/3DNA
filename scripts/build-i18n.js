@@ -96,8 +96,15 @@ const restaurantSpec = require("./restaurant-spec.js").createRestaurantSpec(
   restaurantPlanData, JSON.parse(read("assets/data/restaurant-spec.json")), JSON.parse(read("assets/i18n/restaurant-spec.json")));
 const restaurantPlan = require("./restaurant-plan.js").createRestaurantPlan(restaurantPlanData, translations, { spec: restaurantSpec });
 // business calculators (Restaurants: own section after the 3D plan; Fitness: after "01 / Del plano a la realidad")
+// each calculator is shared through its own small page (social previews ignore #fragments):
+// /<page path>/<slug>/ — a page kept at a root file (/gimnasios-3d.html) gets /gimnasios-3d/<slug>/
+const calcSharePath = (pageKey, transKey) => (lang) =>
+  `${pagePathFor(pageKey, lang).replace(/\.html$/, "/")}${translations[lang][transKey].calc.share.slug}/`;
+const restaurantCalcSharePath = calcSharePath("restaurants", "restaurantsPage");
+const fitnessCalcSharePath = calcSharePath("fitness", "fitnessPage");
 const businessCalcs = require("./business-calc.js").createBusinessCalcs(translations, {
-  whatsappHref: (lang) => whatsappHref(lang), email: PUBLIC_EMAIL, restaurantPlanning: restaurantPlanData.planning });
+  whatsappHref: (lang) => whatsappHref(lang), email: PUBLIC_EMAIL, restaurantPlanning: restaurantPlanData.planning,
+  restaurantSharePath: restaurantCalcSharePath, fitnessSharePath: fitnessCalcSharePath });
 
 // Homepage editorial carousel "the value of design"
 const designQuotes = require("./design-quotes.js").createDesignQuotes(JSON.parse(read("assets/data/design-quotes.json")), translations);
@@ -398,7 +405,7 @@ function localizedPaths() {
     const walk = (dir, sub) => {
       for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
         if (entry.isDirectory()) walk(path.join(dir, entry.name), `${sub}${entry.name}/`);
-        else if (entry.name === "index.html") {
+        else if (entry.name === "index.html" && !/<meta name="robots" content="noindex/.test(fs.readFileSync(path.join(dir, entry.name), "utf8"))) {
           const key = pageKey(lang, sub);
           if (!found.has(key)) found.set(key, new Map());
           found.get(key).set(lang, sub);
@@ -502,5 +509,55 @@ for (const page of layoutPages()) {
   if (crlf) out = out.replace(/\n/g, "\r\n");
   if (bom + out !== raw) write(page, bom + out);
 }
+// Calculator share pages (Restaurants, Fitness): the social preview of a calculator link (title,
+// description, 1200×630 image) in the initial HTML; visitors are sent straight on to the
+// calculator with the shared values. noindex; canonical = the language's page.
+const CALC_SHARES = [
+  { page: "restaurants", trans: "restaurantsPage", path: restaurantCalcSharePath, image: "/images/og/restaurant-calculator-og.jpg", type: "image/jpeg" },
+  { page: "fitness", trans: "fitnessPage", path: fitnessCalcSharePath, image: "/images/og/fitness-calculator-og.png", type: "image/png" },
+];
+for (const cs of CALC_SHARES) for (const lang of SUPPORTED) {
+  const CALC_OG_IMAGE = cs.image;
+  const sh = translations[lang][cs.trans].calc.share;
+  const target = pagePathFor(cs.page, lang);
+  const shareUrl = absolute(cs.path(lang));
+  const e = escapeHtml;
+  write(`${cs.path(lang).replace(/^\//, "")}index.html`, `<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${e(sh.title)}</title>
+  <meta name="description" content="${e(sh.description)}">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="${e(absolute(target))}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="3DNA">
+  <meta property="og:locale" content="${e(translations[lang].meta.ogLocale)}">
+  <meta property="og:title" content="${e(sh.title)}">
+  <meta property="og:description" content="${e(sh.description)}">
+  <meta property="og:url" content="${e(shareUrl)}">
+  <meta property="og:image" content="${e(absolute(CALC_OG_IMAGE))}">
+  <meta property="og:image:secure_url" content="${e(absolute(CALC_OG_IMAGE))}">
+  <meta property="og:image:type" content="${cs.type}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="${e(sh.imageAlt)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${e(sh.title)}">
+  <meta name="twitter:description" content="${e(sh.description)}">
+  <meta name="twitter:image" content="${e(absolute(CALC_OG_IMAGE))}">
+  <meta name="twitter:image:alt" content="${e(sh.imageAlt)}">
+  <link rel="icon" type="image/png" href="/img/favicon_32x322.png">
+  <script>location.replace(${JSON.stringify(target)} + location.search + "#calculadora");</script>
+  <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f4f1ec;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:#161513}a{color:inherit}</style>
+</head>
+<body>
+  <p><a href="${e(target)}#calculadora">${e(sh.open)}</a></p>
+</body>
+</html>
+`);
+}
+
 write("sitemap.xml", sitemapXml());
 write("robots.txt", robotsTxt());
