@@ -11519,3 +11519,12 @@ input.rpc-slider__val[aria-invalid="true"]{ outline: 2px solid var(--bc-neg); }
 @media (prefers-reduced-motion: reduce){ .apage .reveal-wait{ opacity: 1; transform: none; transition: none; } }
 .apage .ab-link{ color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .apage .ab-link:hover{ text-decoration-thickness: 2px; }
+/* homepage Restaurants chapter: label, headline and CTA only, a little more air between them */
+#sector-restaurants .sector__label{ margin-bottom: 26px; }
+#sector-restaurants .sector__cta{ margin-top: 42px; }
+@media (max-width: 767px){
+  #sector-restaurants .sector__label{ margin-bottom: 18px; }
+  #sector-restaurants .sector__cta{ margin-top: 30px; }
+  /* the headline + CTA sit above the floating WhatsApp / assistant buttons */
+  #sector-restaurants .sector__inner{ padding-bottom: calc(150px + env(safe-area-inset-bottom)); }
+}
