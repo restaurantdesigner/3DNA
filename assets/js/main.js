@@ -59,7 +59,10 @@ window.saveLanguageChoice = (lang) => {
   // turns solid once the hero has scrolled away. Every other page: solid.
   const hero = document.querySelector(".sector-hero");
   if (hero && "IntersectionObserver" in window) {
-    new IntersectionObserver(([entry]) => {
+    new IntersectionObserver((entries) => {
+      // the latest entry wins: a direct link (#anchor) can deliver "hero visible" and
+      // "hero gone" in the same batch
+      const entry = entries[entries.length - 1];
       topbar.classList.toggle("is-solid", !entry.isIntersecting);
     }, { rootMargin: `-${topbar.offsetHeight || 72}px 0px 0px 0px` }).observe(hero);
   } else {
@@ -1143,6 +1146,19 @@ document.querySelectorAll("[data-qspacer]").forEach((root) => {
       observer.disconnect();
     // top edge well inside the viewport (a ratio threshold never fires for very tall sections)
     }, { rootMargin: "0px 0px -18% 0px" }).observe(section);
+  });
+})();
+
+// Restaurants: cinematic copy over the full-width film gets the same fade-up reveal
+(() => {
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.querySelectorAll(".rwide--copy").forEach((el) => {
+    el.classList.add("reveal-pending");
+    new IntersectionObserver(([entry], observer) => {
+      if (!entry.isIntersecting) return;
+      el.classList.add("is-inview");
+      observer.disconnect();
+    }, { rootMargin: "0px 0px -18% 0px" }).observe(el);
   });
 })();
 

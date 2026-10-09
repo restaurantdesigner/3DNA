@@ -95,6 +95,9 @@ const restaurantPlanData = JSON.parse(read("assets/data/restaurant-plan.json"));
 const restaurantSpec = require("./restaurant-spec.js").createRestaurantSpec(
   restaurantPlanData, JSON.parse(read("assets/data/restaurant-spec.json")), JSON.parse(read("assets/i18n/restaurant-spec.json")));
 const restaurantPlan = require("./restaurant-plan.js").createRestaurantPlan(restaurantPlanData, translations, { spec: restaurantSpec });
+// business calculators (Restaurants: own section after the 3D plan; Fitness: after "01 / Del plano a la realidad")
+const businessCalcs = require("./business-calc.js").createBusinessCalcs(translations, {
+  whatsappHref: (lang) => whatsappHref(lang), email: PUBLIC_EMAIL, restaurantPlanning: restaurantPlanData.planning });
 
 // Homepage editorial carousel "the value of design"
 const designQuotes = require("./design-quotes.js").createDesignQuotes(JSON.parse(read("assets/data/design-quotes.json")), translations);
@@ -172,8 +175,9 @@ function socialMeta(lang, t, meta = t.meta, url = localeUrl(lang), page = null) 
 }
 
 // ---------------------------------------------------------------- SEO: JSON-LD
-// Only confirmed public facts. No address, phone, social profiles or Person
-// until they are published on the site.
+// Only confirmed public facts: the locality published in the footer (no street
+// address), the public e-mail. No phone, social profiles, ratings or Person until
+// they are published on the site.
 function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = null) {
   const graph = [
     {
@@ -183,7 +187,8 @@ function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = nu
       url: `${SITE_URL}/`,
       logo: { "@type": "ImageObject", url: absolute(LOGO_PATH), width: 1536, height: 1024 },
       description: t.schema.organizationDescription,
-      email: PUBLIC_EMAIL
+      email: PUBLIC_EMAIL,
+      address: { "@type": "PostalAddress", addressLocality: "Salobreña", addressRegion: "Granada", addressCountry: "ES" }
     },
     {
       "@type": "WebSite",
@@ -205,6 +210,30 @@ function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = nu
       primaryImageOfPage: { "@type": "ImageObject", url: absolute(ogImagePath(page, lang)) }
     }
   ];
+  // service pages: what the page offers + where it sits in the site
+  if (page && t.schema.services && t.schema.services[page]) {
+    graph[2].breadcrumb = { "@id": `${url}#breadcrumb` };
+    graph[2].mainEntity = { "@id": `${url}#service` };
+    graph.push(
+      {
+        "@type": "Service",
+        "@id": `${url}#service`,
+        name: t.schema.services[page],
+        serviceType: t.schema.services[page],
+        description: meta.description,
+        url,
+        provider: { "@id": `${SITE_URL}/#organization` }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: t.schema.breadcrumbHome, item: absolute(`/${lang}/`) },
+          { "@type": "ListItem", position: 2, name: t.schema.services[page], item: url }
+        ]
+      }
+    );
+  }
   return `  <script type="application/ld+json">${jsonForScript({ "@context": "https://schema.org", "@graph": graph })}</script>`;
 }
 
@@ -285,6 +314,8 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "fitnessPage.planSvg") return fitnessPlanner.planSvg(lang)
       .replace(/aria-label="[^"]*"/, `aria-label="${escapeHtml(translations[lang].fitnessPage.zoning.planLabel)}"`);
     if (key === "restaurants.planHtml") return restaurantPlan.sectionHtml(lang);
+    if (key === "restaurants.calcHtml") return businessCalcs.restaurantHtml(lang);
+    if (key === "fitnessPage.calcHtml") return businessCalcs.fitnessHtml(lang);
     if (key === "footer.year") return String(new Date().getFullYear());
     if (key === "footer.mailtoHref") {
       const f = translations[lang].footer;

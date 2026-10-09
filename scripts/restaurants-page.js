@@ -76,11 +76,24 @@ function createRestaurantsPage(data, translations, { whatsappHref }) {
   const ICON_ON = `<svg class="rwide__icon rwide__icon--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">${SPEAKER}<path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>`;
   function wide(lang, s) {
     const snd = t(lang).sound;
+    // optional cinematic copy over the film (restaurantsPage.wideOverlay[id]): homepage hero type
+    const ov = (t(lang).wideOverlay || {})[s.id];
+    const overlay = ov ? [
+      `    <div class="rwide__shade" aria-hidden="true"></div>`,
+      `    <div class="rwide__copy">`,
+      `      <h2 class="rwide__title sector-hero__title" aria-label="${escapeHtml(`${ov.line1} ${ov.line2}`)}">`,
+      `        <span class="sector-hero__line" aria-hidden="true">${escapeHtml(ov.line1)}</span>`,
+      `        <span class="sector-hero__line" aria-hidden="true"><em>${escapeHtml(ov.line2)}</em></span>`,
+      `      </h2>`,
+      `      <p class="rwide__lead sector-hero__lead">${escapeHtml(ov.sub)}</p>`,
+      `    </div>`,
+    ] : [];
     return [
-      `  <div class="rwide${s.sound ? " rwide--sound" : ""}" id="${s.id}"${s.sound ? "" : ' aria-hidden="true"'}>`,
+      `  <div class="rwide${s.sound ? " rwide--sound" : ""}${ov ? " rwide--copy" : ""}" id="${s.id}"${s.sound || ov ? "" : ' aria-hidden="true"'}>`,
       `    <video class="rwide__video" muted autoplay loop playsinline webkit-playsinline preload="metadata" tabindex="-1" aria-hidden="true"`,
       `      width="${s.width}" height="${s.height}"${s.poster ? ` poster="${s.poster}"` : ""}`,
       `      data-src="${s.video}" style="aspect-ratio: ${s.width} / ${s.height}"></video>`,
+      ...overlay,
       ...(s.sound ? [
         `    <button type="button" class="rwide__sound" aria-pressed="false" aria-label="${escapeHtml(snd.enable)}"`,
         `      data-label-enable="${escapeHtml(snd.enable)}" data-label-disable="${escapeHtml(snd.disable)}">${ICON_MUTED}${ICON_ON}</button>`

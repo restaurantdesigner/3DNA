@@ -8,7 +8,7 @@
 
       <div class="footer-brand">
         <a href="/{{lang}}/#hero" aria-label="{{a11y.home}}">
-          <img src="/img/logo.png" alt="3DNA" class="footer-logo" width="1536" height="1024" loading="lazy" decoding="async">
+          <img src="/img/logo-360.webp" alt="3DNA" class="footer-logo" width="360" height="240" loading="lazy" decoding="async">
         </a>
         <p class="footer-tagline">{{footer.tagline}}</p>
       </div>
@@ -18,6 +18,8 @@
         <div class="footer-col">
           <h2 class="footer-col__title">{{footer.services}}</h2>
           <ul>
+            <li><a href="{{footer.sectorLinks.restaurants.href}}">{{footer.sectorLinks.restaurants.label}}</a></li>
+            <li><a href="{{footer.sectorLinks.fitness.href}}">{{footer.sectorLinks.fitness.label}}</a></li>
             <li><a href="/{{lang}}/#servicios">{{footer.servicesItems.0}}</a></li>
             <li><a href="/{{lang}}/#servicios">{{footer.servicesItems.1}}</a></li>
             <li><a href="/{{lang}}/#servicios">{{footer.servicesItems.2}}</a></li>

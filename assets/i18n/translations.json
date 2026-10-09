@@ -3,13 +3,18 @@
     "languageName": "English",
     "meta": {
       "title": "Commercial Interior Design Studio | 3DNA",
-      "description": "3DNA designs commercial interiors for restaurants, fitness spaces, healthcare facilities and workplaces, combining strategy, space planning, 3D visualization and commercial design experience.",
+      "description": "Commercial interior design for restaurants, bars, cafés, gyms and clinics: space planning, 3D visualization and interactive presentations before construction.",
       "ogTitle": "3DNA — Commercial Interior Design",
       "ogLocale": "en_US",
       "ogImageAlt": "Commercial interior by 3DNA with the words: Spaces designed to work."
     },
     "schema": {
-      "organizationDescription": "Commercial interior design studio creating restaurants, fitness spaces, healthcare environments and workplaces."
+      "organizationDescription": "Commercial interior design studio creating restaurants, fitness spaces, healthcare environments and workplaces.",
+      "breadcrumbHome": "Home",
+      "services": {
+        "restaurants": "Restaurant, bar and café interior design",
+        "fitness": "Gym and sports centre design"
+      }
     },
     "a11y": {
       "skipToContent": "Skip to content",
@@ -491,7 +496,127 @@
           ],
           "note": "Visualisations of the proposed design; not photographs of a built space."
         }
-      }
+      },
+      "calc": {
+         "ui": {
+           "eyebrow": "3DNA / Fitness Business Tools",
+           "title": "Profitability Calculator",
+           "subtitle": "Discover your gym's economic potential. Enter your figures and calculate revenue, expenses and profitability.",
+           "example": "Illustrative example values: replace them with your project's figures.",
+           "pdf": "Download 3DNA PDF",
+           "gSpace": "Space and members",
+           "gOps": "Operation",
+           "gCosts": "Monthly expenses (excl. VAT)",
+           "gTax": "VAT and project",
+           "fields": {
+             "area": "Available floor area",
+             "capacity": "Simultaneous capacity",
+             "members": "Active paying members",
+             "price": "Monthly fee (incl. VAT)",
+             "model": "Operating model",
+             "visits": "Visits per member",
+             "duration": "Average visit length",
+             "hours": "Opening hours per day",
+             "staff": "Staff",
+             "rent": "Rent",
+             "utilities": "Utilities",
+             "cleaning": "Cleaning",
+             "maintenance": "Maintenance",
+             "security": "Security and access control",
+             "insurance": "Insurance and other costs",
+             "iva": "VAT (IVA)",
+             "project": "Project name (optional)"
+           },
+           "model247": "Automated 24/7 access",
+           "modelConv": "Conventional, staffed reception",
+           "hRevenue": "Revenue",
+           "grossMonthly": "Monthly revenue (incl. VAT)",
+           "netMonthly": "Net revenue (excl. VAT)",
+           "grossAnnual": "Annual revenue (incl. VAT)",
+           "hProfit": "Operating profit",
+           "profitMonthly": "Monthly profit",
+           "profitAnnual": "Annual profit",
+           "margin": "Operating margin",
+           "hMetrics": "Indicators",
+           "revenuePerM2": "Net revenue per m² (month)",
+           "profitPerM2": "Profit per m² (month)",
+           "capacity": "Simultaneous capacity",
+           "peak": "Estimated peak attendance",
+           "breakEven": "Members to cover expenses",
+           "overCapacity": "Estimated peak attendance exceeds the simultaneous capacity.",
+           "hChart": "Monthly expenses against net revenue",
+           "expenses": "Operating expenses",
+           "hCompare": "24/7 vs conventional",
+           "compareProfit": "Monthly profit",
+           "compareBreakEven": "Break-even members",
+           "assumptions": "Assumptions: the fee includes VAT and expenses do not; peak attendance = average occupancy over opening hours × peak factor (3 for 24/7, 2 for conventional). Hours, staff and security are kept per model so both scenarios can be compared.",
+           "netAnnual": "Annual net revenue"
+         },
+         "report": {
+           "title": "Preliminary profitability analysis",
+           "subtitle": "Gym · an indicative projection produced with the 3DNA calculator from the values entered.",
+           "keywords": "gym, profitability, 24/7, 3DNA",
+           "footerLeft": "© 3DNA · Commercial Space Design",
+           "grossMonthly": "Monthly revenue (incl. VAT)",
+           "grossAnnual": "Annual revenue (incl. VAT)",
+           "profitMonthly": "Monthly operating profit",
+           "profitAnnual": "Annual operating profit",
+           "area": "Available floor area",
+           "modelLabel": "Operating model",
+           "members": "Active paying members",
+           "price": "Monthly fee",
+           "ivaIncl": "incl. VAT",
+           "model247": "Automated 24/7",
+           "modelConv": "Conventional",
+           "hSummary": "Executive summary",
+           "vat": "Output VAT (monthly)",
+           "netMonthly": "Monthly net revenue (excl. VAT)",
+           "netAnnual": "Annual net revenue (excl. VAT)",
+           "expensesMonthly": "Monthly operating expenses",
+           "margin": "Operating margin",
+           "hInputs": "Input assumptions",
+           "capacity": "Simultaneous capacity",
+           "visits": "Visits per member per month",
+           "duration": "Average visit length",
+           "hours": "Opening hours per day",
+           "iva": "VAT (IVA) applied",
+           "hExpenses": "Monthly operating expenses (excl. VAT)",
+           "staff": "Staff",
+           "rent": "Rent",
+           "utilities": "Utilities",
+           "cleaning": "Cleaning",
+           "maintenance": "Maintenance",
+           "security": "Security and access control",
+           "insurance": "Insurance and other costs",
+           "hChart": "Expense breakdown against net revenue",
+           "hOperation": "Operating analysis",
+           "revenuePerM2": "Net revenue per m²",
+           "profitPerM2": "Operating profit per m²",
+           "visitsDay": "Estimated visits per day",
+           "peak": "Estimated peak attendance",
+           "ofCapacity": "{p} of capacity",
+           "breakEven": "Members needed to cover expenses",
+           "overCapacityNote": "Estimated peak attendance exceeds the stated simultaneous capacity: review the capacity, opening hours or member count.",
+           "hCompare": "24/7 vs conventional operation",
+           "compareIntro": "Same members, fee and shared costs; opening hours, staff and security change with each model.",
+           "compareItem": "Item",
+           "hMethod": "Methodology, assumptions and limits",
+           "method": [
+             "Gross revenue (VAT included) = active members × monthly fee. This is what members pay, including VAT.",
+             "Net revenue (excl. VAT) = gross revenue ÷ (1 + VAT). This is the business income before expenses; the VAT collected is paid to the tax authority.",
+             "Estimated operating profit = net revenue − operating expenses (staff, rent, utilities, cleaning, maintenance, security and access control, insurance and other). It excludes the initial investment, depreciation, interest and income tax.",
+             "Attendance: visits per day = members × visits per member per month ÷ 30.4. Average occupancy = visits per day × visit length ÷ opening hours. Peak attendance = average occupancy × peak factor (3 for 24/7, because night hours lower the average; 2 for conventional).",
+             "Break-even members = monthly operating expenses ÷ fee excl. VAT, rounded up. Annual figures are monthly figures × 12, with no seasonality or member churn."
+           ],
+           "disclaimer": "These results are preliminary estimates based on the values entered in the 3DNA calculator. They are not guaranteed financial outcomes, a business plan, an independently verified assessment or a quote. The data entered belongs to the person who entered it.",
+           "ctaHeading": "Want to turn these numbers into a real gym?",
+           "ctaLines": [
+             "At 3DNA we design commercial spaces that combine experience, functionality and business potential.",
+             "Request a professional design proposal for your gym: concept, layout, zoning and 3D visualization."
+           ],
+           "ctaButton": "Request a 3DNA proposal"
+         }
+       }
     },
     "restaurantsPage": {
       "plan": {
@@ -703,6 +828,115 @@
         "heading": "Want to improve your restaurant?",
         "text": "Let’s design a space that works better.",
         "action": "Start a project"
+      },
+      "calc": {
+         "ui": {
+           "eyebrow": "3DNA / Restaurant Business Tools",
+           "title": "Profitability Calculator",
+           "subtitle": "Calculate your restaurant's potential revenue, expenses and profit.",
+           "example": "Example values based on the 3D restaurant above: replace them with your project's figures.",
+           "pdf": "Download 3DNA PDF",
+           "gBasic": "Restaurant details",
+           "gCosts": "Operating expenses",
+           "gCostsIntro": "Monthly amounts excluding VAT; food & beverage as a percentage of net sales.",
+           "gReport": "Report",
+           "fields": {
+             "area": "Restaurant floor area",
+             "seats": "Number of seats",
+             "check": "Average check (incl. VAT)",
+             "occupancy": "Average seat occupancy",
+             "turns": "Seat turns",
+             "days": "Operating days per month",
+             "fb": "Food & beverage",
+             "staff": "Staff",
+             "rent": "Monthly rent",
+             "utilities": "Utilities",
+             "other": "Other operating costs",
+             "iva": "VAT (IVA)",
+             "project": "Project name (optional)"
+           },
+           "hRevenue": "Revenue",
+           "grossMonthly": "Monthly sales (incl. VAT)",
+           "netMonthly": "Net sales (excl. VAT)",
+           "grossAnnual": "Annual sales (incl. VAT)",
+           "netAnnual": "Annual net sales",
+           "hProfit": "Operating profit",
+           "profitMonthly": "Monthly profit",
+           "profitAnnual": "Annual profit",
+           "margin": "Operating margin",
+           "hMetrics": "Indicators",
+           "visits": "Customer visits per month",
+           "grossPerM2": "Sales per m² (month)",
+           "breakEven": "Break-even (net sales/month)",
+           "breakEvenOccupancy": "Break-even occupancy",
+           "hChart": "Monthly net sales and expenses",
+           "hAssumptions": "Calculation assumptions",
+           "assumptions": "Visits = seats × occupancy × seat turns × days. The check includes VAT; expenses do not. Operating profit before depreciation, interest and income tax. Annual figures = monthly × 12."
+         },
+         "report": {
+           "title": "Restaurant Profitability Analysis",
+           "subtitle": "An indicative projection produced with the 3DNA calculator from the values entered.",
+           "keywords": "restaurant, profitability, revenue, 3DNA",
+           "footerLeft": "© 3DNA · Restaurant Design & Visualization",
+           "grossMonthly": "Monthly sales (incl. VAT)",
+           "grossAnnual": "Annual sales (incl. VAT)",
+           "netMonthly": "Monthly net sales (excl. VAT)",
+           "netAnnual": "Annual net sales (excl. VAT)",
+           "profitMonthly": "Monthly operating profit",
+           "profitAnnual": "Annual operating profit",
+           "margin": "Operating margin",
+           "hProject": "Parameters entered",
+           "area": "Restaurant floor area",
+           "seats": "Seats",
+           "check": "Average check",
+           "ivaIncl": "VAT included",
+           "occupancy": "Average seat occupancy",
+           "turns": "Seat turns per day",
+           "days": "Operating days per month",
+           "iva": "VAT (IVA) applied",
+           "hResults": "Financial results",
+           "vat": "Output VAT (monthly)",
+           "expensesMonthly": "Monthly operating expenses",
+           "hExpenses": "Operating expenses",
+           "expensesIntro": "Monthly amounts excluding VAT. Food & beverage is a percentage of net sales; the rest are monthly amounts.",
+           "fb": "Food & beverage",
+           "staff": "Staff",
+           "rent": "Rent",
+           "utilities": "Utilities",
+           "other": "Other operating costs",
+           "ofNet": "{p} of net sales",
+           "hChart": "Monthly net sales and expenses",
+           "hOperation": "Operating analysis",
+           "visits": "Customer visits",
+           "visitsDay": "Customer visits per day",
+           "grossPerM2": "Sales (incl. VAT) per m²",
+           "netPerM2": "Net sales per m²",
+           "breakEven": "Break-even (net sales)",
+           "breakEvenVisits": "Daily customers to break even",
+           "breakEvenOccupancy": "Break-even occupancy",
+           "hMethod": "Methodology and assumptions",
+           "method": [
+             "Customer visits per month = seats × average occupancy × seat turns per day × operating days.",
+             "Gross sales (VAT included) = visits × average check. This is what customers pay, including VAT.",
+             "Net sales (excl. VAT) = gross sales ÷ (1 + VAT). This is the business income before expenses; the VAT collected is paid to the tax authority.",
+             "Estimated operating profit = net sales − (food & beverage + staff + rent + utilities + other costs). It excludes the initial investment, depreciation, interest and income tax.",
+             "Break-even = (staff + rent + utilities + other costs) ÷ (1 − food & beverage %): the monthly net sales needed to cover expenses under these assumptions. Annual figures are monthly × 12, with no seasonality."
+           ],
+           "disclaimer": "This report is an illustrative projection based on the values entered in the 3DNA calculator. It does not guarantee future profitability and is not a business plan, an independently verified financial assessment or a quote. The data entered belongs to the person who entered it.",
+           "ctaHeading": "Your restaurant starts with a good idea.",
+           "ctaLines": [
+             "The numbers show the potential. Design turns that potential into an experience.",
+             "Contact 3DNA to develop your restaurant's concept, layout and visualization."
+           ],
+           "ctaButton": "Contact 3DNA"
+         }
+       },
+      "wideOverlay": {
+        "full-width-01": {
+          "line1": "Small details",
+          "line2": "that kill your restaurant.",
+          "sub": "I'll help you avoid these mistakes."
+        }
       }
     },
     "cookies": {
@@ -728,6 +962,16 @@
     "footer": {
       "tagline": "Visual Marketing & Immersive 3D Experiences",
       "services": "Services",
+      "sectorLinks": {
+        "restaurants": {
+          "label": "Restaurants, bars & cafés",
+          "href": "/en/restaurants/"
+        },
+        "fitness": {
+          "label": "Gyms & sports centres",
+          "href": "/en/fitness/"
+        }
+      },
       "servicesItems": ["3D design", "Websites & Landing Pages", "Sales funnels", "Applied AI"],
       "legal": "Legal",
       "legalItems": ["Public Offer", "Cookie Policy", "Legal Notice", "Privacy Policy"],
@@ -945,19 +1189,78 @@
         }
       },
       { "id": "workplaces", "index": "04", "title": "Workplaces", "slug": "workplaces" }
-    ]
+    ],
+    "calcCommon": {
+       "ui": {
+         "toolbarLabel": "Calculator actions",
+         "shareSection": "Share calculator",
+         "shareCalc": "Share my calculation",
+         "save": "Save calculation",
+         "print": "Print",
+         "shareSectionTitle": "3DNA calculator",
+         "shareCalcTitle": "My calculation with the 3DNA calculator",
+         "copiedSection": "Calculator link copied.",
+         "copiedCalc": "Link with your calculation copied.",
+         "copyManual": "Copy this link:",
+         "linkLabel": "Link to share",
+         "saved": "Calculation saved in this browser.",
+         "saveFailed": "Could not save: this browser does not allow local storage.",
+         "savedTitle": "Saved calculations",
+         "savedNote": "Stored only in this browser. Nothing is sent to a server.",
+         "open": "Open",
+         "delete": "Delete",
+         "deleted": "Calculation deleted.",
+         "opened": "Saved calculation opened.",
+         "untitled": "Untitled calculation",
+         "pdfWorking": "Creating the PDF…",
+         "pdfDone": "PDF downloaded.",
+         "pdfFailed": "The PDF could not be created. Try again or use Print.",
+         "perMonth": "/month",
+         "profitShort": "profit",
+         "membersShort": "members",
+         "units": {
+           "m2": "m²",
+           "eur": "€",
+           "eurMonth": "€/month",
+           "pct": "%",
+           "pctNet": "% net",
+           "days": "days",
+           "turns": "/day",
+           "seats": "seats",
+           "people": "people",
+           "members": "members",
+           "perMonth": "/month",
+           "min": "min",
+           "h": "h"
+         }
+       },
+       "report": {
+         "kicker": "Report · 3DNA calculator",
+         "dateLine": "Generated on {date}",
+         "page": "Page {n} of {total}",
+         "notAvailable": "Not available",
+         "perMonthNote": "per month",
+         "projectLine": "Project: {name}",
+         "calcLink": "Open this calculation"
+       }
+     }
   },
   "es": {
     "languageName": "Español",
     "meta": {
-      "title": "Diseño de Interiores Comerciales | 3DNA",
-      "description": "3DNA diseña interiores comerciales para restaurantes, espacios fitness, centros sanitarios y oficinas, combinando estrategia, planificación del espacio, visualización 3D y experiencia en diseño comercial.",
+      "title": "Diseño de Interiores Comerciales y Visualización 3D | 3DNA",
+      "description": "Diseño de interiores comerciales desde Granada para restaurantes, bares, cafeterías, gimnasios y clínicas, con visualización 3D y presentaciones interactivas.",
       "ogTitle": "3DNA — Diseño de interiores comerciales",
       "ogLocale": "es_ES",
       "ogImageAlt": "Interior comercial de 3DNA con el texto: Espacios diseñados para funcionar."
     },
     "schema": {
-      "organizationDescription": "Estudio de diseño de interiores comerciales para restaurantes, espacios fitness, entornos sanitarios y oficinas."
+      "organizationDescription": "Estudio de diseño de interiores comerciales para restaurantes, espacios fitness, entornos sanitarios y oficinas.",
+      "breadcrumbHome": "Inicio",
+      "services": {
+        "restaurants": "Diseño de restaurantes, bares y cafeterías",
+        "fitness": "Diseño de gimnasios y centros deportivos"
+      }
     },
     "a11y": {
       "skipToContent": "Saltar al contenido",
@@ -1167,8 +1470,8 @@
     "fitnessPage": {
       "slug": "gimnasios",
       "meta": {
-        "title": "Diseño de Gimnasios y Espacios Fitness | 3DNA",
-        "description": "Diseño de interiores para gimnasios, estudios boutique y espacios wellness: distribución, circulación, iluminación, materiales y visualización 3D antes de la obra.",
+        "title": "Diseño de Gimnasios y Centros Deportivos | 3DNA",
+        "description": "Diseño de gimnasios, centros deportivos y estudios boutique: distribución, zonificación, iluminación y modelos 3D interactivos para decidir antes de la obra.",
         "ogTitle": "Gimnasios: espacios diseñados para rendir | 3DNA",
         "ogImageAlt": "Club fitness diseñado por 3DNA con el texto: Espacios diseñados para rendir."
       },
@@ -1439,7 +1742,127 @@
           ],
           "note": "Visualizaciones del diseño propuesto; no son fotografías de un espacio construido."
         }
-      }
+      },
+      "calc": {
+         "ui": {
+           "eyebrow": "3DNA / Fitness Business Tools",
+           "title": "Calculadora de Rentabilidad",
+           "subtitle": "Descubre el potencial económico de tu gimnasio. Introduce tus datos y calcula ingresos, gastos y rentabilidad.",
+           "example": "Valores de ejemplo ilustrativos: sustitúyelos por los de tu proyecto.",
+           "pdf": "Descargar PDF 3DNA",
+           "gSpace": "Espacio y socios",
+           "gOps": "Operación",
+           "gCosts": "Gastos mensuales (sin IVA)",
+           "gTax": "IVA y proyecto",
+           "fields": {
+             "area": "Superficie disponible",
+             "capacity": "Aforo simultáneo",
+             "members": "Socios activos de pago",
+             "price": "Cuota mensual (IVA incl.)",
+             "model": "Modelo de operación",
+             "visits": "Visitas por socio",
+             "duration": "Duración media de la visita",
+             "hours": "Horas de apertura al día",
+             "staff": "Personal",
+             "rent": "Alquiler",
+             "utilities": "Suministros",
+             "cleaning": "Limpieza",
+             "maintenance": "Mantenimiento",
+             "security": "Seguridad y control de accesos",
+             "insurance": "Seguros y otros gastos",
+             "iva": "IVA",
+             "project": "Nombre del proyecto (opcional)"
+           },
+           "model247": "Acceso 24/7 automatizado",
+           "modelConv": "Convencional con recepción",
+           "hRevenue": "Ingresos",
+           "grossMonthly": "Ingresos mensuales (IVA incl.)",
+           "netMonthly": "Ingresos netos (sin IVA)",
+           "grossAnnual": "Ingresos anuales (IVA incl.)",
+           "hProfit": "Beneficio operativo",
+           "profitMonthly": "Beneficio mensual",
+           "profitAnnual": "Beneficio anual",
+           "margin": "Margen operativo",
+           "hMetrics": "Indicadores",
+           "revenuePerM2": "Ingresos netos por m² (mes)",
+           "profitPerM2": "Beneficio por m² (mes)",
+           "capacity": "Aforo simultáneo",
+           "peak": "Asistencia punta estimada",
+           "breakEven": "Socios para cubrir gastos",
+           "overCapacity": "La asistencia punta estimada supera el aforo simultáneo.",
+           "hChart": "Gastos mensuales frente a ingresos netos",
+           "expenses": "Gastos operativos",
+           "hCompare": "24/7 frente a convencional",
+           "compareProfit": "Beneficio mensual",
+           "compareBreakEven": "Socios de equilibrio",
+           "assumptions": "Supuestos: la cuota incluye IVA y los gastos no; asistencia punta = ocupación media durante el horario × factor de hora punta (3 en 24/7, 2 en convencional). Horario, personal y seguridad se guardan por modelo para comparar ambos escenarios.",
+           "netAnnual": "Ingresos netos anuales"
+         },
+         "report": {
+           "title": "Análisis preliminar de rentabilidad",
+           "subtitle": "Gimnasio · proyección orientativa elaborada con la calculadora de 3DNA a partir de los datos introducidos.",
+           "keywords": "gimnasio, rentabilidad, 24/7, 3DNA",
+           "footerLeft": "© 3DNA · Commercial Space Design",
+           "grossMonthly": "Ingresos mensuales (IVA incl.)",
+           "grossAnnual": "Ingresos anuales (IVA incl.)",
+           "profitMonthly": "Beneficio operativo mensual",
+           "profitAnnual": "Beneficio operativo anual",
+           "area": "Superficie disponible",
+           "modelLabel": "Modelo de operación",
+           "members": "Socios activos de pago",
+           "price": "Cuota mensual",
+           "ivaIncl": "IVA incl.",
+           "model247": "24/7 automatizado",
+           "modelConv": "Convencional",
+           "hSummary": "Resumen ejecutivo",
+           "vat": "IVA repercutido (mensual)",
+           "netMonthly": "Ingresos netos mensuales (sin IVA)",
+           "netAnnual": "Ingresos netos anuales (sin IVA)",
+           "expensesMonthly": "Gastos operativos mensuales",
+           "margin": "Margen operativo",
+           "hInputs": "Supuestos introducidos",
+           "capacity": "Aforo simultáneo",
+           "visits": "Visitas por socio al mes",
+           "duration": "Duración media de la visita",
+           "hours": "Horas de apertura al día",
+           "iva": "IVA aplicado",
+           "hExpenses": "Gastos operativos mensuales (sin IVA)",
+           "staff": "Personal",
+           "rent": "Alquiler",
+           "utilities": "Suministros",
+           "cleaning": "Limpieza",
+           "maintenance": "Mantenimiento",
+           "security": "Seguridad y control de accesos",
+           "insurance": "Seguros y otros gastos",
+           "hChart": "Desglose de gastos frente a ingresos netos",
+           "hOperation": "Análisis operativo",
+           "revenuePerM2": "Ingresos netos por m²",
+           "profitPerM2": "Beneficio operativo por m²",
+           "visitsDay": "Visitas estimadas al día",
+           "peak": "Asistencia punta estimada",
+           "ofCapacity": "{p} del aforo",
+           "breakEven": "Socios necesarios para cubrir gastos",
+           "overCapacityNote": "La asistencia punta estimada supera el aforo simultáneo indicado: conviene revisar el aforo, el horario o el número de socios.",
+           "hCompare": "24/7 frente a operación convencional",
+           "compareIntro": "Mismos socios, cuota y gastos comunes; cambian el horario, el personal y la seguridad de cada modelo.",
+           "compareItem": "Concepto",
+           "hMethod": "Metodología, supuestos y límites",
+           "method": [
+             "Ingresos brutos (IVA incluido) = socios activos × cuota mensual. Es lo que pagan los socios, con IVA.",
+             "Ingresos netos (sin IVA) = ingresos brutos ÷ (1 + IVA). Es el ingreso del negocio antes de gastos; el IVA repercutido se liquida a Hacienda.",
+             "Beneficio operativo estimado = ingresos netos − gastos operativos (personal, alquiler, suministros, limpieza, mantenimiento, seguridad y control de accesos, seguros y otros). No incluye inversión inicial, amortizaciones, intereses ni impuestos sobre beneficios.",
+             "Asistencia: visitas al día = socios × visitas por socio al mes ÷ 30,4. Ocupación media = visitas al día × duración de la visita ÷ horas de apertura. Asistencia punta = ocupación media × factor de hora punta (3 en 24/7, porque las horas nocturnas reducen la media; 2 en convencional).",
+             "Socios de equilibrio = gastos operativos mensuales ÷ cuota sin IVA, redondeado al alza. Las cifras anuales son las mensuales × 12, sin estacionalidad ni bajas de socios."
+           ],
+           "disclaimer": "Estos resultados son estimaciones preliminares basadas en los valores introducidos en la calculadora de 3DNA. No son resultados financieros garantizados, ni un plan de negocio, ni una valoración verificada de forma independiente, ni un presupuesto. Los datos introducidos pertenecen a quien los introduce.",
+           "ctaHeading": "¿Quieres convertir estos números en un gimnasio real?",
+           "ctaLines": [
+             "En 3DNA diseñamos espacios comerciales que combinan experiencia, funcionalidad y potencial de negocio.",
+             "Solicita una propuesta profesional de diseño para tu gimnasio: concepto, distribución, zonificación y visualización 3D."
+           ],
+           "ctaButton": "Solicitar propuesta a 3DNA"
+         }
+       }
     },
     "restaurantsPage": {
       "plan": {
@@ -1563,8 +1986,8 @@
       },
       "slug": "restaurantes",
       "meta": {
-        "title": "Diseño de Restaurantes | Interiores Comerciales | 3DNA",
-        "description": "Diseño de interiores para restaurantes: distribución, circulación, iluminación, ergonomía y visualización 3D para evitar errores costosos antes de la obra.",
+        "title": "Diseño de Restaurantes, Bares y Cafeterías | 3DNA",
+        "description": "Diseño de interiores para restaurantes, bares y cafeterías: distribución, circulación, iluminación y visualización 3D para evitar errores costosos en obra.",
         "ogTitle": "Restaurantes: espacios diseñados para funcionar | 3DNA",
         "ogImageAlt": "Interior de restaurante de 3DNA con el texto: Espacios diseñados para funcionar."
       },
@@ -1651,6 +2074,115 @@
         "heading": "¿Quieres mejorar tu restaurante?",
         "text": "Diseñemos un espacio que funcione mejor.",
         "action": "Empezar un proyecto"
+      },
+      "calc": {
+         "ui": {
+           "eyebrow": "3DNA / Restaurant Business Tools",
+           "title": "Calculadora de Rentabilidad",
+           "subtitle": "Calcula los ingresos, gastos y beneficios potenciales de tu restaurante.",
+           "example": "Valores de ejemplo basados en el restaurante 3D de arriba: sustitúyelos por los de tu proyecto.",
+           "pdf": "Descargar PDF 3DNA",
+           "gBasic": "Datos del restaurante",
+           "gCosts": "Gastos operativos",
+           "gCostsIntro": "Importes mensuales sin IVA; comida y bebida como porcentaje de las ventas netas.",
+           "gReport": "Informe",
+           "fields": {
+             "area": "Superficie del restaurante",
+             "seats": "Número de plazas",
+             "check": "Ticket medio (IVA incl.)",
+             "occupancy": "Ocupación media de las plazas",
+             "turns": "Rotaciones por plaza",
+             "days": "Días de apertura al mes",
+             "fb": "Comida y bebida",
+             "staff": "Personal",
+             "rent": "Alquiler mensual",
+             "utilities": "Suministros",
+             "other": "Otros gastos operativos",
+             "iva": "IVA",
+             "project": "Nombre del proyecto (opcional)"
+           },
+           "hRevenue": "Ingresos",
+           "grossMonthly": "Ventas mensuales (IVA incl.)",
+           "netMonthly": "Ventas netas (sin IVA)",
+           "grossAnnual": "Ventas anuales (IVA incl.)",
+           "netAnnual": "Ventas netas anuales",
+           "hProfit": "Beneficio operativo",
+           "profitMonthly": "Beneficio mensual",
+           "profitAnnual": "Beneficio anual",
+           "margin": "Margen operativo",
+           "hMetrics": "Indicadores",
+           "visits": "Visitas de clientes al mes",
+           "grossPerM2": "Ventas por m² (mes)",
+           "breakEven": "Equilibrio (ventas netas/mes)",
+           "breakEvenOccupancy": "Ocupación de equilibrio",
+           "hChart": "Ventas netas y gastos mensuales",
+           "hAssumptions": "Supuestos del cálculo",
+           "assumptions": "Visitas = plazas × ocupación × rotaciones × días. El ticket incluye IVA; los gastos no. Beneficio operativo antes de amortizaciones, intereses e impuestos sobre beneficios. Cifras anuales = mensuales × 12."
+         },
+         "report": {
+           "title": "Análisis de Rentabilidad de Restaurantes",
+           "subtitle": "Proyección orientativa elaborada con la calculadora de 3DNA a partir de los datos introducidos.",
+           "keywords": "restaurante, rentabilidad, facturación, 3DNA",
+           "footerLeft": "© 3DNA · Restaurant Design & Visualization",
+           "grossMonthly": "Ventas mensuales (IVA incl.)",
+           "grossAnnual": "Ventas anuales (IVA incl.)",
+           "netMonthly": "Ventas netas mensuales (sin IVA)",
+           "netAnnual": "Ventas netas anuales (sin IVA)",
+           "profitMonthly": "Beneficio operativo mensual",
+           "profitAnnual": "Beneficio operativo anual",
+           "margin": "Margen operativo",
+           "hProject": "Parámetros introducidos",
+           "area": "Superficie del restaurante",
+           "seats": "Plazas",
+           "check": "Ticket medio",
+           "ivaIncl": "IVA incluido",
+           "occupancy": "Ocupación media de las plazas",
+           "turns": "Rotaciones por plaza y día",
+           "days": "Días de apertura al mes",
+           "iva": "IVA aplicado",
+           "hResults": "Resultados financieros",
+           "vat": "IVA repercutido (mensual)",
+           "expensesMonthly": "Gastos operativos mensuales",
+           "hExpenses": "Gastos operativos",
+           "expensesIntro": "Importes mensuales sin IVA. Comida y bebida se calcula como porcentaje de las ventas netas; el resto son importes mensuales.",
+           "fb": "Comida y bebida",
+           "staff": "Personal",
+           "rent": "Alquiler",
+           "utilities": "Suministros",
+           "other": "Otros gastos operativos",
+           "ofNet": "{p} de ventas netas",
+           "hChart": "Ventas netas y gastos mensuales",
+           "hOperation": "Análisis operativo",
+           "visits": "Visitas de clientes",
+           "visitsDay": "Visitas de clientes al día",
+           "grossPerM2": "Ventas (IVA incl.) por m²",
+           "netPerM2": "Ventas netas por m²",
+           "breakEven": "Punto de equilibrio (ventas netas)",
+           "breakEvenVisits": "Clientes diarios para el equilibrio",
+           "breakEvenOccupancy": "Ocupación de equilibrio",
+           "hMethod": "Metodología y supuestos",
+           "method": [
+             "Visitas de clientes al mes = plazas × ocupación media × rotaciones por plaza y día × días de apertura.",
+             "Ventas brutas (IVA incluido) = visitas × ticket medio. Es lo que pagan los clientes, con IVA.",
+             "Ventas netas (sin IVA) = ventas brutas ÷ (1 + IVA). Es el ingreso del negocio antes de gastos; el IVA repercutido se liquida a Hacienda.",
+             "Beneficio operativo estimado = ventas netas − (comida y bebida + personal + alquiler + suministros + otros gastos). No incluye inversión inicial, amortizaciones, intereses ni impuestos sobre beneficios.",
+             "Punto de equilibrio = (personal + alquiler + suministros + otros gastos) ÷ (1 − % comida y bebida): ventas netas mensuales necesarias para cubrir los gastos con estos supuestos. Las cifras anuales son las mensuales × 12, sin estacionalidad."
+           ],
+           "disclaimer": "Este informe es una proyección ilustrativa basada en los valores introducidos en la calculadora de 3DNA. No garantiza la rentabilidad futura y no es un plan de negocio, una valoración financiera verificada de forma independiente ni un presupuesto. Los datos introducidos pertenecen a quien los introduce.",
+           "ctaHeading": "Tu restaurante empieza con una buena idea.",
+           "ctaLines": [
+             "Los números muestran el potencial. El diseño transforma ese potencial en una experiencia.",
+             "Contacta con 3DNA para desarrollar el concepto, la distribución y la visualización de tu restaurante."
+           ],
+           "ctaButton": "Contactar con 3DNA"
+         }
+       },
+      "wideOverlay": {
+        "full-width-01": {
+          "line1": "Pequeños detalles",
+          "line2": "que matan tu restaurante.",
+          "sub": "Te ayudaré a evitar estos errores."
+        }
       }
     },
     "cookies": {
@@ -1676,6 +2208,16 @@
     "footer": {
       "tagline": "Visual Marketing & Experiencias Inmersivas 3D",
       "services": "Servicios",
+      "sectorLinks": {
+        "restaurants": {
+          "label": "Restaurantes, bares y cafeterías",
+          "href": "/es/restaurantes/"
+        },
+        "fitness": {
+          "label": "Gimnasios y centros deportivos",
+          "href": "/gimnasios-3d.html"
+        }
+      },
       "servicesItems": ["Diseño 3D", "Webs y Landing Pages", "Embudos de venta", "IA aplicada"],
       "legal": "Legal",
       "legalItems": ["Oferta Pública", "Política de Cookies", "Aviso Legal", "Política de Privacidad"],
@@ -1893,7 +2435,61 @@
         }
       },
       { "id": "workplaces", "index": "04", "title": "Oficinas", "slug": "oficinas" }
-    ]
+    ],
+    "calcCommon": {
+       "ui": {
+         "toolbarLabel": "Acciones de la calculadora",
+         "shareSection": "Compartir calculadora",
+         "shareCalc": "Compartir mi cálculo",
+         "save": "Guardar cálculo",
+         "print": "Imprimir",
+         "shareSectionTitle": "Calculadora 3DNA",
+         "shareCalcTitle": "Mi cálculo con la calculadora 3DNA",
+         "copiedSection": "Enlace a la calculadora copiado.",
+         "copiedCalc": "Enlace con tu cálculo copiado.",
+         "copyManual": "Copia este enlace:",
+         "linkLabel": "Enlace para compartir",
+         "saved": "Cálculo guardado en este navegador.",
+         "saveFailed": "No se ha podido guardar: el navegador no permite almacenamiento local.",
+         "savedTitle": "Cálculos guardados",
+         "savedNote": "Se guardan solo en este navegador. No se envían a ningún servidor.",
+         "open": "Abrir",
+         "delete": "Eliminar",
+         "deleted": "Cálculo eliminado.",
+         "opened": "Cálculo guardado abierto.",
+         "untitled": "Cálculo sin nombre",
+         "pdfWorking": "Generando el PDF…",
+         "pdfDone": "PDF descargado.",
+         "pdfFailed": "No se ha podido generar el PDF. Prueba de nuevo o usa Imprimir.",
+         "perMonth": "/mes",
+         "profitShort": "beneficio",
+         "membersShort": "socios",
+         "units": {
+           "m2": "m²",
+           "eur": "€",
+           "eurMonth": "€/mes",
+           "pct": "%",
+           "pctNet": "% netas",
+           "days": "días",
+           "turns": "/día",
+           "seats": "plazas",
+           "people": "pers.",
+           "members": "socios",
+           "perMonth": "/mes",
+           "min": "min",
+           "h": "h"
+         }
+       },
+       "report": {
+         "kicker": "Informe · Calculadora 3DNA",
+         "dateLine": "Generado el {date}",
+         "page": "Página {n} de {total}",
+         "notAvailable": "No disponible",
+         "perMonthNote": "al mes",
+         "projectLine": "Proyecto: {name}",
+         "calcLink": "Abrir este cálculo"
+       }
+     }
   },
   "ru": {
     "languageName": "Русский",
@@ -1905,7 +2501,12 @@
       "ogImageAlt": "Коммерческий интерьер 3DNA с текстом: Пространства, которые работают."
     },
     "schema": {
-      "organizationDescription": "Студия дизайна коммерческих интерьеров: рестораны, фитнес-пространства, медицинские учреждения и офисы."
+      "organizationDescription": "Студия дизайна коммерческих интерьеров: рестораны, фитнес-пространства, медицинские учреждения и офисы.",
+      "breadcrumbHome": "Главная",
+      "services": {
+        "restaurants": "Дизайн ресторанов, баров и кафе",
+        "fitness": "Дизайн спортзалов и спортивных центров"
+      }
     },
     "a11y": {
       "skipToContent": "Перейти к содержанию",
@@ -2387,7 +2988,64 @@
           ],
           "note": "Визуализации предлагаемого дизайна, а не фотографии построенного помещения."
         }
-      }
+      },
+      "calc": {
+         "ui": {
+           "eyebrow": "3DNA / Fitness Business Tools",
+           "title": "Калькулятор рентабельности",
+           "subtitle": "Оцените экономический потенциал вашего спортзала. Введите свои данные и рассчитайте выручку, расходы и рентабельность.",
+           "example": "Значения указаны для примера: замените их данными вашего проекта.",
+           "pdf": "Скачать PDF 3DNA",
+           "gSpace": "Пространство и участники",
+           "gOps": "Работа клуба",
+           "gCosts": "Расходы в месяц (без НДС)",
+           "gTax": "НДС и проект",
+           "fields": {
+             "area": "Доступная площадь",
+             "capacity": "Единовременная вместимость",
+             "members": "Активные платящие участники",
+             "price": "Абонемент в месяц (с НДС)",
+             "model": "Модель работы",
+             "visits": "Посещений на участника",
+             "duration": "Средняя длительность визита",
+             "hours": "Часов работы в день",
+             "staff": "Персонал",
+             "rent": "Аренда",
+             "utilities": "Коммунальные услуги",
+             "cleaning": "Уборка",
+             "maintenance": "Обслуживание",
+             "security": "Охрана и контроль доступа",
+             "insurance": "Страхование и прочие расходы",
+             "iva": "НДС (IVA)",
+             "project": "Название проекта (необязательно)"
+           },
+           "model247": "Автоматизированный доступ 24/7",
+           "modelConv": "Традиционный, с ресепшеном",
+           "hRevenue": "Выручка",
+           "grossMonthly": "Выручка в месяц (с НДС)",
+           "netMonthly": "Чистая выручка (без НДС)",
+           "grossAnnual": "Выручка за год (с НДС)",
+           "hProfit": "Операционная прибыль",
+           "profitMonthly": "Прибыль в месяц",
+           "profitAnnual": "Прибыль за год",
+           "margin": "Операционная маржа",
+           "hMetrics": "Показатели",
+           "revenuePerM2": "Чистая выручка на м² (мес.)",
+           "profitPerM2": "Прибыль на м² (мес.)",
+           "capacity": "Единовременная вместимость",
+           "peak": "Оценка пиковой посещаемости",
+           "breakEven": "Участников для покрытия расходов",
+           "overCapacity": "Оценка пиковой посещаемости превышает вместимость.",
+           "hChart": "Расходы в месяц и чистая выручка",
+           "expenses": "Операционные расходы",
+           "hCompare": "24/7 и традиционная модель",
+           "compareProfit": "Прибыль в месяц",
+           "compareBreakEven": "Участников для безубыточности",
+           "assumptions": "Допущения: абонемент указан с НДС, расходы — без НДС; пиковая посещаемость = средняя загрузка за часы работы × коэффициент пика (3 для 24/7, 2 для традиционной модели). Часы работы, персонал и охрана хранятся отдельно для каждой модели.",
+           "netAnnual": "Чистая выручка за год"
+         },
+         "report": {}
+       }
     },
     "restaurantsPage": {
       "plan": {
@@ -2599,6 +3257,59 @@
         "heading": "Хотите улучшить свой ресторан?",
         "text": "Давайте создадим пространство, которое работает лучше.",
         "action": "Начать проект"
+      },
+      "calc": {
+         "ui": {
+           "eyebrow": "3DNA / Restaurant Business Tools",
+           "title": "Калькулятор рентабельности",
+           "subtitle": "Рассчитайте потенциальную выручку, расходы и прибыль вашего ресторана.",
+           "example": "Значения для примера взяты из 3D-ресторана выше: замените их данными вашего проекта.",
+           "pdf": "Скачать PDF 3DNA",
+           "gBasic": "Данные ресторана",
+           "gCosts": "Операционные расходы",
+           "gCostsIntro": "Суммы в месяц без НДС; еда и напитки — процент от чистой выручки.",
+           "gReport": "Отчёт",
+           "fields": {
+             "area": "Площадь ресторана",
+             "seats": "Количество мест",
+             "check": "Средний чек (с НДС)",
+             "occupancy": "Средняя заполняемость мест",
+             "turns": "Оборачиваемость места",
+             "days": "Рабочих дней в месяц",
+             "fb": "Еда и напитки",
+             "staff": "Персонал",
+             "rent": "Аренда в месяц",
+             "utilities": "Коммунальные услуги",
+             "other": "Прочие операционные расходы",
+             "iva": "НДС (IVA)",
+             "project": "Название проекта (необязательно)"
+           },
+           "hRevenue": "Выручка",
+           "grossMonthly": "Продажи в месяц (с НДС)",
+           "netMonthly": "Чистая выручка (без НДС)",
+           "grossAnnual": "Продажи за год (с НДС)",
+           "netAnnual": "Чистая выручка за год",
+           "hProfit": "Операционная прибыль",
+           "profitMonthly": "Прибыль в месяц",
+           "profitAnnual": "Прибыль за год",
+           "margin": "Операционная маржа",
+           "hMetrics": "Показатели",
+           "visits": "Гостей в месяц",
+           "grossPerM2": "Продажи на м² (мес.)",
+           "breakEven": "Безубыточность (чистая выручка/мес.)",
+           "breakEvenOccupancy": "Заполняемость безубыточности",
+           "hChart": "Чистая выручка и расходы в месяц",
+           "hAssumptions": "Допущения расчёта",
+           "assumptions": "Гости = места × заполняемость × оборачиваемость × дни. Чек включает НДС, расходы — нет. Операционная прибыль до амортизации, процентов и налога на прибыль. Годовые суммы = месячные × 12."
+         },
+         "report": {}
+       },
+      "wideOverlay": {
+        "full-width-01": {
+          "line1": "Мелочи,",
+          "line2": "которые убивают ваш ресторан.",
+          "sub": "Я помогу вам избежать этих ошибок."
+        }
       }
     },
     "cookies": {
@@ -2624,6 +3335,16 @@
     "footer": {
       "tagline": "Визуальный маркетинг и иммерсивный 3D",
       "services": "Услуги",
+      "sectorLinks": {
+        "restaurants": {
+          "label": "Рестораны, бары и кафе",
+          "href": "/ru/restaurants/"
+        },
+        "fitness": {
+          "label": "Спортзалы и спортивные центры",
+          "href": "/ru/fitness/"
+        }
+      },
       "servicesItems": ["3D-дизайн", "Сайты и лендинги", "Воронки продаж", "Прикладной ИИ"],
       "legal": "Правовая информация",
       "legalItems": ["Публичная оферта", "Политика cookie", "Правовое уведомление", "Политика конфиденциальности"],
@@ -2841,7 +3562,61 @@
         }
       },
       { "id": "workplaces", "index": "04", "title": "Офисы", "slug": "workplaces" }
-    ]
+    ],
+    "calcCommon": {
+       "ui": {
+         "toolbarLabel": "Действия калькулятора",
+         "shareSection": "Поделиться калькулятором",
+         "shareCalc": "Поделиться моим расчётом",
+         "save": "Сохранить расчёт",
+         "print": "Печать",
+         "shareSectionTitle": "Калькулятор 3DNA",
+         "shareCalcTitle": "Мой расчёт в калькуляторе 3DNA",
+         "copiedSection": "Ссылка на калькулятор скопирована.",
+         "copiedCalc": "Ссылка с вашим расчётом скопирована.",
+         "copyManual": "Скопируйте ссылку:",
+         "linkLabel": "Ссылка для отправки",
+         "saved": "Расчёт сохранён в этом браузере.",
+         "saveFailed": "Не удалось сохранить: браузер не разрешает локальное хранилище.",
+         "savedTitle": "Сохранённые расчёты",
+         "savedNote": "Хранятся только в этом браузере и никуда не отправляются.",
+         "open": "Открыть",
+         "delete": "Удалить",
+         "deleted": "Расчёт удалён.",
+         "opened": "Сохранённый расчёт открыт.",
+         "untitled": "Расчёт без названия",
+         "pdfWorking": "Создаём PDF…",
+         "pdfDone": "PDF загружен.",
+         "pdfFailed": "Не удалось создать PDF. Попробуйте ещё раз или используйте печать.",
+         "perMonth": "/мес.",
+         "profitShort": "прибыль",
+         "membersShort": "участников",
+         "units": {
+           "m2": "м²",
+           "eur": "€",
+           "eurMonth": "€/мес.",
+           "pct": "%",
+           "pctNet": "% чист.",
+           "days": "дн.",
+           "turns": "/день",
+           "seats": "мест",
+           "people": "чел.",
+           "members": "уч.",
+           "perMonth": "/мес.",
+           "min": "мин",
+           "h": "ч"
+         }
+       },
+       "report": {
+         "kicker": "Отчёт · Калькулятор 3DNA",
+         "dateLine": "Создан {date}",
+         "page": "Страница {n} из {total}",
+         "notAvailable": "Нет данных",
+         "perMonthNote": "в месяц",
+         "projectLine": "Проект: {name}",
+         "calcLink": "Открыть этот расчёт"
+       }
+     }
   },
   "uk": {
     "languageName": "Українська",
@@ -2853,7 +3628,12 @@
       "ogImageAlt": "Комерційний інтер'єр 3DNA з текстом: Простори, які працюють."
     },
     "schema": {
-      "organizationDescription": "Студія дизайну комерційних інтер'єрів: ресторани, фітнес-простори, медичні заклади та офіси."
+      "organizationDescription": "Студія дизайну комерційних інтер'єрів: ресторани, фітнес-простори, медичні заклади та офіси.",
+      "breadcrumbHome": "Головна",
+      "services": {
+        "restaurants": "Дизайн ресторанів, барів і кав'ярень",
+        "fitness": "Дизайн спортзалів і спортивних центрів"
+      }
     },
     "a11y": {
       "skipToContent": "Перейти до вмісту",
@@ -3335,7 +4115,64 @@
           ],
           "note": "Візуалізації запропонованого дизайну, а не фотографії збудованого приміщення."
         }
-      }
+      },
+      "calc": {
+         "ui": {
+           "eyebrow": "3DNA / Fitness Business Tools",
+           "title": "Калькулятор рентабельності",
+           "subtitle": "Оцініть економічний потенціал вашого спортзалу. Введіть свої дані й розрахуйте виручку, витрати та рентабельність.",
+           "example": "Значення наведено для прикладу: замініть їх даними вашого проєкту.",
+           "pdf": "Завантажити PDF 3DNA",
+           "gSpace": "Простір і учасники",
+           "gOps": "Робота клубу",
+           "gCosts": "Витрати на місяць (без ПДВ)",
+           "gTax": "ПДВ і проєкт",
+           "fields": {
+             "area": "Доступна площа",
+             "capacity": "Одночасна місткість",
+             "members": "Активні учасники, що платять",
+             "price": "Абонемент на місяць (з ПДВ)",
+             "model": "Модель роботи",
+             "visits": "Відвідувань на учасника",
+             "duration": "Середня тривалість візиту",
+             "hours": "Годин роботи на день",
+             "staff": "Персонал",
+             "rent": "Оренда",
+             "utilities": "Комунальні послуги",
+             "cleaning": "Прибирання",
+             "maintenance": "Обслуговування",
+             "security": "Охорона й контроль доступу",
+             "insurance": "Страхування та інші витрати",
+             "iva": "ПДВ (IVA)",
+             "project": "Назва проєкту (необов'язково)"
+           },
+           "model247": "Автоматизований доступ 24/7",
+           "modelConv": "Традиційний, з рецепцією",
+           "hRevenue": "Виручка",
+           "grossMonthly": "Виручка на місяць (з ПДВ)",
+           "netMonthly": "Чиста виручка (без ПДВ)",
+           "grossAnnual": "Виручка за рік (з ПДВ)",
+           "hProfit": "Операційний прибуток",
+           "profitMonthly": "Прибуток на місяць",
+           "profitAnnual": "Прибуток за рік",
+           "margin": "Операційна маржа",
+           "hMetrics": "Показники",
+           "revenuePerM2": "Чиста виручка на м² (міс.)",
+           "profitPerM2": "Прибуток на м² (міс.)",
+           "capacity": "Одночасна місткість",
+           "peak": "Оцінка пікової відвідуваності",
+           "breakEven": "Учасників для покриття витрат",
+           "overCapacity": "Оцінка пікової відвідуваності перевищує місткість.",
+           "hChart": "Витрати на місяць і чиста виручка",
+           "expenses": "Операційні витрати",
+           "hCompare": "24/7 і традиційна модель",
+           "compareProfit": "Прибуток на місяць",
+           "compareBreakEven": "Учасників для беззбитковості",
+           "assumptions": "Припущення: абонемент указано з ПДВ, витрати — без ПДВ; пікова відвідуваність = середнє завантаження за години роботи × коефіцієнт піку (3 для 24/7, 2 для традиційної моделі). Години роботи, персонал і охорона зберігаються окремо для кожної моделі.",
+           "netAnnual": "Чиста виручка за рік"
+         },
+         "report": {}
+       }
     },
     "restaurantsPage": {
       "plan": {
@@ -3547,6 +4384,59 @@
         "heading": "Хочете покращити свій ресторан?",
         "text": "Давайте створимо простір, який працює краще.",
         "action": "Розпочати проєкт"
+      },
+      "calc": {
+         "ui": {
+           "eyebrow": "3DNA / Restaurant Business Tools",
+           "title": "Калькулятор рентабельності",
+           "subtitle": "Розрахуйте потенційну виручку, витрати й прибуток вашого ресторану.",
+           "example": "Значення для прикладу взято з 3D-ресторану вище: замініть їх даними вашого проєкту.",
+           "pdf": "Завантажити PDF 3DNA",
+           "gBasic": "Дані ресторану",
+           "gCosts": "Операційні витрати",
+           "gCostsIntro": "Суми на місяць без ПДВ; їжа та напої — відсоток від чистої виручки.",
+           "gReport": "Звіт",
+           "fields": {
+             "area": "Площа ресторану",
+             "seats": "Кількість місць",
+             "check": "Середній чек (з ПДВ)",
+             "occupancy": "Середня заповненість місць",
+             "turns": "Оборотність місця",
+             "days": "Робочих днів на місяць",
+             "fb": "Їжа та напої",
+             "staff": "Персонал",
+             "rent": "Оренда на місяць",
+             "utilities": "Комунальні послуги",
+             "other": "Інші операційні витрати",
+             "iva": "ПДВ (IVA)",
+             "project": "Назва проєкту (необов'язково)"
+           },
+           "hRevenue": "Виручка",
+           "grossMonthly": "Продажі на місяць (з ПДВ)",
+           "netMonthly": "Чиста виручка (без ПДВ)",
+           "grossAnnual": "Продажі за рік (з ПДВ)",
+           "netAnnual": "Чиста виручка за рік",
+           "hProfit": "Операційний прибуток",
+           "profitMonthly": "Прибуток на місяць",
+           "profitAnnual": "Прибуток за рік",
+           "margin": "Операційна маржа",
+           "hMetrics": "Показники",
+           "visits": "Гостей на місяць",
+           "grossPerM2": "Продажі на м² (міс.)",
+           "breakEven": "Беззбитковість (чиста виручка/міс.)",
+           "breakEvenOccupancy": "Заповненість беззбитковості",
+           "hChart": "Чиста виручка й витрати на місяць",
+           "hAssumptions": "Припущення розрахунку",
+           "assumptions": "Гості = місця × заповненість × оборотність × дні. Чек містить ПДВ, витрати — ні. Операційний прибуток до амортизації, відсотків і податку на прибуток. Річні суми = місячні × 12."
+         },
+         "report": {}
+       },
+      "wideOverlay": {
+        "full-width-01": {
+          "line1": "Маленькі деталі,",
+          "line2": "які вбивають ваш ресторан.",
+          "sub": "Я допоможу вам уникнути цих помилок."
+        }
       }
     },
     "cookies": {
@@ -3572,6 +4462,16 @@
     "footer": {
       "tagline": "Візуальний маркетинг та іммерсивний 3D",
       "services": "Послуги",
+      "sectorLinks": {
+        "restaurants": {
+          "label": "Ресторани, бари й кав'ярні",
+          "href": "/uk/restaurants/"
+        },
+        "fitness": {
+          "label": "Спортзали та спортивні центри",
+          "href": "/uk/fitness/"
+        }
+      },
       "servicesItems": ["3D-дизайн", "Сайти та лендинги", "Воронки продажів", "Прикладний ШІ"],
       "legal": "Правова інформація",
       "legalItems": ["Публічна оферта", "Політика cookie", "Правове повідомлення", "Політика конфіденційності"],
@@ -3789,6 +4689,60 @@
         }
       },
       { "id": "workplaces", "index": "04", "title": "Офіси", "slug": "workplaces" }
-    ]
+    ],
+    "calcCommon": {
+       "ui": {
+         "toolbarLabel": "Дії калькулятора",
+         "shareSection": "Поділитися калькулятором",
+         "shareCalc": "Поділитися моїм розрахунком",
+         "save": "Зберегти розрахунок",
+         "print": "Друк",
+         "shareSectionTitle": "Калькулятор 3DNA",
+         "shareCalcTitle": "Мій розрахунок у калькуляторі 3DNA",
+         "copiedSection": "Посилання на калькулятор скопійовано.",
+         "copiedCalc": "Посилання з вашим розрахунком скопійовано.",
+         "copyManual": "Скопіюйте посилання:",
+         "linkLabel": "Посилання для надсилання",
+         "saved": "Розрахунок збережено в цьому браузері.",
+         "saveFailed": "Не вдалося зберегти: браузер не дозволяє локальне сховище.",
+         "savedTitle": "Збережені розрахунки",
+         "savedNote": "Зберігаються лише в цьому браузері й нікуди не надсилаються.",
+         "open": "Відкрити",
+         "delete": "Видалити",
+         "deleted": "Розрахунок видалено.",
+         "opened": "Збережений розрахунок відкрито.",
+         "untitled": "Розрахунок без назви",
+         "pdfWorking": "Створюємо PDF…",
+         "pdfDone": "PDF завантажено.",
+         "pdfFailed": "Не вдалося створити PDF. Спробуйте ще раз або скористайтеся друком.",
+         "perMonth": "/міс.",
+         "profitShort": "прибуток",
+         "membersShort": "учасників",
+         "units": {
+           "m2": "м²",
+           "eur": "€",
+           "eurMonth": "€/міс.",
+           "pct": "%",
+           "pctNet": "% чист.",
+           "days": "дн.",
+           "turns": "/день",
+           "seats": "місць",
+           "people": "осіб",
+           "members": "уч.",
+           "perMonth": "/міс.",
+           "min": "хв",
+           "h": "год"
+         }
+       },
+       "report": {
+         "kicker": "Звіт · Калькулятор 3DNA",
+         "dateLine": "Створено {date}",
+         "page": "Сторінка {n} з {total}",
+         "notAvailable": "Немає даних",
+         "perMonthNote": "на місяць",
+         "projectLine": "Проєкт: {name}",
+         "calcLink": "Відкрити цей розрахунок"
+       }
+     }
   }
 }
