@@ -11527,4 +11527,9 @@ input.rpc-slider__val[aria-invalid="true"]{ outline: 2px solid var(--bc-neg); }
   #sector-restaurants .sector__cta{ margin-top: 30px; }
   /* the headline + CTA sit above the floating WhatsApp / assistant buttons */
   #sector-restaurants .sector__inner{ padding-bottom: calc(150px + env(safe-area-inset-bottom)); }
+  /* phones: label + headline up in the upper part of the film, the CTA stays at the bottom,
+     so the founder walking through the middle of the frame stays clear */
+  #sector-restaurants .sector__inner{ align-items: stretch; padding-top: 100px; }
+  #sector-restaurants .sector__content{ display: flex; flex-direction: column; align-items: flex-start; }
+  #sector-restaurants .sector__cta{ margin-top: auto; }
 }
