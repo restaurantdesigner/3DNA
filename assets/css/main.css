@@ -7287,7 +7287,15 @@ section#hero.sector-hero,
   transition: filter .3s ease, height .3s ease;
 }
 .has-overlay-header header.topbar.is-solid .brand--logo{ --logo-h: 82px; }
-.has-overlay-header header.topbar.is-solid .brand--logo img{ filter: none; }
+/* strictly monochrome: never the coloured logo. Black on the solid (white) bar, from the
+   same is-solid state that turns the bar white, so both change together. */
+.has-overlay-header header.topbar.is-solid .brand--logo img{ filter: brightness(0); }
+/* before main.js has set the header state: white over a video hero, black everywhere else
+   (no flash of the coloured logo on load) */
+header.topbar .brand--logo img{ filter: brightness(0); }
+body:has(.sector-hero) header.topbar:not(.is-solid) .brand--logo img{ filter: brightness(0) invert(1); }
+/* sidebar menu (white panel): black */
+.mobile-menu .mobile-menu-brand img{ filter: brightness(0); }
 
 .has-overlay-header header.topbar .nav-desktop{ gap: 44px; }
 .has-overlay-header header.topbar .nav-desktop > a{
