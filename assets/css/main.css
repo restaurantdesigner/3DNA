@@ -11379,8 +11379,8 @@ input.rpc-slider__val[aria-invalid="true"]{ outline: 2px solid var(--bc-neg); }
    ink and the bronze accent; one reading column, wider statements, few rules.
    ===================================================================== */
 .apage{
-  --a-ink: #161513; --a-text: #3d3934; --a-muted: #6b6258; --a-accent: #8a6a3a;
-  --a-rule: rgba(22,21,19,.12); --a-paper: #f7f4ef; --a-band: #efe9e0;
+  --a-ink: #000; --a-text: #000; --a-muted: #000; --a-accent: #000;
+  --a-rule: rgba(22,21,19,.12); --a-paper: #fff; --a-band: #fff;
   background: var(--a-paper); color: var(--a-ink);
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }

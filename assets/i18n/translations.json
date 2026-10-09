@@ -1687,24 +1687,24 @@
     "aboutPage": {
       "slug": "about",
       "meta": {
-        "title": "About | Andrei Yafimenka — Founder of 3DNA",
-        "description": "Meet Andrei Yafimenka, founder of 3DNA: 25 years of experience in restaurants, commercial design, engineering, marketing and technology.",
-        "ogTitle": "Andrei Yafimenka — Founder of 3DNA",
-        "ogImageAlt": "Andrei Yafimenka, founder of 3DNA, working on a terrace by the sea"
+        "title": "About | Andrei Yafimenka — Founder of 3dna.es",
+        "description": "Meet Andrei Yafimenka, founder of 3dna.es: 25 years of experience in restaurants, commercial design, engineering, marketing and technology.",
+        "ogTitle": "Andrei Yafimenka — Founder of 3dna.es",
+        "ogImageAlt": "Andrei Yafimenka, founder of 3dna.es, working on a terrace by the sea"
       },
-      "jobTitle": "Founder of 3DNA",
+      "jobTitle": "Founder of 3dna.es",
       "hero": {
         "label": "About",
         "line1": "I don't just design spaces.",
         "line2": "I understand the businesses that live inside them.",
         "sub": "25 years between restaurants, architecture, technology and people.",
         "name": "Andrei Yafimenka",
-        "role": "Founder of 3DNA",
-        "alt": "Andrei Yafimenka, founder of 3DNA, working on a terrace by the sea"
+        "role": "Founder of 3dna.es",
+        "alt": "Andrei Yafimenka, founder of 3dna.es, working on a terrace by the sea"
       },
       "intro": {
         "label": "Behind 3DNA",
-        "lead": "I'm Andrei Yafimenka, founder of 3DNA.",
+        "lead": "I'm Andrei Yafimenka, founder of 3dna.es.",
         "paras": [
           "For 25 years I have worked in the restaurant industry. And if there is one thing I have learned in all that time, it is that a restaurant is never simply a place where food is served."
         ],
@@ -1865,7 +1865,7 @@
           "It is the result of my experience, my curiosity and the way I look at the world."
         ],
         "sigName": "Andrei Yafimenka",
-        "sigRole": "Founder of 3DNA",
+        "sigRole": "Founder of 3dna.es",
         "ctaLead": "Have a project in mind?",
         "cta": "Let's talk about your project",
         "whatsapp": "Or message me on WhatsApp"
@@ -3560,24 +3560,24 @@
     "aboutPage": {
       "slug": "nosotros",
       "meta": {
-        "title": "Nosotros | Andrei Yafimenka — Fundador de 3DNA",
-        "description": "Conoce a Andrei Yafimenka, fundador de 3DNA. 25 años de experiencia en restauración, diseño comercial, ingeniería, marketing y tecnología.",
-        "ogTitle": "Andrei Yafimenka — Fundador de 3DNA",
-        "ogImageAlt": "Andrei Yafimenka, fundador de 3DNA, trabajando en una terraza junto al mar"
+        "title": "Nosotros | Andrei Yafimenka — Fundador de 3dna.es",
+        "description": "Conoce a Andrei Yafimenka, fundador de 3dna.es. 25 años de experiencia en restauración, diseño comercial, ingeniería, marketing y tecnología.",
+        "ogTitle": "Andrei Yafimenka — Fundador de 3dna.es",
+        "ogImageAlt": "Andrei Yafimenka, fundador de 3dna.es, trabajando en una terraza junto al mar"
       },
-      "jobTitle": "Fundador de 3DNA",
+      "jobTitle": "Fundador de 3dna.es",
       "hero": {
         "label": "Nosotros",
         "line1": "No solo diseño espacios.",
         "line2": "Entiendo los negocios que viven dentro de ellos.",
         "sub": "25 años entre restaurantes, arquitectura, tecnología y personas.",
         "name": "Andrei Yafimenka",
-        "role": "Fundador de 3DNA",
-        "alt": "Andrei Yafimenka, fundador de 3DNA, trabajando en una terraza junto al mar"
+        "role": "Fundador de 3dna.es",
+        "alt": "Andrei Yafimenka, fundador de 3dna.es, trabajando en una terraza junto al mar"
       },
       "intro": {
         "label": "Detrás de 3DNA",
-        "lead": "Soy Andrei Yafimenka, fundador de 3DNA.",
+        "lead": "Soy Andrei Yafimenka, fundador de 3dna.es.",
         "paras": [
           "Durante 25 años he trabajado en el sector de la restauración. Y si algo he aprendido en todo este tiempo es que un restaurante nunca es simplemente un lugar donde se sirve comida."
         ],
@@ -3738,7 +3738,7 @@
           "Es el resultado de mi experiencia, mi curiosidad y mi forma de mirar el mundo."
         ],
         "sigName": "Andrei Yafimenka",
-        "sigRole": "Fundador de 3DNA",
+        "sigRole": "Fundador de 3dna.es",
         "ctaLead": "¿Tienes un proyecto en mente?",
         "cta": "Hablemos de tu proyecto",
         "whatsapp": "O escríbeme por WhatsApp"
@@ -5433,10 +5433,10 @@
     "aboutPage": {
       "slug": "about",
       "meta": {
-        "title": "О нас | Andrei Yafimenka — основатель 3DNA",
-        "description": "Знакомьтесь: Andrei Yafimenka, основатель 3DNA. 25 лет опыта в ресторанном бизнесе, коммерческом дизайне, инженерии, маркетинге и технологиях.",
-        "ogTitle": "Andrei Yafimenka — основатель 3DNA",
-        "ogImageAlt": "Andrei Yafimenka, основатель 3DNA, работает на террасе у моря"
+        "title": "О нас | Andrei Yafimenka — основатель 3dna.es",
+        "description": "Знакомьтесь: Andrei Yafimenka, основатель 3dna.es. 25 лет опыта в ресторанном бизнесе, коммерческом дизайне, инженерии, маркетинге и технологиях.",
+        "ogTitle": "Andrei Yafimenka — основатель 3dna.es",
+        "ogImageAlt": "Andrei Yafimenka, основатель 3dna.es, работает на террасе у моря"
       },
       "jobTitle": "Основатель 3DNA",
       "hero": {
@@ -5446,11 +5446,11 @@
         "sub": "25 лет между ресторанами, архитектурой, технологиями и людьми.",
         "name": "Andrei Yafimenka",
         "role": "Основатель 3DNA",
-        "alt": "Andrei Yafimenka, основатель 3DNA, работает на террасе у моря"
+        "alt": "Andrei Yafimenka, основатель 3dna.es, работает на террасе у моря"
       },
       "intro": {
         "label": "За 3DNA",
-        "lead": "Меня зовут Andrei Yafimenka, я основатель 3DNA.",
+        "lead": "Меня зовут Andrei Yafimenka, я основатель 3dna.es.",
         "paras": [
           "25 лет я работаю в ресторанной сфере. И если я чему-то научился за это время, так это тому, что ресторан — никогда не просто место, где подают еду."
         ],
@@ -7306,10 +7306,10 @@
     "aboutPage": {
       "slug": "about",
       "meta": {
-        "title": "Про нас | Andrei Yafimenka — засновник 3DNA",
-        "description": "Знайомтеся: Andrei Yafimenka, засновник 3DNA. 25 років досвіду в ресторанному бізнесі, комерційному дизайні, інженерії, маркетингу й технологіях.",
-        "ogTitle": "Andrei Yafimenka — засновник 3DNA",
-        "ogImageAlt": "Andrei Yafimenka, засновник 3DNA, працює на терасі біля моря"
+        "title": "Про нас | Andrei Yafimenka — засновник 3dna.es",
+        "description": "Знайомтеся: Andrei Yafimenka, засновник 3dna.es. 25 років досвіду в ресторанному бізнесі, комерційному дизайні, інженерії, маркетингу й технологіях.",
+        "ogTitle": "Andrei Yafimenka — засновник 3dna.es",
+        "ogImageAlt": "Andrei Yafimenka, засновник 3dna.es, працює на терасі біля моря"
       },
       "jobTitle": "Засновник 3DNA",
       "hero": {
@@ -7319,11 +7319,11 @@
         "sub": "25 років між ресторанами, архітектурою, технологіями та людьми.",
         "name": "Andrei Yafimenka",
         "role": "Засновник 3DNA",
-        "alt": "Andrei Yafimenka, засновник 3DNA, працює на терасі біля моря"
+        "alt": "Andrei Yafimenka, засновник 3dna.es, працює на терасі біля моря"
       },
       "intro": {
         "label": "За 3DNA",
-        "lead": "Мене звати Andrei Yafimenka, я засновник 3DNA.",
+        "lead": "Мене звати Andrei Yafimenka, я засновник 3dna.es.",
         "paras": [
           "25 років я працюю в ресторанній сфері. І якщо чогось я навчився за цей час, то це того, що ресторан — ніколи не просто місце, де подають їжу."
         ],
