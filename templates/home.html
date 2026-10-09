@@ -117,39 +117,27 @@
      Video loading, reveal and view tracking: "SECTOR SECTIONS" in main.js. -->
 <section class="sector" id="sector-restaurants" data-sector="restaurants"
   data-track-view="restaurant_section_viewed" aria-labelledby="sector-restaurants-title"
-  style="--sector-poster: url('/images/sector-restaurants-still.webp'); --sector-poster-mobile: url('/images/sector-restaurants-still-mobile.webp')">
+  style="--sector-poster: url('/images/restaurants/hero/hero-poster-desktop.webp'); --sector-poster-mobile: url('/images/restaurants/hero/hero-poster-mobile.webp')">
   <div class="sector__media" aria-hidden="true">
+    <!-- the Restaurants page hero film (same files): phones get the vertical cut, everything else the 16:9 one -->
     <video class="sector__video" muted loop playsinline preload="none" tabindex="-1"
       width="1280" height="720"
-      poster="/images/sector-restaurants-poster.webp"
-      data-src="/videos/sector-restaurants.mp4?v=3"></video>
+      poster="/images/restaurants/hero/hero-poster-desktop.webp"
+      data-src="/videos/restaurants/hero/restaurant-hero-tablet-desktop.mp4"
+      data-src-desktop="/videos/restaurants/hero/restaurant-hero-tablet-desktop.mp4" data-src-mobile="/videos/restaurants/hero/restaurant-hero-mobile.mp4"
+      data-poster-mobile="/images/restaurants/hero/hero-poster-mobile.webp"></video>
+    <!-- same device rule as the Restaurants hero (shortest screen side < 600 px + touch), before main.js attaches the source -->
+    <script>(function(v){var s=window.screen||{},a=Math.min(s.width||innerWidth,s.height||innerHeight),m=a<600&&(navigator.maxTouchPoints>0||"ontouchstart" in window);if(m){v.setAttribute("data-src",v.getAttribute("data-src-mobile"));v.setAttribute("poster",v.getAttribute("data-poster-mobile"));}})(document.currentScript.previousElementSibling);</script>
   </div>
   <div class="sector__overlay" aria-hidden="true"></div>
 
   <div class="sector__inner">
     <div class="sector__content">
-      <p class="sector__label">
-        <span class="sector__index">{{sectors.0.index}}</span>
-        <span class="sector__slash" aria-hidden="true">/</span>
-        <span>{{sectors.0.title}}</span>
-      </p>
       <h2 class="sector__title" id="sector-restaurants-title" aria-label="{{sectors.0.section.headingText}}">
         <span class="sector__line" aria-hidden="true">{{sectors.0.section.heading.0}}</span>
         <span class="sector__line" aria-hidden="true">{{sectors.0.section.heading.1}}</span>
         <span class="sector__line" aria-hidden="true"><em>{{sectors.0.section.heading.2}}</em></span>
       </h2>
-      <p class="sector__text">{{sectors.0.section.body}}</p>
-      <a class="sector__cta" href="/{{lang}}/{{restaurantsPage.slug}}/"
-        data-track="view_projects_clicked" data-track-location="sector_restaurants">
-        <span class="sector__cta-text">{{sectors.0.section.cta}}</span><span class="sector__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" focusable="false"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </a>
-      <ul class="sector__services" aria-label="{{hero.servicesLabel}}">
-        <li>{{sectors.0.section.services.0}}</li>
-        <li>{{sectors.0.section.services.1}}</li>
-        <li>{{sectors.0.section.services.2}}</li>
-        <li>{{sectors.0.section.services.3}}</li>
-        <li>{{sectors.0.section.services.4}}</li>
-      </ul>
     </div>
   </div>
 </section>
