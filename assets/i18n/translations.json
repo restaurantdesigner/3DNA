@@ -1605,7 +1605,7 @@
         }
       },
       {
-        "id": "fitness", "index": "03", "title": "Fitness", "slug": "fitness",
+        "id": "fitness", "index": "02", "title": "Fitness", "slug": "fitness",
         "section": {
           "heading": ["Spaces", "designed to", "perform."],
           "headingText": "Spaces designed to perform.",
@@ -1618,7 +1618,7 @@
         }
       },
       {
-        "id": "healthcare", "index": "04", "title": "Healthcare", "slug": "healthcare",
+        "id": "healthcare", "index": "03", "title": "Healthcare", "slug": "healthcare",
         "section": {
           "heading": ["Spaces", "designed to", "care."],
           "headingText": "Spaces designed to care.",
@@ -1628,7 +1628,7 @@
           "services": ["Patient journey", "Space planning", "Lighting", "Materials", "3D visualization"]
         }
       },
-      { "id": "workplaces", "index": "05", "title": "Workplaces", "slug": "workplaces" }
+      { "id": "workplaces", "index": "04", "title": "Workplaces", "slug": "workplaces" }
     ],
     "calcCommon": {
        "ui": {
@@ -3489,7 +3489,7 @@
         }
       },
       {
-        "id": "fitness", "index": "03", "title": "Gimnasios", "slug": "gimnasios",
+        "id": "fitness", "index": "02", "title": "Gimnasios", "slug": "gimnasios",
         "section": {
           "heading": ["Espacios", "diseñados para", "rendir."],
           "headingText": "Espacios diseñados para rendir.",
@@ -3502,7 +3502,7 @@
         }
       },
       {
-        "id": "healthcare", "index": "04", "title": "Salud", "slug": "salud",
+        "id": "healthcare", "index": "03", "title": "Salud", "slug": "salud",
         "section": {
           "heading": ["Espacios", "diseñados para", "cuidar."],
           "headingText": "Espacios diseñados para cuidar.",
@@ -3512,7 +3512,7 @@
           "services": ["Recorrido del paciente", "Planificación del espacio", "Iluminación", "Materiales", "Visualización 3D"]
         }
       },
-      { "id": "workplaces", "index": "05", "title": "Oficinas", "slug": "oficinas" }
+      { "id": "workplaces", "index": "04", "title": "Oficinas", "slug": "oficinas" }
     ],
     "calcCommon": {
        "ui": {
@@ -5373,7 +5373,7 @@
         }
       },
       {
-        "id": "fitness", "index": "03", "title": "Фитнес", "slug": "fitness",
+        "id": "fitness", "index": "02", "title": "Фитнес", "slug": "fitness",
         "section": {
           "heading": ["Пространства,", "созданные для", "результата."],
           "headingText": "Пространства, созданные для результата.",
@@ -5386,7 +5386,7 @@
         }
       },
       {
-        "id": "healthcare", "index": "04", "title": "Медицина", "slug": "healthcare",
+        "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare",
         "section": {
           "heading": ["Пространства,", "которые", "заботятся."],
           "headingText": "Пространства, которые заботятся.",
@@ -5396,7 +5396,7 @@
           "services": ["Маршрут пациента", "Планировка", "Освещение", "Материалы", "3D-визуализация"]
         }
       },
-      { "id": "workplaces", "index": "05", "title": "Офисы", "slug": "workplaces" }
+      { "id": "workplaces", "index": "04", "title": "Офисы", "slug": "workplaces" }
     ],
     "calcCommon": {
        "ui": {
@@ -7257,7 +7257,7 @@
         }
       },
       {
-        "id": "fitness", "index": "03", "title": "Фітнес", "slug": "fitness",
+        "id": "fitness", "index": "02", "title": "Фітнес", "slug": "fitness",
         "section": {
           "heading": ["Простори,", "створені для", "результату."],
           "headingText": "Простори, створені для результату.",
@@ -7270,7 +7270,7 @@
         }
       },
       {
-        "id": "healthcare", "index": "04", "title": "Медицина", "slug": "healthcare",
+        "id": "healthcare", "index": "03", "title": "Медицина", "slug": "healthcare",
         "section": {
           "heading": ["Простори,", "які", "піклуються."],
           "headingText": "Простори, які піклуються.",
@@ -7280,7 +7280,7 @@
           "services": ["Маршрут пацієнта", "Планування", "Освітлення", "Матеріали", "3D-візуалізація"]
         }
       },
-      { "id": "workplaces", "index": "05", "title": "Офіси", "slug": "workplaces" }
+      { "id": "workplaces", "index": "04", "title": "Офіси", "slug": "workplaces" }
     ],
     "calcCommon": {
        "ui": {
