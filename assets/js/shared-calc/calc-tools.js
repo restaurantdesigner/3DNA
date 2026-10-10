@@ -645,7 +645,11 @@
     // analytics: the first value a visitor changes counts as using this calculator (once per session)
     const usedKey = `3dna.calc.used.${model.id}`;
     const markUsed = (fieldKey) => {
-      try { if (sessionStorage.getItem(usedKey)) return; sessionStorage.setItem(usedKey, "1"); } catch (e) { if (markUsed.done) return; }
+      if (markUsed.done) return;
+      // the session marker is written only with Analytics consent; without it nothing
+      // is stored and the event goes nowhere anyway
+      const consented = typeof hasAnalyticsConsent === "function" && hasAnalyticsConsent();
+      if (consented) { try { if (sessionStorage.getItem(usedKey)) { markUsed.done = true; return; } sessionStorage.setItem(usedKey, "1"); } catch (e) {} }
       markUsed.done = true;
       if (window.track) window.track("calculator_used", { calculator: model.id, first_field: fieldKey, language: lang });
     };

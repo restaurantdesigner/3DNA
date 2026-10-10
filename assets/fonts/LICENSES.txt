@@ -1,0 +1,9 @@
+Web fonts served from 3dna.es (self-hosted copies of the files Google Fonts distributes).
+
+Inter           SIL Open Font License 1.1   LICENSE-Inter.txt
+DM Serif Text   SIL Open Font License 1.1   LICENSE-DMSerifText.txt
+Staatliches     SIL Open Font License 1.1   LICENSE-Staatliches.txt
+Lato            SIL Open Font License 1.1   LICENSE-Lato.txt
+Ultra           Apache License 2.0          LICENSE-Ultra.txt
+
+The font files are unmodified. Licence texts: https://github.com/google/fonts (ofl/, apache/).

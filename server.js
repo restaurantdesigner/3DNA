@@ -2,13 +2,19 @@ const express = require('express');
 const cors = require('cors');
 const { Resend } = require('resend');
 const fs = require('fs/promises');
+const os = require('os');
 const path = require('path');
 require('dotenv').config();
 
 const app = express();
 const rootDir = __dirname;
-const logDir = path.join(rootDir, 'logs');
+// Technical log of form submissions (anti-spam / security): IP, time and form
+// version only, never the name, the contact or the message. It lives OUTSIDE the
+// project folder, because that folder is served as static files, and entries
+// older than LOG_RETENTION_DAYS are dropped on every write.
+const logDir = process.env.LOG_DIR || path.join(os.tmpdir(), '3dna-logs');
 const logFile = path.join(logDir, 'submissions.log');
+const LOG_RETENTION_DAYS = 30;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
 const rateLimitStore = new Map();
@@ -49,7 +55,29 @@ app.get(['/', '/index.html'], (req, res) => {
   res.redirect(302, `/${lang}/${query}`);
 });
 
-app.use(express.static(rootDir));
+// Only the public site is served. Everything else that sits in the project folder
+// (server code, build scripts and templates, dependencies, old backups, notes,
+// logs) answers 404. Dot-files and dot-folders (.env, .git, .vscode) are never
+// served by express.static.
+const PRIVATE_PATHS = [
+  /^\/(logs|node_modules|scripts|templates|backup-[^/]*)(\/|$)/i,
+  /^\/prototipos\/[^/]+\/tests(\/|$)/i,
+  /^\/(server\.js|package(-lock)?\.json|render\.yaml)$/i,
+  /^\/index\.(before-[^/]*|recovered|mojibake\.bak)\.html$/i,
+  /\.(bak|log|md|py|sh|ps1|env)$/i,
+  /^\/(?!robots\.txt$)[^/]*\.txt$/i
+];
+app.use((req, res, next) => {
+  let pathname = req.path;
+  try { pathname = decodeURIComponent(req.path); } catch (_e) { return res.status(400).end(); }
+  // judge the path the file server will really open: "/assets/..%2fserver.js" is "/server.js"
+  pathname = path.posix.normalize(pathname.replace(/\\/g, '/'));
+  const hasDotSegment = pathname.split('/').some((part) => part.startsWith('.'));
+  if (hasDotSegment || PRIVATE_PATHS.some((re) => re.test(pathname))) return res.status(404).end();
+  next();
+});
+
+app.use(express.static(rootDir, { dotfiles: 'ignore' }));
 
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
@@ -127,7 +155,6 @@ function buildContactEmailText(payload, audit) {
     '',
     `Fecha (Europe/Madrid): ${payload.fecha_envio_local || '-'}`,
     `Fecha (ISO): ${payload.fecha_envio_iso || audit.timestamp}`,
-    `IP: ${audit.ip}`,
     `Version del formulario: ${audit.formVersion}`
   ].join('\n');
 }
@@ -146,11 +173,9 @@ function buildEmailText(payload, audit) {
     `Acepto la politica de privacidad: ${payload.acepto_politica_privacidad || 'No'}`,
     `Fecha y hora (Europe/Madrid): ${payload.fecha_envio_local || '-'}`,
     `Fecha y hora (ISO): ${payload.fecha_envio_iso || audit.timestamp}`,
-    `IP: ${audit.ip}`,
     `Version del formulario: ${audit.formVersion}`,
     '',
     'Log tecnico:',
-    `- ip: ${audit.ip}`,
     `- timestamp: ${audit.timestamp}`,
     `- version_form: ${audit.formVersion}`,
     '',
@@ -190,10 +215,48 @@ function buildEmailText(payload, audit) {
   return lines.join('\n');
 }
 
-async function appendAuditLog(entry) {
-  await fs.mkdir(logDir, { recursive: true });
-  await fs.appendFile(logFile, `${JSON.stringify(entry)}\n`, 'utf8');
+// Keeps only entries from the last LOG_RETENTION_DAYS days (lines without a
+// readable timestamp are dropped too), then adds the new one. The file is
+// rewritten through a temporary file so a crash cannot leave it half-written.
+function pruneLogLines(text, now) {
+  const limit = now - LOG_RETENTION_DAYS * 24 * 60 * 60 * 1000;
+  return text.split('\n').filter((line) => {
+    if (!line.trim()) return false;
+    try {
+      const ts = Date.parse(JSON.parse(line).timestamp);
+      return Number.isFinite(ts) && ts >= limit;
+    } catch (_e) {
+      return false;
+    }
+  });
 }
+
+// entry = null only prunes. One operation at a time (logQueue).
+let logQueue = Promise.resolve();
+function appendAuditLog(entry) {
+  logQueue = logQueue.then(async () => {
+    await fs.mkdir(logDir, { recursive: true });
+    let existing = '';
+    try { existing = await fs.readFile(logFile, 'utf8'); } catch (e) { if (e.code !== 'ENOENT') throw e; }
+    if (!entry && !existing) return;
+    const lines = pruneLogLines(existing, Date.now());
+    if (entry) lines.push(JSON.stringify(entry));
+    if (!lines.length) { await fs.rm(logFile, { force: true }); return; }
+    const tmp = `${logFile}.tmp`;
+    await fs.writeFile(tmp, `${lines.join('\n')}\n`, 'utf8');
+    await fs.rename(tmp, logFile);
+  }).catch((error) => {
+    // the log is a technical aid: a failure must not turn a delivered inquiry into an error
+    console.error('Audit log write failed:', error && error.code ? error.code : 'error');
+  });
+  return logQueue;
+}
+
+// Retention does not depend on new submissions: old entries are also removed when
+// the server starts and then once a day while it is running.
+const pruneAuditLog = () => appendAuditLog(null);
+pruneAuditLog();
+setInterval(pruneAuditLog, 24 * 60 * 60 * 1000).unref();
 
 function createResendClient() {
   if (!process.env.RESEND_API_KEY) {
@@ -296,16 +359,11 @@ app.post('/api/lead', async (req, res) => {
       throw new Error(sendResult.error.message || 'Resend send failed');
     }
 
-    await appendAuditLog({
-      ...audit,
-      email: payload.email || null,
-      nombre: payload.nombre || null,
-      consent: payload.acepto_politica_privacidad || 'No'
-    });
+    await appendAuditLog({ ...audit, sent: true });
 
     return res.json({ ok: true });
   } catch (error) {
-    console.error('POST /api/lead failed:', error);
+    console.error('POST /api/lead failed:', error && error.name ? error.name : 'Error');
     return res.status(500).json({ ok: false });
   }
 });
