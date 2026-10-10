@@ -23,10 +23,12 @@ window.saveLanguageChoice = (lang) => {
 // =============================================
 // window.track(name, params) always fires a "3dna:track" DOM event. It is only
 // forwarded to Google Analytics when GA was loaded after cookie consent
-// (see loadGoogleAnalytics). Elements with data-track="event_name" are tracked
+// (see loadGoogleAnalytics). Every event carries the page language unless the
+// caller already set one. Elements with data-track="event_name" are tracked
 // on click; data-track-location is sent as "location".
 (() => {
   window.track = (name, params = {}) => {
+    params = Object.assign({ language: document.documentElement.lang || "es" }, params);
     document.dispatchEvent(new CustomEvent("3dna:track", { detail: { name, params } }));
     if (window.__gaLoaded && Array.isArray(window.dataLayer)) {
       // gtag() expects an Arguments object
@@ -368,9 +370,11 @@ function writeCookieConsent({ analytics }, source) {
   return payload;
 }
 
-// Withdrawn consent: stop GA on this page and remove its cookies (_ga, _ga_*)
+// Withdrawn / refused consent: no more GA requests from this page (ga-disable),
+// the consent state goes back to denied, and GA's cookies (_ga, _ga_*) are removed
 function stopGoogleAnalytics() {
   window["ga-disable-G-QGGREKNJDX"] = true;
+  if (window.__gaLoaded) gaPush('consent', 'update', { analytics_storage: 'denied' });
   const host = window.location.hostname;
   const domains = ["", host, "." + host, "." + host.split(".").slice(-2).join(".")];
   document.cookie.split(";").map((c) => c.trim().split("=")[0]).filter((n) => /^_ga(_|$)/.test(n)).forEach((name) => {
@@ -489,22 +493,37 @@ document.getElementById('privacy-policy-modal')?.addEventListener('click', (e) =
 
 
 // =============================================
-// 6. GOOGLE ANALYTICS (after consent)
+// 6. GOOGLE ANALYTICS (after consent) + Consent Mode v2, BASIC
 // =============================================
+// Basic mode: the Google tag is not loaded and nothing is sent until the visitor
+// accepts Analytics. When it loads it is told the consent state (default denied,
+// then analytics granted); advertising storage and signals always stay denied
+// (the site has no advertising tags). Withdrawal: see stopGoogleAnalytics().
+function gaPush(){ (window.dataLayer = window.dataLayer || []).push(arguments); }
+
 function loadGoogleAnalytics() {
   window["ga-disable-G-QGGREKNJDX"] = false;
-  if (window.__gaLoaded) return;
+  if (window.__gaLoaded) {
+    // accepted again after a withdrawal on the same page
+    gaPush('consent', 'update', { analytics_storage: 'granted' });
+    return;
+  }
   window.__gaLoaded = true;
+
+  gaPush('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+  gaPush('consent', 'update', { analytics_storage: 'granted' });
+  gaPush('js', new Date());
+  gaPush('config', 'G-QGGREKNJDX');
 
   const script = document.createElement('script');
   script.async = true;
   script.src = 'https://www.googletagmanager.com/gtag/js?id=G-QGGREKNJDX';
   document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QGGREKNJDX');
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -683,7 +702,11 @@ onFormPanelLifecycle(() => {
       formState.hidden = true;
       doneState.hidden = false;
       doneState.focus();
-      if (window.track) window.track('project_form_submitted', { language: payload.idioma });
+      // a filled spam trap gets "ok" from the server but no email is sent: not an inquiry.
+      // Parameters describe the form only (never the name, contact or message).
+      if (window.track && !payload.company_website) {
+        window.track('project_form_submitted', { language: payload.idioma, form_name: 'project_inquiry', contact_method: kind });
+      }
     } catch (error) {
       console.error('Project form failed:', error);
       showError(msg('msgSend'));

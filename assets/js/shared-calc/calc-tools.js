@@ -642,6 +642,13 @@
     const ui = i18n.ui;
     const f = formatter(i18n.locale);
     const lang = document.documentElement.lang || "es";
+    // analytics: the first value a visitor changes counts as using this calculator (once per session)
+    const usedKey = `3dna.calc.used.${model.id}`;
+    const markUsed = (fieldKey) => {
+      try { if (sessionStorage.getItem(usedKey)) return; sessionStorage.setItem(usedKey, "1"); } catch (e) { if (markUsed.done) return; }
+      markUsed.done = true;
+      if (window.track) window.track("calculator_used", { calculator: model.id, first_field: fieldKey, language: lang });
+    };
     const inputs = [...box.querySelectorAll("[data-cf]")];
     const outputs = [...box.querySelectorAll("[data-co]")];
     const status = box.querySelector("[data-cstatus]");
@@ -696,7 +703,7 @@
     inputs.forEach((el) => {
       const field = fieldOf(el.dataset.cf);
       if (!field) return;
-      const onInput = () => {
+      const onInput = (e) => {
         const v = parseField(el.value, field);
         const bad = v === null || (field.type === "number" && el.value.trim() === "");
         el.setAttribute("aria-invalid", String(bad && el.value.trim() !== ""));
@@ -710,6 +717,7 @@
           o.removeAttribute("aria-invalid");
         });
         schedulePaint();
+        if (e && e.isTrusted) markUsed(field.key);
       };
       el.addEventListener(el.type === "radio" ? "change" : "input", onInput);
       if (el.type !== "radio" && el.type !== "range") el.addEventListener("change", () => { el.removeAttribute("aria-invalid"); if (field.type === "number") el.value = f.input(values[field.key], field.decimals || 0); });
