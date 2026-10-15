@@ -10734,7 +10734,7 @@ body.fclub-lb-open{ overflow: hidden; }
 .fclub-lb__hint{ top: 64px; }
 .fclub-lb__top, .fclub-lb__btn, .fclub-lb__cap{ z-index: 3; }
 @media (max-width: 900px){
-  .fclub-pano__hint{ top: auto; bottom: 58px; font-size: 11px; }
+  .fclub-pano__hint{ top: auto; bottom: 58px; font-size: 11px; white-space: normal; width: max-content; max-width: calc(100% - 32px); border-radius: 14px; }
   .fclub-lb__pano{ inset: 56px 0 120px; }
   .fclub-lb__hint{ bottom: 128px; top: auto; }
 }

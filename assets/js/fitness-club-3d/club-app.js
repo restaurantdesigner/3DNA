@@ -59,13 +59,14 @@
   const canPano = (() => { try { const c = document.createElement("canvas"); return !!(window.WebGLRenderingContext && (c.getContext("webgl2") || c.getContext("webgl"))); } catch (e) { return false; } })();
   let panoMod = null;
   const viewers = new Map();
+  app.__fclubPano = viewers;                // support / test hook: the 360° viewers by container
   const panoUrl = (p) => { const big = Math.max(screen.width, screen.height) * Math.min(window.devicePixelRatio || 1, 2) > 1800; return p[big ? 3072 : 2048] || p[2048] || p[3072]; };
   async function panoIn(box, z) {
     if (!canPano || !box || !z || !z.render || !z.render.pano) { box?.classList.remove("is-on"); return null; }
     box.classList.add("is-on");
     try {
       panoMod = panoMod || await import(`/assets/js/fitness-club-3d/club-pano.js?v=${scriptVersion}`);
-      if (!viewers.has(box)) viewers.set(box, panoMod.createPano(box, { reducedMotion, onError: () => box.classList.remove("is-on") }));
+      if (!viewers.has(box)) viewers.set(box, panoMod.createPano(box, { reducedMotion, wheelZoom: box === lbPanoBox ? "always" : "focus", onError: () => box.classList.remove("is-on") }));
       const v = viewers.get(box);
       await v.show(panoUrl(z.render.pano));
       return v;
@@ -184,13 +185,10 @@
     app.querySelector("[data-fclub-lb-next]").addEventListener("click", () => step(1));
     app.querySelector("[data-fclub-lb-close]").addEventListener("click", closeLightbox);
     app.querySelector("[data-fclub-lb-back]").addEventListener("click", () => { closeLightbox(); closeSheet(); setMode("model"); app.scrollIntoView({ block: "nearest" }); });
-    lb.addEventListener("click", (e) => { if (e.target === lb) closeLightbox(); });
-    lb.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") step(-1); else if (e.key === "ArrowRight") step(1); });
+    // Zones change only with the previous / next buttons. No swipe, arrow-key or click navigation on the
+    // dialog: one-finger drags, clicks and arrow keys belong to the panorama (look around, zoom).
+    // The viewer closes with ×, "Back to 3D model" or Esc (native dialog cancel).
     lb.addEventListener("close", () => { document.body.classList.remove("fclub-lb-open"); panoActive(lbPanoBox, false); if (mode === "interior") panoActive(panoBox, true); if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true }); });
-    // swipe between zones on touch screens
-    let x0 = null;
-    lb.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
-    lb.addEventListener("touchend", (e) => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1); }, { passive: true });
   }
 
   show("overview");
