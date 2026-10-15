@@ -46,12 +46,36 @@
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "note": "Factor de uso 0,25: fracción de las horas de apertura equivalente a funcionamiento a potencia nominal (ocupación × carga media).",
    "estimate": {
-    "unitPrice": 3800,
+    "unitPrice": 1413.0,
     "ratedKw": 2.2,
     "hoursYear": 4000,
     "utilization": 0.25,
-    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
-    "date": "2026-10-09"
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. CARD-01 p. 49); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "American Strength",
+    "model": "Cinta de Correr Motorizada Pro (CARD-01)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Máquinas American Strength (PDF del distribuidor)",
+       "page": 49,
+       "ref": "CARD-01",
+       "description": "Cinta de Correr Motorizada Pro",
+       "qty": 1,
+       "unitPrice": 1413.0
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 3800,
+      "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -76,12 +100,36 @@
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "note": "Existen modelos autoalimentados (sin conexión a red): si se eligen, potencia = 0 kW.",
    "estimate": {
-    "unitPrice": 2900,
+    "unitPrice": 994.0,
     "ratedKw": 0.15,
     "hoursYear": 4000,
     "utilization": 0.25,
-    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
-    "date": "2026-10-09"
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. CARD-08 p. 51); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "American Strength",
+    "model": "Elíptica con Consola (CARD-08)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Máquinas American Strength (PDF del distribuidor)",
+       "page": 51,
+       "ref": "CARD-08",
+       "description": "Elíptica con Consola",
+       "qty": 1,
+       "unitPrice": 994.0
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 2900,
+      "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -106,12 +154,36 @@
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "note": "Existen modelos autoalimentados (sin conexión a red): si se eligen, potencia = 0 kW.",
    "estimate": {
-    "unitPrice": 1800,
+    "unitPrice": 663.0,
     "ratedKw": 0.1,
     "hoursYear": 4000,
     "utilization": 0.25,
-    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
-    "date": "2026-10-09"
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. CARD-09 p. 51); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "American Strength",
+    "model": "Bicicleta Estática Vertical con Consola (CARD-09)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Máquinas American Strength (PDF del distribuidor)",
+       "page": 51,
+       "ref": "CARD-09",
+       "description": "Bicicleta Estática Vertical con Consola",
+       "qty": 1,
+       "unitPrice": 663.0
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 1800,
+      "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -136,12 +208,36 @@
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "note": "Máquina de placas sin motor: 0 kW salvo que el modelo elegido incorpore consola o pantalla.",
    "estimate": {
-    "unitPrice": 2600,
+    "unitPrice": 983.0,
     "ratedKw": 0,
     "hoursYear": 4000,
     "utilization": 0,
-    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
-    "date": "2026-10-09"
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. HP-15 p. 40); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "American Strength",
+    "model": "Máquina de Jalón al Pecho-Pulldown, selectorizada (HP-15)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Máquinas American Strength (PDF del distribuidor)",
+       "page": 40,
+       "ref": "HP-15",
+       "description": "Máquina de Jalón al Pecho-Pulldown (Selectorizada)",
+       "qty": 1,
+       "unitPrice": 983.0
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 2600,
+      "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -166,12 +262,36 @@
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "note": "Máquina de placas sin motor: 0 kW salvo que el modelo elegido incorpore consola o pantalla.",
    "estimate": {
-    "unitPrice": 2600,
+    "unitPrice": 1231.0,
     "ratedKw": 0,
     "hoursYear": 4000,
     "utilization": 0,
-    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
-    "date": "2026-10-09"
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. HP-10 p. 39); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "American Strength",
+    "model": "Prensa de Piernas Lineal Horizontal, selectorizada (HP-10)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Máquinas American Strength (PDF del distribuidor)",
+       "page": 39,
+       "ref": "HP-10",
+       "description": "Prensa de Piernas Lineal Horizontal (Selectorizada)",
+       "qty": 1,
+       "unitPrice": 1231.0
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 2600,
+      "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -196,12 +316,36 @@
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "note": "Máquina de placas sin motor: 0 kW salvo que el modelo elegido incorpore consola o pantalla.",
    "estimate": {
-    "unitPrice": 2600,
+    "unitPrice": 1148.0,
     "ratedKw": 0,
     "hoursYear": 4000,
     "utilization": 0,
-    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
-    "date": "2026-10-09"
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. EB-37 p. 60); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "American Strength",
+    "model": "Estación de Cruce de Poleas con Dominadas, selectorizada (EB-37)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Máquinas American Strength (PDF del distribuidor)",
+       "page": 60,
+       "ref": "EB-37",
+       "description": "Estación de Cruce de Poleas con Dominadas (Selectorizada)",
+       "qty": 1,
+       "unitPrice": 1148.0
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 2600,
+      "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -225,9 +369,65 @@
    "utilization": null,
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "estimate": {
-    "unitPrice": 1700,
-    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos) (rack de sentadillas)",
-    "date": "2026-10-09"
+    "unitPrice": 771.32,
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. EB-01 p. 53, ref. 251 p. 47, ref. 004 p. 3, ref. 002 p. 3, ref. 001 p. 3); precio sin IVA, verificado el 14/10/2026. Configuración de referencia 3DNA: el modelo 3D muestra la jaula con una barra cargada; la cantidad de discos (2×20 + 2×10 + 2×5 kg) es un supuesto.",
+    "date": "2026-10-14",
+    "manufacturer": "American Strength + GymDescuento",
+    "model": "Power Rack con Dominadas (EB-01) + barra olímpica 2,20 m + 70 kg en discos bumper",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Máquinas American Strength (PDF del distribuidor)",
+       "page": 53,
+       "ref": "EB-01",
+       "description": "Power Rack-Jaula de Potencia con Dominadas",
+       "qty": 1,
+       "unitPrice": 398.0
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 47,
+       "ref": "251",
+       "description": "Barra de Pesas Recta Cromada Olímpica con Rodamientos, 2,20 m, 1000 lb",
+       "qty": 1,
+       "unitPrice": 130.32
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 3,
+       "ref": "004",
+       "description": "Disco Olímpico Bumper Negro 20 kg",
+       "qty": 2,
+       "unitPrice": 64.75
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 3,
+       "ref": "002",
+       "description": "Disco Olímpico Bumper Negro 10 kg",
+       "qty": 2,
+       "unitPrice": 33.24
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 3,
+       "ref": "001",
+       "description": "Disco Olímpico Bumper Negro 5 kg",
+       "qty": 2,
+       "unitPrice": 23.51
+      }
+     ],
+     "configuration": "Configuración de referencia 3DNA: el modelo 3D muestra la jaula con una barra cargada; la cantidad de discos (2×20 + 2×10 + 2×5 kg) es un supuesto.",
+     "previous": {
+      "unitPrice": 1700,
+      "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos) (rack de sentadillas)",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -251,9 +451,33 @@
    "utilization": null,
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "estimate": {
-    "unitPrice": 900,
-    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
-    "date": "2026-10-09"
+    "unitPrice": 737.85,
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. 137 p. 25); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "GymDescuento",
+    "model": "Plataforma de Halterofilia-Levantamiento de Pesos (ref. 137)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 25,
+       "ref": "137",
+       "description": "Plataforma de Halterofilia-Levantamiento Pesos",
+       "qty": 1,
+       "unitPrice": 737.85
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 900,
+      "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -277,9 +501,33 @@
    "utilization": null,
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "estimate": {
-    "unitPrice": 300,
-    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
-    "date": "2026-10-09"
+    "unitPrice": 132.0,
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. TEB-01 p. 44); precio sin IVA, verificado el 14/10/2026. Solo el soporte; los discos que el modelo 3D dibuja en él no están incluidos.",
+    "date": "2026-10-14",
+    "manufacturer": "American Strength",
+    "model": "Disquetero Árbol para discos olímpicos (TEB-01)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Máquinas American Strength (PDF del distribuidor)",
+       "page": 44,
+       "ref": "TEB-01",
+       "description": "Disquetero Árbol Rack-Soporte Almacenaje de Discos Olímpicos",
+       "qty": 1,
+       "unitPrice": 132.0
+      }
+     ],
+     "configuration": "Solo el soporte; los discos que el modelo 3D dibuja en él no están incluidos.",
+     "previous": {
+      "unitPrice": 300,
+      "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -303,9 +551,41 @@
    "utilization": null,
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "estimate": {
-    "unitPrice": 3500,
-    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos) (juego de mancuernas con rack)",
-    "date": "2026-10-09"
+    "unitPrice": 1135.31,
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. 332 p. 62, ref. 327 p. 61); precio sin IVA, verificado el 14/10/2026. Configuración de referencia 3DNA: el modelo 3D dibuja 12 pares de mancuernas en un soporte de 2 alturas; se ha tomado la gama hexagonal de goma.",
+    "date": "2026-10-14",
+    "manufacturer": "GymDescuento",
+    "model": "Mancuernero hexagonal 2 alturas (ref. 332) + juego de mancuernas hexagonales de goma 2,5–30 kg (ref. 327)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 62,
+       "ref": "332",
+       "description": "Mancuernero-Rack Soporte de Mancuernas Hexagonales, 2 alturas",
+       "qty": 1,
+       "unitPrice": 269.36
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 61,
+       "ref": "327",
+       "description": "Juego de Mancuernas Hexagonales de Goma 2,5 a 30 kg (12 pares, 390 kg)",
+       "qty": 1,
+       "unitPrice": 865.95
+      }
+     ],
+     "configuration": "Configuración de referencia 3DNA: el modelo 3D dibuja 12 pares de mancuernas en un soporte de 2 alturas; se ha tomado la gama hexagonal de goma.",
+     "previous": {
+      "unitPrice": 3500,
+      "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos) (juego de mancuernas con rack)",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -329,9 +609,33 @@
    "utilization": null,
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "estimate": {
-    "unitPrice": 450,
-    "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
-    "date": "2026-10-09"
+    "unitPrice": 288.0,
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. TEB-09 p. 45); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "American Strength",
+    "model": "Banco de Pesas Ajustable, niveles perforados (TEB-09)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Máquinas American Strength (PDF del distribuidor)",
+       "page": 45,
+       "ref": "TEB-09",
+       "description": "Banco de Pesas Ajustable (Niveles Perforados)",
+       "qty": 1,
+       "unitPrice": 288.0
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 450,
+      "basis": "Supuesto de partida 3DNA (precio sin IVA y potencia orientativos)",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -355,9 +659,33 @@
    "utilization": null,
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "estimate": {
-    "unitPrice": 45,
-    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
-    "date": "2026-10-09"
+    "unitPrice": 16.42,
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. 475 p. 87); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "GymDescuento",
+    "model": "Esterilla Acolchada de Fitness 1800×580×15 mm (ref. 475)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 87,
+       "ref": "475",
+       "description": "Esterilla Acolchada de Fitness, azul, 1800×580×15 mm",
+       "qty": 1,
+       "unitPrice": 16.42
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 45,
+      "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -381,9 +709,33 @@
    "utilization": null,
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "estimate": {
-    "unitPrice": 165,
-    "basis": "Decathlon España: cajón pliométrico de madera ≈164 €",
-    "date": "2026-10-09"
+    "unitPrice": 109.53,
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. 118 p. 22); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "GymDescuento",
+    "model": "Cajón Pliométrico de Madera 50-60-75 cm (ref. 118)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 22,
+       "ref": "118",
+       "description": "Cajón Pliométrico de Salto de Madera (Negro), 50-60-75 cm",
+       "qty": 1,
+       "unitPrice": 109.53
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 165,
+      "basis": "Decathlon España: cajón pliométrico de madera ≈164 €",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -407,9 +759,97 @@
    "utilization": null,
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "estimate": {
-    "unitPrice": 900,
-    "basis": "Decathlon España: kettlebells ≈28–197 €/ud; juego de competición ≈357 €; rack por criterio 3DNA",
-    "date": "2026-10-09"
+    "unitPrice": 667.12,
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. 113 p. 21, ref. 091 p. 18, ref. 092 p. 18, ref. 093 p. 18, ref. 094 p. 18, ref. 095 p. 18, ref. 096 p. 18, ref. 097 p. 19, ref. 098 p. 19); precio sin IVA, verificado el 14/10/2026. Configuración de referencia 3DNA: el modelo 3D dibuja 8 kettlebells en un soporte de 2 alturas; los pesos (8–28 kg) son un supuesto.",
+    "date": "2026-10-14",
+    "manufacturer": "GymDescuento",
+    "model": "Rack de kettlebells 2 alturas (ref. 113) + 8 kettlebells de competición 8–28 kg",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 21,
+       "ref": "113",
+       "description": "Rack-Soporte Almacenaje de Kettlebells, 2 alturas",
+       "qty": 1,
+       "unitPrice": 236.46
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 18,
+       "ref": "091",
+       "description": "Kettlebell de Competición 8 kg",
+       "qty": 1,
+       "unitPrice": 31.15
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 18,
+       "ref": "092",
+       "description": "Kettlebell de Competición 10 kg",
+       "qty": 1,
+       "unitPrice": 33.12
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 18,
+       "ref": "093",
+       "description": "Kettlebell de Competición 12 kg",
+       "qty": 1,
+       "unitPrice": 38.99
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 18,
+       "ref": "094",
+       "description": "Kettlebell de Competición 14 kg",
+       "qty": 1,
+       "unitPrice": 45.49
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 18,
+       "ref": "095",
+       "description": "Kettlebell de Competición 16 kg",
+       "qty": 1,
+       "unitPrice": 51.28
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 18,
+       "ref": "096",
+       "description": "Kettlebell de Competición 20 kg",
+       "qty": 1,
+       "unitPrice": 61.72
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 19,
+       "ref": "097",
+       "description": "Kettlebell de Competición 24 kg",
+       "qty": 1,
+       "unitPrice": 77.98
+      },
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 19,
+       "ref": "098",
+       "description": "Kettlebell de Competición 28 kg",
+       "qty": 1,
+       "unitPrice": 90.93
+      }
+     ],
+     "configuration": "Configuración de referencia 3DNA: el modelo 3D dibuja 8 kettlebells en un soporte de 2 alturas; los pesos (8–28 kg) son un supuesto.",
+     "previous": {
+      "unitPrice": 900,
+      "basis": "Decathlon España: kettlebells ≈28–197 €/ud; juego de competición ≈357 €; rack por criterio 3DNA",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -433,9 +873,33 @@
    "utilization": null,
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "estimate": {
-    "unitPrice": 60,
-    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
-    "date": "2026-10-09"
+    "unitPrice": 33.17,
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. 390 p. 73); precio sin IVA, verificado el 14/10/2026. Peso de 5 kg tomado como referencia (el modelo 3D no indica el peso).",
+    "date": "2026-10-14",
+    "manufacturer": "GymDescuento",
+    "model": "Balón Medicinal Premium 5 kg (ref. 390)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 73,
+       "ref": "390",
+       "description": "Balón Medicinal-de Peso Premium 5 kg",
+       "qty": 1,
+       "unitPrice": 33.17
+      }
+     ],
+     "configuration": "Peso de 5 kg tomado como referencia (el modelo 3D no indica el peso).",
+     "previous": {
+      "unitPrice": 60,
+      "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -459,9 +923,33 @@
    "utilization": null,
    "source": "Propuesta 3DNA (concepto de gimnasio); no forma parte del proyecto arquitectónico",
    "estimate": {
-    "unitPrice": 120,
-    "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
-    "date": "2026-10-09"
+    "unitPrice": 127.5,
+    "basis": "Tarifa profesional 2026 de GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength (ref. 122 p. 23); precio sin IVA, verificado el 14/10/2026",
+    "date": "2026-10-14",
+    "manufacturer": "GymDescuento",
+    "model": "Cuerda de Golpeo-Battle Rope 15 m, 50 mm, con funda (ref. 122)",
+    "priceSource": {
+     "supplier": "GymDescuento (VIS FORTIA FITNESS S.L.), distribuidor oficial American Strength",
+     "url": "https://gymdescuento.es",
+     "vat": "excluded",
+     "verified": "2026-10-14",
+     "components": [
+      {
+       "document": "Tarifa profesional 2026 · Catálogo de accesorios GymDescuento (PDF del distribuidor)",
+       "page": 23,
+       "ref": "122",
+       "description": "Cuerda de Golpeo-Battle Rope, 15 m, con funda, 50 mm",
+       "qty": 1,
+       "unitPrice": 127.5
+      }
+     ],
+     "configuration": null,
+     "previous": {
+      "unitPrice": 120,
+      "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
+      "date": "2026-10-09"
+     }
+    }
    }
   },
   {
@@ -487,7 +975,12 @@
    "estimate": {
     "unitPrice": 450,
     "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "priceCheck": {
+     "status": "unverified",
+     "checked": "2026-10-14",
+     "note": "Mueble de madera para accesorios: no figura en las tarifas de proveedor consultadas. Se mantiene el supuesto anterior."
+    }
    }
   },
   {
@@ -514,7 +1007,12 @@
    "estimate": {
     "unitPrice": 600,
     "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "priceCheck": {
+     "status": "unverified",
+     "checked": "2026-10-14",
+     "note": "Espejo de gimnasio: no figura en las tarifas de proveedor consultadas. Se mantiene el supuesto anterior."
+    }
    }
   },
   {
@@ -540,7 +1038,12 @@
    "estimate": {
     "unitPrice": 800,
     "basis": "Criterio 3DNA por comparación con equipos similares; sin cotización ni fuente de mercado concreta",
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "priceCheck": {
+     "status": "unverified",
+     "checked": "2026-10-14",
+     "note": "Estación de toallas de madera: no figura en las tarifas de proveedor consultadas. Se mantiene el supuesto anterior."
+    }
    }
   },
   {

@@ -19,6 +19,10 @@ const ARCH = new Set(["slat_wall", "rug", "mirror_partition", "mirror_panel", "m
 const FURNITURE = new Set(["reception_desk", "sofa", "lounge_chair", "coffee_table", "shake_bar", "bar_stool", "back_bar",
   "retail_unit", "planter", "towel_station", "mobility_shelf", "storage_wall", "changing_bench", "vanity"]);
 const LOCALES = { es: "es-ES", en: "en-GB", ru: "ru-RU", uk: "uk-UA" };
+// eye-level interior render of a zone: optimised WebP copies of the unbranded originals
+// (renders/fitness-club-interiors/sin-marca/, unchanged); widths listed in the zone data
+const srcset = (r) => r.widths.map((w) => `${r.base}-${w}.webp ${w}w`).join(", ");
+const renderSrc = (r, w) => `${r.base}-${w}.webp`;
 
 function createFitnessClub(data, texts, translations) {
   const area = (z) => Math.round(z.rect.w * z.rect.d);
@@ -50,7 +54,15 @@ function createFitnessClub(data, texts, translations) {
       `          <button type="button" class="fclub-z__close" data-fclub-close aria-label="${escapeHtml(ui.close)}"><span aria-hidden="true">×</span></button>`,
       `          <p class="fclub-z__kicker">${escapeHtml(ui.zone)} ${z.index}</p>`,
       `          <h3 class="fclub-z__title" id="fclub-zone-${z.id}-title">${escapeHtml(zt.name)}</h3>`,
-      z.image ? `          <figure class="fclub-z__fig"><img src="${z.image.src}" width="${z.image.w}" height="${z.image.h}" loading="lazy" decoding="async" alt=""><figcaption>${escapeHtml(ui.imageCaption)}</figcaption></figure>` : "",
+      z.render ? [
+        `          <figure class="fclub-z__fig">`,
+        `            <button type="button" class="fclub-z__render" data-fclub-open-render="${z.id}" aria-label="${escapeHtml(ui.openInterior)}: ${escapeHtml(zt.name)}">`,
+        `              <img src="${renderSrc(z.render, 960)}" srcset="${srcset(z.render)}" sizes="(max-width: 900px) 92vw, 340px" width="${z.render.w}" height="${z.render.h}" loading="lazy" decoding="async" alt="${escapeHtml(ui.renderAlt.replace("{zone}", zt.name))}">`,
+        `              <span class="fclub-z__render-cta">${escapeHtml(ui.openInterior)}</span>`,
+        `            </button>`,
+        `            <figcaption>${escapeHtml(ui.renderCaption)}</figcaption>`,
+        `          </figure>`,
+      ].join("\n") : "",
       `          <p class="fclub-z__desc">${escapeHtml(zt.desc)}</p>`,
       `          <dl class="fclub-z__facts">`,
       `            <div><dt>${escapeHtml(ui.area)}</dt><dd>${num(lang, area(z))} m²</dd></div>`,
@@ -110,7 +122,9 @@ function createFitnessClub(data, texts, translations) {
       model: data.model,
       footprint: data.footprint,
       architecture: data.architecture,
-      zones: data.zones.map((z) => ({ id: z.id, index: z.index, name: T.zones[z.id].name, rect: z.rect, floor: z.floor, items: z.items }))
+      zones: data.zones.map((z) => ({ id: z.id, index: z.index, name: T.zones[z.id].name, rect: z.rect, floor: z.floor, items: z.items,
+        render: z.render ? { src: renderSrc(z.render, 1600), srcset: srcset(z.render), full: renderSrc(z.render, z.render.widths[z.render.widths.length - 1]), w: z.render.w, h: z.render.h, alt: T.ui.renderAlt.replace("{zone}", T.zones[z.id].name),
+          pano: z.render.pano ? Object.fromEntries(z.render.pano.widths.map((w) => [w, `${z.render.pano.base}-${w}.webp`])) : null } : null }))
     };
   }
 
@@ -135,6 +149,18 @@ function createFitnessClub(data, texts, translations) {
       `          <p class="fclub__fallback" data-fclub-fallback hidden>${escapeHtml(ui.fallback)}</p>`,
       `          <button type="button" class="fclub__reset" data-fclub-reset hidden>${escapeHtml(ui.reset)}</button>`,
       `          <p class="fclub__hint" data-fclub-hint data-hint-touch="${escapeHtml(ui.hintTouch)}" hidden>${escapeHtml(ui.hint)}</p>`,
+      // interior view of the selected zone (eye-level render), over the model; the 3D model stays loaded underneath
+      `          <figure class="fclub__interior" data-fclub-interior hidden>`,
+      `            <img data-fclub-interior-img alt="" decoding="async">`,
+      `            <div class="fclub-pano" data-fclub-pano></div>`,
+      `            <p class="fclub-pano__hint">${escapeHtml(ui.pano360)}</p>`,
+      `            <figcaption class="fclub__interior-cap"><span data-fclub-interior-name></span><span class="fclub__interior-note">${escapeHtml(ui.renderCaption)}</span></figcaption>`,
+      `            <button type="button" class="fclub__fs" data-fclub-fullscreen><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>${escapeHtml(ui.fullscreen)}</button>`,
+      `          </figure>`,
+      `          <div class="fclub__views" role="group" aria-label="${escapeHtml(ui.viewSwitch)}" data-fclub-views hidden>`,
+      `            <button type="button" class="fclub__view" data-fclub-view="model" aria-pressed="true">${escapeHtml(ui.view3d)}</button>`,
+      `            <button type="button" class="fclub__view" data-fclub-view="interior" aria-pressed="false">${escapeHtml(ui.viewInterior)}</button>`,
+      `          </div>`,
       `        </div>`,
       `        <ol class="fclub__nav" aria-label="${escapeHtml(ui.zonesNav)}">`,
       ...nav,
@@ -144,6 +170,19 @@ function createFitnessClub(data, texts, translations) {
       ...data.zones.map((z) => zoneArticle(lang, z)),
       `        </aside>`,
       `        <div class="fclub__scrim" data-fclub-scrim hidden></div>`,
+      // full-screen render viewer (all zones, previous / next)
+      `        <dialog class="fclub-lb" data-fclub-lightbox aria-label="${escapeHtml(ui.viewerLabel)}">`,
+      `          <img class="fclub-lb__img" data-fclub-lb-img alt="" decoding="async">`,
+      `          <div class="fclub-pano fclub-lb__pano" data-fclub-lb-pano></div>`,
+      `          <p class="fclub-pano__hint fclub-lb__hint">${escapeHtml(ui.pano360)}</p>`,
+      `          <p class="fclub-lb__cap"><span class="fclub-lb__num" data-fclub-lb-num></span> <span data-fclub-lb-name></span><span class="fclub-lb__note">${escapeHtml(ui.renderCaption)}</span></p>`,
+      `          <button type="button" class="fclub-lb__btn fclub-lb__btn--prev" data-fclub-lb-prev aria-label="${escapeHtml(ui.prev)}"><span aria-hidden="true">‹</span></button>`,
+      `          <button type="button" class="fclub-lb__btn fclub-lb__btn--next" data-fclub-lb-next aria-label="${escapeHtml(ui.next)}"><span aria-hidden="true">›</span></button>`,
+      `          <div class="fclub-lb__top">`,
+      `            <button type="button" class="fclub-lb__back" data-fclub-lb-back>${escapeHtml(ui.back3d)}</button>`,
+      `            <button type="button" class="fclub-lb__close" data-fclub-lb-close aria-label="${escapeHtml(ui.closeViewer)}"><span aria-hidden="true">×</span></button>`,
+      `          </div>`,
+      `        </dialog>`,
       `      </div>`,
       `    </div>`,
       `  </section>`,

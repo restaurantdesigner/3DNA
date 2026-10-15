@@ -61,7 +61,14 @@
     </a>
 
     <nav class="nav-desktop" aria-label="Primary">
-      <a href="/en/#sector-restaurants">Projects</a>
+      <a href="/en/#sector-restaurants" class="nav-dd-trigger" aria-haspopup="true">Projects<span class="nav-dd-caret" aria-hidden="true"></span></a>
+      <div class="nav-dd-menu" aria-label="Projects">
+        <div class="nav-dd-panel">
+          <a href="/en/restaurants/" data-track="nav_projects_clicked" data-track-location="restaurants"><span class="nav-dd-index">01</span>Restaurants</a>
+          <a href="/en/fitness/" data-track="nav_projects_clicked" data-track-location="fitness"><span class="nav-dd-index">02</span>Fitness</a>
+          <a href="/en/#sector-healthcare" data-track="nav_projects_clicked" data-track-location="healthcare"><span class="nav-dd-index">03</span>Healthcare</a>
+        </div>
+      </div>
       <a href="/en/#process">Process</a>
       <a href="/en/about/">About</a>
     </nav>
@@ -92,6 +99,11 @@
     <nav class="mobile-menu-nav" aria-label="Menu">
       <a href="/en/#hero" class="m-link">Home</a>
       <a href="/en/#sector-restaurants" class="m-link">Projects</a>
+      <div class="m-sublinks">
+        <a href="/en/restaurants/" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_restaurants">Restaurants</a>
+        <a href="/en/fitness/" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_fitness">Fitness</a>
+        <a href="/en/#sector-healthcare" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_healthcare">Healthcare</a>
+      </div>
       <a href="/en/#process" class="m-link">Process</a>
       <a href="/en/about/" class="m-link">About</a>
       <a href="#site-footer" class="m-link">Contact</a>

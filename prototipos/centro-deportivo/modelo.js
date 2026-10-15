@@ -17,7 +17,7 @@ import * as K from "/assets/js/shared-3d/archviz.js";
 import { buildFixture, PROJECT_MATS } from "./modelo-equipamiento.js";
 import { createClubEquipment } from "/assets/js/fitness-club-3d/club-equipment.js";
 import { buildEnvironment } from "./modelo-entorno.js";
-import { summarize, toRows, dashboard, FIELDS } from "./presupuesto.js";
+import { summarize, toRows, dashboard, FIELDS } from "./presupuesto.js?v=20261014a";
 
 // ?embed=1 — shown inside the Fitness page: viewer, modes, room data and budget only
 const PARAMS = new URLSearchParams(location.search);
@@ -1211,6 +1211,7 @@ async function main() {
   // ---------- formatting ----------
   const nf = (d) => new Intl.NumberFormat("es-ES", { minimumFractionDigits: d, maximumFractionDigits: d });
   const EUR = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  const EUR2 = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const PEND = `<span class="pend">Pendiente de definir</span>`;
   const eur = (v) => (v === null ? PEND : EUR.format(v));
   const kw = (v) => (v === null ? PEND : nf(2).format(v) + " kW");
@@ -1218,9 +1219,17 @@ async function main() {
   const BADGE = {
     verified: ["v", "V", "Verificado (documentado)"], estimated: ["e", "E", "Estimado / preliminar"], concept: ["c", "C", "Concepto 3DNA"],
     edited: ["ed", "Ed", "Editado (preliminar)"], reference: ["r", "Est", "Estimado — referencia orientativa"],
+    catalog: ["t", "Tar", "Precio de tarifa de proveedor verificado (sin IVA)"],
     pending: ["p", "P", "Pendiente de definir"], inherent: ["z", "0", "Sin consumo eléctrico (inherente al elemento)"], na: ["z", "–", "No aplica"],
   };
   const badge = (s) => { const [c, t, title] = BADGE[s] || BADGE.pending; return `<span class="b ${c}" title="${title}">${t}</span>`; };
+  // supplier tariff behind a price: references, VAT, verification date and the previous assumption
+  const priceSourceNote = (e) => {
+    const src = e.priceSource;
+    const parts = src.components.map((c) => `${c.qty > 1 ? c.qty + " × " : ""}${esc(c.description)} — ref. ${esc(c.ref)}, p. ${c.page}: ${EUR2.format(c.unitPrice)}`).join("<br>");
+    return `<p class="note small">${badge("catalog")} <strong>Precio de tarifa:</strong> ${esc(src.supplier)} · tarifa profesional 2026 · sin IVA · verificado ${esc(src.verified)}<br>${parts}`
+      + `${src.configuration ? `<br><em>${esc(src.configuration)}</em>` : ""}<br>Supuesto anterior: ${EUR.format(src.previous.unitPrice)} (${esc(src.previous.date)}).</p>`;
+  };
 
   // ---------- panel: equipment budget dashboard ----------
   const roomList = () => rooms.map((r) => ({ id: r.id, name: r.name }));
@@ -1272,7 +1281,7 @@ async function main() {
         <input type="search" class="search" placeholder="Buscar equipo, categoría o espacio…" value="${esc(budget.search)}" aria-label="Buscar equipo">
         <ul id="b-list" class="eqlist"></ul>`, `<span class="cnt" id="d-count"></span>`)}
       ${sec("services", "Instalaciones — estimación preliminar", `<p class="note small">Opcional y <strong>separada del total de equipamiento</strong>. Marcadores pendientes del proyecto de instalaciones; las cargas ya contadas (sauna, luminarias del gimnasio) no se repiten.</p><div id="b-services"></div>`, `<small class="opt">fuera del total</small>`)}
-      ${sec("legend", "Leyenda y datos", `<p class="legend">${["verified", "reference", "estimated", "concept", "edited", "pending", "inherent"].map((s) => `${badge(s)} ${BADGE[s][2]}`).join("<br>")}</p>
+      ${sec("legend", "Leyenda y datos", `<p class="legend">${["verified", "catalog", "reference", "estimated", "concept", "edited", "pending", "inherent"].map((s) => `${badge(s)} ${BADGE[s][2]}`).join("<br>")}</p>
         <p class="legend small">Ediciones guardadas solo en este navegador. Datos estructurados preparados para exportar (CSV / Excel / PDF) en una fase posterior.</p>`)}`;
     refreshBudget(D);
     // events
@@ -1382,7 +1391,7 @@ async function main() {
       </div>
       ${it.group ? `<p class="note small"><strong>Grupo de iluminación:</strong> ${it.group.lines} líneas × ${it.group.perLine} luminarias = ${it.group.lines * it.group.perLine} luminarias. ${esc(it.group.status)}.</p>` : ""}
       ${it.note ? `<p class="note small">${esc(it.note)}</p>` : ""}
-      ${it.estimate && budget.scenario === "estimate" ? `<p class="note small">${badge("reference")} <strong>Base de la estimación:</strong> ${esc(it.estimate.basis)} · ${esc(it.estimate.date)}. Requiere confirmación del proveedor.</p>` : ""}
+      ${it.estimate && budget.scenario === "estimate" ? (it.estimate.priceSource ? priceSourceNote(it.estimate) : `<p class="note small">${badge("reference")} <strong>Base de la estimación:</strong> ${esc(it.estimate.basis)} · ${esc(it.estimate.date)}. ${it.estimate.priceCheck ? `<strong>Precio sin verificar</strong> (${esc(it.estimate.priceCheck.checked)}): ${esc(it.estimate.priceCheck.note)}` : "Requiere confirmación del proveedor."}</p>`) : ""}
       <p class="note small"><strong>Fuente:</strong> ${esc(it.source)}. Objetos 3D: <code>${it.objects.map(esc).join(", ")}</code></p>
       ${budget.edits[it.id] ? `<button type="button" class="chip" data-reset>Restablecer valores de esta partida</button>` : ""}
     </section>`;

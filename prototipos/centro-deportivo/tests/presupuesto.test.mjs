@@ -19,13 +19,37 @@ ok(spec.items.filter((i) => i.powerStatus === "inherent").every((i) => i.ratedKw
 ok(spec.items.filter((i) => i.powerStatus !== "inherent").every((i) => Number.isFinite(i.estimate.ratedKw)), "powered / unconfirmed items: power estimate present");
 ok(spec.items.every((i) => i.unitPrice === null && i.ratedKw !== undefined), "no documented price was overwritten (all prices remain undocumented in the data)");
 
-// ---------- given starting assumptions ----------
+// ---------- given starting assumptions (prices later replaced by supplier tariffs keep them as "previous") ----------
 const A = { "eq-cinta": [3800, 2.2], "eq-eliptica": [2900, 0.15], "eq-bicicleta": [1800, 0.10], "eq-jalon": [2600, 0], "eq-prensa": [2600, 0], "eq-poleas": [2600, 0],
   "eq-rack": [1700, 0], "eq-banco": [450, 0], "eq-mancuernas": [3500, 0], "eq-led": [120, 0.04], "eq-led-calida": [120, 0.04] };
 Object.entries(A).forEach(([id, [p, kw]]) => {
   const it = spec.items.find((i) => i.id === id);
-  ok(it.estimate.unitPrice === p && (it.estimate.ratedKw ?? it.ratedKw) === kw, `${id}: ${p} € / ${kw} kW (supuesto de partida)`);
+  const startPrice = it.estimate.priceSource ? it.estimate.priceSource.previous.unitPrice : it.estimate.unitPrice;
+  ok(startPrice === p && (it.estimate.ratedKw ?? it.ratedKw) === kw, `${id}: ${p} € / ${kw} kW (supuesto de partida)`);
 });
+
+// ---------- supplier tariff prices (2026-10-14) ----------
+{
+  const T = { "eq-cinta": 1413, "eq-eliptica": 994, "eq-bicicleta": 663, "eq-jalon": 983, "eq-prensa": 1231, "eq-poleas": 1148, "eq-rack": 771.32,
+    "eq-plataforma": 737.85, "eq-discos": 132, "eq-mancuernas": 1135.31, "eq-banco": 288, "eq-esterilla": 16.42, "eq-cajon": 109.53,
+    "eq-kettlebells": 667.12, "eq-balon": 33.17, "eq-cuerdas": 127.5 };
+  const priced = spec.items.filter((i) => i.estimate.priceSource);
+  ok(priced.length === Object.keys(T).length && priced.every((i) => i.id in T), `${priced.length} lines priced from supplier tariffs`);
+  priced.forEach((it) => {
+    const s = it.estimate.priceSource, sum = s.components.reduce((a, c) => a + c.qty * c.unitPrice, 0);
+    ok(Math.abs(sum - it.estimate.unitPrice) < 0.005 && it.estimate.unitPrice === T[it.id], `${it.id}: ${it.estimate.unitPrice} € = sum of ${s.components.length} tariff line(s)`);
+    ok(s.vat === "excluded" && s.verified === "2026-10-14" && s.url && s.supplier && s.components.every((c) => c.document && c.page > 0 && c.ref),
+      `${it.id}: source, page, reference, VAT excluded and verification date recorded`);
+    ok(it.unitPrice === null && it.manufacturer === null && it.model === null, `${it.id}: tariff price kept apart from documented project values`);
+  });
+  const L = summarize(spec, { scenario: "estimate" }).lines.find((x) => x.item.id === "eq-cinta");
+  ok(L.r.unitPrice.s === "catalog" && L.r.manufacturer.s === "catalog" && L.r.ratedKw.s === "reference", "tariff price shown as 'catalog'; power stays a reference estimate");
+  const unv = spec.items.filter((i) => i.estimate.priceCheck);
+  ok(unv.map((i) => i.id).sort().join() === "eq-almacen,eq-espejos,eq-toallas" && unv.every((i) => i.estimate.priceCheck.status === "unverified"),
+    "mirror, towel station and accessory storage: assumption kept, marked unverified");
+  const rows = toRows(spec, { scenario: "estimate" });
+  ok(rows.find((r) => r.id === "eq-rack").precio_referencias.includes("EB-01") && rows.find((r) => r.id === "eq-espejos").precio_verificado === "sin verificar", "export rows carry tariff references and verification state");
+}
 ok(spec.items.find((i) => i.id === "fx-sauna").estimate.ratedKw === 9, "sauna heater 9 kW (subject to cabin volume)");
 
 // ---------- gym lighting: 3 lines × 5 luminaires ----------
@@ -112,7 +136,8 @@ ok(near(S.lines.find((L) => L.item.id === "eq-cinta").total, 15000), "edits also
   ok(near(T.vat, T.cost * 0.21) && near(T.costWithVat, T.cost * 1.21), "summary: IVA 21 % and total including IVA");
   ok(near(T.demandKw, T.installedKw * spec.energy.estimate.simultaneity) && near(T.energyCost, T.kwh * spec.energy.estimate.priceEurKwh), "summary: demand and electricity cost derived from the assumptions");
   const D2 = dashboard(spec, { scenario: "estimate", edits: { "eq-cinta": { qty: 2 }, _global: { priceEurKwh: 0.25 } } }, rooms);
-  ok(near(D2.summary.cost, T.cost - 2 * 3800) && near(D2.byRoom.find((r) => r.id === "sala").cost, roomCheck("sala") - 7600) && near(D2.summary.energyCost, D2.summary.kwh * 0.25), "user edits flow into summary, spaces and electricity cost (nothing hard-coded)");
+  const cintaPrice = spec.items.find((i) => i.id === "eq-cinta").estimate.unitPrice;
+  ok(near(D2.summary.cost, T.cost - 2 * cintaPrice) && near(D2.byRoom.find((r) => r.id === "sala").cost, roomCheck("sala") - 2 * cintaPrice) && near(D2.summary.energyCost, D2.summary.kwh * 0.25), "user edits flow into summary, spaces and electricity cost (nothing hard-coded)");
   const D3 = dashboard(spec, { scenario: "verified" }, rooms);
   ok(D3.summary.cost === 0 && D3.byRoom.every((r) => r.pct === null), "verified-only: no percentages when nothing is priced");
 }

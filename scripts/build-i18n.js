@@ -338,6 +338,7 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "layout.footer") return renderPartial(lang, layoutFooter, options);
     if (key === "restaurants.storiesHtml") return restaurantsPage.storiesHtml(lang);
     if (key === "fitnessPage.url") return pagePathFor("fitness", lang);
+    if (key === "restaurantsPage.url") return pagePathFor("restaurants", lang);
     if (key === "aboutPage.url") return pagePathFor("about", lang);
     if (key === "about.bodyHtml") return aboutPage.bodyHtml(lang);
     if (key === "designQuotes.html") return designQuotes.sectionHtml(lang);

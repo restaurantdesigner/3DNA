@@ -243,7 +243,11 @@ function createBusinessCalcs(translations, { whatsappHref, email, restaurantShar
     ].join("\n");
   }
 
-  // Fitness: one input (floor area) → concept, spaces, equipment, capacity, staff, investment, scenarios
+  // Fitness: compact progressive planner. One required input (floor area); concept, premises, demand and
+  // air-conditioning in "Advanced settings"; one project summary card; the detailed plan in eight accordions.
+  // One Spain reference baseline for every visitor (never chosen by language or location).
+  // Every figure comes from the model (assets/js/fitness-calc.js); the card is pre-rendered with the
+  // same function the browser uses, so the page reads without JavaScript.
   function fitnessHtml(lang) {
     const M = fitnessModel;
     const T = translations[lang], E = translations.en;
@@ -251,63 +255,94 @@ function createBusinessCalcs(translations, { whatsappHref, email, restaurantShar
     const rt = { ...E.calcCommon.report, ...E.fitnessPage.calc.report, ...T.calcCommon.report, ...T.fitnessPage.calc.report };
     const fmt = tools.formatter(LOCALE[lang]);
     const r = M.compute(M.defaults);
-    const an = r._an;
     const f = M.fields[0];
-    const card = (label, inner, strong) => `<div class="rpc-card${strong ? " rpc-card--strong" : ""}"><dt>${esc(label)}</dt>${inner}</div>`;
+    const optLabel = (field, o) => ({ concept: o === "auto" ? rt.autoConcept : (rt.concepts[o] || {}).name, condition: rt.conditions[o], demand: rt.demands[o], hvac: rt.hvacReuse[o] })[field];
+    const select = (field) => {
+      const fd = M.fields.find((x) => x.key === field);
+      return [
+        `<div class="gp-field">`,
+        `  <label for="fc-${field}">${esc(ui.fields[field])}</label>`,
+        `  <select id="fc-${field}" name="${fd.param}" data-cf="${field}">`,
+        ...fd.options.map((o) => `    <option value="${o}"${M.defaults[field] === o ? " selected" : ""}>${esc(optLabel(field, o))}${M.defaults[field] === o ? ` (${esc(ui.defaultMark)})` : ""}</option>`),
+        `  </select>`,
+        `</div>`,
+      ].join("\n");
+    };
+    const chev = `<svg class="gp-chev" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const contact = { whatsapp: whatsappHref(lang), email };
     return [
-      `  <section class="bcalc bcalc--fitness rpc fpc" id="calculadora" data-calc="fitness" aria-labelledby="fc-title"${fitnessSharePath ? ` data-share-url="${esc(fitnessSharePath(lang))}"` : ""}>`,
-      `    <div class="bcalc__inner">`,
-      `    <header class="bcalc__head">`,
-      `      <p class="bcalc__eyebrow">${esc(ui.eyebrow)}</p>`,
-      `      <h2 class="bcalc__title" id="fc-title">${esc(ui.title)}</h2>`,
-      `      <p class="bcalc__sub">${esc(ui.subtitle)}</p>`,
-      `    </header>`,
-      `    <div class="fpc-top">`,
-      `      <form class="fpc-input" novalidate aria-labelledby="fc-title">`,
-      `        <div class="bcalc__field">`,
+      `  <section class="bcalc bcalc--fitness gp" id="calculadora" data-calc="fitness" aria-labelledby="fc-title"${fitnessSharePath ? ` data-share-url="${esc(fitnessSharePath(lang))}"` : ""}>`,
+      `    <div class="gp__inner">`,
+      // left: title, the one required input, advanced settings, saved analyses
+      `    <div class="gp-left">`,
+      `      <header class="gp-head">`,
+      `        <p class="bcalc__eyebrow">${esc(ui.eyebrow)}</p>`,
+      `        <h2 class="gp-title" id="fc-title">${esc(ui.title)}</h2>`,
+      `        <p class="gp-sub">${esc(ui.subtitle)}</p>`,
+      `      </header>`,
+      `      <form class="gp-form" novalidate aria-labelledby="fc-title">`,
+      `        <div class="gp-field gp-field--area">`,
       `          <label for="fc-area">${esc(ui.inputLabel)}</label>`,
-      `          <div class="bcalc__box has-unit fpc-box">`,
+      `          <div class="bcalc__box has-unit gp-box">`,
       `            <input id="fc-area" name="${f.param}" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" value="${esc(fmt.input(M.defaults.area, 0))}" data-cf="area" aria-describedby="fc-area-u fc-area-h">`,
       `            <span class="bcalc__unit" id="fc-area-u">${esc(ui.units.m2)}</span>`,
       `          </div>`,
-      `          <p class="fpc-hint" id="fc-area-h">${esc(ui.inputHint)}</p>`,
+      `          <p class="gp-hint" id="fc-area-h">${esc(ui.inputHint)} ${esc(ui.live)}</p>`,
       `        </div>`,
+      `        <p class="gp-ref">${esc(ui.disclaimer)}</p>`,
+      `        <details class="gp-adv">`,
+      `          <summary>${esc(ui.optsTitle)}${chev}</summary>`,
+      `          <div class="gp-adv__body">`,
+      `            <p class="gp-hint">${esc(ui.optsHint)}</p>`,
+      ...["concept", "condition", "demand", "hvac"].map((x) => indent(select(x), 12)),
+      `          </div>`,
+      `        </details>`,
       `      </form>`,
-      `      <dl class="rpc-cards fpc-cards">`,
-      `        ${card(ui.cards.concept, `<dd class="fpc-concept" data-fpc-concept>${esc(rt.concepts[an.key].name)}</dd>`, true)}`,
-      `        ${card(ui.cards.capacity, `<dd data-co="capacity" data-fmt="int">${esc(fmt.int(r.capacity))}</dd>`)}`,
-      `        ${card(ui.cards.members, `<dd data-fpc-members>${esc(`${fmt.int(an.sc.conservative.members)} – ${fmt.int(an.sc.optimistic.members)}`)}</dd>`)}`,
-      `        ${card(ui.cards.investment, `<dd data-fpc-inv>${esc(`${fmt.keur(an.invTotal[0])} – ${fmt.keur(an.invTotal[1])}`)}</dd>`)}`,
-      `        ${card(ui.cards.gross, `<dd data-co="gross" data-fmt="eur">${esc(fmt.eur(r.gross))}</dd>`)}`,
-      `        ${card(ui.cards.profit, `<dd data-co="profit" data-fmt="eur"${r.profit < 0 ? ' class="is-neg"' : ""}>${esc(fmt.eur(r.profit))}</dd>`)}`,
-      `      </dl>`,
+      `      <details class="ccalc-saved" data-csaved hidden>`,
+      `        <summary>${esc(ui.savedTitle)} (<span data-csaved-count>0</span>)</summary>`,
+      `        <p class="ccalc-saved__note">${esc(ui.savedNote)}</p>`,
+      `        <ul class="ccalc-saved__list" data-csaved-list></ul>`,
+      `      </details>`,
       `    </div>`,
-      `    <p class="rpc-cards__note">${esc(ui.cardsNote)}</p>`,
-      `    <div class="ccalc-tools" role="group" aria-label="${esc(ui.toolbarLabel)}">`,
-      `      <button type="button" class="bcalc__btn bcalc__btn--primary" data-ca="pdf" hidden>${esc(ui.pdf)}</button>`,
-      `      <button type="button" class="bcalc__btn" data-ca="save" hidden>${esc(ui.save)}</button>`,
-      `      <button type="button" class="bcalc__btn" data-ca="print" hidden>${esc(ui.print)}</button>`,
-      `      <button type="button" class="bcalc__btn" data-ca="share-calc" hidden>${esc(ui.shareCalc)}</button>`,
-      `      <button type="button" class="bcalc__btn" data-ca="share-section" hidden>${esc(ui.shareSection)}</button>`,
-      `    </div>`,
-      `    <p class="ccalc-status" data-cstatus role="status" aria-live="polite"></p>`,
-      `    <input class="ccalc-link" data-clink type="text" readonly hidden aria-label="${esc(ui.linkLabel)}">`,
-      `    <details class="ccalc-saved" data-csaved hidden>`,
-      `      <summary>${esc(ui.savedTitle)} (<span data-csaved-count>0</span>)</summary>`,
-      `      <p class="ccalc-saved__note">${esc(ui.savedNote)}</p>`,
-      `      <ul class="ccalc-saved__list" data-csaved-list></ul>`,
-      `    </details>`,
-      `    <details class="rpc-report" data-rpc-full>`,
-      `      <summary class="rpc-report__head">`,
-      `        <span class="rpc-report__titles"><span class="rpc-report__title">${esc(ui.fullTitle)}</span><span class="rpc-report__sub">${esc(ui.fullSub)}</span></span>`,
-      `        <svg class="rpc-report__chev" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-      `      </summary>`,
-      `      <div class="rpc-report__inner">`,
-      `        <p class="rpc-report__intro">${esc(ui.reportIntro)}</p>`,
-      `        <ul class="rpc-legend">${["in", "est", "max", "scn"].map((k) => `<li><span class="rpc-tag rpc-tag--${k}">${esc(rt.tags[k])}</span> ${esc(rt.tagsHelp[k])}</li>`).join("")}</ul>`,
-      `        <div class="rpc-report__body" data-rpc-report></div>`,
+      // right: recommended concept and financial summary (same calculation as the report)
+      `    <article class="gp-card" aria-live="polite">`,
+      `      <div class="gp-card__summary" data-gp-summary>`,
+      indent(M.summaryHtml(r._an, rt, fmt, contact), 8),
       `      </div>`,
-      `    </details>`,
+      `      <div class="gp-card__foot">`,
+      `        <button type="button" class="gp-open" data-gp-open-report>${esc(ui.openPlan)} <span aria-hidden="true">→</span></button>`,
+      `        <div class="ccalc-tools gp-tools" role="group" aria-label="${esc(ui.toolbarLabel)}">`,
+      `          <button type="button" class="bcalc__btn" data-ca="pdf" hidden>${esc(ui.pdf)}</button>`,
+      `          <button type="button" class="bcalc__btn" data-ca="save" hidden>${esc(ui.save)}</button>`,
+      `          <button type="button" class="bcalc__btn" data-ca="print" hidden>${esc(ui.print)}</button>`,
+      `          <button type="button" class="bcalc__btn" data-ca="share-calc" hidden>${esc(ui.shareCalc)}</button>`,
+      `          <button type="button" class="bcalc__btn" data-ca="share-section" hidden>${esc(ui.shareSection)}</button>`,
+      `          <a class="bcalc__btn gp-wa-btn" href="${esc(contact.whatsapp)}" target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="gym_planner">WhatsApp</a>`,
+      `        </div>`,
+      `        <p class="ccalc-status" data-cstatus role="status" aria-live="polite"></p>`,
+      `        <input class="ccalc-link" data-clink type="text" readonly hidden aria-label="${esc(ui.linkLabel)}">`,
+      `      </div>`,
+      `    </article>`,
+      // detailed business plan: a dialog with its own scroll area, so the page section never grows
+      `    <dialog class="gp-report" data-gp-report aria-labelledby="gp-report-title">`,
+      `      <header class="gp-report__head">`,
+      `        <button type="button" class="gp-report__back" data-gp-report-close><span aria-hidden="true">←</span> ${esc(ui.backToCalc)}</button>`,
+      `        <h3 class="gp-report__title" id="gp-report-title">${esc(ui.planTitle)}</h3>`,
+      `        <button type="button" class="gp-report__x" data-gp-report-close aria-label="${esc(ui.closePlan)}"><span aria-hidden="true">×</span></button>`,
+      `      </header>`,
+      `      <div class="gp-report__body">`,
+      `        <p class="gp-hint">${esc(ui.planSub)}</p>`,
+      `        <ul class="rpc-legend gp-legend">${M.TAGS.map((t) => `<li><span class="rpc-tag rpc-tag--${t}">${esc(rt.tags[t])}</span> ${esc(rt.tagsHelp[t])}</li>`).join("")}</ul>`,
+      `        <div class="gp-plan">`,
+      ...M.GROUPS.map((g, i) => [
+        `          <details class="gp-acc" data-gp-sec="${g.id}">`,
+        `            <summary class="gp-acc__head"><span class="gp-acc__num">${String(i + 1).padStart(2, "0")}</span><span class="gp-acc__titles"><span class="gp-acc__title">${esc(rt.gp.groups[g.id])}</span><span class="gp-acc__sub">${esc(rt.gp.groupSubs[g.id])}</span></span>${chev}</summary>`,
+        `            <div class="gp-acc__body" data-gp-body></div>`,
+        `          </details>`,
+      ].join("\n")),
+      `        </div>`,
+      `      </div>`,
+      `    </dialog>`,
       `    ${i18nScript(lang, "fitnessPage")}`,
       `    </div>`,
       `  </section>`,

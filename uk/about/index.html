@@ -61,7 +61,14 @@
     </a>
 
     <nav class="nav-desktop" aria-label="Основна навігація">
-      <a href="/uk/#sector-restaurants">Проєкти</a>
+      <a href="/uk/#sector-restaurants" class="nav-dd-trigger" aria-haspopup="true">Проєкти<span class="nav-dd-caret" aria-hidden="true"></span></a>
+      <div class="nav-dd-menu" aria-label="Проєкти">
+        <div class="nav-dd-panel">
+          <a href="/uk/restaurants/" data-track="nav_projects_clicked" data-track-location="restaurants"><span class="nav-dd-index">01</span>Ресторани</a>
+          <a href="/uk/fitness/" data-track="nav_projects_clicked" data-track-location="fitness"><span class="nav-dd-index">02</span>Фітнес</a>
+          <a href="/uk/#sector-healthcare" data-track="nav_projects_clicked" data-track-location="healthcare"><span class="nav-dd-index">03</span>Медицина</a>
+        </div>
+      </div>
       <a href="/uk/#process">Процес</a>
       <a href="/uk/about/">Про нас</a>
     </nav>
@@ -92,6 +99,11 @@
     <nav class="mobile-menu-nav" aria-label="Меню">
       <a href="/uk/#hero" class="m-link">Головна</a>
       <a href="/uk/#sector-restaurants" class="m-link">Проєкти</a>
+      <div class="m-sublinks">
+        <a href="/uk/restaurants/" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_restaurants">Ресторани</a>
+        <a href="/uk/fitness/" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_fitness">Фітнес</a>
+        <a href="/uk/#sector-healthcare" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_healthcare">Медицина</a>
+      </div>
       <a href="/uk/#process" class="m-link">Процес</a>
       <a href="/uk/about/" class="m-link">Про нас</a>
       <a href="#site-footer" class="m-link">Контакти</a>

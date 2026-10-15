@@ -14,6 +14,9 @@
  *   estimated     preliminary value from the project data (e.g. a quantity interpreted on the plan)
  *   concept       quantity from the 3DNA concept (not part of the architectural project)
  *   reference     "Estimado — referencia orientativa": preliminary estimate with basis and date
+ *   catalog       price / make / model taken from a supplier's current tariff (estimate.priceSource:
+ *                 document, page, reference, VAT, verification date). Still a reference choice of
+ *                 equipment, not a documented project value, so it is used in the "estimate" scenario only.
  *   edited        value typed by the user (preliminary, editable)
  *   na            not applicable (hours / utilisation of a 0 kW item)
  *   pending       "Pendiente de definir"
@@ -27,6 +30,7 @@
  */
 
 export const FIELDS = ["manufacturer", "model", "qty", "unitPrice", "ratedKw", "hoursYear", "utilization"];
+const CATALOG_FIELDS = ["manufacturer", "model", "unitPrice"];
 
 // status of a value present in the data file (documented unless stated otherwise)
 const fieldStatus = (item, f) => {
@@ -46,7 +50,7 @@ export function resolve(item, { scenario = "estimate", edits = {} } = {}) {
   FIELDS.forEach((f) => {
     if (has(e[f])) out[f] = { v: e[f], s: "edited" };
     else if (has(item[f])) out[f] = { v: item[f], s: fieldStatus(item, f) };
-    else if (has(est[f])) out[f] = { v: est[f], s: "reference" };
+    else if (has(est[f])) out[f] = { v: est[f], s: est.priceSource && CATALOG_FIELDS.includes(f) ? "catalog" : "reference" };
     else out[f] = { v: null, s: "pending" };
   });
   // hours / utilisation do not apply to an item without electrical demand (unless the user typed them)
@@ -193,6 +197,10 @@ export function toRows(spec, ctx, roomName = (id) => id) {
     horas_ano: L.r.hoursYear.v, factor_uso: L.r.utilization.v, consumo_kwh_ano: L.kwh, coste_energia_eur_ano: L.energyCost,
     estado_cantidad: L.r.qty.s, estado_precio: L.r.unitPrice.s, estado_potencia: L.r.ratedKw.s,
     estimacion_base: L.item.estimate?.basis ?? "", estimacion_fecha: L.item.estimate?.date ?? "",
+    precio_proveedor: L.item.estimate?.priceSource?.supplier ?? "",
+    precio_referencias: (L.item.estimate?.priceSource?.components || []).map((c) => `${c.ref} (p. ${c.page})`).join("; "),
+    precio_iva: L.item.estimate?.priceSource ? "sin IVA" : "",
+    precio_verificado: L.item.estimate?.priceSource?.verified ?? (L.item.estimate?.priceCheck ? "sin verificar" : ""),
     incluido_en: L.includedIn || "", fuente: L.item.source,
   }));
 }
