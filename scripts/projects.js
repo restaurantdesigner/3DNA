@@ -207,6 +207,8 @@ function createProjects(data, texts, { restaurantsSlug }) {
         file: `${lang}/${subPath(lang, p.id)}${item.direct[lang]}/index.html`,
         title: `${p.name} · ${L.sections[s.titleKey] || ""} · ${text(lang, p.id, item.titleKey)} | 3DNA`,
         back: pagePath(lang, p.id) + `#${s.id}`, backLabel: p.name, lang
+        , path: `${pagePath(lang, p.id)}${item.direct[lang]}/`, langs: Object.keys(item.direct).map((l) => [l, `${pagePath(l, p.id)}${item.direct[l]}/`])
+        , share: item.share ? { image: item.share.image, title: text(lang, p.id, item.share.titleKey), text: text(lang, p.id, item.share.textKey), alt: text(lang, p.id, item.share.altKey) } : null
       });
     }
     return out;

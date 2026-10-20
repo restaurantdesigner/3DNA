@@ -26,7 +26,8 @@
           "titleKey": "washrooms",
           "items": [
             { "type": "model3d", "src": "/prototipos/washroom-suite/", "titleKey": "washroomModel", "noteKey": "washroomModelNote",
-              "direct": { "es": "aseos-3d", "en": "washroom-3d", "ru": "washroom-3d", "uk": "washroom-3d" } }
+              "direct": { "es": "aseos-3d", "en": "washroom-3d", "ru": "washroom-3d", "uk": "washroom-3d" },
+              "share": { "image": "/images/og/og-ilia-aseos-3d.jpg", "titleKey": "modelShareTitle", "textKey": "modelShareText", "altKey": "modelShareAlt" } }
           ]
         },
         {

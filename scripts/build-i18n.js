@@ -626,6 +626,33 @@ for (const lang of SUPPORTED) for (const m of projects.directModels(lang)) {
 <a class="ws-back" href="${m.back}"><span aria-hidden="true">&larr;</span> ${escapeHtml(m.backLabel)}</a>`)
     .replace(/(<script src="[^"]*washroom-suite\.i18n\.js)/, `<script>window.WS_PRESET = ${JSON.stringify({ lang, public: true })};</script>
 $1`);
+  // link previews (Telegram, WhatsApp, Facebook, X, LinkedIn…): description and a 1200 × 630 image in the HTML
+  if (m.share) {
+    const e = escapeHtml, url = absolute(m.path), img = absolute(m.share.image);
+    const tags = [
+      `<meta name="description" content="${e(m.share.text)}">`,
+      `<link rel="canonical" href="${e(url)}">`,
+      ...m.langs.map(([l, pth]) => `<link rel="alternate" hreflang="${l}" href="${e(absolute(pth))}">`),
+      `<meta property="og:type" content="website">`,
+      `<meta property="og:site_name" content="3DNA">`,
+      `<meta property="og:locale" content="${e(translations[lang].meta.ogLocale)}">`,
+      `<meta property="og:title" content="${e(m.share.title)}">`,
+      `<meta property="og:description" content="${e(m.share.text)}">`,
+      `<meta property="og:url" content="${e(url)}">`,
+      `<meta property="og:image" content="${e(img)}">`,
+      `<meta property="og:image:secure_url" content="${e(img)}">`,
+      `<meta property="og:image:type" content="image/jpeg">`,
+      `<meta property="og:image:width" content="1200">`,
+      `<meta property="og:image:height" content="630">`,
+      `<meta property="og:image:alt" content="${e(m.share.alt)}">`,
+      `<meta name="twitter:card" content="summary_large_image">`,
+      `<meta name="twitter:title" content="${e(m.share.title)}">`,
+      `<meta name="twitter:description" content="${e(m.share.text)}">`,
+      `<meta name="twitter:image" content="${e(img)}">`,
+      `<meta name="twitter:image:alt" content="${e(m.share.alt)}">`
+    ];
+    html = html.replace(/(<title>[^<]*<\/title>)/, (t) => `${t}\n${tags.join("\n")}`);
+  }
   write(m.file, html);
 }
 
