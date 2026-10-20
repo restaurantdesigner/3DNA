@@ -1,3 +1,6 @@
 node_modules/
 .env
 logs/
+
+# client floor plan for the washroom model: not published (Plan overlay hidden without it)
+prototipos/washroom-suite/plan-reference.png

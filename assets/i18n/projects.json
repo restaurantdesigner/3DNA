@@ -1,0 +1,310 @@
+{
+  "es": {
+    "slug": "proyectos",
+    "section": {
+      "eyebrow": "Proyectos en desarrollo",
+      "label": "Proyectos de clientes en desarrollo"
+    },
+    "category": {
+      "restaurantInterior": "Diseño de interiores de restaurante"
+    },
+    "status": {
+      "development": "En desarrollo"
+    },
+    "cta": "Explorar proyecto",
+    "back": "Restaurantes",
+    "contextLabel": "Ubicación en el sitio",
+    "sections": {
+      "washrooms": "Diseño de aseos",
+      "panoramas": "Panorámica 360°"
+    },
+    "projects": {
+      "ilia": {
+        "meta": {
+          "title": "TVIT · Proyecto de diseño de restaurante en desarrollo | 3DNA",
+          "description": "TVIT, restaurante en desarrollo diseñado por 3DNA: luz cálida, lámparas de fibra natural, mármol y madera. Vídeo del proyecto, diseño de aseos y modelo 3D interactivo.",
+          "ogImageAlt": "Comedor del proyecto TVIT con luz cálida y lámparas de fibra natural"
+        },
+        "text": {
+          "washroomRender": "Diseño de aseos del proyecto TVIT visto desde arriba: vestíbulo con lavabo sobre encimera de piedra y aseo con urinario, mampara baja, inodoro suspendido y lavabo lateral, con iluminación LED perimetral",
+          "washroomRenderCaption": "Render del diseño aprobado",
+          "washroomModel": "Modelo 3D interactivo",
+          "washroomModelNote": "Modelo conceptual: gira la vista, cambia de cámara y compara acabados.",
+          "openModel": "Abrir el modelo a pantalla completa",
+          "modelFrameTitle": "Modelo 3D interactivo de los aseos del proyecto TVIT",
+          "cardCover": "Comedor del proyecto TVIT: ventanales enmarcados por luz cálida, lámparas de fibra natural y mesas de mármol",
+          "heroLabel": "Recorrido en vídeo por el comedor del proyecto TVIT",
+          "tagline": "Luz cálida, texturas naturales y un comedor que invita a quedarse.",
+          "introEyebrow": "El proyecto",
+          "introTitle": "Un restaurante pensado para quedarse",
+          "intro": [
+            "TVIT es un restaurante en desarrollo que diseñamos alrededor de una idea sencilla: que cada mesa se sienta como el mejor sitio de la sala. Los ventanales, enmarcados por pilastras de yeso texturizado y una luz cálida que los rodea, llenan el comedor de luz natural durante el día y lo envuelven en un resplandor suave al caer la tarde.",
+            "Lámparas escultóricas de fibra natural tejida cuelgan a distintas alturas y dibujan un techo vivo sobre las mesas de mármol. Sillas de madera de respaldo curvo, un banco corrido a lo largo de las ventanas, rincones de sofá con mesas de madera natural y una barra con estanterías retroiluminadas crean un recorrido pensado para cenas largas, encuentros y una última copa.",
+            "La vegetación entra en la sala como un material más: aporta frescura, separa ambientes sin cerrar las vistas y acompaña al cliente desde la entrada hasta su mesa."
+          ],
+          "highlights": [
+            [
+              "Luz",
+              "Ventanales enmarcados por luz cálida indirecta y lámparas tejidas que acercan la escala del techo a cada mesa."
+            ],
+            [
+              "Materiales",
+              "Yeso texturizado, mármol, madera y fibras naturales: una paleta cálida, táctil y serena."
+            ],
+            [
+              "Ambientes",
+              "Comedor, banco junto a las ventanas, zona lounge y barra, unidos en un mismo recorrido."
+            ]
+          ],
+          "visualNote": "Visualizaciones 3D de un proyecto en desarrollo; el diseño final puede variar.",
+          "panoComedor": "Panorámica 360° del comedor del proyecto TVIT",
+          "panoComedorCaption": "Comedor con banco corrido junto a las ventanas, lámparas de fibra natural, barra y cocina abierta.",
+          "filmEyebrow": "Diseño 3D de 3DNA",
+          "filmTitle": "De la cocina a la sala, todo diseñado en 3D",
+          "filmLabel": "Vídeo del proyecto TVIT: de los dibujos de líneas a la sala, la barra y la cocina profesional",
+          "film": [
+            "En 3DNA diseñamos TVIT como un único recorrido: la sala, la barra y la cocina profesional se plantean juntas en un modelo 3D, para que el ambiente que vive el cliente y el trabajo que sucede detrás funcionen como un solo restaurante.",
+            "El vídeo muestra el proyecto tal y como lo trabajamos: del dibujo de líneas al espacio con materiales y luz. La cocina se ordena por puestos de trabajo, con superficies de acero, campanas y equipamiento colocados para que el equipo se mueva con fluidez, mientras el comedor conserva su calidez con lámparas de fibra natural, madera y banco corrido.",
+            "Así, antes de empezar la obra, el propietario puede recorrer su restaurante, decidir con imágenes reales y evitar errores que después cuestan tiempo y dinero."
+          ],
+          "filmCta": "Descubre cómo diseñamos restaurantes"
+        }
+      }
+    },
+    "panoHint": "Arrastra para mirar alrededor · rueda o pellizca para ampliar",
+    "panoFull": "Pantalla completa",
+    "panoExit": "Salir de pantalla completa",
+    "panoLoading": "Cargando panorámica"
+  },
+  "en": {
+    "slug": "projects",
+    "section": {
+      "eyebrow": "Projects in development",
+      "label": "Client projects in development"
+    },
+    "category": {
+      "restaurantInterior": "Restaurant interior design"
+    },
+    "status": {
+      "development": "In development"
+    },
+    "cta": "Explore project",
+    "back": "Restaurants",
+    "contextLabel": "Location on the site",
+    "sections": {
+      "washrooms": "Washroom design",
+      "panoramas": "360° panorama"
+    },
+    "projects": {
+      "ilia": {
+        "meta": {
+          "title": "TVIT · Restaurant design project in development | 3DNA",
+          "description": "TVIT, a restaurant in development designed by 3DNA: warm light, natural-fibre lamps, marble and wood. Project video, washroom design and an interactive 3D model.",
+          "ogImageAlt": "TVIT dining room with warm light and natural-fibre lamps"
+        },
+        "text": {
+          "washroomRender": "Washroom design for the TVIT project seen from above: a vestibule with a basin on a stone counter and a WC room with a urinal, low partition, wall-hung toilet and side basin, with perimeter LED lighting",
+          "washroomRenderCaption": "Render of the approved design",
+          "washroomModel": "Interactive 3D model",
+          "washroomModelNote": "Concept model: turn the view, switch cameras and compare finishes.",
+          "openModel": "Open the model full screen",
+          "modelFrameTitle": "Interactive 3D model of the TVIT project washrooms",
+          "cardCover": "TVIT dining room: windows framed in warm light, natural-fibre pendant lamps and marble tables",
+          "heroLabel": "Video walk-through of the TVIT dining room",
+          "tagline": "Warm light, natural textures and a dining room that invites you to stay.",
+          "introEyebrow": "The project",
+          "introTitle": "A restaurant designed for lingering",
+          "intro": [
+            "TVIT is a restaurant in development, designed around one simple idea: every table should feel like the best seat in the room. Tall windows, framed by textured plaster pilasters and wrapped in warm light, fill the dining room with daylight and turn it into a soft glow as evening falls.",
+            "Sculptural pendant lamps in woven natural fibre hang at different heights, drawing a living ceiling over the marble tables. Curved-back wooden chairs, a long banquette beneath the windows, sofa corners with natural-wood tables and a bar with backlit shelving create a journey made for long dinners, meetings and one last drink.",
+            "Greenery comes into the room as a material in its own right: it adds freshness, separates areas without closing the views and guides guests from the entrance to their table."
+          ],
+          "highlights": [
+            [
+              "Light",
+              "Windows framed by warm indirect light and woven lamps that bring the ceiling down to the scale of each table."
+            ],
+            [
+              "Materials",
+              "Textured plaster, marble, wood and natural fibres: a warm, tactile and calm palette."
+            ],
+            [
+              "Spaces",
+              "Dining room, window banquette, lounge and bar, joined in one continuous journey."
+            ]
+          ],
+          "visualNote": "3D visualisations of a project in development; the final design may change.",
+          "panoComedor": "360° panorama of the TVIT dining room",
+          "panoComedorCaption": "Dining room with a banquette beneath the windows, natural-fibre lamps, the bar and an open kitchen.",
+          "filmEyebrow": "3D design by 3DNA",
+          "filmTitle": "From kitchen to dining room, all designed in 3D",
+          "filmLabel": "TVIT project video: from line drawings to the dining room, the bar and the professional kitchen",
+          "film": [
+            "At 3DNA we design TVIT as a single journey: the dining room, the bar and the professional kitchen are planned together in one 3D model, so the atmosphere guests experience and the work that happens behind it run as one restaurant.",
+            "The video shows the project the way we work on it: from line drawings to a space with materials and light. The kitchen is organised by workstation, with steel surfaces, hoods and equipment placed so the team moves freely, while the dining room keeps its warmth with natural-fibre lamps, wood and a long banquette.",
+            "Before building starts, the owner can walk through their restaurant, decide from real images and avoid mistakes that later cost time and money."
+          ],
+          "filmCta": "See how we design restaurants"
+        }
+      }
+    },
+    "panoHint": "Drag to look around · scroll or pinch to zoom",
+    "panoFull": "Full screen",
+    "panoExit": "Exit full screen",
+    "panoLoading": "Loading panorama"
+  },
+  "ru": {
+    "slug": "projects",
+    "section": {
+      "eyebrow": "Проекты в разработке",
+      "label": "Проекты клиентов в разработке"
+    },
+    "category": {
+      "restaurantInterior": "Дизайн интерьера ресторана"
+    },
+    "status": {
+      "development": "В разработке"
+    },
+    "cta": "Смотреть проект",
+    "back": "Рестораны",
+    "contextLabel": "Расположение на сайте",
+    "sections": {
+      "washrooms": "Дизайн санузлов",
+      "panoramas": "Панорама 360°"
+    },
+    "projects": {
+      "ilia": {
+        "meta": {
+          "title": "TVIT · Проект дизайна ресторана в разработке | 3DNA",
+          "description": "TVIT — ресторан в разработке от 3DNA: тёплый свет, светильники из натуральных волокон, мрамор и дерево. Видео проекта, дизайн санузлов и интерактивная 3D-модель.",
+          "ogImageAlt": "Зал проекта TVIT с тёплым светом и светильниками из натуральных волокон"
+        },
+        "text": {
+          "washroomRender": "Дизайн санузлов проекта TVIT, вид сверху: тамбур с умывальником на каменной столешнице и туалетная комната с писсуаром, низкой перегородкой, подвесным унитазом и боковым умывальником, с LED-подсветкой по периметру",
+          "washroomRenderCaption": "Рендер утверждённого дизайна",
+          "washroomModel": "Интерактивная 3D-модель",
+          "washroomModelNote": "Концепт-модель: вращайте вид, меняйте ракурсы и сравнивайте отделку.",
+          "openModel": "Открыть модель на весь экран",
+          "modelFrameTitle": "Интерактивная 3D-модель санузлов проекта TVIT",
+          "cardCover": "Зал проекта TVIT: окна в обрамлении тёплого света, светильники из натуральных волокон и мраморные столы",
+          "heroLabel": "Видеопрогулка по залу проекта TVIT",
+          "tagline": "Тёплый свет, натуральные фактуры и зал, в котором хочется задержаться.",
+          "introEyebrow": "О проекте",
+          "introTitle": "Ресторан, в котором хочется остаться",
+          "intro": [
+            "TVIT — ресторан в разработке, который мы проектируем вокруг простой идеи: каждый стол должен ощущаться лучшим местом в зале. Высокие окна в обрамлении фактурных штукатурных пилястр и тёплой подсветки наполняют зал дневным светом, а с наступлением вечера окутывают его мягким сиянием.",
+            "Скульптурные подвесные светильники из плетёных натуральных волокон висят на разной высоте и создают над мраморными столами живой потолок. Деревянные стулья с изогнутыми спинками, длинный диван вдоль окон, уголки с диванами и столиками из натурального дерева и бар с подсвеченными стеллажами складываются в маршрут для долгих ужинов, встреч и последнего бокала.",
+            "Зелень входит в зал как полноценный материал: добавляет свежести, разделяет зоны, не закрывая обзор, и сопровождает гостя от входа до его стола."
+          ],
+          "highlights": [
+            [
+              "Свет",
+              "Окна в обрамлении тёплого рассеянного света и плетёные светильники, которые приближают потолок к масштабу каждого стола."
+            ],
+            [
+              "Материалы",
+              "Фактурная штукатурка, мрамор, дерево и натуральные волокна: тёплая, тактильная и спокойная палитра."
+            ],
+            [
+              "Зоны",
+              "Обеденный зал, диван у окон, лаунж и бар, объединённые в один маршрут."
+            ]
+          ],
+          "visualNote": "3D-визуализации проекта в разработке; итоговый дизайн может измениться.",
+          "panoComedor": "Панорама 360° зала проекта TVIT",
+          "panoComedorCaption": "Зал с диваном вдоль окон, светильниками из натуральных волокон, баром и открытой кухней.",
+          "filmEyebrow": "3D-дизайн от 3DNA",
+          "filmTitle": "От кухни до зала — всё спроектировано в 3D",
+          "filmLabel": "Видео проекта TVIT: от линейных чертежей к залу, бару и профессиональной кухне",
+          "film": [
+            "В 3DNA мы проектируем TVIT как единый маршрут: зал, бар и профессиональная кухня продуманы вместе в одной 3D-модели, чтобы атмосфера, которую чувствует гость, и работа, которая идёт за кулисами, складывались в один ресторан.",
+            "Видео показывает проект так, как мы над ним работаем: от линейного чертежа к пространству с материалами и светом. Кухня организована по рабочим станциям — стальные поверхности, вытяжки и оборудование расставлены так, чтобы команда двигалась свободно, а зал сохраняет тепло благодаря светильникам из натуральных волокон, дереву и длинному дивану.",
+            "Ещё до начала стройки владелец может пройтись по своему ресторану, принять решения по реалистичным изображениям и избежать ошибок, которые потом стоят времени и денег."
+          ],
+          "filmCta": "Узнайте, как мы проектируем рестораны"
+        }
+      }
+    },
+    "panoHint": "Перетащите, чтобы осмотреться · колесо или щипок — масштаб",
+    "panoFull": "На весь экран",
+    "panoExit": "Выйти из полноэкранного режима",
+    "panoLoading": "Загрузка панорамы"
+  },
+  "uk": {
+    "slug": "projects",
+    "section": {
+      "eyebrow": "Проєкти в розробці",
+      "label": "Проєкти клієнтів у розробці"
+    },
+    "category": {
+      "restaurantInterior": "Дизайн інтер'єру ресторану"
+    },
+    "status": {
+      "development": "У розробці"
+    },
+    "cta": "Переглянути проєкт",
+    "back": "Ресторани",
+    "contextLabel": "Розташування на сайті",
+    "sections": {
+      "washrooms": "Дизайн санвузлів",
+      "panoramas": "Панорама 360°"
+    },
+    "projects": {
+      "ilia": {
+        "meta": {
+          "title": "TVIT · Проєкт дизайну ресторану в розробці | 3DNA",
+          "description": "TVIT — ресторан у розробці від 3DNA: тепле світло, світильники з натуральних волокон, мармур і дерево. Відео проєкту, дизайн санвузлів та інтерактивна 3D-модель.",
+          "ogImageAlt": "Зала проєкту TVIT з теплим світлом і світильниками з натуральних волокон"
+        },
+        "text": {
+          "washroomRender": "Дизайн санвузлів проєкту TVIT, вигляд згори: тамбур з умивальником на кам'яній стільниці та туалетна кімната з пісуаром, низькою перегородкою, підвісним унітазом і бічним умивальником, з LED-підсвічуванням по периметру",
+          "washroomRenderCaption": "Рендер затвердженого дизайну",
+          "washroomModel": "Інтерактивна 3D-модель",
+          "washroomModelNote": "Концепт-модель: обертайте вигляд, змінюйте ракурси й порівнюйте оздоблення.",
+          "openModel": "Відкрити модель на весь екран",
+          "modelFrameTitle": "Інтерактивна 3D-модель санвузлів проєкту TVIT",
+          "cardCover": "Зала проєкту TVIT: вікна в обрамленні теплого світла, світильники з натуральних волокон і мармурові столи",
+          "heroLabel": "Відеопрогулянка залою проєкту TVIT",
+          "tagline": "Тепле світло, натуральні фактури й зала, де хочеться затриматися.",
+          "introEyebrow": "Про проєкт",
+          "introTitle": "Ресторан, у якому хочеться залишитися",
+          "intro": [
+            "TVIT — ресторан у розробці, який ми проєктуємо навколо простої ідеї: кожен стіл має відчуватися найкращим місцем у залі. Високі вікна в обрамленні фактурних штукатурних пілястр і теплого підсвічування наповнюють залу денним світлом, а з настанням вечора огортають її м'яким сяйвом.",
+            "Скульптурні підвісні світильники з плетених натуральних волокон висять на різній висоті й створюють над мармуровими столами живу стелю. Дерев'яні стільці з вигнутими спинками, довгий диван уздовж вікон, куточки з диванами й столиками з натурального дерева та бар із підсвіченими стелажами складаються в маршрут для довгих вечерь, зустрічей і останнього келиха.",
+            "Зелень входить у залу як повноцінний матеріал: додає свіжості, розділяє зони, не закриваючи огляду, і супроводжує гостя від входу до його столу."
+          ],
+          "highlights": [
+            [
+              "Світло",
+              "Вікна в обрамленні теплого розсіяного світла та плетені світильники, що наближають стелю до масштабу кожного столу."
+            ],
+            [
+              "Матеріали",
+              "Фактурна штукатурка, мармур, дерево й натуральні волокна: тепла, тактильна та спокійна палітра."
+            ],
+            [
+              "Зони",
+              "Обідня зала, диван біля вікон, лаунж і бар, об'єднані в один маршрут."
+            ]
+          ],
+          "visualNote": "3D-візуалізації проєкту в розробці; остаточний дизайн може змінитися.",
+          "panoComedor": "Панорама 360° зали проєкту TVIT",
+          "panoComedorCaption": "Зала з диваном уздовж вікон, світильниками з натуральних волокон, баром і відкритою кухнею.",
+          "filmEyebrow": "3D-дизайн від 3DNA",
+          "filmTitle": "Від кухні до зали — усе спроєктовано в 3D",
+          "filmLabel": "Відео проєкту TVIT: від лінійних креслень до зали, бару й професійної кухні",
+          "film": [
+            "У 3DNA ми проєктуємо TVIT як єдиний маршрут: зала, бар і професійна кухня продумані разом в одній 3D-моделі, щоб атмосфера, яку відчуває гість, і робота, що триває за лаштунками, складалися в один ресторан.",
+            "Відео показує проєкт так, як ми над ним працюємо: від лінійного креслення до простору з матеріалами й світлом. Кухню організовано за робочими станціями — сталеві поверхні, витяжки й обладнання розставлено так, щоб команда рухалася вільно, а зала зберігає тепло завдяки світильникам з натуральних волокон, дереву й довгому дивану.",
+            "Ще до початку будівництва власник може пройтися своїм рестораном, ухвалити рішення за реалістичними зображеннями та уникнути помилок, які потім коштують часу й грошей."
+          ],
+          "filmCta": "Дізнайтеся, як ми проєктуємо ресторани"
+        }
+      }
+    },
+    "panoHint": "Перетягніть, щоб роззирнутися · коліщатко або щипок — масштаб",
+    "panoFull": "На весь екран",
+    "panoExit": "Вийти з повноекранного режиму",
+    "panoLoading": "Завантаження панорами"
+  }
+}

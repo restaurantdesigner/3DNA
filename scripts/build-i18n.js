@@ -10,6 +10,8 @@
  *   /en/index.html /es/index.html /ru/index.html /uk/index.html
  *   /<lang>/<restaurantsPage.slug>/index.html   Restaurants page (templates/restaurants.html)
  *   /<lang>/<fitnessPage.slug>/index.html       Fitness page (templates/fitness.html)
+ *   /<lang>/<restaurants slug>/<projects slug>/<id>/index.html   client project pages
+ *                                               (templates/project.html, assets/data/projects.json)
  *   /index.html     entry point: English content + language redirect for visitors
  *   /sitemap.xml    every /<lang>/**\/index.html found + LEGACY_PAGES
  *   /robots.txt
@@ -32,7 +34,10 @@ const OG_PAGE_IMAGES = {
   fitness: (lang) => `/images/og/og-fitness-${lang}.jpg`,
   about: () => "/images/about/og-andrei-yafimenka.jpg",   // the approved photograph, cropped, no text
 };
-const ogImagePath = (page, lang) => (page && OG_PAGE_IMAGES[page] ? OG_PAGE_IMAGES[page](lang) : OG_IMAGE.path(lang));
+// client project pages: the project's own preview image
+const projectKey = (id) => `project-${id}`;
+const projectIdOf = (page) => (page && page.startsWith("project-") ? page.slice("project-".length) : null);
+const ogImagePath = (page, lang) => projectIdOf(page) ? projects.ogImage(projectIdOf(page)) : (page && OG_PAGE_IMAGES[page] ? OG_PAGE_IMAGES[page](lang) : OG_IMAGE.path(lang));
 // Language switcher order (header): EN / ES / RU / UK
 const SWITCHER_ORDER = ["en", "es", "ru", "uk"];
 
@@ -59,6 +64,7 @@ const layoutFooter = read("templates/layout/footer.html");
 const restaurantsTemplate = read("templates/restaurants.html");
 const fitnessTemplate = read("templates/fitness.html");
 const aboutTemplate = read("templates/about.html");
+const projectTemplate = read("templates/project.html");
 const restaurantStories = JSON.parse(read("assets/data/restaurant-stories.json"));
 // Spanish keeps the original path, which the legacy (Spanish) pages already load
 const formPartialFile = (lang) => (lang === "es" ? "form-panel.html" : `form-panel.${lang}.html`);
@@ -93,6 +99,10 @@ const whatsappHref = (lang) => {
 const aboutPage = require("./about-page.js").createAboutPage(translations, { whatsappHref: (lang) => whatsappHref(lang) });
 const restaurantsPage = require("./restaurants-page.js").createRestaurantsPage(
   restaurantStories, translations, { whatsappHref: (lang) => whatsappHref(lang) });
+// client projects: card section on the Restaurants page + one page per project
+const projects = require("./projects.js").createProjects(
+  JSON.parse(read("assets/data/projects.json")), JSON.parse(read("assets/i18n/projects.json")),
+  { restaurantsSlug: (lang) => translations[lang].restaurantsPage.slug });
 const restaurantPlanData = JSON.parse(read("assets/data/restaurant-plan.json"));
 // FF&E / lighting / equipment / finishes specification (also tags the plan's objects with their references)
 const restaurantSpec = require("./restaurant-spec.js").createRestaurantSpec(
@@ -132,7 +142,13 @@ const PAGES = {
     template: () => aboutTemplate,
     subPath: (lang) => `${translations[lang].aboutPage.slug}/`,
     meta: (lang) => translations[lang].aboutPage.meta
-  }
+  },
+  // client projects: /es/restaurantes/proyectos/ilia/, /en/restaurants/projects/ilia/ ...
+  ...Object.fromEntries(projects.ids().map((id) => [projectKey(id), {
+    template: () => projectTemplate,
+    subPath: (lang) => projects.subPath(lang, id),
+    meta: (lang) => projects.meta(lang, id)
+  }]))
 };
 const pageSubPath = (options, lang) => (options && options.page ? PAGES[options.page].subPath(lang) : "");
 // URL path of a page in a language: /<lang>/<subPath>, unless the page keeps a
@@ -337,6 +353,17 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "layout.header") return renderPartial(lang, layoutHeader, options);
     if (key === "layout.footer") return renderPartial(lang, layoutFooter, options);
     if (key === "restaurants.storiesHtml") return restaurantsPage.storiesHtml(lang);
+    if (key === "restaurants.projectsHtml") return projects.sectionHtml(lang);
+    if (key.startsWith("project.")) {
+      const id = projectIdOf(options && options.page);
+      if (!id) throw new Error(`"${key}" used outside a project page`);
+      if (key === "project.bodyHtml") return projects.pageBodyHtml(lang, id);
+      if (key === "project.heroHtml") return projects.heroHtml(lang, id);
+      if (key === "project.name") return escapeHtml(projects.name(id));
+      if (key === "project.back") return escapeHtml(projects.back(lang));
+      if (key === "project.contextLabel") return escapeHtml(projects.contextLabel(lang));
+      if (key === "project.meta.title") return escapeHtml(projects.meta(lang, id).title);
+    }
     if (key === "fitnessPage.url") return pagePathFor("fitness", lang);
     if (key === "restaurantsPage.url") return pagePathFor("restaurants", lang);
     if (key === "aboutPage.url") return pagePathFor("about", lang);
@@ -584,6 +611,22 @@ for (const cs of CALC_SHARES) for (const lang of SUPPORTED) {
 </body>
 </html>
 `);
+}
+
+// Direct links to project 3D models: the model page (prototipos/…/index.html) served at a clean, localized
+// address. Asset paths become absolute; language and public mode are preset; a link leads back to the project.
+for (const lang of SUPPORTED) for (const m of projects.directModels(lang)) {
+  const base = "/prototipos/washroom-suite/";
+  let html = read("prototipos/washroom-suite/index.html")
+    .replace(/(href|src)="(?!https?:|\/|#|data:)(\.\/)?([^"]+)"/g, (all, attr, dot, rel) => `${attr}="${base}${rel}"`)
+    .replace(/"\.\/vendor\//g, `"${base}vendor/`)
+    .replace(/<html lang="[^"]*">/, `<html lang="${lang}">`)
+    .replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(m.title)}</title>`)
+    .replace("<body>", `<body>
+<a class="ws-back" href="${m.back}"><span aria-hidden="true">&larr;</span> ${escapeHtml(m.backLabel)}</a>`)
+    .replace(/(<script src="[^"]*washroom-suite\.i18n\.js)/, `<script>window.WS_PRESET = ${JSON.stringify({ lang, public: true })};</script>
+$1`);
+  write(m.file, html);
 }
 
 write("sitemap.xml", sitemapXml());

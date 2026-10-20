@@ -1,0 +1,51 @@
+{
+  "_comment": "Client projects shown on the Restaurants page (section 'Proyectos en desarrollo') and on their own page /<lang>/<restaurants slug>/<projects slug>/<id>/. Built by scripts/projects.js. A project page shows only the sections listed here; add a section object to publish new material (types: text, gallery, model3d, panorama, film; an optional 'hero' film opens the page). A cover may add \"video\" (mp4), shown in black and white, in colour while it plays on hover. Texts live in assets/i18n/projects.json.",
+  "projects": [
+    {
+      "id": "ilia",
+      "name": "TVIT",
+      "status": "development",
+      "category": "restaurantInterior",
+      "cover": { "base": "/images/restaurants/projects/ilia/ilia-card-poster", "widths": [900, 1600], "width": 1600, "height": 900, "altKey": "cardCover",
+        "video": "/videos/restaurants/projects/ilia/ilia-card-1280.mp4" },
+      "ogImage": "/images/og/og-ilia.jpg",
+      "hero": {
+        "desktop": "/videos/restaurants/projects/ilia/ilia-hero-1920.mp4", "mobile": "/videos/restaurants/projects/ilia/ilia-hero-960.mp4",
+        "posterDesktop": "/images/restaurants/projects/ilia/ilia-hero-poster-1920.webp", "posterMobile": "/images/restaurants/projects/ilia/ilia-hero-poster-960.webp",
+        "labelKey": "heroLabel", "taglineKey": "tagline"
+      },
+      "sections": [
+        {
+          "id": "proyecto",
+          "eyebrowKey": "introEyebrow",
+          "titleTextKey": "introTitle",
+          "items": [ { "type": "text", "paragraphsKey": "intro", "highlightsKey": "highlights", "noteKey": "visualNote" } ]
+        },
+        {
+          "id": "aseos",
+          "titleKey": "washrooms",
+          "items": [
+            { "type": "model3d", "src": "/prototipos/washroom-suite/", "titleKey": "washroomModel", "noteKey": "washroomModelNote",
+              "direct": { "es": "aseos-3d", "en": "washroom-3d", "ru": "washroom-3d", "uk": "washroom-3d" } }
+          ]
+        },
+        {
+          "id": "panorama",
+          "titleKey": "panoramas",
+          "items": [
+            { "type": "panorama", "base": "/images/restaurants/projects/ilia/ilia-pano-comedor", "widths": [2048, 4096, 8192], "altKey": "panoComedor", "captionKey": "panoComedorCaption" }
+          ]
+        },
+        {
+          "id": "recorrido",
+          "eyebrowKey": "filmEyebrow",
+          "titleTextKey": "filmTitle",
+          "items": [
+            { "type": "film", "src": "/videos/restaurants/projects/ilia/ilia-recorrido-720.mp4", "poster": "/images/restaurants/projects/ilia/ilia-recorrido-poster.webp",
+              "width": 720, "height": 1280, "labelKey": "filmLabel", "paragraphsKey": "film", "ctaKey": "filmCta", "ctaPage": "restaurants" }
+          ]
+        }
+      ]
+    }
+  ]
+}
