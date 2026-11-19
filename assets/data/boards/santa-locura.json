@@ -1,5 +1,5 @@
 {
-  "_comment": "Santa Locura Fitness · reception scope-of-work board. Everything the board shows comes from this file: images, marker positions and texts. Positions are percentages of the displayed AFTER image: 'anchor' = the feature (end of the leader line), 'label' = where the numbered marker sits. Built by scripts/scope-board.js into /gimnasios-3d/proyectos/santa-locura/. Spanish only. Optional 'hero': a slow-motion film (black and white turning to colour) with the client's logo. 'options': access variants; each option has its own AFTER image and may override items (title, texts, anchor). Work-list tasks may carry a third value, the option id. 'gallery': extra images and videos (with a share button). Items carry a specification row (element, spec, ref, qty); options may override it. 'current': a full-screen film of today's reception, right after the hero.",
+  "_comment": "Santa Locura Fitness · reception scope-of-work board. Everything the board shows comes from this file: images, marker positions and texts. Positions are percentages of the displayed AFTER image: 'anchor' = the feature (end of the leader line), 'label' = where the numbered marker sits. Built by scripts/scope-board.js into /gimnasios-3d/proyectos/santa-locura/. Spanish only. Optional 'hero': a slow-motion film (black and white turning to colour) with the client's logo. 'options': access variants; each option has its own AFTER image and may override items (title, texts, anchor). Work-list tasks may carry a third value, the option id. 'gallery': extra images and videos (with a share button). Items carry a specification row (element, spec, ref, qty); options may override it. 'current': a full-screen film of today's reception, right after the hero. An item may carry a 'sample' image (a design reference shown in its card and table row).",
   "slug": "gimnasios-3d/proyectos/santa-locura",
   "lang": "es",
   "title": "Santa Locura Fitness · Reforma de recepción y acceso",
@@ -153,7 +153,14 @@
       "element": "Rótulo de neón LED",
       "spec": "Neón LED flexible sobre placa transparente, texto en dos líneas «SANTA LOCURA» / «FITNESS».",
       "ref": "Rojo; tipografía del logotipo Santa Locura.",
-      "qty": "1 ud."
+      "qty": "1 ud.",
+      "sample": {
+        "src": "/images/fitness/projects/santa-locura/logo.webp",
+        "width": 1200,
+        "height": 295,
+        "alt": "Logotipo Santa Locura Fitness, referencia del rótulo de neón",
+        "caption": "Diseño del rótulo: logotipo Santa Locura Fitness, en neón LED rojo."
+      }
     },
     {
       "n": "04",

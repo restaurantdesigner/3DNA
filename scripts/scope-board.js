@@ -116,6 +116,8 @@ function createScopeBoard(b) {
     `          <h3 class="sboard__card-title" id="${cardId(it.n, id)}-title"><span class="sboard__num">${it.n}</span> ${escapeHtml(it.title)}</h3>`,
     `          <h4>${escapeHtml(L.action)}</h4>`,
     `          <p>${escapeHtml(it.action)}</p>`,
+    // a design reference (e.g. the logo the neon sign reproduces)
+    ...(it.sample ? [`          <figure class="sboard__sample"><img src="${it.sample.src}" width="${it.sample.width}" height="${it.sample.height}" alt="${escapeHtml(it.sample.alt)}" loading="lazy" decoding="async"><figcaption>${escapeHtml(it.sample.caption)}</figcaption></figure>`] : []),
     `          <h4>${escapeHtml(L.work)}</h4>`,
     `          ${list(it.work)}`,
     `          <h4>${escapeHtml(L.verify)}</h4>`,
@@ -134,7 +136,7 @@ function createScopeBoard(b) {
     `      <tbody>`,
     ...b.items.flatMap((base) => variants(base).map(([it, id]) =>
       `        <tr${optAttr(id)}${id && id !== options[0].id ? " hidden" : ""}><td class="sboard__tnum"><a href="#${cardId(it.n, id)}" data-goto="${it.n}"><span class="sboard__num">${it.n}</span></a></td>` +
-      `<th scope="row">${escapeHtml(it.element)}</th><td>${escapeHtml(it.spec)}</td><td>${escapeHtml(it.ref)}</td><td>${escapeHtml(it.qty)}</td></tr>`)),
+      `<th scope="row">${escapeHtml(it.element)}</th><td>${escapeHtml(it.spec)}</td><td>${escapeHtml(it.ref)}${it.sample ? `<img class="sboard__tsample" src="${it.sample.src}" width="${it.sample.width}" height="${it.sample.height}" alt="${escapeHtml(it.sample.alt)}" loading="lazy" decoding="async">` : ""}</td><td>${escapeHtml(it.qty)}</td></tr>`)),
     `      </tbody>`,
     `    </table>`,
     `    </div>`,
