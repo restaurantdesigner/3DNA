@@ -674,7 +674,7 @@ for (const file of fs.readdirSync(path.join(root, "assets/data/boards")).filter(
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="3DNA">
   <meta property="og:locale" content="${e(translations[data.lang].meta.ogLocale)}">
-  <meta property="og:title" content="${e(data.title)}">
+  <meta property="og:title" content="${e(data.meta.shareTitle || data.title)}">
   <meta property="og:description" content="${e(data.meta.description)}">
   <meta property="og:url" content="${e(url)}">
   <meta property="og:image" content="${e(img)}">
@@ -684,10 +684,16 @@ for (const file of fs.readdirSync(path.join(root, "assets/data/boards")).filter(
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="${e(data.meta.ogImageAlt)}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${e(data.title)}">
+  <meta name="twitter:title" content="${e(data.meta.shareTitle || data.title)}">
   <meta name="twitter:description" content="${e(data.meta.description)}">
   <meta name="twitter:image" content="${e(img)}">
-  <script>window.I18N = ${jsonForScript({ lang: data.lang, languages: SUPPORTED, whatsappHref: whatsappHref(data.lang) })};</script>
+  <meta name="twitter:image:alt" content="${e(data.meta.ogImageAlt)}">
+${data.meta.ogVideo ? `  <meta property="og:video" content="${e(absolute(data.meta.ogVideo))}">
+  <meta property="og:video:secure_url" content="${e(absolute(data.meta.ogVideo))}">
+  <meta property="og:video:type" content="video/mp4">
+  <meta property="og:video:width" content="${data.meta.ogVideoWidth}">
+  <meta property="og:video:height" content="${data.meta.ogVideoHeight}">
+` : ""}  <script>window.I18N = ${jsonForScript({ lang: data.lang, languages: SUPPORTED, whatsappHref: whatsappHref(data.lang) })};</script>
   <link rel="stylesheet" href="/assets/fonts/site.css?v=20261010a">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
