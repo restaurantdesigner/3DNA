@@ -26,7 +26,7 @@ const { SUPPORTED, DEFAULT_LANG } = require("../assets/js/i18n-detect.js");
 const SITE_URL = "https://3dna.es";
 const SITE_NAME = "3DNA";
 const PUBLIC_EMAIL = "andrei@3dna.es"; // published in the site footer
-const LOGO_PATH = "/img/logo.png";
+const LOGO_PATH = "/img/logo-3dna.png";
 // Social preview cards (1200 × 630 JPG, made by scripts/og-images.js): one per page and language
 const OG_IMAGE = { path: (lang) => `/images/og/og-${lang}.jpg`, width: 1200, height: 630 };
 const OG_PAGE_IMAGES = {
@@ -217,7 +217,7 @@ function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = nu
       "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
       url: `${SITE_URL}/`,
-      logo: { "@type": "ImageObject", url: absolute(LOGO_PATH), width: 1536, height: 1024 },
+      logo: { "@type": "ImageObject", url: absolute(LOGO_PATH), width: 1932, height: 295 },
       description: t.schema.organizationDescription,
       email: PUBLIC_EMAIL,
       address: { "@type": "PostalAddress", addressLocality: "Salobreña", addressRegion: "Granada", addressCountry: "ES" }
@@ -354,6 +354,7 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "layout.footer") return renderPartial(lang, layoutFooter, options);
     if (key === "restaurants.storiesHtml") return restaurantsPage.storiesHtml(lang);
     if (key === "restaurants.projectsHtml") return projects.sectionHtml(lang);
+    if (key === "fitness.projectsHtml") return projects.sectionHtml(lang, "fitness");
     if (key.startsWith("project.")) {
       const id = projectIdOf(options && options.page);
       if (!id) throw new Error(`"${key}" used outside a project page`);
@@ -654,6 +655,57 @@ $1`);
     html = html.replace(/(<title>[^<]*<\/title>)/, (t) => `${t}\n${tags.join("\n")}`);
   }
   write(m.file, html);
+}
+
+// Scope-of-work boards (Spanish documentation pages for client proposals): assets/data/boards/*.json
+for (const file of fs.readdirSync(path.join(root, "assets/data/boards")).filter((f) => f.endsWith(".json"))) {
+  const data = JSON.parse(read(`assets/data/boards/${file}`));
+  const board = require("./scope-board.js").createScopeBoard(data);
+  const e = escapeHtml, url = absolute(`/${data.slug}/`), img = absolute(data.meta.ogImage);
+  const html = `<!DOCTYPE html>
+<html lang="${data.lang}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Built by scripts/build-i18n.js + scripts/scope-board.js from assets/data/boards/${file} -->
+  <title>${e(data.meta.title)}</title>
+  <meta name="description" content="${e(data.meta.description)}">
+  <link rel="canonical" href="${e(url)}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="3DNA">
+  <meta property="og:locale" content="${e(translations[data.lang].meta.ogLocale)}">
+  <meta property="og:title" content="${e(data.title)}">
+  <meta property="og:description" content="${e(data.meta.description)}">
+  <meta property="og:url" content="${e(url)}">
+  <meta property="og:image" content="${e(img)}">
+  <meta property="og:image:secure_url" content="${e(img)}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="${e(data.meta.ogImageAlt)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${e(data.title)}">
+  <meta name="twitter:description" content="${e(data.meta.description)}">
+  <meta name="twitter:image" content="${e(img)}">
+  <script>window.I18N = ${jsonForScript({ lang: data.lang, languages: SUPPORTED, whatsappHref: whatsappHref(data.lang) })};</script>
+  <link rel="stylesheet" href="/assets/fonts/site.css?v=20261010a">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/main.css?v=${ASSET_VERSIONS["main.css"]}">
+  <link rel="stylesheet" href="/assets/css/scope-board.css?v=${fileVersion("assets/css/scope-board.css")}">
+</head>
+<body>
+<!-- 3dna:header -->
+<!-- /3dna:header -->
+${board.bodyHtml(pagePathFor("fitness", data.lang) + "#proyectos")}
+<!-- 3dna:footer -->
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=${ASSET_VERSIONS["main.js"]}"></script>
+<script src="/assets/js/scope-board.js?v=${fileVersion("assets/js/scope-board.js")}" defer></script>
+</body>
+</html>
+`;
+  write(`${data.slug}/index.html`, "﻿" + applyLayout(html, data.lang));
 }
 
 write("sitemap.xml", sitemapXml());

@@ -31,8 +31,26 @@
     return { play: play, stop: stop };
   }
 
+  // "hero" cards: the film plays by itself while the card is in view, slow, black and white turning to
+  // colour and back before it loops (the same treatment as the project page's hero)
+  var grey = function (f) { return f < 0.12 ? 1 : f < 0.42 ? 1 - (f - 0.12) / 0.30 : f < 0.82 ? 0 : (f - 0.82) / 0.18; };
+  Array.prototype.forEach.call(document.querySelectorAll('.rproj__card[data-mode="hero"]'), function (card) {
+    var v = card.querySelector(".rproj__video");
+    if (!v) return;
+    var raf = 0;
+    var tick = function () {
+      if (v.duration) v.style.filter = "grayscale(" + grey(v.currentTime / v.duration).toFixed(3) + ")";
+      raf = v.paused ? 0 : requestAnimationFrame(tick);
+    };
+    v.addEventListener("playing", function () { card.classList.add("is-playing"); if (!raf) raf = requestAnimationFrame(tick); });
+    var play = function () { if (!v.getAttribute("src")) { v.src = v.getAttribute("data-src"); v.load(); } var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) play(); else v.pause(); }); }, { threshold: 0.3 }).observe(card);
+    else play();
+  });
+
   var players = [];
   for (var i = 0; i < cards.length; i++) {
+    if (cards[i].getAttribute("data-mode") === "hero") continue;
     var pl = setup(cards[i]);
     if (!pl) continue;
     players.push([cards[i], pl]);

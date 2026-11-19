@@ -40,12 +40,18 @@ function createProjects(data, texts, { restaurantsSlug }) {
   // ------------------------------------------------ Restaurants page: the card section
   // A project's cover may add "video" (mp4) and "poster": the card then shows the film in black and white,
   // playing while the pointer is over the card (on touch screens: while the card is in view).
-  function sectionHtml(lang) {
+  // sector: "restaurants" (default) or "fitness"; a project with "link" opens that page (e.g. a scope board)
+  // instead of a generated project page; "portrait": a vertical cover beside the text
+  const sectorOf = (p) => p.sector || "restaurants";
+  const hrefOf = (lang, p) => (p.link ? p.link : pagePath(lang, p.id));
+  function sectionHtml(lang, sector = "restaurants") {
     const L = t(lang);
-    const cards = data.projects.map((p) => [
+    const list = data.projects.filter((p) => sectorOf(p) === sector);
+    if (!list.length) return "";
+    const cards = list.map((p) => [
       `      <li class="rproj__item">`,
-      `        <a class="rproj__card" href="${pagePath(lang, p.id)}">`,
-      `          <span class="rproj__media">${picture(p.cover, text(lang, p.id, p.cover.altKey), { sizes: "(max-width: 760px) 92vw, 1320px" })}` +
+      `        <a class="rproj__card${p.cover.portrait ? " rproj__card--portrait" : ""}" href="${hrefOf(lang, p)}"${p.cover.mode ? ` data-mode="${p.cover.mode}"` : ""}>`,
+      `          <span class="rproj__media">${picture(p.cover, text(lang, p.id, p.cover.altKey), { sizes: p.cover.portrait ? "(max-width: 760px) 92vw, 360px" : "(max-width: 760px) 92vw, 1320px" })}` +
         // optional cover film: black and white, loaded and played on hover (assets/js/project-cards.js)
         (p.cover.video ? `<video class="rproj__video" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture disableremoteplayback` +
           ` aria-hidden="true" tabindex="-1" data-src="${p.cover.video}"${p.cover.poster ? ` poster="${p.cover.poster}"` : ""}></video>` : "") +
@@ -55,6 +61,8 @@ function createProjects(data, texts, { restaurantsSlug }) {
       `              <span class="rproj__meta"><span class="rproj__category">${escapeHtml(L.category[p.category])}</span>` +
         `<span class="rproj__status">${escapeHtml(L.status[p.status])}</span></span>`,
       `              <span class="rproj__name">${escapeHtml(p.name)}</span>`,
+      ...(p.summaryKey ? [`              <span class="rproj__summary">${escapeHtml(text(lang, p.id, p.summaryKey))}</span>`] : []),
+      ...(p.link && p.linkLang && p.linkLang !== lang && L.linkLangNote ? [`              <span class="rproj__langnote">${escapeHtml(L.linkLangNote)}</span>`] : []),
       `            </span>`,
       `            <span class="rproj__cta">${escapeHtml(L.cta)} <span aria-hidden="true">&rarr;</span></span>`,
       `          </span>`,
@@ -201,7 +209,7 @@ function createProjects(data, texts, { restaurantsSlug }) {
   // models with a direct link: /<lang>/<restaurants>/<projects>/<id>/<slug>/ shows the model alone, full screen
   function directModels(lang) {
     const L = t(lang), out = [];
-    for (const p of data.projects) for (const s of p.sections) for (const item of s.items || []) {
+    for (const p of data.projects) for (const s of p.sections || []) for (const item of s.items || []) {
       if (item.type !== "model3d" || !item.direct || !item.direct[lang]) continue;
       out.push({
         file: `${lang}/${subPath(lang, p.id)}${item.direct[lang]}/index.html`,
@@ -221,7 +229,7 @@ function createProjects(data, texts, { restaurantsSlug }) {
   };
 
   return {
-    ids: () => data.projects.map((p) => p.id),
+    ids: () => data.projects.filter((p) => p.sections && p.sections.length).map((p) => p.id),
     name: (id) => project(id).name,
     ogImage: (id) => project(id).ogImage,
     subPath, pagePath, sectionHtml, pageBodyHtml, heroHtml, directModels, meta,

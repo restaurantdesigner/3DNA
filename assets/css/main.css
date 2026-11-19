@@ -12015,3 +12015,42 @@ html.ppano-open{ overflow: hidden; }
   .pproj__film{ grid-template-columns: minmax(0, 1fr); }
   .pproj__film-media{ max-width: 420px; }
 }
+
+/* client projects on the Fitness page: the same card on the fitness page tokens */
+.fpage section.rproj{
+  --r-ink: #161513; --r-muted: #6b6258; --r-accent: #8a6a3a; --r-rule: rgba(22,21,19,.09);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+/* portrait cover (vertical film) beside the text */
+.rproj__card--portrait{ flex-direction: row; align-items: stretch; }
+.rproj__card--portrait .rproj__media{ flex: none; width: min(320px, 34%); height: auto; aspect-ratio: 9 / 16; }
+.rproj__card--portrait .rproj__body{ flex: 1; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 22px; padding: clamp(24px, 4vw, 56px) var(--rproj-gutter) clamp(24px, 4vw, 48px) clamp(24px, 4vw, 56px); }
+.rproj__summary{ display: block; max-width: 560px; margin-top: 4px; font-size: 15px; line-height: 1.6; color: var(--r-muted); }
+.rproj__langnote{ display: block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--r-muted); }
+@media (max-width: 760px){
+  .rproj__card--portrait{ flex-direction: column; }
+  .rproj__card--portrait .rproj__media{ width: 100%; aspect-ratio: auto; height: 62vh; max-height: 560px; }
+  .rproj__card--portrait .rproj__body{ padding: 18px var(--rproj-gutter) 20px; }
+}
+
+/* =========================
+   3DNA.ES wordmark (img/logo-3dna.webp, 960 x 147, tightly cropped, transparent):
+   sized by height; the old square-ish logo's offsets no longer apply
+   ========================= */
+.has-overlay-header header.topbar .brand--logo{ --logo-h: 24px; margin-left: 0; }
+.has-overlay-header header.topbar.is-solid .brand--logo{ --logo-h: 22px; }
+header.topbar .brand-title img{ height: var(--logo-h, 24px); width: auto; }
+.footer-logo{ height: 28px; width: auto; }
+.mobile-menu .mobile-menu-brand img{ height: 22px; margin: 0; }
+.pano-badge__icon--wordmark{ width: auto !important; height: 11px !important; }
+@media (max-width: 767px){
+  .has-overlay-header header.topbar .brand--logo{ --logo-h: 19px; }
+  .has-overlay-header header.topbar.is-solid .brand--logo{ --logo-h: 19px; }
+  .footer-logo{ height: 24px; }
+  .mobile-menu .mobile-menu-brand img{ height: 20px; }
+}
+
+/* project card in "hero" mode: the film runs by itself (black and white turning to colour, set by
+   assets/js/project-cards.js), so the hover colour switch does not apply */
+.rproj__card[data-mode="hero"] .rproj__media img{ filter: grayscale(1); }
+.rproj__card[data-mode="hero"].is-playing .rproj__video{ opacity: 1; }

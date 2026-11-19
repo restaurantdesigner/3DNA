@@ -6,7 +6,8 @@
       "label": "Proyectos de clientes en desarrollo"
     },
     "category": {
-      "restaurantInterior": "Diseño de interiores de restaurante"
+      "restaurantInterior": "Diseño de interiores de restaurante",
+      "receptionRenovation": "Reforma de recepción y acceso"
     },
     "status": {
       "development": "En desarrollo"
@@ -72,6 +73,12 @@
           "modelShareText": "Recorre en 3D los aseos del restaurante TVIT: gira la vista, cambia acabados y luz LED, ve electricidad, agua y saneamiento, y consulta la especificación.",
           "modelShareAlt": "Modelo 3D de los aseos del restaurante TVIT"
         }
+      },
+      "santa-locura": {
+        "text": {
+          "cardSummary": "Propuesta visual de reforma en tres opciones de acceso: puerta de vidrio, torno de altura completa o dos tornos trípode. Focos, tira LED, neón, grafito, pavimento y zona de espera.",
+          "cardCover": "Recepción de Santa Locura Fitness: estado actual y propuesta"
+        }
       }
     },
     "panoHint": "Arrastra para mirar alrededor · rueda o pellizca para ampliar",
@@ -86,7 +93,8 @@
       "label": "Client projects in development"
     },
     "category": {
-      "restaurantInterior": "Restaurant interior design"
+      "restaurantInterior": "Restaurant interior design",
+      "receptionRenovation": "Reception and entrance renovation"
     },
     "status": {
       "development": "In development"
@@ -152,12 +160,19 @@
           "modelShareText": "Explore the TVIT restaurant washrooms in 3D: turn the view, change finishes and LED light, show electrics, water and drainage, and read the specification.",
           "modelShareAlt": "3D model of the TVIT restaurant washrooms"
         }
+      },
+      "santa-locura": {
+        "text": {
+          "cardSummary": "Visual renovation proposal with three access options: glass door, full-height turnstile or two tripod turnstiles. Spotlights, LED strip, neon sign, graphite finish, floor and waiting area.",
+          "cardCover": "Santa Locura Fitness reception: current state and proposal"
+        }
       }
     },
     "panoHint": "Drag to look around · scroll or pinch to zoom",
     "panoFull": "Full screen",
     "panoExit": "Exit full screen",
-    "panoLoading": "Loading panorama"
+    "panoLoading": "Loading panorama",
+    "linkLangNote": "Proposal board in Spanish"
   },
   "ru": {
     "slug": "projects",
@@ -166,7 +181,8 @@
       "label": "Проекты клиентов в разработке"
     },
     "category": {
-      "restaurantInterior": "Дизайн интерьера ресторана"
+      "restaurantInterior": "Дизайн интерьера ресторана",
+      "receptionRenovation": "Реконструкция ресепшена и входа"
     },
     "status": {
       "development": "В разработке"
@@ -232,12 +248,19 @@
           "modelShareText": "Посмотрите санузлы ресторана TVIT в 3D: вращайте вид, меняйте отделку и цвет подсветки, включайте электрику, воду и канализацию, смотрите спецификацию.",
           "modelShareAlt": "3D-модель санузлов ресторана TVIT"
         }
+      },
+      "santa-locura": {
+        "text": {
+          "cardSummary": "Визуальное предложение по реконструкции с тремя вариантами входа: стеклянная дверь, турникет в полный рост или два турникета-трипода. Светильники, LED-лента, неон, графит, пол и зона ожидания.",
+          "cardCover": "Ресепшен Santa Locura Fitness: текущее состояние и предложение"
+        }
       }
     },
     "panoHint": "Перетащите, чтобы осмотреться · колесо или щипок — масштаб",
     "panoFull": "На весь экран",
     "panoExit": "Выйти из полноэкранного режима",
-    "panoLoading": "Загрузка панорамы"
+    "panoLoading": "Загрузка панорамы",
+    "linkLangNote": "Доска проекта на испанском"
   },
   "uk": {
     "slug": "projects",
@@ -246,7 +269,8 @@
       "label": "Проєкти клієнтів у розробці"
     },
     "category": {
-      "restaurantInterior": "Дизайн інтер'єру ресторану"
+      "restaurantInterior": "Дизайн інтер'єру ресторану",
+      "receptionRenovation": "Реконструкція рецепції та входу"
     },
     "status": {
       "development": "У розробці"
@@ -312,11 +336,18 @@
           "modelShareText": "Перегляньте санвузли ресторану TVIT у 3D: обертайте вигляд, змінюйте оздоблення й колір підсвічування, вмикайте електрику, воду й каналізацію, дивіться специфікацію.",
           "modelShareAlt": "3D-модель санвузлів ресторану TVIT"
         }
+      },
+      "santa-locura": {
+        "text": {
+          "cardSummary": "Візуальна пропозиція реконструкції з трьома варіантами входу: скляні двері, турнікет у повний зріст або два турнікети-триподи. Світильники, LED-стрічка, неон, графіт, підлога та зона очікування.",
+          "cardCover": "Рецепція Santa Locura Fitness: поточний стан і пропозиція"
+        }
       }
     },
     "panoHint": "Перетягніть, щоб роззирнутися · коліщатко або щипок — масштаб",
     "panoFull": "На весь екран",
     "panoExit": "Вийти з повноекранного режиму",
-    "panoLoading": "Завантаження панорами"
+    "panoLoading": "Завантаження панорами",
+    "linkLangNote": "Дошка проєкту іспанською"
   }
 }

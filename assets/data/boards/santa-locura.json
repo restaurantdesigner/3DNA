@@ -1,0 +1,572 @@
+{
+  "_comment": "Santa Locura Fitness · reception scope-of-work board. Everything the board shows comes from this file: images, marker positions and texts. Positions are percentages of the displayed AFTER image: 'anchor' = the feature (end of the leader line), 'label' = where the numbered marker sits. Built by scripts/scope-board.js into /gimnasios-3d/proyectos/santa-locura/. Spanish only. Optional 'hero': a slow-motion film (black and white turning to colour) with the client's logo. 'options': access variants; each option has its own AFTER image and may override items (title, texts, anchor). Work-list tasks may carry a third value, the option id. 'gallery': extra images and videos (with a share button). Items carry a specification row (element, spec, ref, qty); options may override it. 'current': a full-screen film of today's reception, right after the hero.",
+  "slug": "gimnasios-3d/proyectos/santa-locura",
+  "lang": "es",
+  "title": "Santa Locura Fitness · Reforma de recepción y acceso",
+  "status": "Propuesta visual · Pendiente de medición y validación en obra",
+  "intro": "Propuesta de reforma de la recepción y el acceso al gimnasio, en tres opciones de acceso: puerta corredera de vidrio (A), torno de altura completa (B) o dos tornos trípode a media altura (C). Los números señalan cada actuación.",
+  "meta": {
+    "title": "Santa Locura Fitness · Reforma de recepción y acceso | 3DNA",
+    "description": "Propuesta visual de 3DNA para la recepción de Santa Locura Fitness: focos empotrados, tira LED, rótulo de neón, acabado grafito, pavimento, puerta corredera de vidrio, control de acceso y zona de espera.",
+    "ogImage": "/images/og/og-santa-locura.jpg",
+    "ogImageAlt": "Propuesta de la recepción de Santa Locura Fitness"
+  },
+  "images": {
+    "after": {
+      "src": "/images/fitness/projects/santa-locura/after.webp",
+      "small": "/images/fitness/projects/santa-locura/after-560.webp",
+      "width": 941,
+      "height": 1672,
+      "label": "Después",
+      "alt": "Propuesta: recepción con techo de focos, pared grafito, puerta corredera de vidrio, rótulo de neón rojo, mostrador con luz LED y zona de espera con sofá verde"
+    },
+    "before": {
+      "src": "/images/fitness/projects/santa-locura/before.webp",
+      "small": "/images/fitness/projects/santa-locura/before-560.webp",
+      "width": 864,
+      "height": 1536,
+      "label": "Antes",
+      "alt": "Estado actual: pantallas de luz en el techo, paredes blancas, torniquete a media altura en el hueco, expositor publicitario y pavimento deteriorado"
+    }
+  },
+  "labels": {
+    "toggle": "Vista",
+    "after": "Después",
+    "before": "Antes",
+    "hide": "Ocultar anotaciones",
+    "show": "Mostrar anotaciones",
+    "print": "Imprimir A3",
+    "action": "Actuación",
+    "work": "Trabajos previstos",
+    "verify": "A verificar en obra",
+    "worklist": "Lista de trabajos",
+    "legend": "Leyenda",
+    "beforeNote": "Estado actual (foto de obra). La perspectiva no coincide exactamente con la propuesta.",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "back": "Gimnasios",
+    "board": "Propuesta",
+    "options": "Opciones de acceso",
+    "gallery": "Imágenes y vídeos",
+    "share": "Compartir vídeo",
+    "shareCopied": "Enlace copiado",
+    "sharePreparing": "Preparando…",
+    "copy": "Copiar enlace",
+    "open": "Ver imagen completa",
+    "videosTitle": "Opciones de acceso en vídeo",
+    "download": "Descargar vídeo",
+    "optionsTitle": "Las tres opciones, punto por punto",
+    "specTitle": "Especificación de elementos",
+    "specCols": [
+      "Nº",
+      "Elemento",
+      "Especificación",
+      "Referencia / acabado",
+      "Cantidad"
+    ],
+    "specNote": "Referencias propuestas, pendientes de confirmar con muestras y medición en obra. Sin precios ni potencias."
+  },
+  "items": [
+    {
+      "n": "01",
+      "title": "Focos empotrados",
+      "anchor": [
+        42.3,
+        27.9
+      ],
+      "label": [
+        27,
+        17
+      ],
+      "action": "Seis focos LED empotrados y orientables en el falso techo, con haz estrecho de 18° y luz cálida, para crear ambiente: círculos de luz definidos en lugar de una iluminación plana.",
+      "work": [
+        "Mantener la retícula del falso techo.",
+        "Instalar seis focos orientables según la imagen (distribución como propuesta visual).",
+        "Focos con ángulo de haz estrecho de 18° para crear la atmósfera de la propuesta.",
+        "Orientar los haces para crear círculos de luz cálida en el suelo y acentuar el sofá.",
+        "Revisar cómo dejar fuera de servicio las pantallas grandes actuales en la escena de luz propuesta."
+      ],
+      "verify": [
+        "Distribución definitiva de los focos.",
+        "Modelo, potencia y temperatura de color, manteniendo el haz de 18°.",
+        "Circuitos y encendidos de las pantallas actuales."
+      ],
+      "element": "Foco LED empotrado orientable",
+      "spec": "Haz estrecho de 18°, luz cálida 2700 K, orientable, para falso techo de placas.",
+      "ref": "Aro blanco mate RAL 9003 o negro mate RAL 9005 (a elegir).",
+      "qty": "6 uds."
+    },
+    {
+      "n": "02",
+      "title": "Tira LED bajo mostrador",
+      "anchor": [
+        78,
+        59.6
+      ],
+      "label": [
+        88,
+        72
+      ],
+      "action": "Tira LED continua y oculta bajo el canto del mostrador, que baña los listones de madera hacia abajo.",
+      "work": [
+        "Perfil de aluminio con difusor bajo el tablero.",
+        "Tira LED continua en todo el frente del mostrador.",
+        "Alimentación y cableado ocultos."
+      ],
+      "verify": [
+        "Ubicación del driver.",
+        "Acceso para mantenimiento.",
+        "Longitud real del frente."
+      ],
+      "element": "Tira LED con perfil",
+      "spec": "Tira LED continua 2700 K, reproducción cromática CRI ≥ 90, en perfil de aluminio con difusor opal.",
+      "ref": "Perfil de aluminio anodizado plata.",
+      "qty": "Longitud del frente (a medir)."
+    },
+    {
+      "n": "03",
+      "title": "Rótulo de neón LED",
+      "anchor": [
+        6.5,
+        49
+      ],
+      "label": [
+        17,
+        37
+      ],
+      "action": "Rótulo de neón LED rojo a medida en la pared de listones, con el texto en dos líneas «SANTA LOCURA» / «FITNESS».",
+      "work": [
+        "Fabricar el rótulo con el texto exacto en dos líneas.",
+        "Fijarlo a la pared de listones.",
+        "Cableado oculto y alimentación."
+      ],
+      "verify": [
+        "Tamaño y altura de montaje.",
+        "Punto de alimentación.",
+        "Sistema de fijación sobre los listones."
+      ],
+      "note": "El reflejo rojo en el vidrio es un efecto del rótulo, no una instalación aparte.",
+      "element": "Rótulo de neón LED",
+      "spec": "Neón LED flexible sobre placa transparente, texto en dos líneas «SANTA LOCURA» / «FITNESS».",
+      "ref": "Rojo; tipografía del logotipo Santa Locura.",
+      "qty": "1 ud."
+    },
+    {
+      "n": "04",
+      "title": "Acabado grafito",
+      "anchor": [
+        49,
+        41.6
+      ],
+      "label": [
+        59,
+        34
+      ],
+      "action": "Pared frontal y paño sobre la recepción en gris grafito mate.",
+      "work": [
+        "Proteger listones, mostrador y cantos del hueco.",
+        "Preparar el soporte: reparar, lijar e imprimar.",
+        "Pintar en grafito mate."
+      ],
+      "verify": [
+        "Estado del soporte.",
+        "Referencia de color y acabado.",
+        "Encuentros con techo y carpinterías."
+      ],
+      "element": "Pintura grafito mate",
+      "spec": "Pintura plástica mate lavable para interiores, previa imprimación.",
+      "ref": "RAL 7024 Gris grafito (propuesta; validar con muestra en obra).",
+      "qty": "Pared frontal y paño sobre la recepción (m² a medir)."
+    },
+    {
+      "n": "05",
+      "title": "Recuperación del pavimento",
+      "anchor": [
+        50,
+        89
+      ],
+      "label": [
+        64,
+        94
+      ],
+      "action": "Pavimento recuperado con acabado oscuro satinado y uniforme.",
+      "work": [
+        "Evaluar el soporte existente.",
+        "Retirar el recubrimiento suelto.",
+        "Reparar desconchones y preparar la superficie.",
+        "Aplicar un acabado oscuro satinado."
+      ],
+      "verify": [
+        "Diagnóstico del soporte antes de elegir el sistema de revestimiento.",
+        "Humedad y adherencia.",
+        "Superficie total a tratar."
+      ],
+      "element": "Acabado del pavimento",
+      "spec": "Revestimiento oscuro satinado sobre el soporte reparado; sistema según diagnóstico.",
+      "ref": "Tono RAL 7021 Gris negruzco (propuesta; validar con muestra).",
+      "qty": "Superficie de la recepción (m² a medir)."
+    },
+    {
+      "n": "06",
+      "title": "Puerta corredera de vidrio",
+      "anchor": [
+        42,
+        57
+      ],
+      "label": [
+        33,
+        66
+      ],
+      "action": "Puerta corredera automática de vidrio en el hueco actual, en lugar del torniquete.",
+      "work": [
+        "Retirar el torniquete actual a media altura.",
+        "Instalar puerta corredera automática de vidrio con perfiles negros finos y operador superior.",
+        "Rematar el hueco."
+      ],
+      "verify": [
+        "Dimensiones del hueco.",
+        "Recorrido de las hojas.",
+        "Espacio de fijación del operador."
+      ],
+      "element": "Puerta corredera automática de vidrio",
+      "spec": "Dos hojas de vidrio de seguridad, perfiles finos y operador superior.",
+      "ref": "Perfilería negro mate RAL 9005.",
+      "qty": "1 ud."
+    },
+    {
+      "n": "07",
+      "title": "Control de acceso",
+      "anchor": [
+        67.6,
+        52
+      ],
+      "label": [
+        76,
+        43
+      ],
+      "action": "Lector QR / móvil junto a la puerta, integrado con el automatismo.",
+      "work": [
+        "Instalar el lector QR / móvil en la pared.",
+        "Cableado hasta el controlador de la puerta.",
+        "Integración y pruebas de funcionamiento."
+      ],
+      "verify": [
+        "Lógica de apertura (pendiente de confirmar).",
+        "Compatibilidad de equipos (pendiente de confirmar).",
+        "Altura de montaje del lector."
+      ],
+      "element": "Lector QR / móvil",
+      "spec": "Lector de pared para código QR y teléfono, integrado con el automatismo de la puerta.",
+      "ref": "Carcasa negra.",
+      "qty": "1 ud."
+    },
+    {
+      "n": "08",
+      "title": "Zona de espera",
+      "anchor": [
+        10,
+        70
+      ],
+      "label": [
+        22,
+        91
+      ],
+      "action": "Zona de espera con sofá, mesa auxiliar y planta, dejando libre el paso principal.",
+      "work": [
+        "Retirar el expositor publicitario.",
+        "Suministrar sofá capitoné de terciopelo verde.",
+        "Suministrar mesa auxiliar redonda dorada.",
+        "Suministrar planta alta con macetero dorado."
+      ],
+      "verify": [
+        "Medidas del sofá respecto al paso.",
+        "Paso principal libre."
+      ],
+      "element": "Mobiliario de espera",
+      "spec": "Sofá capitoné de terciopelo verde, mesa auxiliar redonda dorada y planta alta con macetero dorado.",
+      "ref": "Terciopelo verde botella; metal acabado dorado.",
+      "qty": "1 + 1 + 1 uds."
+    }
+  ],
+  "worklist": [
+    {
+      "group": "Desmontajes",
+      "tasks": [
+        [
+          "06",
+          "Retirada del torniquete a media altura"
+        ],
+        [
+          "08",
+          "Retirada del expositor publicitario"
+        ],
+        [
+          "05",
+          "Retirada del recubrimiento suelto del pavimento"
+        ]
+      ]
+    },
+    {
+      "group": "Acabados",
+      "tasks": [
+        [
+          "04",
+          "Pintura grafito mate en pared frontal y sobre la recepción"
+        ],
+        [
+          "05",
+          "Pavimento oscuro satinado"
+        ]
+      ]
+    },
+    {
+      "group": "Iluminación y rotulación",
+      "tasks": [
+        [
+          "01",
+          "Seis focos LED empotrados orientables, haz de 18°"
+        ],
+        [
+          "02",
+          "Tira LED bajo el mostrador"
+        ],
+        [
+          "03",
+          "Rótulo de neón LED «SANTA LOCURA / FITNESS»"
+        ]
+      ]
+    },
+    {
+      "group": "Acceso",
+      "tasks": [
+        [
+          "06",
+          "Puerta corredera automática de vidrio",
+          "a"
+        ],
+        [
+          "06",
+          "Torno de acceso de altura completa",
+          "b"
+        ],
+        [
+          "06",
+          "Dos tornos trípode a media altura",
+          "c"
+        ],
+        [
+          "07",
+          "Lector QR / móvil y control de acceso"
+        ]
+      ]
+    },
+    {
+      "group": "Mobiliario",
+      "tasks": [
+        [
+          "08",
+          "Sofá de terciopelo verde, mesa auxiliar dorada y planta con macetero dorado"
+        ]
+      ]
+    }
+  ],
+  "hero": {
+    "video": "/videos/fitness/projects/santa-locura/hero-slow.mp4",
+    "poster": "/images/fitness/projects/santa-locura/hero-poster.webp",
+    "width": 464,
+    "height": 832,
+    "logo": "/images/fitness/projects/santa-locura/logo.webp",
+    "logoWidth": 1200,
+    "logoHeight": 295,
+    "subtitle": "Reforma de recepción y acceso",
+    "label": "Vídeo de la sala de entrenamiento de Santa Locura Fitness, a cámara lenta"
+  },
+  "options": [
+    {
+      "id": "a",
+      "label": "Opción A · Puerta de vidrio",
+      "image": {
+        "src": "/images/fitness/projects/santa-locura/after.webp",
+        "small": "/images/fitness/projects/santa-locura/after-560.webp",
+        "width": 941,
+        "height": 1672,
+        "alt": "Opción A: recepción con techo de focos, pared grafito, puerta corredera de vidrio, rótulo de neón rojo, mostrador con luz LED y zona de espera con sofá verde"
+      },
+      "desc": "La entrada se resuelve con una puerta corredera automática de vidrio: el hueco queda abierto a la vista de la sala, con perfiles negros finos y un lector QR junto a la puerta. Es la opción más ligera y diáfana."
+    },
+    {
+      "id": "b",
+      "label": "Opción B · Torno de altura completa",
+      "image": {
+        "src": "/images/fitness/projects/santa-locura/after-b.webp",
+        "small": "/images/fitness/projects/santa-locura/after-b-560.webp",
+        "width": 941,
+        "height": 1672,
+        "alt": "Opción B: la misma recepción con un torno de acceso de altura completa en acero inoxidable en lugar de la puerta de vidrio"
+      },
+      "items": {
+        "06": {
+          "title": "Torno de altura completa",
+          "anchor": [
+            44,
+            58
+          ],
+          "action": "Torno de acceso de altura completa en acero inoxidable en el hueco actual, en lugar del torniquete a media altura.",
+          "work": [
+            "Retirar el torniquete actual a media altura.",
+            "Instalar un torno de altura completa con estructura y brazos de acero inoxidable.",
+            "Rematar el hueco y el cabezal superior del torno."
+          ],
+          "verify": [
+            "Dimensiones del hueco y altura libre.",
+            "Fijación a suelo y techo.",
+            "Paso alternativo y evacuación (pendiente de confirmar)."
+          ],
+          "element": "Torno de acceso de altura completa",
+          "spec": "Estructura y brazos de acero inoxidable, paso giratorio de altura completa.",
+          "ref": "Acero inoxidable satinado (calidad a confirmar).",
+          "qty": "1 ud."
+        },
+        "07": {
+          "title": "Control de acceso",
+          "action": "Lector QR / móvil integrado con el torno, para entrar con el teléfono.",
+          "work": [
+            "Instalar el lector QR / móvil en el torno o en la pared junto al hueco.",
+            "Cableado hasta el controlador del torno.",
+            "Integración y pruebas de funcionamiento."
+          ],
+          "verify": [
+            "Lógica de apertura (pendiente de confirmar).",
+            "Compatibilidad de equipos (pendiente de confirmar).",
+            "Posición definitiva del lector."
+          ],
+          "element": "Lector QR / móvil",
+          "spec": "Lector para código QR y teléfono, integrado con el torno.",
+          "ref": "Carcasa negra.",
+          "qty": "1 ud."
+        }
+      },
+      "desc": "La entrada se resuelve con un torno de altura completa en acero inoxidable: un control de paso más estricto, con acceso mediante el teléfono. El resto de la reforma es igual que en la opción A."
+    },
+    {
+      "id": "c",
+      "label": "Opción C · Dos tornos trípode",
+      "image": {
+        "src": "/images/fitness/projects/santa-locura/after-c.webp",
+        "small": "/images/fitness/projects/santa-locura/after-c-560.webp",
+        "width": 941,
+        "height": 1672,
+        "alt": "Opción C: la misma recepción con el hueco abierto y dos tornos trípode de acero inoxidable a media altura"
+      },
+      "desc": "La entrada queda abierta, sin puerta, con dos tornos trípode de acero inoxidable a media altura y lectores integrados: el control de paso más sencillo, con la sala a la vista. El resto de la reforma es igual que en las opciones A y B.",
+      "items": {
+        "06": {
+          "title": "Dos tornos trípode",
+          "anchor": [
+            36,
+            60
+          ],
+          "action": "Dos tornos trípode a media altura en el hueco actual, que queda abierto hacia la sala.",
+          "work": [
+            "Retirar el torniquete actual.",
+            "Instalar dos tornos trípode de acero inoxidable con lector integrado.",
+            "Anclar al pavimento y llevar alimentación y datos.",
+            "Rematar el hueco abierto."
+          ],
+          "verify": [
+            "Anchura útil de cada paso.",
+            "Paso accesible y de evacuación (pendiente de confirmar).",
+            "Canalizaciones bajo el pavimento."
+          ],
+          "element": "Dos tornos trípode a media altura",
+          "spec": "Tornos de acceso trípode en acero inoxidable, con lector integrado; el hueco queda abierto.",
+          "ref": "Acero inoxidable satinado (calidad a confirmar).",
+          "qty": "2 uds."
+        },
+        "07": {
+          "title": "Control de acceso",
+          "action": "Lectores QR / móvil en los tornos, integrados con el control de acceso.",
+          "work": [
+            "Configurar los lectores QR / móvil de los tornos.",
+            "Cableado hasta el controlador de acceso.",
+            "Integración y pruebas de funcionamiento."
+          ],
+          "verify": [
+            "Lógica de apertura (pendiente de confirmar).",
+            "Compatibilidad de equipos (pendiente de confirmar).",
+            "Uso del lector de pared existente."
+          ],
+          "element": "Lectores QR / móvil",
+          "spec": "Lectores para código QR y teléfono, integrados en los tornos.",
+          "ref": "Según el fabricante de los tornos.",
+          "qty": "2 uds."
+        }
+      }
+    }
+  ],
+  "gallery": {
+    "images": [
+      {
+        "src": "/images/fitness/projects/santa-locura/after.webp",
+        "small": "/images/fitness/projects/santa-locura/after-640.webp",
+        "width": 941,
+        "height": 1672,
+        "caption": "Opción A: puerta corredera de vidrio, rótulo de neón, focos, mostrador con LED y zona de espera"
+      },
+      {
+        "src": "/images/fitness/projects/santa-locura/after-c.webp",
+        "small": "/images/fitness/projects/santa-locura/after-c-640.webp",
+        "width": 941,
+        "height": 1672,
+        "caption": "Opción C: dos tornos trípode a media altura en el hueco abierto"
+      },
+      {
+        "src": "/images/fitness/projects/santa-locura/galeria-neon.webp",
+        "small": "/images/fitness/projects/santa-locura/galeria-neon-640.webp",
+        "width": 1051,
+        "height": 1496,
+        "caption": "Rótulo de neón LED sobre la pared de listones y zona de espera"
+      },
+      {
+        "src": "/images/fitness/projects/santa-locura/galeria-torno.webp",
+        "small": "/images/fitness/projects/santa-locura/galeria-torno-640.webp",
+        "width": 941,
+        "height": 1672,
+        "caption": "Opción B: torno de altura completa, rótulo de neón y zona de espera"
+      }
+    ],
+    "videos": [
+      {
+        "id": "video-opcion-a",
+        "src": "/videos/fitness/projects/santa-locura/opcion-a-720.mp4",
+        "poster": "/images/fitness/projects/santa-locura/opcion-a-poster.webp",
+        "width": 720,
+        "height": 1280,
+        "title": "Opción A · Puerta de vidrio",
+        "text": "Recorrido de la recepción reformada hasta la sala, a través de la puerta corredera de vidrio."
+      },
+      {
+        "id": "video-opcion-b",
+        "src": "/videos/fitness/projects/santa-locura/opcion-b-720.mp4",
+        "poster": "/images/fitness/projects/santa-locura/opcion-b-poster.webp",
+        "width": 720,
+        "height": 1280,
+        "title": "Opción B · Torno de altura completa",
+        "text": "Acceso con el teléfono a través del torno de altura completa."
+      }
+    ],
+    "tight": true
+  },
+  "current": {
+    "video": "/videos/fitness/projects/santa-locura/situacion-actual-720.mp4",
+    "poster": "/images/fitness/projects/santa-locura/situacion-actual-poster.webp",
+    "width": 720,
+    "height": 1280,
+    "eyebrow": "Situación actual",
+    "title": "Así está hoy la recepción",
+    "text": "Torniquete a media altura, pavimento deteriorado, paredes blancas y pantallas de luz en el techo: el punto de partida de la reforma.",
+    "label": "Vídeo del estado actual de la recepción de Santa Locura Fitness",
+    "soundOn": "Activar sonido",
+    "soundOff": "Silenciar"
+  }
+}

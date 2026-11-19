@@ -221,7 +221,7 @@
         } catch (e) { resolve(null); }
       };
       img.onerror = () => resolve(null);
-      img.src = "/img/logo-360.webp";
+      img.src = "/img/logo-3dna.png";
     });
     return logoCache;
   }
@@ -595,7 +595,7 @@
       </div>`).join("");
     return `
       <div class="crp__head">
-        <img class="crp__logo" src="/img/logo-360.webp" width="360" height="240" alt="3DNA">
+        <img class="crp__logo" src="/img/logo-3dna.webp" width="960" height="147" alt="3DNA">
         <div class="crp__meta"><span>${esc(report.kicker)}</span><span>${esc(report.dateLine)}</span></div>
       </div>
       <h1 class="crp__title">${esc(report.title)}</h1>
