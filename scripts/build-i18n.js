@@ -43,12 +43,14 @@ const projectIdOf = (page) => (page && page.startsWith("project-") ? page.slice(
 // uses properties.json catalog.ogImage when there is one
 const propertyKey = (slug) => `property-${slug}`;
 const propertySlugOf = (page) => (page && page.startsWith("property-") ? page.slice("property-".length) : null);
-const realEstateOg = (page) => propertySlugOf(page) ? realEstate.ogImage(propertySlugOf(page)) : page === "realEstate" ? realEstate.catalogOgImage() : null;
-const ogImagePath = (page, lang) => realEstateOg(page) ? realEstateOg(page).path
+// real estate pages: their own generated card (or override / fallback), see scripts/real-estate.js shareImage
+const realEstateOg = (page, lang) => (propertySlugOf(page) || page === "realEstate")
+  ? realEstate.shareImage(propertySlugOf(page), lang, (p) => fs.existsSync(path.join(root, p.replace(/^\//, "")))) : null;
+const ogImagePath = (page, lang) => realEstateOg(page, lang) ? realEstateOg(page, lang).path
   : projectIdOf(page) ? projects.ogImage(projectIdOf(page)) : (page && OG_PAGE_IMAGES[page] ? OG_PAGE_IMAGES[page](lang) : OG_IMAGE.path(lang));
-const ogImageSize = (page) => {
-  if (!realEstateOg(page)) return { width: OG_IMAGE.width, height: OG_IMAGE.height, type: "image/jpeg" };
-  const im = realEstateOg(page);
+const ogImageSize = (page, lang) => {
+  if (!realEstateOg(page, lang)) return { width: OG_IMAGE.width, height: OG_IMAGE.height, type: "image/jpeg" };
+  const im = realEstateOg(page, lang);
   const ext = ((im.path.match(/\.(\w+)$/) || [])[1] || "jpg").toLowerCase();
   return { width: im.width, height: im.height, type: `image/${ext === "jpg" ? "jpeg" : ext}` };
 };
@@ -154,6 +156,8 @@ if (RE_DRAFT) {
 const realEstate = require("./real-estate.js").createRealEstate(
   realEstateData, realEstateI18n,
   { whatsappNumber: translations.es.contact.whatsappNumber, absolute: (p) => absolute(p), sectionPath: realEstateSectionPath, homePath: (lang) => `/${lang}/` });
+// link-preview cards for every real estate page (drawn only when missing or changed; not for the draft)
+if (!RE_DRAFT) require("./real-estate-og.js").ensureCards(root, realEstate.shareJobs(SUPPORTED));
 
 // Homepage editorial carousel "the value of design"
 const designQuotes = require("./design-quotes.js").createDesignQuotes(JSON.parse(read("assets/data/design-quotes.json")), translations);
@@ -184,7 +188,7 @@ const PAGES = {
     subPath: (lang) => `${reSlug(lang)}/`,
     urlPath: (lang) => (lang === "es" ? realEstateSectionPath(lang) : null),
     // "Viviendas en venta" when every listing is residential
-    meta: (lang) => ({ ...realEstateI18n[lang].meta, title: realEstateI18n[lang].meta.title.replace(realEstateI18n[lang].title, realEstate.heading(lang)) })
+    meta: (lang) => realEstateI18n[lang].meta
   },
   ...Object.fromEntries(realEstate.slugs().map((slug) => [propertyKey(slug), {
     template: () => propertyTemplate,
@@ -239,9 +243,9 @@ function socialMeta(lang, t, meta = t.meta, url = localeUrl(lang), page = null) 
     `  <meta property="og:url" content="${url}">`,
     `  <meta property="og:image" content="${image}">`,
     `  <meta property="og:image:secure_url" content="${image}">`,
-    `  <meta property="og:image:type" content="${ogImageSize(page).type}">`,
-    `  <meta property="og:image:width" content="${ogImageSize(page).width}">`,
-    `  <meta property="og:image:height" content="${ogImageSize(page).height}">`,
+    `  <meta property="og:image:type" content="${ogImageSize(page, lang).type}">`,
+    `  <meta property="og:image:width" content="${ogImageSize(page, lang).width}">`,
+    `  <meta property="og:image:height" content="${ogImageSize(page, lang).height}">`,
     `  <meta property="og:image:alt" content="${escapeHtml(ogAlt)}">`,
     `  <meta property="og:locale" content="${t.meta.ogLocale}">`,
     ...SUPPORTED.filter((code) => code !== lang).map(

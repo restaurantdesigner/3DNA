@@ -11,7 +11,7 @@
   if (!form || !grid) return;
   var items = Array.prototype.slice.call(grid.querySelectorAll("[data-re-item]"));
   var original = items.slice();
-  var shown = form.querySelector("[data-re-shown]"), none = document.querySelector("[data-re-none]");
+  var shown = document.querySelector("[data-re-shown]"), none = document.querySelector("[data-re-none]");
   var forms = JSON.parse(form.getAttribute("data-shown") || "{}");
   var rules = window.Intl && Intl.PluralRules ? new Intl.PluralRules(form.getAttribute("data-locale")) : null;
   var val = function (name) { var f = form.elements[name]; return f ? f.value : ""; };
@@ -109,12 +109,16 @@
   });
 })();
 
-// catalogue header film: still poster with reduced motion; paused while the tab is hidden
+// catalogue header film: loads and plays (muted, inline, looped) only without reduced motion;
+// otherwise the poster stays as a still. Paused while the tab is hidden.
 (function () {
   "use strict";
   var v = document.querySelector("[data-re-hero-video]");
   if (!v) return;
-  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); return; }
+  var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (still) return;
+  v.muted = true;
+  v.src = v.getAttribute("data-src");
   var play = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
   play();
   document.addEventListener("visibilitychange", function () { if (document.hidden) v.pause(); else play(); });

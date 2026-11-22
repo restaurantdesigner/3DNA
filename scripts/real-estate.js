@@ -98,11 +98,16 @@ function createRealEstate(data, i18n, { whatsappNumber, absolute, sectionPath, h
   const devOf = (p) => (p.development ? developments.get(p.development) : null);
 
   const heading = (lang) => (residential ? T(lang).titleResidential : T(lang).title);
+  const countForms = (lang) => (residential ? T(lang).countResidential : T(lang).count);
+  // sea view: only listings whose view was confirmed (from inside or from their own terrace / balcony)
+  const seaVerified = (p) => !!(p.seaView && p.seaView.status === "verified");
+  const purposesOf = (p) => [...new Set([...(p.purposes || []).filter((k) => k !== "sea"), ...(seaVerified(p) ? ["sea"] : [])])];
   const detailPath = (lang, p) => `${sectionPath(lang)}${p.slug}/`;
   const img = (im, lang, { small = false, attrs = "" } = {}) =>
     `<img src="${esc(small && im.small ? im.small : im.src)}" width="${im.width}" height="${im.height}" alt="${esc(tx(im.alt, lang) || "")}" decoding="async"${attrs}>`;
   const chips = (p, lang) => [
     ...(p.status && p.status !== "available" ? [`<span class="re-chip re-chip--${p.status}">${esc(T(lang).status[p.status])}</span>`] : []),
+    ...(seaVerified(p) ? [`<span class="re-chip re-chip--sea">${esc(T(lang).sea.badge)}</span>`] : []),
     ...(p.tags || []).map((t) => `<span class="re-chip">${esc(tx(t, lang))}</span>`),
   ].join("");
   // the short icon facts of a listing (card and page)
@@ -121,7 +126,7 @@ function createRealEstate(data, i18n, { whatsappNumber, absolute, sectionPath, h
     const t = T(lang), dev = devOf(p);
     const type = tx(p.type, lang), loc = tx(p.location, lang);
     const facts = iconFacts(p, lang);
-    const attrs = tag === "li" ? ` data-re-item data-type="${esc(type || "")}" data-beds="${beds(p) ? beds(p)[1] : 0}" data-loc="${esc(loc || "")}" data-price="${sortPrice(p) != null ? sortPrice(p) : ""}" data-purposes="${esc((p.purposes || []).join(" "))}"` : "";
+    const attrs = tag === "li" ? ` data-re-item data-type="${esc(type || "")}" data-beds="${beds(p) ? beds(p)[1] : 0}" data-loc="${esc(loc || "")}" data-price="${sortPrice(p) != null ? sortPrice(p) : ""}" data-purposes="${esc(purposesOf(p).join(" "))}"` : "";
     return `<${tag} class="re-card${p.status === "sold" ? " is-sold" : ""}"${attrs}>
   <a class="re-card__link" href="${detailPath(lang, p)}">
     <div class="re-card__media">${img(p.images[0], lang, { small: true, attrs: ' loading="lazy"' })}<div class="re-chips">${chips(p, lang)}</div><span class="re-card__photos">${icon("camera", "re-ico re-ico--sm")}${p.images.length}</span></div>
@@ -153,10 +158,9 @@ function createRealEstate(data, i18n, { whatsappNumber, absolute, sectionPath, h
       priced ? select("sort", f.sort, [["", f.sortDefault], ["asc", f.sortPriceAsc], ["desc", f.sortPriceDesc]]) : "",
     ].filter(Boolean);
     if (!fields.length && !chipsRow) return "";
-    const counts = Object.fromEntries(Object.entries(f.shown));
-    return `<form class="re-filter re-wrap" data-re-filter aria-label="${esc(f.label)}" data-shown='${esc(JSON.stringify(counts))}' data-locale="${LOCALES[lang]}">
+    // the live count sits in the catalogue header (catalogHtml); the form says which forms to use
+    return `<form class="re-filter re-wrap" data-re-filter aria-label="${esc(f.label)}" data-shown='${esc(JSON.stringify(countForms(lang)))}' data-locale="${LOCALES[lang]}">
   <div class="re-filter__fields">${chipsRow}${fields.join("")}</div>
-  <p class="re-filter__count" data-re-shown aria-live="polite">${esc(plural(f.shown, list.length, lang))}</p>
 </form>`;
   }
 
@@ -192,7 +196,7 @@ function createRealEstate(data, i18n, { whatsappNumber, absolute, sectionPath, h
     const t = T(lang);
     return (data.purposes || []).filter((pp) => t.purposes[pp.key]).map((pp) => ({
       key: pp.key, image: pp.image, title: t.purposes[pp.key].title, text: t.purposes[pp.key].text,
-      count: list.filter((p) => (p.purposes || []).includes(pp.key)).length,
+      count: list.filter((p) => purposesOf(p).includes(pp.key)).length,
     }));
   }
   function purposesHtml(lang) {
@@ -228,27 +232,56 @@ ${used.map((pp) => `      <li><a class="re-ptile" href="?p=${pp.key}#re-listings
 </section>`;
   }
 
+  // sea-view homes: the confirmed ones, or (none yet) a contact block for buyers looking for one
+  function seaHtml(lang) {
+    const t = T(lang), sea = t.sea, verified = sorted.filter(seaVerified);
+    if (verified.length) return `<section class="re-sea" aria-labelledby="re-sea-t">
+  <div class="re-wrap">
+    <h2 class="re-h2" id="re-sea-t">${esc(sea.featuredTitle)}</h2>
+    <p class="re-purposes__intro">${esc(sea.featuredNote)}</p>
+    <ul class="re-grid">${verified.map((p) => card(p, lang, "li")).join("\n")}</ul>
+  </div>
+</section>`;
+    return `<section class="re-sea re-sea--cta" aria-labelledby="re-sea-t">
+  <div class="re-wrap re-search__grid">
+    <div>
+      <h2 class="re-h2" id="re-sea-t">${esc(sea.ctaTitle)}</h2>
+      <p class="re-search__text">${esc(sea.ctaText)}</p>
+    </div>
+    <div class="re-actions">
+      <a class="re-btn re-btn--primary" href="${esc(wa(sea.message))}" target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="real_estate_sea_view">${esc(sea.whatsapp)} <span aria-hidden="true">&rarr;</span></a>
+      <button class="re-btn open-panel" type="button" data-panel-message="${esc(sea.message)}" data-track="start_project_clicked" data-track-location="real_estate_sea_view">${esc(sea.form)}</button>
+    </div>
+  </div>
+</section>`;
+  }
+
   function catalogHtml(lang) {
-    const t = T(lang);
+    const t = T(lang), h = t.hero;
     const hero = data.catalog && data.catalog.hero;
-    // optional background film (muted, looping); the poster is the first paint and the reduced-motion still
+    // background film (muted, inline, looped; started by the page script, not for reduced motion);
+    // its poster is the first paint and the still for reduced-motion visitors
     const film = data.catalog && data.catalog.heroVideo;
     const media = film
-      ? `<video src="${esc(film.src)}" poster="${esc(film.poster)}" width="${film.width}" height="${film.height}" autoplay muted loop playsinline preload="auto" aria-hidden="true" data-re-hero-video></video>`
+      ? `<video poster="${esc(film.poster)}" width="${film.width}" height="${film.height}" muted loop playsinline preload="metadata" aria-hidden="true" data-re-hero-video data-src="${esc(film.src)}"></video>`
       : hero ? img(hero, lang, { attrs: ' fetchpriority="high"' }) : "";
-    const count = list.length ? plural(residential ? t.countResidential : t.count, list.length, lang) : "";
-    return `<header class="re-hero${media ? " re-hero--photo" : ""}">
+    // sector-hero: the shared transparent header over a full-bleed hero (assets/js/main.js)
+    return `<header class="re-hero${media ? " re-hero--photo sector-hero" : ""}"${film ? ` style="--re-poster:url('${esc(film.poster)}')"` : ""}>
   ${media ? `<div class="re-hero__media">${media}</div><div class="re-hero__shade" aria-hidden="true"></div>` : ""}
   <div class="re-wrap re-hero__copy">
-    <p class="re-eyebrow">${esc(t.eyebrow)}</p>
-    <h1 class="re-h1">${esc(heading(lang))}</h1>
-    <p class="re-intro">${esc(t.intro)}</p>
-    ${count ? `<p class="re-count">${esc(count)}</p>` : ""}
+    <h1 class="re-hero__title">${(() => { const w = h.title.trim().split(/\s+/), last = w.pop(); return `${esc(w.join(" "))} <em>${esc(last)}</em>`; })()}</h1>
+    <p class="re-intro">${esc(h.text)}</p>
+    ${list.length ? `<a class="re-btn re-btn--light" href="#re-listings">${esc(h.cta)} <span aria-hidden="true">&darr;</span></a>` : ""}
   </div>
 </header>
+${seaHtml(lang)}
 ${list.length ? `${purposesHtml(lang)}
-${filtersHtml(lang)}
-<section class="re-list" id="re-listings" aria-label="${esc(heading(lang))}">
+<section class="re-list" id="re-listings" aria-labelledby="re-list-t">
+  <div class="re-wrap re-list__head">
+    <h2 class="re-h2" id="re-list-t">${esc(heading(lang))}</h2>
+    <p class="re-list__count" data-re-shown aria-live="polite">${esc(plural(countForms(lang), list.length, lang))}</p>
+  </div>
+  ${filtersHtml(lang)}
   <div class="re-wrap">
     <ul class="re-grid" data-re-grid>
 ${sorted.map((p) => card(p, lang)).join("\n")}
@@ -389,25 +422,53 @@ ${others.length ? `<section class="re-others" aria-labelledby="re-others-t">
 
   function detailMeta(lang, slug) {
     const p = bySlug(slug), t = T(lang);
-    const title = tx(p.title, lang);
-    const bits = [tx(p.location, lang), price(p, lang)].filter(present).join(" · ");
+    const title = tx(p.title, lang), loc = tx(p.location, lang);
+    const bits = [loc, price(p, lang)].filter(present).join(" · ");
     const summary = tx(p.summary, lang) || [].concat(tx(p.description, lang) || [])[0] || t.intro;
+    // a sea view is mentioned only when it is confirmed for this listing
+    const sea = seaVerified(p) ? `${t.sea.badge}. ` : "";
     return {
       title: `${title} · ${p.ref} | 3DNA`,
       ogTitle: `${title} · ${bits}`,
-      description: `${summary} ${bits}.`.slice(0, 300),
-      ogImageAlt: tx(p.images[0].alt, lang) || title,
+      description: `${sea}${summary} ${bits}.`.slice(0, 300),
+      ogImageAlt: [title, loc].filter(present).join(" · "),
     };
   }
 
-  // link previews: a listing's ogImage (1200 × 630 JPG) if given, else its first photo
-  const ogImage = (slug) => {
-    const p = bySlug(slug), im = p.ogImage || p.images[0];
-    return { path: im.src, width: im.width, height: im.height };
+  // ---------------------------------------------------------------- link previews (1200 × 630)
+  // Each public page gets its own card, generated by the build (scripts/real-estate-og.js) into
+  // /images/og/real-estate/: the landing card from the hero film (or catalog.hero) with the hero
+  // heading and "Costa del Sol · Costa Tropical"; a property card from its lead photo, title,
+  // location and price (+ "sea views" only when confirmed). shareImage { src, width, height } on
+  // catalog or on a listing replaces the generated card.
+  const OG_DIR = "/images/og/real-estate/";
+  const cardPath = (name, lang) => `${OG_DIR}${name}-${lang}.jpg`;
+  const shareJobs = (langs) => {
+    const jobs = [];
+    const c = data.catalog || {};
+    if (list.length && !c.shareImage) for (const lang of langs) {
+      jobs.push({ kind: "landing", lang, out: cardPath("inmobiliaria", lang),
+        video: c.heroVideo ? c.heroVideo.src : null, image: !c.heroVideo && c.hero ? c.hero.src : null, position: c.sharePosition || "58% 40%",
+        title: T(lang).hero.title, line: T(lang).shareLine });
+    }
+    for (const p of list) if (!p.shareImage) for (const lang of langs) {
+      jobs.push({ kind: "property", lang, out: cardPath(p.slug, lang), image: p.images[0].src, position: p.sharePosition || "50% 50%",
+        title: tx(p.title, lang), location: tx(p.location, lang), price: price(p, lang), badge: seaVerified(p) ? T(lang).sea.badge : "" });
+    }
+    return jobs;
   };
-  const catalogOgImage = () => (data.catalog && data.catalog.ogImage ? { path: data.catalog.ogImage.src, width: data.catalog.ogImage.width, height: data.catalog.ogImage.height } : null);
+  const asImage = (im) => ({ path: im.src, width: im.width, height: im.height });
+  // what a page shares: the override, else its generated card (when it exists), else the landing card
+  const shareImage = (slug, lang, exists) => {
+    const c = data.catalog || {};
+    const landing = c.shareImage ? asImage(c.shareImage) : exists(cardPath("inmobiliaria", lang)) ? { path: cardPath("inmobiliaria", lang), width: 1200, height: 630 } : null;
+    if (!slug) return landing;
+    const p = bySlug(slug);
+    if (p.shareImage) return asImage(p.shareImage);
+    return exists(cardPath(p.slug, lang)) ? { path: cardPath(p.slug, lang), width: 1200, height: 630 } : landing;
+  };
 
-  return { slugs: () => list.map((p) => p.slug), heading, catalogHtml, detailHtml, detailMeta, ogImage, catalogOgImage };
+  return { slugs: () => list.map((p) => p.slug), heading, catalogHtml, detailHtml, detailMeta, shareJobs, shareImage };
 }
 
 module.exports = { createRealEstate };

@@ -4,9 +4,10 @@
     "slug": "inmobiliaria",
     "nav": "Inmobiliaria",
     "meta": {
-      "title": "Inmobiliaria · Propiedades en venta | 3DNA",
-      "description": "Propiedades en venta con 3DNA: fotos, datos clave, planos y recorrido 3D cuando están disponibles. Pregunta por cualquier propiedad o pide una visita por WhatsApp.",
-      "ogImageAlt": "3DNA · Inmobiliaria, propiedades en venta"
+      "title": "Viviendas con vistas al mar · Inmobiliaria | 3DNA",
+      "ogTitle": "Viviendas con vistas al mar · Costa del Sol y Costa Tropical",
+      "description": "Apartamentos, áticos y villas en la Costa del Sol y la Costa Tropical: fotos, datos clave y precios. Pregunta por cualquier vivienda o pide una visita por WhatsApp.",
+      "ogImageAlt": "3DNA Inmobiliaria · Viviendas con vistas al mar · Costa del Sol · Costa Tropical"
     },
     "eyebrow": "Inmobiliaria",
     "title": "Propiedades en venta",
@@ -153,7 +154,7 @@
       },
       "sea": {
         "title": "Vistas al mar",
-        "text": "Promociones con vistas al mar; las vistas dependen de la ubicación de cada vivienda."
+        "text": "Vista al mar comprobada desde la vivienda o desde su terraza o balcón."
       },
       "penthouse": {
         "title": "Áticos con solárium",
@@ -167,15 +168,32 @@
         "title": "Obra nueva sobre plano",
         "text": "Viviendas en construcción, con pagos escalonados hasta la entrega de llaves."
       }
+    },
+    "hero": {
+      "title": "Viviendas con vistas al mar",
+      "text": "Apartamentos, áticos y villas en la Costa del Sol y la Costa Tropical.",
+      "cta": "Ver propiedades"
+    },
+    "shareLine": "Costa del Sol · Costa Tropical",
+    "sea": {
+      "badge": "Vistas al mar",
+      "featuredTitle": "Vistas al mar confirmadas",
+      "featuredNote": "Vista al mar comprobada desde el interior de la vivienda o desde su terraza o balcón.",
+      "ctaTitle": "¿Buscas una vivienda con vistas al mar?",
+      "ctaText": "Cuéntanos la zona, el tipo de vivienda y tu presupuesto, y te responderemos con opciones con vistas al mar comprobadas.",
+      "whatsapp": "Escribir por WhatsApp",
+      "form": "Enviar un mensaje",
+      "message": "Hola, busco una vivienda con vistas al mar en la Costa del Sol o la Costa Tropical. Zona: , tipo: , presupuesto: ."
     }
   },
   "en": {
     "slug": "real-estate",
     "nav": "Real Estate",
     "meta": {
-      "title": "Real Estate · Properties for Sale | 3DNA",
-      "description": "Properties for sale with 3DNA: photos, key facts, floor plans and a 3D tour where available. Ask about any property or request a viewing on WhatsApp.",
-      "ogImageAlt": "3DNA · Real Estate, properties for sale"
+      "title": "Homes with Sea Views · Real Estate | 3DNA",
+      "ogTitle": "Homes with Sea Views · Costa del Sol and Costa Tropical",
+      "description": "Apartments, penthouses and villas on the Costa del Sol and Costa Tropical: photos, key facts and prices. Ask about any home or request a viewing on WhatsApp.",
+      "ogImageAlt": "3DNA Real Estate · Homes with Sea Views · Costa del Sol · Costa Tropical"
     },
     "eyebrow": "Real Estate",
     "title": "Properties for Sale",
@@ -322,7 +340,7 @@
       },
       "sea": {
         "title": "Sea views",
-        "text": "Developments with sea views; views depend on the position of each home."
+        "text": "Sea view checked from inside the home or from its terrace or balcony."
       },
       "penthouse": {
         "title": "Penthouses with solarium",
@@ -336,15 +354,32 @@
         "title": "Off-plan new builds",
         "text": "Homes under construction, with staged payments up to key handover."
       }
+    },
+    "hero": {
+      "title": "Homes with Sea Views",
+      "text": "Apartments, penthouses and villas on the Costa del Sol and Costa Tropical.",
+      "cta": "View properties"
+    },
+    "shareLine": "Costa del Sol · Costa Tropical",
+    "sea": {
+      "badge": "Sea views",
+      "featuredTitle": "Confirmed sea views",
+      "featuredNote": "Sea view checked from inside the home or from its terrace or balcony.",
+      "ctaTitle": "Looking for a home with sea views?",
+      "ctaText": "Tell us the area, type of home and your budget, and we will reply with options whose sea views have been checked.",
+      "whatsapp": "Message on WhatsApp",
+      "form": "Send a message",
+      "message": "Hello, I am looking for a home with sea views on the Costa del Sol or Costa Tropical. Area: , type: , budget: ."
     }
   },
   "ru": {
     "slug": "real-estate",
     "nav": "Недвижимость",
     "meta": {
-      "title": "Недвижимость · Объекты на продажу | 3DNA",
-      "description": "Объекты на продажу с 3DNA: фото, основные данные, планировки и 3D-тур, если они есть. Задайте вопрос о любом объекте или запишитесь на просмотр в WhatsApp.",
-      "ogImageAlt": "3DNA · Недвижимость, объекты на продажу"
+      "title": "Дома с видом на море · Недвижимость | 3DNA",
+      "ogTitle": "Дома с видом на море · Коста-дель-Соль и Коста-Тропикаль",
+      "description": "Квартиры, пентхаусы и виллы на Коста-дель-Соль и Коста-Тропикаль: фото, основные данные и цены. Задайте вопрос о любом объекте или запишитесь на просмотр в WhatsApp.",
+      "ogImageAlt": "3DNA Недвижимость · Дома с видом на море · Коста-дель-Соль · Коста-Тропикаль"
     },
     "eyebrow": "Недвижимость",
     "title": "Объекты на продажу",
@@ -505,7 +540,7 @@
       },
       "sea": {
         "title": "Вид на море",
-        "text": "Комплексы с видом на море; вид зависит от расположения квартиры."
+        "text": "Вид на море проверен из квартиры или с её террасы или балкона."
       },
       "penthouse": {
         "title": "Пентхаусы с солярием",
@@ -519,15 +554,32 @@
         "title": "Новостройки на этапе строительства",
         "text": "Квартиры в строительстве, с поэтапной оплатой до передачи ключей."
       }
+    },
+    "hero": {
+      "title": "Дома с видом на море",
+      "text": "Квартиры, пентхаусы и виллы на Коста-дель-Соль и Коста-Тропикаль.",
+      "cta": "Смотреть объекты"
+    },
+    "shareLine": "Коста-дель-Соль · Коста-Тропикаль",
+    "sea": {
+      "badge": "Вид на море",
+      "featuredTitle": "Подтверждённый вид на море",
+      "featuredNote": "Вид на море проверен изнутри квартиры или с её террасы или балкона.",
+      "ctaTitle": "Ищете жильё с видом на море?",
+      "ctaText": "Напишите район, тип жилья и бюджет — мы ответим вариантами с проверенным видом на море.",
+      "whatsapp": "Написать в WhatsApp",
+      "form": "Отправить сообщение",
+      "message": "Здравствуйте, ищу жильё с видом на море на Коста-дель-Соль или Коста-Тропикаль. Район: , тип: , бюджет: ."
     }
   },
   "uk": {
     "slug": "real-estate",
     "nav": "Нерухомість",
     "meta": {
-      "title": "Нерухомість · Об’єкти на продаж | 3DNA",
-      "description": "Об’єкти на продаж з 3DNA: фото, основні дані, планування та 3D-тур, якщо вони є. Поставте запитання про будь-який об’єкт або запишіться на перегляд у WhatsApp.",
-      "ogImageAlt": "3DNA · Нерухомість, об’єкти на продаж"
+      "title": "Житло з видом на море · Нерухомість | 3DNA",
+      "ogTitle": "Житло з видом на море · Коста-дель-Соль і Коста-Тропікаль",
+      "description": "Квартири, пентхауси та вілли на Коста-дель-Соль і Коста-Тропікаль: фото, основні дані та ціни. Поставте запитання про будь-який об’єкт або запишіться на перегляд у WhatsApp.",
+      "ogImageAlt": "3DNA Нерухомість · Житло з видом на море · Коста-дель-Соль · Коста-Тропікаль"
     },
     "eyebrow": "Нерухомість",
     "title": "Об’єкти на продаж",
@@ -688,7 +740,7 @@
       },
       "sea": {
         "title": "Вид на море",
-        "text": "Комплекси з видом на море; вид залежить від розташування квартири."
+        "text": "Вид на море перевірено з квартири або з її тераси чи балкона."
       },
       "penthouse": {
         "title": "Пентхауси з солярієм",
@@ -702,6 +754,22 @@
         "title": "Новобудови на етапі будівництва",
         "text": "Квартири в будівництві, з поетапною оплатою до передачі ключів."
       }
+    },
+    "hero": {
+      "title": "Житло з видом на море",
+      "text": "Квартири, пентхауси та вілли на Коста-дель-Соль і Коста-Тропікаль.",
+      "cta": "Переглянути об’єкти"
+    },
+    "shareLine": "Коста-дель-Соль · Коста-Тропікаль",
+    "sea": {
+      "badge": "Вид на море",
+      "featuredTitle": "Підтверджений вид на море",
+      "featuredNote": "Вид на море перевірено зсередини квартири або з її тераси чи балкона.",
+      "ctaTitle": "Шукаєте житло з видом на море?",
+      "ctaText": "Напишіть район, тип житла та бюджет — ми відповімо варіантами з перевіреним видом на море.",
+      "whatsapp": "Написати у WhatsApp",
+      "form": "Надіслати повідомлення",
+      "message": "Вітаю, шукаю житло з видом на море на Коста-дель-Соль або Коста-Тропікаль. Район: , тип: , бюджет: ."
     }
   }
 }
