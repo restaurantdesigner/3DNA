@@ -276,3 +276,6 @@ html:has(.re-page), body:has(.re-page) { overflow-x: clip; }
 
 /* local draft only (RE_DRAFT=1 build): "example prices" banner */
 .re-draft { position: sticky; top: var(--layout-header-h, 68px); z-index: 30; margin: 0; padding: 10px 16px; background: #b3261e; color: #fff; text-align: center; font: 700 13px/1.3 "Inter", system-ui, sans-serif; letter-spacing: .06em; }
+
+/* catalogue header film: fills the header like the photo; the subject stays in view on phones */
+.re-hero__media video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }

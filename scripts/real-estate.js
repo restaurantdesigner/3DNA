@@ -231,9 +231,14 @@ ${used.map((pp) => `      <li><a class="re-ptile" href="?p=${pp.key}#re-listings
   function catalogHtml(lang) {
     const t = T(lang);
     const hero = data.catalog && data.catalog.hero;
+    // optional background film (muted, looping); the poster is the first paint and the reduced-motion still
+    const film = data.catalog && data.catalog.heroVideo;
+    const media = film
+      ? `<video src="${esc(film.src)}" poster="${esc(film.poster)}" width="${film.width}" height="${film.height}" autoplay muted loop playsinline preload="auto" aria-hidden="true" data-re-hero-video></video>`
+      : hero ? img(hero, lang, { attrs: ' fetchpriority="high"' }) : "";
     const count = list.length ? plural(residential ? t.countResidential : t.count, list.length, lang) : "";
-    return `<header class="re-hero${hero ? " re-hero--photo" : ""}">
-  ${hero ? `<div class="re-hero__media">${img(hero, lang, { attrs: ' fetchpriority="high"' })}</div><div class="re-hero__shade" aria-hidden="true"></div>` : ""}
+    return `<header class="re-hero${media ? " re-hero--photo" : ""}">
+  ${media ? `<div class="re-hero__media">${media}</div><div class="re-hero__shade" aria-hidden="true"></div>` : ""}
   <div class="re-wrap re-hero__copy">
     <p class="re-eyebrow">${esc(t.eyebrow)}</p>
     <h1 class="re-h1">${esc(heading(lang))}</h1>

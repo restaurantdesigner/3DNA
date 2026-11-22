@@ -17,6 +17,12 @@
       "src": "/images/real-estate/la-verde-island/og-golf-atardecer.jpg",
       "width": 1200,
       "height": 630
+    },
+    "heroVideo": {
+      "src": "/videos/real-estate/hero.mp4",
+      "poster": "/images/real-estate/hero-poster.webp",
+      "width": 854,
+      "height": 480
     }
   },
   "purposes": [
