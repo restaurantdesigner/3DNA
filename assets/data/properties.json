@@ -1,0 +1,2343 @@
+{
+  "_comment": "Listings for the real estate section (/inmobiliaria/, /en/real-estate/, /ru/real-estate/, /uk/real-estate/). Add one object per property to 'properties', then run: npm run build:i18n. Only real listings and authorised photos. Required: ref, slug, category, title, images (at least one). Everything else is optional; empty fields are not shown. Text fields take a plain string (shown in every language) or { \"es\": \"…\", \"en\": \"…\", \"ru\": \"…\", \"uk\": \"…\" } (a missing language falls back to Spanish, then English). category: residential | commercial | land (only residential listings → heading 'Viviendas en venta'). status: available (default) | reserved | sold. price: a number in euros, no dots (omit it for 'Precio a consultar'). area / plot in m². Images live in /images/real-estate/<slug>/; width and height are the file's pixel size. The first image is also the link preview in WhatsApp / Telegram, so make it a landscape JPG (about 1200 px wide). tour: { \"url\": \"https://…\", \"embed\": true } (embed only if the provider allows it in an iframe). '_example' below is a template and is never published.",
+  "catalog": {
+    "hero": {
+      "src": "/images/real-estate/la-verde-island/vista-aerea-golf.webp",
+      "small": "/images/real-estate/la-verde-island/vista-aerea-golf-800.webp",
+      "width": 1600,
+      "height": 1128,
+      "alt": {
+        "es": "Vista aérea de los edificios junto al green",
+        "en": "Aerial view of the buildings beside the green",
+        "ru": "Вид сверху на здания у гольф-поля",
+        "uk": "Вигляд згори на будинки біля гольф-поля"
+      }
+    },
+    "ogImage": {
+      "src": "/images/real-estate/la-verde-island/og-golf-atardecer.jpg",
+      "width": 1200,
+      "height": 630
+    }
+  },
+  "purposes": [
+    {
+      "key": "golf",
+      "image": {
+        "src": "/images/real-estate/la-verde-island/golf-atardecer.webp",
+        "small": "/images/real-estate/la-verde-island/golf-atardecer-800.webp",
+        "width": 1600,
+        "height": 1128,
+        "alt": {
+          "es": "El campo de golf junto a La Verde Island al atardecer",
+          "en": "The golf course beside La Verde Island at sunset",
+          "ru": "Гольф-поле рядом с La Verde Island на закате",
+          "uk": "Гольф-поле біля La Verde Island на заході сонця"
+        }
+      }
+    },
+    {
+      "key": "sea",
+      "image": {
+        "src": "/images/real-estate/la-verde-island/piscina-infinita.webp",
+        "small": "/images/real-estate/la-verde-island/piscina-infinita-800.webp",
+        "width": 1600,
+        "height": 1128,
+        "alt": {
+          "es": "Piscina desbordante con vistas al mar",
+          "en": "Infinity pool with sea views",
+          "ru": "Бассейн-инфинити с видом на море",
+          "uk": "Басейн-інфініті з видом на море"
+        }
+      }
+    },
+    {
+      "key": "penthouse",
+      "image": {
+        "src": "/images/real-estate/la-verde-island/atico-terraza.webp",
+        "small": "/images/real-estate/la-verde-island/atico-terraza-800.webp",
+        "width": 842,
+        "height": 553,
+        "alt": {
+          "es": "Terraza de un ático con vistas al golf y al mar",
+          "en": "Penthouse terrace overlooking the golf course and the sea",
+          "ru": "Терраса пентхауса с видом на гольф и море",
+          "uk": "Тераса пентхауса з видом на гольф і море"
+        }
+      }
+    },
+    {
+      "key": "family",
+      "image": {
+        "src": "/images/real-estate/sunway-residence/exterior-piscina.webp",
+        "small": "/images/real-estate/sunway-residence/exterior-piscina-800.webp",
+        "width": 1600,
+        "height": 1132,
+        "alt": {
+          "es": "Piscina comunitaria",
+          "en": "Communal pool",
+          "ru": "Общий бассейн",
+          "uk": "Спільний басейн"
+        }
+      }
+    },
+    {
+      "key": "offplan",
+      "image": {
+        "src": "/images/real-estate/la-verde-island/vista-aerea-conjunto.webp",
+        "small": "/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp",
+        "width": 1600,
+        "height": 1128,
+        "alt": {
+          "es": "Vista aérea del conjunto entre los campos de golf",
+          "en": "Aerial view of the complex among the golf courses",
+          "ru": "Вид сверху на комплекс среди гольф-полей",
+          "uk": "Вигляд згори на комплекс серед гольф-полів"
+        }
+      }
+    }
+  ],
+  "developments": [
+    {
+      "id": "sunway-residence",
+      "name": "Sunway Residence",
+      "developer": "Investhome Development",
+      "architect": {
+        "es": "Estudio Villarroel",
+        "en": "Villarroel architecture studio",
+        "ru": "Архитектурное бюро Villarroel",
+        "uk": "Архітектурне бюро Villarroel"
+      },
+      "location": {
+        "es": "Estepona, Málaga",
+        "en": "Estepona, Málaga",
+        "ru": "Эстепона, Малага",
+        "uk": "Естепона, Малага"
+      },
+      "units": 48,
+      "summary": {
+        "es": "Urbanización cerrada de 48 viviendas en Estepona: apartamentos de 2 y 3 dormitorios y áticos, con piscina y jardines comunitarios.",
+        "en": "A gated community of 48 homes in Estepona: 2 and 3-bedroom apartments and penthouses, with a communal pool and gardens.",
+        "ru": "Закрытый комплекс из 48 квартир в Эстепоне: квартиры с 2 и 3 спальнями и пентхаусы, общий бассейн и сады.",
+        "uk": "Закритий комплекс із 48 квартир в Естепоні: квартири з 2 і 3 спальнями та пентхауси, спільний басейн і сади."
+      },
+      "description": {
+        "es": [
+          "Sunway Residence es una promoción de obra nueva en Estepona, en la Costa del Sol, diseñada por el estudio de arquitectura Villarroel. Son 48 viviendas repartidas en cuatro bloques alrededor de un jardín con piscina, dentro de una urbanización cerrada con accesos automáticos.",
+          "Las viviendas se han proyectado para aprovechar la luz natural y la vida al aire libre: ventanales de suelo a techo, terrazas amplias, jardines privados en las plantas bajas y solárium en los áticos."
+        ],
+        "en": [
+          "Sunway Residence is a new-build development in Estepona, on the Costa del Sol, designed by the Villarroel architecture studio. Its 48 homes are set in four blocks around a garden with a pool, inside a gated community with automatic access.",
+          "The homes are designed around natural light and outdoor living: floor-to-ceiling windows, generous terraces, private gardens on the ground floor and solariums on the penthouses."
+        ],
+        "ru": [
+          "Sunway Residence — новый жилой комплекс в Эстепоне на Коста-дель-Соль по проекту архитектурного бюро Villarroel. 48 квартир в четырёх корпусах вокруг сада с бассейном, на закрытой территории с автоматическими въездами.",
+          "Квартиры спроектированы с расчётом на естественный свет и жизнь на открытом воздухе: панорамные окна, просторные террасы, частные сады на первых этажах и солярии у пентхаусов."
+        ],
+        "uk": [
+          "Sunway Residence — новий житловий комплекс в Естепоні на Коста-дель-Соль за проєктом архітектурного бюро Villarroel. 48 квартир у чотирьох корпусах навколо саду з басейном, на закритій території з автоматичними в’їздами.",
+          "Квартири спроєктовані з розрахунком на природне світло та життя просто неба: панорамні вікна, просторі тераси, приватні сади на перших поверхах і солярії в пентхаусів."
+        ]
+      },
+      "specs": [
+        {
+          "title": {
+            "es": "Cocina",
+            "en": "Kitchen",
+            "ru": "Кухня",
+            "uk": "Кухня"
+          },
+          "items": {
+            "es": [
+              "Cocina amueblada y equipada con electrodomésticos de gama alta de marcas europeas.",
+              "Encimeras de porcelánico."
+            ],
+            "en": [
+              "Fitted kitchen with high-end European-brand appliances.",
+              "Porcelain countertops."
+            ],
+            "ru": [
+              "Мебелированная кухня с техникой европейских брендов высокого класса.",
+              "Столешницы из керамогранита."
+            ],
+            "uk": [
+              "Мебльована кухня з технікою європейських брендів високого класу.",
+              "Стільниці з керамограніту."
+            ]
+          }
+        },
+        {
+          "title": {
+            "es": "Baños",
+            "en": "Bathrooms",
+            "ru": "Ванные комнаты",
+            "uk": "Ванні кімнати"
+          },
+          "items": {
+            "es": [
+              "Dos baños en cada vivienda; baño en suite en el dormitorio principal.",
+              "Revestimiento porcelánico, grifería europea, lavabos de solid surface y espejos antivaho.",
+              "Suelo radiante eléctrico en todos los baños."
+            ],
+            "en": [
+              "Two bathrooms in every home; en-suite to the master bedroom.",
+              "Porcelain tiling, European taps, solid-surface basins and anti-fog mirrors.",
+              "Electric underfloor heating in all bathrooms."
+            ],
+            "ru": [
+              "Два санузла в каждой квартире; ванная при главной спальне.",
+              "Отделка керамогранитом, европейская сантехника, раковины из искусственного камня, зеркала с антизапотеванием.",
+              "Электрический тёплый пол во всех ванных."
+            ],
+            "uk": [
+              "Два санвузли в кожній квартирі; ванна при головній спальні.",
+              "Оздоблення керамогранітом, європейська сантехніка, раковини зі штучного каменю, дзеркала з антизапотіванням.",
+              "Електрична тепла підлога в усіх ванних."
+            ]
+          }
+        },
+        {
+          "title": {
+            "es": "Climatización",
+            "en": "Climate control",
+            "ru": "Климат",
+            "uk": "Клімат"
+          },
+          "items": {
+            "es": [
+              "Aerotermia para calefacción, refrigeración y agua caliente.",
+              "Control de temperatura independiente en cada estancia.",
+              "Domótica básica para iluminación y climatización."
+            ],
+            "en": [
+              "Air-to-water heat pump for heating, cooling and hot water.",
+              "Independent temperature control in every room.",
+              "Simple home automation for lighting and climate."
+            ],
+            "ru": [
+              "Тепловой насос «воздух–вода» для отопления, охлаждения и горячей воды.",
+              "Отдельная регулировка температуры в каждой комнате.",
+              "Базовая система «умный дом» для света и климата."
+            ],
+            "uk": [
+              "Тепловий насос «повітря–вода» для опалення, охолодження та гарячої води.",
+              "Окреме регулювання температури в кожній кімнаті.",
+              "Базова система «розумний дім» для світла та клімату."
+            ]
+          }
+        },
+        {
+          "title": {
+            "es": "Carpintería y acabados",
+            "en": "Joinery and finishes",
+            "ru": "Окна, двери и отделка",
+            "uk": "Вікна, двері та оздоблення"
+          },
+          "items": {
+            "es": [
+              "Puerta de entrada blindada.",
+              "Ventanas de aluminio con doble acristalamiento y cámara de argón.",
+              "Armarios empotrados a medida y puertas interiores lacadas en blanco.",
+              "Suelos de porcelánico de primera calidad."
+            ],
+            "en": [
+              "Armoured front door.",
+              "Aluminium windows with argon-filled double glazing.",
+              "Made-to-measure built-in wardrobes and white lacquered interior doors.",
+              "First-quality porcelain floors."
+            ],
+            "ru": [
+              "Бронированная входная дверь.",
+              "Алюминиевые окна с двойным остеклением и аргоном.",
+              "Встроенные шкафы на заказ, белые лакированные межкомнатные двери.",
+              "Полы из керамогранита высшего сорта."
+            ],
+            "uk": [
+              "Броньовані вхідні двері.",
+              "Алюмінієві вікна з подвійним склопакетом і аргоном.",
+              "Вбудовані шафи на замовлення, білі лаковані міжкімнатні двері.",
+              "Підлога з керамограніту найвищого ґатунку."
+            ]
+          }
+        },
+        {
+          "title": {
+            "es": "Terrazas y exteriores",
+            "en": "Terraces and outdoors",
+            "ru": "Террасы и территория",
+            "uk": "Тераси та територія"
+          },
+          "items": {
+            "es": [
+              "Terrazas y soláriums con porcelánico antideslizante, tomas de agua y electricidad.",
+              "Barandillas de vidrio templado.",
+              "Jardín tropical comunitario, piscina y riego inteligente."
+            ],
+            "en": [
+              "Terraces and solariums with non-slip porcelain, water and power points.",
+              "Tempered glass balustrades.",
+              "Communal tropical garden, pool and smart irrigation."
+            ],
+            "ru": [
+              "Террасы и солярии с противоскользящей плиткой, точками воды и электричества.",
+              "Ограждения из закалённого стекла.",
+              "Общий тропический сад, бассейн и умный полив."
+            ],
+            "uk": [
+              "Тераси та солярії з протиковзкою плиткою, точками води й електрики.",
+              "Огородження із загартованого скла.",
+              "Спільний тропічний сад, басейн і розумний полив."
+            ]
+          }
+        },
+        {
+          "title": {
+            "es": "Garaje y seguridad",
+            "en": "Garage and security",
+            "ru": "Паркинг и безопасность",
+            "uk": "Паркінг і безпека"
+          },
+          "items": {
+            "es": [
+              "Plaza de garaje (dos en los áticos) y trastero para cada vivienda.",
+              "Garaje con preinstalación para cargador de coche eléctrico.",
+              "Urbanización vallada con puertas automáticas para vehículos y peatones, y videovigilancia."
+            ],
+            "en": [
+              "Parking space (two for penthouses) and a storage room for every home.",
+              "Garage pre-installed for an electric car charger.",
+              "Walled community with automatic vehicle and pedestrian gates, and CCTV."
+            ],
+            "ru": [
+              "Машино-место (у пентхаусов два) и кладовая для каждой квартиры.",
+              "Паркинг подготовлен для установки зарядки электромобиля.",
+              "Огороженная территория с автоматическими воротами и видеонаблюдением."
+            ],
+            "uk": [
+              "Машиномісце (у пентхаусів два) і комора для кожної квартири.",
+              "Паркінг підготовлений для встановлення зарядки електромобіля.",
+              "Огороджена територія з автоматичними воротами та відеоспостереженням."
+            ]
+          }
+        },
+        {
+          "title": {
+            "es": "Eficiencia energética",
+            "en": "Energy efficiency",
+            "ru": "Энергоэффективность",
+            "uk": "Енергоефективність"
+          },
+          "items": {
+            "es": [
+              "Fachadas con el doble del aislamiento que exige el Código Técnico de la Edificación.",
+              "Vidrios de control solar.",
+              "Iluminación LED con detectores de presencia en zonas comunes y garaje."
+            ],
+            "en": [
+              "Façades with twice the insulation required by the Spanish Building Code.",
+              "Solar-control glazing.",
+              "LED lighting with motion sensors in communal areas and the garage."
+            ],
+            "ru": [
+              "Утепление фасадов вдвое выше норм испанского строительного кодекса.",
+              "Солнцезащитное остекление.",
+              "LED-освещение с датчиками движения в общих зонах и паркинге."
+            ],
+            "uk": [
+              "Утеплення фасадів удвічі вище за норми іспанського будівельного кодексу.",
+              "Сонцезахисне скління.",
+              "LED-освітлення з датчиками руху в спільних зонах і паркінгу."
+            ]
+          }
+        }
+      ],
+      "payment": [
+        {
+          "value": {
+            "es": "10.000 €",
+            "en": "€10,000",
+            "ru": "10 000 €",
+            "uk": "10 000 €"
+          },
+          "label": {
+            "es": "Reserva",
+            "en": "Reservation",
+            "ru": "Бронирование",
+            "uk": "Бронювання"
+          },
+          "note": {
+            "es": "Retira la vivienda del mercado.",
+            "en": "Takes the home off the market.",
+            "ru": "Объект снимается с продажи.",
+            "uk": "Об’єкт знімається з продажу."
+          }
+        },
+        {
+          "value": {
+            "es": "30 % + IVA",
+            "en": "30% + VAT",
+            "ru": "30 % + НДС",
+            "uk": "30 % + ПДВ"
+          },
+          "label": {
+            "es": "Contrato privado",
+            "en": "Private contract",
+            "ru": "Частный договор",
+            "uk": "Приватний договір"
+          },
+          "note": {
+            "es": "A la firma del contrato privado.",
+            "en": "On signing the private contract.",
+            "ru": "При подписании частного договора.",
+            "uk": "При підписанні приватного договору."
+          }
+        },
+        {
+          "value": {
+            "es": "20 % + IVA",
+            "en": "20% + VAT",
+            "ru": "20 % + НДС",
+            "uk": "20 % + ПДВ"
+          },
+          "label": {
+            "es": "Segundo pago",
+            "en": "Second payment",
+            "ru": "Второй платёж",
+            "uk": "Другий платіж"
+          },
+          "note": {
+            "es": "A los 6 meses del contrato privado.",
+            "en": "6 months after the private contract.",
+            "ru": "Через 6 месяцев после частного договора.",
+            "uk": "Через 6 місяців після приватного договору."
+          }
+        },
+        {
+          "value": {
+            "es": "50 % + IVA",
+            "en": "50% + VAT",
+            "ru": "50 % + НДС",
+            "uk": "50 % + ПДВ"
+          },
+          "label": {
+            "es": "Entrega de llaves",
+            "en": "Key handover",
+            "ru": "Передача ключей",
+            "uk": "Передача ключів"
+          },
+          "note": {
+            "es": "Al terminar la obra y entregar las llaves.",
+            "en": "On completion and handover of the keys.",
+            "ru": "По завершении строительства и передаче ключей.",
+            "uk": "Після завершення будівництва та передачі ключів."
+          }
+        }
+      ],
+      "paymentNote": {
+        "es": "Según el promotor, todos los pagos se hacen a una cuenta especial de la constructora y están protegidos por garantías.",
+        "en": "According to the developer, all payments go to the builder's special account and are protected by guarantees.",
+        "ru": "По данным застройщика, все платежи поступают на специальный счёт застройщика и защищены гарантиями.",
+        "uk": "За даними забудовника, усі платежі надходять на спеціальний рахунок забудовника та захищені гарантіями."
+      },
+      "nearby": [
+        {
+          "place": "Estepona",
+          "km": 5
+        },
+        {
+          "place": "Puerto Banús",
+          "km": 25
+        },
+        {
+          "place": "Marbella",
+          "km": 36
+        },
+        {
+          "place": {
+            "es": "Aeropuerto de Gibraltar",
+            "en": "Gibraltar Airport",
+            "ru": "Аэропорт Гибралтара",
+            "uk": "Аеропорт Гібралтару"
+          },
+          "km": 40
+        },
+        {
+          "place": {
+            "es": "Gibraltar",
+            "en": "Gibraltar",
+            "ru": "Гибралтар",
+            "uk": "Гібралтар"
+          },
+          "km": 45
+        },
+        {
+          "place": {
+            "es": "Aeropuerto de Málaga",
+            "en": "Málaga Airport",
+            "ru": "Аэропорт Малаги",
+            "uk": "Аеропорт Малаги"
+          },
+          "km": 83
+        }
+      ],
+      "nearbyText": {
+        "es": "Cerca de la promoción: Estepona Golf, el Hospital HAR Estepona, colegios, el parque de Las Camelias, el casco antiguo y el puerto deportivo de Estepona, supermercados y restaurantes.",
+        "en": "Close to the development: Estepona Golf, HAR Estepona hospital, schools, Las Camelias Park, Estepona old town and marina, supermarkets and restaurants.",
+        "ru": "Рядом с комплексом: гольф-клуб Estepona Golf, больница HAR Estepona, школы, парк Las Camelias, старый город и марина Эстепоны, супермаркеты и рестораны.",
+        "uk": "Поруч із комплексом: гольф-клуб Estepona Golf, лікарня HAR Estepona, школи, парк Las Camelias, старе місто й марина Естепони, супермаркети та ресторани."
+      },
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=Estepona%2C%20M%C3%A1laga",
+      "images": [
+        {
+          "src": "/images/real-estate/sunway-residence/exterior-calle.webp",
+          "small": "/images/real-estate/sunway-residence/exterior-calle-800.webp",
+          "width": 1600,
+          "height": 1128,
+          "alt": {
+            "es": "Vista exterior de la promoción desde la calle",
+            "en": "Street view of the development",
+            "ru": "Вид на комплекс с улицы",
+            "uk": "Вигляд комплексу з вулиці"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/exterior-acceso.webp",
+          "small": "/images/real-estate/sunway-residence/exterior-acceso-800.webp",
+          "width": 1600,
+          "height": 827,
+          "alt": {
+            "es": "Acceso a la urbanización cerrada y al garaje",
+            "en": "Entrance to the gated community and garage",
+            "ru": "Въезд в закрытый комплекс и паркинг",
+            "uk": "В’їзд до закритого комплексу та паркінгу"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/exterior-montana.webp",
+          "small": "/images/real-estate/sunway-residence/exterior-montana-800.webp",
+          "width": 1121,
+          "height": 1109,
+          "alt": {
+            "es": "La promoción con la sierra al fondo",
+            "en": "The development with the mountains behind",
+            "ru": "Комплекс на фоне гор",
+            "uk": "Комплекс на тлі гір"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/vista-aerea-bloques.webp",
+          "small": "/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp",
+          "width": 1600,
+          "height": 1133,
+          "alt": {
+            "es": "Vista cenital de los cuatro bloques y la piscina",
+            "en": "Overhead view of the four blocks and the pool",
+            "ru": "Вид сверху на четыре корпуса и бассейн",
+            "uk": "Вигляд згори на чотири корпуси та басейн"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/exterior-noche.webp",
+          "small": "/images/real-estate/sunway-residence/exterior-noche-800.webp",
+          "width": 1600,
+          "height": 1131,
+          "alt": {
+            "es": "Sunway Residence de noche",
+            "en": "Sunway Residence at night",
+            "ru": "Sunway Residence ночью",
+            "uk": "Sunway Residence уночі"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/entorno-aereo.webp",
+          "small": "/images/real-estate/sunway-residence/entorno-aereo-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Vista aérea del entorno de la promoción",
+            "en": "Aerial view of the surroundings",
+            "ru": "Вид с воздуха на окрестности",
+            "uk": "Вигляд з повітря на околиці"
+          }
+        }
+      ],
+      "imagesNote": true
+    },
+    {
+      "id": "la-verde-island",
+      "name": "La Verde Island",
+      "location": {
+        "es": "Doña Julia, entre Estepona y Sotogrande",
+        "en": "Doña Julia, between Estepona and Sotogrande",
+        "ru": "Донья-Хулия, между Эстепоной и Сотогранде",
+        "uk": "Донья-Хулія, між Естепоною та Сотогранде"
+      },
+      "priceFrom": 572000,
+      "completion": {
+        "es": "2.º–3.er trimestre de 2029",
+        "en": "Q2–Q3 2029",
+        "ru": "II–III квартал 2029 г.",
+        "uk": "II–III квартал 2029 р."
+      },
+      "presentation": true,
+      "summary": {
+        "es": "Club residencial en primera línea de golf en Doña Julia, con vistas al golf y al mar: apartamentos de 2 y 3 dormitorios y áticos, spa, piscinas, gimnasio y pádel.",
+        "en": "A frontline golf club residence in Doña Julia with golf and sea views: 2 and 3-bedroom apartments and penthouses, spa, pools, gym and padel.",
+        "ru": "Клубный комплекс на первой линии гольфа в Донья-Хулии с видом на гольф и море: квартиры с 2 и 3 спальнями и пентхаусы, спа, бассейны, спортзал и падел.",
+        "uk": "Клубний комплекс на першій лінії гольфу в Донья-Хулії з видом на гольф і море: квартири з 2 і 3 спальнями та пентхауси, спа, басейни, спортзал і падел."
+      },
+      "description": {
+        "es": [
+          "La Verde Island es una nueva promoción residencial en Doña Julia, entre Estepona y Sotogrande, en una de las mejores parcelas de la zona: en primera línea de golf, con vistas panorámicas al golf y al mar.",
+          "Ofrece apartamentos de 2 y 3 dormitorios y áticos dentro de una urbanización cerrada con seguridad 24 horas, club social, spa, piscinas, gimnasio, pistas de pádel y una zona de prácticas de golf para residentes. Todas las viviendas incluyen plaza de garaje y trastero."
+        ],
+        "en": [
+          "La Verde Island is a new residential development in Doña Julia, between Estepona and Sotogrande, on one of the best plots in the area: frontline golf, with panoramic golf and sea views.",
+          "It offers 2 and 3-bedroom apartments and penthouses in a gated community with 24/7 security, a clubhouse, spa, pools, gym, padel courts and a golf practice area for residents. Every home includes a parking space and a storage room."
+        ],
+        "ru": [
+          "La Verde Island — новый жилой комплекс в Донья-Хулии, между Эстепоной и Сотогранде, на одном из лучших участков района: первая линия гольфа, панорамный вид на гольф и море.",
+          "Квартиры с 2 и 3 спальнями и пентхаусы на закрытой территории с круглосуточной охраной, клубом, спа, бассейнами, спортзалом, кортами для падела и тренировочной зоной для гольфа. К каждой квартире — машино-место и кладовая."
+        ],
+        "uk": [
+          "La Verde Island — новий житловий комплекс у Донья-Хулії, між Естепоною та Сотогранде, на одній із найкращих ділянок району: перша лінія гольфу, панорамний вид на гольф і море.",
+          "Квартири з 2 і 3 спальнями та пентхауси на закритій території з цілодобовою охороною, клубом, спа, басейнами, спортзалом, кортами для паделу та тренувальною зоною для гольфу. До кожної квартири — машиномісце та комора."
+        ]
+      },
+      "amenities": {
+        "es": [
+          "Zona de prácticas de golf para residentes",
+          "Dos grandes piscinas exteriores y piscina infantil",
+          "Spa con piscina interior, sauna y baño turco",
+          "Gimnasio equipado en el club social",
+          "Pistas de pádel",
+          "Coworking y zonas lounge",
+          "Zona de barbacoa y áreas de ocio",
+          "Senderos, zona de ejercicio al aire libre y parque infantil",
+          "Miradores y zonas de pícnic",
+          "Urbanización cerrada con seguridad 24/7"
+        ],
+        "en": [
+          "Golf practice area for residents",
+          "Two large outdoor pools and a children's pool",
+          "Spa with indoor pool, sauna and Turkish bath",
+          "Fully equipped gym in the clubhouse",
+          "Padel courts",
+          "Coworking and lounge areas",
+          "BBQ zone and leisure areas",
+          "Walking trails, outdoor workout area and children's playground",
+          "Viewpoints and picnic areas",
+          "Gated community with 24/7 security"
+        ],
+        "ru": [
+          "Тренировочная зона для гольфа для жителей",
+          "Два больших открытых бассейна и детский бассейн",
+          "Спа с крытым бассейном, сауной и хаммамом",
+          "Оборудованный спортзал в клубе",
+          "Корты для падела",
+          "Коворкинг и лаунж-зоны",
+          "Зона барбекю и отдыха",
+          "Прогулочные тропы, уличные тренажёры и детская площадка",
+          "Смотровые площадки и зоны для пикника",
+          "Закрытая территория с круглосуточной охраной"
+        ],
+        "uk": [
+          "Тренувальна зона для гольфу для мешканців",
+          "Два великі відкриті басейни та дитячий басейн",
+          "Спа з критим басейном, сауною та хамамом",
+          "Обладнаний спортзал у клубі",
+          "Корти для паделу",
+          "Коворкінг і лаунж-зони",
+          "Зона барбекю та відпочинку",
+          "Прогулянкові стежки, вуличні тренажери та дитячий майданчик",
+          "Оглядові майданчики та зони для пікніка",
+          "Закрита територія з цілодобовою охороною"
+        ]
+      },
+      "specs": [
+        {
+          "title": {
+            "es": "Cocina",
+            "en": "Kitchen",
+            "ru": "Кухня",
+            "uk": "Кухня"
+          },
+          "items": {
+            "es": [
+              "Cocina abierta con isla o península, según el tipo de vivienda.",
+              "Frentes de MDF sin tiradores con perfil gola; encimera y frontal porcelánicos efecto piedra natural.",
+              "Electrodomésticos Siemens o similar: horno, microondas, placa de inducción, lavavajillas, frigorífico combi y lavadora.",
+              "Campana integrada con salida al exterior."
+            ],
+            "en": [
+              "Open kitchen with island or peninsula, depending on the home type.",
+              "Handleless MDF fronts with gola profile; porcelain worktop and splashback with a natural-stone look.",
+              "Siemens or similar appliances: oven, microwave, induction hob, dishwasher, fridge-freezer and washing machine.",
+              "Built-in extractor hood vented outside."
+            ],
+            "ru": [
+              "Открытая кухня с островом или полуостровом — в зависимости от типа квартиры.",
+              "Фасады МДФ без ручек с профилем gola; столешница и фартук из керамогранита под натуральный камень.",
+              "Техника Siemens или аналог: духовка, микроволновка, индукционная панель, посудомоечная машина, холодильник и стиральная машина.",
+              "Встроенная вытяжка с выводом наружу."
+            ],
+            "uk": [
+              "Відкрита кухня з островом або півостровом — залежно від типу квартири.",
+              "Фасади МДФ без ручок із профілем gola; стільниця та фартух із керамограніту під натуральний камінь.",
+              "Техніка Siemens або аналог: духовка, мікрохвильовка, індукційна панель, посудомийна машина, холодильник і пральна машина.",
+              "Вбудована витяжка з виведенням назовні."
+            ]
+          }
+        },
+        {
+          "title": {
+            "es": "Baños",
+            "en": "Bathrooms",
+            "ru": "Ванные комнаты",
+            "uk": "Ванні кімнати"
+          },
+          "items": {
+            "es": [
+              "Dos baños en cada vivienda, uno en suite.",
+              "Porcelánico de gran formato, mampara de vidrio, inodoros suspendidos Geberit o similar y grifería Hansgrohe o similar.",
+              "Lavabos integrados con mueble y espejos con preinstalación de iluminación LED.",
+              "Suelo radiante eléctrico."
+            ],
+            "en": [
+              "Two bathrooms in every home, one en-suite.",
+              "Large-format porcelain, glass shower screens, Geberit or similar wall-hung toilets and Hansgrohe or similar taps.",
+              "Integrated basins with cabinets and mirrors pre-installed for LED lighting.",
+              "Electric underfloor heating."
+            ],
+            "ru": [
+              "Два санузла в каждой квартире, один при спальне.",
+              "Крупноформатный керамогранит, стеклянные перегородки, подвесные унитазы Geberit или аналог, смесители Hansgrohe или аналог.",
+              "Встроенные раковины с тумбами, зеркала с подготовкой под LED-подсветку.",
+              "Электрический тёплый пол."
+            ],
+            "uk": [
+              "Два санвузли в кожній квартирі, один при спальні.",
+              "Великоформатний керамограніт, скляні перегородки, підвісні унітази Geberit або аналог, змішувачі Hansgrohe або аналог.",
+              "Вбудовані раковини з тумбами, дзеркала з підготовкою під LED-підсвітку.",
+              "Електрична тепла підлога."
+            ]
+          }
+        },
+        {
+          "title": {
+            "es": "Interiores",
+            "en": "Interiors",
+            "ru": "Отделка",
+            "uk": "Оздоблення"
+          },
+          "items": {
+            "es": [
+              "Suelos de porcelánico de gran formato; antideslizante en terrazas.",
+              "Falsos techos de escayola con focos LED empotrados.",
+              "Puerta de entrada blindada, puertas interiores de MDF y armarios empotrados.",
+              "Ventanas de altas prestaciones con doble acristalamiento."
+            ],
+            "en": [
+              "Large-format porcelain floors; non-slip on terraces.",
+              "Plaster false ceilings with recessed LED spotlights.",
+              "Armoured front door, MDF interior doors and built-in wardrobes.",
+              "High-performance double-glazed windows."
+            ],
+            "ru": [
+              "Полы из крупноформатного керамогранита; на террасах — противоскользящие.",
+              "Подвесные потолки со встроенными LED-светильниками.",
+              "Бронированная входная дверь, межкомнатные двери МДФ, встроенные шкафы.",
+              "Окна с двойным остеклением высокого класса."
+            ],
+            "uk": [
+              "Підлога з великоформатного керамограніту; на терасах — протиковзка.",
+              "Підвісні стелі з вбудованими LED-світильниками.",
+              "Броньовані вхідні двері, міжкімнатні двері МДФ, вбудовані шафи.",
+              "Вікна з подвійним склопакетом високого класу."
+            ]
+          }
+        },
+        {
+          "title": {
+            "es": "Instalaciones",
+            "en": "Systems",
+            "ru": "Инженерные системы",
+            "uk": "Інженерні системи"
+          },
+          "items": {
+            "es": [
+              "Aerotermia para el agua caliente.",
+              "Climatización independiente en cada estancia (excepto baños).",
+              "Descalcificador centralizado.",
+              "Domótica básica por app para clima e iluminación; preinstalación de cortinas o estores motorizados."
+            ],
+            "en": [
+              "Heat pump (aerothermal) hot water.",
+              "Independent climate control in each room (except bathrooms).",
+              "Centralised water softener.",
+              "Basic app-based home automation for climate and lighting; pre-installation for motorised curtains or blinds."
+            ],
+            "ru": [
+              "Горячая вода от теплового насоса.",
+              "Отдельная климат-система в каждой комнате (кроме ванных).",
+              "Центральная система умягчения воды.",
+              "Базовый «умный дом» через приложение для климата и света; подготовка под моторизованные шторы."
+            ],
+            "uk": [
+              "Гаряча вода від теплового насоса.",
+              "Окрема клімат-система в кожній кімнаті (крім ванних).",
+              "Центральна система пом’якшення води.",
+              "Базовий «розумний дім» через застосунок для клімату та світла; підготовка під моторизовані штори."
+            ]
+          }
+        },
+        {
+          "title": {
+            "es": "Edificio y urbanización",
+            "en": "Building and community",
+            "ru": "Здание и территория",
+            "uk": "Будинок і територія"
+          },
+          "items": {
+            "es": [
+              "Urbanización cerrada con caseta de seguridad, control de accesos y videovigilancia.",
+              "Ascensores silenciosos, uno por portal.",
+              "Garaje con preinstalación para cargadores de vehículo eléctrico; trastero para cada vivienda.",
+              "Barandillas de vidrio en las terrazas principales."
+            ],
+            "en": [
+              "Gated community with security booth, access control and CCTV.",
+              "Silent lifts, one per entrance.",
+              "Garage pre-installed for EV chargers; a storage room for every home.",
+              "Glass balustrades on the main terraces."
+            ],
+            "ru": [
+              "Закрытая территория с постом охраны, контролем доступа и видеонаблюдением.",
+              "Бесшумные лифты, по одному на подъезд.",
+              "Паркинг с подготовкой под зарядки электромобилей; кладовая для каждой квартиры.",
+              "Стеклянные ограждения на основных террасах."
+            ],
+            "uk": [
+              "Закрита територія з постом охорони, контролем доступу та відеоспостереженням.",
+              "Безшумні ліфти, по одному на під’їзд.",
+              "Паркінг із підготовкою під зарядки електромобілів; комора для кожної квартири.",
+              "Скляні огородження на основних терасах."
+            ]
+          }
+        }
+      ],
+      "nearby": [
+        {
+          "place": {
+            "es": "Doña Julia Golf",
+            "en": "Doña Julia Golf",
+            "ru": "Doña Julia Golf",
+            "uk": "Doña Julia Golf"
+          },
+          "text": {
+            "es": "a pie",
+            "en": "walking distance",
+            "ru": "пешком",
+            "uk": "пішки"
+          }
+        },
+        {
+          "place": "La Duquesa",
+          "min": 5
+        },
+        {
+          "place": "Finca Cortesín",
+          "min": 5
+        },
+        {
+          "place": "Estepona Golf",
+          "min": 10
+        },
+        {
+          "place": "Estepona",
+          "min": 15
+        },
+        {
+          "place": "Sotogrande",
+          "min": 20
+        },
+        {
+          "place": "Valderrama Golf",
+          "min": 20
+        },
+        {
+          "place": {
+            "es": "Aeropuerto de Gibraltar",
+            "en": "Gibraltar Airport",
+            "ru": "Аэропорт Гибралтара",
+            "uk": "Аеропорт Гібралтару"
+          },
+          "min": 30
+        },
+        {
+          "place": "Tarifa",
+          "min": 55
+        }
+      ],
+      "nearbyDriving": true,
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=Do%C3%B1a%20Julia%20Golf",
+      "images": [
+        {
+          "src": "/images/real-estate/la-verde-island/vista-aerea-conjunto.webp",
+          "small": "/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp",
+          "width": 1600,
+          "height": 1128,
+          "alt": {
+            "es": "Vista aérea del conjunto entre los campos de golf",
+            "en": "Aerial view of the complex among the golf courses",
+            "ru": "Вид сверху на комплекс среди гольф-полей",
+            "uk": "Вигляд згори на комплекс серед гольф-полів"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/piscina-infinita.webp",
+          "small": "/images/real-estate/la-verde-island/piscina-infinita-800.webp",
+          "width": 1600,
+          "height": 1128,
+          "alt": {
+            "es": "Piscina desbordante con vistas al mar",
+            "en": "Infinity pool with sea views",
+            "ru": "Бассейн-инфинити с видом на море",
+            "uk": "Басейн-інфініті з видом на море"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/piscina-tumbonas.webp",
+          "small": "/images/real-estate/la-verde-island/piscina-tumbonas-800.webp",
+          "width": 1072,
+          "height": 1240,
+          "alt": {
+            "es": "Piscina comunitaria con tumbonas",
+            "en": "Communal pool with sun loungers",
+            "ru": "Общий бассейн с шезлонгами",
+            "uk": "Спільний басейн із шезлонгами"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/exterior.webp",
+          "small": "/images/real-estate/la-verde-island/exterior-800.webp",
+          "width": 1600,
+          "height": 1130,
+          "alt": {
+            "es": "Edificios de apartamentos y áticos entre jardines",
+            "en": "Apartment and penthouse buildings among gardens",
+            "ru": "Здания квартир и пентхаусов среди садов",
+            "uk": "Будинки квартир і пентхаусів серед садів"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/fachada-jardin.webp",
+          "small": "/images/real-estate/la-verde-island/fachada-jardin-800.webp",
+          "width": 1072,
+          "height": 1243,
+          "alt": {
+            "es": "Fachada con terrazas, jardín y piscina privada",
+            "en": "Façade with terraces, garden and plunge pool",
+            "ru": "Фасад с террасами, садом и бассейном",
+            "uk": "Фасад із терасами, садом і басейном"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/golf-atardecer.webp",
+          "small": "/images/real-estate/la-verde-island/golf-atardecer-800.webp",
+          "width": 1600,
+          "height": 1128,
+          "alt": {
+            "es": "El campo de golf junto a La Verde Island al atardecer",
+            "en": "The golf course beside La Verde Island at sunset",
+            "ru": "Гольф-поле рядом с La Verde Island на закате",
+            "uk": "Гольф-поле біля La Verde Island на заході сонця"
+          }
+        }
+      ],
+      "imagesNote": {
+        "es": "Imágenes: infografías orientativas. Mobiliario y decoración no incluidos. Los paneles decorativos de pared no se ofrecen; los acabados de madera de la cocina y las tiras LED son opcionales. Los soláriums de los áticos incluyen solo la preinstalación de jacuzzi y cocina exterior. Las vistas dependen de la ubicación de cada vivienda.",
+        "en": "Images: renderings for guidance only. Furniture and decoration not included. Decorative wall panels are not offered; wood kitchen finishes and LED strips are optional. Penthouse solariums include pre-installation for a jacuzzi and outdoor kitchen only. Views depend on the position of each home.",
+        "ru": "Изображения: ориентировочные визуализации. Мебель и декор не включены. Декоративные стеновые панели не предлагаются; деревянная отделка кухни и LED-ленты — опционально. В соляриях пентхаусов — только подготовка под джакузи и летнюю кухню. Вид зависит от расположения квартиры.",
+        "uk": "Зображення: орієнтовні візуалізації. Меблі та декор не включені. Декоративні стінові панелі не пропонуються; дерев’яне оздоблення кухні та LED-стрічки — опційно. У соляріях пентхаусів — лише підготовка під джакузі та літню кухню. Вид залежить від розташування квартири."
+      }
+    }
+  ],
+  "properties": [
+    {
+      "ref": "SUN-2D",
+      "slug": "sunway-residence-2-dormitorios",
+      "category": "residential",
+      "development": "sunway-residence",
+      "title": {
+        "es": "Apartamento de 2 dormitorios en Sunway Residence",
+        "en": "2-bedroom apartment at Sunway Residence",
+        "ru": "Квартира с 2 спальнями в Sunway Residence",
+        "uk": "Квартира з 2 спальнями в Sunway Residence"
+      },
+      "type": {
+        "es": "Apartamento",
+        "en": "Apartment",
+        "ru": "Квартира",
+        "uk": "Квартира"
+      },
+      "location": {
+        "es": "Estepona, Málaga",
+        "en": "Estepona, Málaga",
+        "ru": "Эстепона, Малага",
+        "uk": "Естепона, Малага"
+      },
+      "tags": [
+        {
+          "es": "Obra nueva",
+          "en": "New build",
+          "ru": "Новостройка",
+          "uk": "Новобудова"
+        }
+      ],
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "storage": true,
+      "units": 16,
+      "summary": {
+        "es": "Dos dormitorios y dos baños, terraza, garaje y trastero en una urbanización cerrada con piscina.",
+        "en": "Two bedrooms and two bathrooms, terrace, parking and storage in a gated community with a pool.",
+        "ru": "Две спальни и два санузла, терраса, паркинг и кладовая в закрытом комплексе с бассейном.",
+        "uk": "Дві спальні та два санвузли, тераса, паркінг і комора в закритому комплексі з басейном."
+      },
+      "description": {
+        "es": [
+          "Apartamento de dos dormitorios y dos baños en Sunway Residence, una urbanización cerrada de obra nueva en Estepona. El salón y la cocina forman un único espacio abierto a la terraza, con ventanales de suelo a techo.",
+          "El dormitorio principal tiene baño en suite. La vivienda incluye cocina equipada, plaza de garaje y trastero. Las de planta baja cuentan con jardín privado. Hay 16 apartamentos de este tipo en la promoción."
+        ],
+        "en": [
+          "Two-bedroom, two-bathroom apartment at Sunway Residence, a new-build gated community in Estepona. The living room and kitchen form one open space leading to the terrace, with floor-to-ceiling windows.",
+          "The master bedroom has an en-suite bathroom. The home comes with a fitted kitchen, a parking space and a storage room. Ground-floor homes have a private garden. There are 16 apartments of this type in the development."
+        ],
+        "ru": [
+          "Квартира с двумя спальнями и двумя санузлами в Sunway Residence — новом закрытом комплексе в Эстепоне. Гостиная и кухня образуют единое пространство с выходом на террасу и панорамными окнами.",
+          "При главной спальне — собственная ванная. В квартиру входят оборудованная кухня, машино-место и кладовая. У квартир на первом этаже — частный сад. В комплексе 16 квартир этого типа."
+        ],
+        "uk": [
+          "Квартира з двома спальнями та двома санвузлами в Sunway Residence — новому закритому комплексі в Естепоні. Вітальня й кухня утворюють єдиний простір з виходом на терасу та панорамними вікнами.",
+          "При головній спальні — власна ванна. До квартири входять обладнана кухня, машиномісце й комора. Квартири на першому поверсі мають приватний сад. У комплексі 16 квартир цього типу."
+        ]
+      },
+      "features": {
+        "es": [
+          "2 dormitorios",
+          "Terraza; jardín privado en planta baja",
+          "Plaza de garaje y trastero",
+          "Urbanización cerrada con piscina y jardín tropical",
+          "Ventanales de suelo a techo",
+          "Dos baños, uno en suite",
+          "Cocina equipada con electrodomésticos europeos",
+          "Aerotermia y suelo radiante en los baños"
+        ],
+        "en": [
+          "2 bedrooms",
+          "Terrace; private garden on the ground floor",
+          "Parking space and storage room",
+          "Gated community with pool and tropical garden",
+          "Floor-to-ceiling windows",
+          "Two bathrooms, one en-suite",
+          "Fitted kitchen with European appliances",
+          "Heat pump climate control, underfloor heating in bathrooms"
+        ],
+        "ru": [
+          "2 спальни",
+          "Терраса; частный сад на первом этаже",
+          "Машино-место и кладовая",
+          "Закрытый комплекс с бассейном и тропическим садом",
+          "Панорамные окна",
+          "Два санузла, один при спальне",
+          "Кухня с европейской техникой",
+          "Тепловой насос, тёплый пол в ванных"
+        ],
+        "uk": [
+          "2 спальні",
+          "Тераса; приватний сад на першому поверсі",
+          "Машиномісце та комора",
+          "Закритий комплекс із басейном і тропічним садом",
+          "Панорамні вікна",
+          "Два санвузли, один при спальні",
+          "Кухня з європейською технікою",
+          "Тепловий насос, тепла підлога у ванних"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/real-estate/sunway-residence/exterior-jardin-piscina.webp",
+          "small": "/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp",
+          "width": 1600,
+          "height": 983,
+          "alt": {
+            "es": "Fachada con terrazas sobre la piscina comunitaria",
+            "en": "Façade with terraces above the communal pool",
+            "ru": "Фасад с террасами над общим бассейном",
+            "uk": "Фасад із терасами над спільним басейном"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/2d-salon.webp",
+          "small": "/images/real-estate/sunway-residence/2d-salon-800.webp",
+          "width": 808,
+          "height": 573,
+          "alt": {
+            "es": "Salón de un apartamento de 2 dormitorios",
+            "en": "Living room of a 2-bedroom apartment",
+            "ru": "Гостиная квартиры с 2 спальнями",
+            "uk": "Вітальня квартири з 2 спальнями"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/2d-cocina.webp",
+          "small": "/images/real-estate/sunway-residence/2d-cocina-800.webp",
+          "width": 810,
+          "height": 542,
+          "alt": {
+            "es": "Cocina de un apartamento de 2 dormitorios",
+            "en": "Kitchen of a 2-bedroom apartment",
+            "ru": "Кухня квартиры с 2 спальнями",
+            "uk": "Кухня квартири з 2 спальнями"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/dormitorio-2.webp",
+          "small": "/images/real-estate/sunway-residence/dormitorio-2-800.webp",
+          "width": 790,
+          "height": 1090,
+          "alt": {
+            "es": "Dormitorio",
+            "en": "Bedroom",
+            "ru": "Спальня",
+            "uk": "Спальня"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/bano.webp",
+          "small": "/images/real-estate/sunway-residence/bano-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Baño con lavabo suspendido y ducha",
+            "en": "Bathroom with floating vanity and shower",
+            "ru": "Ванная с подвесной раковиной и душем",
+            "uk": "Ванна кімната з підвісною раковиною та душем"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/salon.webp",
+          "small": "/images/real-estate/sunway-residence/salon-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Salón con ventanales de suelo a techo",
+            "en": "Living room with floor-to-ceiling windows",
+            "ru": "Гостиная с панорамными окнами",
+            "uk": "Вітальня з панорамними вікнами"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/exterior-piscina.webp",
+          "small": "/images/real-estate/sunway-residence/exterior-piscina-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Piscina comunitaria y jardines de Sunway Residence",
+            "en": "Communal pool and gardens at Sunway Residence",
+            "ru": "Общий бассейн и сады Sunway Residence",
+            "uk": "Спільний басейн і сади Sunway Residence"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/exterior-calle.webp",
+          "small": "/images/real-estate/sunway-residence/exterior-calle-800.webp",
+          "width": 1600,
+          "height": 1128,
+          "alt": {
+            "es": "Vista exterior de la promoción desde la calle",
+            "en": "Street view of the development",
+            "ru": "Вид на комплекс с улицы",
+            "uk": "Вигляд комплексу з вулиці"
+          }
+        }
+      ],
+      "ogImage": {
+        "src": "/images/real-estate/sunway-residence/og-exterior-jardin-piscina.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "purposes": [
+        "offplan"
+      ],
+      "price": 543000
+    },
+    {
+      "ref": "SUN-3D",
+      "slug": "sunway-residence-3-dormitorios",
+      "category": "residential",
+      "development": "sunway-residence",
+      "title": {
+        "es": "Apartamento de 3 dormitorios en Sunway Residence",
+        "en": "3-bedroom apartment at Sunway Residence",
+        "ru": "Квартира с 3 спальнями в Sunway Residence",
+        "uk": "Квартира з 3 спальнями в Sunway Residence"
+      },
+      "type": {
+        "es": "Apartamento",
+        "en": "Apartment",
+        "ru": "Квартира",
+        "uk": "Квартира"
+      },
+      "location": {
+        "es": "Estepona, Málaga",
+        "en": "Estepona, Málaga",
+        "ru": "Эстепона, Малага",
+        "uk": "Естепона, Малага"
+      },
+      "tags": [
+        {
+          "es": "Obra nueva",
+          "en": "New build",
+          "ru": "Новостройка",
+          "uk": "Новобудова"
+        }
+      ],
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 1,
+      "storage": true,
+      "units": 24,
+      "summary": {
+        "es": "Tres dormitorios y dos baños, salón comedor abierto a la terraza, garaje y trastero.",
+        "en": "Three bedrooms and two bathrooms, living-dining room opening onto the terrace, parking and storage.",
+        "ru": "Три спальни и два санузла, гостиная-столовая с выходом на террасу, паркинг и кладовая.",
+        "uk": "Три спальні та два санвузли, вітальня-їдальня з виходом на терасу, паркінг і комора."
+      },
+      "description": {
+        "es": [
+          "Apartamento de tres dormitorios y dos baños en Sunway Residence, Estepona. Amplio salón comedor con cocina abierta y salida a la terraza, pensado para la vida en familia y al aire libre.",
+          "Incluye cocina equipada con electrodomésticos europeos, baño en suite en el dormitorio principal, plaza de garaje y trastero. Las viviendas de planta baja tienen jardín privado. Hay 24 apartamentos de tres dormitorios en la promoción."
+        ],
+        "en": [
+          "Three-bedroom, two-bathroom apartment at Sunway Residence, Estepona. A generous living and dining room with an open kitchen and access to the terrace, designed for family and outdoor living.",
+          "It includes a kitchen with European appliances, an en-suite master bedroom, a parking space and a storage room. Ground-floor homes have a private garden. There are 24 three-bedroom apartments in the development."
+        ],
+        "ru": [
+          "Квартира с тремя спальнями и двумя санузлами в Sunway Residence, Эстепона. Просторная гостиная-столовая с открытой кухней и выходом на террасу — для семейной жизни и отдыха на воздухе.",
+          "Кухня с европейской техникой, ванная при главной спальне, машино-место и кладовая. У квартир на первом этаже — частный сад. В комплексе 24 квартиры с тремя спальнями."
+        ],
+        "uk": [
+          "Квартира з трьома спальнями та двома санвузлами в Sunway Residence, Естепона. Простора вітальня-їдальня з відкритою кухнею та виходом на терасу — для сімейного життя й відпочинку просто неба.",
+          "Кухня з європейською технікою, ванна при головній спальні, машиномісце та комора. Квартири на першому поверсі мають приватний сад. У комплексі 24 квартири з трьома спальнями."
+        ]
+      },
+      "features": {
+        "es": [
+          "3 dormitorios",
+          "Terraza; jardín privado en planta baja",
+          "Plaza de garaje y trastero",
+          "Urbanización cerrada con piscina y jardín tropical",
+          "Ventanales de suelo a techo",
+          "Dos baños, uno en suite",
+          "Cocina equipada con electrodomésticos europeos",
+          "Aerotermia y suelo radiante en los baños"
+        ],
+        "en": [
+          "3 bedrooms",
+          "Terrace; private garden on the ground floor",
+          "Parking space and storage room",
+          "Gated community with pool and tropical garden",
+          "Floor-to-ceiling windows",
+          "Two bathrooms, one en-suite",
+          "Fitted kitchen with European appliances",
+          "Heat pump climate control, underfloor heating in bathrooms"
+        ],
+        "ru": [
+          "3 спальни",
+          "Терраса; частный сад на первом этаже",
+          "Машино-место и кладовая",
+          "Закрытый комплекс с бассейном и тропическим садом",
+          "Панорамные окна",
+          "Два санузла, один при спальне",
+          "Кухня с европейской техникой",
+          "Тепловой насос, тёплый пол в ванных"
+        ],
+        "uk": [
+          "3 спальні",
+          "Тераса; приватний сад на першому поверсі",
+          "Машиномісце та комора",
+          "Закритий комплекс із басейном і тропічним садом",
+          "Панорамні вікна",
+          "Два санвузли, один при спальні",
+          "Кухня з європейською технікою",
+          "Тепловий насос, тепла підлога у ванних"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/real-estate/sunway-residence/exterior-fachada.webp",
+          "small": "/images/real-estate/sunway-residence/exterior-fachada-800.webp",
+          "width": 1600,
+          "height": 1133,
+          "alt": {
+            "es": "Edificios de Sunway Residence con terrazas y jardines",
+            "en": "Sunway Residence buildings with terraces and gardens",
+            "ru": "Здания Sunway Residence с террасами и садами",
+            "uk": "Будинки Sunway Residence з терасами й садами"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/3d-salon.webp",
+          "small": "/images/real-estate/sunway-residence/3d-salon-800.webp",
+          "width": 798,
+          "height": 577,
+          "alt": {
+            "es": "Salón comedor de un apartamento de 3 dormitorios",
+            "en": "Living and dining room of a 3-bedroom apartment",
+            "ru": "Гостиная-столовая квартиры с 3 спальнями",
+            "uk": "Вітальня-їдальня квартири з 3 спальнями"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/3d-cocina.webp",
+          "small": "/images/real-estate/sunway-residence/3d-cocina-800.webp",
+          "width": 808,
+          "height": 537,
+          "alt": {
+            "es": "Cocina y comedor de un apartamento de 3 dormitorios",
+            "en": "Kitchen and dining area of a 3-bedroom apartment",
+            "ru": "Кухня и столовая квартиры с 3 спальнями",
+            "uk": "Кухня та їдальня квартири з 3 спальнями"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/cocina.webp",
+          "small": "/images/real-estate/sunway-residence/cocina-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Cocina abierta con isla y comedor",
+            "en": "Open kitchen with island and dining area",
+            "ru": "Открытая кухня с островом и обеденной зоной",
+            "uk": "Відкрита кухня з островом та обідньою зоною"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/dormitorio.webp",
+          "small": "/images/real-estate/sunway-residence/dormitorio-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Dormitorio principal",
+            "en": "Master bedroom",
+            "ru": "Главная спальня",
+            "uk": "Головна спальня"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/dormitorio-4.webp",
+          "small": "/images/real-estate/sunway-residence/dormitorio-4-800.webp",
+          "width": 810,
+          "height": 538,
+          "alt": {
+            "es": "Dormitorio con armarios empotrados",
+            "en": "Bedroom with built-in wardrobes",
+            "ru": "Спальня со встроенными шкафами",
+            "uk": "Спальня з вбудованими шафами"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/bano-2.webp",
+          "small": "/images/real-estate/sunway-residence/bano-2-800.webp",
+          "width": 1385,
+          "height": 1085,
+          "alt": {
+            "es": "Baño en tonos piedra",
+            "en": "Bathroom in stone tones",
+            "ru": "Ванная в каменных тонах",
+            "uk": "Ванна кімната в кам’яних тонах"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/exterior-piscina-aerea.webp",
+          "small": "/images/real-estate/sunway-residence/exterior-piscina-aerea-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Vista aérea de la piscina y las zonas comunes",
+            "en": "Aerial view of the pool and communal areas",
+            "ru": "Вид сверху на бассейн и общие зоны",
+            "uk": "Вигляд згори на басейн і спільні зони"
+          }
+        }
+      ],
+      "ogImage": {
+        "src": "/images/real-estate/sunway-residence/og-exterior-fachada.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "purposes": [
+        "family",
+        "offplan"
+      ],
+      "price": 556000
+    },
+    {
+      "ref": "SUN-PH",
+      "slug": "sunway-residence-atico",
+      "category": "residential",
+      "development": "sunway-residence",
+      "title": {
+        "es": "Ático de 3 dormitorios con solárium en Sunway Residence",
+        "en": "3-bedroom penthouse with solarium at Sunway Residence",
+        "ru": "Пентхаус с 3 спальнями и солярием в Sunway Residence",
+        "uk": "Пентхаус із 3 спальнями та солярієм у Sunway Residence"
+      },
+      "type": {
+        "es": "Ático",
+        "en": "Penthouse",
+        "ru": "Пентхаус",
+        "uk": "Пентхаус"
+      },
+      "location": {
+        "es": "Estepona, Málaga",
+        "en": "Estepona, Málaga",
+        "ru": "Эстепона, Малага",
+        "uk": "Естепона, Малага"
+      },
+      "tags": [
+        {
+          "es": "Obra nueva",
+          "en": "New build",
+          "ru": "Новостройка",
+          "uk": "Новобудова"
+        }
+      ],
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "storage": true,
+      "units": 8,
+      "summary": {
+        "es": "Última planta con solárium, terraza panorámica, tres dormitorios, dos baños y dos plazas de garaje.",
+        "en": "Top floor with solarium, panoramic terrace, three bedrooms, two bathrooms and two parking spaces.",
+        "ru": "Верхний этаж: солярий, панорамная терраса, три спальни, два санузла и два машино-места.",
+        "uk": "Верхній поверх: солярій, панорамна тераса, три спальні, два санвузли та два машиномісця."
+      },
+      "description": {
+        "es": [
+          "Ático de tres dormitorios y dos baños en la última planta de Sunway Residence, Estepona, con terraza panorámica y solárium. Salón, comedor y cocina con isla forman un gran espacio abierto a la terraza.",
+          "Es el único tipo de vivienda con dos plazas de garaje, además de trastero. Hay 8 áticos en Sunway Residence, dos por bloque."
+        ],
+        "en": [
+          "Three-bedroom, two-bathroom penthouse on the top floor of Sunway Residence, Estepona, with a panoramic terrace and a solarium. Living room, dining area and kitchen with island form one large space opening onto the terrace.",
+          "It is the only home type with two parking spaces, plus a storage room. There are 8 penthouses at Sunway Residence, two per block."
+        ],
+        "ru": [
+          "Пентхаус с тремя спальнями и двумя санузлами на верхнем этаже Sunway Residence, Эстепона, с панорамной террасой и солярием. Гостиная, столовая и кухня с островом образуют единое пространство с выходом на террасу.",
+          "Единственный тип квартир с двумя машино-местами, а также кладовой. В Sunway Residence 8 пентхаусов, по два в каждом корпусе."
+        ],
+        "uk": [
+          "Пентхаус із трьома спальнями та двома санвузлами на верхньому поверсі Sunway Residence, Естепона, з панорамною терасою та солярієм. Вітальня, їдальня та кухня з островом утворюють єдиний простір з виходом на терасу.",
+          "Єдиний тип квартир із двома машиномісцями, а також коморою. У Sunway Residence 8 пентхаусів, по два в кожному корпусі."
+        ]
+      },
+      "features": {
+        "es": [
+          "3 dormitorios",
+          "Terraza panorámica y solárium",
+          "Dos plazas de garaje y trastero",
+          "Urbanización cerrada con piscina y jardín tropical",
+          "Ventanales de suelo a techo",
+          "Dos baños, uno en suite",
+          "Cocina equipada con electrodomésticos europeos",
+          "Aerotermia y suelo radiante en los baños"
+        ],
+        "en": [
+          "3 bedrooms",
+          "Panoramic terrace and solarium",
+          "Two parking spaces and a storage room",
+          "Gated community with pool and tropical garden",
+          "Floor-to-ceiling windows",
+          "Two bathrooms, one en-suite",
+          "Fitted kitchen with European appliances",
+          "Heat pump climate control, underfloor heating in bathrooms"
+        ],
+        "ru": [
+          "3 спальни",
+          "Панорамная терраса и солярий",
+          "Два машино-места и кладовая",
+          "Закрытый комплекс с бассейном и тропическим садом",
+          "Панорамные окна",
+          "Два санузла, один при спальне",
+          "Кухня с европейской техникой",
+          "Тепловой насос, тёплый пол в ванных"
+        ],
+        "uk": [
+          "3 спальні",
+          "Панорамна тераса та солярій",
+          "Два машиномісця та комора",
+          "Закритий комплекс із басейном і тропічним садом",
+          "Панорамні вікна",
+          "Два санвузли, один при спальні",
+          "Кухня з європейською технікою",
+          "Тепловий насос, тепла підлога у ванних"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/real-estate/sunway-residence/terraza.webp",
+          "small": "/images/real-estate/sunway-residence/terraza-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Terraza con vistas al mar",
+            "en": "Terrace with sea views",
+            "ru": "Терраса с видом на море",
+            "uk": "Тераса з видом на море"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/atico-salon.webp",
+          "small": "/images/real-estate/sunway-residence/atico-salon-800.webp",
+          "width": 790,
+          "height": 505,
+          "alt": {
+            "es": "Salón de un ático",
+            "en": "Penthouse living room",
+            "ru": "Гостиная пентхауса",
+            "uk": "Вітальня пентхауса"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/atico-comedor.webp",
+          "small": "/images/real-estate/sunway-residence/atico-comedor-800.webp",
+          "width": 798,
+          "height": 540,
+          "alt": {
+            "es": "Comedor y cocina de un ático",
+            "en": "Penthouse dining room and kitchen",
+            "ru": "Столовая и кухня пентхауса",
+            "uk": "Їдальня та кухня пентхауса"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/atico-cocina.webp",
+          "small": "/images/real-estate/sunway-residence/atico-cocina-800.webp",
+          "width": 798,
+          "height": 533,
+          "alt": {
+            "es": "Cocina con isla de un ático",
+            "en": "Penthouse kitchen with island",
+            "ru": "Кухня с островом в пентхаусе",
+            "uk": "Кухня з островом у пентхаусі"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/terraza-2.webp",
+          "small": "/images/real-estate/sunway-residence/terraza-2-800.webp",
+          "width": 1600,
+          "height": 1074,
+          "alt": {
+            "es": "Terraza cubierta con zona de estar",
+            "en": "Covered terrace with lounge area",
+            "ru": "Крытая терраса с зоной отдыха",
+            "uk": "Крита тераса з зоною відпочинку"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/dormitorio-3.webp",
+          "small": "/images/real-estate/sunway-residence/dormitorio-3-800.webp",
+          "width": 811,
+          "height": 533,
+          "alt": {
+            "es": "Dormitorio con salida a la terraza",
+            "en": "Bedroom opening onto the terrace",
+            "ru": "Спальня с выходом на террасу",
+            "uk": "Спальня з виходом на терасу"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/terraza-cubierta.webp",
+          "small": "/images/real-estate/sunway-residence/terraza-cubierta-800.webp",
+          "width": 1060,
+          "height": 802,
+          "alt": {
+            "es": "Terraza en la cubierta con vistas al mar",
+            "en": "Roof terrace with sea views",
+            "ru": "Терраса на крыше с видом на море",
+            "uk": "Тераса на даху з видом на море"
+          }
+        },
+        {
+          "src": "/images/real-estate/sunway-residence/exterior-noche.webp",
+          "small": "/images/real-estate/sunway-residence/exterior-noche-800.webp",
+          "width": 1600,
+          "height": 1131,
+          "alt": {
+            "es": "Sunway Residence de noche",
+            "en": "Sunway Residence at night",
+            "ru": "Sunway Residence ночью",
+            "uk": "Sunway Residence уночі"
+          }
+        }
+      ],
+      "ogImage": {
+        "src": "/images/real-estate/sunway-residence/og-terraza.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "purposes": [
+        "penthouse",
+        "family",
+        "offplan"
+      ],
+      "price": 569000
+    },
+    {
+      "category": "residential",
+      "development": "la-verde-island",
+      "location": {
+        "es": "Doña Julia, entre Estepona y Sotogrande",
+        "en": "Doña Julia, between Estepona and Sotogrande",
+        "ru": "Донья-Хулия, между Эстепоной и Сотогранде",
+        "uk": "Донья-Хулія, між Естепоною та Сотогранде"
+      },
+      "tags": [
+        {
+          "es": "Obra nueva",
+          "en": "New build",
+          "ru": "Новостройка",
+          "uk": "Новобудова"
+        },
+        {
+          "es": "Primera línea de golf",
+          "en": "Frontline golf",
+          "ru": "Первая линия гольфа",
+          "uk": "Перша лінія гольфу"
+        }
+      ],
+      "bathrooms": 2,
+      "parking": true,
+      "storage": true,
+      "ref": "LVI-2D",
+      "slug": "la-verde-island-2-dormitorios",
+      "type": {
+        "es": "Apartamento",
+        "en": "Apartment",
+        "ru": "Квартира",
+        "uk": "Квартира"
+      },
+      "bedrooms": 2,
+      "title": {
+        "es": "Apartamento de 2 dormitorios en La Verde Island",
+        "en": "2-bedroom apartment at La Verde Island",
+        "ru": "Квартира с 2 спальнями в La Verde Island",
+        "uk": "Квартира з 2 спальнями в La Verde Island"
+      },
+      "summary": {
+        "es": "Primera línea de golf en Doña Julia: dos dormitorios, dos baños, terraza, garaje y trastero.",
+        "en": "Frontline golf in Doña Julia: two bedrooms, two bathrooms, terrace, parking and storage.",
+        "ru": "Первая линия гольфа в Донья-Хулии: две спальни, два санузла, терраса, паркинг и кладовая.",
+        "uk": "Перша лінія гольфу в Донья-Хулії: дві спальні, два санвузли, тераса, паркінг і комора."
+      },
+      "description": {
+        "es": [
+          "Apartamento de dos dormitorios y dos baños (uno en suite) en La Verde Island, en primera línea de golf en Doña Julia. Salón, comedor y cocina en U con península forman un único espacio abierto a la terraza.",
+          "En planta baja tiene terraza cubierta y descubierta, y en algunas unidades jardín de uso exclusivo; en planta primera, terraza. Incluye plaza de garaje y trastero, y acceso al club con spa, piscinas, gimnasio y pádel."
+        ],
+        "en": [
+          "Two-bedroom, two-bathroom (one en-suite) apartment at La Verde Island, frontline golf in Doña Julia. Living room, dining area and a U-shaped kitchen with peninsula form one open space leading to the terrace.",
+          "Ground-floor homes have a covered and an open terrace, and some have a private garden; first-floor homes have a terrace. A parking space and storage room are included, plus access to the club with spa, pools, gym and padel."
+        ],
+        "ru": [
+          "Квартира с двумя спальнями и двумя санузлами (один при спальне) в La Verde Island, на первой линии гольфа в Донья-Хулии. Гостиная, столовая и П-образная кухня с полуостровом — единое пространство с выходом на террасу.",
+          "На первом этаже — крытая и открытая терраса, в некоторых квартирах — частный сад; на втором — терраса. Машино-место и кладовая включены, а также доступ в клуб со спа, бассейнами, спортзалом и паделом."
+        ],
+        "uk": [
+          "Квартира з двома спальнями та двома санвузлами (один при спальні) в La Verde Island, на першій лінії гольфу в Донья-Хулії. Вітальня, їдальня та П-подібна кухня з півостровом — єдиний простір з виходом на терасу.",
+          "На першому поверсі — крита й відкрита тераса, у деяких квартирах — приватний сад; на другому — тераса. Машиномісце та комора включені, а також доступ до клубу зі спа, басейнами, спортзалом і паделом."
+        ]
+      },
+      "features": {
+        "es": [
+          "2 dormitorios",
+          "Cocina en U con península",
+          "Terraza; jardín privado en algunas plantas bajas",
+          "Primera línea de golf, con vistas al golf y al mar",
+          "Dos baños, uno en suite",
+          "Salón, comedor y cocina en un espacio abierto",
+          "Cocina con electrodomésticos Siemens o similar",
+          "Garaje y trastero incluidos",
+          "Club con spa, piscinas, gimnasio y pádel"
+        ],
+        "en": [
+          "2 bedrooms",
+          "U-shaped kitchen with peninsula",
+          "Terrace; private garden in some ground-floor homes",
+          "Frontline golf, with golf and sea views",
+          "Two bathrooms, one en-suite",
+          "Open-plan living, dining and kitchen",
+          "Kitchen with Siemens or similar appliances",
+          "Parking and storage room included",
+          "Club with spa, pools, gym and padel"
+        ],
+        "ru": [
+          "2 спальни",
+          "П-образная кухня с полуостровом",
+          "Терраса; частный сад в некоторых квартирах первого этажа",
+          "Первая линия гольфа, вид на гольф и море",
+          "Два санузла, один при спальне",
+          "Гостиная, столовая и кухня в одном пространстве",
+          "Кухня с техникой Siemens или аналог",
+          "Паркинг и кладовая включены",
+          "Клуб со спа, бассейнами, спортзалом и паделом"
+        ],
+        "uk": [
+          "2 спальні",
+          "П-подібна кухня з півостровом",
+          "Тераса; приватний сад у деяких квартирах першого поверху",
+          "Перша лінія гольфу, вид на гольф і море",
+          "Два санвузли, один при спальні",
+          "Вітальня, їдальня та кухня в одному просторі",
+          "Кухня з технікою Siemens або аналог",
+          "Паркінг і комора включені",
+          "Клуб зі спа, басейнами, спортзалом і паделом"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/real-estate/la-verde-island/2d-terraza.webp",
+          "small": "/images/real-estate/la-verde-island/2d-terraza-800.webp",
+          "width": 812,
+          "height": 534,
+          "alt": {
+            "es": "Terraza de un apartamento de 2 dormitorios",
+            "en": "Terrace of a 2-bedroom apartment",
+            "ru": "Терраса квартиры с 2 спальнями",
+            "uk": "Тераса квартири з 2 спальнями"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/2d-salon.webp",
+          "small": "/images/real-estate/la-verde-island/2d-salon-800.webp",
+          "width": 812,
+          "height": 551,
+          "alt": {
+            "es": "Salón de un apartamento de 2 dormitorios",
+            "en": "Living room of a 2-bedroom apartment",
+            "ru": "Гостиная квартиры с 2 спальнями",
+            "uk": "Вітальня квартири з 2 спальнями"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/2d-cocina.webp",
+          "small": "/images/real-estate/la-verde-island/2d-cocina-800.webp",
+          "width": 813,
+          "height": 533,
+          "alt": {
+            "es": "Cocina en U con península (2 dormitorios)",
+            "en": "U-shaped kitchen with peninsula (2 bedrooms)",
+            "ru": "П-образная кухня с полуостровом (2 спальни)",
+            "uk": "П-подібна кухня з півостровом (2 спальні)"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/dormitorio-2.webp",
+          "small": "/images/real-estate/la-verde-island/dormitorio-2-800.webp",
+          "width": 815,
+          "height": 563,
+          "alt": {
+            "es": "Dormitorio con vistas",
+            "en": "Bedroom with a view",
+            "ru": "Спальня с видом",
+            "uk": "Спальня з краєвидом"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/bano.webp",
+          "small": "/images/real-estate/la-verde-island/bano-800.webp",
+          "width": 808,
+          "height": 1120,
+          "alt": {
+            "es": "Baño con ducha de obra y mampara de vidrio",
+            "en": "Bathroom with walk-in shower and glass screen",
+            "ru": "Ванная с душем и стеклянной перегородкой",
+            "uk": "Ванна кімната з душем і скляною перегородкою"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/terraza-vista-mar.webp",
+          "small": "/images/real-estate/la-verde-island/terraza-vista-mar-800.webp",
+          "width": 1072,
+          "height": 1240,
+          "alt": {
+            "es": "Terraza cubierta con vistas al mar",
+            "en": "Covered terrace with sea views",
+            "ru": "Крытая терраса с видом на море",
+            "uk": "Крита тераса з видом на море"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/vista-aerea-golf.webp",
+          "small": "/images/real-estate/la-verde-island/vista-aerea-golf-800.webp",
+          "width": 1600,
+          "height": 1128,
+          "alt": {
+            "es": "Vista aérea de los edificios junto al green",
+            "en": "Aerial view of the buildings beside the green",
+            "ru": "Вид сверху на здания у гольф-поля",
+            "uk": "Вигляд згори на будинки біля гольф-поля"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/piscina-infinita.webp",
+          "small": "/images/real-estate/la-verde-island/piscina-infinita-800.webp",
+          "width": 1600,
+          "height": 1128,
+          "alt": {
+            "es": "Piscina desbordante con vistas al mar",
+            "en": "Infinity pool with sea views",
+            "ru": "Бассейн-инфинити с видом на море",
+            "uk": "Басейн-інфініті з видом на море"
+          }
+        }
+      ],
+      "ogImage": {
+        "src": "/images/real-estate/la-verde-island/og-2d-terraza.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "purposes": [
+        "golf",
+        "sea",
+        "offplan"
+      ],
+      "price": 572000
+    },
+    {
+      "category": "residential",
+      "development": "la-verde-island",
+      "location": {
+        "es": "Doña Julia, entre Estepona y Sotogrande",
+        "en": "Doña Julia, between Estepona and Sotogrande",
+        "ru": "Донья-Хулия, между Эстепоной и Сотогранде",
+        "uk": "Донья-Хулія, між Естепоною та Сотогранде"
+      },
+      "tags": [
+        {
+          "es": "Obra nueva",
+          "en": "New build",
+          "ru": "Новостройка",
+          "uk": "Новобудова"
+        },
+        {
+          "es": "Primera línea de golf",
+          "en": "Frontline golf",
+          "ru": "Первая линия гольфа",
+          "uk": "Перша лінія гольфу"
+        }
+      ],
+      "bathrooms": 2,
+      "parking": true,
+      "storage": true,
+      "ref": "LVI-3D",
+      "slug": "la-verde-island-3-dormitorios",
+      "type": {
+        "es": "Apartamento",
+        "en": "Apartment",
+        "ru": "Квартира",
+        "uk": "Квартира"
+      },
+      "bedrooms": 3,
+      "title": {
+        "es": "Apartamento de 3 dormitorios en La Verde Island",
+        "en": "3-bedroom apartment at La Verde Island",
+        "ru": "Квартира с 3 спальнями в La Verde Island",
+        "uk": "Квартира з 3 спальнями в La Verde Island"
+      },
+      "summary": {
+        "es": "Tres dormitorios y dos baños en primera línea de golf, cocina con isla, terraza, garaje y trastero.",
+        "en": "Three bedrooms and two bathrooms on the golf frontline, kitchen with island, terrace, parking and storage.",
+        "ru": "Три спальни и два санузла на первой линии гольфа, кухня с островом, терраса, паркинг и кладовая.",
+        "uk": "Три спальні та два санвузли на першій лінії гольфу, кухня з островом, тераса, паркінг і комора."
+      },
+      "description": {
+        "es": [
+          "Apartamento de tres dormitorios y dos baños (uno en suite) en La Verde Island, Doña Julia. Cocina lineal con isla abierta al salón comedor y a la terraza, con vistas al golf.",
+          "En planta baja tiene terraza cubierta y descubierta, jardín de uso exclusivo y zona de lavadero; en planta primera, terraza. Incluye plaza de garaje y trastero."
+        ],
+        "en": [
+          "Three-bedroom, two-bathroom (one en-suite) apartment at La Verde Island, Doña Julia. A linear kitchen with island opens onto the living-dining room and the terrace, overlooking the golf course.",
+          "Ground-floor homes have a covered and an open terrace, a private garden and a laundry area; first-floor homes have a terrace. A parking space and storage room are included."
+        ],
+        "ru": [
+          "Квартира с тремя спальнями и двумя санузлами (один при спальне) в La Verde Island, Донья-Хулия. Линейная кухня с островом открыта в гостиную-столовую и на террасу с видом на гольф.",
+          "На первом этаже — крытая и открытая терраса, частный сад и постирочная; на втором — терраса. Машино-место и кладовая включены."
+        ],
+        "uk": [
+          "Квартира з трьома спальнями та двома санвузлами (один при спальні) в La Verde Island, Донья-Хулія. Лінійна кухня з островом відкрита у вітальню-їдальню та на терасу з видом на гольф.",
+          "На першому поверсі — крита й відкрита тераса, приватний сад і пральня; на другому — тераса. Машиномісце та комора включені."
+        ]
+      },
+      "features": {
+        "es": [
+          "3 dormitorios",
+          "Cocina lineal con isla",
+          "Terraza; jardín privado y lavadero en planta baja",
+          "Primera línea de golf, con vistas al golf y al mar",
+          "Dos baños, uno en suite",
+          "Salón, comedor y cocina en un espacio abierto",
+          "Cocina con electrodomésticos Siemens o similar",
+          "Garaje y trastero incluidos",
+          "Club con spa, piscinas, gimnasio y pádel"
+        ],
+        "en": [
+          "3 bedrooms",
+          "Linear kitchen with island",
+          "Terrace; private garden and laundry area on the ground floor",
+          "Frontline golf, with golf and sea views",
+          "Two bathrooms, one en-suite",
+          "Open-plan living, dining and kitchen",
+          "Kitchen with Siemens or similar appliances",
+          "Parking and storage room included",
+          "Club with spa, pools, gym and padel"
+        ],
+        "ru": [
+          "3 спальни",
+          "Линейная кухня с островом",
+          "Терраса; частный сад и постирочная на первом этаже",
+          "Первая линия гольфа, вид на гольф и море",
+          "Два санузла, один при спальне",
+          "Гостиная, столовая и кухня в одном пространстве",
+          "Кухня с техникой Siemens или аналог",
+          "Паркинг и кладовая включены",
+          "Клуб со спа, бассейнами, спортзалом и паделом"
+        ],
+        "uk": [
+          "3 спальні",
+          "Лінійна кухня з островом",
+          "Тераса; приватний сад і пральня на першому поверсі",
+          "Перша лінія гольфу, вид на гольф і море",
+          "Два санвузли, один при спальні",
+          "Вітальня, їдальня та кухня в одному просторі",
+          "Кухня з технікою Siemens або аналог",
+          "Паркінг і комора включені",
+          "Клуб зі спа, басейнами, спортзалом і паделом"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/real-estate/la-verde-island/3d-terraza.webp",
+          "small": "/images/real-estate/la-verde-island/3d-terraza-800.webp",
+          "width": 778,
+          "height": 1122,
+          "alt": {
+            "es": "Terraza de un apartamento de 3 dormitorios",
+            "en": "Terrace of a 3-bedroom apartment",
+            "ru": "Терраса квартиры с 3 спальнями",
+            "uk": "Тераса квартири з 3 спальнями"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/3d-salon.webp",
+          "small": "/images/real-estate/la-verde-island/3d-salon-800.webp",
+          "width": 797,
+          "height": 550,
+          "alt": {
+            "es": "Salón de un apartamento de 3 dormitorios",
+            "en": "Living room of a 3-bedroom apartment",
+            "ru": "Гостиная квартиры с 3 спальнями",
+            "uk": "Вітальня квартири з 3 спальнями"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/3d-cocina.webp",
+          "small": "/images/real-estate/la-verde-island/3d-cocina-800.webp",
+          "width": 842,
+          "height": 550,
+          "alt": {
+            "es": "Cocina y comedor de un apartamento de 3 dormitorios",
+            "en": "Kitchen and dining area of a 3-bedroom apartment",
+            "ru": "Кухня и столовая квартиры с 3 спальнями",
+            "uk": "Кухня та їдальня квартири з 3 спальнями"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/salon.webp",
+          "small": "/images/real-estate/la-verde-island/salon-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Salón, comedor y cocina abiertos a la terraza",
+            "en": "Living, dining and kitchen opening onto the terrace",
+            "ru": "Гостиная, столовая и кухня с выходом на террасу",
+            "uk": "Вітальня, їдальня та кухня з виходом на терасу"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/3d-dormitorio.webp",
+          "small": "/images/real-estate/la-verde-island/3d-dormitorio-800.webp",
+          "width": 800,
+          "height": 558,
+          "alt": {
+            "es": "Dormitorio de un apartamento de 3 dormitorios",
+            "en": "Bedroom in a 3-bedroom apartment",
+            "ru": "Спальня в квартире с 3 спальнями",
+            "uk": "Спальня в квартирі з 3 спальнями"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/3d-dormitorio-2.webp",
+          "small": "/images/real-estate/la-verde-island/3d-dormitorio-2-800.webp",
+          "width": 712,
+          "height": 547,
+          "alt": {
+            "es": "Dormitorio con salida a la terraza",
+            "en": "Bedroom opening onto the terrace",
+            "ru": "Спальня с выходом на террасу",
+            "uk": "Спальня з виходом на терасу"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/bano-2.webp",
+          "small": "/images/real-estate/la-verde-island/bano-2-800.webp",
+          "width": 810,
+          "height": 1120,
+          "alt": {
+            "es": "Baño con lavabo integrado y mueble",
+            "en": "Bathroom with integrated basin and cabinet",
+            "ru": "Ванная с встроенной раковиной и тумбой",
+            "uk": "Ванна кімната з вбудованою раковиною та тумбою"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/fachada-jardin.webp",
+          "small": "/images/real-estate/la-verde-island/fachada-jardin-800.webp",
+          "width": 1072,
+          "height": 1243,
+          "alt": {
+            "es": "Fachada con terrazas, jardín y piscina privada",
+            "en": "Façade with terraces, garden and plunge pool",
+            "ru": "Фасад с террасами, садом и бассейном",
+            "uk": "Фасад із терасами, садом і басейном"
+          }
+        }
+      ],
+      "ogImage": {
+        "src": "/images/real-estate/la-verde-island/og-3d-terraza.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "purposes": [
+        "golf",
+        "sea",
+        "family",
+        "offplan"
+      ],
+      "price": 580000
+    },
+    {
+      "category": "residential",
+      "development": "la-verde-island",
+      "location": {
+        "es": "Doña Julia, entre Estepona y Sotogrande",
+        "en": "Doña Julia, between Estepona and Sotogrande",
+        "ru": "Донья-Хулия, между Эстепоной и Сотогранде",
+        "uk": "Донья-Хулія, між Естепоною та Сотогранде"
+      },
+      "tags": [
+        {
+          "es": "Obra nueva",
+          "en": "New build",
+          "ru": "Новостройка",
+          "uk": "Новобудова"
+        },
+        {
+          "es": "Primera línea de golf",
+          "en": "Frontline golf",
+          "ru": "Первая линия гольфа",
+          "uk": "Перша лінія гольфу"
+        }
+      ],
+      "bathrooms": 2,
+      "parking": true,
+      "storage": true,
+      "ref": "LVI-PH",
+      "slug": "la-verde-island-atico",
+      "type": {
+        "es": "Ático",
+        "en": "Penthouse",
+        "ru": "Пентхаус",
+        "uk": "Пентхаус"
+      },
+      "bedrooms": [
+        2,
+        3
+      ],
+      "title": {
+        "es": "Ático con solárium en La Verde Island",
+        "en": "Penthouse with solarium at La Verde Island",
+        "ru": "Пентхаус с солярием в La Verde Island",
+        "uk": "Пентхаус із солярієм у La Verde Island"
+      },
+      "summary": {
+        "es": "Áticos de 2 o 3 dormitorios con terraza y solárium en cubierta, en primera línea de golf.",
+        "en": "2 or 3-bedroom penthouses with a terrace and rooftop solarium, on the golf frontline.",
+        "ru": "Пентхаусы с 2 или 3 спальнями, террасой и солярием на крыше, на первой линии гольфа.",
+        "uk": "Пентхауси з 2 або 3 спальнями, терасою та солярієм на даху, на першій лінії гольфу."
+      },
+      "description": {
+        "es": [
+          "Áticos de dos o tres dormitorios y dos baños (uno en suite) en la última planta de La Verde Island. Terraza y solárium en la cubierta con escalera exterior, con preinstalación para jacuzzi y cocina exterior.",
+          "El de tres dormitorios tiene cocina en L con isla; el de dos, cocina en U con península. Incluyen plaza de garaje, trastero y acceso al club con spa, piscinas, gimnasio y pádel."
+        ],
+        "en": [
+          "Two or three-bedroom penthouses with two bathrooms (one en-suite) on the top floor of La Verde Island. A terrace plus a rooftop solarium reached by an external staircase, pre-installed for a jacuzzi and an outdoor kitchen.",
+          "The three-bedroom penthouse has an L-shaped kitchen with island; the two-bedroom one a U-shaped kitchen with peninsula. Parking, a storage room and access to the club with spa, pools, gym and padel are included."
+        ],
+        "ru": [
+          "Пентхаусы с двумя или тремя спальнями и двумя санузлами (один при спальне) на верхнем этаже La Verde Island. Терраса и солярий на крыше с наружной лестницей, с подготовкой под джакузи и летнюю кухню.",
+          "В пентхаусе с тремя спальнями — Г-образная кухня с островом, с двумя — П-образная с полуостровом. Включены машино-место, кладовая и доступ в клуб со спа, бассейнами, спортзалом и паделом."
+        ],
+        "uk": [
+          "Пентхауси з двома або трьома спальнями та двома санвузлами (один при спальні) на верхньому поверсі La Verde Island. Тераса й солярій на даху із зовнішніми сходами, з підготовкою під джакузі та літню кухню.",
+          "У пентхаусі з трьома спальнями — Г-подібна кухня з островом, із двома — П-подібна з півостровом. Включені машиномісце, комора та доступ до клубу зі спа, басейнами, спортзалом і паделом."
+        ]
+      },
+      "features": {
+        "es": [
+          "2 o 3 dormitorios",
+          "Solárium en cubierta con escalera exterior",
+          "Preinstalación de jacuzzi y cocina exterior",
+          "Primera línea de golf, con vistas al golf y al mar",
+          "Dos baños, uno en suite",
+          "Salón, comedor y cocina en un espacio abierto",
+          "Cocina con electrodomésticos Siemens o similar",
+          "Garaje y trastero incluidos",
+          "Club con spa, piscinas, gimnasio y pádel"
+        ],
+        "en": [
+          "2 or 3 bedrooms",
+          "Rooftop solarium with external staircase",
+          "Pre-installation for jacuzzi and outdoor kitchen",
+          "Frontline golf, with golf and sea views",
+          "Two bathrooms, one en-suite",
+          "Open-plan living, dining and kitchen",
+          "Kitchen with Siemens or similar appliances",
+          "Parking and storage room included",
+          "Club with spa, pools, gym and padel"
+        ],
+        "ru": [
+          "2 или 3 спальни",
+          "Солярий на крыше с наружной лестницей",
+          "Подготовка под джакузи и летнюю кухню",
+          "Первая линия гольфа, вид на гольф и море",
+          "Два санузла, один при спальне",
+          "Гостиная, столовая и кухня в одном пространстве",
+          "Кухня с техникой Siemens или аналог",
+          "Паркинг и кладовая включены",
+          "Клуб со спа, бассейнами, спортзалом и паделом"
+        ],
+        "uk": [
+          "2 або 3 спальні",
+          "Солярій на даху із зовнішніми сходами",
+          "Підготовка під джакузі та літню кухню",
+          "Перша лінія гольфу, вид на гольф і море",
+          "Два санвузли, один при спальні",
+          "Вітальня, їдальня та кухня в одному просторі",
+          "Кухня з технікою Siemens або аналог",
+          "Паркінг і комора включені",
+          "Клуб зі спа, басейнами, спортзалом і паделом"
+        ]
+      },
+      "images": [
+        {
+          "src": "/images/real-estate/la-verde-island/atico-terraza.webp",
+          "small": "/images/real-estate/la-verde-island/atico-terraza-800.webp",
+          "width": 842,
+          "height": 553,
+          "alt": {
+            "es": "Terraza de un ático con vistas al golf y al mar",
+            "en": "Penthouse terrace overlooking the golf course and the sea",
+            "ru": "Терраса пентхауса с видом на гольф и море",
+            "uk": "Тераса пентхауса з видом на гольф і море"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/atico-salon.webp",
+          "small": "/images/real-estate/la-verde-island/atico-salon-800.webp",
+          "width": 1122,
+          "height": 543,
+          "alt": {
+            "es": "Salón comedor de un ático",
+            "en": "Penthouse living and dining room",
+            "ru": "Гостиная-столовая пентхауса",
+            "uk": "Вітальня-їдальня пентхауса"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/atico-cocina.webp",
+          "small": "/images/real-estate/la-verde-island/atico-cocina-800.webp",
+          "width": 777,
+          "height": 1115,
+          "alt": {
+            "es": "Cocina con isla de un ático",
+            "en": "Penthouse kitchen with island",
+            "ru": "Кухня с островом в пентхаусе",
+            "uk": "Кухня з островом у пентхаусі"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/cocina.webp",
+          "small": "/images/real-estate/la-verde-island/cocina-800.webp",
+          "width": 1600,
+          "height": 1131,
+          "alt": {
+            "es": "Cocina abierta con isla y comedor",
+            "en": "Open kitchen with island and dining area",
+            "ru": "Открытая кухня с островом",
+            "uk": "Відкрита кухня з островом"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/dormitorio.webp",
+          "small": "/images/real-estate/la-verde-island/dormitorio-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Dormitorio principal con armarios empotrados",
+            "en": "Master bedroom with built-in wardrobes",
+            "ru": "Главная спальня со встроенными шкафами",
+            "uk": "Головна спальня з вбудованими шафами"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/terraza.webp",
+          "small": "/images/real-estate/la-verde-island/terraza-800.webp",
+          "width": 1600,
+          "height": 1132,
+          "alt": {
+            "es": "Terraza cubierta junto al salón",
+            "en": "Covered terrace beside the living room",
+            "ru": "Крытая терраса у гостиной",
+            "uk": "Крита тераса біля вітальні"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/vista-aerea-golf.webp",
+          "small": "/images/real-estate/la-verde-island/vista-aerea-golf-800.webp",
+          "width": 1600,
+          "height": 1128,
+          "alt": {
+            "es": "Vista aérea de los edificios junto al green",
+            "en": "Aerial view of the buildings beside the green",
+            "ru": "Вид сверху на здания у гольф-поля",
+            "uk": "Вигляд згори на будинки біля гольф-поля"
+          }
+        },
+        {
+          "src": "/images/real-estate/la-verde-island/piscina-tumbonas.webp",
+          "small": "/images/real-estate/la-verde-island/piscina-tumbonas-800.webp",
+          "width": 1072,
+          "height": 1240,
+          "alt": {
+            "es": "Piscina comunitaria con tumbonas",
+            "en": "Communal pool with sun loungers",
+            "ru": "Общий бассейн с шезлонгами",
+            "uk": "Спільний басейн із шезлонгами"
+          }
+        }
+      ],
+      "ogImage": {
+        "src": "/images/real-estate/la-verde-island/og-atico-terraza.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "purposes": [
+        "golf",
+        "sea",
+        "penthouse",
+        "family",
+        "offplan"
+      ],
+      "price": 598000
+    }
+  ],
+  "_example": {
+    "ref": "3DNA-V001",
+    "slug": "ejemplo-apartamento",
+    "category": "residential",
+    "status": "available",
+    "title": {
+      "es": "Apartamento de ejemplo",
+      "en": "Example apartment"
+    },
+    "type": {
+      "es": "Apartamento",
+      "en": "Apartment",
+      "ru": "Апартаменты",
+      "uk": "Апартаменти"
+    },
+    "location": "Localidad, provincia",
+    "price": 250000,
+    "area": 95,
+    "plot": null,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "year": null,
+    "energy": null,
+    "summary": {
+      "es": "Una frase para la tarjeta del catálogo.",
+      "en": "One sentence for the catalogue card."
+    },
+    "description": {
+      "es": [
+        "Primer párrafo.",
+        "Segundo párrafo."
+      ],
+      "en": [
+        "First paragraph.",
+        "Second paragraph."
+      ]
+    },
+    "features": {
+      "es": [
+        "Terraza",
+        "Plaza de garaje"
+      ],
+      "en": [
+        "Terrace",
+        "Parking space"
+      ]
+    },
+    "images": [
+      {
+        "src": "/images/real-estate/ejemplo-apartamento/01.webp",
+        "width": 1600,
+        "height": 1067,
+        "alt": {
+          "es": "Salón con salida a la terraza",
+          "en": "Living room opening onto the terrace"
+        }
+      }
+    ],
+    "floorPlans": [
+      {
+        "src": "/images/real-estate/ejemplo-apartamento/plano.webp",
+        "width": 1600,
+        "height": 1131,
+        "alt": {
+          "es": "Plano de la vivienda",
+          "en": "Floor plan"
+        }
+      }
+    ],
+    "tour": {
+      "url": "https://example.com/tour",
+      "embed": false
+    }
+  }
+}

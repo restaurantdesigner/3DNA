@@ -12054,3 +12054,11 @@ header.topbar .brand-title img{ height: var(--logo-h, 24px); width: auto; }
    assets/js/project-cards.js), so the hover colour switch does not apply */
 .rproj__card[data-mode="hero"] .rproj__media img{ filter: grayscale(1); }
 .rproj__card[data-mode="hero"].is-playing .rproj__video{ opacity: 1; }
+
+/* Desktop menu with five entries (Inmobiliaria added): keep each label on one line and tighten
+   the spacing on narrower desktops, before the burger menu takes over at 980px */
+header.topbar .nav-desktop > a{ white-space: nowrap; }
+@media (min-width: 981px) and (max-width: 1280px){
+  .has-overlay-header header.topbar .nav-desktop, .nav-desktop{ gap: 14px; }
+  header.topbar .nav-desktop > a{ padding-left: 6px; padding-right: 6px; }
+}

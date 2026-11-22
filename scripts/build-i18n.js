@@ -12,6 +12,8 @@
  *   /<lang>/<fitnessPage.slug>/index.html       Fitness page (templates/fitness.html)
  *   /<lang>/<restaurants slug>/<projects slug>/<id>/index.html   client project pages
  *                                               (templates/project.html, assets/data/projects.json)
+ *   /inmobiliaria/ + /<lang>/real-estate/   real estate catalogue (templates/real-estate.html) and one
+ *                   page per listing, …/<slug>/ (templates/property.html, assets/data/properties.json)
  *   /index.html     entry point: English content + language redirect for visitors
  *   /sitemap.xml    every /<lang>/**\/index.html found + LEGACY_PAGES
  *   /robots.txt
@@ -37,7 +39,19 @@ const OG_PAGE_IMAGES = {
 // client project pages: the project's own preview image
 const projectKey = (id) => `project-${id}`;
 const projectIdOf = (page) => (page && page.startsWith("project-") ? page.slice("project-".length) : null);
-const ogImagePath = (page, lang) => projectIdOf(page) ? projects.ogImage(projectIdOf(page)) : (page && OG_PAGE_IMAGES[page] ? OG_PAGE_IMAGES[page](lang) : OG_IMAGE.path(lang));
+// real estate: a property page uses its listing's preview image (own size and type); the catalogue
+// uses properties.json catalog.ogImage when there is one
+const propertyKey = (slug) => `property-${slug}`;
+const propertySlugOf = (page) => (page && page.startsWith("property-") ? page.slice("property-".length) : null);
+const realEstateOg = (page) => propertySlugOf(page) ? realEstate.ogImage(propertySlugOf(page)) : page === "realEstate" ? realEstate.catalogOgImage() : null;
+const ogImagePath = (page, lang) => realEstateOg(page) ? realEstateOg(page).path
+  : projectIdOf(page) ? projects.ogImage(projectIdOf(page)) : (page && OG_PAGE_IMAGES[page] ? OG_PAGE_IMAGES[page](lang) : OG_IMAGE.path(lang));
+const ogImageSize = (page) => {
+  if (!realEstateOg(page)) return { width: OG_IMAGE.width, height: OG_IMAGE.height, type: "image/jpeg" };
+  const im = realEstateOg(page);
+  const ext = ((im.path.match(/\.(\w+)$/) || [])[1] || "jpg").toLowerCase();
+  return { width: im.width, height: im.height, type: `image/${ext === "jpg" ? "jpeg" : ext}` };
+};
 // Language switcher order (header): EN / ES / RU / UK
 const SWITCHER_ORDER = ["en", "es", "ru", "uk"];
 
@@ -65,6 +79,8 @@ const restaurantsTemplate = read("templates/restaurants.html");
 const fitnessTemplate = read("templates/fitness.html");
 const aboutTemplate = read("templates/about.html");
 const projectTemplate = read("templates/project.html");
+const realEstateTemplate = read("templates/real-estate.html");
+const propertyTemplate = read("templates/property.html");
 const restaurantStories = JSON.parse(read("assets/data/restaurant-stories.json"));
 // Spanish keeps the original path, which the legacy (Spanish) pages already load
 const formPartialFile = (lang) => (lang === "es" ? "form-panel.html" : `form-panel.${lang}.html`);
@@ -119,6 +135,26 @@ const businessCalcs = require("./business-calc.js").createBusinessCalcs(translat
   whatsappHref: (lang) => whatsappHref(lang), email: PUBLIC_EMAIL, restaurantPlanning: restaurantPlanData.planning,
   restaurantSharePath: restaurantCalcSharePath, fitnessSharePath: fitnessCalcSharePath });
 
+// Real estate: catalogue + one page per listing. Spanish lives at /inmobiliaria/ (the route the
+// section was planned with); the other languages follow /<lang>/<slug>/.
+//
+// Local draft with example prices (never published): RE_DRAFT=1 node scripts/build-i18n.js
+// writes ONLY the real estate pages, to /inmobiliaria-borrador/ and /<lang>/real-estate-draft/
+// (git-ignored, noindex, with a "draft" banner), taking the prices from
+// drafts/real-estate-example-prices.json ({ "<ref>": <euros> }). The real pages are not touched.
+const RE_DRAFT = process.env.RE_DRAFT === "1";
+const realEstateI18n = JSON.parse(read("assets/i18n/real-estate.json"));
+const reSlug = (lang) => `${realEstateI18n[lang].slug}${RE_DRAFT ? "-draft" : ""}`;
+const realEstateSectionPath = (lang) => (lang === "es" ? (RE_DRAFT ? "/inmobiliaria-borrador/" : "/inmobiliaria/") : `/${lang}/${reSlug(lang)}/`);
+const realEstateData = JSON.parse(read("assets/data/properties.json"));
+if (RE_DRAFT) {
+  const example = JSON.parse(read("drafts/real-estate-example-prices.json"));
+  for (const p of realEstateData.properties) if (example[p.ref] != null) p.price = example[p.ref];
+}
+const realEstate = require("./real-estate.js").createRealEstate(
+  realEstateData, realEstateI18n,
+  { whatsappNumber: translations.es.contact.whatsappNumber, absolute: (p) => absolute(p), sectionPath: realEstateSectionPath, homePath: (lang) => `/${lang}/` });
+
 // Homepage editorial carousel "the value of design"
 const designQuotes = require("./design-quotes.js").createDesignQuotes(JSON.parse(read("assets/data/design-quotes.json")), translations);
 
@@ -143,6 +179,19 @@ const PAGES = {
     subPath: (lang) => `${translations[lang].aboutPage.slug}/`,
     meta: (lang) => translations[lang].aboutPage.meta
   },
+  realEstate: {
+    template: () => realEstateTemplate,
+    subPath: (lang) => `${reSlug(lang)}/`,
+    urlPath: (lang) => (lang === "es" ? realEstateSectionPath(lang) : null),
+    // "Viviendas en venta" when every listing is residential
+    meta: (lang) => ({ ...realEstateI18n[lang].meta, title: realEstateI18n[lang].meta.title.replace(realEstateI18n[lang].title, realEstate.heading(lang)) })
+  },
+  ...Object.fromEntries(realEstate.slugs().map((slug) => [propertyKey(slug), {
+    template: () => propertyTemplate,
+    subPath: (lang) => `${reSlug(lang)}/${slug}/`,
+    urlPath: (lang) => (lang === "es" ? `${realEstateSectionPath(lang)}${slug}/` : null),
+    meta: (lang) => realEstate.detailMeta(lang, slug)
+  }])),
   // client projects: /es/restaurantes/proyectos/ilia/, /en/restaurants/projects/ilia/ ...
   ...Object.fromEntries(projects.ids().map((id) => [projectKey(id), {
     template: () => projectTemplate,
@@ -162,7 +211,8 @@ const pagePath = (options, lang) => pagePathFor(options && options.page, lang);
 // file written for a page in a language
 const pageFile = (key, lang) => {
   const fixed = PAGES[key].urlPath ? PAGES[key].urlPath(lang) : null;
-  return fixed ? fixed.replace(/^\//, "") : `${lang}/${PAGES[key].subPath(lang)}index.html`;
+  // a fixed URL ending in "/" is a folder: its index.html
+  return fixed ? fixed.replace(/^\//, "").replace(/\/$/, "/index.html") : `${lang}/${PAGES[key].subPath(lang)}index.html`;
 };
 
 const fileVersion = (rel) =>
@@ -189,9 +239,9 @@ function socialMeta(lang, t, meta = t.meta, url = localeUrl(lang), page = null) 
     `  <meta property="og:url" content="${url}">`,
     `  <meta property="og:image" content="${image}">`,
     `  <meta property="og:image:secure_url" content="${image}">`,
-    `  <meta property="og:image:type" content="image/jpeg">`,
-    `  <meta property="og:image:width" content="${OG_IMAGE.width}">`,
-    `  <meta property="og:image:height" content="${OG_IMAGE.height}">`,
+    `  <meta property="og:image:type" content="${ogImageSize(page).type}">`,
+    `  <meta property="og:image:width" content="${ogImageSize(page).width}">`,
+    `  <meta property="og:image:height" content="${ogImageSize(page).height}">`,
     `  <meta property="og:image:alt" content="${escapeHtml(ogAlt)}">`,
     `  <meta property="og:locale" content="${t.meta.ogLocale}">`,
     ...SUPPORTED.filter((code) => code !== lang).map(
@@ -365,6 +415,18 @@ function render(lang, options = { isRoot: false }, tpl = template) {
       if (key === "project.contextLabel") return escapeHtml(projects.contextLabel(lang));
       if (key === "project.meta.title") return escapeHtml(projects.meta(lang, id).title);
     }
+    if (key.startsWith("realEstate.")) {
+      if (key === "realEstate.url") return pagePathFor("realEstate", lang);
+      if (key === "realEstate.nav") return escapeHtml(realEstateI18n[lang].nav);
+      if (key === "realEstate.meta.title") return escapeHtml(PAGES.realEstate.meta(lang).title);
+      if (key === "realEstate.catalogHtml") return realEstate.catalogHtml(lang);
+      if (key === "realEstate.cssVersion") return fileVersion("assets/css/real-estate.css");
+      if (key === "realEstate.jsVersion") return fileVersion("assets/js/real-estate.js");
+      const slug = propertySlugOf(options && options.page);
+      if (!slug) throw new Error(`"${key}" used outside a property page`);
+      if (key === "realEstate.propertyHtml") return realEstate.detailHtml(lang, slug);
+      if (key === "realEstate.property.meta.title") return escapeHtml(realEstate.detailMeta(lang, slug).title);
+    }
     if (key === "fitnessPage.url") return pagePathFor("fitness", lang);
     if (key === "restaurantsPage.url") return pagePathFor("restaurants", lang);
     if (key === "aboutPage.url") return pagePathFor("about", lang);
@@ -477,7 +539,7 @@ function localizedPaths() {
       const fixed = page.urlPath(lang);
       if (!fixed || !fs.existsSync(path.join(root, fixed))) continue;
       if (!found.has(key)) found.set(key, new Map());
-      found.get(key).set(lang, { url: fixed, file: fixed.replace(/^\//, "") });
+      found.get(key).set(lang, { url: fixed, file: fixed.replace(/^\//, "").replace(/\/$/, "/index.html") });
     }
   }
   return found;
@@ -539,6 +601,39 @@ const robotsTxt = () =>
   ].join("\n");
 
 // ---------------------------------------------------------------- build
+// pages of listings taken out of properties.json are removed (generated property folders only)
+for (const lang of SUPPORTED) {
+  const dir = path.join(root, realEstateSectionPath(lang).replace(/^\//, ""));
+  if (!fs.existsSync(dir)) continue;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const index = path.join(dir, entry.name, "index.html");
+    if (!entry.isDirectory() || realEstate.slugs().includes(entry.name) || !fs.existsSync(index)) continue;
+    if (!fs.readFileSync(index, "utf8").includes("templates/property.html")) continue;
+    fs.rmSync(path.join(dir, entry.name), { recursive: true });
+    console.log(`removed ${path.relative(root, path.join(dir, entry.name))} (no longer in properties.json)`);
+  }
+}
+// draft mode: only the real estate pages, at their draft addresses, marked as a draft; nothing else
+if (RE_DRAFT) {
+  const BANNER = {
+    es: "BORRADOR INTERNO · Precios de ejemplo, no reales · No publicar",
+    en: "INTERNAL DRAFT · Example prices, not real · Do not publish",
+    ru: "ВНУТРЕННИЙ ЧЕРНОВИК · Цены условные, не реальные · Не публиковать",
+    uk: "ВНУТРІШНЯ ЧЕРНЕТКА · Ціни умовні, не реальні · Не публікувати",
+  };
+  for (const [key, page] of Object.entries(PAGES)) {
+    if (key !== "realEstate" && !propertySlugOf(key)) continue;
+    for (const lang of SUPPORTED) {
+      const html = render(lang, { page: key }, page.template())
+        .replace(/(main\.(?:css|js))\?v=[\w.-]+/g, (m, file) => `${file}?v=${ASSET_VERSIONS[file]}`)
+        .replace("<head>", '<head>\n  <meta name="robots" content="noindex, nofollow">')
+        .replace(/(<main [^>]*>)/, `$1\n<p class="re-draft" role="note">${escapeHtml(BANNER[lang])}</p>`);
+      write(pageFile(key, lang), html);
+    }
+  }
+  console.log("draft written (example prices): /inmobiliaria-borrador/ and /<lang>/real-estate-draft/");
+  process.exit(0);
+}
 for (const lang of SUPPORTED) write(`${lang}/index.html`, render(lang));
 for (const lang of SUPPORTED) write(`assets/partials/${formPartialFile(lang)}`, render(lang, {}, formTemplate));
 write("index.html", render(DEFAULT_LANG, { isRoot: true }));

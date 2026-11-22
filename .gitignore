@@ -4,3 +4,8 @@ logs/
 
 # client floor plan for the washroom model: not published (Plan overlay hidden without it)
 prototipos/washroom-suite/plan-reference.png
+
+# local real estate draft with example prices (RE_DRAFT=1): never published
+drafts/
+inmobiliaria-borrador/
+*/real-estate-draft/

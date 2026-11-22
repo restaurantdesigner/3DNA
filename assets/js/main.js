@@ -276,6 +276,14 @@ onFormPanelLifecycle(() => {
       e.stopPropagation();
     }
     lastTrigger = trigger || document.activeElement;
+    // a trigger may carry a pre-filled message (e.g. a property's name and reference);
+    // it never overwrites what the visitor has typed
+    const preset = trigger && trigger.getAttribute && trigger.getAttribute('data-panel-message');
+    const box = panel.querySelector('#sp-message');
+    if (box && preset && (!box.value.trim() || box.value === box.dataset.preset)) {
+      box.value = preset;
+      box.dataset.preset = preset;
+    }
     panel.classList.add('open');
     backdrop.classList.add('visible');
     document.body.classList.add('panel-open');

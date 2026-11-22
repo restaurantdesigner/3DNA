@@ -1,0 +1,707 @@
+{
+  "_comment": "Real estate section strings (scripts/real-estate.js). Spanish is the master. {title}, {ref} and {url} are filled in per property. 'slug' is the section's path under /<lang>/ (Spanish keeps /inmobiliaria/, see urlPath in scripts/build-i18n.js).",
+  "es": {
+    "slug": "inmobiliaria",
+    "nav": "Inmobiliaria",
+    "meta": {
+      "title": "Inmobiliaria · Propiedades en venta | 3DNA",
+      "description": "Propiedades en venta con 3DNA: fotos, datos clave, planos y recorrido 3D cuando están disponibles. Pregunta por cualquier propiedad o pide una visita por WhatsApp.",
+      "ogImageAlt": "3DNA · Inmobiliaria, propiedades en venta"
+    },
+    "eyebrow": "Inmobiliaria",
+    "title": "Propiedades en venta",
+    "titleResidential": "Viviendas en venta",
+    "intro": "Cada propiedad con sus fotos, datos clave y, cuando los hay, planos y recorrido 3D. Pregunta lo que necesites o pide una visita.",
+    "count": {
+      "one": "1 propiedad",
+      "other": "{n} propiedades"
+    },
+    "countResidential": {
+      "one": "1 vivienda",
+      "other": "{n} viviendas"
+    },
+    "cta": "Ver propiedad",
+    "priceOnRequest": "Precio a consultar",
+    "status": {
+      "reserved": "Reservada",
+      "sold": "Vendida"
+    },
+    "units": {
+      "area": "{n} m²",
+      "bedrooms": {
+        "one": "1 dormitorio",
+        "other": "{n} dormitorios"
+      },
+      "bathrooms": {
+        "one": "1 baño",
+        "other": "{n} baños"
+      }
+    },
+    "facts": {
+      "title": "Datos clave",
+      "ref": "Referencia",
+      "price": "Precio",
+      "type": "Tipo",
+      "location": "Ubicación",
+      "area": "Superficie construida",
+      "plot": "Parcela",
+      "bedrooms": "Dormitorios",
+      "bathrooms": "Baños",
+      "year": "Año de construcción",
+      "energy": "Certificado energético"
+    },
+    "gallery": "Fotos",
+    "photoOf": "Foto {i} de {n}",
+    "openPhoto": "Ampliar foto",
+    "close": "Cerrar",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "description": "Descripción",
+    "features": "Características",
+    "floorPlans": "Planos",
+    "tour": "Recorrido 3D",
+    "tourOpen": "Abrir el recorrido 3D",
+    "back": "Todas las propiedades",
+    "ask": {
+      "title": "¿Te interesa esta propiedad?",
+      "text": "Escríbenos para resolver dudas o concertar una visita. Indica la referencia {ref}.",
+      "visit": "Pedir una visita",
+      "question": "Hacer una pregunta",
+      "form": "Enviar un mensaje",
+      "visitMessage": "Hola, me gustaría visitar la propiedad «{title}» (ref. {ref}). {url}",
+      "questionMessage": "Hola, tengo una pregunta sobre la propiedad «{title}» (ref. {ref}). {url}",
+      "formMessage": "Me interesa la propiedad «{title}» (ref. {ref}). "
+    },
+    "search": {
+      "title": "Cuéntanos qué vivienda buscas",
+      "textEmpty": "Todavía no hay propiedades publicadas. Dinos qué buscas —zona, tipo de vivienda, superficie, dormitorios y presupuesto— y te responderemos.",
+      "text": "¿No encuentras lo que buscas? Dinos la zona, el tipo de vivienda, la superficie, los dormitorios y el presupuesto, y te responderemos.",
+      "whatsapp": "Escribir por WhatsApp",
+      "form": "Enviar un mensaje",
+      "message": "Hola, estoy buscando una vivienda. Zona: , tipo: , dormitorios: , presupuesto: ."
+    },
+    "home": "Inicio",
+    "filters": {
+      "label": "Filtrar propiedades",
+      "type": "Tipo",
+      "beds": "Dormitorios",
+      "location": "Ubicación",
+      "sort": "Ordenar",
+      "any": "Todos",
+      "anyBeds": "Cualquiera",
+      "bedsMin": "{n} o más",
+      "sortDefault": "Destacadas",
+      "sortPriceAsc": "Precio: de menor a mayor",
+      "sortPriceDesc": "Precio: de mayor a menor",
+      "shown": {
+        "one": "1 resultado",
+        "other": "{n} resultados"
+      },
+      "none": "Ninguna propiedad coincide con estos filtros.",
+      "reset": "Quitar filtros"
+    },
+    "allPhotos": "Ver las {n} fotos",
+    "parking": {
+      "one": "1 plaza de garaje",
+      "other": "{n} plazas de garaje"
+    },
+    "storage": "Trastero",
+    "factsExtra": {
+      "parking": "Garaje",
+      "storage": "Trastero",
+      "units": "Viviendas de este tipo",
+      "development": "Promoción",
+      "yes": "Sí"
+    },
+    "specs": "Memoria de calidades",
+    "payment": "Forma de pago",
+    "location": "Ubicación",
+    "distances": "Distancias",
+    "mapOpen": "Ver la zona en el mapa",
+    "development": {
+      "title": "Sobre la promoción",
+      "developer": "Promotora",
+      "architect": "Arquitectura",
+      "units": "Viviendas",
+      "photos": "Imágenes de la promoción"
+    },
+    "others": "Otras viviendas en {name}",
+    "othersAll": "Otras propiedades",
+    "featured": "Promoción destacada",
+    "imagesNote": "Imágenes: infografías del proyecto, de carácter orientativo.",
+    "priceFromDev": "Promoción desde {price}",
+    "priceFromNote": "Precio de partida de la promoción; el de cada vivienda, a consultar.",
+    "bedroomsRange": "{a}–{b} dormitorios",
+    "parkingIncluded": "Garaje incluido",
+    "completion": "Entrega prevista",
+    "amenities": "Zonas comunes y club",
+    "drivingTimes": "Tiempos aproximados en coche",
+    "presentation": "Pedir una presentación online",
+    "presentationMessage": "Hola, me gustaría una presentación online de {dev} (planos, vistas y ubicación). Me interesa: «{title}» (ref. {ref}). {url}",
+    "purposesTitle": "¿Qué buscas?",
+    "purposesIntro": "Las propiedades, ordenadas por lo que quieres de tu próxima casa.",
+    "purposeAll": "Todas",
+    "purposeLabel": "Objetivo",
+    "purposeCount": {
+      "one": "1 propiedad",
+      "other": "{n} propiedades"
+    },
+    "purposes": {
+      "golf": {
+        "title": "Vivir en el golf",
+        "text": "Viviendas en primera línea de golf, con zona de prácticas para residentes."
+      },
+      "sea": {
+        "title": "Vistas al mar",
+        "text": "Promociones con vistas al mar; las vistas dependen de la ubicación de cada vivienda."
+      },
+      "penthouse": {
+        "title": "Áticos con solárium",
+        "text": "Última planta con terraza y solárium propio."
+      },
+      "family": {
+        "title": "Para familias",
+        "text": "Tres dormitorios, dos baños, piscina y zonas comunes en urbanización cerrada."
+      },
+      "offplan": {
+        "title": "Obra nueva sobre plano",
+        "text": "Viviendas en construcción, con pagos escalonados hasta la entrega de llaves."
+      }
+    }
+  },
+  "en": {
+    "slug": "real-estate",
+    "nav": "Real Estate",
+    "meta": {
+      "title": "Real Estate · Properties for Sale | 3DNA",
+      "description": "Properties for sale with 3DNA: photos, key facts, floor plans and a 3D tour where available. Ask about any property or request a viewing on WhatsApp.",
+      "ogImageAlt": "3DNA · Real Estate, properties for sale"
+    },
+    "eyebrow": "Real Estate",
+    "title": "Properties for Sale",
+    "titleResidential": "Homes for Sale",
+    "intro": "Every property with its photos, key facts and, where available, floor plans and a 3D tour. Ask anything or request a viewing.",
+    "count": {
+      "one": "1 property",
+      "other": "{n} properties"
+    },
+    "countResidential": {
+      "one": "1 home",
+      "other": "{n} homes"
+    },
+    "cta": "View property",
+    "priceOnRequest": "Price on request",
+    "status": {
+      "reserved": "Reserved",
+      "sold": "Sold"
+    },
+    "units": {
+      "area": "{n} m²",
+      "bedrooms": {
+        "one": "1 bedroom",
+        "other": "{n} bedrooms"
+      },
+      "bathrooms": {
+        "one": "1 bathroom",
+        "other": "{n} bathrooms"
+      }
+    },
+    "facts": {
+      "title": "Key facts",
+      "ref": "Reference",
+      "price": "Price",
+      "type": "Type",
+      "location": "Location",
+      "area": "Built area",
+      "plot": "Plot",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "year": "Year built",
+      "energy": "Energy rating"
+    },
+    "gallery": "Photos",
+    "photoOf": "Photo {i} of {n}",
+    "openPhoto": "Enlarge photo",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "description": "Description",
+    "features": "Features",
+    "floorPlans": "Floor plans",
+    "tour": "3D tour",
+    "tourOpen": "Open the 3D tour",
+    "back": "All properties",
+    "ask": {
+      "title": "Interested in this property?",
+      "text": "Message us with any question or to arrange a viewing. Please quote reference {ref}.",
+      "visit": "Request a viewing",
+      "question": "Ask a question",
+      "form": "Send a message",
+      "visitMessage": "Hello, I would like to view the property “{title}” (ref. {ref}). {url}",
+      "questionMessage": "Hello, I have a question about the property “{title}” (ref. {ref}). {url}",
+      "formMessage": "I am interested in the property “{title}” (ref. {ref}). "
+    },
+    "search": {
+      "title": "Tell us what home you are looking for",
+      "textEmpty": "No properties are published yet. Tell us what you are looking for — area, type of home, size, bedrooms and budget — and we will get back to you.",
+      "text": "Can’t find what you need? Tell us the area, type of home, size, bedrooms and budget, and we will get back to you.",
+      "whatsapp": "Message on WhatsApp",
+      "form": "Send a message",
+      "message": "Hello, I am looking for a home. Area: , type: , bedrooms: , budget: ."
+    },
+    "home": "Home",
+    "filters": {
+      "label": "Filter properties",
+      "type": "Type",
+      "beds": "Bedrooms",
+      "location": "Location",
+      "sort": "Sort",
+      "any": "All",
+      "anyBeds": "Any",
+      "bedsMin": "{n} or more",
+      "sortDefault": "Featured",
+      "sortPriceAsc": "Price: low to high",
+      "sortPriceDesc": "Price: high to low",
+      "shown": {
+        "one": "1 result",
+        "other": "{n} results"
+      },
+      "none": "No property matches these filters.",
+      "reset": "Clear filters"
+    },
+    "allPhotos": "See all {n} photos",
+    "parking": {
+      "one": "1 parking space",
+      "other": "{n} parking spaces"
+    },
+    "storage": "Storage room",
+    "factsExtra": {
+      "parking": "Parking",
+      "storage": "Storage room",
+      "units": "Homes of this type",
+      "development": "Development",
+      "yes": "Yes"
+    },
+    "specs": "Quality specifications",
+    "payment": "Payment plan",
+    "location": "Location",
+    "distances": "Distances",
+    "mapOpen": "See the area on the map",
+    "development": {
+      "title": "About the development",
+      "developer": "Developer",
+      "architect": "Architecture",
+      "units": "Homes",
+      "photos": "Development images"
+    },
+    "others": "Other homes in {name}",
+    "othersAll": "Other properties",
+    "featured": "Featured development",
+    "imagesNote": "Images: project renderings, for guidance only.",
+    "priceFromDev": "Development from {price}",
+    "priceFromNote": "Starting price of the development; price of each home on request.",
+    "bedroomsRange": "{a}–{b} bedrooms",
+    "parkingIncluded": "Parking included",
+    "completion": "Expected completion",
+    "amenities": "Communal areas and club",
+    "drivingTimes": "Approximate driving times",
+    "presentation": "Request an online presentation",
+    "presentationMessage": "Hello, I would like an online presentation of {dev} (floor plans, views and location). I am interested in “{title}” (ref. {ref}). {url}",
+    "purposesTitle": "What are you looking for?",
+    "purposeAll": "All",
+    "purposesIntro": "Our properties, organised by what you want from your next home.",
+    "purposeLabel": "Purpose",
+    "purposeCount": {
+      "one": "1 property",
+      "other": "{n} properties"
+    },
+    "purposes": {
+      "golf": {
+        "title": "Golf living",
+        "text": "Frontline golf homes, with a practice area for residents."
+      },
+      "sea": {
+        "title": "Sea views",
+        "text": "Developments with sea views; views depend on the position of each home."
+      },
+      "penthouse": {
+        "title": "Penthouses with solarium",
+        "text": "Top floor with a terrace and a private solarium."
+      },
+      "family": {
+        "title": "For families",
+        "text": "Three bedrooms, two bathrooms, pools and communal areas in a gated community."
+      },
+      "offplan": {
+        "title": "Off-plan new builds",
+        "text": "Homes under construction, with staged payments up to key handover."
+      }
+    }
+  },
+  "ru": {
+    "slug": "real-estate",
+    "nav": "Недвижимость",
+    "meta": {
+      "title": "Недвижимость · Объекты на продажу | 3DNA",
+      "description": "Объекты на продажу с 3DNA: фото, основные данные, планировки и 3D-тур, если они есть. Задайте вопрос о любом объекте или запишитесь на просмотр в WhatsApp.",
+      "ogImageAlt": "3DNA · Недвижимость, объекты на продажу"
+    },
+    "eyebrow": "Недвижимость",
+    "title": "Объекты на продажу",
+    "titleResidential": "Жильё на продажу",
+    "intro": "Каждый объект — с фотографиями, основными данными и, если есть, планировками и 3D-туром. Задайте вопрос или запишитесь на просмотр.",
+    "count": {
+      "one": "1 объект",
+      "few": "{n} объекта",
+      "many": "{n} объектов",
+      "other": "{n} объекта"
+    },
+    "countResidential": {
+      "one": "{n} объект жилья",
+      "few": "{n} объекта жилья",
+      "many": "{n} объектов жилья",
+      "other": "{n} объекта жилья"
+    },
+    "cta": "Смотреть объект",
+    "priceOnRequest": "Цена по запросу",
+    "status": {
+      "reserved": "Забронирован",
+      "sold": "Продан"
+    },
+    "units": {
+      "area": "{n} м²",
+      "bedrooms": {
+        "one": "{n} спальня",
+        "few": "{n} спальни",
+        "many": "{n} спален",
+        "other": "{n} спальни"
+      },
+      "bathrooms": {
+        "one": "{n} санузел",
+        "few": "{n} санузла",
+        "many": "{n} санузлов",
+        "other": "{n} санузла"
+      }
+    },
+    "facts": {
+      "title": "Основные данные",
+      "ref": "Номер объекта",
+      "price": "Цена",
+      "type": "Тип",
+      "location": "Расположение",
+      "area": "Общая площадь",
+      "plot": "Участок",
+      "bedrooms": "Спальни",
+      "bathrooms": "Санузлы",
+      "year": "Год постройки",
+      "energy": "Энергосертификат"
+    },
+    "gallery": "Фото",
+    "photoOf": "Фото {i} из {n}",
+    "openPhoto": "Увеличить фото",
+    "close": "Закрыть",
+    "prev": "Назад",
+    "next": "Далее",
+    "description": "Описание",
+    "features": "Особенности",
+    "floorPlans": "Планировки",
+    "tour": "3D-тур",
+    "tourOpen": "Открыть 3D-тур",
+    "back": "Все объекты",
+    "ask": {
+      "title": "Заинтересовал этот объект?",
+      "text": "Напишите нам, чтобы задать вопрос или договориться о просмотре. Укажите номер объекта {ref}.",
+      "visit": "Записаться на просмотр",
+      "question": "Задать вопрос",
+      "form": "Отправить сообщение",
+      "visitMessage": "Здравствуйте, я хотел(а) бы посмотреть объект «{title}» (ном. {ref}). {url}",
+      "questionMessage": "Здравствуйте, у меня вопрос по объекту «{title}» (ном. {ref}). {url}",
+      "formMessage": "Меня интересует объект «{title}» (ном. {ref}). "
+    },
+    "search": {
+      "title": "Расскажите, какое жильё вы ищете",
+      "textEmpty": "Пока объекты не опубликованы. Расскажите, что вы ищете — район, тип жилья, площадь, количество спален и бюджет, — и мы вам ответим.",
+      "text": "Не нашли подходящий вариант? Укажите район, тип жилья, площадь, количество спален и бюджет — и мы вам ответим.",
+      "whatsapp": "Написать в WhatsApp",
+      "form": "Отправить сообщение",
+      "message": "Здравствуйте, я ищу жильё. Район: , тип: , спален: , бюджет: ."
+    },
+    "home": "Главная",
+    "filters": {
+      "label": "Фильтр объектов",
+      "type": "Тип",
+      "beds": "Спальни",
+      "location": "Расположение",
+      "sort": "Сортировка",
+      "any": "Все",
+      "anyBeds": "Любое",
+      "bedsMin": "{n} и более",
+      "sortDefault": "Рекомендуемые",
+      "sortPriceAsc": "Цена: по возрастанию",
+      "sortPriceDesc": "Цена: по убыванию",
+      "shown": {
+        "one": "{n} результат",
+        "few": "{n} результата",
+        "many": "{n} результатов",
+        "other": "{n} результата"
+      },
+      "none": "Нет объектов, подходящих под эти фильтры.",
+      "reset": "Сбросить фильтры"
+    },
+    "allPhotos": "Все фото ({n})",
+    "parking": {
+      "one": "{n} машино-место",
+      "few": "{n} машино-места",
+      "many": "{n} машино-мест",
+      "other": "{n} машино-места"
+    },
+    "storage": "Кладовая",
+    "factsExtra": {
+      "parking": "Парковка",
+      "storage": "Кладовая",
+      "units": "Квартир этого типа",
+      "development": "Комплекс",
+      "yes": "Да"
+    },
+    "specs": "Спецификация отделки и качества",
+    "payment": "Условия оплаты",
+    "location": "Расположение",
+    "distances": "Расстояния",
+    "mapOpen": "Посмотреть район на карте",
+    "development": {
+      "title": "О жилом комплексе",
+      "developer": "Застройщик",
+      "architect": "Архитектура",
+      "units": "Квартир",
+      "photos": "Изображения комплекса"
+    },
+    "others": "Другие квартиры в {name}",
+    "othersAll": "Другие объекты",
+    "featured": "Рекомендуемый комплекс",
+    "imagesNote": "Изображения: визуализации проекта, носят ориентировочный характер.",
+    "priceFromDev": "Комплекс от {price}",
+    "priceFromNote": "Стартовая цена комплекса; цена каждой квартиры — по запросу.",
+    "bedroomsRange": "{a}–{b} спальни",
+    "parkingIncluded": "Паркинг включён",
+    "completion": "Плановая сдача",
+    "amenities": "Общие зоны и клуб",
+    "drivingTimes": "Примерное время на машине",
+    "presentation": "Запросить онлайн-презентацию",
+    "presentationMessage": "Здравствуйте, я хотел(а) бы онлайн-презентацию {dev} (планировки, виды и расположение). Меня интересует «{title}» (ном. {ref}). {url}",
+    "purposesTitle": "Что вы ищете?",
+    "purposeAll": "Все",
+    "purposesIntro": "Объекты, сгруппированные по тому, что вы ждёте от нового дома.",
+    "purposeLabel": "Цель",
+    "purposeCount": {
+      "one": "{n} объект",
+      "few": "{n} объекта",
+      "many": "{n} объектов",
+      "other": "{n} объекта"
+    },
+    "purposes": {
+      "golf": {
+        "title": "Жизнь у гольф-поля",
+        "text": "Квартиры на первой линии гольфа, с тренировочной зоной для жителей."
+      },
+      "sea": {
+        "title": "Вид на море",
+        "text": "Комплексы с видом на море; вид зависит от расположения квартиры."
+      },
+      "penthouse": {
+        "title": "Пентхаусы с солярием",
+        "text": "Верхний этаж с террасой и собственным солярием."
+      },
+      "family": {
+        "title": "Для семей",
+        "text": "Три спальни, два санузла, бассейны и общие зоны на закрытой территории."
+      },
+      "offplan": {
+        "title": "Новостройки на этапе строительства",
+        "text": "Квартиры в строительстве, с поэтапной оплатой до передачи ключей."
+      }
+    }
+  },
+  "uk": {
+    "slug": "real-estate",
+    "nav": "Нерухомість",
+    "meta": {
+      "title": "Нерухомість · Об’єкти на продаж | 3DNA",
+      "description": "Об’єкти на продаж з 3DNA: фото, основні дані, планування та 3D-тур, якщо вони є. Поставте запитання про будь-який об’єкт або запишіться на перегляд у WhatsApp.",
+      "ogImageAlt": "3DNA · Нерухомість, об’єкти на продаж"
+    },
+    "eyebrow": "Нерухомість",
+    "title": "Об’єкти на продаж",
+    "titleResidential": "Житло на продаж",
+    "intro": "Кожен об’єкт — з фотографіями, основними даними та, якщо є, плануваннями й 3D-туром. Поставте запитання або запишіться на перегляд.",
+    "count": {
+      "one": "{n} об’єкт",
+      "few": "{n} об’єкти",
+      "many": "{n} об’єктів",
+      "other": "{n} об’єкта"
+    },
+    "countResidential": {
+      "one": "{n} об’єкт житла",
+      "few": "{n} об’єкти житла",
+      "many": "{n} об’єктів житла",
+      "other": "{n} об’єкта житла"
+    },
+    "cta": "Переглянути об’єкт",
+    "priceOnRequest": "Ціна за запитом",
+    "status": {
+      "reserved": "Заброньовано",
+      "sold": "Продано"
+    },
+    "units": {
+      "area": "{n} м²",
+      "bedrooms": {
+        "one": "{n} спальня",
+        "few": "{n} спальні",
+        "many": "{n} спалень",
+        "other": "{n} спальні"
+      },
+      "bathrooms": {
+        "one": "{n} санвузол",
+        "few": "{n} санвузли",
+        "many": "{n} санвузлів",
+        "other": "{n} санвузла"
+      }
+    },
+    "facts": {
+      "title": "Основні дані",
+      "ref": "Номер об’єкта",
+      "price": "Ціна",
+      "type": "Тип",
+      "location": "Розташування",
+      "area": "Загальна площа",
+      "plot": "Ділянка",
+      "bedrooms": "Спальні",
+      "bathrooms": "Санвузли",
+      "year": "Рік будівництва",
+      "energy": "Енергосертифікат"
+    },
+    "gallery": "Фото",
+    "photoOf": "Фото {i} з {n}",
+    "openPhoto": "Збільшити фото",
+    "close": "Закрити",
+    "prev": "Назад",
+    "next": "Далі",
+    "description": "Опис",
+    "features": "Особливості",
+    "floorPlans": "Планування",
+    "tour": "3D-тур",
+    "tourOpen": "Відкрити 3D-тур",
+    "back": "Усі об’єкти",
+    "ask": {
+      "title": "Зацікавив цей об’єкт?",
+      "text": "Напишіть нам, щоб поставити запитання або домовитися про перегляд. Вкажіть номер об’єкта {ref}.",
+      "visit": "Записатися на перегляд",
+      "question": "Поставити запитання",
+      "form": "Надіслати повідомлення",
+      "visitMessage": "Вітаю, я хотів(ла) б переглянути об’єкт «{title}» (ном. {ref}). {url}",
+      "questionMessage": "Вітаю, у мене запитання щодо об’єкта «{title}» (ном. {ref}). {url}",
+      "formMessage": "Мене цікавить об’єкт «{title}» (ном. {ref}). "
+    },
+    "search": {
+      "title": "Розкажіть, яке житло ви шукаєте",
+      "textEmpty": "Поки що об’єкти не опубліковані. Розкажіть, що ви шукаєте — район, тип житла, площу, кількість спалень і бюджет, — і ми вам відповімо.",
+      "text": "Не знайшли потрібного? Вкажіть район, тип житла, площу, кількість спалень і бюджет — і ми вам відповімо.",
+      "whatsapp": "Написати у WhatsApp",
+      "form": "Надіслати повідомлення",
+      "message": "Вітаю, я шукаю житло. Район: , тип: , спалень: , бюджет: ."
+    },
+    "home": "Головна",
+    "filters": {
+      "label": "Фільтр об’єктів",
+      "type": "Тип",
+      "beds": "Спальні",
+      "location": "Розташування",
+      "sort": "Сортування",
+      "any": "Усі",
+      "anyBeds": "Будь-яка",
+      "bedsMin": "{n} і більше",
+      "sortDefault": "Рекомендовані",
+      "sortPriceAsc": "Ціна: за зростанням",
+      "sortPriceDesc": "Ціна: за спаданням",
+      "shown": {
+        "one": "{n} результат",
+        "few": "{n} результати",
+        "many": "{n} результатів",
+        "other": "{n} результату"
+      },
+      "none": "Немає об’єктів, що відповідають цим фільтрам.",
+      "reset": "Скинути фільтри"
+    },
+    "allPhotos": "Усі фото ({n})",
+    "parking": {
+      "one": "{n} машиномісце",
+      "few": "{n} машиномісця",
+      "many": "{n} машиномісць",
+      "other": "{n} машиномісця"
+    },
+    "storage": "Комора",
+    "factsExtra": {
+      "parking": "Паркінг",
+      "storage": "Комора",
+      "units": "Квартир цього типу",
+      "development": "Комплекс",
+      "yes": "Так"
+    },
+    "specs": "Специфікація оздоблення та якості",
+    "payment": "Умови оплати",
+    "location": "Розташування",
+    "distances": "Відстані",
+    "mapOpen": "Переглянути район на мапі",
+    "development": {
+      "title": "Про житловий комплекс",
+      "developer": "Забудовник",
+      "architect": "Архітектура",
+      "units": "Квартир",
+      "photos": "Зображення комплексу"
+    },
+    "others": "Інші квартири в {name}",
+    "othersAll": "Інші об’єкти",
+    "featured": "Рекомендований комплекс",
+    "imagesNote": "Зображення: візуалізації проєкту, мають орієнтовний характер.",
+    "priceFromDev": "Комплекс від {price}",
+    "priceFromNote": "Стартова ціна комплексу; ціна кожної квартири — за запитом.",
+    "bedroomsRange": "{a}–{b} спальні",
+    "parkingIncluded": "Паркінг включено",
+    "completion": "Планове здання",
+    "amenities": "Спільні зони та клуб",
+    "drivingTimes": "Приблизний час автомобілем",
+    "presentation": "Замовити онлайн-презентацію",
+    "presentationMessage": "Вітаю, я хотів(ла) б онлайн-презентацію {dev} (планування, види та розташування). Мене цікавить «{title}» (ном. {ref}). {url}",
+    "purposesTitle": "Що ви шукаєте?",
+    "purposeAll": "Усі",
+    "purposesIntro": "Об’єкти, згруповані за тим, чого ви чекаєте від нового дому.",
+    "purposeLabel": "Мета",
+    "purposeCount": {
+      "one": "{n} об’єкт",
+      "few": "{n} об’єкти",
+      "many": "{n} об’єктів",
+      "other": "{n} об’єкта"
+    },
+    "purposes": {
+      "golf": {
+        "title": "Життя біля гольф-поля",
+        "text": "Квартири на першій лінії гольфу, з тренувальною зоною для мешканців."
+      },
+      "sea": {
+        "title": "Вид на море",
+        "text": "Комплекси з видом на море; вид залежить від розташування квартири."
+      },
+      "penthouse": {
+        "title": "Пентхауси з солярієм",
+        "text": "Верхній поверх із терасою та власним солярієм."
+      },
+      "family": {
+        "title": "Для сімей",
+        "text": "Три спальні, два санвузли, басейни та спільні зони на закритій території."
+      },
+      "offplan": {
+        "title": "Новобудови на етапі будівництва",
+        "text": "Квартири в будівництві, з поетапною оплатою до передачі ключів."
+      }
+    }
+  }
+}
