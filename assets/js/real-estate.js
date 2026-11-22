@@ -123,3 +123,22 @@
   play();
   document.addEventListener("visibilitychange", function () { if (document.hidden) v.pause(); else play(); });
 })();
+
+// 3D site model: its module (three.js) loads when the viewer comes near the screen
+(function () {
+  "use strict";
+  var root = document.querySelector("[data-site-model-root]");
+  if (!root) return;
+  var load = function () {
+    if (root.getAttribute("data-sm-loaded")) return;
+    root.setAttribute("data-sm-loaded", "1");
+    var s = document.createElement("script");
+    s.type = "module"; s.src = root.getAttribute("data-sm-src");
+    s.onerror = function () { root.classList.add("is-no-webgl"); };
+    document.head.appendChild(s);
+  };
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); } }, { rootMargin: "600px 0px" });
+    io.observe(root);
+  } else load();
+})();

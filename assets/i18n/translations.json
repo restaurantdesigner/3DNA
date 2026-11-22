@@ -228,6 +228,18 @@
         "ogTitle": "Fitness: spaces designed to perform | 3DNA",
         "ogImageAlt": "Fitness club designed by 3DNA with the words: Spaces designed to perform."
       },
+      "voicesContent": {
+        "label": "A space that is also a set",
+        "attribution": "A modern space is more than function: it is also a stage.",
+        "items": [
+          "I want to film my videos here.",
+          "I want a corner with good light for my reels.",
+          "I want to create content without leaving the club.",
+          "I want my workout to look as good as it feels.",
+          "I want a backdrop my followers recognise.",
+          "I want a place to film, train and share."
+        ]
+      },
       "voices": {
         "label": "What your members want",
         "attribution": "What your members want",
@@ -251,13 +263,13 @@
           "label": "01 / 24/7 access",
           "heading": "Your club. Any time.",
           "body": "Train whenever you want. A space designed to fit your rhythm of life.",
-          "videoLabel": "Presentation of 24-hour access to a fitness club, part 1."
+          "videoLabel": "At night, a member arrives at the club, opens the door, goes through the turnstile and into the gym: 24-hour access."
         },
         "s2": {
           "label": "02 / Experience",
           "heading": "Freedom to train.",
           "body": "An access experience designed for comfort, autonomy and flexibility.",
-          "videoLabel": "Presentation of 24-hour access to a fitness club, part 2."
+          "videoLabel": "The same member leaves through the turnstile and the glass door onto the street, at night."
         },
         "ui": {
           "play": "Play video",
@@ -351,25 +363,25 @@
         }
       },
       "details": {
-        "label": "07 / Details",
-        "heading": "Details build identity.",
+        "heading": "Every detail counts when the gym is in use",
+        "intro": "The member experience starts at the door. We design lighting, layout and finishes so members can find their way, move between zones and reach the equipment they need while the gym is busy.",
         "items": [
           {
-            "name": "Lighting",
-            "text": "Linear light that guides and gives the space its rhythm.",
-            "alt": "Ceiling with LED light lines and lit columns."
+            "name": "Lighting that guides",
+            "text": "Lines of light follow the routes and highlight the training zones. Warm light at the back adds depth and gives the space its identity."
           },
           {
-            "name": "Materials and equipment",
-            "text": "Hard-wearing surfaces and equipment built into the route.",
-            "alt": "Training bench next to a lane marked on the floor."
+            "name": "Room to train and to move",
+            "text": "The equipment layout and floor markings separate workout areas from walkways, even at the busiest hours."
           },
           {
-            "name": "Identity",
-            "text": "The brand built into the architecture.",
-            "alt": "Back wall with an illuminated logo and medicine-ball shelving."
+            "name": "Materials made for daily use",
+            "text": "Floors and finishes are chosen for the type of training in each zone, the foot traffic and the gym's routine maintenance."
           }
-        ]
+        ],
+        "cta": "Let's talk about your gym",
+        "alt": "Strength area with LED light lines on the ceiling, a numbered track on the floor, training racks and the back wall with the lit logo.",
+        "ctaMessage": "Hello, I'd like to talk about the design of my gym."
       },
       "result": {
         "label": "08 / Result",
@@ -2444,6 +2456,18 @@
         "ogTitle": "Gimnasios: espacios diseñados para rendir | 3DNA",
         "ogImageAlt": "Club fitness diseñado por 3DNA con el texto: Espacios diseñados para rendir."
       },
+      "voicesContent": {
+        "label": "Un espacio que también es plató",
+        "attribution": "Un espacio moderno es más que funcionalidad: también es escenario.",
+        "items": [
+          "Quiero grabar mis vídeos aquí.",
+          "Quiero un rincón con buena luz para mis reels.",
+          "Quiero crear contenido sin salir del club.",
+          "Quiero que mi entrenamiento se vea tan bien como se siente.",
+          "Quiero un fondo que mis seguidores reconozcan.",
+          "Quiero un espacio donde grabar, entrenar y compartir."
+        ]
+      },
       "voices": {
         "label": "Lo que buscan tus clientes",
         "attribution": "Lo que buscan tus clientes",
@@ -2467,13 +2491,13 @@
           "label": "01 / Acceso 24/7",
           "heading": "Tu club. A cualquier hora.",
           "body": "Entrena cuando quieras. Un espacio pensado para adaptarse a tu ritmo de vida.",
-          "videoLabel": "Presentación del acceso 24 horas a un club fitness, parte 1."
+          "videoLabel": "De noche, una socia llega al club, abre la puerta, pasa el torno y entra en la sala: acceso 24 horas."
         },
         "s2": {
           "label": "02 / Experiencia",
           "heading": "Libertad para entrenar.",
           "body": "Una experiencia de acceso diseñada para ofrecer comodidad, autonomía y flexibilidad.",
-          "videoLabel": "Presentación del acceso 24 horas a un club fitness, parte 2."
+          "videoLabel": "La misma socia sale por el torno y la puerta de vidrio a la calle, de noche."
         },
         "ui": {
           "play": "Reproducir vídeo",
@@ -2567,25 +2591,25 @@
         }
       },
       "details": {
-        "label": "07 / Detalles",
-        "heading": "Los detalles construyen la identidad.",
+        "heading": "Cada detalle cuenta cuando el gimnasio está en uso",
+        "intro": "La experiencia del socio empieza al entrar. Diseñamos la iluminación, la distribución y los acabados para que pueda orientarse, moverse entre zonas y encontrar el equipo que necesita mientras el gimnasio está en uso.",
         "items": [
           {
-            "name": "Iluminación",
-            "text": "Luz lineal que guía y da ritmo al espacio.",
-            "alt": "Techo con líneas de luz LED y pilares iluminados."
+            "name": "Iluminación que guía",
+            "text": "Las líneas de luz acompañan los recorridos y destacan las zonas de entrenamiento. La luz cálida del fondo aporta profundidad y da identidad al espacio."
           },
           {
-            "name": "Materiales y equipamiento",
-            "text": "Superficies resistentes y equipamiento integrado en el recorrido.",
-            "alt": "Banco de entrenamiento junto a una pista marcada en el suelo."
+            "name": "Espacio para entrenar y circular",
+            "text": "La distribución del equipamiento y la señalización del suelo ayudan a distinguir las zonas de trabajo de las de paso, también en las horas de mayor afluencia."
           },
           {
-            "name": "Identidad",
-            "text": "La marca integrada en la arquitectura.",
-            "alt": "Pared del fondo con el logotipo iluminado y estanterías de balones medicinales."
+            "name": "Materiales pensados para el uso diario",
+            "text": "La elección de pavimentos y acabados tiene en cuenta el tipo de entrenamiento de cada zona, el tránsito y el mantenimiento habitual del gimnasio."
           }
-        ]
+        ],
+        "cta": "Hablemos de tu gimnasio",
+        "alt": "Sala de fuerza con líneas de luz LED en el techo, una pista numerada en el suelo, racks de musculación y la pared del fondo con el logotipo iluminado.",
+        "ctaMessage": "Hola, me gustaría hablar sobre el diseño de mi gimnasio."
       },
       "result": {
         "label": "08 / Resultado",
@@ -4660,6 +4684,18 @@
         "ogTitle": "Фитнес: пространства, созданные для результата | 3DNA",
         "ogImageAlt": "Фитнес-клуб от 3DNA с текстом: Пространства, созданные для результата."
       },
+      "voicesContent": {
+        "label": "Пространство, которое ещё и съёмочная площадка",
+        "attribution": "Современное пространство — это больше, чем функциональность: это ещё и сцена.",
+        "items": [
+          "Хочу снимать свои видео здесь.",
+          "Хочу уголок с хорошим светом для рилс.",
+          "Хочу создавать контент, не выходя из клуба.",
+          "Хочу, чтобы тренировка выглядела так же хорошо, как ощущается.",
+          "Хочу фон, который узнают мои подписчики.",
+          "Хочу место, где можно снимать, тренироваться и делиться."
+        ]
+      },
       "voices": {
         "label": "Чего хотят ваши клиенты",
         "attribution": "Чего хотят ваши клиенты",
@@ -4683,13 +4719,13 @@
           "label": "01 / Доступ 24/7",
           "heading": "Ваш клуб. В любое время.",
           "body": "Тренируйтесь, когда хотите. Пространство, которое подстраивается под ваш ритм жизни.",
-          "videoLabel": "Презентация круглосуточного доступа в фитнес-клуб, часть 1."
+          "videoLabel": "Ночью участница приходит в клуб, открывает дверь, проходит через турникет и входит в зал: доступ 24 часа."
         },
         "s2": {
           "label": "02 / Впечатление",
           "heading": "Свобода тренироваться.",
           "body": "Доступ, продуманный для удобства, самостоятельности и гибкости.",
-          "videoLabel": "Презентация круглосуточного доступа в фитнес-клуб, часть 2."
+          "videoLabel": "Та же участница выходит через турникет и стеклянную дверь на улицу, ночью."
         },
         "ui": {
           "play": "Воспроизвести видео",
@@ -4783,25 +4819,25 @@
         }
       },
       "details": {
-        "label": "07 / Детали",
-        "heading": "Детали создают характер.",
+        "heading": "Каждая деталь важна, когда зал работает",
+        "intro": "Впечатление клиента начинается с входа. Мы проектируем освещение, планировку и отделку так, чтобы человек легко ориентировался, переходил между зонами и находил нужное оборудование, пока зал заполнен.",
         "items": [
           {
-            "name": "Свет",
-            "text": "Линейный свет направляет и задаёт ритм пространству.",
-            "alt": "Потолок с линиями светодиодного света и подсвеченными колоннами."
+            "name": "Свет, который ведёт",
+            "text": "Световые линии сопровождают маршруты и выделяют тренировочные зоны. Тёплый свет в глубине добавляет объём и создаёт характер пространства."
           },
           {
-            "name": "Материалы и оборудование",
-            "text": "Износостойкие поверхности и оборудование, встроенное в маршрут.",
-            "alt": "Скамья для тренировок рядом с разметкой на полу."
+            "name": "Место для тренировок и движения",
+            "text": "Расстановка оборудования и разметка на полу отделяют рабочие зоны от проходов — даже в часы пик."
           },
           {
-            "name": "Айдентика",
-            "text": "Бренд, встроенный в архитектуру.",
-            "alt": "Задняя стена с подсвеченным логотипом и стеллажами с медболами."
+            "name": "Материалы для ежедневной нагрузки",
+            "text": "Покрытия и отделка подбираются под тип тренировок в каждой зоне, поток людей и регулярное обслуживание зала."
           }
-        ]
+        ],
+        "cta": "Обсудим ваш зал",
+        "alt": "Силовая зона со световыми LED-линиями на потолке, нумерованной дорожкой на полу, стойками и подсвеченным логотипом на дальней стене.",
+        "ctaMessage": "Здравствуйте, хочу обсудить дизайн моего зала."
       },
       "result": {
         "label": "08 / Результат",
@@ -6876,6 +6912,18 @@
         "ogTitle": "Фітнес: простори, створені для результату | 3DNA",
         "ogImageAlt": "Фітнес-клуб від 3DNA з текстом: Простори, створені для результату."
       },
+      "voicesContent": {
+        "label": "Простір, який є ще й знімальним майданчиком",
+        "attribution": "Сучасний простір — це більше, ніж функціональність: це ще й сцена.",
+        "items": [
+          "Хочу знімати свої відео тут.",
+          "Хочу куточок із гарним світлом для рілс.",
+          "Хочу створювати контент, не виходячи з клубу.",
+          "Хочу, щоб тренування виглядало так само добре, як відчувається.",
+          "Хочу фон, який упізнають мої підписники.",
+          "Хочу місце, де можна знімати, тренуватися й ділитися."
+        ]
+      },
       "voices": {
         "label": "Чого хочуть ваші клієнти",
         "attribution": "Чого хочуть ваші клієнти",
@@ -6899,13 +6947,13 @@
           "label": "01 / Доступ 24/7",
           "heading": "Ваш клуб. У будь-який час.",
           "body": "Тренуйтеся, коли хочете. Простір, що підлаштовується під ваш ритм життя.",
-          "videoLabel": "Презентація цілодобового доступу до фітнес-клубу, частина 1."
+          "videoLabel": "Уночі учасниця приходить до клубу, відчиняє двері, проходить через турнікет і заходить у зал: доступ 24 години."
         },
         "s2": {
           "label": "02 / Враження",
           "heading": "Свобода тренуватися.",
           "body": "Доступ, продуманий для зручності, самостійності та гнучкості.",
-          "videoLabel": "Презентація цілодобового доступу до фітнес-клубу, частина 2."
+          "videoLabel": "Та сама учасниця виходить через турнікет і скляні двері на вулицю, уночі."
         },
         "ui": {
           "play": "Відтворити відео",
@@ -6999,25 +7047,25 @@
         }
       },
       "details": {
-        "label": "07 / Деталі",
-        "heading": "Деталі створюють характер.",
+        "heading": "Кожна деталь важлива, коли зал працює",
+        "intro": "Враження клієнта починається з входу. Ми проєктуємо освітлення, планування та оздоблення так, щоб людина легко орієнтувалася, переходила між зонами й знаходила потрібне обладнання, поки зал заповнений.",
         "items": [
           {
-            "name": "Світло",
-            "text": "Лінійне світло скеровує й задає ритм простору.",
-            "alt": "Стеля з лініями світлодіодного світла та підсвіченими колонами."
+            "name": "Світло, що веде",
+            "text": "Світлові лінії супроводжують маршрути й виділяють тренувальні зони. Тепле світло в глибині додає об’єму та створює характер простору."
           },
           {
-            "name": "Матеріали та обладнання",
-            "text": "Зносостійкі поверхні та обладнання, вбудоване в маршрут.",
-            "alt": "Лава для тренувань поруч із розміткою на підлозі."
+            "name": "Місце для тренувань і руху",
+            "text": "Розстановка обладнання та розмітка на підлозі відокремлюють робочі зони від проходів — навіть у години пік."
           },
           {
-            "name": "Айдентика",
-            "text": "Бренд, вбудований в архітектуру.",
-            "alt": "Задня стіна з підсвіченим логотипом і стелажами з медболами."
+            "name": "Матеріали для щоденного навантаження",
+            "text": "Покриття й оздоблення добираються під тип тренувань у кожній зоні, потік людей і регулярне обслуговування залу."
           }
-        ]
+        ],
+        "cta": "Поговорімо про ваш зал",
+        "alt": "Силова зона зі світловими LED-лініями на стелі, нумерованою доріжкою на підлозі, стійками та підсвіченим логотипом на дальній стіні.",
+        "ctaMessage": "Вітаю, хочу обговорити дизайн мого залу."
       },
       "result": {
         "label": "08 / Результат",

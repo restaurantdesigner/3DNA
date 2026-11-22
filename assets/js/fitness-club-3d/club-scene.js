@@ -23,6 +23,7 @@ import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.j
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 // same ?v= cache-buster as this module, so both update together on deploy
 const { createClubEquipment } = await import(`./club-equipment.js${new URL(import.meta.url).search}`);
+const POST3D = await import(`/assets/js/shared-3d/post.js${new URL(import.meta.url).search}`);
 
 // all inputs indexed (RoundedBoxGeometry is not), so mixed lists merge
 const mergeGeometries = (list, groups = false) => mergeRaw(list.map((g) => {
@@ -113,7 +114,7 @@ export async function createClubScene({ container, labels: labelsEl, data, reduc
   scene.add(key, key.target);
   if (renderer.shadowMap.enabled) {
     key.castShadow = true;
-    key.shadow.mapSize.set(2048, 2048);
+    key.shadow.mapSize.set(lowPower ? 2048 : 4096, lowPower ? 2048 : 4096);
     Object.assign(key.shadow.camera, { left: -26, right: 26, top: 22, bottom: -22, near: 5, far: 90 });
     key.shadow.bias = -0.0004;
     key.shadow.normalBias = 0.03;
@@ -145,6 +146,8 @@ export async function createClubScene({ container, labels: labelsEl, data, reduc
 
   // ---------- camera + controls ----------
   const camera = new THREE.PerspectiveCamera(30, 1, 0.3, 400);
+  // ambient occlusion + MSAA (assets/js/shared-3d/post.js); falls back to plain rendering
+  const post = POST3D.createPost(renderer, scene, camera, { lowPower, onReady: () => { dirty = true; } });
   // three-quarter view from the street corner; on portrait screens from the
   // side street, so the long side of the club runs up the screen
   let HOME_AZ = 0.6;
@@ -356,7 +359,7 @@ export async function createClubScene({ container, labels: labelsEl, data, reduc
   function resize() {
     const { clientWidth: w, clientHeight: h } = container;
     if (!w || !h) return;
-    renderer.setSize(w, h, false);
+    renderer.setSize(w, h, false); post.setSize(w, h);
     camera.fov = w / h < 1 ? 40 : 30;
     HOME_AZ = w / h < 0.9 ? 1.2 : 0.6;
     controls.minAzimuthAngle = HOME_AZ - 1.5;
@@ -398,7 +401,7 @@ export async function createClubScene({ container, labels: labelsEl, data, reduc
     if (controls.update()) dirty = true;
     if (!dirty) return;
     dirty = false;
-    renderer.render(scene, camera);
+    post.render();
     updatePins();
   }
   requestAnimationFrame(frame);
@@ -429,8 +432,7 @@ export async function createClubScene({ container, labels: labelsEl, data, reduc
     const wallMat = makeMat("frame");
     wallMat.color.setHex(0x26272b); wallMat.metalness = 0; wallMat.roughness = 0.88;
     wallMat.userData.baseColor = wallMat.color.clone();
-    const wallTop = makeMat("frame");
-    wallTop.color.setHex(0x3b3d42); wallTop.metalness = 0; wallTop.roughness = 0.9;
+    const wallTop = POST3D.sectionCutMaterial();   // section cut: solid black
     const plinthMat = makeMat("frame");
     plinthMat.color.setHex(0x17181b); plinthMat.metalness = 0; plinthMat.roughness = 0.9;
     const concrete = makeMat("frame");

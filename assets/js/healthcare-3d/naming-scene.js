@@ -24,6 +24,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 // same ?v= for every module of this scene (shared kit: assets/js/shared-3d/archviz.js)
 const V = new URL(import.meta.url).search;
 const K = await import(`/assets/js/shared-3d/archviz.js${V}`);
+const POST3D = await import(`/assets/js/shared-3d/post.js${V}`);
 const { defineHospitalModels } = await import(`./hospital-equipment.js${V}`);
 
 // bright healthcare palette: warm whites, light oak, sage and teal accents, brushed metal
@@ -80,6 +81,8 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(32, 1, 0.3, 400);
+  // ambient occlusion + MSAA (assets/js/shared-3d/post.js); falls back to plain rendering
+  const post = POST3D.createPost(renderer, scene, camera, { lowPower, onReady: () => { dirty = true; } });
   // elevated three-quarter view from the entrance side; distance fitted to the building
   const HOME_TARGET = new THREE.Vector3(FW / 2, 0, FD / 2 + 1.0);
   const narrow = () => camera.aspect < 1.2; // phones: square viewport
@@ -268,7 +271,7 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
   function resize() {
     const { clientWidth: w, clientHeight: h } = container;
     if (!w || !h) return;
-    renderer.setSize(w, h, false);
+    renderer.setSize(w, h, false); post.setSize(w, h);
     camera.aspect = w / h;
     camera.fov = narrow() ? 40 : 32;
     camera.updateProjectionMatrix();
@@ -313,7 +316,7 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
     // the canopy carries the centre's name: it only steps aside for very close views
     if (root.userData.canopy) root.userData.canopy.visible = camera.position.distanceTo(controls.target) >= homeDist * 0.35;
     if (root.userData.ceiling) root.userData.ceiling.visible = far;
-    renderer.render(scene, camera);
+    post.render();
     updateOverlay();
   }
   requestAnimationFrame(frame);
@@ -570,7 +573,7 @@ export async function createNamingScene({ container, spotsEl, data, reducedMotio
     wallZ(15, FD, 36.5, H_INT, [[20, 21.2]]);
 
     add(K.mergeGeometries(walls), plain(0xf6f3ee, 0.9));
-    add(K.mergeGeometries(caps), plain(0xd9d3c9, 0.8), { cast: false });
+    add(K.mergeGeometries(caps), POST3D.sectionCutMaterial(), { cast: false });   // section cut: solid black
     add(K.mergeGeometries(skirt), MAT.shared("woodDark"), { cast: false });
     add(K.mergeGeometries(glassG), MAT.shared("glass"), { cast: false, receive: false, order: 3 });
     add(K.mergeGeometries(mull), MAT.shared("dark"));

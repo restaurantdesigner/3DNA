@@ -120,7 +120,13 @@
         "altKey": "cardCover",
         "video": "/videos/fitness/projects/santa-locura/hero-slow.mp4",
         "portrait": true,
-        "mode": "hero"
+        "mode": "hero",
+        "logo": {
+          "src": "/images/fitness/projects/santa-locura/logo.webp",
+          "width": 1200,
+          "height": 295
+        },
+        "statusKey": "statusLine"
       }
     }
   ]

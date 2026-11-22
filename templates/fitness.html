@@ -113,6 +113,14 @@
     </div>
   </section>
 
+  <!-- QUOTE SPACER before the client project: the space as a set for videos and content
+       (illustrative wishes, not testimonials). Same component, compact. Text: fitnessPage.voicesContent.* -->
+{{fitnessPage.voicesContentHtml}}
+
+  <!-- Client projects in development (assets/data/projects.json, sector "fitness"): right after
+       "01 / Del plano a la realidad" (Santa Locura Fitness) -->
+{{fitness.projectsHtml}}
+
   <!-- Gym profitability calculator (#calculadora): a tool, not a chapter, so it carries no number -->
 {{fitnessPage.calcHtml}}
 
@@ -122,37 +130,34 @@
        Each video has its own sound button; sound is never turned on by hover, and
        only one video has sound at a time. Files load only on first interaction
        (preload="none" + poster). Behaviour: main.js "HOVER VIDEOS". -->
-  <section class="fscene faccess" id="acceso-24-7-1" aria-labelledby="f-access-1-title">
-    <div class="faccess__inner">
-      <div class="faccess__media" data-hvideo>
+  <!-- 24/7 ACCESS: arriving at night (entrada) and leaving (salida), side by side on desktop;
+       phones: video, text, video, text. #acceso-24-7-2 still points at the second part. -->
+  <section class="fscene faccess faccess--pair" id="acceso-24-7-1" aria-labelledby="f-access-1-title">
+    <div class="faccess__inner faccess__pair">
+      <div class="faccess__text faccess__text--1">
+        <p class="fscene__label">{{fitnessPage.access.s1.label}}</p>
+        <h2 class="fscene__title" id="f-access-1-title">{{fitnessPage.access.s1.heading}}</h2>
+        <p class="fscene__body">{{fitnessPage.access.s1.body}}</p>
+      </div>
+      <div class="faccess__media faccess__media--1" data-hvideo>
         <video class="faccess__video" playsinline webkit-playsinline muted preload="none" tabindex="-1"
-          width="720" height="1280" poster="/images/fitness/access-24-7-part1.webp"
-          data-video="/videos/fitness/access/access-24-7-part1.mp4" aria-label="{{fitnessPage.access.s1.videoLabel}}"></video>
+          width="720" height="1280" poster="/images/fitness/access-24-7-entrada.webp"
+          data-video="/videos/fitness/access/access-24-7-entrada.mp4" aria-label="{{fitnessPage.access.s1.videoLabel}}"></video>
         <span class="faccess__hint" aria-hidden="true"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
         <button type="button" class="faccess__btn faccess__btn--play" data-hv-play aria-pressed="false"
           aria-label="{{fitnessPage.access.ui.play}}" data-label-play="{{fitnessPage.access.ui.play}}" data-label-pause="{{fitnessPage.access.ui.pause}}"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="faccess__i faccess__i--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
         <button type="button" class="faccess__btn faccess__btn--sound" data-hv-sound aria-pressed="false"
           aria-label="{{fitnessPage.access.ui.soundOn}}" data-label-on="{{fitnessPage.access.ui.soundOn}}" data-label-off="{{fitnessPage.access.ui.soundOff}}"><svg class="faccess__i faccess__i--muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><svg class="faccess__i faccess__i--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>
       </div>
-      <div class="faccess__text">
-        <p class="fscene__label">{{fitnessPage.access.s1.label}}</p>
-        <h2 class="fscene__title" id="f-access-1-title">{{fitnessPage.access.s1.heading}}</h2>
-        <p class="fscene__body">{{fitnessPage.access.s1.body}}</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="fscene faccess faccess--reverse" id="acceso-24-7-2" aria-labelledby="f-access-2-title">
-    <div class="faccess__inner">
-      <div class="faccess__text">
+      <div class="faccess__text faccess__text--2" id="acceso-24-7-2">
         <p class="fscene__label">{{fitnessPage.access.s2.label}}</p>
-        <h2 class="fscene__title" id="f-access-2-title">{{fitnessPage.access.s2.heading}}</h2>
+        <h3 class="fscene__title faccess__title--2" id="f-access-2-title">{{fitnessPage.access.s2.heading}}</h3>
         <p class="fscene__body">{{fitnessPage.access.s2.body}}</p>
       </div>
-      <div class="faccess__media" data-hvideo>
+      <div class="faccess__media faccess__media--2" data-hvideo>
         <video class="faccess__video" playsinline webkit-playsinline muted preload="none" tabindex="-1"
-          width="720" height="1280" poster="/images/fitness/access-24-7-part2.webp"
-          data-video="/videos/fitness/access/access-24-7-part2.mp4" aria-label="{{fitnessPage.access.s2.videoLabel}}"></video>
+          width="720" height="1280" poster="/images/fitness/access-24-7-salida.webp"
+          data-video="/videos/fitness/access/access-24-7-salida.mp4" aria-label="{{fitnessPage.access.s2.videoLabel}}"></video>
         <span class="faccess__hint" aria-hidden="true"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
         <button type="button" class="faccess__btn faccess__btn--play" data-hv-play aria-pressed="false"
           aria-label="{{fitnessPage.access.ui.play}}" data-label-play="{{fitnessPage.access.ui.play}}" data-label-pause="{{fitnessPage.access.ui.pause}}"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="faccess__i faccess__i--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
@@ -212,38 +217,63 @@
 
   <!-- 07 SELECTED WORK: only concept work that exists (the supplied visualization).
        Completed projects are added here as more <article class="fwork__item"> entries. -->
-  <section class="fscene fwork" id="trabajo" aria-labelledby="f-work-title">
-    <div class="fscene__inner">
-      <p class="fscene__label">{{fitnessPage.work.label}}</p>
-      <h2 class="fscene__title" id="f-work-title">{{fitnessPage.work.heading}}</h2>
-      <p class="fscene__body fwork__note">{{fitnessPage.work.note}}</p>
-      <article class="fwork__item">
-        <div class="fwork__pair">
-          <figure class="fwork__fig">
-            <img src="/images/fitness/hero-before.webp" width="1280" height="720" loading="lazy" decoding="async" alt="{{fitnessPage.work.items.transformation.beforeAlt}}">
-            <figcaption>{{fitnessPage.work.items.transformation.before}}</figcaption>
-          </figure>
-          <figure class="fwork__fig">
-            <img src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt="{{fitnessPage.work.items.transformation.afterAlt}}">
-            <figcaption>{{fitnessPage.work.items.transformation.after}}</figcaption>
-          </figure>
-        </div>
+  <section class="fscene fwork fwork--full" id="trabajo" aria-labelledby="f-work-title">
+    <!-- one full-screen picture: drag (or use the arrow keys on) the divider to compare before / after -->
+    <div class="fcompare" data-fcompare style="--pos: 50%">
+      <img class="fcompare__img" src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt="{{fitnessPage.work.items.transformation.afterAlt}}">
+      <div class="fcompare__before"><img class="fcompare__img" src="/images/fitness/hero-before.webp" width="1280" height="720" loading="lazy" decoding="async" alt="{{fitnessPage.work.items.transformation.beforeAlt}}"></div>
+      <span class="fcompare__tag fcompare__tag--before" aria-hidden="true">{{fitnessPage.work.items.transformation.before}}</span>
+      <span class="fcompare__tag fcompare__tag--after" aria-hidden="true">{{fitnessPage.work.items.transformation.after}}</span>
+      <div class="fcompare__line" aria-hidden="true"><span class="fcompare__knob"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <input class="fcompare__range" type="range" min="0" max="100" step="1" value="50"
+        aria-label="{{fitnessPage.work.items.transformation.before}} / {{fitnessPage.work.items.transformation.after}}">
+      <div class="fwork__overlay">
+        <p class="fscene__label">{{fitnessPage.work.label}}</p>
+        <h2 class="fscene__title" id="f-work-title">{{fitnessPage.work.heading}}</h2>
+        <p class="fscene__body fwork__note">{{fitnessPage.work.note}}</p>
         <p class="fwork__kind">{{fitnessPage.work.items.transformation.kind}}</p>
         <h3 class="fwork__title">{{fitnessPage.work.items.transformation.title}}</h3>
-      </article>
+      </div>
     </div>
+    <script>
+      (function () {
+        var box = document.querySelector('[data-fcompare]');
+        if (!box) return;
+        var range = box.querySelector('.fcompare__range');
+        var set = function (v) { v = Math.max(0, Math.min(100, v)); box.style.setProperty('--pos', v + '%'); range.value = Math.round(v); };
+        range.addEventListener('input', function () { set(Number(range.value)); });
+        var drag = false;
+        var at = function (e) { var r = box.getBoundingClientRect(); set(((e.clientX - r.left) / r.width) * 100); };
+        box.addEventListener('pointerdown', function (e) {
+          if (e.target.closest('.fwork__overlay a')) return;
+          drag = true; at(e); if (box.setPointerCapture) box.setPointerCapture(e.pointerId);
+        });
+        box.addEventListener('pointermove', function (e) { if (drag) at(e); });
+        var end = function () { drag = false; };
+        box.addEventListener('pointerup', end); box.addEventListener('pointercancel', end);
+      })();
+    </script>
   </section>
 
-  <!-- 08 ARCHITECTURAL DETAILS -->
-  <section class="fscene fdetails" id="detalles" aria-labelledby="f-details-title">
-    <div class="fscene__inner">
-      <p class="fscene__label">{{fitnessPage.details.label}}</p>
-      <h2 class="fscene__title" id="f-details-title">{{fitnessPage.details.heading}}</h2>
-      <div class="fdetails__grid">
-        <figure class="fdetails__item"><img src="/images/fitness/detail-lighting.webp" width="460" height="460" loading="lazy" decoding="async" alt="{{fitnessPage.details.items.0.alt}}"><figcaption><strong>{{fitnessPage.details.items.0.name}}</strong> {{fitnessPage.details.items.0.text}}</figcaption></figure>
-        <figure class="fdetails__item"><img src="/images/fitness/detail-materials.webp" width="460" height="400" loading="lazy" decoding="async" alt="{{fitnessPage.details.items.1.alt}}"><figcaption><strong>{{fitnessPage.details.items.1.name}}</strong> {{fitnessPage.details.items.1.text}}</figcaption></figure>
-        <figure class="fdetails__item"><img src="/images/fitness/detail-identity.webp" width="420" height="420" loading="lazy" decoding="async" alt="{{fitnessPage.details.items.2.alt}}"><figcaption><strong>{{fitnessPage.details.items.2.name}}</strong> {{fitnessPage.details.items.2.text}}</figcaption></figure>
+  <!-- DETAILS: copy on the left, one strong image on the right (the strength area: LED light lines,
+       numbered floor track, racks and the lit logo wall). Phones: headline + intro, image, points, CTA.
+       The CTA opens the site's project panel (.open-panel). Text: fitnessPage.details.* -->
+  <section class="fscene fdetails fdetails--split" id="detalles" aria-labelledby="f-details-title">
+    <div class="fdetails__inner">
+      <div class="fdetails__head">
+        <h2 class="fscene__title" id="f-details-title">{{fitnessPage.details.heading}}</h2>
+        <p class="fscene__body fdetails__intro">{{fitnessPage.details.intro}}</p>
       </div>
+      <figure class="fdetails__media">
+        <img src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt="{{fitnessPage.details.alt}}">
+      </figure>
+      <dl class="fdetails__points">
+        <div><dt>{{fitnessPage.details.items.0.name}}</dt><dd>{{fitnessPage.details.items.0.text}}</dd></div>
+        <div><dt>{{fitnessPage.details.items.1.name}}</dt><dd>{{fitnessPage.details.items.1.text}}</dd></div>
+        <div><dt>{{fitnessPage.details.items.2.name}}</dt><dd>{{fitnessPage.details.items.2.text}}</dd></div>
+      </dl>
+      <p class="fdetails__cta-wrap"><button type="button" class="fdetails__cta open-panel" data-panel-message="{{fitnessPage.details.ctaMessage}}"
+        data-track="start_project_clicked" data-track-location="fitness_details">{{fitnessPage.details.cta}} <span aria-hidden="true">&rarr;</span></button></p>
     </div>
   </section>
 
@@ -386,8 +416,6 @@
     </div>
   </section>
 
-  <!-- Client projects in development (assets/data/projects.json, sector "fitness"): after the case study -->
-{{fitness.projectsHtml}}
 
   <!-- 10 CONTACT -->
   <section class="fscene fcontact" id="contacto" aria-labelledby="f-contact-title">
@@ -420,7 +448,7 @@
 {{layout.footer}}
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261010b"></script>
-<script src="/assets/js/fitness-club-3d/club-app.js?v=20261101a" defer></script>
+<script src="/assets/js/fitness-club-3d/club-app.js?v=20261122c" defer></script>
 <script src="/assets/js/fitness-case-study.js?v=20261021i" defer></script>
 <script src="/assets/js/shared-calc/calc-tools.js?v=20261119a" defer></script>
 <script src="/assets/js/fitness-calc.js?v=20261030a" defer></script>

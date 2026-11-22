@@ -68,7 +68,10 @@
       "Referencia / acabado",
       "Cantidad"
     ],
-    "specNote": "Referencias propuestas, pendientes de confirmar con muestras y medición en obra. Sin precios ni potencias."
+    "specNote": "Referencias propuestas, pendientes de confirmar con muestras y medición en obra. Sin precios ni potencias.",
+    "projects": "Proyectos en desarrollo",
+    "crumbCurrent": "Santa Locura Fitness",
+    "crumbsLabel": "Ruta de navegación"
   },
   "items": [
     {

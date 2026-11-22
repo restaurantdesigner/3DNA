@@ -3,7 +3,8 @@
     "slug": "proyectos",
     "section": {
       "eyebrow": "Proyectos en desarrollo",
-      "label": "Proyectos de clientes en desarrollo"
+      "label": "Proyectos de clientes en desarrollo",
+      "chapter": "{n} / En obra"
     },
     "category": {
       "restaurantInterior": "Diseño de interiores de restaurante",
@@ -77,7 +78,8 @@
       "santa-locura": {
         "text": {
           "cardSummary": "Propuesta visual de reforma en tres opciones de acceso: puerta de vidrio, torno de altura completa o dos tornos trípode. Focos, tira LED, neón, grafito, pavimento y zona de espera.",
-          "cardCover": "Recepción de Santa Locura Fitness: estado actual y propuesta"
+          "cardCover": "Recepción de Santa Locura Fitness: estado actual y propuesta",
+          "statusLine": "Propuesta visual · Pendiente de medición y validación en obra"
         }
       }
     },
@@ -90,7 +92,8 @@
     "slug": "projects",
     "section": {
       "eyebrow": "Projects in development",
-      "label": "Client projects in development"
+      "label": "Client projects in development",
+      "chapter": "{n} / In progress"
     },
     "category": {
       "restaurantInterior": "Restaurant interior design",
@@ -164,7 +167,8 @@
       "santa-locura": {
         "text": {
           "cardSummary": "Visual renovation proposal with three access options: glass door, full-height turnstile or two tripod turnstiles. Spotlights, LED strip, neon sign, graphite finish, floor and waiting area.",
-          "cardCover": "Santa Locura Fitness reception: current state and proposal"
+          "cardCover": "Santa Locura Fitness reception: current state and proposal",
+          "statusLine": "Visual proposal · Pending on-site measurement and validation"
         }
       }
     },
@@ -178,7 +182,8 @@
     "slug": "projects",
     "section": {
       "eyebrow": "Проекты в разработке",
-      "label": "Проекты клиентов в разработке"
+      "label": "Проекты клиентов в разработке",
+      "chapter": "{n} / В работе"
     },
     "category": {
       "restaurantInterior": "Дизайн интерьера ресторана",
@@ -252,7 +257,8 @@
       "santa-locura": {
         "text": {
           "cardSummary": "Визуальное предложение по реконструкции с тремя вариантами входа: стеклянная дверь, турникет в полный рост или два турникета-трипода. Светильники, LED-лента, неон, графит, пол и зона ожидания.",
-          "cardCover": "Ресепшен Santa Locura Fitness: текущее состояние и предложение"
+          "cardCover": "Ресепшен Santa Locura Fitness: текущее состояние и предложение",
+          "statusLine": "Визуальное предложение · Ожидает замеров и проверки на объекте"
         }
       }
     },
@@ -266,7 +272,8 @@
     "slug": "projects",
     "section": {
       "eyebrow": "Проєкти в розробці",
-      "label": "Проєкти клієнтів у розробці"
+      "label": "Проєкти клієнтів у розробці",
+      "chapter": "{n} / У роботі"
     },
     "category": {
       "restaurantInterior": "Дизайн інтер'єру ресторану",
@@ -340,7 +347,8 @@
       "santa-locura": {
         "text": {
           "cardSummary": "Візуальна пропозиція реконструкції з трьома варіантами входу: скляні двері, турнікет у повний зріст або два турнікети-триподи. Світильники, LED-стрічка, неон, графіт, підлога та зона очікування.",
-          "cardCover": "Рецепція Santa Locura Fitness: поточний стан і пропозиція"
+          "cardCover": "Рецепція Santa Locura Fitness: поточний стан і пропозиція",
+          "statusLine": "Візуальна пропозиція · Очікує замірів і перевірки на об’єкті"
         }
       }
     },

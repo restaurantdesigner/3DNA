@@ -21,6 +21,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 const V = new URL(import.meta.url).search;   // same ?v= for every module of this scene
 const K = await import(`/assets/js/shared-3d/archviz.js${V}`);
+const POST3D = await import(`/assets/js/shared-3d/post.js${V}`);
 const { createClubEquipment } = await import(`/assets/js/fitness-club-3d/club-equipment.js${V}`);
 
 const HIGHLIGHT = 0xe3c48f;    // 3DNA warm gold (homepage accent)
@@ -57,6 +58,8 @@ export async function createGymScene({ container, labelsEl, data, reducedMotion 
 
   // ---------- camera + controls (limited, easy to use) ----------
   const camera = new THREE.PerspectiveCamera(30, 1, 0.3, 400);
+  // ambient occlusion + MSAA (assets/js/shared-3d/post.js); falls back to plain rendering
+  const post = POST3D.createPost(renderer, scene, camera, { lowPower, onReady: () => { dirty = true; } });
   let HOME_AZ = 0.62;
   const HOME_EL = 0.84;
   const homeTarget = new THREE.Vector3(FW / 2, 0.6, FD / 2 + 0.4);
@@ -220,7 +223,7 @@ export async function createGymScene({ container, labelsEl, data, reducedMotion 
   function resize() {
     const { clientWidth: w, clientHeight: h } = container;
     if (!w || !h) return;
-    renderer.setSize(w, h, false);
+    renderer.setSize(w, h, false); post.setSize(w, h);
     camera.aspect = w / h;
     camera.fov = w / h < 1 ? 40 : 30;
     camera.updateProjectionMatrix();
@@ -264,7 +267,7 @@ export async function createGymScene({ container, labelsEl, data, reducedMotion 
     if (controls.update()) dirty = true;
     if (!dirty) return;
     dirty = false;
-    renderer.render(scene, camera);
+    post.render();
     updateLabels();
   }
   requestAnimationFrame(frame);
@@ -293,7 +296,7 @@ export async function createGymScene({ container, labelsEl, data, reducedMotion 
     arch.name = "architecture";
     root.add(arch);
     const H = ARCH.wallHeight, CUT = ARCH.cutHeight;
-    const wallMat = solid(0x2a2725, 0.88), wallTop = solid(0x45403b, 0.9), plinthMat = solid(0x141210, 0.9);
+    const wallMat = solid(0x2a2725, 0.88), wallTop = POST3D.sectionCutMaterial(), plinthMat = solid(0x141210, 0.9);
     const glass = MAT.shared("glass"), mull = MAT.shared("frame"), led = MAT.shared("ledWarm"), ledLine = MAT.shared("led");
 
     // plinth + soft contact shadow + street paving

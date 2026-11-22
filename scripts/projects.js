@@ -30,6 +30,8 @@ function createProjects(data, texts, { restaurantsSlug }) {
   const subPath = (lang, id) => `${restaurantsSlug(lang)}/${t(lang).slug}/${id}/`;
   const pagePath = (lang, id) => `/${lang}/${subPath(lang, id)}`;
 
+  const NL = String.fromCharCode(10);
+  const fill2 = (s, n) => String(s).replace("{n}", String(n).padStart(2, "0"));
   const picture = (img, alt, { sizes, eager = false, cls = "" }) => {
     const srcset = img.widths.map((w) => `${img.base}-${w}.webp ${w}w`).join(", ");
     const largest = Math.max(...img.widths);
@@ -48,6 +50,59 @@ function createProjects(data, texts, { restaurantsSlug }) {
     const L = t(lang);
     const list = data.projects.filter((p) => sectorOf(p) === sector);
     if (!list.length) return "";
+    // Fitness page: each project is the next chapter after "01 / Del plano a la realidad", in the same
+    // split layout as the 24/7 sections (film on one side, numbered label, headline and link on the other).
+    // The cover film keeps the card behaviour (assets/js/project-cards.js: .rproj__card / .rproj__video).
+    if (sector === "fitness") return list.map((p, i) => {
+      const href = hrefOf(lang, p), titleId = `fproj-title-${p.id}`;
+      const logo = p.cover.logo;
+      const filmHtml = `<span class="rproj__media">${picture(p.cover, text(lang, p.id, p.cover.altKey), { sizes: logo ? "100vw" : "(max-width: 900px) 92vw, 400px" })}` +
+        (p.cover.video ? `<video class="rproj__video" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1" data-src="${p.cover.video}"${p.cover.poster ? ` poster="${p.cover.poster}"` : ""}></video>` : "") + `</span>`;
+      // with its own logo: a full-screen chapter, the film edge to edge and everything over it
+      // (like the project page hero): label, logo, category, status line, summary, link
+      if (logo) return [
+        `  <!-- Client project in development (assets/data/projects.json, scripts/projects.js): full-screen film -->`,
+        `  <section class="fscene fproj fproj--full" id="${i === 0 ? "proyectos" : `proyecto-${p.id}`}" aria-labelledby="${titleId}">`,
+        `    <a class="fproj__media rproj__card" href="${href}"${p.cover.mode ? ` data-mode="${p.cover.mode}"` : ""} tabindex="-1" aria-hidden="true">${filmHtml}<span class="fproj__shade"></span></a>`,
+        `    <div class="fproj__overlay">`,
+        `      <p class="fscene__label fproj__label">${escapeHtml(fill2(L.section.chapter, i + 2))}</p>`,
+        `      <h2 class="fproj__title--sr" id="${titleId}">${escapeHtml(p.name)}</h2>`,
+        `      <img class="fproj__logo" src="${logo.src}" width="${logo.width}" height="${logo.height}" alt="" loading="lazy" decoding="async">`,
+        `      <p class="fproj__sub">${escapeHtml(L.category[p.category])}</p>`,
+        ...(p.cover.statusKey ? [`      <p class="fproj__state">${escapeHtml(text(lang, p.id, p.cover.statusKey))}</p>`] : []),
+        ...(p.summaryKey ? [`      <p class="fproj__summary">${escapeHtml(text(lang, p.id, p.summaryKey))}</p>`] : []),
+        ...(p.link && p.linkLang && p.linkLang !== lang && L.linkLangNote ? [`      <p class="fproj__langnote">${escapeHtml(L.linkLangNote)}</p>`] : []),
+        `      <a class="fproj__cta fproj__cta--light" href="${href}">${escapeHtml(L.cta)} <span aria-hidden="true">&rarr;</span></a>`,
+        `    </div>`,
+        `  </section>`
+      ].join(NL);
+      return [
+        `  <!-- Client project in development (assets/data/projects.json, scripts/projects.js) -->`,
+        `  <section class="fscene faccess fproj" id="${i === 0 ? "proyectos" : `proyecto-${p.id}`}" aria-labelledby="${titleId}">`,
+        `    <div class="faccess__inner">`,
+        `      <a class="faccess__media fproj__media rproj__card${logo ? " fproj__media--logo" : ""}" href="${href}"${p.cover.mode ? ` data-mode="${p.cover.mode}"` : ""} tabindex="-1" aria-hidden="true">`,
+        `        <span class="rproj__media">${picture(p.cover, text(lang, p.id, p.cover.altKey), { sizes: "(max-width: 900px) 92vw, 400px" })}` +
+          (p.cover.video ? `<video class="rproj__video" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1" data-src="${p.cover.video}"${p.cover.poster ? ` poster="${p.cover.poster}"` : ""}></video>` : "") + `</span>`,
+        // the project's own logo over the film, like its page hero: logo, category, status line
+        ...(logo ? [
+          `        <span class="fproj__shade" aria-hidden="true"></span>`,
+          `        <span class="fproj__brand"><img class="fproj__logo" src="${logo.src}" width="${logo.width}" height="${logo.height}" alt="" loading="lazy" decoding="async">` +
+            `<span class="fproj__sub">${escapeHtml(L.category[p.category])}</span>` +
+            (p.cover.statusKey ? `<span class="fproj__state">${escapeHtml(text(lang, p.id, p.cover.statusKey))}</span>` : "") + `</span>`] : []),
+        `      </a>`,
+        `      <div class="faccess__text">`,
+        `        <p class="fscene__label">${escapeHtml(fill2(L.section.chapter, i + 2))}</p>`,
+        // with a logo card the name is the logo (the heading stays for screen readers)
+        `        <h2 class="fscene__title${logo ? " fproj__title--sr" : ""}" id="${titleId}">${escapeHtml(p.name)}.</h2>`,
+        ...(logo ? [] : [`        <p class="fproj__meta"><span>${escapeHtml(L.category[p.category])}</span><span class="rproj__status">${escapeHtml(L.status[p.status])}</span></p>`]),
+        ...(p.summaryKey ? [`        <p class="fscene__body">${escapeHtml(text(lang, p.id, p.summaryKey))}</p>`] : []),
+        ...(p.link && p.linkLang && p.linkLang !== lang && L.linkLangNote ? [`        <p class="fproj__langnote">${escapeHtml(L.linkLangNote)}</p>`] : []),
+        `        <a class="fproj__cta" href="${href}">${escapeHtml(L.cta)} <span aria-hidden="true">&rarr;</span></a>`,
+        `      </div>`,
+        `    </div>`,
+        `  </section>`
+      ].join(NL);
+    }).join(NL);
     const cards = list.map((p) => [
       `      <li class="rproj__item">`,
       `        <a class="rproj__card${p.cover.portrait ? " rproj__card--portrait" : ""}" href="${hrefOf(lang, p)}"${p.cover.mode ? ` data-mode="${p.cover.mode}"` : ""}>`,

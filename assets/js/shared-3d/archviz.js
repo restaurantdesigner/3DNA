@@ -52,7 +52,7 @@ export function setupLighting(renderer, scene, { center, span, hemi = [0xdde8ff,
   scene.add(sun, sun.target);
   if (renderer.shadowMap.enabled) {
     sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.mapSize.set(4096, 4096);   // desktop only (shadows are off on low-power devices)
     const h = span * 0.62;
     Object.assign(sun.shadow.camera, { left: -h, right: h, top: h, bottom: -h, near: 2, far: span * 3 });
     sun.shadow.bias = -0.0004;

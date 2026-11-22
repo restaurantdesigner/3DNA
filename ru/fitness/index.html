@@ -44,7 +44,7 @@
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261122a">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261122j">
 </head>
 
 <body>
@@ -268,6 +268,54 @@
     </div>
   </section>
 
+  <!-- QUOTE SPACER before the client project: the space as a set for videos and content
+       (illustrative wishes, not testimonials). Same component, compact. Text: fitnessPage.voicesContent.* -->
+<section class="qspacer qspacer--compact" id="espacio-para-crear" aria-label="Пространство, которое ещё и съёмочная площадка" aria-roledescription="carousel" data-qspacer>
+  <div class="qspacer__stage" aria-live="off">
+    <figure class="qspacer__item is-active" data-qs-item role="group" aria-roledescription="slide" aria-label="1 / 6">
+      <p class="qspacer__text">Хочу снимать свои видео здесь.</p>
+      <figcaption class="qspacer__by">Современное пространство — это больше, чем функциональность: это ещё и сцена.</figcaption>
+    </figure>
+    <figure class="qspacer__item" data-qs-item role="group" aria-roledescription="slide" aria-label="2 / 6" aria-hidden="true">
+      <p class="qspacer__text">Хочу уголок с хорошим светом для рилс.</p>
+      <figcaption class="qspacer__by">Современное пространство — это больше, чем функциональность: это ещё и сцена.</figcaption>
+    </figure>
+    <figure class="qspacer__item" data-qs-item role="group" aria-roledescription="slide" aria-label="3 / 6" aria-hidden="true">
+      <p class="qspacer__text">Хочу создавать контент, не выходя из клуба.</p>
+      <figcaption class="qspacer__by">Современное пространство — это больше, чем функциональность: это ещё и сцена.</figcaption>
+    </figure>
+    <figure class="qspacer__item" data-qs-item role="group" aria-roledescription="slide" aria-label="4 / 6" aria-hidden="true">
+      <p class="qspacer__text">Хочу, чтобы тренировка выглядела так же хорошо, как ощущается.</p>
+      <figcaption class="qspacer__by">Современное пространство — это больше, чем функциональность: это ещё и сцена.</figcaption>
+    </figure>
+    <figure class="qspacer__item" data-qs-item role="group" aria-roledescription="slide" aria-label="5 / 6" aria-hidden="true">
+      <p class="qspacer__text">Хочу фон, который узнают мои подписчики.</p>
+      <figcaption class="qspacer__by">Современное пространство — это больше, чем функциональность: это ещё и сцена.</figcaption>
+    </figure>
+    <figure class="qspacer__item" data-qs-item role="group" aria-roledescription="slide" aria-label="6 / 6" aria-hidden="true">
+      <p class="qspacer__text">Хочу место, где можно снимать, тренироваться и делиться.</p>
+      <figcaption class="qspacer__by">Современное пространство — это больше, чем функциональность: это ещё и сцена.</figcaption>
+    </figure>
+  </div>
+</section>
+
+  <!-- Client projects in development (assets/data/projects.json, sector "fitness"): right after
+       "01 / Del plano a la realidad" (Santa Locura Fitness) -->
+  <!-- Client project in development (assets/data/projects.json, scripts/projects.js): full-screen film -->
+  <section class="fscene fproj fproj--full" id="proyectos" aria-labelledby="fproj-title-santa-locura">
+    <a class="fproj__media rproj__card" href="/gimnasios-3d/proyectos/santa-locura/" data-mode="hero" tabindex="-1" aria-hidden="true"><span class="rproj__media"><img src="/images/fitness/projects/santa-locura/hero-card-464.webp" srcset="/images/fitness/projects/santa-locura/hero-card-464.webp 464w" sizes="100vw" width="464" height="832" loading="lazy" decoding="async" alt="Ресепшен Santa Locura Fitness: текущее состояние и предложение"><video class="rproj__video" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1" data-src="/videos/fitness/projects/santa-locura/hero-slow.mp4"></video></span><span class="fproj__shade"></span></a>
+    <div class="fproj__overlay">
+      <p class="fscene__label fproj__label">02 / В работе</p>
+      <h2 class="fproj__title--sr" id="fproj-title-santa-locura">Santa Locura Fitness</h2>
+      <img class="fproj__logo" src="/images/fitness/projects/santa-locura/logo.webp" width="1200" height="295" alt="" loading="lazy" decoding="async">
+      <p class="fproj__sub">Реконструкция ресепшена и входа</p>
+      <p class="fproj__state">Визуальное предложение · Ожидает замеров и проверки на объекте</p>
+      <p class="fproj__summary">Визуальное предложение по реконструкции с тремя вариантами входа: стеклянная дверь, турникет в полный рост или два турникета-трипода. Светильники, LED-лента, неон, графит, пол и зона ожидания.</p>
+      <p class="fproj__langnote">Доска проекта на испанском</p>
+      <a class="fproj__cta fproj__cta--light" href="/gimnasios-3d/proyectos/santa-locura/">Смотреть проект <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+
   <!-- Gym profitability calculator (#calculadora): a tool, not a chapter, so it carries no number -->
   <section class="bcalc bcalc--fitness gp" id="calculadora" data-calc="fitness" aria-labelledby="fc-title" data-share-url="/ru/fitness/calculator/">
     <div class="gp__inner">
@@ -424,37 +472,34 @@
        Each video has its own sound button; sound is never turned on by hover, and
        only one video has sound at a time. Files load only on first interaction
        (preload="none" + poster). Behaviour: main.js "HOVER VIDEOS". -->
-  <section class="fscene faccess" id="acceso-24-7-1" aria-labelledby="f-access-1-title">
-    <div class="faccess__inner">
-      <div class="faccess__media" data-hvideo>
+  <!-- 24/7 ACCESS: arriving at night (entrada) and leaving (salida), side by side on desktop;
+       phones: video, text, video, text. #acceso-24-7-2 still points at the second part. -->
+  <section class="fscene faccess faccess--pair" id="acceso-24-7-1" aria-labelledby="f-access-1-title">
+    <div class="faccess__inner faccess__pair">
+      <div class="faccess__text faccess__text--1">
+        <p class="fscene__label">01 / Доступ 24/7</p>
+        <h2 class="fscene__title" id="f-access-1-title">Ваш клуб. В любое время.</h2>
+        <p class="fscene__body">Тренируйтесь, когда хотите. Пространство, которое подстраивается под ваш ритм жизни.</p>
+      </div>
+      <div class="faccess__media faccess__media--1" data-hvideo>
         <video class="faccess__video" playsinline webkit-playsinline muted preload="none" tabindex="-1"
-          width="720" height="1280" poster="/images/fitness/access-24-7-part1.webp"
-          data-video="/videos/fitness/access/access-24-7-part1.mp4" aria-label="Презентация круглосуточного доступа в фитнес-клуб, часть 1."></video>
+          width="720" height="1280" poster="/images/fitness/access-24-7-entrada.webp"
+          data-video="/videos/fitness/access/access-24-7-entrada.mp4" aria-label="Ночью участница приходит в клуб, открывает дверь, проходит через турникет и входит в зал: доступ 24 часа."></video>
         <span class="faccess__hint" aria-hidden="true"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
         <button type="button" class="faccess__btn faccess__btn--play" data-hv-play aria-pressed="false"
           aria-label="Воспроизвести видео" data-label-play="Воспроизвести видео" data-label-pause="Поставить видео на паузу"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="faccess__i faccess__i--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
         <button type="button" class="faccess__btn faccess__btn--sound" data-hv-sound aria-pressed="false"
           aria-label="Включить звук" data-label-on="Включить звук" data-label-off="Выключить звук"><svg class="faccess__i faccess__i--muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><svg class="faccess__i faccess__i--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>
       </div>
-      <div class="faccess__text">
-        <p class="fscene__label">01 / Доступ 24/7</p>
-        <h2 class="fscene__title" id="f-access-1-title">Ваш клуб. В любое время.</h2>
-        <p class="fscene__body">Тренируйтесь, когда хотите. Пространство, которое подстраивается под ваш ритм жизни.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="fscene faccess faccess--reverse" id="acceso-24-7-2" aria-labelledby="f-access-2-title">
-    <div class="faccess__inner">
-      <div class="faccess__text">
+      <div class="faccess__text faccess__text--2" id="acceso-24-7-2">
         <p class="fscene__label">02 / Впечатление</p>
-        <h2 class="fscene__title" id="f-access-2-title">Свобода тренироваться.</h2>
+        <h3 class="fscene__title faccess__title--2" id="f-access-2-title">Свобода тренироваться.</h3>
         <p class="fscene__body">Доступ, продуманный для удобства, самостоятельности и гибкости.</p>
       </div>
-      <div class="faccess__media" data-hvideo>
+      <div class="faccess__media faccess__media--2" data-hvideo>
         <video class="faccess__video" playsinline webkit-playsinline muted preload="none" tabindex="-1"
-          width="720" height="1280" poster="/images/fitness/access-24-7-part2.webp"
-          data-video="/videos/fitness/access/access-24-7-part2.mp4" aria-label="Презентация круглосуточного доступа в фитнес-клуб, часть 2."></video>
+          width="720" height="1280" poster="/images/fitness/access-24-7-salida.webp"
+          data-video="/videos/fitness/access/access-24-7-salida.mp4" aria-label="Та же участница выходит через турникет и стеклянную дверь на улицу, ночью."></video>
         <span class="faccess__hint" aria-hidden="true"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
         <button type="button" class="faccess__btn faccess__btn--play" data-hv-play aria-pressed="false"
           aria-label="Воспроизвести видео" data-label-play="Воспроизвести видео" data-label-pause="Поставить видео на паузу"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="faccess__i faccess__i--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
@@ -1016,38 +1061,63 @@
 
   <!-- 07 SELECTED WORK: only concept work that exists (the supplied visualization).
        Completed projects are added here as more <article class="fwork__item"> entries. -->
-  <section class="fscene fwork" id="trabajo" aria-labelledby="f-work-title">
-    <div class="fscene__inner">
-      <p class="fscene__label">06 / Избранное</p>
-      <h2 class="fscene__title" id="f-work-title">Дизайн-концепции.</h2>
-      <p class="fscene__body fwork__note">Концептуальные исследования и 3D-визуализации. Реализованные проекты будут опубликованы здесь.</p>
-      <article class="fwork__item">
-        <div class="fwork__pair">
-          <figure class="fwork__fig">
-            <img src="/images/fitness/hero-before.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Существующий спортзал с бетонными конструкциями и стандартным оборудованием.">
-            <figcaption>До</figcaption>
-          </figure>
-          <figure class="fwork__fig">
-            <img src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt="То же пространство в виде фитнес-клуба с линейным светом и фирменным стилем.">
-            <figcaption>После</figcaption>
-          </figure>
-        </div>
+  <section class="fscene fwork fwork--full" id="trabajo" aria-labelledby="f-work-title">
+    <!-- one full-screen picture: drag (or use the arrow keys on) the divider to compare before / after -->
+    <div class="fcompare" data-fcompare style="--pos: 50%">
+      <img class="fcompare__img" src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt="То же пространство в виде фитнес-клуба с линейным светом и фирменным стилем.">
+      <div class="fcompare__before"><img class="fcompare__img" src="/images/fitness/hero-before.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Существующий спортзал с бетонными конструкциями и стандартным оборудованием."></div>
+      <span class="fcompare__tag fcompare__tag--before" aria-hidden="true">До</span>
+      <span class="fcompare__tag fcompare__tag--after" aria-hidden="true">После</span>
+      <div class="fcompare__line" aria-hidden="true"><span class="fcompare__knob"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <input class="fcompare__range" type="range" min="0" max="100" step="1" value="50"
+        aria-label="До / После">
+      <div class="fwork__overlay">
+        <p class="fscene__label">06 / Избранное</p>
+        <h2 class="fscene__title" id="f-work-title">Дизайн-концепции.</h2>
+        <p class="fscene__body fwork__note">Концептуальные исследования и 3D-визуализации. Реализованные проекты будут опубликованы здесь.</p>
         <p class="fwork__kind">Концепция · 3D-визуализация</p>
         <h3 class="fwork__title">Преображение существующего спортзала</h3>
-      </article>
+      </div>
     </div>
+    <script>
+      (function () {
+        var box = document.querySelector('[data-fcompare]');
+        if (!box) return;
+        var range = box.querySelector('.fcompare__range');
+        var set = function (v) { v = Math.max(0, Math.min(100, v)); box.style.setProperty('--pos', v + '%'); range.value = Math.round(v); };
+        range.addEventListener('input', function () { set(Number(range.value)); });
+        var drag = false;
+        var at = function (e) { var r = box.getBoundingClientRect(); set(((e.clientX - r.left) / r.width) * 100); };
+        box.addEventListener('pointerdown', function (e) {
+          if (e.target.closest('.fwork__overlay a')) return;
+          drag = true; at(e); if (box.setPointerCapture) box.setPointerCapture(e.pointerId);
+        });
+        box.addEventListener('pointermove', function (e) { if (drag) at(e); });
+        var end = function () { drag = false; };
+        box.addEventListener('pointerup', end); box.addEventListener('pointercancel', end);
+      })();
+    </script>
   </section>
 
-  <!-- 08 ARCHITECTURAL DETAILS -->
-  <section class="fscene fdetails" id="detalles" aria-labelledby="f-details-title">
-    <div class="fscene__inner">
-      <p class="fscene__label">07 / Детали</p>
-      <h2 class="fscene__title" id="f-details-title">Детали создают характер.</h2>
-      <div class="fdetails__grid">
-        <figure class="fdetails__item"><img src="/images/fitness/detail-lighting.webp" width="460" height="460" loading="lazy" decoding="async" alt="Потолок с линиями светодиодного света и подсвеченными колоннами."><figcaption><strong>Свет</strong> Линейный свет направляет и задаёт ритм пространству.</figcaption></figure>
-        <figure class="fdetails__item"><img src="/images/fitness/detail-materials.webp" width="460" height="400" loading="lazy" decoding="async" alt="Скамья для тренировок рядом с разметкой на полу."><figcaption><strong>Материалы и оборудование</strong> Износостойкие поверхности и оборудование, встроенное в маршрут.</figcaption></figure>
-        <figure class="fdetails__item"><img src="/images/fitness/detail-identity.webp" width="420" height="420" loading="lazy" decoding="async" alt="Задняя стена с подсвеченным логотипом и стеллажами с медболами."><figcaption><strong>Айдентика</strong> Бренд, встроенный в архитектуру.</figcaption></figure>
+  <!-- DETAILS: copy on the left, one strong image on the right (the strength area: LED light lines,
+       numbered floor track, racks and the lit logo wall). Phones: headline + intro, image, points, CTA.
+       The CTA opens the site's project panel (.open-panel). Text: fitnessPage.details.* -->
+  <section class="fscene fdetails fdetails--split" id="detalles" aria-labelledby="f-details-title">
+    <div class="fdetails__inner">
+      <div class="fdetails__head">
+        <h2 class="fscene__title" id="f-details-title">Каждая деталь важна, когда зал работает</h2>
+        <p class="fscene__body fdetails__intro">Впечатление клиента начинается с входа. Мы проектируем освещение, планировку и отделку так, чтобы человек легко ориентировался, переходил между зонами и находил нужное оборудование, пока зал заполнен.</p>
       </div>
+      <figure class="fdetails__media">
+        <img src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Силовая зона со световыми LED-линиями на потолке, нумерованной дорожкой на полу, стойками и подсвеченным логотипом на дальней стене.">
+      </figure>
+      <dl class="fdetails__points">
+        <div><dt>Свет, который ведёт</dt><dd>Световые линии сопровождают маршруты и выделяют тренировочные зоны. Тёплый свет в глубине добавляет объём и создаёт характер пространства.</dd></div>
+        <div><dt>Место для тренировок и движения</dt><dd>Расстановка оборудования и разметка на полу отделяют рабочие зоны от проходов — даже в часы пик.</dd></div>
+        <div><dt>Материалы для ежедневной нагрузки</dt><dd>Покрытия и отделка подбираются под тип тренировок в каждой зоне, поток людей и регулярное обслуживание зала.</dd></div>
+      </dl>
+      <p class="fdetails__cta-wrap"><button type="button" class="fdetails__cta open-panel" data-panel-message="Здравствуйте, хочу обсудить дизайн моего зала."
+        data-track="start_project_clicked" data-track-location="fitness_details">Обсудим ваш зал <span aria-hidden="true">&rarr;</span></button></p>
     </div>
   </section>
 
@@ -1190,29 +1260,6 @@
     </div>
   </section>
 
-  <!-- Client projects in development (assets/data/projects.json, sector "fitness"): after the case study -->
-  <!-- Client projects in development (assets/data/projects.json, scripts/projects.js) -->
-  <section class="rproj" id="proyectos" aria-labelledby="rproj-title">
-    <div class="rproj__inner">
-      <h2 class="rproj__eyebrow" id="rproj-title">Проекты в разработке</h2>
-      <ul class="rproj__list" aria-label="Проекты клиентов в разработке">
-      <li class="rproj__item">
-        <a class="rproj__card rproj__card--portrait" href="/gimnasios-3d/proyectos/santa-locura/" data-mode="hero">
-          <span class="rproj__media"><img src="/images/fitness/projects/santa-locura/hero-card-464.webp" srcset="/images/fitness/projects/santa-locura/hero-card-464.webp 464w" sizes="(max-width: 760px) 92vw, 360px" width="464" height="832" loading="lazy" decoding="async" alt="Ресепшен Santa Locura Fitness: текущее состояние и предложение"><video class="rproj__video" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1" data-src="/videos/fitness/projects/santa-locura/hero-slow.mp4"></video></span>
-          <span class="rproj__body">
-            <span class="rproj__lead">
-              <span class="rproj__meta"><span class="rproj__category">Реконструкция ресепшена и входа</span><span class="rproj__status">В разработке</span></span>
-              <span class="rproj__name">Santa Locura Fitness</span>
-              <span class="rproj__summary">Визуальное предложение по реконструкции с тремя вариантами входа: стеклянная дверь, турникет в полный рост или два турникета-трипода. Светильники, LED-лента, неон, графит, пол и зона ожидания.</span>
-              <span class="rproj__langnote">Доска проекта на испанском</span>
-            </span>
-            <span class="rproj__cta">Смотреть проект <span aria-hidden="true">&rarr;</span></span>
-          </span>
-        </a>
-      </li>
-      </ul>
-    </div>
-  </section>
 
   <!-- 10 CONTACT -->
   <section class="fscene fcontact" id="contacto" aria-labelledby="f-contact-title">
@@ -1413,7 +1460,7 @@
 </div>
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261122a"></script>
-<script src="/assets/js/fitness-club-3d/club-app.js?v=20261101a" defer></script>
+<script src="/assets/js/fitness-club-3d/club-app.js?v=20261122c" defer></script>
 <script src="/assets/js/fitness-case-study.js?v=20261021i" defer></script>
 <script src="/assets/js/shared-calc/calc-tools.js?v=20261119a" defer></script>
 <script src="/assets/js/fitness-calc.js?v=20261030a" defer></script>

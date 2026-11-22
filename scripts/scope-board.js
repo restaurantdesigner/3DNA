@@ -26,7 +26,7 @@ function createScopeBoard(b) {
   const cardId = (n, id) => `item-${n}${id ? `-${id}` : ""}`;
 
   // ------------------------------------------------ hero
-  const heroHtml = () => !H ? [] : [
+  const heroHtml = (backHref) => !H ? [] : [
     `  <section class="sboard-hero" aria-labelledby="sboard-title" data-sboard-hero>`,
     `    <img class="sboard-hero__bg" src="${H.poster}" alt="" aria-hidden="true" decoding="async">`,
     `    <div class="sboard-hero__film">`,
@@ -34,6 +34,10 @@ function createScopeBoard(b) {
       ` width="${H.width}" height="${H.height}" poster="${H.poster}" aria-label="${escapeHtml(H.label)}" data-src="${H.video}"></video>`,
     `    </div>`,
     `    <div class="sboard-hero__shade" aria-hidden="true"></div>`,
+    // the way back, visible at once over the hero: to this project's chapter on the sector page
+    `    <nav class="sboard-hero__crumbs" aria-label="${escapeHtml(L.crumbsLabel || "Ruta de navegación")}"><ol>` +
+      `<li><a href="${backHref}"><span aria-hidden="true">&larr;</span> ${escapeHtml(L.back)}</a></li>` +
+      `<li aria-current="page">${escapeHtml(L.crumbCurrent || b.title)}</li></ol></nav>`,
     `    <div class="sboard-hero__text">`,
     `      <h1 class="sboard-hero__title" id="sboard-title"><img class="sboard-hero__logo" src="${H.logo}" width="${H.logoWidth}" height="${H.logoHeight}" alt="Santa Locura Fitness" decoding="async"><span class="sboard-hero__sub">${escapeHtml(H.subtitle)}</span></h1>`,
     `      <p class="sboard-hero__status">${escapeHtml(b.status)}</p>`,
@@ -163,7 +167,7 @@ function createScopeBoard(b) {
   function bodyHtml(backHref) {
     return [
       `<main id="main" tabindex="-1" class="sboard${H ? " sboard--hero" : ""}" data-sboard data-view="after" data-option="${options[0].id}" data-preparing="${escapeHtml(L.sharePreparing || "…")}">`,
-      ...heroHtml(),
+      ...heroHtml(backHref),
       ...currentHtml(),
       `  <div class="sboard__wrap">`,
       `  <nav class="sboard__context" aria-label="Ubicación en el sitio">`,

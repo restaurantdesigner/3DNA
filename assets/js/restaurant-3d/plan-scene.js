@@ -23,6 +23,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+import * as POST3D from "/assets/js/shared-3d/post.js";
 
 // hospitality palette: premium but calm
 const MATS = {
@@ -98,6 +99,8 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
   const E = data.view.extent;
   const target = new THREE.Vector3((E.x0 + E.x1) / 2, 0, (E.z0 + E.z1) / 2);
   const camera = new THREE.OrthographicCamera(-10, 10, 6, -6, 0.1, 300);
+  // ambient occlusion + MSAA (assets/js/shared-3d/post.js); falls back to plain rendering
+  const post = POST3D.createPost(renderer, scene, camera, { lowPower, onReady: () => { dirty = true; } });
   camera.position.copy(target).add(new THREE.Vector3().setFromSpherical(new THREE.Spherical(80, data.view.polar, data.view.azimuth)));
   camera.lookAt(target);
 
@@ -127,7 +130,7 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
   scene.add(sun, sun.target);
   if (renderer.shadowMap.enabled) {
     sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.mapSize.set(lowPower ? 2048 : 4096, lowPower ? 2048 : 4096);
     Object.assign(sun.shadow.camera, { left: -16, right: 16, top: 14, bottom: -14, near: 2, far: 70 });
     sun.shadow.bias = -0.0004;
     sun.shadow.normalBias = 0.02;
@@ -527,7 +530,7 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
   // ---------- merge ----------
   const flat = (geos) => mergeGeometries(geos.map((g) => (g.index ? g.toNonIndexed() : g)));
   bins.forEach((geos, key) => {
-    const mesh = new THREE.Mesh(flat(geos), new THREE.MeshStandardMaterial({ side: THREE.DoubleSide, ...(MATS[key] || { color: 0xffffff }) }));
+    const mesh = new THREE.Mesh(flat(geos), key === "structureTop" ? POST3D.sectionCutMaterial() : new THREE.MeshStandardMaterial({ side: THREE.DoubleSide, ...(MATS[key] || { color: 0xffffff }) }));
     mesh.castShadow = !["glass", "rug", "mat", "slab", "paving"].includes(key);
     mesh.receiveShadow = true;
     scene.add(mesh);
@@ -712,7 +715,7 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
   function resize() {
     const w = container.clientWidth, h = container.clientHeight;
     if (!w || !h) return;
-    renderer.setSize(w, h, false);
+    renderer.setSize(w, h, false); post.setSize(w, h);
     fitCamera(w, h);
     dirty = true;
   }
@@ -733,10 +736,10 @@ export async function createPlanScene({ container, labels, data, reducedMotion =
     raf = 0;
     if (!active) return;
     if (controls.update()) dirty = true;
-    if (dirty) { dirty = false; renderer.render(scene, camera); placeLabels(); }
+    if (dirty) { dirty = false; post.render(); placeLabels(); }
     raf = requestAnimationFrame(frame);
   }
-  renderer.render(scene, camera);
+  post.render();
   placeLabels();
   raf = requestAnimationFrame(frame);
 

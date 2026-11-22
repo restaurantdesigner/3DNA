@@ -155,7 +155,11 @@ if (RE_DRAFT) {
 }
 const realEstate = require("./real-estate.js").createRealEstate(
   realEstateData, realEstateI18n,
-  { whatsappNumber: translations.es.contact.whatsappNumber, absolute: (p) => absolute(p), sectionPath: realEstateSectionPath, homePath: (lang) => `/${lang}/` });
+  { whatsappNumber: translations.es.contact.whatsappNumber, absolute: (p) => absolute(p), sectionPath: realEstateSectionPath, homePath: (lang) => `/${lang}/`,
+    // 3D site models of developments (assets/data/site-models/<id>.json), keyed by id
+    siteModels: Object.fromEntries(fs.readdirSync(path.join(root, "assets/data/site-models")).filter((f) => f.endsWith(".json"))
+      .map((f) => [f.replace(/\.json$/, ""), JSON.parse(read(`assets/data/site-models/${f}`))])),
+    assetVersion: (rel) => fileVersion(rel) });
 // link-preview cards for every real estate page (drawn only when missing or changed; not for the draft)
 if (!RE_DRAFT) require("./real-estate-og.js").ensureCards(root, realEstate.shareJobs(SUPPORTED));
 
@@ -437,6 +441,7 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "about.bodyHtml") return aboutPage.bodyHtml(lang);
     if (key === "designQuotes.html") return designQuotes.sectionHtml(lang);
     if (key === "fitnessPage.voicesHtml") return designQuotes.fitnessVoicesHtml(lang);
+    if (key === "fitnessPage.voicesContentHtml") return designQuotes.fitnessContentVoicesHtml(lang);
     if (key === "fitnessPage.clubHtml") return fitnessClub.sectionHtml(lang);
     // the homepage gym plan drawing, used as a static zoning diagram on the Fitness page
     if (key === "fitnessPage.planSvg") return fitnessPlanner.planSvg(lang)

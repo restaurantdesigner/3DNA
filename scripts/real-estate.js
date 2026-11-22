@@ -40,7 +40,7 @@ const ICON = {
 const icon = (name, cls = "re-ico") =>
   `<svg class="${cls}" viewBox="0 0 22 22" width="20" height="20" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${ICON[name]}</svg>`;
 
-function createRealEstate(data, i18n, { whatsappNumber, absolute, sectionPath, homePath }) {
+function createRealEstate(data, i18n, { whatsappNumber, absolute, sectionPath, homePath, siteModels = {}, assetVersion = () => "" }) {
   const T = (lang) => i18n[lang];
   // a text field: plain value, or { es, en, ru, uk } (missing language → Spanish → English)
   const tx = (v, lang) => {
@@ -293,6 +293,48 @@ ${featuredHtml(lang)}` : ""}
 ${searchHtml(lang)}`;
   }
 
+  // ---------------------------------------------------------------- 3D site model (server-rendered panel)
+  // The panel lists every block's apartments by floor (references, types, bedrooms from the brochure),
+  // linked to the listing that sells each type; the 3D scene is added by assets/js/site-model.js.
+  // Availability appears only when the linked listing has a status in properties.json.
+  function siteModelHtml(lang, current, sm) {
+    const t = T(lang), s = t.siteModel;
+    const listingOf = (type) => { const slug = sm.listingByType[type]; return slug ? bySlug(slug) : null; };
+    const statusOf = (l) => (l && l.status ? (l.status === "available" ? s.available : t.status[l.status]) : "");
+    const client = { image: sm.image, solariumTypes: sm.solariumTypes, site: sm.site,
+      blocks: sm.blocks.map((b) => ({ id: b.id, center: b.center, angle: b.angle, length: b.length, depth: b.depth,
+        levels: b.levels.map((lv) => lv.map((u) => ({ ref: u.ref, type: u.type, span: u.span }))) })) };
+    const lists = sm.blocks.map((b) => {
+      const count = b.levels.reduce((n, lv) => n + lv.length, 0);
+      return `<div class="re-sm__list" data-sm-list="${b.id}" hidden>
+  <h3 class="re-h3 re-sm__h">${esc(fill(s.block, { n: b.id }))} · ${esc(plural(s.units, count, lang))}</h3>
+  ${b.levels.map((lv, li) => ({ lv, li })).reverse().map(({ lv, li }) => `<div class="re-sm__level"><p class="re-sm__lname">${esc(s.levels[li] || `${li}`)}</p><ul>${lv.map((u) => {
+        const l = listingOf(u.type), mine = l && l.slug === current.slug, st = statusOf(l);
+        const facts = [fill(s.type, { t: u.type }), plural(t.units.bedrooms, u.bedrooms, lang), ...(sm.solariumTypes.includes(u.type) ? [s.solarium] : [])].join(" · ");
+        const inner = `<span class="re-sm__ref">${esc(fill(s.apt, { ref: u.ref }))}</span><span class="re-sm__facts">${esc(facts)}</span>${st ? `<span class="re-sm__status">${esc(st)}</span>` : ""}${mine ? `<span class="re-sm__mine">${esc(s.thisType)}</span>` : ""}`;
+        return `<li data-sm-ref="${esc(u.ref)}"${mine ? ' class="is-mine"' : ""}>${l && !mine ? `<a href="${detailPath(lang, l)}">${inner}<span class="re-sm__go">${esc(s.view)} &rarr;</span></a>` : `<div>${inner}</div>`}</li>`;
+      }).join("")}</ul></div>`).join("")}
+</div>`;
+    }).join("\n");
+    return `<section class="re-sec re-sm" aria-labelledby="re-sm-t" data-site-model-root data-label-block="${esc(s.block)}" data-sm-src="/assets/js/site-model.js?v=${assetVersion("assets/js/site-model.js")}">
+  <h2 class="re-h2" id="re-sm-t">${esc(s.title)}</h2>
+  <div class="re-sm__viewer">
+    <div class="re-sm__stage" data-sm-stage><p class="re-sm__loading">${esc(s.loading)}</p><p class="re-sm__fallback">${esc(s.fallback)}</p></div>
+    <div class="re-sm__bar" role="group" aria-label="${esc(s.blocksLabel)}">
+      ${sm.blocks.map((b) => `<button type="button" class="re-sm__btn" data-sm-block="${b.id}" aria-pressed="false">${esc(fill(s.block, { n: b.id }))}</button>`).join("")}
+      <button type="button" class="re-sm__btn re-sm__btn--home" data-sm-home>${esc(s.overview)}</button>
+    </div>
+    <p class="re-sm__hint">${esc(s.hint)}</p>
+  </div>
+  <p class="re-sm__caption">${esc(s.caption)}</p>
+  <div class="re-sm__panel">
+    <p class="re-sm__intro" data-sm-intro>${esc(s.intro)}</p>
+${lists}
+  </div>
+  <script type="application/json" data-site-model>${JSON.stringify(client).replace(/</g, "\u003c")}</script>
+</section>`;
+  }
+
   // ---------------------------------------------------------------- property page
   function detailHtml(lang, slug) {
     const p = bySlug(slug), t = T(lang), dev = devOf(p);
@@ -351,6 +393,9 @@ ${nearby.length ? `<h3 class="re-h3">${esc(dev.nearbyDriving ? t.drivingTimes : 
 ${dev && dev.nearbyText ? `<p class="re-p">${esc(tx(dev.nearbyText, lang))}</p>` : ""}
 ${dev && dev.mapUrl ? `<p><a class="re-btn" href="${esc(dev.mapUrl)}" target="_blank" rel="noopener">${icon("pin")}${esc(t.mapOpen)} <span aria-hidden="true">&#8599;</span></a></p>` : ""}`));
     }
+    // interactive 3D site model of the development (assets/data/site-models/<id>.json, assets/js/site-model.js)
+    const sm = dev && dev.siteModel && siteModels[dev.siteModel];
+    if (sm) blocks.push(siteModelHtml(lang, p, sm));
     if (dev) {
       const d = t.development;
       blocks.push(sec("re-dev-t", `${d.title}: ${dev.name}`, `<dl class="re-mini">

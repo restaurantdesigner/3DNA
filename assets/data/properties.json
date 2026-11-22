@@ -561,7 +561,8 @@
           }
         }
       ],
-      "imagesNote": true
+      "imagesNote": true,
+      "siteModel": "sunway-residence"
     },
     {
       "id": "la-verde-island",

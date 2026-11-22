@@ -73,7 +73,18 @@ function createDesignQuotes(data, translations) {
     });
   }
 
-  return { sectionHtml, fitnessVoicesHtml };
+  // second Fitness spacer, before the client project: the space as a place to film and create content
+  function fitnessContentVoicesHtml(lang) {
+    const v = translations[lang].fitnessPage.voicesContent;
+    return spacerHtml({
+      id: "espacio-para-crear",
+      label: v.label,
+      modifier: "compact",
+      items: v.items.map((text) => ({ body: `<p class="qspacer__text">${escapeHtml(text)}</p>`, caption: escapeHtml(v.attribution) }))
+    });
+  }
+
+  return { sectionHtml, fitnessVoicesHtml, fitnessContentVoicesHtml };
 }
 
 module.exports = { createDesignQuotes };

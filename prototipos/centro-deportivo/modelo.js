@@ -14,6 +14,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import * as K from "/assets/js/shared-3d/archviz.js";
+import * as POST3D from "/assets/js/shared-3d/post.js";
 import { buildFixture, PROJECT_MATS } from "./modelo-equipamiento.js";
 import { createClubEquipment } from "/assets/js/fitness-club-3d/club-equipment.js";
 import { buildEnvironment } from "./modelo-entorno.js";
@@ -96,7 +97,7 @@ async function main() {
 
   const M = {
     plaster: surf(null, 0xebe6dd, 0.9),
-    wallTop: surf(null, 0xa9a196, 0.85),
+    wallTop: POST3D.sectionCutMaterial(),   // section cut: solid black
     panel: (() => { const m = surf(null, 0xffffff, 0.45); m.map = TEX.panel; m.metalness = 0.35; m.envMapIntensity = 0.9; return m; })(),
     plinth: surf("tile", 0xa48f79, 0.8, [1, 1]),
     ceramicClad: surf("tile", 0xb79f86, 0.75, [1, 1]),
@@ -113,6 +114,8 @@ async function main() {
 
   // ---------- camera + controls ----------
   const camera = new THREE.PerspectiveCamera(32, 1, 0.2, 400);
+  // ambient occlusion + MSAA (assets/js/shared-3d/post.js); falls back to plain rendering
+  const post = POST3D.createPost(renderer, scene, camera, { lowPower, onReady: () => { dirty = true; } });
   let HOME_AZ = 0.72; const HOME_EL = 0.82;
   const homeTarget = new THREE.Vector3(CENTER.x, 0.6, CENTER.z);
   let homeDist = 40;
@@ -387,7 +390,7 @@ async function main() {
   function resize() {
     const { clientWidth: w, clientHeight: h } = ui.viewport;
     if (!w || !h) return;
-    renderer.setSize(w, h, false);
+    renderer.setSize(w, h, false); post.setSize(w, h);
     camera.fov = w / h < 1 ? 42 : 32;
     applyPanelOffset(w, h);
     HOME_AZ = w / h < 0.9 ? 1.05 : 0.72;
@@ -472,7 +475,7 @@ async function main() {
     const dist = camera.position.distanceTo(controls.target);
     const far = dist + 180, near = Math.max(0.15, dist / 600);
     if (Math.abs(camera.far - far) > 5 || camera.near !== near) { camera.far = far; camera.near = near; camera.updateProjectionMatrix(); }
-    renderer.render(scene, camera);
+    post.render();
     placePins();
     if (!readySent) { readySent = true; notifyHost("ready"); }
   }

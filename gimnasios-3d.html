@@ -44,7 +44,7 @@
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261122a">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261122j">
 </head>
 
 <body>
@@ -268,6 +268,53 @@
     </div>
   </section>
 
+  <!-- QUOTE SPACER before the client project: the space as a set for videos and content
+       (illustrative wishes, not testimonials). Same component, compact. Text: fitnessPage.voicesContent.* -->
+<section class="qspacer qspacer--compact" id="espacio-para-crear" aria-label="Un espacio que también es plató" aria-roledescription="carousel" data-qspacer>
+  <div class="qspacer__stage" aria-live="off">
+    <figure class="qspacer__item is-active" data-qs-item role="group" aria-roledescription="slide" aria-label="1 / 6">
+      <p class="qspacer__text">Quiero grabar mis vídeos aquí.</p>
+      <figcaption class="qspacer__by">Un espacio moderno es más que funcionalidad: también es escenario.</figcaption>
+    </figure>
+    <figure class="qspacer__item" data-qs-item role="group" aria-roledescription="slide" aria-label="2 / 6" aria-hidden="true">
+      <p class="qspacer__text">Quiero un rincón con buena luz para mis reels.</p>
+      <figcaption class="qspacer__by">Un espacio moderno es más que funcionalidad: también es escenario.</figcaption>
+    </figure>
+    <figure class="qspacer__item" data-qs-item role="group" aria-roledescription="slide" aria-label="3 / 6" aria-hidden="true">
+      <p class="qspacer__text">Quiero crear contenido sin salir del club.</p>
+      <figcaption class="qspacer__by">Un espacio moderno es más que funcionalidad: también es escenario.</figcaption>
+    </figure>
+    <figure class="qspacer__item" data-qs-item role="group" aria-roledescription="slide" aria-label="4 / 6" aria-hidden="true">
+      <p class="qspacer__text">Quiero que mi entrenamiento se vea tan bien como se siente.</p>
+      <figcaption class="qspacer__by">Un espacio moderno es más que funcionalidad: también es escenario.</figcaption>
+    </figure>
+    <figure class="qspacer__item" data-qs-item role="group" aria-roledescription="slide" aria-label="5 / 6" aria-hidden="true">
+      <p class="qspacer__text">Quiero un fondo que mis seguidores reconozcan.</p>
+      <figcaption class="qspacer__by">Un espacio moderno es más que funcionalidad: también es escenario.</figcaption>
+    </figure>
+    <figure class="qspacer__item" data-qs-item role="group" aria-roledescription="slide" aria-label="6 / 6" aria-hidden="true">
+      <p class="qspacer__text">Quiero un espacio donde grabar, entrenar y compartir.</p>
+      <figcaption class="qspacer__by">Un espacio moderno es más que funcionalidad: también es escenario.</figcaption>
+    </figure>
+  </div>
+</section>
+
+  <!-- Client projects in development (assets/data/projects.json, sector "fitness"): right after
+       "01 / Del plano a la realidad" (Santa Locura Fitness) -->
+  <!-- Client project in development (assets/data/projects.json, scripts/projects.js): full-screen film -->
+  <section class="fscene fproj fproj--full" id="proyectos" aria-labelledby="fproj-title-santa-locura">
+    <a class="fproj__media rproj__card" href="/gimnasios-3d/proyectos/santa-locura/" data-mode="hero" tabindex="-1" aria-hidden="true"><span class="rproj__media"><img src="/images/fitness/projects/santa-locura/hero-card-464.webp" srcset="/images/fitness/projects/santa-locura/hero-card-464.webp 464w" sizes="100vw" width="464" height="832" loading="lazy" decoding="async" alt="Recepción de Santa Locura Fitness: estado actual y propuesta"><video class="rproj__video" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1" data-src="/videos/fitness/projects/santa-locura/hero-slow.mp4"></video></span><span class="fproj__shade"></span></a>
+    <div class="fproj__overlay">
+      <p class="fscene__label fproj__label">02 / En obra</p>
+      <h2 class="fproj__title--sr" id="fproj-title-santa-locura">Santa Locura Fitness</h2>
+      <img class="fproj__logo" src="/images/fitness/projects/santa-locura/logo.webp" width="1200" height="295" alt="" loading="lazy" decoding="async">
+      <p class="fproj__sub">Reforma de recepción y acceso</p>
+      <p class="fproj__state">Propuesta visual · Pendiente de medición y validación en obra</p>
+      <p class="fproj__summary">Propuesta visual de reforma en tres opciones de acceso: puerta de vidrio, torno de altura completa o dos tornos trípode. Focos, tira LED, neón, grafito, pavimento y zona de espera.</p>
+      <a class="fproj__cta fproj__cta--light" href="/gimnasios-3d/proyectos/santa-locura/">Explorar proyecto <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+
   <!-- Gym profitability calculator (#calculadora): a tool, not a chapter, so it carries no number -->
   <section class="bcalc bcalc--fitness gp" id="calculadora" data-calc="fitness" aria-labelledby="fc-title" data-share-url="/gimnasios-3d/calculadora/">
     <div class="gp__inner">
@@ -424,37 +471,34 @@
        Each video has its own sound button; sound is never turned on by hover, and
        only one video has sound at a time. Files load only on first interaction
        (preload="none" + poster). Behaviour: main.js "HOVER VIDEOS". -->
-  <section class="fscene faccess" id="acceso-24-7-1" aria-labelledby="f-access-1-title">
-    <div class="faccess__inner">
-      <div class="faccess__media" data-hvideo>
+  <!-- 24/7 ACCESS: arriving at night (entrada) and leaving (salida), side by side on desktop;
+       phones: video, text, video, text. #acceso-24-7-2 still points at the second part. -->
+  <section class="fscene faccess faccess--pair" id="acceso-24-7-1" aria-labelledby="f-access-1-title">
+    <div class="faccess__inner faccess__pair">
+      <div class="faccess__text faccess__text--1">
+        <p class="fscene__label">01 / Acceso 24/7</p>
+        <h2 class="fscene__title" id="f-access-1-title">Tu club. A cualquier hora.</h2>
+        <p class="fscene__body">Entrena cuando quieras. Un espacio pensado para adaptarse a tu ritmo de vida.</p>
+      </div>
+      <div class="faccess__media faccess__media--1" data-hvideo>
         <video class="faccess__video" playsinline webkit-playsinline muted preload="none" tabindex="-1"
-          width="720" height="1280" poster="/images/fitness/access-24-7-part1.webp"
-          data-video="/videos/fitness/access/access-24-7-part1.mp4" aria-label="Presentación del acceso 24 horas a un club fitness, parte 1."></video>
+          width="720" height="1280" poster="/images/fitness/access-24-7-entrada.webp"
+          data-video="/videos/fitness/access/access-24-7-entrada.mp4" aria-label="De noche, una socia llega al club, abre la puerta, pasa el torno y entra en la sala: acceso 24 horas."></video>
         <span class="faccess__hint" aria-hidden="true"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
         <button type="button" class="faccess__btn faccess__btn--play" data-hv-play aria-pressed="false"
           aria-label="Reproducir vídeo" data-label-play="Reproducir vídeo" data-label-pause="Pausar vídeo"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="faccess__i faccess__i--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
         <button type="button" class="faccess__btn faccess__btn--sound" data-hv-sound aria-pressed="false"
           aria-label="Activar sonido" data-label-on="Activar sonido" data-label-off="Silenciar"><svg class="faccess__i faccess__i--muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><svg class="faccess__i faccess__i--on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button>
       </div>
-      <div class="faccess__text">
-        <p class="fscene__label">01 / Acceso 24/7</p>
-        <h2 class="fscene__title" id="f-access-1-title">Tu club. A cualquier hora.</h2>
-        <p class="fscene__body">Entrena cuando quieras. Un espacio pensado para adaptarse a tu ritmo de vida.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="fscene faccess faccess--reverse" id="acceso-24-7-2" aria-labelledby="f-access-2-title">
-    <div class="faccess__inner">
-      <div class="faccess__text">
+      <div class="faccess__text faccess__text--2" id="acceso-24-7-2">
         <p class="fscene__label">02 / Experiencia</p>
-        <h2 class="fscene__title" id="f-access-2-title">Libertad para entrenar.</h2>
+        <h3 class="fscene__title faccess__title--2" id="f-access-2-title">Libertad para entrenar.</h3>
         <p class="fscene__body">Una experiencia de acceso diseñada para ofrecer comodidad, autonomía y flexibilidad.</p>
       </div>
-      <div class="faccess__media" data-hvideo>
+      <div class="faccess__media faccess__media--2" data-hvideo>
         <video class="faccess__video" playsinline webkit-playsinline muted preload="none" tabindex="-1"
-          width="720" height="1280" poster="/images/fitness/access-24-7-part2.webp"
-          data-video="/videos/fitness/access/access-24-7-part2.mp4" aria-label="Presentación del acceso 24 horas a un club fitness, parte 2."></video>
+          width="720" height="1280" poster="/images/fitness/access-24-7-salida.webp"
+          data-video="/videos/fitness/access/access-24-7-salida.mp4" aria-label="La misma socia sale por el torno y la puerta de vidrio a la calle, de noche."></video>
         <span class="faccess__hint" aria-hidden="true"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
         <button type="button" class="faccess__btn faccess__btn--play" data-hv-play aria-pressed="false"
           aria-label="Reproducir vídeo" data-label-play="Reproducir vídeo" data-label-pause="Pausar vídeo"><svg class="faccess__i faccess__i--play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg><svg class="faccess__i faccess__i--pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/></svg></button>
@@ -1016,38 +1060,63 @@
 
   <!-- 07 SELECTED WORK: only concept work that exists (the supplied visualization).
        Completed projects are added here as more <article class="fwork__item"> entries. -->
-  <section class="fscene fwork" id="trabajo" aria-labelledby="f-work-title">
-    <div class="fscene__inner">
-      <p class="fscene__label">06 / Trabajo seleccionado</p>
-      <h2 class="fscene__title" id="f-work-title">Conceptos de diseño.</h2>
-      <p class="fscene__body fwork__note">Estudios de concepto y visualizaciones 3D. Los proyectos realizados se publicarán aquí.</p>
-      <article class="fwork__item">
-        <div class="fwork__pair">
-          <figure class="fwork__fig">
-            <img src="/images/fitness/hero-before.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Gimnasio existente con estructura de hormigón y equipamiento estándar.">
-            <figcaption>Antes</figcaption>
-          </figure>
-          <figure class="fwork__fig">
-            <img src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt="El mismo espacio rediseñado como club fitness, con iluminación lineal e identidad de marca.">
-            <figcaption>Después</figcaption>
-          </figure>
-        </div>
+  <section class="fscene fwork fwork--full" id="trabajo" aria-labelledby="f-work-title">
+    <!-- one full-screen picture: drag (or use the arrow keys on) the divider to compare before / after -->
+    <div class="fcompare" data-fcompare style="--pos: 50%">
+      <img class="fcompare__img" src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt="El mismo espacio rediseñado como club fitness, con iluminación lineal e identidad de marca.">
+      <div class="fcompare__before"><img class="fcompare__img" src="/images/fitness/hero-before.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Gimnasio existente con estructura de hormigón y equipamiento estándar."></div>
+      <span class="fcompare__tag fcompare__tag--before" aria-hidden="true">Antes</span>
+      <span class="fcompare__tag fcompare__tag--after" aria-hidden="true">Después</span>
+      <div class="fcompare__line" aria-hidden="true"><span class="fcompare__knob"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <input class="fcompare__range" type="range" min="0" max="100" step="1" value="50"
+        aria-label="Antes / Después">
+      <div class="fwork__overlay">
+        <p class="fscene__label">06 / Trabajo seleccionado</p>
+        <h2 class="fscene__title" id="f-work-title">Conceptos de diseño.</h2>
+        <p class="fscene__body fwork__note">Estudios de concepto y visualizaciones 3D. Los proyectos realizados se publicarán aquí.</p>
         <p class="fwork__kind">Concepto · Visualización 3D</p>
         <h3 class="fwork__title">Transformación de un gimnasio existente</h3>
-      </article>
+      </div>
     </div>
+    <script>
+      (function () {
+        var box = document.querySelector('[data-fcompare]');
+        if (!box) return;
+        var range = box.querySelector('.fcompare__range');
+        var set = function (v) { v = Math.max(0, Math.min(100, v)); box.style.setProperty('--pos', v + '%'); range.value = Math.round(v); };
+        range.addEventListener('input', function () { set(Number(range.value)); });
+        var drag = false;
+        var at = function (e) { var r = box.getBoundingClientRect(); set(((e.clientX - r.left) / r.width) * 100); };
+        box.addEventListener('pointerdown', function (e) {
+          if (e.target.closest('.fwork__overlay a')) return;
+          drag = true; at(e); if (box.setPointerCapture) box.setPointerCapture(e.pointerId);
+        });
+        box.addEventListener('pointermove', function (e) { if (drag) at(e); });
+        var end = function () { drag = false; };
+        box.addEventListener('pointerup', end); box.addEventListener('pointercancel', end);
+      })();
+    </script>
   </section>
 
-  <!-- 08 ARCHITECTURAL DETAILS -->
-  <section class="fscene fdetails" id="detalles" aria-labelledby="f-details-title">
-    <div class="fscene__inner">
-      <p class="fscene__label">07 / Detalles</p>
-      <h2 class="fscene__title" id="f-details-title">Los detalles construyen la identidad.</h2>
-      <div class="fdetails__grid">
-        <figure class="fdetails__item"><img src="/images/fitness/detail-lighting.webp" width="460" height="460" loading="lazy" decoding="async" alt="Techo con líneas de luz LED y pilares iluminados."><figcaption><strong>Iluminación</strong> Luz lineal que guía y da ritmo al espacio.</figcaption></figure>
-        <figure class="fdetails__item"><img src="/images/fitness/detail-materials.webp" width="460" height="400" loading="lazy" decoding="async" alt="Banco de entrenamiento junto a una pista marcada en el suelo."><figcaption><strong>Materiales y equipamiento</strong> Superficies resistentes y equipamiento integrado en el recorrido.</figcaption></figure>
-        <figure class="fdetails__item"><img src="/images/fitness/detail-identity.webp" width="420" height="420" loading="lazy" decoding="async" alt="Pared del fondo con el logotipo iluminado y estanterías de balones medicinales."><figcaption><strong>Identidad</strong> La marca integrada en la arquitectura.</figcaption></figure>
+  <!-- DETAILS: copy on the left, one strong image on the right (the strength area: LED light lines,
+       numbered floor track, racks and the lit logo wall). Phones: headline + intro, image, points, CTA.
+       The CTA opens the site's project panel (.open-panel). Text: fitnessPage.details.* -->
+  <section class="fscene fdetails fdetails--split" id="detalles" aria-labelledby="f-details-title">
+    <div class="fdetails__inner">
+      <div class="fdetails__head">
+        <h2 class="fscene__title" id="f-details-title">Cada detalle cuenta cuando el gimnasio está en uso</h2>
+        <p class="fscene__body fdetails__intro">La experiencia del socio empieza al entrar. Diseñamos la iluminación, la distribución y los acabados para que pueda orientarse, moverse entre zonas y encontrar el equipo que necesita mientras el gimnasio está en uso.</p>
       </div>
+      <figure class="fdetails__media">
+        <img src="/images/fitness/hero-after.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Sala de fuerza con líneas de luz LED en el techo, una pista numerada en el suelo, racks de musculación y la pared del fondo con el logotipo iluminado.">
+      </figure>
+      <dl class="fdetails__points">
+        <div><dt>Iluminación que guía</dt><dd>Las líneas de luz acompañan los recorridos y destacan las zonas de entrenamiento. La luz cálida del fondo aporta profundidad y da identidad al espacio.</dd></div>
+        <div><dt>Espacio para entrenar y circular</dt><dd>La distribución del equipamiento y la señalización del suelo ayudan a distinguir las zonas de trabajo de las de paso, también en las horas de mayor afluencia.</dd></div>
+        <div><dt>Materiales pensados para el uso diario</dt><dd>La elección de pavimentos y acabados tiene en cuenta el tipo de entrenamiento de cada zona, el tránsito y el mantenimiento habitual del gimnasio.</dd></div>
+      </dl>
+      <p class="fdetails__cta-wrap"><button type="button" class="fdetails__cta open-panel" data-panel-message="Hola, me gustaría hablar sobre el diseño de mi gimnasio."
+        data-track="start_project_clicked" data-track-location="fitness_details">Hablemos de tu gimnasio <span aria-hidden="true">&rarr;</span></button></p>
     </div>
   </section>
 
@@ -1190,28 +1259,6 @@
     </div>
   </section>
 
-  <!-- Client projects in development (assets/data/projects.json, sector "fitness"): after the case study -->
-  <!-- Client projects in development (assets/data/projects.json, scripts/projects.js) -->
-  <section class="rproj" id="proyectos" aria-labelledby="rproj-title">
-    <div class="rproj__inner">
-      <h2 class="rproj__eyebrow" id="rproj-title">Proyectos en desarrollo</h2>
-      <ul class="rproj__list" aria-label="Proyectos de clientes en desarrollo">
-      <li class="rproj__item">
-        <a class="rproj__card rproj__card--portrait" href="/gimnasios-3d/proyectos/santa-locura/" data-mode="hero">
-          <span class="rproj__media"><img src="/images/fitness/projects/santa-locura/hero-card-464.webp" srcset="/images/fitness/projects/santa-locura/hero-card-464.webp 464w" sizes="(max-width: 760px) 92vw, 360px" width="464" height="832" loading="lazy" decoding="async" alt="Recepción de Santa Locura Fitness: estado actual y propuesta"><video class="rproj__video" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1" data-src="/videos/fitness/projects/santa-locura/hero-slow.mp4"></video></span>
-          <span class="rproj__body">
-            <span class="rproj__lead">
-              <span class="rproj__meta"><span class="rproj__category">Reforma de recepción y acceso</span><span class="rproj__status">En desarrollo</span></span>
-              <span class="rproj__name">Santa Locura Fitness</span>
-              <span class="rproj__summary">Propuesta visual de reforma en tres opciones de acceso: puerta de vidrio, torno de altura completa o dos tornos trípode. Focos, tira LED, neón, grafito, pavimento y zona de espera.</span>
-            </span>
-            <span class="rproj__cta">Explorar proyecto <span aria-hidden="true">&rarr;</span></span>
-          </span>
-        </a>
-      </li>
-      </ul>
-    </div>
-  </section>
 
   <!-- 10 CONTACT -->
   <section class="fscene fcontact" id="contacto" aria-labelledby="f-contact-title">
@@ -1412,7 +1459,7 @@
 </div>
 <!-- /3dna:footer -->
 <script src="/assets/js/main.js?v=20261122a"></script>
-<script src="/assets/js/fitness-club-3d/club-app.js?v=20261101a" defer></script>
+<script src="/assets/js/fitness-club-3d/club-app.js?v=20261122c" defer></script>
 <script src="/assets/js/fitness-case-study.js?v=20261021i" defer></script>
 <script src="/assets/js/shared-calc/calc-tools.js?v=20261119a" defer></script>
 <script src="/assets/js/fitness-calc.js?v=20261030a" defer></script>

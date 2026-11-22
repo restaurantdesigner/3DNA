@@ -492,7 +492,9 @@ function box(x, y, z, mat, { cast = true, receive = true, parent = scene } = {})
   parent.add(mesh);
   return mesh;
 }
-const wall = (...args) => { const m = box(...args); occluders.push(m); return m; };
+// walls: their top face is the section cut, solid black
+const CUT = new THREE.MeshBasicMaterial({ color: 0x000000, toneMapped: false });
+const wall = (x, y, z, mat, opts) => { const m = box(x, y, z, mat.isMaterial ? mat : { ...mat, py: CUT }, opts); occluders.push(m); return m; };
 function mesh(geo, mat, parent, pos) {
   const m = new THREE.Mesh(geo, mat);
   m.castShadow = true; m.receiveShadow = true;
@@ -919,6 +921,23 @@ Object.assign(bloom.blendMaterial, { blending: THREE.CustomBlending, blendEquati
 bloom.blendMaterial.needsUpdate = true;
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
+// ambient occlusion (GTAO) after the scene pass: contact shadows in corners and under fixtures. The pass
+// comes from the same three.js version on jsDelivr (not in ./vendor); without it the model renders as before.
+// Perspective views only: the orthographic Plan view switches it off (see setCam).
+let gtao = null;
+import(`https://cdn.jsdelivr.net/npm/three@0.${THREE.REVISION.replace(/\D.*$/, '')}.0/examples/jsm/postprocessing/GTAOPass.js`).then(({ GTAOPass }) => {
+  const size = new THREE.Vector2(); renderer.getSize(size);
+  gtao = new GTAOPass(scene, camera, size.x, size.y);
+  gtao.output = GTAOPass.OUTPUT.Default;
+  gtao.updateGtaoMaterial({ radius: 0.35, distanceFallOff: 1, thickness: 1, scale: 1, samples: 16 });
+  gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 6, rings: 2, samples: 16 });
+  const setAo = gtao.setSize.bind(gtao);
+  gtao.setSize = (w, h) => setAo(Math.round(w * 0.75), Math.round(h * 0.75));
+  composer.insertPass(gtao, 1);
+  composer.setSize(size.x, size.y);
+  gtao.enabled = cam === camera;
+  dirty = true;
+}).catch(() => {});
 
 /* ---------- camera, controls, views ---------- */
 
@@ -948,7 +967,7 @@ function markView(name) { for (const b of viewButtons) b.setAttribute('aria-pres
 // The Plan view lands on an orthographic camera, so walls and fixtures line up with the drawing at every height
 const ortho = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 60);
 let cam = camera;
-function setCam(c) { cam = c; controls.object = c; renderPass.camera = c; controls.update(); dirty = true; }
+function setCam(c) { cam = c; controls.object = c; renderPass.camera = c; if (gtao) gtao.enabled = c === camera; controls.update(); dirty = true; }
 function enterOrtho() {
   const d = camera.position.distanceTo(controls.target);
   const half = d * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));

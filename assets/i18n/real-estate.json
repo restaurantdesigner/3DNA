@@ -184,6 +184,32 @@
       "whatsapp": "Escribir por WhatsApp",
       "form": "Enviar un mensaje",
       "message": "Hola, busco una vivienda con vistas al mar en la Costa del Sol o la Costa Tropical. Zona: , tipo: , presupuesto: ."
+    },
+    "siteModel": {
+      "title": "La promoción en 3D",
+      "intro": "Elige un bloque en el modelo o con los botones para ver sus viviendas por planta.",
+      "overview": "Vista general",
+      "block": "Bloque {n}",
+      "blocksLabel": "Bloques",
+      "units": {
+        "one": "1 vivienda",
+        "other": "{n} viviendas"
+      },
+      "levels": [
+        "Planta baja",
+        "Planta primera",
+        "Planta segunda"
+      ],
+      "apt": "Apto. {ref}",
+      "type": "Tipo {t}",
+      "solarium": "con solárium",
+      "thisType": "Este tipo",
+      "view": "Ver ficha",
+      "hint": "Arrastra para girar · rueda o pellizco para acercar · toca un edificio",
+      "caption": "Modelo 3D orientativo basado en la documentación comercial.",
+      "fallback": "Este navegador no puede mostrar el modelo 3D; las viviendas de cada bloque están en la lista.",
+      "available": "Disponible",
+      "loading": "Cargando el modelo 3D…"
     }
   },
   "en": {
@@ -370,6 +396,32 @@
       "whatsapp": "Message on WhatsApp",
       "form": "Send a message",
       "message": "Hello, I am looking for a home with sea views on the Costa del Sol or Costa Tropical. Area: , type: , budget: ."
+    },
+    "siteModel": {
+      "title": "The development in 3D",
+      "intro": "Choose a block in the model or with the buttons to see its homes by floor.",
+      "overview": "Overview",
+      "block": "Block {n}",
+      "blocksLabel": "Blocks",
+      "units": {
+        "one": "1 home",
+        "other": "{n} homes"
+      },
+      "levels": [
+        "Ground floor",
+        "First floor",
+        "Second floor"
+      ],
+      "apt": "Apt. {ref}",
+      "type": "Type {t}",
+      "solarium": "with solarium",
+      "thisType": "This type",
+      "view": "View listing",
+      "hint": "Drag to turn · scroll or pinch to zoom · tap a building",
+      "caption": "Indicative 3D model based on the sales documentation.",
+      "fallback": "This browser cannot show the 3D model; the homes in each block are listed below.",
+      "available": "Available",
+      "loading": "Loading the 3D model…"
     }
   },
   "ru": {
@@ -570,6 +622,34 @@
       "whatsapp": "Написать в WhatsApp",
       "form": "Отправить сообщение",
       "message": "Здравствуйте, ищу жильё с видом на море на Коста-дель-Соль или Коста-Тропикаль. Район: , тип: , бюджет: ."
+    },
+    "siteModel": {
+      "title": "Комплекс в 3D",
+      "intro": "Выберите корпус на модели или кнопкой, чтобы увидеть квартиры по этажам.",
+      "overview": "Общий вид",
+      "block": "Корпус {n}",
+      "blocksLabel": "Корпуса",
+      "units": {
+        "one": "{n} квартира",
+        "few": "{n} квартиры",
+        "many": "{n} квартир",
+        "other": "{n} квартиры"
+      },
+      "levels": [
+        "Первый этаж",
+        "Второй этаж",
+        "Третий этаж"
+      ],
+      "apt": "Кв. {ref}",
+      "type": "Тип {t}",
+      "solarium": "с солярием",
+      "thisType": "Этот тип",
+      "view": "Смотреть объект",
+      "hint": "Тяните, чтобы вращать · колесо или щипок для приближения · коснитесь здания",
+      "caption": "Ориентировочная 3D-модель по материалам застройщика.",
+      "fallback": "Этот браузер не может показать 3D-модель; квартиры каждого корпуса перечислены ниже.",
+      "available": "Свободна",
+      "loading": "Загрузка 3D-модели…"
     }
   },
   "uk": {
@@ -770,6 +850,34 @@
       "whatsapp": "Написати у WhatsApp",
       "form": "Надіслати повідомлення",
       "message": "Вітаю, шукаю житло з видом на море на Коста-дель-Соль або Коста-Тропікаль. Район: , тип: , бюджет: ."
+    },
+    "siteModel": {
+      "title": "Комплекс у 3D",
+      "intro": "Виберіть корпус на моделі або кнопкою, щоб побачити квартири за поверхами.",
+      "overview": "Загальний вигляд",
+      "block": "Корпус {n}",
+      "blocksLabel": "Корпуси",
+      "units": {
+        "one": "{n} квартира",
+        "few": "{n} квартири",
+        "many": "{n} квартир",
+        "other": "{n} квартири"
+      },
+      "levels": [
+        "Перший поверх",
+        "Другий поверх",
+        "Третій поверх"
+      ],
+      "apt": "Кв. {ref}",
+      "type": "Тип {t}",
+      "solarium": "із солярієм",
+      "thisType": "Цей тип",
+      "view": "Переглянути об’єкт",
+      "hint": "Тягніть, щоб обертати · колесо або щипок для наближення · торкніться будівлі",
+      "caption": "Орієнтовна 3D-модель за матеріалами забудовника.",
+      "fallback": "Цей браузер не може показати 3D-модель; квартири кожного корпусу наведено нижче.",
+      "available": "Вільна",
+      "loading": "Завантаження 3D-моделі…"
     }
   }
 }
