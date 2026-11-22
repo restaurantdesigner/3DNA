@@ -75,6 +75,8 @@
   function toQuery(model, values) {
     return model.fields
       .filter((f) => !(f.type === "text" && !values[f.key]))
+      // optional fields (e.g. editable cost assumptions) travel only when changed from the default
+      .filter((f) => !(f.optional && String(values[f.key]) === String(model.defaults[f.key])))
       .map((f) => `${f.param}=${encodeURIComponent(String(values[f.key]))}`)
       .concat(model.version ? [`v=${model.version}`] : []).join("&");   // the model version travels with the link
   }

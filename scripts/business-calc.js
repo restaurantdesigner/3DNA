@@ -21,7 +21,22 @@ const LOCALE = { es: "es-ES", en: "en-GB", ru: "ru-RU", uk: "uk-UA" };
 const json = (v) => JSON.stringify(v).replace(/</g, "\\u003c");
 const indent = (s, n) => s.replace(/^/gm, " ".repeat(n));
 
+// restaurant calculator: cost assumptions + breakdown strings (assets/i18n/restaurant-calc-costs.json), merged
+// into restaurantsPage.calc.ui / .report of each language (deep, in memory, at build time)
+const RC_COSTS = require("../assets/i18n/restaurant-calc-costs.json");
+function mergeDeep(target, src) {
+  for (const [k, v] of Object.entries(src)) {
+    if (v && typeof v === "object" && !Array.isArray(v)) { target[k] = target[k] && typeof target[k] === "object" ? target[k] : {}; mergeDeep(target[k], v); }
+    else target[k] = v;
+  }
+  return target;
+}
+
 function createBusinessCalcs(translations, { whatsappHref, email, restaurantSharePath, fitnessSharePath }) {
+  for (const [lang, add] of Object.entries(RC_COSTS)) {
+    if (lang.startsWith("_") || !translations[lang]) continue;
+    mergeDeep(translations[lang].restaurantsPage.calc, add);
+  }
   function i18nScript(lang, page) {
     const T = translations[lang], E = translations.en;
     const block = (tr) => ({ ...tr.calcCommon.report, ...tr[page].calc.report });
@@ -161,6 +176,38 @@ function createBusinessCalcs(translations, { whatsappHref, email, restaurantShar
   }
 
   // Restaurants: "Calculadora de Potencial Comercial" — five inputs, summary, full report
+  // editable cost assumptions, grouped; each number shows its unit; modes as radio pairs
+  function assumeHtml(M, ui, fmt) {
+    const A = ui.assume;
+    const field = (key) => {
+      const f = M.fields.find((x) => x.key === key);
+      const when = M.COST_WHEN[key] ? ` data-when="${M.COST_WHEN[key]}"${String(M.defaults[M.COST_WHEN[key].split("=")[0]]) === M.COST_WHEN[key].split("=")[1] ? "" : " hidden"}` : "";
+      if (f.type === "choice") {
+        return [
+          `<fieldset class="rpc-as__choice"${when}><legend>${esc(A.fields[key])}</legend>`,
+          ...f.options.map((o) => `<label><input type="radio" name="${f.param}" value="${o}" data-cf="${key}"${String(M.defaults[key]) === o ? " checked" : ""}> <span>${esc(A.options[key][o])}</span></label>`),
+          `</fieldset>`,
+        ].join("");
+      }
+      return [
+        `<div class="bcalc__field rpc-as__field"${when}>`,
+        `<label for="rc-${key}">${esc(A.fields[key])}</label>`,
+        `<div class="bcalc__box has-unit"><input id="rc-${key}" name="${f.param}" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="${esc(fmt.input(M.defaults[key], f.decimals || 0))}" data-cf="${key}" aria-describedby="rc-${key}-u">`,
+        `<span class="bcalc__unit" id="rc-${key}-u">${esc(A.units[f.unit])}</span></div>`,
+        `</div>`,
+      ].join("");
+    };
+    return [
+      `    <details class="rpc-as">`,
+      `      <summary class="rpc-as__head"><span>${esc(A.title)}</span><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>`,
+      `      <div class="rpc-as__body">`,
+      `        <p class="rpc-as__intro">${esc(A.intro)}</p>`,
+      ...M.COST_GROUPS.map(([g, keys]) => `        <div class="rpc-as__group"><p class="rpc-as__gt">${esc(A.groups[g])}</p><div class="rpc-as__grid">${keys.map(field).join("")}</div></div>`),
+      `      </div>`,
+      `    </details>`,
+    ].join("\n");
+  }
+
   function restaurantHtml(lang) {
     const M = restaurantModel;
     const T = translations[lang], E = translations.en;
@@ -203,13 +250,17 @@ function createBusinessCalcs(translations, { whatsappHref, email, restaurantShar
       `        <span class="rpc-slider__unit" id="rc-rotation-u"><span aria-hidden="true">${rot.min}</span><span>${esc(ui.rotationUnit)}</span><span aria-hidden="true">${rot.max}</span></span>`,
       `      </div>`,
       `    </form>`,
-      `    <dl class="rpc-cards">`,
+      // results: revenue (month, year) and operating profit; the staffing estimate stays in the full report
+      `    <dl class="rpc-cards rpc-cards--3">`,
       `      ${card(rt.cards.grossMonthly, "gross", rt.cards.ivaIncl, true)}`,
-      `      ${card(rt.cards.grossAnnual, "grossAnnual", rt.cards.ivaIncl, true)}`,
+      `      ${card(rt.cards.grossAnnual, "grossAnnual", rt.cards.annualNote || rt.cards.ivaIncl, true)}`,
       `      ${card(rt.cards.profitMonthly, "profit", rt.tags.scn)}`,
-      `      <div class="rpc-card"><dt>${esc(rt.cards.staff)}</dt><dd data-co="staffFte" data-fmt="num1" data-tpl="${esc(rt.cards.staffValue)}">${esc(rt.cards.staffValue.replace("{v}", fmt.num1(r.staffFte)))}</dd><p class="rpc-card__note">${esc(rt.tags.est)}</p></div>`,
       `    </dl>`,
       `    <p class="rpc-cards__note">${esc(rt.cards.note.replace("{u}", fmt.pct(M.ASSUMPTIONS.utilization.base)))}</p>`,
+      // monthly breakdown: net sales, every expense with its basis, total, profit (kept live by the model's paint)
+      `    <div class="rpc-bk" data-rpc-breakdown aria-live="polite">${M.breakdownHtml(r._an, rt, fmt)}</div>`,
+      // the cost assumptions, every one editable, with its unit (per month / % of net sales / per m² / per customer)
+      assumeHtml(M, ui, fmt),
       `    <div class="ccalc-tools" role="group" aria-label="${esc(ui.toolbarLabel)}">`,
       `      <button type="button" class="bcalc__btn bcalc__btn--primary" data-ca="pdf" hidden>${esc(ui.pdf)}</button>`,
       `      <button type="button" class="bcalc__btn" data-ca="save" hidden>${esc(ui.save)}</button>`,

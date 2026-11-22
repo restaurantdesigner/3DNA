@@ -1,0 +1,355 @@
+{
+  "_comment": "Restaurant calculator: editable cost assumptions and the monthly breakdown (scripts/business-calc.js merges this into restaurantsPage.calc.ui / .report at build time).",
+  "es": {
+    "ui": {
+      "assume": {
+        "title": "Supuestos de costes (editables)",
+        "intro": "Valores orientativos para España. Cámbialos con tus cifras: el resultado, el desglose, el PDF y los cálculos guardados usan los mismos.",
+        "groups": {
+          "sales": "Ventas",
+          "product": "Materia prima",
+          "staff": "Personal",
+          "rent": "Alquiler",
+          "utilities": "Suministros",
+          "premises": "Local",
+          "running": "Gestión y comercial"
+        },
+        "fields": {
+          "vat": "IVA aplicado",
+          "fbPct": "Coste de materia prima",
+          "staffFte": "Personal: jornadas completas (FTE)",
+          "staffCost": "Coste empresa por jornada completa",
+          "rentMode": "Forma de alquiler",
+          "rentM2": "Alquiler por m²",
+          "rentFixed": "Alquiler mensual",
+          "elecM2": "Electricidad por m²",
+          "elecCust": "Electricidad por cliente",
+          "waterFix": "Agua: cuota fija",
+          "waterCust": "Agua por cliente",
+          "gasCust": "Gas por cliente",
+          "cleanM2": "Limpieza por m²",
+          "maintM2": "Mantenimiento por m²",
+          "insFix": "Seguros: cuota fija",
+          "insM2": "Seguros por m²",
+          "swFix": "Software y TPV",
+          "cardPct": "Comisión de tarjeta",
+          "mktPct": "Marketing",
+          "consCust": "Consumibles por cliente",
+          "ohFix": "Gastos generales fijos",
+          "ohPct": "Gastos generales variables"
+        },
+        "options": {
+          "rentMode": {
+            "m2": "Por m²",
+            "fijo": "Importe fijo mensual"
+          }
+        },
+        "units": {
+          "pct": "%",
+          "pctNet": "% ventas netas",
+          "pctGross": "% ventas brutas",
+          "eurMonth": "€/mes",
+          "eurM2": "€/m²/mes",
+          "eurCustomer": "€/cliente",
+          "fte": "FTE",
+          "eurFteMonth": "€/mes por FTE"
+        }
+      }
+    },
+    "report": {
+      "cards": {
+        "grossAnnual": "Proyección anual",
+        "annualNote": "12 × este mes · IVA incl."
+      },
+      "costs": {
+        "title": "Desglose mensual",
+        "net": "Ventas netas (sin IVA)",
+        "total": "Total gastos de explotación",
+        "profit": "Beneficio operativo mensual",
+        "perM2": "Facturación bruta por m² al mes",
+        "guests": "Clientes al día",
+        "customersMonth": "clientes/mes",
+        "units": {
+          "pctNet": "de las ventas netas",
+          "pctGross": "de las ventas brutas (IVA incl.)",
+          "eurMonth": "/mes",
+          "eurM2": "/m²/mes",
+          "eurCustomer": "/cliente",
+          "fte": "FTE",
+          "eurFteMonth": "/mes por FTE"
+        },
+        "staffPerFte": "Coste empresa mensual por jornada completa",
+        "staffMethod": "Personal: jornadas completas × coste empresa mensual",
+        "staffFormula": "Personal = jornadas completas introducidas (FTE, admite fracciones para media jornada) × coste empresa mensual por jornada completa (salario y cotizaciones). No se recalcula al cambiar superficie, plazas, ticket, días o rotación."
+      },
+      "staff": {
+        "intro": "Plantilla introducida en jornadas completas (FTE; 0,5 = media jornada) y coste empresa mensual de cada una, con cotizaciones. Ambos datos son editables en «Supuestos de costes».",
+        "note": "El coste de personal forma parte del resultado operativo. Ajusta las jornadas a tu horario y turnos reales."
+      }
+    }
+  },
+  "en": {
+    "ui": {
+      "assume": {
+        "title": "Cost assumptions (editable)",
+        "intro": "Indicative values for Spain. Replace them with your own figures: the result, the breakdown, the PDF and saved calculations all use the same values.",
+        "groups": {
+          "sales": "Sales",
+          "product": "Food and drink cost",
+          "staff": "Staff",
+          "rent": "Rent",
+          "utilities": "Utilities",
+          "premises": "Premises",
+          "running": "Running and marketing"
+        },
+        "fields": {
+          "vat": "VAT rate",
+          "fbPct": "Food and drink cost",
+          "staffFte": "Staff: full-time equivalents (FTE)",
+          "staffCost": "Employer cost per full-time equivalent",
+          "rentMode": "Rent basis",
+          "rentM2": "Rent per m²",
+          "rentFixed": "Monthly rent",
+          "elecM2": "Electricity per m²",
+          "elecCust": "Electricity per customer",
+          "waterFix": "Water: fixed charge",
+          "waterCust": "Water per customer",
+          "gasCust": "Gas per customer",
+          "cleanM2": "Cleaning per m²",
+          "maintM2": "Maintenance per m²",
+          "insFix": "Insurance: fixed charge",
+          "insM2": "Insurance per m²",
+          "swFix": "Software and POS",
+          "cardPct": "Card fees",
+          "mktPct": "Marketing",
+          "consCust": "Consumables per customer",
+          "ohFix": "Fixed overheads",
+          "ohPct": "Variable overheads"
+        },
+        "options": {
+          "rentMode": {
+            "m2": "Per m²",
+            "fijo": "Fixed monthly amount"
+          }
+        },
+        "units": {
+          "pct": "%",
+          "pctNet": "% of net sales",
+          "pctGross": "% of gross sales",
+          "eurMonth": "€/month",
+          "eurM2": "€/m²/month",
+          "eurCustomer": "€/customer",
+          "fte": "FTE",
+          "eurFteMonth": "€/month per FTE"
+        }
+      }
+    },
+    "report": {
+      "cards": {
+        "grossAnnual": "Annual projection",
+        "annualNote": "12 × this month · VAT incl."
+      },
+      "costs": {
+        "title": "Monthly breakdown",
+        "net": "Net sales (excl. VAT)",
+        "total": "Total operating expenses",
+        "profit": "Monthly operating profit",
+        "perM2": "Gross revenue per m² per month",
+        "guests": "Customers per day",
+        "customersMonth": "customers/month",
+        "units": {
+          "pctNet": "of net sales",
+          "pctGross": "of gross sales (VAT incl.)",
+          "eurMonth": "/month",
+          "eurM2": "/m²/month",
+          "eurCustomer": "/customer",
+          "fte": "FTE",
+          "eurFteMonth": "/month per FTE"
+        },
+        "staffPerFte": "Monthly employer cost per full-time equivalent",
+        "staffMethod": "Staff: full-time equivalents × monthly employer cost",
+        "staffFormula": "Staff = entered full-time equivalents (FTE, fractions allowed for part-time) × monthly employer cost per full-time equivalent (salary and employer contributions). It is not recalculated when area, seats, check, days or turns change."
+      },
+      "staff": {
+        "intro": "Staffing entered in full-time equivalents (FTE; 0.5 = part-time) and the monthly employer cost of each, including contributions. Both are editable under “Cost assumptions”.",
+        "note": "Payroll is part of the operating result. Adjust the FTE to your real opening hours and shifts."
+      }
+    }
+  },
+  "ru": {
+    "ui": {
+      "assume": {
+        "title": "Допущения по расходам (можно изменить)",
+        "intro": "Ориентировочные значения для Испании. Замените их своими цифрами: результат, разбивка, PDF и сохранённые расчёты используют одни и те же значения.",
+        "groups": {
+          "sales": "Продажи",
+          "product": "Себестоимость продуктов",
+          "staff": "Персонал",
+          "rent": "Аренда",
+          "utilities": "Коммунальные услуги",
+          "premises": "Помещение",
+          "running": "Управление и маркетинг"
+        },
+        "fields": {
+          "vat": "Ставка НДС",
+          "fbPct": "Себестоимость продуктов",
+          "staffFte": "Персонал: полные ставки (FTE)",
+          "staffCost": "Расходы работодателя на одну полную ставку",
+          "rentMode": "Способ расчёта аренды",
+          "rentM2": "Аренда за м²",
+          "rentFixed": "Аренда в месяц",
+          "elecM2": "Электричество за м²",
+          "elecCust": "Электричество на клиента",
+          "waterFix": "Вода: фиксированный платёж",
+          "waterCust": "Вода на клиента",
+          "gasCust": "Газ на клиента",
+          "cleanM2": "Уборка за м²",
+          "maintM2": "Обслуживание за м²",
+          "insFix": "Страховка: фиксированный платёж",
+          "insM2": "Страховка за м²",
+          "swFix": "ПО и POS-терминал",
+          "cardPct": "Комиссия за карты",
+          "mktPct": "Маркетинг",
+          "consCust": "Расходные материалы на клиента",
+          "ohFix": "Постоянные общие расходы",
+          "ohPct": "Переменные общие расходы"
+        },
+        "options": {
+          "rentMode": {
+            "m2": "За м²",
+            "fijo": "Фиксированная сумма в месяц"
+          }
+        },
+        "units": {
+          "pct": "%",
+          "pctNet": "% чистых продаж",
+          "pctGross": "% валовых продаж",
+          "eurMonth": "€/мес",
+          "eurM2": "€/м²/мес",
+          "eurCustomer": "€/клиент",
+          "fte": "ставок",
+          "eurFteMonth": "€/мес за ставку"
+        }
+      }
+    },
+    "report": {
+      "cards": {
+        "grossAnnual": "Годовой прогноз",
+        "annualNote": "12 × этот месяц · с НДС"
+      },
+      "costs": {
+        "title": "Разбивка за месяц",
+        "net": "Чистые продажи (без НДС)",
+        "total": "Итого операционные расходы",
+        "profit": "Операционная прибыль в месяц",
+        "perM2": "Валовая выручка на м² в месяц",
+        "guests": "Клиентов в день",
+        "customersMonth": "клиентов/мес",
+        "units": {
+          "pctNet": "от чистых продаж",
+          "pctGross": "от валовых продаж (с НДС)",
+          "eurMonth": "/мес",
+          "eurM2": "/м²/мес",
+          "eurCustomer": "/клиент",
+          "fte": "ставки",
+          "eurFteMonth": "/мес за ставку"
+        },
+        "staffPerFte": "Расходы работодателя в месяц на одну полную ставку",
+        "staffMethod": "Персонал: полные ставки × расходы работодателя в месяц",
+        "staffFormula": "Персонал = введённое число полных ставок (FTE, допускаются дробные значения для неполного дня) × расходы работодателя в месяц на одну ставку (зарплата и взносы). Не пересчитывается при изменении площади, мест, чека, дней или оборачиваемости."
+      },
+      "staff": {
+        "intro": "Штат введён в полных ставках (FTE; 0,5 = полставки) с месячными расходами работодателя на каждую, включая взносы. Оба значения можно изменить в «Допущениях по расходам».",
+        "note": "Расходы на персонал входят в операционный результат. Подберите число ставок под реальный график и смены."
+      }
+    }
+  },
+  "uk": {
+    "ui": {
+      "assume": {
+        "title": "Припущення щодо витрат (можна змінити)",
+        "intro": "Орієнтовні значення для Іспанії. Замініть їх своїми цифрами: результат, розбивка, PDF і збережені розрахунки використовують ті самі значення.",
+        "groups": {
+          "sales": "Продажі",
+          "product": "Собівартість продуктів",
+          "staff": "Персонал",
+          "rent": "Оренда",
+          "utilities": "Комунальні послуги",
+          "premises": "Приміщення",
+          "running": "Управління та маркетинг"
+        },
+        "fields": {
+          "vat": "Ставка ПДВ",
+          "fbPct": "Собівартість продуктів",
+          "staffFte": "Персонал: повні ставки (FTE)",
+          "staffCost": "Витрати роботодавця на одну повну ставку",
+          "rentMode": "Спосіб розрахунку оренди",
+          "rentM2": "Оренда за м²",
+          "rentFixed": "Оренда на місяць",
+          "elecM2": "Електрика за м²",
+          "elecCust": "Електрика на клієнта",
+          "waterFix": "Вода: фіксований платіж",
+          "waterCust": "Вода на клієнта",
+          "gasCust": "Газ на клієнта",
+          "cleanM2": "Прибирання за м²",
+          "maintM2": "Обслуговування за м²",
+          "insFix": "Страхування: фіксований платіж",
+          "insM2": "Страхування за м²",
+          "swFix": "ПЗ і POS-термінал",
+          "cardPct": "Комісія за картки",
+          "mktPct": "Маркетинг",
+          "consCust": "Витратні матеріали на клієнта",
+          "ohFix": "Постійні загальні витрати",
+          "ohPct": "Змінні загальні витрати"
+        },
+        "options": {
+          "rentMode": {
+            "m2": "За м²",
+            "fijo": "Фіксована сума на місяць"
+          }
+        },
+        "units": {
+          "pct": "%",
+          "pctNet": "% чистих продажів",
+          "pctGross": "% валових продажів",
+          "eurMonth": "€/міс",
+          "eurM2": "€/м²/міс",
+          "eurCustomer": "€/клієнт",
+          "fte": "ставок",
+          "eurFteMonth": "€/міс за ставку"
+        }
+      }
+    },
+    "report": {
+      "cards": {
+        "grossAnnual": "Річний прогноз",
+        "annualNote": "12 × цей місяць · з ПДВ"
+      },
+      "costs": {
+        "title": "Розбивка за місяць",
+        "net": "Чисті продажі (без ПДВ)",
+        "total": "Усього операційні витрати",
+        "profit": "Операційний прибуток на місяць",
+        "perM2": "Валовий виторг на м² на місяць",
+        "guests": "Клієнтів на день",
+        "customersMonth": "клієнтів/міс",
+        "units": {
+          "pctNet": "від чистих продажів",
+          "pctGross": "від валових продажів (з ПДВ)",
+          "eurMonth": "/міс",
+          "eurM2": "/м²/міс",
+          "eurCustomer": "/клієнт",
+          "fte": "ставки",
+          "eurFteMonth": "/міс за ставку"
+        },
+        "staffPerFte": "Витрати роботодавця на місяць на одну повну ставку",
+        "staffMethod": "Персонал: повні ставки × витрати роботодавця на місяць",
+        "staffFormula": "Персонал = введена кількість повних ставок (FTE, допускаються дробові значення для неповного дня) × витрати роботодавця на місяць на одну ставку (зарплата та внески). Не перераховується при зміні площі, місць, чека, днів чи оборотності."
+      },
+      "staff": {
+        "intro": "Штат введено в повних ставках (FTE; 0,5 = пів ставки) з місячними витратами роботодавця на кожну, включно з внесками. Обидва значення можна змінити в «Припущеннях щодо витрат».",
+        "note": "Витрати на персонал входять до операційного результату. Підберіть кількість ставок під реальний графік і зміни."
+      }
+    }
+  }
+}

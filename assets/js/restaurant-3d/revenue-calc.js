@@ -23,10 +23,52 @@
     { key: "ticket", param: "ticket", type: "number", min: 1, max: 500, decimals: 2 },
     { key: "days", param: "dias", type: "number", min: 1, max: 31, decimals: 0 },
     { key: "rotation", param: "rotacion", type: "number", min: 1, max: 10, decimals: 1 },
+    // ---- editable cost assumptions (optional: links and saves carry them only when changed) ----
+    // unit: pctNet = % of net sales · pctGross = % of gross sales (VAT incl.) · pct = plain % ·
+    //       eurMonth = € per month · eurM2 = € per m² per month · eurCustomer = € per customer
+    { key: "vat", param: "iva", type: "number", min: 0, max: 30, decimals: 1, optional: true, unit: "pct" },
+    { key: "fbPct", param: "mp", type: "number", min: 0, max: 90, decimals: 1, optional: true, unit: "pctNet" },
+    // staff = full-time equivalents × monthly employer cost per FTE (fractions for part-time schedules)
+    { key: "staffFte", param: "personal_ec", type: "number", min: 0, max: 500, decimals: 2, optional: true, unit: "fte" },
+    { key: "staffCost", param: "coste_ec", type: "number", min: 0, max: 50000, decimals: 0, optional: true, unit: "eurFteMonth" },
+    { key: "rentMode", param: "alquiler", type: "choice", options: ["m2", "fijo"], optional: true },
+    { key: "rentM2", param: "alquiler_m2", type: "number", min: 0, max: 1000, decimals: 2, optional: true, unit: "eurM2" },
+    { key: "rentFixed", param: "alquiler_eur", type: "number", min: 0, max: 1000000, decimals: 0, optional: true, unit: "eurMonth" },
+    { key: "elecM2", param: "luz_m2", type: "number", min: 0, max: 100, decimals: 2, optional: true, unit: "eurM2" },
+    { key: "elecCust", param: "luz_cli", type: "number", min: 0, max: 50, decimals: 2, optional: true, unit: "eurCustomer" },
+    { key: "waterFix", param: "agua", type: "number", min: 0, max: 100000, decimals: 0, optional: true, unit: "eurMonth" },
+    { key: "waterCust", param: "agua_cli", type: "number", min: 0, max: 50, decimals: 2, optional: true, unit: "eurCustomer" },
+    { key: "gasCust", param: "gas_cli", type: "number", min: 0, max: 50, decimals: 2, optional: true, unit: "eurCustomer" },
+    { key: "cleanM2", param: "limpieza_m2", type: "number", min: 0, max: 100, decimals: 2, optional: true, unit: "eurM2" },
+    { key: "maintM2", param: "mant_m2", type: "number", min: 0, max: 100, decimals: 2, optional: true, unit: "eurM2" },
+    { key: "insFix", param: "seguro", type: "number", min: 0, max: 100000, decimals: 0, optional: true, unit: "eurMonth" },
+    { key: "insM2", param: "seguro_m2", type: "number", min: 0, max: 100, decimals: 2, optional: true, unit: "eurM2" },
+    { key: "swFix", param: "software", type: "number", min: 0, max: 100000, decimals: 0, optional: true, unit: "eurMonth" },
+    { key: "cardPct", param: "tarjeta", type: "number", min: 0, max: 10, decimals: 2, optional: true, unit: "pctGross" },
+    { key: "mktPct", param: "marketing", type: "number", min: 0, max: 50, decimals: 1, optional: true, unit: "pctNet" },
+    { key: "consCust", param: "consumibles_cli", type: "number", min: 0, max: 50, decimals: 2, optional: true, unit: "eurCustomer" },
+    { key: "ohFix", param: "generales", type: "number", min: 0, max: 1000000, decimals: 0, optional: true, unit: "eurMonth" },
+    { key: "ohPct", param: "generales_pct", type: "number", min: 0, max: 50, decimals: 1, optional: true, unit: "pctNet" },
   ];
+  // the cost assumptions as the page groups them (scripts/business-calc.js renders the panel)
+  const COST_GROUPS = [
+    ["sales", ["vat"]], ["product", ["fbPct"]], ["staff", ["staffFte", "staffCost"]], ["rent", ["rentMode", "rentM2", "rentFixed"]],
+    ["utilities", ["elecM2", "elecCust", "waterFix", "waterCust", "gasCust"]],
+    ["premises", ["cleanM2", "maintM2", "insFix", "insM2"]],
+    ["running", ["swFix", "cardPct", "mktPct", "consCust", "ohFix", "ohPct"]],
+  ];
+  // fields shown only for one mode
+  const COST_WHEN = { rentM2: "rentMode=m2", rentFixed: "rentMode=fijo" };
   // the example: the 3D restaurant above (20 × 13 m, 48 seats, 25 € ticket, 30 days)
   // the example: the 3D restaurant above — 48 × 25 € × 2.6 × 30 = 93.600 €/month, as presented there
-  const DEFAULTS = { area: 260, seats: 48, ticket: 25, days: 30, rotation: 2.6 };
+  const DEFAULTS = { area: 260, seats: 48, ticket: 25, days: 30, rotation: 2.6,
+    // cost assumptions: the model's illustrative values (as in ASSUMPTIONS below), all editable on the page.
+    // Staff: 3 full-time equivalents at 2.618 €/month each (employer cost: the reference gross salaries of
+    // floor, kitchen, assistant and manager, 14 payments ÷ 12, + 32 % social security, averaged). The
+    // entered staffing is never recalculated from area, seats, ticket, days or rotation.
+    vat: 10, fbPct: 30, staffFte: 3, staffCost: 2618, rentMode: "m2", rentM2: 15, rentFixed: 0,
+    elecM2: 3, elecCust: 0.2, waterFix: 40, waterCust: 0.06, gasCust: 0.12, cleanM2: 1.6, maintM2: 1.2,
+    insFix: 90, insM2: 0.35, swFix: 90, cardPct: 0.5, mktPct: 2, consCust: 0.15, ohFix: 350, ohPct: 1 };
   const ANCHOR = "calculadora";
 
   // ---- internal model assumptions (illustrative, versioned) ----
@@ -43,11 +85,6 @@
     revenuePerM2Year: { low: 1500, high: 5000 },      // € net sales per m² and year (insight thresholds)
     breakEvenTight: 0.85,                             // break-even demand ≥ 85 % of the expected = little headroom
     rotationHigh: 6,
-    services: 2, hoursPerService: 6, fteHours: 160,   // lunch + dinner; hours per service incl. set-up; hours per FTE month
-    productivity: { waiter: 45, cook: 60, assistant: 90, bar: 150 },     // customers per service per position
-    barMinSeats: 30,                                  // a bar position from this many seats
-    salary: { waiter: 1550, cook: 1750, assistant: 1400, bar: 1550, supervisor: 2100 },  // gross €/month, 14 payments
-    payments: 14, employerOnCost: 0.32,               // employer social security and similar
     fbRatio: 0.30,                                    // food & beverage cost on net sales
     rentPerM2: 15,                                    // €/m²/month
     electricity: { perM2: 3.0, perCustomer: 0.20 },
@@ -60,53 +97,35 @@
     overhead: { base: 350, onNet: 0.01 },
   };
   const A = ASSUMPTIONS;
-  const ROLES = ["waiter", "cook", "assistant", "bar", "supervisor"];
 
-  function staffing(v, dailyCustomers) {
-    const perService = dailyCustomers / A.services;
-    const pos = {
-      waiter: Math.max(1, Math.ceil(perService / A.productivity.waiter)),
-      cook: Math.max(1, Math.ceil(perService / A.productivity.cook)),
-      assistant: Math.max(1, Math.ceil(perService / A.productivity.assistant)),
-      bar: v.seats >= A.barMinSeats ? Math.max(1, Math.ceil(perService / A.productivity.bar)) : 0,
-      supervisor: 1,
-    };
-    const fteFactor = A.services * A.hoursPerService * v.days / A.fteHours;
-    const roles = ROLES.map((r) => {
-      const fte = pos[r] * fteFactor;
-      const monthlyCost = A.salary[r] * A.payments / 12 * (1 + A.employerOnCost);
-      return { role: r, perService: pos[r], fte, cost: fte * monthlyCost };
-    });
-    return {
-      perServiceCustomers: perService, roles,
-      positions: roles.reduce((s, x) => s + x.perService, 0),
-      fte: roles.reduce((s, x) => s + x.fte, 0),
-      cost: roles.reduce((s, x) => s + x.cost, 0),
-    };
-  }
-
-  // one scenario at a utilization factor u; the five inputs never change between scenarios
+  // one scenario at a utilization factor u; the five inputs never change between scenarios.
+  // Revenue: daily guests = seats × daily turns (the realised average: no second occupancy factor);
+  // gross = guests × ticket (VAT incl.) × open days; net = gross ÷ (1 + VAT). Floor area enters only
+  // the costs set per m² (and the per-m² metrics): it never changes seats or revenue.
+  // Every operating expense is a monthly amount; profit = net − (product + every other expense).
   function scenario(v, u) {
+    const vat = v.vat / 100;
     const theoDaily = v.seats * v.rotation;
     const daily = theoDaily * u;
-    const monthly = daily * v.days;
+    const monthly = daily * v.days;                    // customers per month
     const gross = monthly * v.ticket;
-    const net = gross / (1 + A.iva);
-    const fb = net * A.fbRatio;
-    const staff = staffing(v, daily);
+    const net = gross / (1 + vat);
+    const fb = net * v.fbPct / 100;
+    // payroll: entered staffing level × employer cost per FTE; the same in every demand scenario
+    const staff = { fte: v.staffFte, perFte: v.staffCost, cost: v.staffFte * v.staffCost };
     const opex = {
       staff: staff.cost,
-      rent: v.area * A.rentPerM2,
-      electricity: v.area * A.electricity.perM2 + monthly * A.electricity.perCustomer,
-      water: A.water.base + monthly * A.water.perCustomer,
-      gas: monthly * A.gasPerCustomer,
-      cleaning: v.area * A.cleaningPerM2,
-      maintenance: v.area * A.maintenancePerM2,
-      insurance: A.insurance.base + v.area * A.insurance.perM2,
-      software: A.software.base + gross * A.software.cardFeeOnGross,
-      marketing: net * A.marketingOnNet,
-      consumables: monthly * A.consumablesPerCustomer,
-      overhead: A.overhead.base + net * A.overhead.onNet,
+      rent: v.rentMode === "fijo" ? v.rentFixed : v.area * v.rentM2,       // once: per m² or a fixed amount
+      electricity: v.area * v.elecM2 + monthly * v.elecCust,
+      water: v.waterFix + monthly * v.waterCust,
+      gas: monthly * v.gasCust,
+      cleaning: v.area * v.cleanM2,
+      maintenance: v.area * v.maintM2,
+      insurance: v.insFix + v.area * v.insM2,
+      software: v.swFix + gross * v.cardPct / 100,       // card fees are charged on what the customer pays (VAT incl.)
+      marketing: net * v.mktPct / 100,
+      consumables: monthly * v.consCust,
+      overhead: v.ohFix + net * v.ohPct / 100,
     };
     const opexTotal = Object.values(opex).reduce((s, x) => s + x, 0);
     const result = net - fb - opexTotal;
@@ -115,6 +134,7 @@
 
   function analyze(input) {
     const v = { ...DEFAULTS, ...input };
+    if (!["m2", "fijo"].includes(v.rentMode)) v.rentMode = "m2";
     const base = scenario(v, A.utilization.base);
     const cons = scenario(v, A.utilization.conservative);
     const opt = scenario(v, A.utilization.optimistic);
@@ -131,14 +151,14 @@
 
     // break-even: staff and fixed costs held at the base scenario; the rest varies per customer
     const o = base.opex;
-    const fixed = o.staff + o.rent + v.area * A.electricity.perM2 + A.water.base + o.cleaning + o.maintenance + o.insurance + A.software.base + A.overhead.base;
-    const netTicket = v.ticket / (1 + A.iva);
-    const varPerCustomer = netTicket * (A.fbRatio + A.marketingOnNet + A.overhead.onNet) + v.ticket * A.software.cardFeeOnGross
-      + A.electricity.perCustomer + A.water.perCustomer + A.gasPerCustomer + A.consumablesPerCustomer;
+    const fixed = o.staff + o.rent + v.area * v.elecM2 + v.waterFix + o.cleaning + o.maintenance + o.insurance + v.swFix + v.ohFix;
+    const netTicket = v.ticket / (1 + v.vat / 100);
+    const varPerCustomer = netTicket * (v.fbPct + v.mktPct + v.ohPct) / 100 + v.ticket * v.cardPct / 100
+      + v.elecCust + v.waterCust + v.gasCust + v.consCust;
     const perCustomer = netTicket - varPerCustomer;
     const be = perCustomer > 0 ? { customers: fixed / perCustomer } : null;
     if (be) {
-      be.gross = be.customers * v.ticket; be.net = be.gross / (1 + A.iva);
+      be.gross = be.customers * v.ticket; be.net = be.gross / (1 + v.vat / 100);
       be.daily = be.customers / v.days; be.utilization = be.customers / base.monthly;   // share of the expected demand
     }
 
@@ -165,6 +185,7 @@
     return {
       gross: an.base.gross, grossAnnual: an.base.gross * 12,
       profit: an.base.result, profitAnnual: an.base.result * 12, staffFte: an.base.staff.fte,
+      net: an.base.net, costs: an.base.costs, grossPerM2: an.base.gross / v.area, dailyGuests: an.base.daily,
       rotation: v.rotation, utilizationBase: A.utilization.base,
       loss: an.base.result < 0, _an: an,
     };
@@ -178,6 +199,7 @@
     const neg = (x) => typeof x === "number" && x < 0;
     const fill = (s, vars) => s.replace(/\{(\w+)\}/g, (m, k) => (vars[k] == null ? m : vars[k]));
     const pctU = f.pct(A.utilization.base);
+    const fte = (x) => fmtFte(f, x);
     const S = [];
 
     S.push({ id: "space", page: 2, title: t.space.title, intro: t.space.intro, rows: [
@@ -200,7 +222,7 @@
       { label: t.customers.expAnnual, value: f.int(base.monthly * 12), tag: "scn" },
     ] });
 
-    S.push({ id: "revenue", page: 3, title: t.revenue.title, intro: fill(t.revenue.intro, { i: f.pct(A.iva) }), rows: [
+    S.push({ id: "revenue", page: 3, title: t.revenue.title, intro: fill(t.revenue.intro, { i: f.pct(v.vat / 100) }), rows: [
       { label: t.revenue.ticket, value: f.eur2(v.ticket), tag: "in" },
       { label: t.revenue.dailyGross, value: f.eur(base.gross / v.days), tag: "scn" },
       { label: t.revenue.monthlyGross, value: f.eur(base.gross), tag: "scn", strong: true },
@@ -214,24 +236,21 @@
     ] });
 
     S.push({ id: "product", page: 3, title: t.product.title, intro: t.product.intro, rows: [
-      { label: t.product.ratio, value: f.pct(A.fbRatio), tag: "est" },
+      { label: t.product.ratio, value: f.pct(v.fbPct / 100), tag: v.fbPct === DEFAULTS.fbPct ? "est" : "in" },
       { label: t.product.monthly, value: f.eur(base.fb), tag: "est" },
       { label: t.product.annual, value: f.eur(base.fb * 12), tag: "est" },
       { label: t.product.contribution, value: f.eur(base.net - base.fb), tag: "est", strong: true },
     ] });
 
     const st = base.staff;
-    S.push({ id: "staff", page: 4, title: t.staff.title,
-      intro: fill(t.staff.intro, { s: A.services, h: A.hoursPerService, c: f.int(st.perServiceCustomers) }),
-      table: { columns: [t.staff.role, t.staff.perService, t.staff.fte, t.staff.cost],
-        rows: [...st.roles.filter((r) => r.perService > 0).map((r) => [t.staff.roles[r.role], f.int(r.perService), f.num1(r.fte), f.eur(r.cost)]),
-          [{ text: t.staff.total, strong: true }, { text: f.int(st.positions), strong: true }, { text: f.num1(st.fte), strong: true }, { text: f.eur(st.cost), strong: true }]] },
-      rows: [
-        { label: t.staff.monthly, value: f.eur(st.cost), tag: "est", strong: true },
-        { label: t.staff.annual, value: f.eur(st.cost * 12), tag: "est" },
-        { label: t.staff.ratio, value: f.pct(base.net > 0 ? st.cost / base.net : null), tag: "est" },
-      ],
-      note: t.staff.note });
+    const C = t.costs || {};
+    S.push({ id: "staff", page: 4, title: t.staff.title, intro: t.staff.intro, rows: [
+      { label: t.staff.fte, value: fte(st.fte), tag: "in" },
+      { label: C.staffPerFte, value: f.eur(st.perFte), tag: "in" },
+      { label: t.staff.monthly, value: f.eur(st.cost), tag: "est", strong: true },
+      { label: t.staff.annual, value: f.eur(st.cost * 12), tag: "est" },
+      { label: t.staff.ratio, value: f.pct(base.net > 0 ? st.cost / base.net : null), tag: "est" },
+    ], note: t.staff.note });
 
     const ox = base.opex;
     const opexKeys = ["staff", "rent", "electricity", "water", "gas", "cleaning", "maintenance", "insurance", "software", "marketing", "consumables", "overhead"];
@@ -272,7 +291,7 @@
         [t.scenarios.net, ...sc.map((s) => f.eur(s.net))],
         [t.scenarios.product, ...sc.map((s) => f.eur(s.fb))],
         [t.scenarios.staff, ...sc.map((s) => f.eur(s.staff.cost))],
-        [t.scenarios.fte, ...sc.map((s) => f.num1(s.staff.fte))],
+        [t.scenarios.fte, ...sc.map((s) => fte(s.staff.fte))],
         [t.scenarios.other, ...sc.map((s) => f.eur(s.opexTotal - s.staff.cost))],
         [{ text: t.scenarios.result, strong: true }, ...sc.map((s) => ({ ...cell(s.result, f.eur), strong: true }))],
         [t.scenarios.annual, ...sc.map((s) => cell(s.result * 12, f.eur))],
@@ -284,30 +303,71 @@
       bullets: an.insights.map((i) => ({ level: i.level, label: t.insights.levels[i.level],
         text: fill(t.insights.texts[i.key], Object.fromEntries(Object.entries(i.vars).map(([k, x]) => [k, fmtVar(k, x)]))) })) });
 
-    const sal = A.salary;
     S.push({ id: "method", page: 8, collapsed: true, title: t.method.title, intro: fill(t.method.intro, { version: A.version }),
       rows: [
-        { label: t.method.a.iva, value: f.pct(A.iva) },
+        { label: t.method.a.iva, value: f.pct(v.vat / 100) },
         { label: t.method.a.utilization, value: [A.utilization.conservative, A.utilization.base, A.utilization.optimistic].map(f.pct).join(" / ") },
         { label: t.method.a.zoning, value: [A.zoning.dining, A.zoning.kitchen, A.zoning.support].map(f.pct).join(" / ") },
-        { label: t.method.a.services, value: `${A.services} × ${A.hoursPerService} h` },
-        { label: t.method.a.fteHours, value: `${A.fteHours} h` },
-        { label: t.method.a.productivity, value: [A.productivity.waiter, A.productivity.cook, A.productivity.assistant, A.productivity.bar].join(" / ") },
-        { label: t.method.a.salaries, value: [sal.waiter, sal.cook, sal.assistant, sal.bar, sal.supervisor].map(f.eur).join(" / ") },
-        { label: t.method.a.onCost, value: f.pct(A.employerOnCost) },
-        { label: t.method.a.fb, value: f.pct(A.fbRatio) },
-        { label: t.method.a.rent, value: `${f.eur2(A.rentPerM2)}/m²` },
-        { label: t.method.a.electricity, value: `${f.eur2(A.electricity.perM2)}/m² + ${f.eur2(A.electricity.perCustomer)}` },
-        { label: t.method.a.water, value: `${f.eur(A.water.base)} + ${f.eur2(A.water.perCustomer)}` },
-        { label: t.method.a.gas, value: f.eur2(A.gasPerCustomer) },
-        { label: t.method.a.cleaning, value: `${f.eur2(A.cleaningPerM2)}/m² · ${f.eur2(A.maintenancePerM2)}/m²` },
-        { label: t.method.a.insurance, value: `${f.eur(A.insurance.base)} + ${f.eur2(A.insurance.perM2)}/m²` },
-        { label: t.method.a.software, value: `${f.eur(A.software.base)} + ${f.pct(A.software.cardFeeOnGross)}` },
-        { label: t.method.a.marketing, value: `${f.pct(A.marketingOnNet)} · ${f.eur2(A.consumablesPerCustomer)}` },
-        { label: t.method.a.overhead, value: `${f.eur(A.overhead.base)} + ${f.pct(A.overhead.onNet)}` },
+        { label: C.staffMethod, value: `${fte(v.staffFte)} × ${f.eur(v.staffCost)}` },
+        { label: t.method.a.fb, value: f.pct(v.fbPct / 100) },
+        { label: t.method.a.rent, value: v.rentMode === "fijo" ? `${f.eur(v.rentFixed)}/mes` : `${f.eur2(v.rentM2)}/m²` },
+        { label: t.method.a.electricity, value: `${f.eur2(v.elecM2)}/m² + ${f.eur2(v.elecCust)}` },
+        { label: t.method.a.water, value: `${f.eur(v.waterFix)} + ${f.eur2(v.waterCust)}` },
+        { label: t.method.a.gas, value: f.eur2(v.gasCust) },
+        { label: t.method.a.cleaning, value: `${f.eur2(v.cleanM2)}/m² · ${f.eur2(v.maintM2)}/m²` },
+        { label: t.method.a.insurance, value: `${f.eur(v.insFix)} + ${f.eur2(v.insM2)}/m²` },
+        { label: t.method.a.software, value: `${f.eur(v.swFix)} + ${f.pct(v.cardPct / 100)}` },
+        { label: t.method.a.marketing, value: `${f.pct(v.mktPct / 100)} · ${f.eur2(v.consCust)}` },
+        { label: t.method.a.overhead, value: `${f.eur(v.ohFix)} + ${f.pct(v.ohPct / 100)}` },
       ],
-      paragraphs: t.method.formulas, note: t.method.disclaimer });
+      // the staffing formula follows the entered FTE × cost per FTE
+      paragraphs: t.method.formulas.map((p, i) => (i === 2 && C.staffFormula ? C.staffFormula : p)), note: t.method.disclaimer });
     return S;
+  }
+
+  // ---------------- the monthly breakdown (page under the cards, PDF, print) ----------------
+  // one row per expense with the basis it is computed from, so every unit is explicit
+  function breakdown(an, t, f) {
+    const { v, base } = an, C = t.costs, U = C.units, o = base.opex, n = base.monthly;
+    const pct = (x) => f.pct(x / 100);
+    const m2 = `${f.int(v.area)} m²`, cust = `${f.int(n)} ${C.customersMonth}`;
+    const basis = {
+      product: `${pct(v.fbPct)} ${U.pctNet}`,
+      staff: `${fmtFte(f, base.staff.fte)} ${U.fte} × ${f.eur(base.staff.perFte)}${U.eurFteMonth}`,
+      rent: v.rentMode === "fijo" ? `${f.eur(v.rentFixed)}${U.eurMonth}` : `${f.eur2(v.rentM2)}${U.eurM2} × ${m2}`,
+      electricity: `${f.eur2(v.elecM2)}${U.eurM2} × ${m2} + ${f.eur2(v.elecCust)}${U.eurCustomer} × ${cust}`,
+      water: `${f.eur(v.waterFix)}${U.eurMonth} + ${f.eur2(v.waterCust)}${U.eurCustomer} × ${cust}`,
+      gas: `${f.eur2(v.gasCust)}${U.eurCustomer} × ${cust}`,
+      cleaning: `${f.eur2(v.cleanM2)}${U.eurM2} × ${m2}`,
+      maintenance: `${f.eur2(v.maintM2)}${U.eurM2} × ${m2}`,
+      insurance: `${f.eur(v.insFix)}${U.eurMonth} + ${f.eur2(v.insM2)}${U.eurM2} × ${m2}`,
+      software: `${f.eur(v.swFix)}${U.eurMonth} + ${pct(v.cardPct)} ${U.pctGross}`,
+      marketing: `${pct(v.mktPct)} ${U.pctNet}`,
+      consumables: `${f.eur2(v.consCust)}${U.eurCustomer} × ${cust}`,
+      overhead: `${f.eur(v.ohFix)}${U.eurMonth} + ${pct(v.ohPct)} ${U.pctNet}`,
+    };
+    const lines = [["product", base.fb], ...["staff", "rent", "electricity", "water", "gas", "cleaning", "maintenance", "insurance", "software", "marketing", "consumables", "overhead"].map((k) => [k, o[k]])];
+    return {
+      net: { label: C.net, basis: `${f.eur(base.gross)} ÷ ${f.num2(1 + v.vat / 100)}`, value: base.net },
+      lines: lines.map(([k, x]) => ({ key: k, label: k === "product" ? t.opex.product : t.opex[k], basis: basis[k], value: x })),
+      total: { label: C.total, value: base.costs },
+      profit: { label: C.profit, value: base.result },
+      perM2: { label: C.perM2, value: base.gross / v.area },
+      guests: { label: C.guests, value: base.daily },
+    };
+  }
+  // full-time equivalents: whole numbers plain, part-time fractions with up to two decimals
+  function fmtFte(f, x) { return Number.isInteger(x) ? f.int(x) : f.num2(x).replace(/0$/, ""); }
+  function breakdownHtml(an, t, f) {
+    const b = breakdown(an, t, f), e = (x) => esc(x);
+    const row = (r, cls = "") => `<tr${cls ? ` class="${cls}"` : ""}><th scope="row">${e(r.label)}${r.basis ? `<span class="rpc-bk__basis">${e(r.basis)}</span>` : ""}</th><td class="rpc-num${r.value < 0 ? " is-neg" : ""}">${e(f.eur(r.value))}</td></tr>`;
+    return `<table class="rpc-bk__table"><caption class="rpc-bk__title">${e(t.costs.title)}</caption><tbody>
+${row(b.net, "is-strong")}
+${b.lines.map((r) => row({ ...r, value: -r.value })).join("\n")}
+${row({ ...b.total, value: -b.total.value }, "is-total")}
+${row(b.profit, "is-strong is-result")}
+</tbody></table>
+<p class="rpc-bk__meta">${e(b.guests.label)}: <strong>${e(f.int(b.guests.value))}</strong> · ${e(b.perM2.label)}: <strong>${e(f.eur(b.perM2.value))}</strong></p>`;
   }
 
   // ---------------- live HTML (also used by the build for the first paint) ----------------
@@ -355,6 +415,19 @@
   function paint(box, results, ctx) {
     const out = box.querySelector("[data-rpc-rotation]");
     if (out) out.textContent = String(results.rotation);
+    const bk = box.querySelector("[data-rpc-breakdown]");
+    if (bk && ctx.t.costs) bk.innerHTML = breakdownHtml(results._an, ctx.t, ctx.f);
+    // switching rent to a fixed amount starts from the current figure (rent per m² × area)
+    const v = results._an.v, prev = box.__rpcModes || {};
+    const prefill = (mode, key, value) => {
+      if (prev[mode] && prev[mode] !== v[mode] && v[mode] === "fijo" && !v[key]) {
+        const el = box.querySelector(`input[data-cf="${key}"]`);
+        // after this repaint has finished (an input event from inside a paint would race the frame scheduler)
+        if (el) setTimeout(() => { el.value = String(Math.round(value)); el.dispatchEvent(new Event("input", { bubbles: true })); }, 0);
+      }
+    };
+    prefill("rentMode", "rentFixed", v.area * v.rentM2);
+    box.__rpcModes = { rentMode: v.rentMode };
     const host = box.querySelector("[data-rpc-report]");
     const full = box.querySelector("[data-rpc-full]");
     if (!host) return;
@@ -385,6 +458,17 @@
     const S = sections(an, t, f);
     // the cover stands alone; the analysis then flows, each block kept whole on a page
     const blocks = [];
+    if (t.costs) {
+      const b = breakdown(an, t, f);
+      blocks.push({ heading: t.costs.title, rows: [
+        { label: b.net.label, value: f.eur(b.net.value), note: b.net.basis, strong: true },
+        ...b.lines.map((r) => ({ label: r.label, value: f.eur(-r.value), note: r.basis, negative: true })),
+        { label: b.total.label, value: f.eur(-b.total.value), strong: true, negative: true },
+        { label: b.profit.label, value: f.eur(b.profit.value), strong: true, negative: neg(b.profit.value) },
+        { label: b.guests.label, value: f.int(b.guests.value) },
+        { label: b.perM2.label, value: f.eur(b.perM2.value) },
+      ] });
+    }
     S.forEach((s, i) => {
       const pb = i === 0;
       blocks.push({ pageBreak: pb, heading: s.title, intro: s.intro, table: s.table, rows: s.rows && s.rows.map((x) => ({ ...x, tagKind: x.tag, tag: x.tag ? t.tags[x.tag] : "" })), chart: s.chart, bullets: s.bullets, paragraphs: s.paragraphs, note: s.note });
@@ -402,7 +486,7 @@
       ],
       summary: [
         { label: t.cards.grossMonthly, value: f.eur(r.gross), strong: true, note: t.cards.ivaIncl },
-        { label: t.cards.grossAnnual, value: f.eur(r.grossAnnual), strong: true, note: t.cards.ivaIncl },
+        { label: t.cards.grossAnnual, value: f.eur(r.grossAnnual), strong: true, note: t.cards.annualNote || t.cards.ivaIncl },
         { label: t.cards.profitMonthly, value: f.eur(r.profit), negative: neg(r.profit) },
         { label: t.cards.profitAnnual, value: f.eur(r.profitAnnual), negative: neg(r.profitAnnual) },
       ],
@@ -413,8 +497,10 @@
     };
   }
 
+  // version stays 2: the cost assumptions are optional fields with defaults, so earlier saves and links
+  // open unchanged (calc-tools keeps saves of the same model version)
   const model = { id: "restaurant", version: 2, fileStem: "Potencial-Comercial-Restaurante", fields: FIELDS, defaults: DEFAULTS, ASSUMPTIONS, ANCHOR,
-    analyze, compute, sections, renderHtml, paint, report, summaryLine };
+    COST_GROUPS, COST_WHEN, analyze, compute, sections, renderHtml, breakdown, breakdownHtml, paint, report, summaryLine };
   if (typeof module !== "undefined" && module.exports) module.exports = model;
   else {
     root.RestaurantRevenueCalc = model;
