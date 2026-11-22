@@ -251,12 +251,24 @@ function createBusinessCalcs(translations, { whatsappHref, email, restaurantShar
       `      </div>`,
       `    </form>`,
       // results: revenue (month, year) and operating profit; the staffing estimate stays in the full report
-      `    <dl class="rpc-cards rpc-cards--3">`,
+      `    <dl class="rpc-cards">`,
       `      ${card(rt.cards.grossMonthly, "gross", rt.cards.ivaIncl, true)}`,
-      `      ${card(rt.cards.grossAnnual, "grossAnnual", rt.cards.annualNote || rt.cards.ivaIncl, true)}`,
+      `      ${card(rt.cards.firstYear, "firstYearGross", rt.cards.firstYearNote, true)}`,
+      `      ${card(rt.cards.grossAnnual, "grossAnnual", rt.cards.annualNote || rt.cards.ivaIncl)}`,
       `      ${card(rt.cards.profitMonthly, "profit", rt.tags.scn)}`,
       `    </dl>`,
       `    <p class="rpc-cards__note">${esc(rt.cards.note.replace("{u}", fmt.pct(M.ASSUMPTIONS.utilization.base)))}</p>`,
+      // the 12-month opening forecast: monthly operating profit chart + the editable ramp-up
+      `    <section class="rpc-fc" aria-labelledby="rc-fc-title">`,
+      `      <h3 class="rpc-fc__title" id="rc-fc-title">${esc(rt.fc.title)}</h3>`,
+      `      <p class="rpc-fc__intro">${esc(rt.fc.intro)}</p>`,
+      `      <div data-rpc-forecast>${M.forecastChartHtml(r._an, rt, fmt)}</div>`,
+      `      <fieldset class="rpc-fc__ramp">`,
+      `        <legend>${esc(rt.fc.rampTitle)}</legend>`,
+      `        <p class="rpc-fc__rintro">${esc(rt.fc.rampIntro)}</p>`,
+      `        <div class="rpc-fc__rgrid">${M.RAMP_KEYS.map((k, i) => { const f = fieldOf(k); return `<label class="rpc-fc__rf"><span>${esc(rt.fc.monthN.replace("{n}", i + 1))}</span><span class="bcalc__box has-unit"><input name="${f.param}" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" value="${esc(fmt.input(M.defaults[k], 0))}" data-cf="${k}"><span class="bcalc__unit">%</span></span></label>`; }).join("")}</div>`,
+      `      </fieldset>`,
+      `    </section>`,
       // monthly breakdown: net sales, every expense with its basis, total, profit (kept live by the model's paint)
       `    <div class="rpc-bk" data-rpc-breakdown aria-live="polite">${M.breakdownHtml(r._an, rt, fmt)}</div>`,
       // the cost assumptions, every one editable, with its unit (per month / % of net sales / per m² / per customer)

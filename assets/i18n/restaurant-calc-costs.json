@@ -58,8 +58,10 @@
     },
     "report": {
       "cards": {
-        "grossAnnual": "Proyección anual",
-        "annualNote": "12 × este mes · IVA incl."
+        "grossAnnual": "Facturación anual a la carga objetivo",
+        "annualNote": "12 × un mes a la rotación objetivo · IVA incl.",
+        "firstYear": "Facturación del primer año",
+        "firstYearNote": "suma de los 12 meses de previsión · IVA incl."
       },
       "costs": {
         "title": "Desglose mensual",
@@ -85,6 +87,29 @@
       "staff": {
         "intro": "Plantilla introducida en jornadas completas (FTE; 0,5 = media jornada) y coste empresa mensual de cada una, con cotizaciones. Ambos datos son editables en «Supuestos de costes».",
         "note": "El coste de personal forma parte del resultado operativo. Ajusta las jornadas a tu horario y turnos reales."
+      },
+      "fc": {
+        "title": "Previsión de los primeros 12 meses",
+        "intro": "La rotación diaria del control deslizante es el objetivo estabilizado. Cada mes aplica su porcentaje de ese objetivo: clientes, facturación, materia prima y costes por cliente siguen la actividad del mes; alquiler, personal y demás costes fijos se mantienen.",
+        "rampTitle": "Llegada a la carga de trabajo",
+        "rampIntro": "Porcentaje de la rotación objetivo alcanzado cada mes. Valores ilustrativos: ajústalos a tu plan de apertura.",
+        "monthN": "Mes {n}",
+        "month": "Mes",
+        "pct": "Carga",
+        "turns": "Rotación",
+        "guests": "Clientes",
+        "gross": "Facturación (IVA incl.)",
+        "profit": "Resultado operativo",
+        "total": "Total 12 meses",
+        "firstYear": "Facturación del primer año (IVA incl.)",
+        "firstYearProfit": "Resultado operativo del primer año",
+        "firstProfitLabel": "Primer mes con beneficio",
+        "firstProfit": "Primer mes con beneficio: mes {n}",
+        "none": "La previsión no alcanza beneficio en 12 meses",
+        "chartLabel": "Resultado operativo mensual, meses 1 a 12",
+        "hint": "Pasa el cursor o toca una barra para ver el detalle del mes.",
+        "tip": "Mes {n} · {p} de la carga objetivo · {t} rotaciones por plaza · {g} clientes · facturación {r} · resultado {x}",
+        "note": "Previsión ilustrativa: la curva de apertura real depende de la ubicación, el marketing y la temporada."
       }
     }
   },
@@ -146,8 +171,10 @@
     },
     "report": {
       "cards": {
-        "grossAnnual": "Annual projection",
-        "annualNote": "12 × this month · VAT incl."
+        "grossAnnual": "Annual revenue at target load",
+        "annualNote": "12 × a month at the target turns · VAT incl.",
+        "firstYear": "First-year revenue",
+        "firstYearNote": "sum of the 12 forecast months · VAT incl."
       },
       "costs": {
         "title": "Monthly breakdown",
@@ -173,6 +200,29 @@
       "staff": {
         "intro": "Staffing entered in full-time equivalents (FTE; 0.5 = part-time) and the monthly employer cost of each, including contributions. Both are editable under “Cost assumptions”.",
         "note": "Payroll is part of the operating result. Adjust the FTE to your real opening hours and shifts."
+      },
+      "fc": {
+        "title": "First 12 months forecast",
+        "intro": "The daily turns slider is the stabilized target. Each month applies its percentage of that target: customers, revenue, food cost and per-customer costs follow the month's activity; rent, payroll and other fixed costs stay as set.",
+        "rampTitle": "Ramp-up to working load",
+        "rampIntro": "Share of the target turns reached each month. Illustrative values: adjust them to your opening plan.",
+        "monthN": "Month {n}",
+        "month": "Month",
+        "pct": "Load",
+        "turns": "Turns",
+        "guests": "Customers",
+        "gross": "Revenue (VAT incl.)",
+        "profit": "Operating profit",
+        "total": "12-month total",
+        "firstYear": "First-year revenue (VAT incl.)",
+        "firstYearProfit": "First-year operating profit",
+        "firstProfitLabel": "First profitable month",
+        "firstProfit": "First profitable month: month {n}",
+        "none": "The forecast does not reach a profit within 12 months",
+        "chartLabel": "Monthly operating profit, months 1 to 12",
+        "hint": "Hover over or tap a bar to see the month's details.",
+        "tip": "Month {n} · {p} of target load · {t} turns per seat · {g} customers · revenue {r} · profit {x}",
+        "note": "Illustrative forecast: the real opening curve depends on location, marketing and season."
       }
     }
   },
@@ -234,8 +284,10 @@
     },
     "report": {
       "cards": {
-        "grossAnnual": "Годовой прогноз",
-        "annualNote": "12 × этот месяц · с НДС"
+        "grossAnnual": "Годовая выручка при целевой загрузке",
+        "annualNote": "12 × месяц при целевой оборачиваемости · с НДС",
+        "firstYear": "Выручка за первый год",
+        "firstYearNote": "сумма 12 месяцев прогноза · с НДС"
       },
       "costs": {
         "title": "Разбивка за месяц",
@@ -261,6 +313,29 @@
       "staff": {
         "intro": "Штат введён в полных ставках (FTE; 0,5 = полставки) с месячными расходами работодателя на каждую, включая взносы. Оба значения можно изменить в «Допущениях по расходам».",
         "note": "Расходы на персонал входят в операционный результат. Подберите число ставок под реальный график и смены."
+      },
+      "fc": {
+        "title": "Прогноз первых 12 месяцев",
+        "intro": "Оборачиваемость на ползунке — целевая, после стабилизации. Каждый месяц берёт свой процент от цели: гости, выручка, себестоимость продуктов и расходы на клиента следуют активности месяца; аренда, персонал и другие постоянные расходы не меняются.",
+        "rampTitle": "Выход на рабочую загрузку",
+        "rampIntro": "Доля целевой оборачиваемости, достигнутая в каждом месяце. Значения иллюстративные — подстройте под свой план открытия.",
+        "monthN": "Месяц {n}",
+        "month": "Месяц",
+        "pct": "Загрузка",
+        "turns": "Оборачиваемость",
+        "guests": "Гости",
+        "gross": "Выручка (с НДС)",
+        "profit": "Операционная прибыль",
+        "total": "Итого за 12 месяцев",
+        "firstYear": "Выручка за первый год (с НДС)",
+        "firstYearProfit": "Операционная прибыль за первый год",
+        "firstProfitLabel": "Первый прибыльный месяц",
+        "firstProfit": "Первый прибыльный месяц: месяц {n}",
+        "none": "За 12 месяцев прогноз не выходит в прибыль",
+        "chartLabel": "Операционная прибыль по месяцам, с 1 по 12",
+        "hint": "Наведите курсор или нажмите на столбец, чтобы увидеть данные месяца.",
+        "tip": "Месяц {n} · {p} целевой загрузки · {t} оборота на место · {g} гостей · выручка {r} · прибыль {x}",
+        "note": "Прогноз иллюстративный: реальная кривая открытия зависит от локации, маркетинга и сезона."
       }
     }
   },
@@ -322,8 +397,10 @@
     },
     "report": {
       "cards": {
-        "grossAnnual": "Річний прогноз",
-        "annualNote": "12 × цей місяць · з ПДВ"
+        "grossAnnual": "Річний виторг за цільового завантаження",
+        "annualNote": "12 × місяць за цільової оборотності · з ПДВ",
+        "firstYear": "Виторг за перший рік",
+        "firstYearNote": "сума 12 місяців прогнозу · з ПДВ"
       },
       "costs": {
         "title": "Розбивка за місяць",
@@ -349,6 +426,29 @@
       "staff": {
         "intro": "Штат введено в повних ставках (FTE; 0,5 = пів ставки) з місячними витратами роботодавця на кожну, включно з внесками. Обидва значення можна змінити в «Припущеннях щодо витрат».",
         "note": "Витрати на персонал входять до операційного результату. Підберіть кількість ставок під реальний графік і зміни."
+      },
+      "fc": {
+        "title": "Прогноз перших 12 місяців",
+        "intro": "Оборотність на повзунку — цільова, після стабілізації. Кожен місяць бере свій відсоток від цілі: гості, виторг, собівартість продуктів і витрати на клієнта залежать від активності місяця; оренда, персонал та інші постійні витрати не змінюються.",
+        "rampTitle": "Вихід на робоче завантаження",
+        "rampIntro": "Частка цільової оборотності, досягнута в кожному місяці. Значення ілюстративні — налаштуйте під свій план відкриття.",
+        "monthN": "Місяць {n}",
+        "month": "Місяць",
+        "pct": "Завантаження",
+        "turns": "Оборотність",
+        "guests": "Гості",
+        "gross": "Виторг (з ПДВ)",
+        "profit": "Операційний прибуток",
+        "total": "Разом за 12 місяців",
+        "firstYear": "Виторг за перший рік (з ПДВ)",
+        "firstYearProfit": "Операційний прибуток за перший рік",
+        "firstProfitLabel": "Перший прибутковий місяць",
+        "firstProfit": "Перший прибутковий місяць: місяць {n}",
+        "none": "За 12 місяців прогноз не виходить у прибуток",
+        "chartLabel": "Операційний прибуток за місяцями, з 1 по 12",
+        "hint": "Наведіть курсор або натисніть на стовпчик, щоб побачити дані місяця.",
+        "tip": "Місяць {n} · {p} цільового завантаження · {t} оберту на місце · {g} гостей · виторг {r} · прибуток {x}",
+        "note": "Прогноз ілюстративний: реальна крива відкриття залежить від локації, маркетингу та сезону."
       }
     }
   }

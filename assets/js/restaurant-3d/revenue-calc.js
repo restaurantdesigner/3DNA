@@ -16,6 +16,10 @@
  * URL: ?m2=260&plazas=48&ticket=25&dias=30&rotacion=3#calculadora
  */
 (function (root) {
+  // ---- opening ramp-up: % of the target turns per month (illustrative default, editable) ----
+  const RAMP_KEYS = Array.from({ length: 12 }, (_, i) => `ramp${i + 1}`);
+  const RAMP_DEFAULT = [40, 55, 70, 80, 90, 100, 100, 100, 100, 100, 100, 100];
+
   // ---- the five inputs ----
   const FIELDS = [
     { key: "area", param: "m2", type: "number", min: 20, max: 5000, decimals: 0 },
@@ -49,6 +53,8 @@
     { key: "consCust", param: "consumibles_cli", type: "number", min: 0, max: 50, decimals: 2, optional: true, unit: "eurCustomer" },
     { key: "ohFix", param: "generales", type: "number", min: 0, max: 1000000, decimals: 0, optional: true, unit: "eurMonth" },
     { key: "ohPct", param: "generales_pct", type: "number", min: 0, max: 50, decimals: 1, optional: true, unit: "pctNet" },
+    // opening forecast: share of the target daily turns reached in each of the first 12 months
+    ...RAMP_KEYS.map((key, i) => ({ key, param: `carga${i + 1}`, type: "number", min: 0, max: 200, decimals: 0, optional: true, unit: "pctTarget" })),
   ];
   // the cost assumptions as the page groups them (scripts/business-calc.js renders the panel)
   const COST_GROUPS = [
@@ -68,7 +74,8 @@
     // entered staffing is never recalculated from area, seats, ticket, days or rotation.
     vat: 10, fbPct: 30, staffFte: 3, staffCost: 2618, rentMode: "m2", rentM2: 15, rentFixed: 0,
     elecM2: 3, elecCust: 0.2, waterFix: 40, waterCust: 0.06, gasCust: 0.12, cleanM2: 1.6, maintM2: 1.2,
-    insFix: 90, insM2: 0.35, swFix: 90, cardPct: 0.5, mktPct: 2, consCust: 0.15, ohFix: 350, ohPct: 1 };
+    insFix: 90, insM2: 0.35, swFix: 90, cardPct: 0.5, mktPct: 2, consCust: 0.15, ohFix: 350, ohPct: 1,
+    ...Object.fromEntries(RAMP_KEYS.map((k, i) => [k, RAMP_DEFAULT[i]])) };
   const ANCHOR = "calculadora";
 
   // ---- internal model assumptions (illustrative, versioned) ----
@@ -132,6 +139,24 @@
     return { u, daily, monthly, gross, net, vat: gross - net, fb, staff, opex, opexTotal, costs: fb + opexTotal, result, margin: net > 0 ? result / net : null };
   }
 
+  // 12-month opening forecast. Effective turns = target turns × the month's %; guests, revenue, VAT,
+  // food cost, per-customer utilities and the %-of-revenue costs follow that month's activity; rent,
+  // payroll and the other fixed amounts stay at their monthly values (scenario() does exactly this).
+  function forecast(v) {
+    const months = RAMP_KEYS.map((k, i) => {
+      const pct = v[k], sc = scenario(v, pct / 100);
+      return { m: i + 1, pct, turns: v.rotation * pct / 100, guests: sc.monthly, gross: sc.gross, net: sc.net, costs: sc.costs, profit: sc.result };
+    });
+    const first = months.find((x) => x.profit > 0);
+    return {
+      months,
+      gross: months.reduce((a, x) => a + x.gross, 0),
+      net: months.reduce((a, x) => a + x.net, 0),
+      profit: months.reduce((a, x) => a + x.profit, 0),
+      firstProfitMonth: first ? first.m : null,
+    };
+  }
+
   function analyze(input) {
     const v = { ...DEFAULTS, ...input };
     if (!["m2", "fijo"].includes(v.rentMode)) v.rentMode = "m2";
@@ -176,7 +201,7 @@
     else if (be.utilization >= A.utilization.base * A.breakEvenTight) insights.push({ level: "warn", key: "breakEvenTight", vars: { b: be.utilization, u: A.utilization.base } });
     else insights.push({ level: "ok", key: "breakEvenOk", vars: { b: be.utilization, u: A.utilization.base } });
 
-    return { v, A, theo, space, base, cons, opt, be, netPerM2Year, insights };
+    return { v, A, theo, space, base, cons, opt, be, netPerM2Year, insights, fc: forecast(v) };
   }
 
   // flat results for the live summary (engine outputs [data-co])
@@ -186,6 +211,7 @@
       gross: an.base.gross, grossAnnual: an.base.gross * 12,
       profit: an.base.result, profitAnnual: an.base.result * 12, staffFte: an.base.staff.fte,
       net: an.base.net, costs: an.base.costs, grossPerM2: an.base.gross / v.area, dailyGuests: an.base.daily,
+      firstYearGross: an.fc.gross, firstYearProfit: an.fc.profit, firstProfitMonth: an.fc.firstProfitMonth,
       rotation: v.rotation, utilizationBase: A.utilization.base,
       loss: an.base.result < 0, _an: an,
     };
@@ -281,6 +307,20 @@
       { label: t.profit.beUtilization, value: be ? f.pct(be.utilization) : t.na, tag: "est", negative: !!be && be.utilization > 1 },
     ], note: t.profit.excluded });
 
+    const F = t.fc || {}, fc = an.fc;
+    if (F.title) S.push({ id: "forecast", page: 6, title: F.title, intro: F.intro,
+      rows: [
+        { label: F.firstYear, value: f.eur(fc.gross), tag: "scn", strong: true },
+        { label: F.firstYearProfit, value: f.eur(fc.profit), tag: "scn", negative: neg(fc.profit) },
+        { label: F.firstProfitLabel, value: fc.firstProfitMonth ? fill(F.monthN, { n: fc.firstProfitMonth }) : F.none, tag: "scn", strong: true },
+      ],
+      table: { columns: [F.month, F.pct, F.turns, F.guests, F.gross, F.profit], rows: [
+        ...fc.months.map((x) => [fill(F.monthN, { n: x.m }), f.pct(x.pct / 100), f.num2(x.turns), f.int(x.guests), f.eur(x.gross), { text: f.eur(x.profit), negative: neg(x.profit) }]),
+        [{ text: F.total, strong: true }, "", "", { text: f.int(fc.months.reduce((a, x) => a + x.guests, 0)), strong: true }, { text: f.eur(fc.gross), strong: true }, { text: f.eur(fc.profit), strong: true, negative: neg(fc.profit) }],
+      ] },
+      chart: { items: fc.months.map((x) => ({ label: fill(F.monthN, { n: x.m }), value: x.profit, display: f.eur(x.profit), tone: x.profit < 0 ? "neg" : "pos" })) },
+      note: F.note });
+
     const sc = [an.cons, an.base, an.opt];
     const cell = (x, fm) => ({ text: fm(x), negative: neg(x) });
     S.push({ id: "scenarios", page: 7, title: t.scenarios.title, intro: t.scenarios.intro,
@@ -370,11 +410,41 @@ ${row(b.profit, "is-strong is-result")}
 <p class="rpc-bk__meta">${e(b.guests.label)}: <strong>${e(f.int(b.guests.value))}</strong> · ${e(b.perM2.label)}: <strong>${e(f.eur(b.perM2.value))}</strong></p>`;
   }
 
+  // ---------------- the opening forecast chart (page) ----------------
+  // monthly operating profit, months 1–12, bars above / below a visible zero line; every bar is a
+  // button whose month details show in the line under the chart on hover, focus or tap
+  function forecastTip(an, t, f, m) {
+    const F = t.fc, x = an.fc.months[m - 1];
+    return fillT(F.tip, { n: x.m, p: f.pct(x.pct / 100), t: f.num2(x.turns), g: f.int(x.guests), r: f.eur(x.gross), x: f.eur(x.profit) });
+  }
+  function fillT(s, vars) { return String(s).replace(/\{(\w+)\}/g, (m, k) => (vars[k] == null ? m : vars[k])); }
+  function forecastChartHtml(an, t, f, sel) {
+    const F = t.fc, fc = an.fc, ps = fc.months.map((x) => x.profit);
+    let hi = Math.max(0, ...ps), lo = Math.min(0, ...ps);
+    if (hi === lo) hi = lo + 1;
+    const span = hi - lo, pct = (x) => (100 * x / span).toFixed(2) + "%";
+    const zero = pct(hi);
+    const head = fc.firstProfitMonth ? fillT(F.firstProfit, { n: fc.firstProfitMonth }) : F.none;
+    const pick = sel || fc.firstProfitMonth || 1;
+    const cols = fc.months.map((x) => {
+      const top = pct(hi - Math.max(x.profit, 0)), h = pct(Math.abs(x.profit));
+      const cls = ["rpc-fc__col", x.profit < 0 ? "is-neg" : "is-pos", x.m === fc.firstProfitMonth ? "is-first" : "", x.m === pick ? "is-sel" : ""].filter(Boolean).join(" ");
+      return `<button type="button" class="${cls}" data-fm="${x.m}" aria-label="${esc(forecastTip(an, t, f, x.m))}"><span class="rpc-fc__bar" style="top:${top};height:${h}"></span><span class="rpc-fc__m" aria-hidden="true">${x.m}</span></button>`;
+    }).join("");
+    return `<p class="rpc-fc__head${fc.firstProfitMonth ? " is-ok" : " is-neg"}">${esc(head)}</p>
+<div class="rpc-fc__chart" role="group" aria-label="${esc(F.chartLabel)}">
+  <div class="rpc-fc__axis" aria-hidden="true"><span style="top:0">${esc(f.eur(hi))}</span><span style="top:${zero}">0 €</span><span style="top:100%">${esc(f.eur(lo))}</span></div>
+  <div class="rpc-fc__plot"><span class="rpc-fc__zero" style="top:${zero}" aria-hidden="true"></span>${cols}</div>
+</div>
+<p class="rpc-fc__tip" data-rpc-fc-tip aria-live="polite">${esc(forecastTip(an, t, f, pick))}</p>
+<p class="rpc-fc__hint">${esc(F.hint)}</p>`;
+  }
+
   // ---------------- live HTML (also used by the build for the first paint) ----------------
   const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   // the eight report groups shown on the page (the PDF keeps every section in full)
   const GROUPS = [["space", ["space"]], ["volume", ["customers", "revenue", "product"]], ["staff", ["staff"]], ["opex", ["opex"]],
-    ["profit", ["profit"]], ["scenarios", ["scenarios"]], ["insights", ["insights"]], ["method", ["method"]]];
+    ["profit", ["profit"]], ["forecast", ["forecast"]], ["scenarios", ["scenarios"]], ["insights", ["insights"]], ["method", ["method"]]];
   function renderHtml(an, t, f, open) {
     const tag = (k) => (k ? `<span class="rpc-tag rpc-tag--${k}">${esc(t.tags[k])}</span>` : "");
     const rows = (rs) => `<table class="rpc-table"><tbody>${rs.map((r) => `<tr${r.strong ? ' class="is-strong"' : ""}><th scope="row">${esc(r.label)}${r.note ? ` <span class="rpc-note">${esc(r.note)}</span>` : ""}</th><td>${tag(r.tag)}</td><td class="rpc-num${r.negative ? " is-neg" : ""}">${esc(r.value)}</td></tr>`).join("")}</tbody></table>`;
@@ -387,7 +457,7 @@ ${row(b.profit, "is-strong is-result")}
       return `<div class="rpc-bars" aria-hidden="true">${c.items.map((i) => `<div class="rpc-bar rpc-bar--${i.tone || "accent"}${i.value < 0 ? " is-neg" : ""}"><span class="rpc-bar__l">${esc(i.label)}</span><span class="rpc-bar__t"><i style="width:${(100 * Math.abs(i.value) / max).toFixed(1)}%"></i></span><span class="rpc-bar__v">${esc(i.display)}</span></div>`).join("")}</div>`;
     };
     const byId = Object.fromEntries(sections(an, t, f).map((s) => [s.id, s]));
-    return GROUPS.map(([gid, ids], gi) => {
+    return GROUPS.filter(([, ids]) => ids.every((id) => byId[id])).map(([gid, ids], gi) => {
       const list = ids.map((id) => byId[id]);
       const isOpen = !!(open && open[gid]);                       // every group starts closed
       const title = list.length > 1 ? t.groups[gid] : list[0].title;
@@ -417,6 +487,30 @@ ${row(b.profit, "is-strong is-result")}
     if (out) out.textContent = String(results.rotation);
     const bk = box.querySelector("[data-rpc-breakdown]");
     if (bk && ctx.t.costs) bk.innerHTML = breakdownHtml(results._an, ctx.t, ctx.f);
+    const fcBox = box.querySelector("[data-rpc-forecast]");
+    if (fcBox && ctx.t.fc) {
+      box.__rpcFcLast = results._an;
+      fcBox.innerHTML = forecastChartHtml(results._an, ctx.t, ctx.f, box.__rpcFm);
+      if (!fcBox.__wired) {
+        fcBox.__wired = true;
+        const show = (e, keep) => {
+          const b = e.target.closest && e.target.closest("[data-fm]");
+          if (!b || !fcBox.contains(b)) return;
+          const m = Number(b.dataset.fm);
+          if (keep) box.__rpcFm = m;
+          fcBox.querySelectorAll("[data-fm]").forEach((x) => x.classList.toggle("is-sel", Number(x.dataset.fm) === m));
+          const tip = fcBox.querySelector("[data-rpc-fc-tip]");
+          if (tip) tip.textContent = forecastTip(box.__rpcFcLast, ctx.t, ctx.f, m);
+        };
+        fcBox.addEventListener("pointerover", (e) => show(e, false));
+        fcBox.addEventListener("focusin", (e) => show(e, true));
+        fcBox.addEventListener("click", (e) => show(e, true));
+        fcBox.addEventListener("pointerleave", () => {
+          const m = box.__rpcFm || box.__rpcFcLast.fc.firstProfitMonth || 1;
+          show({ target: fcBox.querySelector(`[data-fm="${m}"]`) }, false);
+        });
+      }
+    }
     // switching rent to a fixed amount starts from the current figure (rent per m² × area)
     const v = results._an.v, prev = box.__rpcModes || {};
     const prefill = (mode, key, value) => {
@@ -486,9 +580,9 @@ ${row(b.profit, "is-strong is-result")}
       ],
       summary: [
         { label: t.cards.grossMonthly, value: f.eur(r.gross), strong: true, note: t.cards.ivaIncl },
-        { label: t.cards.grossAnnual, value: f.eur(r.grossAnnual), strong: true, note: t.cards.annualNote || t.cards.ivaIncl },
+        { label: t.cards.firstYear || t.cards.grossAnnual, value: f.eur(r.firstYearGross), strong: true, note: t.cards.firstYearNote || t.cards.ivaIncl },
+        { label: t.cards.grossAnnual, value: f.eur(r.grossAnnual), note: t.cards.annualNote || t.cards.ivaIncl },
         { label: t.cards.profitMonthly, value: f.eur(r.profit), negative: neg(r.profit) },
-        { label: t.cards.profitAnnual, value: f.eur(r.profitAnnual), negative: neg(r.profitAnnual) },
       ],
       summaryNote: t.cards.note,
       legend: ["in", "est", "scn"].map((k) => ({ key: k, label: t.tags[k], text: t.tagsHelp[k] })),
@@ -500,7 +594,7 @@ ${row(b.profit, "is-strong is-result")}
   // version stays 2: the cost assumptions are optional fields with defaults, so earlier saves and links
   // open unchanged (calc-tools keeps saves of the same model version)
   const model = { id: "restaurant", version: 2, fileStem: "Potencial-Comercial-Restaurante", fields: FIELDS, defaults: DEFAULTS, ASSUMPTIONS, ANCHOR,
-    COST_GROUPS, COST_WHEN, analyze, compute, sections, renderHtml, breakdown, breakdownHtml, paint, report, summaryLine };
+    COST_GROUPS, COST_WHEN, RAMP_KEYS, analyze, compute, forecast, forecastChartHtml, sections, renderHtml, breakdown, breakdownHtml, paint, report, summaryLine };
   if (typeof module !== "undefined" && module.exports) module.exports = model;
   else {
     root.RestaurantRevenueCalc = model;
