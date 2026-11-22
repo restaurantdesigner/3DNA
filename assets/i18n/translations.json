@@ -1709,8 +1709,8 @@
          },
          "share": {
            "slug": "calculator",
-           "title": "Restaurant Business Calculator | 3DNA",
-           "description": "Enter 5 values and explore your restaurant's potential: revenue, staffing, expenses and a complete financial analysis.",
+           "title": "Restaurant Profitability Simulator: future profit from 5 inputs | 3DNA",
+           "description": "A profitability simulator that helps restaurant businesses calculate future profit from 5 simple inputs: floor area, seats, average check, open days and daily turns.",
            "imageAlt": "The 3DNA restaurant calculator on a tablet on a restaurant table",
            "open": "Open the calculator"
          }
@@ -3937,8 +3937,8 @@
          },
          "share": {
            "slug": "calculadora",
-           "title": "Calculadora de Restaurantes | 3DNA",
-           "description": "Introduce 5 datos y descubre el potencial de tu restaurante. Ingresos, personal, gastos y análisis financiero completo.",
+           "title": "Simulador de rentabilidad de restaurantes: beneficio con 5 datos | 3DNA",
+           "description": "Simulador de rentabilidad que ayuda a restaurantes, bares y cafeterías a calcular su beneficio futuro con 5 datos sencillos: superficie, plazas, ticket medio, días abiertos y rotación.",
            "imageAlt": "Calculadora de restaurantes de 3DNA en una tableta sobre la mesa de un restaurante",
            "open": "Abrir la calculadora"
          }
@@ -6165,8 +6165,8 @@
          },
          "share": {
            "slug": "calculator",
-           "title": "Калькулятор ресторана | 3DNA",
-           "description": "Введите 5 параметров и получите подробный расчёт выручки, персонала, расходов и финансовых показателей ресторана.",
+           "title": "Симулятор прибыльности ресторана: прогноз прибыли по 5 показателям | 3DNA",
+           "description": "Симулятор прибыльности помогает ресторанному бизнесу просчитать будущую прибыль по 5 простым показателям: площадь, места, средний чек, рабочие дни и оборачиваемость.",
            "imageAlt": "Калькулятор ресторана 3DNA на планшете на столе ресторана",
            "open": "Открыть калькулятор"
          }
@@ -8393,8 +8393,8 @@
          },
          "share": {
            "slug": "calculator",
-           "title": "Калькулятор ресторану | 3DNA",
-           "description": "Введіть 5 параметрів і отримайте детальний розрахунок виручки, персоналу, витрат та фінансових показників ресторану.",
+           "title": "Симулятор прибутковості ресторану: прогноз прибутку за 5 показниками | 3DNA",
+           "description": "Симулятор прибутковості допомагає ресторанному бізнесу розрахувати майбутній прибуток за 5 простими показниками: площа, місця, середній чек, робочі дні та оборотність.",
            "imageAlt": "Калькулятор ресторану 3DNA на планшеті на столі ресторану",
            "open": "Відкрити калькулятор"
          }
