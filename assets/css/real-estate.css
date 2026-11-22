@@ -358,3 +358,13 @@ html:has(.re-page), body:has(.re-page) { overflow-x: clip; }
   .re-sm__btn--home { margin-left: 0; }
   .re-sm__level ul { grid-template-columns: 1fr; }
 }
+
+/* a <fieldset> is min-content wide by default: let the purpose chips scroll inside the panel instead of
+   stretching it (on phones the panel was 724 px wide and the second column of fields fell off-screen) */
+.re-purpose-chips { min-width: 0; max-width: 100%; }
+.re-filter__fields { min-width: 0; max-width: 100%; }
+@media (max-width: 599px) {
+  .re-purpose-chips { margin-right: 0; padding-right: 0; -webkit-overflow-scrolling: touch; }
+  .re-filter__field { min-width: 0; }
+  .re-filter__field select { width: 100%; min-width: 0; }
+}
