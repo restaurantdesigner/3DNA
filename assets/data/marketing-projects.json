@@ -37,9 +37,9 @@
           "letreros": { "src": "/images/marketing/projects/letreros-programables/photo-letreros-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-letreros-800.webp", "width": 1448, "height": 1086 },
           "banderolas": { "src": "/images/marketing/projects/letreros-programables/photo-banderolas-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-banderolas-800.webp", "width": 1448, "height": 1086 },
           "pantallas": { "src": "/images/marketing/projects/letreros-programables/photo-pantallas-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-pantallas-800.webp", "width": 1448, "height": 1086 },
-          "rotulos": "/images/marketing/projects/letreros-programables/fam-rotulos-800.webp",
+          "rotulos": { "src": "/images/marketing/projects/letreros-programables/photo-rotulos-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-rotulos-800.webp", "width": 1448, "height": 1086 },
           "cruces": { "src": "/images/marketing/projects/letreros-programables/photo-cruces-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-cruces-800.webp", "width": 1448, "height": 1086 },
-          "marcadores": "/images/marketing/projects/letreros-programables/fam-marcadores-800.webp"
+          "marcadores": { "src": "/images/marketing/projects/letreros-programables/photo-marcadores-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-marcadores-800.webp", "width": 1448, "height": 1086 }
         },
         "current": { "src": "/images/marketing/projects/letreros-programables/current-desktop-1440.webp", "width": 1440, "height": 900, "captured": "2026-11-23" },
         "desktop": { "src": "/images/marketing/projects/letreros-programables/home-desktop-es-1440.webp", "width": 1440, "height": 3270 },
