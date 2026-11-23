@@ -49,7 +49,7 @@
   .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
   .m .ctas .btn { flex: 1 1 100%; justify-content: center; }
   .hero .w > * { min-width: 0; }
-  .heroart canvas { width: 100%; max-width: 100%; height: auto; display: block; }
+  .heroart img { width: 100%; height: auto; display: block; border-radius: 18px; box-shadow: 0 30px 80px -30px rgba(120,80,255,.55); }
   /* trust */
   .trust { background: #fff; border-bottom: 1px solid var(--line); }
   .trust .w { display: grid; grid-template-columns: repeat(4, 1fr); }
@@ -69,7 +69,7 @@
   .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .m .cats { grid-template-columns: 1fr 1fr; gap: 10px; }
   .cat { background: #0b0b0e; color: #fff; border-radius: 18px; overflow: hidden; }
-  .cat canvas { width: 100%; display: block; }
+  .cat img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
   .cat div { padding: 16px 18px 18px; }
   .m .cat div { padding: 10px 12px 13px; }
   .cat b { display: block; font-size: 17px; letter-spacing: -.01em; }
@@ -83,7 +83,7 @@
   .prods { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
   .m .prods { grid-template-columns: 1fr; gap: 14px; }
   .prod { background: #fff; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); }
-  .prod canvas { width: 100%; display: block; background: #0b0b0e; }
+  .prod img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
   .prod .b { padding: 16px 18px 18px; }
   .prod h3 { margin: 0 0 10px; font-size: 16px; line-height: 1.3; letter-spacing: -.01em; }
   .specs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
@@ -107,7 +107,6 @@
 </head>
 <body>
 <div id="app"></div>
-<script src="led.js"></script>
 <script>
 (async function () {
   await document.fonts.ready; await document.fonts.load("800 20px Inter");
@@ -160,6 +159,10 @@
       ctaT: "Was möchten Sie bewerben?", ctaP: "Erzählen Sie uns von Ihrem Geschäft – wir empfehlen das passende Schild.", stamp: "Konzeptentwurf · 3DNA"
     }
   }[lang];
+  // the proposal's visuals (images/marketing/projects/letreros-programables/), in catalogue order
+  const IMG = "../../images/marketing/projects/letreros-programables/";
+  const FAMS = ["letreros", "banderolas", "pantallas", "rotulos", "cruces", "marcadores"];
+  const PRODS = ["cruces", "pantallas", "letreros", "banderolas"];
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
   const langs = ["ES", "EN", "DE"].map((l) => l.toLowerCase() === lang ? `<b>${l}</b>` : `<span>${l}</span>`).join("");
   document.getElementById("app").innerHTML = `
@@ -173,12 +176,12 @@
       <h1>${esc(T.h1[0])} ${esc(T.h1[1])} <em>${esc(T.h1[2])}</em></h1>
       <p class="lead">${esc(T.lead)}</p>
       <div class="ctas"><a class="btn btn--amber">${esc(T.c1)} →</a><a class="btn btn--wa">${esc(T.c2)}</a></div></div>
-    <div class="heroart"><canvas id="hero" width="1200" height="760"></canvas></div>
+    <div class="heroart"><img src="${IMG}hero-facade-960.webp" alt=""></div>
   </div></section>
   <div class="trust"><div class="w">${T.trust.map(([a, b]) => `<div><b>${esc(a)}</b>${esc(b)}</div>`).join("")}</div></div>
   <section class="s"><div class="w">
     <div class="h2"><h2>${esc(T.catsT[0])} <em>${esc(T.catsT[1])}</em></h2>${mobile ? "" : `<a class="more">${esc(T.all)} →</a>`}</div>
-    <div class="cats">${T.cats.map(([a, b], i) => `<a class="cat"><canvas data-cat="${i}" width="640" height="400"></canvas><div><b>${esc(a)}</b><span>${esc(b)}</span></div></a>`).join("")}</div>
+    <div class="cats">${T.cats.map(([a, b], i) => `<a class="cat"><img src="${IMG}photo-${FAMS[i]}-800.webp" alt=""><div><b>${esc(a)}</b><span>${esc(b)}</span></div></a>`).join("")}</div>
   </div></section>
   <section class="s sectors"><div class="w">
     <div class="h2"><h2>${esc(T.secT[0])} <em>${esc(T.secT[1])}</em></h2></div>
@@ -186,7 +189,7 @@
   </div></section>
   <section class="s"><div class="w">
     <div class="h2"><h2>${esc(T.prodT[0])} <em>${esc(T.prodT[1])}</em></h2></div>
-    <div class="prods">${T.prods.map(([n, sp], i) => `<div class="prod"><canvas data-prod="${i}" width="600" height="440"></canvas><div class="b"><h3>${esc(n)}</h3><div class="specs">${sp.map((x) => `<span>${esc(x)}</span>`).join("")}</div><a>${esc(T.view)} <span>→</span></a></div></div>`).join("")}</div>
+    <div class="prods">${T.prods.map(([n, sp], i) => `<div class="prod"><img src="${IMG}photo-${PRODS[i]}-800.webp" alt=""><div class="b"><h3>${esc(n)}</h3><div class="specs">${sp.map((x) => `<span>${esc(x)}</span>`).join("")}</div><a>${esc(T.view)} <span>→</span></a></div></div>`).join("")}</div>
   </div></section>
   <section class="s" style="padding-top:0"><div class="w">
     <div class="h2"><h2>${esc(T.howT[0])} <em>${esc(T.howT[1])}</em></h2></div>
@@ -199,59 +202,7 @@
   <footer class="foot"><div class="w"><span>© Letreros Programables · Granada</span><span>${langs.replace(/<\/?b>/g, "").replace(/<\/?span>/g, " ")}</span></div></footer>
   <div class="stamp">${esc(T.stamp)}</div>`;
 
-  const { textMask, sampler, panel, crossMask, spill, stage, reflect, vignette } = LED;
-  const RED = "#ff2a1f", AMBER = "#ffb21e", GREEN = "#19ff5e", BLUE = "#2f7bff", WHITE = "#f4f7ff";
-  const rainbow = (cx, cols) => `hsl(${Math.round((cx / cols) * 320)},100%,58%)`;
-  const promo = (cols, rows, label) => sampler((x, w, h) => {
-    const g = x.createLinearGradient(0, 0, w, h); g.addColorStop(0, "#ff2d87"); g.addColorStop(.55, "#ff7a1a"); g.addColorStop(1, "#ffd21a");
-    x.fillStyle = g; x.fillRect(0, 0, w, h); x.fillStyle = "rgba(20,0,40,.55)"; x.fillRect(0, h * .6, w, h * .4);
-    x.fillStyle = "#fff"; x.beginPath(); x.arc(w * .72, h * .3, h * .17, 0, 7); x.fill();
-    x.font = `900 ${Math.round(h * .3)}px Inter`; x.textAlign = "center"; x.textBaseline = "middle"; x.fillText(label, w * .5, h * .8);
-  }, cols, rows);
-  const word = (ctx, W, H, text, color, cols, rows) => {
-    const p = Math.min((W * .82) / cols, (H * .5) / rows), x = (W - cols * p) / 2, y = (H - rows * p) / 2 - H * .04;
-    const t = textMask(text, cols, rows);
-    panel(ctx, { x, y, cols, rows, pitch: p, color: (a, b) => t(a, b) ? (typeof color === "function" ? color(a, cols) : color) : null, glow: 1.1, frame: p * 1.4 });
-    spill(ctx, x, y, cols * p, rows * p, "rgba(255,120,60,1)", .15);
-  };
-  const cross = (ctx, W, H, color) => {
-    const n = 26, p = (H * .72) / n, x = (W - n * p) / 2, y = (H - n * p) / 2 - H * .04, m = crossMask(n, .36);
-    panel(ctx, { x, y, cols: n, rows: n, pitch: p, color: (a, b) => m(a, b) ? (typeof color === "function" ? color(a, b) : color) : null, glow: 1.2, bare: true });
-  };
-  const screen = (ctx, W, H, label) => {
-    const n = 40, p = (H * .72) / n, x = (W - n * p) / 2, y = (H - n * p) / 2 - H * .04;
-    panel(ctx, { x, y, cols: n, rows: n, pitch: p, color: promo(n, n, label), dot: .88, glow: .8, frame: p * 1.4 });
-  };
-  const scenes = [
-    (c, W, H) => word(c, W, H, "OFERTAS", RED, 64, 16),
-    (c, W, H) => word(c, W, H, "ABIERTO", BLUE, 48, 16),
-    (c, W, H) => screen(c, W, H, "-20%"),
-    (c, W, H) => word(c, W, H, "PARKING", WHITE, 64, 16),
-    (c, W, H) => cross(c, W, H, GREEN),
-    (c, W, H) => word(c, W, H, "2 - 1", AMBER, 48, 16)
-  ];
-  const prodScenes = [
-    (c, W, H) => cross(c, W, H, (a, b) => `hsl(${200 + a * 4},100%,58%)`),
-    (c, W, H) => screen(c, W, H, "2x1"),
-    (c, W, H) => word(c, W, H, "HOY", rainbow, 48, 16),
-    (c, W, H) => word(c, W, H, "CAFÉ", AMBER, 48, 16)
-  ];
-  const draw = (canvas, fn) => { const c = canvas.getContext("2d"), W = canvas.width, H = canvas.height;
-    stage(c, W, H, { floor: .82, haze: "rgba(110,80,255,.12)" }); fn(c, W, H); reflect(c, Math.round(H * .82), Math.round(H * .18), .28); vignette(c, W, H, .4); };
-  document.querySelectorAll("[data-cat]").forEach((cv) => draw(cv, scenes[+cv.dataset.cat]));
-  document.querySelectorAll("[data-prod]").forEach((cv) => draw(cv, prodScenes[+cv.dataset.prod]));
-  // hero: message sign + cross
-  const hc = document.getElementById("hero"), h = hc.getContext("2d");
-  const HW = hc.width, HH = hc.height;
-  const g = h.createRadialGradient(HW * .5, HH * .45, 0, HW * .5, HH * .45, HW * .6); g.addColorStop(0, "rgba(120,80,255,.18)"); g.addColorStop(1, "rgba(0,0,0,0)");
-  h.fillStyle = g; h.fillRect(0, 0, HW, HH);
-  const n = 24, cp = 13, m = crossMask(n, .36);
-  panel(h, { x: HW - n * cp - 70, y: 40, cols: n, rows: n, pitch: cp, color: (a, b) => m(a, b) ? GREEN : null, glow: 1.2, bare: true });
-  spill(h, HW - n * cp - 70, 40, n * cp, n * cp, "rgba(25,255,94,1)", .2);
-  panel(h, { x: 60, y: 120, cols: 34, rows: 34, pitch: 9, color: promo(34, 34, "-20%"), dot: .88, glow: .8, frame: 12 });
-  const tm = textMask("ABIERTO", 80, 14, { spacing: .5 });
-  panel(h, { x: 70, y: 520, cols: 80, rows: 14, pitch: 13, color: (a, b) => tm(a, b) ? RED : null, glow: 1.2, frame: 16 });
-  spill(h, 70, 520, 1040, 182, "rgba(255,40,30,1)", .2);
+  await Promise.all([...document.images].map((im) => im.decode().catch(() => null)));
   await new Promise((r) => setTimeout(r, 50));
   document.title = "h:" + Math.ceil(document.documentElement.scrollHeight);
 })();
