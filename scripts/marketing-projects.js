@@ -143,7 +143,10 @@ ${grid.join("\n")}
       <div><dt>${esc(u.page.status)}</dt><dd>${esc(u.status[p.status])}</dd></div>
       <div><dt>${esc(u.page.website)}</dt><dd><a href="${esc(p.website)}" target="_blank" rel="noopener nofollow">${esc(p.website.replace(/^https?:\/\//, "").replace(/\/$/, ""))}</a></dd></div>
     </dl>
-    <ul class="mpp-strip__services" aria-label="${esc(u.page.services)}">${p.services.map((s) => `<li>${esc(u.services[s])}</li>`).join("")}</ul>
+    <div class="mpp-strip__svc">
+      <p class="mpp-strip__k" id="mpp-svc-l">${esc(u.page.services)}</p>
+      <ul class="mpp-strip__services" aria-labelledby="mpp-svc-l">${p.services.map((s, i) => `<li><span>${String(i + 1).padStart(2, "0")}</span>${esc(u.services[s])}</li>`).join("")}</ul>
+    </div>
   </div>
 </section>`);
 
