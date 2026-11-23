@@ -34,11 +34,11 @@
       "og": "/images/marketing/projects/letreros-programables/og.jpg",
       "visuals": {
         "families": {
-          "letreros": "/images/marketing/projects/letreros-programables/fam-letreros-800.webp",
-          "banderolas": "/images/marketing/projects/letreros-programables/fam-banderolas-800.webp",
-          "pantallas": "/images/marketing/projects/letreros-programables/fam-pantallas-800.webp",
+          "letreros": { "src": "/images/marketing/projects/letreros-programables/photo-letreros-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-letreros-800.webp", "width": 1448, "height": 1086 },
+          "banderolas": { "src": "/images/marketing/projects/letreros-programables/photo-banderolas-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-banderolas-800.webp", "width": 1448, "height": 1086 },
+          "pantallas": { "src": "/images/marketing/projects/letreros-programables/photo-pantallas-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-pantallas-800.webp", "width": 1448, "height": 1086 },
           "rotulos": "/images/marketing/projects/letreros-programables/fam-rotulos-800.webp",
-          "cruces": "/images/marketing/projects/letreros-programables/fam-cruces-800.webp",
+          "cruces": { "src": "/images/marketing/projects/letreros-programables/photo-cruces-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-cruces-800.webp", "width": 1448, "height": 1086 },
           "marcadores": "/images/marketing/projects/letreros-programables/fam-marcadores-800.webp"
         },
         "current": { "src": "/images/marketing/projects/letreros-programables/current-desktop-1440.webp", "width": 1440, "height": 900, "captured": "2026-11-23" },
@@ -105,7 +105,7 @@
               { "id": "cruces", "name": "Cruces LED programables", "text": "Monocolor, RGB y full color para farmacias, veterinarias y clínicas, de 64 × 64 a 96 × 96 cm." },
               { "id": "marcadores", "name": "Marcadores deportivos", "text": "Marcadores LED para instalaciones deportivas." }
             ],
-            "visualNote": "Ilustraciones conceptuales de 3DNA basadas en el catálogo publicado; no son fotografías de producto.",
+            "visualNote": "Visuales conceptuales de 3DNA basados en el catálogo publicado; no son fotografías de instalaciones reales.",
             "oppTitle": "Dónde vemos la oportunidad",
             "opportunities": [
               "Un catálogo amplio que hoy se presenta como listado: el cliente necesita ver cada producto en su contexto (farmacia, bar, escaparate).",
@@ -243,7 +243,7 @@
               { "id": "cruces", "name": "Programmable LED crosses", "text": "Single colour, RGB and full colour for pharmacies, vets and clinics, from 64 × 64 to 96 × 96 cm." },
               { "id": "marcadores", "name": "Sports scoreboards", "text": "LED scoreboards for sports facilities." }
             ],
-            "visualNote": "3DNA concept illustrations based on the published catalogue; they are not product photographs.",
+            "visualNote": "3DNA concept visuals based on the published catalogue; they are not photographs of real installations.",
             "oppTitle": "Where we see the opportunity",
             "opportunities": [
               "A wide catalogue presented today as a list: customers need to see each product in context (pharmacy, bar, shop window).",

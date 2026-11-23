@@ -150,8 +150,11 @@ ${grid.join("\n")}
   </div>
 </section>`);
 
-    // 02 · the company and its product families
+    // 02 · the company and its product families (a family visual is a path, or { src, small, width, height })
     const co = c.company, fam = p.visuals.families;
+    const famImg = (v) => typeof v === "string"
+      ? `<img src="${v}" width="800" height="600" loading="lazy" decoding="async" alt="">`
+      : `<img src="${v.small}" srcset="${v.small} 800w, ${v.src} ${v.width}w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 420px" width="${v.width}" height="${v.height}" loading="lazy" decoding="async" alt="">`;
     out.push(`<section class="ab-sec mpp-company" aria-labelledby="mpp-company-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
@@ -162,7 +165,7 @@ ${grid.join("\n")}
     <h3 class="mpp-h3" data-reveal>${esc(co.familiesTitle)}</h3>
     <ul class="mpp-fams">
 ${co.families.map((f) => `      <li class="mpp-fam" data-reveal>
-        <span class="mpp-fam__media"><img src="${fam[f.id]}" width="800" height="600" loading="lazy" decoding="async" alt="">${conceptTag(u)}</span>
+        <span class="mpp-fam__media">${famImg(fam[f.id])}${conceptTag(u)}</span>
         <h4 class="mpp-fam__name">${esc(f.name)}</h4>
         <p class="mpp-fam__text">${esc(f.text)}</p>
       </li>`).join("\n")}
