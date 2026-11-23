@@ -38,6 +38,7 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/digital-marketing/"/>
     <image:image><image:loc>https://3dna.es/images/og/og-marketing-en.jpg</image:loc></image:image>
     <image:image><image:loc>https://3dna.es/images/marketing/marketing-devices.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/marketing/projects/letreros-programables/cover-800.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://3dna.es/en/fitness/</loc>
@@ -349,6 +350,7 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/digital-marketing/"/>
     <image:image><image:loc>https://3dna.es/images/og/og-marketing-es.jpg</image:loc></image:image>
     <image:image><image:loc>https://3dna.es/images/marketing/marketing-devices.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/marketing/projects/letreros-programables/cover-800.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://3dna.es/es/nosotros/</loc>
@@ -652,6 +654,7 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/digital-marketing/"/>
     <image:image><image:loc>https://3dna.es/images/og/og-marketing-ru.jpg</image:loc></image:image>
     <image:image><image:loc>https://3dna.es/images/marketing/marketing-devices.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/marketing/projects/letreros-programables/cover-800.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://3dna.es/ru/fitness/</loc>
@@ -941,6 +944,7 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/digital-marketing/"/>
     <image:image><image:loc>https://3dna.es/images/og/og-marketing-uk.jpg</image:loc></image:image>
     <image:image><image:loc>https://3dna.es/images/marketing/marketing-devices.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/marketing/projects/letreros-programables/cover-800.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://3dna.es/uk/fitness/</loc>

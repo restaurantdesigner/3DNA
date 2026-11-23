@@ -13,7 +13,7 @@
  */
 const esc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-function createMarketingPage(translations, { whatsappHref }) {
+function createMarketingPage(translations, { whatsappHref, projectsHtml = () => "", localNavHtml = () => "" }) {
   const t = (lang) => translations[lang].marketingPage;
   const ps = (arr, cls = "ab-p") => arr.map((x) => `<p class="${cls}">${esc(x)}</p>`).join("\n");
   const head = (num, label, title, id) => [
@@ -26,10 +26,19 @@ function createMarketingPage(translations, { whatsappHref }) {
     const m = t(lang);
     const out = [];
 
+    // in-page navigation, then 02 · the marketing projects portfolio (scripts/marketing-projects.js)
+    const nav = localNavHtml(lang);
+    if (nav) out.push(nav);
+    const gallery = projectsHtml(lang, "02");
+    if (gallery) out.push(gallery);
+    // the explanatory sections follow, numbered after the portfolio
+    let n = gallery ? 3 : 2;
+    const num = () => String(n++).padStart(2, "0");
+
     // 02 · what digital marketing is for: goal first, channels second
     out.push(`<section class="ab-sec mk-intro" aria-labelledby="mk-intro-l">
   <div class="ab-wrap ab-grid">
-    <div class="ab-side" data-reveal><p class="ab-label" id="mk-intro-l"><span class="ab-num">02</span> ${esc(m.intro.label)}</p></div>
+    <div class="ab-side" data-reveal><p class="ab-label" id="mk-intro-l"><span class="ab-num">${num()}</span> ${esc(m.intro.label)}</p></div>
     <div class="ab-main" data-reveal>
       <p class="ab-lead">${esc(m.intro.lead)}</p>
       ${ps(m.intro.paras)}
@@ -42,10 +51,10 @@ function createMarketingPage(translations, { whatsappHref }) {
     const st = m.strategies;
     const strategiesFor = (i) => st.items.map((x, j) => ({ x, j })).filter(({ x }) => x.serves.includes(i));
     const link = (id, text) => `<li><a class="mk-chip-link" href="#${id}">${esc(text)}</a></li>`;
-    out.push(`<section class="ab-sec mk-purposes" aria-labelledby="mk-purposes-t">
+    out.push(`<section class="ab-sec mk-purposes" id="goals" aria-labelledby="mk-purposes-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      ${head("03", p.label, p.title, "mk-purposes-t")}
+      ${head(num(), p.label, p.title, "mk-purposes-t")}
       <p class="ab-p ab-p--strong">${esc(p.lead)}</p>
     </div>
     <ol class="mk-cards">
@@ -65,10 +74,10 @@ ${p.items.map((x, i) => `      <li class="mk-card" id="mk-goal-${i + 1}" data-re
 </section>`);
 
     // 04 · the strategies: what each one is, its key actions and the purposes it serves
-    out.push(`<section class="ab-sec mk-strategies" aria-labelledby="mk-strategies-t">
+    out.push(`<section class="ab-sec mk-strategies" id="strategies" aria-labelledby="mk-strategies-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      ${head("04", st.label, st.title, "mk-strategies-t")}
+      ${head(num(), st.label, st.title, "mk-strategies-t")}
       <p class="ab-p ab-p--strong">${esc(st.lead)}</p>
     </div>
     <ol class="mk-cards mk-cards--strategies">
@@ -87,10 +96,10 @@ ${st.items.map((x, i) => `      <li class="mk-card" id="mk-strategy-${i + 1}" da
 
     // 05 · the channels (tools), one line each
     const c = m.channels;
-    out.push(`<section class="ab-sec mk-channels" aria-labelledby="mk-channels-t">
+    out.push(`<section class="ab-sec mk-channels" id="channels" aria-labelledby="mk-channels-t">
   <div class="ab-wrap ab-grid">
     <div class="ab-side ab-sticky" data-reveal>
-      ${head("05", c.label, c.title, "mk-channels-t")}
+      ${head(num(), c.label, c.title, "mk-channels-t")}
       <p class="ab-p">${esc(c.lead)}</p>
     </div>
     <ol class="ab-list mk-list" data-reveal>${c.items.map((x, i) => `<li><span class="ab-list__n">${nn(i)}</span><span><strong class="mk-list__k">${esc(x.k)}</strong> ${esc(x.t)}</span></li>`).join("")}</ol>
@@ -102,7 +111,7 @@ ${st.items.map((x, i) => `      <li class="mk-card" id="mk-strategy-${i + 1}" da
     out.push(`<section class="ab-sec mk-space" aria-labelledby="mk-space-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      ${head("06", s.label, s.title, "mk-space-t")}
+      ${head(num(), s.label, s.title, "mk-space-t")}
       ${ps(s.paras)}
     </div>
     <p class="ab-big ab-big--center" data-reveal><span>${esc(s.statement[0])}</span> <em>${esc(s.statement[1])}</em></p>
@@ -111,9 +120,9 @@ ${st.items.map((x, i) => `      <li class="mk-card" id="mk-strategy-${i + 1}" da
 
     // 07 · how a strategy is built
     const pr = m.process;
-    out.push(`<section class="ab-sec mk-process" aria-labelledby="mk-process-t">
+    out.push(`<section class="ab-sec mk-process" id="method" aria-labelledby="mk-process-t">
   <div class="ab-wrap">
-    <div class="ab-narrow" data-reveal>${head("07", pr.label, pr.title, "mk-process-t")}</div>
+    <div class="ab-narrow" data-reveal>${head(num(), pr.label, pr.title, "mk-process-t")}</div>
     <ol class="mk-steps" data-reveal>${pr.steps.map((x, i) => `<li><span class="mk-steps__n">${nn(i)}</span><span class="ab-triad__k">${esc(x.k)}</span><p>${esc(x.t)}</p></li>`).join("")}</ol>
   </div>
 </section>`);
@@ -123,7 +132,7 @@ ${st.items.map((x, i) => `      <li class="mk-card" id="mk-strategy-${i + 1}" da
     out.push(`<section class="ab-sec ab-personal mk-closing" aria-labelledby="mk-closing-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      ${head("08", cl.label, cl.title, "mk-closing-t")}
+      ${head(num(), cl.label, cl.title, "mk-closing-t")}
       ${ps(cl.paras)}
       <div class="ab-cta">
         <p class="ab-cta__lead">${esc(cl.ctaLead)}</p>

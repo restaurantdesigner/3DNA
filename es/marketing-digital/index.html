@@ -41,7 +41,7 @@
   <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="/images/marketing/marketing-devices.webp">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261123a">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261123b">
 </head>
 
 <body>
@@ -88,6 +88,8 @@
     </div>
   </div>
 </header>
+<!-- progressive blur / fade under the fixed bar (CSS only: "SCROLL VEIL" in main.css) -->
+<div class="scroll-veil" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <!-- Sidebar menu: logo · 5 links · language · one WhatsApp action -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú" aria-hidden="true">
@@ -142,9 +144,40 @@
     </div>
   </section>
 
+<nav class="mk-localnav" aria-label="En esta página"><div class="ab-wrap"><a href="#projects">Proyectos</a><a href="#goals">Objetivos</a><a href="#strategies">Estrategias</a><a href="#channels">Canales</a><a href="#method">Método</a></div></nav>
+
+<section class="ab-sec mpg" id="projects" aria-labelledby="mpg-title">
+  <div class="ab-wrap">
+    <div class="mpg__head" data-reveal>
+      <p class="ab-label"><span class="ab-num">02</span> Proyectos</p>
+      <h2 class="ab-h2" id="mpg-title">Proyectos de marketing</h2>
+      <p class="ab-p ab-p--strong">Explora nuestros conceptos creativos, estrategias digitales y propuestas de transformación de negocio.</p>
+    </div>
+    <ul class="mpg__grid">
+      <li class="mpg__item">
+        <a class="mpg__card" href="/es/marketing-digital/letreros-programables/" data-track="marketing_project_clicked" data-track-location="letreros-programables">
+          <span class="mpg__media">
+            <img src="/images/marketing/projects/letreros-programables/cover-800.webp" srcset="/images/marketing/projects/letreros-programables/cover-800.webp 800w, /images/marketing/projects/letreros-programables/cover-1600.webp 1600w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 420px" width="1600" height="1200" loading="lazy" decoding="async" alt="Visual conceptual de 3DNA: letrero LED con el texto ABIERTO, cruz LED verde y pantalla LED full color">
+            <span class="mpg__status">Propuesta</span>
+            <span class="mpg__concept">Visual conceptual 3DNA</span>
+          </span>
+          <span class="mpg__body">
+            <span class="mpg__meta">Letreros LED · Propuesta de transformación digital</span>
+            <h3 class="mpg__name">Letreros Programables</h3>
+            <span class="mpg__summary">Nueva web, catálogo multilingüe, SEO y Reels para un fabricante de letreros LED programables de Granada.</span>
+            <span class="mpg__services" aria-label="Servicios"><span>Estrategia de marketing</span><span>Rediseño web</span><span>Mejora del e-commerce</span><span>Web multilingüe</span><span>SEO</span><span>Producción de vídeo con IA</span><span>Reels de Instagram</span><span>Captación de leads</span></span>
+            
+            <span class="mpg__cta">Ver proyecto <span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <section class="ab-sec mk-intro" aria-labelledby="mk-intro-l">
   <div class="ab-wrap ab-grid">
-    <div class="ab-side" data-reveal><p class="ab-label" id="mk-intro-l"><span class="ab-num">02</span> Para qué sirve el marketing digital</p></div>
+    <div class="ab-side" data-reveal><p class="ab-label" id="mk-intro-l"><span class="ab-num">03</span> Para qué sirve el marketing digital</p></div>
     <div class="ab-main" data-reveal>
       <p class="ab-lead">Primero el objetivo. Después los canales.</p>
       <p class="ab-p">Publicar en redes, invertir en anuncios o rediseñar la web no es una estrategia. Son herramientas. La estrategia empieza cuando se decide qué tiene que cambiar en el negocio: más personas que te conocen, más reservas, más ventas, clientes que vuelven o una reputación más sólida.</p>
@@ -153,10 +186,10 @@
   </div>
 </section>
 
-<section class="ab-sec mk-purposes" aria-labelledby="mk-purposes-t">
+<section class="ab-sec mk-purposes" id="goals" aria-labelledby="mk-purposes-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      <p class="ab-label"><span class="ab-num">03</span> Los objetivos</p>
+      <p class="ab-label"><span class="ab-num">04</span> Los objetivos</p>
 <h2 class="ab-h2" id="mk-purposes-t">Todos los objetivos del marketing digital</h2>
       <p class="ab-p ab-p--strong">Un negocio rara vez necesita todos a la vez. Elegir dos o tres y trabajarlos bien da más resultado que dispersarse en todos.</p>
     </div>
@@ -330,10 +363,10 @@
   </div>
 </section>
 
-<section class="ab-sec mk-strategies" aria-labelledby="mk-strategies-t">
+<section class="ab-sec mk-strategies" id="strategies" aria-labelledby="mk-strategies-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      <p class="ab-label"><span class="ab-num">04</span> Las estrategias</p>
+      <p class="ab-label"><span class="ab-num">05</span> Las estrategias</p>
 <h2 class="ab-h2" id="mk-strategies-t">Estrategias de marketing digital</h2>
       <p class="ab-p ab-p--strong">Una estrategia es la forma de conseguir un objetivo: qué se hace, en qué orden y con qué canales. Estas son las principales y los objetivos a los que sirve cada una.</p>
     </div>
@@ -450,10 +483,10 @@
   </div>
 </section>
 
-<section class="ab-sec mk-channels" aria-labelledby="mk-channels-t">
+<section class="ab-sec mk-channels" id="channels" aria-labelledby="mk-channels-t">
   <div class="ab-wrap ab-grid">
     <div class="ab-side ab-sticky" data-reveal>
-      <p class="ab-label"><span class="ab-num">05</span> Los canales</p>
+      <p class="ab-label"><span class="ab-num">06</span> Los canales</p>
 <h2 class="ab-h2" id="mk-channels-t">Las herramientas de una estrategia digital</h2>
       <p class="ab-p">No hace falta estar en todos. Cada canal se elige por el objetivo al que sirve y por dónde está tu cliente.</p>
     </div>
@@ -464,7 +497,7 @@
 <section class="ab-sec mk-space" aria-labelledby="mk-space-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      <p class="ab-label"><span class="ab-num">06</span> El espacio como contenido</p>
+      <p class="ab-label"><span class="ab-num">07</span> El espacio como contenido</p>
 <h2 class="ab-h2" id="mk-space-t">Tu local también comunica</h2>
       <p class="ab-p">En 3DNA el diseño del espacio y el marketing empiezan juntos. Los renders, los vídeos y los recorridos 3D que creamos para un proyecto existen antes de que el local abra, y se convierten en material para la web, las redes, los anuncios y la campaña de apertura.</p>
 <p class="ab-p">Así, cuando el negocio abre sus puertas, ya tiene público, contenido y una imagen coherente en todos los canales.</p>
@@ -473,9 +506,9 @@
   </div>
 </section>
 
-<section class="ab-sec mk-process" aria-labelledby="mk-process-t">
+<section class="ab-sec mk-process" id="method" aria-labelledby="mk-process-t">
   <div class="ab-wrap">
-    <div class="ab-narrow" data-reveal><p class="ab-label"><span class="ab-num">07</span> Cómo trabajamos</p>
+    <div class="ab-narrow" data-reveal><p class="ab-label"><span class="ab-num">08</span> Cómo trabajamos</p>
 <h2 class="ab-h2" id="mk-process-t">Cómo construimos una estrategia</h2></div>
     <ol class="mk-steps" data-reveal><li><span class="mk-steps__n">01</span><span class="ab-triad__k">Diagnóstico</span><p>Analizamos el negocio, el cliente, la competencia y lo que ya funciona.</p></li><li><span class="mk-steps__n">02</span><span class="ab-triad__k">Objetivos y métricas</span><p>Elegimos los objetivos prioritarios y cómo se va a medir cada uno.</p></li><li><span class="mk-steps__n">03</span><span class="ab-triad__k">Canales y presupuesto</span><p>Seleccionamos los canales que sirven a esos objetivos y repartimos la inversión.</p></li><li><span class="mk-steps__n">04</span><span class="ab-triad__k">Contenido y lanzamiento</span><p>Creamos los mensajes, las piezas visuales y las páginas, y lanzamos las acciones.</p></li><li><span class="mk-steps__n">05</span><span class="ab-triad__k">Medición y mejora</span><p>Revisamos los datos con regularidad y ajustamos lo que no da resultado.</p></li></ol>
   </div>
@@ -484,7 +517,7 @@
 <section class="ab-sec ab-personal mk-closing" aria-labelledby="mk-closing-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      <p class="ab-label"><span class="ab-num">08</span> Siguiente paso</p>
+      <p class="ab-label"><span class="ab-num">09</span> Siguiente paso</p>
 <h2 class="ab-h2" id="mk-closing-t">Antes de elegir canales, elige el objetivo.</h2>
       <p class="ab-p">Cuéntanos qué quieres conseguir con tu negocio. Te proponemos los objetivos prioritarios, los canales adecuados y cómo vamos a medir el resultado.</p>
       <div class="ab-cta">

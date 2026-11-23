@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  CONCEPTUAL homepage redesign for Letreros Programables (3DNA proposal), rendered to images by
+  scripts/marketing-visuals/render.js:  letreros-home.html?lang=es|en|de&device=desktop|mobile
+  Facts only from letrerosprogramables.com (product families, P4–P10 pitches, sizes, USB/WiFi
+  programming, manufacturing in Granada, free shipping, card / PayPal / transfer, setup help).
+  No prices, reviews or certifications are shown because the site does not publish them.
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Inter:wght@400;500;600;700;800&display=block">
+<style>
+  :root { --ink: #0f0f13; --paper: #f6f4f0; --line: rgba(15,15,19,.1); --amber: #ffb21e; --red: #ff2a1f; }
+  * { box-sizing: border-box; min-width: 0; }
+  canvas { max-width: 100%; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .w { max-width: 1280px; margin: 0 auto; padding: 0 56px; }
+  .m .w { padding: 0 20px; }
+  /* header */
+  .top { background: #08080a; color: #fff; }
+  .top .w { display: flex; align-items: center; gap: 36px; height: 76px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; letter-spacing: .14em; }
+  .logo i { width: 26px; height: 26px; border-radius: 6px; background:
+      radial-gradient(circle, var(--red) 34%, transparent 38%) 0 0 / 6.5px 6.5px, #1a0705; box-shadow: 0 0 18px rgba(255,42,31,.55); }
+  .nav { display: flex; gap: 28px; font-size: 14px; color: rgba(255,255,255,.78); margin-left: 12px; }
+  .tools { margin-left: auto; display: flex; align-items: center; gap: 18px; font-size: 13px; }
+  .lang { display: flex; gap: 8px; color: rgba(255,255,255,.5); font-weight: 600; letter-spacing: .08em; }
+  .lang b { color: #fff; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 22px; border-radius: 999px; font-weight: 700; font-size: 14px; }
+  .btn--amber { background: var(--amber); color: #120c00; }
+  .btn--ghost { border: 1px solid rgba(255,255,255,.35); color: #fff; }
+  .btn--wa { background: #1fae5b; color: #fff; }
+  .cart { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); display: grid; place-items: center; font-size: 15px; }
+  .burger { margin-left: auto; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); }
+  .burger span { width: 16px; height: 2px; background: #fff; box-shadow: 0 5px 0 #fff, 0 -5px 0 #fff; }
+  /* hero */
+  .hero { background: radial-gradient(ellipse at 70% 40%, #1d1538 0%, #08080a 62%); color: #fff; overflow: hidden; }
+  .hero .w { display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 40px; padding-top: 70px; padding-bottom: 80px; }
+  .m .hero .w { grid-template-columns: 1fr; padding-top: 34px; padding-bottom: 44px; gap: 26px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--amber); margin: 0 0 18px; }
+  h1 { margin: 0; font-size: 62px; line-height: .98; letter-spacing: -.045em; font-weight: 800; }
+  h1 em { font-family: "DM Serif Text", serif; font-style: italic; font-weight: 400; letter-spacing: -.015em; color: var(--amber); }
+  .m h1 { font-size: 31px; line-height: 1.04; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  .lead { margin: 22px 0 30px; font-size: 18px; line-height: 1.55; color: rgba(255,255,255,.78); max-width: 34em; }
+  .m .lead { font-size: 16px; margin: 16px 0 22px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .m .ctas .btn { flex: 1 1 100%; justify-content: center; }
+  .hero .w > * { min-width: 0; }
+  .heroart canvas { width: 100%; max-width: 100%; height: auto; display: block; }
+  /* trust */
+  .trust { background: #fff; border-bottom: 1px solid var(--line); }
+  .trust .w { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .m .trust .w { grid-template-columns: 1fr 1fr; }
+  .trust div { padding: 22px 18px; border-left: 1px solid var(--line); font-size: 14px; line-height: 1.35; }
+  .trust div:first-child { border-left: 0; }
+  .m .trust div { padding: 16px 12px; font-size: 13px; border-top: 1px solid var(--line); }
+  .trust b { display: block; font-size: 15px; margin-bottom: 3px; }
+  /* sections */
+  section.s { padding: 84px 0; }
+  .m section.s { padding: 52px 0; }
+  .h2 { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 30px; }
+  h2 { margin: 0; font-size: 40px; line-height: 1.02; letter-spacing: -.035em; font-weight: 800; }
+  .m h2 { font-size: 30px; }
+  h2 em { font-family: "DM Serif Text", serif; font-style: italic; font-weight: 400; }
+  .more { font-size: 14px; font-weight: 700; border-bottom: 2px solid var(--amber); padding-bottom: 3px; white-space: nowrap; }
+  .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .m .cats { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cat { background: #0b0b0e; color: #fff; border-radius: 18px; overflow: hidden; }
+  .cat canvas { width: 100%; display: block; }
+  .cat div { padding: 16px 18px 18px; }
+  .m .cat div { padding: 10px 12px 13px; }
+  .cat b { display: block; font-size: 17px; letter-spacing: -.01em; }
+  .m .cat b { font-size: 13.5px; }
+  .cat span { display: block; margin-top: 4px; font-size: 13px; color: rgba(255,255,255,.62); }
+  .m .cat span { font-size: 11.5px; }
+  .sectors { background: #fff; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip { padding: 12px 18px; border-radius: 999px; border: 1px solid var(--line); font-size: 15px; font-weight: 600; background: var(--paper); }
+  .m .chip { font-size: 13px; padding: 9px 13px; }
+  .prods { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .m .prods { grid-template-columns: 1fr; gap: 14px; }
+  .prod { background: #fff; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); }
+  .prod canvas { width: 100%; display: block; background: #0b0b0e; }
+  .prod .b { padding: 16px 18px 18px; }
+  .prod h3 { margin: 0 0 10px; font-size: 16px; line-height: 1.3; letter-spacing: -.01em; }
+  .specs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .specs span { font-size: 12px; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: #f1eee8; }
+  .prod a { display: flex; justify-content: space-between; font-size: 14px; font-weight: 700; padding-top: 12px; border-top: 1px solid var(--line); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .m .steps { grid-template-columns: 1fr; }
+  .step { padding: 26px; border-radius: 18px; background: #fff; border: 1px solid var(--line); }
+  .step i { font-style: normal; font-family: "DM Serif Text", serif; font-size: 34px; color: var(--amber); }
+  .step b { display: block; margin: 8px 0 6px; font-size: 19px; }
+  .step p { margin: 0; font-size: 15px; line-height: 1.5; color: #4a4a52; }
+  .cta { background: #08080a; color: #fff; }
+  .cta .w { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+  .m .cta .w { flex-direction: column; align-items: stretch; }
+  .cta p { margin: 10px 0 0; color: rgba(255,255,255,.7); font-size: 16px; }
+  .foot { background: #050506; color: rgba(255,255,255,.55); font-size: 13px; }
+  .foot .w { display: flex; justify-content: space-between; gap: 20px; padding-top: 26px; padding-bottom: 26px; }
+  .m .foot .w { flex-direction: column; }
+  .stamp { position: fixed; right: 18px; bottom: 18px; padding: 7px 12px; border-radius: 999px; background: rgba(255,178,30,.95); color: #120c00; font: 700 11px Inter; letter-spacing: .16em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="led.js"></script>
+<script>
+(async function () {
+  await document.fonts.ready; await document.fonts.load("800 20px Inter");
+  const q = new URLSearchParams(location.search);
+  const lang = q.get("lang") || "es", mobile = q.get("device") === "mobile";
+  document.documentElement.lang = lang;
+  // headless Edge will not open a window under ~500px: the phone width is set on the page itself
+  if (mobile) { document.body.classList.add("m"); document.documentElement.style.cssText = "width:390px;overflow-x:hidden"; document.body.style.cssText = "width:390px;overflow-x:hidden"; }
+  const T = {
+    es: {
+      nav: ["Productos", "Sectores", "Cómo funciona", "Empresa", "Contacto"], quote: "Pedir presupuesto",
+      eyebrow: "Fabricación nacional · Granada", h1: ["Letreros LED programables", "que hacen que tu negocio", "se vea."],
+      lead: "Letreros, banderolas, pantallas full color y cruces LED para negocios. Cambia el mensaje cuando quieras por USB o WiFi.",
+      c1: "Ver productos", c2: "Presupuesto por WhatsApp",
+      trust: [["Envío gratuito", "Entregas en España y Europa"], ["Fabricación en Granada", "Fabricantes y distribuidores"], ["Te ayudamos a configurarlo", "Soporte al cliente"], ["Pago seguro", "Tarjeta, PayPal o transferencia"]],
+      catsT: ["Elige tu", "letrero"], all: "Ver todo el catálogo",
+      cats: [["Letreros LED programables", "Monocolor y RGB"], ["Banderolas LED", "Una o doble cara"], ["Pantallas LED full color", "Interior P4–P5 · Exterior P5–P10"], ["Rótulos para negocios", "Farmacias, bares, hoteles, tiendas…"], ["Cruces LED programables", "Monocolor, RGB y full color"], ["Marcadores deportivos", "Marcadores y cronómetros LED"]],
+      secT: ["Soluciones por", "sector"], sectors: ["Farmacias y clínicas", "Bares y restaurantes", "Hoteles", "Tiendas y escaparates", "Gasolineras", "Parkings", "Autoescuelas y academias", "Estancos", "Discotecas y pubs"],
+      prodT: ["Productos", "destacados"], view: "Ver producto",
+      prods: [["Cruz LED programable RGB 64×64 cm", ["Exterior", "Doble cara", "USB + WiFi"]], ["Pantalla LED full color 64×64 cm P5", ["Exterior", "Full color", "USB"]], ["Letrero LED programable RGB", ["1 cara", "Varios tamaños", "USB"]], ["Letrero LED programable 2 caras", ["5 colores", "Varios tamaños", "USB + WiFi"]]],
+      howT: ["Así de", "fácil"], how: [["Elige", "Tamaño, color y número de caras según tu fachada."], ["Recíbelo", "Te lo enviamos y te ayudamos a configurarlo."], ["Prográmalo", "Cambia textos, ofertas o la hora desde el ordenador o el móvil."]],
+      ctaT: "¿Qué quieres anunciar?", ctaP: "Cuéntanos tu negocio y te recomendamos el letrero adecuado.", stamp: "Diseño conceptual · 3DNA"
+    },
+    en: {
+      nav: ["Products", "Industries", "How it works", "Company", "Contact"], quote: "Request a quote",
+      eyebrow: "Made in Spain · Granada", h1: ["Programmable LED signs", "that make your business", "stand out."],
+      lead: "Signs, projecting signs, full-colour screens and LED crosses for businesses. Change the message whenever you like via USB or WiFi.",
+      c1: "View products", c2: "Quote on WhatsApp",
+      trust: [["Free shipping", "Delivery across Spain and Europe"], ["Made in Granada", "Manufacturer and distributor"], ["Setup help included", "Customer support"], ["Secure payment", "Card, PayPal or bank transfer"]],
+      catsT: ["Choose your", "sign"], all: "View the full catalogue",
+      cats: [["Programmable LED signs", "Single colour and RGB"], ["LED projecting signs", "Single or double-sided"], ["Full-colour LED screens", "Indoor P4–P5 · Outdoor P5–P10"], ["Signs for businesses", "Pharmacies, bars, hotels, shops…"], ["Programmable LED crosses", "Single colour, RGB and full colour"], ["Sports scoreboards", "LED scoreboards and timers"]],
+      secT: ["Solutions by", "industry"], sectors: ["Pharmacies and clinics", "Bars and restaurants", "Hotels", "Shops and windows", "Petrol stations", "Car parks", "Driving schools and academies", "Tobacconists", "Clubs and pubs"],
+      prodT: ["Featured", "products"], view: "View product",
+      prods: [["RGB programmable LED cross 64×64 cm", ["Outdoor", "Double-sided", "USB + WiFi"]], ["Full-colour LED screen 64×64 cm P5", ["Outdoor", "Full colour", "USB"]], ["RGB programmable LED sign", ["Single-sided", "Several sizes", "USB"]], ["Double-sided programmable LED sign", ["5 colours", "Several sizes", "USB + WiFi"]]],
+      howT: ["That", "simple"], how: [["Choose", "Size, colour and number of faces to suit your façade."], ["Receive it", "We ship it and help you set it up."], ["Program it", "Change texts, offers or the time from your computer or phone."]],
+      ctaT: "What do you want to promote?", ctaP: "Tell us about your business and we will recommend the right sign.", stamp: "Concept design · 3DNA"
+    },
+    de: {
+      nav: ["Produkte", "Branchen", "So funktioniert's", "Unternehmen", "Kontakt"], quote: "Angebot anfordern",
+      eyebrow: "Hergestellt in Spanien · Granada", h1: ["Programmierbare LED-Schilder,", "die Ihr Geschäft", "sichtbar machen."],
+      lead: "Schilder, Ausleger, Vollfarb-Displays und LED-Kreuze für Unternehmen. Ändern Sie die Botschaft jederzeit per USB oder WLAN.",
+      c1: "Produkte ansehen", c2: "Angebot per WhatsApp",
+      trust: [["Kostenloser Versand", "Lieferung in Spanien und Europa"], ["Hergestellt in Granada", "Hersteller und Händler"], ["Hilfe bei der Einrichtung", "Kundenservice"], ["Sichere Zahlung", "Karte, PayPal oder Überweisung"]],
+      catsT: ["Wählen Sie Ihr", "Schild"], all: "Gesamten Katalog ansehen",
+      cats: [["Programmierbare LED-Schilder", "Einfarbig und RGB"], ["LED-Ausleger", "Ein- oder doppelseitig"], ["Vollfarb-LED-Displays", "Innen P4–P5 · Außen P5–P10"], ["Schilder für Unternehmen", "Apotheken, Bars, Hotels, Läden…"], ["Programmierbare LED-Kreuze", "Einfarbig, RGB und Vollfarbe"], ["Sport-Anzeigetafeln", "LED-Anzeigen und Timer"]],
+      secT: ["Lösungen nach", "Branche"], sectors: ["Apotheken und Kliniken", "Bars und Restaurants", "Hotels", "Läden und Schaufenster", "Tankstellen", "Parkhäuser", "Fahrschulen und Akademien", "Tabakläden", "Clubs und Pubs"],
+      prodT: ["Ausgewählte", "Produkte"], view: "Zum Produkt",
+      prods: [["Programmierbares RGB-LED-Kreuz 64×64 cm", ["Außen", "Doppelseitig", "USB + WLAN"]], ["Vollfarb-LED-Display 64×64 cm P5", ["Außen", "Vollfarbe", "USB"]], ["Programmierbares RGB-LED-Schild", ["Einseitig", "Mehrere Größen", "USB"]], ["Doppelseitiges LED-Schild", ["5 Farben", "Mehrere Größen", "USB + WLAN"]]],
+      howT: ["So", "einfach"], how: [["Auswählen", "Größe, Farbe und Seitenzahl passend zu Ihrer Fassade."], ["Erhalten", "Wir liefern und helfen bei der Einrichtung."], ["Programmieren", "Texte, Angebote oder Uhrzeit am Computer oder Handy ändern."]],
+      ctaT: "Was möchten Sie bewerben?", ctaP: "Erzählen Sie uns von Ihrem Geschäft – wir empfehlen das passende Schild.", stamp: "Konzeptentwurf · 3DNA"
+    }
+  }[lang];
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const langs = ["ES", "EN", "DE"].map((l) => l.toLowerCase() === lang ? `<b>${l}</b>` : `<span>${l}</span>`).join("");
+  document.getElementById("app").innerHTML = `
+  <header class="top"><div class="w">
+    <a class="logo"><i></i>LETREROS PROGRAMABLES</a>
+    ${mobile ? `<span class="burger"><span></span></span>` : `<nav class="nav">${T.nav.map((n) => `<a>${esc(n)}</a>`).join("")}</nav>
+    <div class="tools"><span class="lang">${langs}</span><span class="cart">🛒</span><a class="btn btn--amber">${esc(T.quote)}</a></div>`}
+  </div></header>
+  <section class="hero"><div class="w">
+    <div><p class="eyebrow">${esc(T.eyebrow)}</p>
+      <h1>${esc(T.h1[0])} ${esc(T.h1[1])} <em>${esc(T.h1[2])}</em></h1>
+      <p class="lead">${esc(T.lead)}</p>
+      <div class="ctas"><a class="btn btn--amber">${esc(T.c1)} →</a><a class="btn btn--wa">${esc(T.c2)}</a></div></div>
+    <div class="heroart"><canvas id="hero" width="1200" height="760"></canvas></div>
+  </div></section>
+  <div class="trust"><div class="w">${T.trust.map(([a, b]) => `<div><b>${esc(a)}</b>${esc(b)}</div>`).join("")}</div></div>
+  <section class="s"><div class="w">
+    <div class="h2"><h2>${esc(T.catsT[0])} <em>${esc(T.catsT[1])}</em></h2>${mobile ? "" : `<a class="more">${esc(T.all)} →</a>`}</div>
+    <div class="cats">${T.cats.map(([a, b], i) => `<a class="cat"><canvas data-cat="${i}" width="640" height="400"></canvas><div><b>${esc(a)}</b><span>${esc(b)}</span></div></a>`).join("")}</div>
+  </div></section>
+  <section class="s sectors"><div class="w">
+    <div class="h2"><h2>${esc(T.secT[0])} <em>${esc(T.secT[1])}</em></h2></div>
+    <div class="chips">${T.sectors.map((s) => `<span class="chip">${esc(s)}</span>`).join("")}</div>
+  </div></section>
+  <section class="s"><div class="w">
+    <div class="h2"><h2>${esc(T.prodT[0])} <em>${esc(T.prodT[1])}</em></h2></div>
+    <div class="prods">${T.prods.map(([n, sp], i) => `<div class="prod"><canvas data-prod="${i}" width="600" height="440"></canvas><div class="b"><h3>${esc(n)}</h3><div class="specs">${sp.map((x) => `<span>${esc(x)}</span>`).join("")}</div><a>${esc(T.view)} <span>→</span></a></div></div>`).join("")}</div>
+  </div></section>
+  <section class="s" style="padding-top:0"><div class="w">
+    <div class="h2"><h2>${esc(T.howT[0])} <em>${esc(T.howT[1])}</em></h2></div>
+    <div class="steps">${T.how.map(([a, b], i) => `<div class="step"><i>0${i + 1}</i><b>${esc(a)}</b><p>${esc(b)}</p></div>`).join("")}</div>
+  </div></section>
+  <section class="s cta"><div class="w">
+    <div><h2>${esc(T.ctaT)}</h2><p>${esc(T.ctaP)}</p></div>
+    <div class="ctas"><a class="btn btn--wa">${esc(T.c2)}</a><a class="btn btn--ghost">${esc(T.quote)}</a></div>
+  </div></section>
+  <footer class="foot"><div class="w"><span>© Letreros Programables · Granada</span><span>${langs.replace(/<\/?b>/g, "").replace(/<\/?span>/g, " ")}</span></div></footer>
+  <div class="stamp">${esc(T.stamp)}</div>`;
+
+  const { textMask, sampler, panel, crossMask, spill, stage, reflect, vignette } = LED;
+  const RED = "#ff2a1f", AMBER = "#ffb21e", GREEN = "#19ff5e", BLUE = "#2f7bff", WHITE = "#f4f7ff";
+  const rainbow = (cx, cols) => `hsl(${Math.round((cx / cols) * 320)},100%,58%)`;
+  const promo = (cols, rows, label) => sampler((x, w, h) => {
+    const g = x.createLinearGradient(0, 0, w, h); g.addColorStop(0, "#ff2d87"); g.addColorStop(.55, "#ff7a1a"); g.addColorStop(1, "#ffd21a");
+    x.fillStyle = g; x.fillRect(0, 0, w, h); x.fillStyle = "rgba(20,0,40,.55)"; x.fillRect(0, h * .6, w, h * .4);
+    x.fillStyle = "#fff"; x.beginPath(); x.arc(w * .72, h * .3, h * .17, 0, 7); x.fill();
+    x.font = `900 ${Math.round(h * .3)}px Inter`; x.textAlign = "center"; x.textBaseline = "middle"; x.fillText(label, w * .5, h * .8);
+  }, cols, rows);
+  const word = (ctx, W, H, text, color, cols, rows) => {
+    const p = Math.min((W * .82) / cols, (H * .5) / rows), x = (W - cols * p) / 2, y = (H - rows * p) / 2 - H * .04;
+    const t = textMask(text, cols, rows);
+    panel(ctx, { x, y, cols, rows, pitch: p, color: (a, b) => t(a, b) ? (typeof color === "function" ? color(a, cols) : color) : null, glow: 1.1, frame: p * 1.4 });
+    spill(ctx, x, y, cols * p, rows * p, "rgba(255,120,60,1)", .15);
+  };
+  const cross = (ctx, W, H, color) => {
+    const n = 26, p = (H * .72) / n, x = (W - n * p) / 2, y = (H - n * p) / 2 - H * .04, m = crossMask(n, .36);
+    panel(ctx, { x, y, cols: n, rows: n, pitch: p, color: (a, b) => m(a, b) ? (typeof color === "function" ? color(a, b) : color) : null, glow: 1.2, bare: true });
+  };
+  const screen = (ctx, W, H, label) => {
+    const n = 40, p = (H * .72) / n, x = (W - n * p) / 2, y = (H - n * p) / 2 - H * .04;
+    panel(ctx, { x, y, cols: n, rows: n, pitch: p, color: promo(n, n, label), dot: .88, glow: .8, frame: p * 1.4 });
+  };
+  const scenes = [
+    (c, W, H) => word(c, W, H, "OFERTAS", RED, 64, 16),
+    (c, W, H) => word(c, W, H, "ABIERTO", BLUE, 48, 16),
+    (c, W, H) => screen(c, W, H, "-20%"),
+    (c, W, H) => word(c, W, H, "PARKING", WHITE, 64, 16),
+    (c, W, H) => cross(c, W, H, GREEN),
+    (c, W, H) => word(c, W, H, "2 - 1", AMBER, 48, 16)
+  ];
+  const prodScenes = [
+    (c, W, H) => cross(c, W, H, (a, b) => `hsl(${200 + a * 4},100%,58%)`),
+    (c, W, H) => screen(c, W, H, "2x1"),
+    (c, W, H) => word(c, W, H, "HOY", rainbow, 48, 16),
+    (c, W, H) => word(c, W, H, "CAFÉ", AMBER, 48, 16)
+  ];
+  const draw = (canvas, fn) => { const c = canvas.getContext("2d"), W = canvas.width, H = canvas.height;
+    stage(c, W, H, { floor: .82, haze: "rgba(110,80,255,.12)" }); fn(c, W, H); reflect(c, Math.round(H * .82), Math.round(H * .18), .28); vignette(c, W, H, .4); };
+  document.querySelectorAll("[data-cat]").forEach((cv) => draw(cv, scenes[+cv.dataset.cat]));
+  document.querySelectorAll("[data-prod]").forEach((cv) => draw(cv, prodScenes[+cv.dataset.prod]));
+  // hero: message sign + cross
+  const hc = document.getElementById("hero"), h = hc.getContext("2d");
+  const HW = hc.width, HH = hc.height;
+  const g = h.createRadialGradient(HW * .5, HH * .45, 0, HW * .5, HH * .45, HW * .6); g.addColorStop(0, "rgba(120,80,255,.18)"); g.addColorStop(1, "rgba(0,0,0,0)");
+  h.fillStyle = g; h.fillRect(0, 0, HW, HH);
+  const n = 24, cp = 13, m = crossMask(n, .36);
+  panel(h, { x: HW - n * cp - 70, y: 40, cols: n, rows: n, pitch: cp, color: (a, b) => m(a, b) ? GREEN : null, glow: 1.2, bare: true });
+  spill(h, HW - n * cp - 70, 40, n * cp, n * cp, "rgba(25,255,94,1)", .2);
+  panel(h, { x: 60, y: 120, cols: 34, rows: 34, pitch: 9, color: promo(34, 34, "-20%"), dot: .88, glow: .8, frame: 12 });
+  const tm = textMask("ABIERTO", 80, 14, { spacing: .5 });
+  panel(h, { x: 70, y: 520, cols: 80, rows: 14, pitch: 13, color: (a, b) => tm(a, b) ? RED : null, glow: 1.2, frame: 16 });
+  spill(h, 70, 520, 1040, 182, "rgba(255,40,30,1)", .2);
+  await new Promise((r) => setTimeout(r, 50));
+  document.title = "h:" + Math.ceil(document.documentElement.scrollHeight);
+})();
+</script>
+</body>
+</html>

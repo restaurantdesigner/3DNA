@@ -1,0 +1,336 @@
+{
+  "_doc": [
+    "Marketing projects: the portfolio grid on the digital marketing page and one presentation page per project.",
+    "Rendered by scripts/marketing-projects.js; interface text in assets/i18n/marketing-projects.json.",
+    "Add a project: copy an entry, set published:true when it is ready (unpublished entries are never shown or built).",
+    "status: proposal | inProgress | completed. index:false keeps the page out of search engines (noindex) - use it for",
+    "proposals addressed to a prospective client. langs: languages the presentation exists in; the other languages show",
+    "the card and open the first available language. Every visual flagged conceptual is drawn by 3DNA",
+    "(scripts/marketing-visuals/) and is labelled as such on the page; never use client photographs without permission.",
+    "Prices are the offer to this client, before VAT."
+  ],
+  "projects": [
+    {
+      "id": "letreros-programables",
+      "slug": "letreros-programables",
+      "published": true,
+      "index": false,
+      "status": "proposal",
+      "client": "Letreros Programables",
+      "industry": "ledSignage",
+      "type": "digitalTransformation",
+      "website": "https://letrerosprogramables.com/",
+      "date": "2026-11-23",
+      "langs": ["es", "en"],
+      "services": ["strategy", "webRedesign", "ecommerce", "multilingual", "seo", "aiVideo", "reels", "leadGen"],
+      "cover": { "src": "/images/marketing/projects/letreros-programables/cover-1600.webp", "small": "/images/marketing/projects/letreros-programables/cover-800.webp", "width": 1600, "height": 1200, "conceptual": true },
+      "hero": { "src": "/images/marketing/projects/letreros-programables/hero-1920.webp", "small": "/images/marketing/projects/letreros-programables/hero-960.webp", "width": 1920, "height": 1080, "conceptual": true },
+      "og": "/images/marketing/projects/letreros-programables/og.jpg",
+      "visuals": {
+        "families": {
+          "letreros": "/images/marketing/projects/letreros-programables/fam-letreros-800.webp",
+          "banderolas": "/images/marketing/projects/letreros-programables/fam-banderolas-800.webp",
+          "pantallas": "/images/marketing/projects/letreros-programables/fam-pantallas-800.webp",
+          "rotulos": "/images/marketing/projects/letreros-programables/fam-rotulos-800.webp",
+          "cruces": "/images/marketing/projects/letreros-programables/fam-cruces-800.webp",
+          "marcadores": "/images/marketing/projects/letreros-programables/fam-marcadores-800.webp"
+        },
+        "current": { "src": "/images/marketing/projects/letreros-programables/current-desktop-1440.webp", "width": 1440, "height": 900, "captured": "2026-11-23" },
+        "desktop": { "src": "/images/marketing/projects/letreros-programables/home-desktop-es-1440.webp", "width": 1440, "height": 3270 },
+        "mobile": {
+          "es": { "src": "/images/marketing/projects/letreros-programables/home-mobile-es-780.webp", "width": 780 },
+          "en": { "src": "/images/marketing/projects/letreros-programables/home-mobile-en-780.webp", "width": 780 },
+          "de": { "src": "/images/marketing/projects/letreros-programables/home-mobile-de-780.webp", "width": 780 }
+        },
+        "reels": [
+          "/images/marketing/projects/letreros-programables/reel-1-540.webp",
+          "/images/marketing/projects/letreros-programables/reel-2-540.webp",
+          "/images/marketing/projects/letreros-programables/reel-3-540.webp",
+          "/images/marketing/projects/letreros-programables/reel-4-540.webp",
+          "/images/marketing/projects/letreros-programables/reel-5-540.webp",
+          "/images/marketing/projects/letreros-programables/reel-6-540.webp"
+        ]
+      },
+      "videos": [],
+      "packages": [
+        { "id": "esencial", "price": 1500, "featured": false, "reels": 1 },
+        { "id": "profesional", "price": 3500, "featured": true, "reels": 3 },
+        { "id": "premium", "price": 4900, "featured": false, "reels": 6 }
+      ],
+      "content": {
+        "es": {
+          "meta": {
+            "title": "Letreros Programables — Propuesta de transformación digital | 3DNA",
+            "description": "Propuesta de 3DNA para Letreros Programables: rediseño web, catálogo en español, inglés y alemán, SEO, Reels para Instagram y captación de clientes.",
+            "ogTitle": "Letreros Programables · Propuesta de transformación digital",
+            "ogImageAlt": "Visual conceptual de 3DNA: letrero LED rojo, cruz LED verde y pantalla full color"
+          },
+          "card": {
+            "summary": "Nueva web, catálogo multilingüe, SEO y Reels para un fabricante de letreros LED programables de Granada.",
+            "alt": "Visual conceptual de 3DNA: letrero LED con el texto ABIERTO, cruz LED verde y pantalla LED full color"
+          },
+          "hero": {
+            "label": "Propuesta de 3DNA · Noviembre 2026",
+            "title": "Letreros Programables",
+            "subtitle": "Propuesta de Transformación Digital",
+            "lead": "Una nueva presencia digital para que cada negocio que busca un letrero LED encuentre, entienda y pida el suyo: web, catálogo, idiomas, vídeo y un camino claro hasta el presupuesto.",
+            "note": "Documento de propuesta preparado por 3DNA. No es un proyecto realizado: los diseños y visuales de esta página son conceptuales.",
+            "cta": "Ver la inversión",
+            "cta2": "Hablemos"
+          },
+          "company": {
+            "label": "La empresa",
+            "title": "Fabricación nacional, catálogo para cada negocio",
+            "lead": "Letreros Programables fabrica y distribuye letreros LED programables y rótulos luminosos para negocios. La fabricación está en Granada y la distribución llega a toda España y al resto de Europa.",
+            "facts": [
+              { "k": "6", "t": "familias de producto" },
+              { "k": "P4–P10", "t": "pantallas de interior y exterior" },
+              { "k": "USB · WiFi", "t": "programación desde ordenador o móvil" },
+              { "k": "Online", "t": "tienda con tarjeta, PayPal y transferencia" }
+            ],
+            "familiesTitle": "Familias de producto",
+            "families": [
+              { "id": "letreros", "name": "Letreros LED programables", "text": "Monocolor (rojo, verde, blanco, azul y ámbar) y RGB, de una o dos caras, en varios tamaños." },
+              { "id": "banderolas", "name": "Banderolas LED programables", "text": "Monocolor, RGB y full color de exterior (P5, P6 y P10), de una o doble cara." },
+              { "id": "pantallas", "name": "Pantallas LED full color", "text": "Interior P4 y P5; exterior P5, P6 y P10. Por ejemplo, 64 × 64 cm en P5." },
+              { "id": "rotulos", "name": "Rótulos luminosos para negocios", "text": "Parkings, farmacias y clínicas, bares, hoteles, tiendas, gasolineras, autoescuelas, estancos y más." },
+              { "id": "cruces", "name": "Cruces LED programables", "text": "Monocolor, RGB y full color para farmacias, veterinarias y clínicas, de 64 × 64 a 96 × 96 cm." },
+              { "id": "marcadores", "name": "Marcadores deportivos", "text": "Marcadores LED para instalaciones deportivas." }
+            ],
+            "visualNote": "Ilustraciones conceptuales de 3DNA basadas en el catálogo publicado; no son fotografías de producto.",
+            "oppTitle": "Dónde vemos la oportunidad",
+            "opportunities": [
+              "Un catálogo amplio que hoy se presenta como listado: el cliente necesita ver cada producto en su contexto (farmacia, bar, escaparate).",
+              "Las especificaciones clave (tamaño, pitch, caras, programación) no se ven en el listado y obligan a entrar en cada ficha.",
+              "La web está solo en español, aunque la distribución llega al resto de Europa.",
+              "Las llamadas a la acción se limitan a llamar o contactar; falta un camino directo a presupuesto o WhatsApp desde cada producto.",
+              "Instagram apunta a una etiqueta y no a un perfil propio: el producto es muy visual y hoy no se aprovecha en vídeo."
+            ]
+          },
+          "web": {
+            "label": "Rediseño web",
+            "title": "De catálogo a escaparate que vende",
+            "lead": "Una web que presenta el producto encendido, en su contexto y con la información que el cliente necesita para decidir, sobre la plataforma de tienda actual.",
+            "current": "Web actual",
+            "currentNote": "Captura de letrerosprogramables.com, 23/11/2026",
+            "proposed": "Propuesta 3DNA",
+            "proposedNote": "Diseño conceptual · escritorio (desplázate dentro de la pantalla)",
+            "mobileNote": "Diseño conceptual · móvil",
+            "pointsTitle": "Qué cambia",
+            "points": [
+              { "k": "Navegación clara", "t": "Cinco entradas: Productos, Sectores, Cómo funciona, Empresa y Contacto." },
+              { "k": "Catálogo por familia y por sector", "t": "El cliente entra por su producto o por su negocio: farmacia, bar, hotel, tienda, parking…" },
+              { "k": "Especificaciones a la vista", "t": "Tamaño, pitch, número de caras y programación en cada tarjeta, sin abrir la ficha." },
+              { "k": "Conversión", "t": "Botón de presupuesto y WhatsApp siempre visibles, también en cada producto." },
+              { "k": "Confianza", "t": "Fabricación en Granada, envío gratuito, formas de pago y ayuda con la configuración, en primer plano." },
+              { "k": "Pensada para el móvil", "t": "El diseño parte del móvil, que es donde llegan las visitas desde Instagram y Facebook." }
+            ]
+          },
+          "languages": {
+            "label": "Web multilingüe",
+            "title": "Español, inglés y alemán",
+            "lead": "La empresa ya distribuye en Europa. Presentar el catálogo en los idiomas de esos mercados abre búsquedas que hoy no llegan a la web.",
+            "points": [
+              { "k": "Presentación internacional", "t": "Un distribuidor o un negocio en Alemania, Austria o Suiza entiende el producto y pide presupuesto en su idioma." },
+              { "k": "SEO multilingüe", "t": "Cada idioma con sus propias URL, títulos y descripciones, y la relación entre idiomas marcada para Google." },
+              { "k": "Alcance acordado", "t": "Se traducen las páginas clave: inicio, categorías principales y contacto. El resto del catálogo puede ampliarse por fases." }
+            ],
+            "mockNote": "Diseño conceptual · la misma página en los tres idiomas"
+          },
+          "video": {
+            "label": "Vídeo marketing",
+            "title": "Seis Reels para Instagram",
+            "lead": "Un letrero LED se entiende en movimiento. Proponemos una serie de Reels cortos que muestran el producto encendido, cambiando de mensaje y funcionando en negocios reales.",
+            "note": "Portadas conceptuales. Los vídeos se producen con grabaciones del producto e imágenes generadas con IA, siempre revisadas antes de publicar; no hay vídeos terminados todavía.",
+            "reels": [
+              { "title": "De local apagado a escaparate que vende", "text": "Antes y después de una tienda de barrio al instalar un letrero LED." },
+              { "title": "Cruces LED para farmacias", "text": "La cruz programable de día y de noche, con hora, fecha y temperatura." },
+              { "title": "Cambia la oferta en segundos", "text": "El mismo panel mostrando promociones distintas a lo largo del día." },
+              { "title": "Un letrero para cada negocio", "text": "Restaurantes, hoteles y tiendas: el producto adaptado a cada sector." },
+              { "title": "Programarlo es así de fácil", "text": "Del móvil o el ordenador al letrero, paso a paso, con un producto compatible con WiFi." },
+              { "title": "La marca, en una pieza", "text": "Presentación premium de Letreros Programables para el perfil y los anuncios." }
+            ]
+          },
+          "funnel": {
+            "label": "Estrategia de marketing y ventas",
+            "title": "Del primer vídeo al cliente",
+            "lead": "Cada pieza tiene un papel: las redes y Google atraen, la web convence y el presupuesto por WhatsApp cierra.",
+            "steps": [
+              { "k": "Instagram · Facebook · Google", "t": "Reels, publicaciones y búsquedas llevan a la web." },
+              { "k": "Web rediseñada", "t": "El producto encendido, en su contexto y en tres idiomas." },
+              { "k": "Productos y tienda", "t": "Familias, sectores y fichas con especificaciones claras." },
+              { "k": "WhatsApp · Presupuesto", "t": "Un contacto directo desde cada producto." },
+              { "k": "Cliente", "t": "Pedido online o presupuesto aceptado." }
+            ]
+          },
+          "pricing": {
+            "label": "Inversión",
+            "title": "Tres formas de empezar",
+            "lead": "Paquetes cerrados sobre la plataforma de tienda actual. Precios sin IVA.",
+            "vat": "+ IVA",
+            "featured": "Recomendado",
+            "choose": "Elegir este paquete",
+            "packages": {
+              "esencial": { "name": "Esencial", "summary": "Una renovación visible de lo que ya existe.", "includes": ["Renovación visual de la web actual: colores, tipografía, cabecera y pie", "Mejoras clave en la página de inicio: portada, categorías, bloque de confianza y llamadas a la acción", "1 Reel promocional", "Una ronda de revisión"] },
+              "profesional": { "name": "Profesional", "summary": "La web nueva, en tres idiomas, preparada para vender.", "includes": ["Rediseño visual completo sobre la plataforma de tienda actual", "Plantillas revisadas de categoría y ficha de producto", "Páginas clave en español, inglés y alemán", "SEO básico: títulos, descripciones, encabezados y datos de producto", "Integración de WhatsApp y botón de presupuesto", "3 Reels"] },
+              "premium": { "name": "Premium", "summary": "Todo el Profesional, con más contenido y más captación.", "includes": ["Todo lo incluido en Profesional", "Fichas de producto mejoradas: especificaciones, usos y preguntas frecuentes", "Visuales conceptuales adicionales de producto en contexto", "6 Reels", "Captación de leads mejorada: formulario de presupuesto y seguimiento"] }
+            },
+            "excludesTitle": "No incluido en ningún paquete",
+            "excludes": [
+              "Migración a otra plataforma de tienda o desarrollo a medida",
+              "Traducción de todo el catálogo: solo las páginas clave acordadas",
+              "Fotografía o grabación en instalaciones de clientes",
+              "Inversión en publicidad, licencias, hosting y dominio",
+              "Cambios fuera del alcance descrito, que se presupuestan aparte"
+            ]
+          },
+          "contact": {
+            "label": "Siguiente paso",
+            "title": "Hablemos de la transformación digital de Letreros Programables.",
+            "text": "Revisamos juntos la propuesta, resolvemos dudas y adaptamos el paquete a lo que necesitáis.",
+            "whatsapp": "Escribir por WhatsApp",
+            "whatsappText": "Hola, quiero hablar de la propuesta de transformación digital para Letreros Programables.",
+            "form": "Enviar un mensaje",
+            "email": "o escríbenos a"
+          }
+        },
+        "en": {
+          "meta": {
+            "title": "Letreros Programables — Digital transformation proposal | 3DNA",
+            "description": "3DNA's proposal for Letreros Programables: website redesign, catalogue in Spanish, English and German, SEO, Instagram Reels and lead generation.",
+            "ogTitle": "Letreros Programables · Digital transformation proposal",
+            "ogImageAlt": "3DNA concept visual: red LED sign, green LED cross and full-colour screen"
+          },
+          "card": {
+            "summary": "A new website, multilingual catalogue, SEO and Reels for a programmable LED sign manufacturer in Granada.",
+            "alt": "3DNA concept visual: LED sign reading ABIERTO, green LED cross and full-colour LED screen"
+          },
+          "hero": {
+            "label": "Proposal by 3DNA · November 2026",
+            "title": "Letreros Programables",
+            "subtitle": "Digital Transformation Proposal",
+            "lead": "A new digital presence so every business looking for an LED sign can find, understand and order theirs: website, catalogue, languages, video and a clear path to a quote.",
+            "note": "A proposal prepared by 3DNA. This is not a completed project: the designs and visuals on this page are concepts.",
+            "cta": "See the investment",
+            "cta2": "Let's talk"
+          },
+          "company": {
+            "label": "The company",
+            "title": "Made in Spain, a catalogue for every business",
+            "lead": "Letreros Programables manufactures and distributes programmable LED signs and illuminated signs for businesses. Manufacturing is in Granada and distribution reaches all of Spain and the rest of Europe.",
+            "facts": [
+              { "k": "6", "t": "product families" },
+              { "k": "P4–P10", "t": "indoor and outdoor screens" },
+              { "k": "USB · WiFi", "t": "programming from a computer or phone" },
+              { "k": "Online", "t": "shop with card, PayPal and bank transfer" }
+            ],
+            "familiesTitle": "Product families",
+            "families": [
+              { "id": "letreros", "name": "Programmable LED signs", "text": "Single colour (red, green, white, blue and amber) and RGB, single or double-sided, in several sizes." },
+              { "id": "banderolas", "name": "Programmable LED projecting signs", "text": "Single colour, RGB and outdoor full colour (P5, P6 and P10), single or double-sided." },
+              { "id": "pantallas", "name": "Full-colour LED screens", "text": "Indoor P4 and P5; outdoor P5, P6 and P10. For example, 64 × 64 cm in P5." },
+              { "id": "rotulos", "name": "Illuminated signs for businesses", "text": "Car parks, pharmacies and clinics, bars, hotels, shops, petrol stations, driving schools, tobacconists and more." },
+              { "id": "cruces", "name": "Programmable LED crosses", "text": "Single colour, RGB and full colour for pharmacies, vets and clinics, from 64 × 64 to 96 × 96 cm." },
+              { "id": "marcadores", "name": "Sports scoreboards", "text": "LED scoreboards for sports facilities." }
+            ],
+            "visualNote": "3DNA concept illustrations based on the published catalogue; they are not product photographs.",
+            "oppTitle": "Where we see the opportunity",
+            "opportunities": [
+              "A wide catalogue presented today as a list: customers need to see each product in context (pharmacy, bar, shop window).",
+              "Key specifications (size, pitch, faces, programming) are not visible in the listing, so every product has to be opened.",
+              "The website is only in Spanish, although distribution reaches the rest of Europe.",
+              "Calls to action are limited to calling or getting in touch; there is no direct path to a quote or WhatsApp from each product.",
+              "Instagram points to a hashtag rather than a company profile: the product is highly visual and video is not being used."
+            ]
+          },
+          "web": {
+            "label": "Website redesign",
+            "title": "From catalogue to a shop window that sells",
+            "lead": "A website that shows the product switched on, in context and with the information customers need to decide, on the current shop platform.",
+            "current": "Current website",
+            "currentNote": "Screenshot of letrerosprogramables.com, 23/11/2026",
+            "proposed": "3DNA proposal",
+            "proposedNote": "Concept design · desktop (scroll inside the screen)",
+            "mobileNote": "Concept design · mobile",
+            "pointsTitle": "What changes",
+            "points": [
+              { "k": "Clear navigation", "t": "Five entries: Products, Industries, How it works, Company and Contact." },
+              { "k": "Catalogue by family and industry", "t": "Customers start from their product or their business: pharmacy, bar, hotel, shop, car park…" },
+              { "k": "Specifications in view", "t": "Size, pitch, faces and programming on every card, without opening the product page." },
+              { "k": "Conversion", "t": "Quote and WhatsApp buttons always visible, on every product too." },
+              { "k": "Trust", "t": "Manufacturing in Granada, free shipping, payment methods and setup help, up front." },
+              { "k": "Mobile first", "t": "The design starts from the phone, where visits from Instagram and Facebook arrive." }
+            ]
+          },
+          "languages": {
+            "label": "Multilingual website",
+            "title": "Spanish, English and German",
+            "lead": "The company already distributes in Europe. Presenting the catalogue in the languages of those markets opens up searches that don't reach the website today.",
+            "points": [
+              { "k": "International presentation", "t": "A distributor or a business in Germany, Austria or Switzerland understands the product and asks for a quote in its own language." },
+              { "k": "Multilingual SEO", "t": "Each language with its own URLs, titles and descriptions, and the language versions linked for Google." },
+              { "k": "Agreed scope", "t": "The key pages are translated: home, main categories and contact. The rest of the catalogue can follow in phases." }
+            ],
+            "mockNote": "Concept design · the same page in the three languages"
+          },
+          "video": {
+            "label": "Video marketing",
+            "title": "Six Instagram Reels",
+            "lead": "An LED sign makes sense in motion. We propose a series of short Reels showing the product switched on, changing its message and working in real businesses.",
+            "note": "Concept covers. The videos are produced with footage of the product and AI-generated imagery, always reviewed before publishing; no finished videos exist yet.",
+            "reels": [
+              { "title": "From a dark shopfront to a window that sells", "text": "Before and after for a neighbourhood shop that installs an LED sign." },
+              { "title": "LED crosses for pharmacies", "text": "The programmable cross by day and by night, with time, date and temperature." },
+              { "title": "Change the offer in seconds", "text": "The same panel showing different promotions through the day." },
+              { "title": "A sign for every business", "text": "Restaurants, hotels and shops: the product adapted to each industry." },
+              { "title": "Programming it is this easy", "text": "From phone or computer to the sign, step by step, with a WiFi-compatible product." },
+              { "title": "The brand in one piece", "text": "A premium presentation of Letreros Programables for the profile and for ads." }
+            ]
+          },
+          "funnel": {
+            "label": "Marketing and sales strategy",
+            "title": "From the first video to the customer",
+            "lead": "Each piece has a role: social media and Google attract, the website convinces and the WhatsApp quote closes.",
+            "steps": [
+              { "k": "Instagram · Facebook · Google", "t": "Reels, posts and searches bring people to the website." },
+              { "k": "Redesigned website", "t": "The product switched on, in context and in three languages." },
+              { "k": "Products and shop", "t": "Families, industries and product pages with clear specifications." },
+              { "k": "WhatsApp · Quote", "t": "Direct contact from every product." },
+              { "k": "Customer", "t": "An online order or an accepted quote." }
+            ]
+          },
+          "pricing": {
+            "label": "Investment",
+            "title": "Three ways to start",
+            "lead": "Fixed-scope packages on the current shop platform. Prices exclude VAT.",
+            "vat": "+ VAT",
+            "featured": "Recommended",
+            "choose": "Choose this package",
+            "packages": {
+              "esencial": { "name": "Essential", "summary": "A visible refresh of what already exists.", "includes": ["Visual refresh of the current website: colours, typography, header and footer", "Key homepage improvements: hero, categories, trust block and calls to action", "1 promotional Reel", "One round of revisions"] },
+              "profesional": { "name": "Professional", "summary": "The new website, in three languages, ready to sell.", "includes": ["Complete visual redesign on the current shop platform", "Revised category and product page templates", "Key pages in Spanish, English and German", "Basic SEO: titles, descriptions, headings and product data", "WhatsApp integration and quote button", "3 Reels"] },
+              "premium": { "name": "Premium", "summary": "Everything in Professional, with more content and more leads.", "includes": ["Everything in Professional", "Enhanced product pages: specifications, uses and FAQs", "Additional concept visuals of products in context", "6 Reels", "Improved lead generation: quote form and follow-up"] }
+            },
+            "excludesTitle": "Not included in any package",
+            "excludes": [
+              "Migration to another shop platform or custom development",
+              "Translation of the whole catalogue: only the agreed key pages",
+              "Photography or filming at customers' premises",
+              "Advertising spend, licences, hosting and domain",
+              "Changes outside the described scope, which are quoted separately"
+            ]
+          },
+          "contact": {
+            "label": "Next step",
+            "title": "Let's talk about the digital transformation of Letreros Programables.",
+            "text": "We go through the proposal together, answer your questions and adapt the package to what you need.",
+            "whatsapp": "Message us on WhatsApp",
+            "whatsappText": "Hello, I'd like to talk about the digital transformation proposal for Letreros Programables.",
+            "form": "Send a message",
+            "email": "or write to"
+          }
+        }
+      }
+    }
+  ]
+}

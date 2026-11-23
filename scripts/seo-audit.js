@@ -33,6 +33,13 @@ const CHECK_ASSETS = !flag("--no-assets");
 
 // pages that are published on purpose but must not be indexed (they carry noindex or are blocked)
 const NOT_INDEXED = [/^\/404\.html$/, /^\/prototipos\//, /^\/assets\/partials\//, /\/(washroom-3d|aseos-3d)\/$/, /\/(calculator|calculadora)\/$/];
+// marketing proposals addressed to a prospective client (assets/data/marketing-projects.json, index:false)
+{
+  const mp = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/data/marketing-projects.json"), "utf8"));
+  const tr = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/i18n/translations.json"), "utf8").replace(/^﻿/, ""));
+  for (const p of mp.projects) if (p.published && p.index === false) for (const l of p.langs)
+    NOT_INDEXED.push(new RegExp(`^/${l}/${tr[l].marketingPage.slug}/${p.slug}/$`));
+}
 
 // ---------------- local GitHub Pages emulation (only what git publishes) ----------------
 function localServer() {

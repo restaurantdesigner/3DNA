@@ -41,7 +41,7 @@
   <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="/images/marketing/marketing-devices.webp">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261123a">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261123b">
 </head>
 
 <body>
@@ -88,6 +88,8 @@
     </div>
   </div>
 </header>
+<!-- progressive blur / fade under the fixed bar (CSS only: "SCROLL VEIL" in main.css) -->
+<div class="scroll-veil" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <!-- Sidebar menu: logo · 5 links · language · one WhatsApp action -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Меню" aria-hidden="true">
@@ -142,9 +144,40 @@
     </div>
   </section>
 
+<nav class="mk-localnav" aria-label="На этой странице"><div class="ab-wrap"><a href="#projects">Проекты</a><a href="#goals">Цели</a><a href="#strategies">Стратегии</a><a href="#channels">Каналы</a><a href="#method">Метод</a></div></nav>
+
+<section class="ab-sec mpg" id="projects" aria-labelledby="mpg-title">
+  <div class="ab-wrap">
+    <div class="mpg__head" data-reveal>
+      <p class="ab-label"><span class="ab-num">02</span> Проекты</p>
+      <h2 class="ab-h2" id="mpg-title">Маркетинговые проекты</h2>
+      <p class="ab-p ab-p--strong">Наши креативные концепции, цифровые стратегии и предложения по трансформации бизнеса.</p>
+    </div>
+    <ul class="mpg__grid">
+      <li class="mpg__item">
+        <a class="mpg__card" href="/en/digital-marketing/letreros-programables/" data-track="marketing_project_clicked" data-track-location="letreros-programables" hreflang="en">
+          <span class="mpg__media">
+            <img src="/images/marketing/projects/letreros-programables/cover-800.webp" srcset="/images/marketing/projects/letreros-programables/cover-800.webp 800w, /images/marketing/projects/letreros-programables/cover-1600.webp 1600w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 420px" width="1600" height="1200" loading="lazy" decoding="async" alt="3DNA concept visual: LED sign reading ABIERTO, green LED cross and full-colour LED screen">
+            <span class="mpg__status">Предложение</span>
+            <span class="mpg__concept">Концептуальный визуал 3DNA</span>
+          </span>
+          <span class="mpg__body">
+            <span class="mpg__meta">LED-вывески · Предложение по цифровой трансформации</span>
+            <h3 class="mpg__name">Letreros Programables</h3>
+            <span class="mpg__summary">A new website, multilingual catalogue, SEO and Reels for a programmable LED sign manufacturer in Granada.</span>
+            <span class="mpg__services" aria-label="Услуги"><span>Маркетинговая стратегия</span><span>Редизайн сайта</span><span>Улучшение интернет-магазина</span><span>Многоязычный сайт</span><span>SEO</span><span>Видео с помощью ИИ</span><span>Reels для Instagram</span><span>Привлечение заявок</span></span>
+            <span class="mpg__lang">Презентация на английском и испанском</span>
+            <span class="mpg__cta">Смотреть проект <span aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <section class="ab-sec mk-intro" aria-labelledby="mk-intro-l">
   <div class="ab-wrap ab-grid">
-    <div class="ab-side" data-reveal><p class="ab-label" id="mk-intro-l"><span class="ab-num">02</span> Зачем нужен цифровой маркетинг</p></div>
+    <div class="ab-side" data-reveal><p class="ab-label" id="mk-intro-l"><span class="ab-num">03</span> Зачем нужен цифровой маркетинг</p></div>
     <div class="ab-main" data-reveal>
       <p class="ab-lead">Сначала цель. Потом каналы.</p>
       <p class="ab-p">Публикации в соцсетях, реклама или новый сайт — это ещё не стратегия. Это инструменты. Стратегия начинается, когда решено, что должно измениться в бизнесе: больше людей знают о вас, больше бронирований, больше продаж, клиенты возвращаются или репутация становится сильнее.</p>
@@ -153,10 +186,10 @@
   </div>
 </section>
 
-<section class="ab-sec mk-purposes" aria-labelledby="mk-purposes-t">
+<section class="ab-sec mk-purposes" id="goals" aria-labelledby="mk-purposes-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      <p class="ab-label"><span class="ab-num">03</span> Цели</p>
+      <p class="ab-label"><span class="ab-num">04</span> Цели</p>
 <h2 class="ab-h2" id="mk-purposes-t">Все цели цифрового маркетинга</h2>
       <p class="ab-p ab-p--strong">Бизнесу редко нужны все цели сразу. Две-три выбранные и хорошо проработанные цели дают больше, чем распыление на все.</p>
     </div>
@@ -330,10 +363,10 @@
   </div>
 </section>
 
-<section class="ab-sec mk-strategies" aria-labelledby="mk-strategies-t">
+<section class="ab-sec mk-strategies" id="strategies" aria-labelledby="mk-strategies-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      <p class="ab-label"><span class="ab-num">04</span> Стратегии</p>
+      <p class="ab-label"><span class="ab-num">05</span> Стратегии</p>
 <h2 class="ab-h2" id="mk-strategies-t">Стратегии цифрового маркетинга</h2>
       <p class="ab-p ab-p--strong">Стратегия — это способ достичь цели: что делается, в каком порядке и через какие каналы. Вот основные стратегии и цели, которым служит каждая из них.</p>
     </div>
@@ -450,10 +483,10 @@
   </div>
 </section>
 
-<section class="ab-sec mk-channels" aria-labelledby="mk-channels-t">
+<section class="ab-sec mk-channels" id="channels" aria-labelledby="mk-channels-t">
   <div class="ab-wrap ab-grid">
     <div class="ab-side ab-sticky" data-reveal>
-      <p class="ab-label"><span class="ab-num">05</span> Каналы</p>
+      <p class="ab-label"><span class="ab-num">06</span> Каналы</p>
 <h2 class="ab-h2" id="mk-channels-t">Инструменты цифровой стратегии</h2>
       <p class="ab-p">Не нужно присутствовать везде. Каждый канал выбирают по цели, которой он служит, и по тому, где находится ваш клиент.</p>
     </div>
@@ -464,7 +497,7 @@
 <section class="ab-sec mk-space" aria-labelledby="mk-space-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      <p class="ab-label"><span class="ab-num">06</span> Пространство как контент</p>
+      <p class="ab-label"><span class="ab-num">07</span> Пространство как контент</p>
 <h2 class="ab-h2" id="mk-space-t">Ваше заведение тоже говорит</h2>
       <p class="ab-p">В 3DNA дизайн пространства и маркетинг начинаются вместе. Рендеры, видео и 3D-туры, которые мы создаём для проекта, появляются ещё до открытия заведения и становятся материалом для сайта, соцсетей, рекламы и кампании открытия.</p>
 <p class="ab-p">Поэтому, когда бизнес открывает двери, у него уже есть аудитория, контент и единый образ во всех каналах.</p>
@@ -473,9 +506,9 @@
   </div>
 </section>
 
-<section class="ab-sec mk-process" aria-labelledby="mk-process-t">
+<section class="ab-sec mk-process" id="method" aria-labelledby="mk-process-t">
   <div class="ab-wrap">
-    <div class="ab-narrow" data-reveal><p class="ab-label"><span class="ab-num">07</span> Как мы работаем</p>
+    <div class="ab-narrow" data-reveal><p class="ab-label"><span class="ab-num">08</span> Как мы работаем</p>
 <h2 class="ab-h2" id="mk-process-t">Как мы строим стратегию</h2></div>
     <ol class="mk-steps" data-reveal><li><span class="mk-steps__n">01</span><span class="ab-triad__k">Диагностика</span><p>Анализируем бизнес, клиента, конкурентов и то, что уже работает.</p></li><li><span class="mk-steps__n">02</span><span class="ab-triad__k">Цели и метрики</span><p>Выбираем приоритетные цели и способ измерения каждой из них.</p></li><li><span class="mk-steps__n">03</span><span class="ab-triad__k">Каналы и бюджет</span><p>Подбираем каналы под эти цели и распределяем вложения.</p></li><li><span class="mk-steps__n">04</span><span class="ab-triad__k">Контент и запуск</span><p>Создаём сообщения, визуальные материалы и страницы и запускаем действия.</p></li><li><span class="mk-steps__n">05</span><span class="ab-triad__k">Измерение и улучшение</span><p>Регулярно смотрим на данные и корректируем то, что не даёт результата.</p></li></ol>
   </div>
@@ -484,7 +517,7 @@
 <section class="ab-sec ab-personal mk-closing" aria-labelledby="mk-closing-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>
-      <p class="ab-label"><span class="ab-num">08</span> Следующий шаг</p>
+      <p class="ab-label"><span class="ab-num">09</span> Следующий шаг</p>
 <h2 class="ab-h2" id="mk-closing-t">Прежде чем выбирать каналы, выберите цель.</h2>
       <p class="ab-p">Расскажите, чего вы хотите добиться в своём бизнесе. Мы предложим приоритетные цели, подходящие каналы и то, как будем измерять результат.</p>
       <div class="ab-cta">

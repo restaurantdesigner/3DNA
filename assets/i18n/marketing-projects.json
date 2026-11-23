@@ -1,0 +1,42 @@
+{
+  "es": {
+    "gallery": { "label": "Proyectos", "title": "Proyectos de marketing", "subtitle": "Explora nuestros conceptos creativos, estrategias digitales y propuestas de transformación de negocio.", "view": "Ver proyecto", "services": "Servicios", "langNote": "" },
+    "localNav": { "label": "En esta página", "items": { "projects": "Proyectos", "goals": "Objetivos", "strategies": "Estrategias", "channels": "Canales", "method": "Método" } },
+    "status": { "proposal": "Propuesta", "inProgress": "En desarrollo", "completed": "Proyecto realizado" },
+    "type": { "digitalTransformation": "Propuesta de transformación digital" },
+    "industry": { "ledSignage": "Letreros LED" },
+    "conceptual": "Visual conceptual 3DNA",
+    "services": { "strategy": "Estrategia de marketing", "webRedesign": "Rediseño web", "ecommerce": "Mejora del e-commerce", "multilingual": "Web multilingüe", "seo": "SEO", "aiVideo": "Producción de vídeo con IA", "reels": "Reels de Instagram", "leadGen": "Captación de leads" },
+    "page": { "back": "Proyectos de marketing", "by": "Propuesta de 3DNA", "client": "Cliente", "industry": "Sector", "website": "Web", "status": "Estado", "date": "Fecha", "services": "Servicios" }
+  },
+  "en": {
+    "gallery": { "label": "Projects", "title": "Marketing Projects", "subtitle": "Explore our creative concepts, digital strategies and business transformation proposals.", "view": "View project", "services": "Services", "langNote": "" },
+    "localNav": { "label": "On this page", "items": { "projects": "Projects", "goals": "Goals", "strategies": "Strategies", "channels": "Channels", "method": "Method" } },
+    "status": { "proposal": "Proposal", "inProgress": "In progress", "completed": "Completed project" },
+    "type": { "digitalTransformation": "Digital transformation proposal" },
+    "industry": { "ledSignage": "LED signage" },
+    "conceptual": "3DNA concept visual",
+    "services": { "strategy": "Marketing strategy", "webRedesign": "Website redesign", "ecommerce": "E-commerce improvement", "multilingual": "Multilingual website", "seo": "SEO", "aiVideo": "AI video production", "reels": "Instagram Reels", "leadGen": "Lead generation" },
+    "page": { "back": "Marketing projects", "by": "Proposal by 3DNA", "client": "Client", "industry": "Industry", "website": "Website", "status": "Status", "date": "Date", "services": "Services" }
+  },
+  "ru": {
+    "gallery": { "label": "Проекты", "title": "Маркетинговые проекты", "subtitle": "Наши креативные концепции, цифровые стратегии и предложения по трансформации бизнеса.", "view": "Смотреть проект", "services": "Услуги", "langNote": "Презентация на английском и испанском" },
+    "localNav": { "label": "На этой странице", "items": { "projects": "Проекты", "goals": "Цели", "strategies": "Стратегии", "channels": "Каналы", "method": "Метод" } },
+    "status": { "proposal": "Предложение", "inProgress": "В работе", "completed": "Реализованный проект" },
+    "type": { "digitalTransformation": "Предложение по цифровой трансформации" },
+    "industry": { "ledSignage": "LED-вывески" },
+    "conceptual": "Концептуальный визуал 3DNA",
+    "services": { "strategy": "Маркетинговая стратегия", "webRedesign": "Редизайн сайта", "ecommerce": "Улучшение интернет-магазина", "multilingual": "Многоязычный сайт", "seo": "SEO", "aiVideo": "Видео с помощью ИИ", "reels": "Reels для Instagram", "leadGen": "Привлечение заявок" },
+    "page": { "back": "Маркетинговые проекты", "by": "Предложение 3DNA", "client": "Клиент", "industry": "Отрасль", "website": "Сайт", "status": "Статус", "date": "Дата", "services": "Услуги" }
+  },
+  "uk": {
+    "gallery": { "label": "Проєкти", "title": "Маркетингові проєкти", "subtitle": "Наші креативні концепції, цифрові стратегії та пропозиції з трансформації бізнесу.", "view": "Переглянути проєкт", "services": "Послуги", "langNote": "Презентація англійською та іспанською" },
+    "localNav": { "label": "На цій сторінці", "items": { "projects": "Проєкти", "goals": "Цілі", "strategies": "Стратегії", "channels": "Канали", "method": "Метод" } },
+    "status": { "proposal": "Пропозиція", "inProgress": "У роботі", "completed": "Реалізований проєкт" },
+    "type": { "digitalTransformation": "Пропозиція з цифрової трансформації" },
+    "industry": { "ledSignage": "LED-вивіски" },
+    "conceptual": "Концептуальний візуал 3DNA",
+    "services": { "strategy": "Маркетингова стратегія", "webRedesign": "Редизайн сайту", "ecommerce": "Покращення інтернет-магазину", "multilingual": "Багатомовний сайт", "seo": "SEO", "aiVideo": "Відео за допомогою ШІ", "reels": "Reels для Instagram", "leadGen": "Залучення заявок" },
+    "page": { "back": "Маркетингові проєкти", "by": "Пропозиція 3DNA", "client": "Клієнт", "industry": "Галузь", "website": "Сайт", "status": "Статус", "date": "Дата", "services": "Послуги" }
+  }
+}

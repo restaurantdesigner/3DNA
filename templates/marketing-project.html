@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Built by scripts/build-i18n.js from templates/marketing-project.html +
+       assets/data/marketing-projects.json + scripts/marketing-projects.js -->
+  <title>{{mproject.meta.title}}</title>
+{{head.i18n}}
+  <link rel="stylesheet" href="/assets/fonts/site.css?v=20261010a">
+  <!-- the hero visual is the first paint -->
+{{mproject.heroPreload}}
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261123b">
+</head>
+
+<body>
+<!-- 3dna:header -->
+{{layout.header}}
+<!-- /3dna:header -->
+
+<main id="main" tabindex="-1" class="apage mkpage mpp">
+
+  <!-- 01 HERO: the project's hero visual (conceptual visuals carry a visible label) -->
+{{mproject.heroHtml}}
+
+{{mproject.bodyHtml}}
+
+</main>
+
+<!-- 3dna:footer -->
+{{layout.footer}}
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=20261010b"></script>
+
+<!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
+     main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->
+<div id="deployment-db155617-f1fa-45ba-aa43-27eb97edb751"></div>
+</body>
+</html>

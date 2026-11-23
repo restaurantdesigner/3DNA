@@ -52,7 +52,11 @@ const propertySlugOf = (page) => (page && page.startsWith("property-") ? page.sl
 // real estate pages: their own generated card (or override / fallback), see scripts/real-estate.js shareImage
 const realEstateOg = (page, lang) => (propertySlugOf(page) || page === "realEstate")
   ? realEstate.shareImage(propertySlugOf(page), lang, (p) => fs.existsSync(path.join(root, p.replace(/^\//, "")))) : null;
+// marketing projects (portfolio on the digital marketing page): mproject-<id>
+const mprojectKey = (id) => `mproject-${id}`;
+const mprojectIdOf = (page) => (page && page.startsWith("mproject-") ? page.slice("mproject-".length) : null);
 const ogImagePath = (page, lang) => realEstateOg(page, lang) ? realEstateOg(page, lang).path
+  : mprojectIdOf(page) ? marketingProjects.ogImage(mprojectIdOf(page))
   : projectIdOf(page) ? projects.ogImage(projectIdOf(page)) : (page && OG_PAGE_IMAGES[page] ? OG_PAGE_IMAGES[page](lang) : OG_IMAGE.path(lang));
 const ogImageSize = (page, lang) => {
   if (!realEstateOg(page, lang)) return { width: OG_IMAGE.width, height: OG_IMAGE.height, type: "image/jpeg" };
@@ -77,6 +81,7 @@ const restaurantsTemplate = read("templates/restaurants.html");
 const fitnessTemplate = read("templates/fitness.html");
 const aboutTemplate = read("templates/about.html");
 const marketingTemplate = read("templates/marketing.html");
+const marketingProjectTemplate = read("templates/marketing-project.html");
 const projectTemplate = read("templates/project.html");
 const realEstateTemplate = read("templates/real-estate.html");
 const propertyTemplate = read("templates/property.html");
@@ -113,7 +118,15 @@ const whatsappHref = (lang) => {
 
 const aboutPage = require("./about-page.js").createAboutPage(translations, { whatsappHref: (lang) => whatsappHref(lang) });
 // sector 04: the purposes of digital marketing (/es/marketing-digital/, /en|ru|uk/digital-marketing/)
-const marketingPage = require("./marketing-page.js").createMarketingPage(translations, { whatsappHref: (lang) => whatsappHref(lang) });
+// marketing projects: the portfolio grid on that page + one presentation page per published project
+const marketingProjects = require("./marketing-projects.js").createMarketingProjects(
+  JSON.parse(read("assets/data/marketing-projects.json")), JSON.parse(read("assets/i18n/marketing-projects.json")),
+  { marketingSlug: (lang) => translations[lang].marketingPage.slug, whatsappNumber: (lang) => translations[lang].contact.whatsappNumber, email: PUBLIC_EMAIL });
+const marketingPage = require("./marketing-page.js").createMarketingPage(translations, {
+  whatsappHref: (lang) => whatsappHref(lang),
+  projectsHtml: (lang, num) => marketingProjects.galleryHtml(lang, num),
+  localNavHtml: (lang) => marketingProjects.localNavHtml(lang)
+});
 const restaurantsPage = require("./restaurants-page.js").createRestaurantsPage(
   restaurantStories, translations, { whatsappHref: (lang) => whatsappHref(lang) });
 // client projects: card section on the Restaurants page + one page per project
@@ -205,6 +218,16 @@ const PAGES = {
     urlPath: (lang) => (lang === "es" ? `${realEstateSectionPath(lang)}${slug}/` : null),
     meta: (lang) => realEstate.detailMeta(lang, slug)
   }])),
+  // marketing projects: /es/marketing-digital/<slug>/, /en/digital-marketing/<slug>/ ... only in the project's
+  // languages (langs); the switcher sends the others to the digital marketing page (fallback)
+  ...Object.fromEntries(marketingProjects.list().map((id) => [mprojectKey(id), {
+    template: () => marketingProjectTemplate,
+    subPath: (lang) => marketingProjects.subPath(lang, id),
+    langs: marketingProjects.langs(id),
+    fallback: "marketing",
+    noindex: !marketingProjects.indexable(id),
+    meta: (lang) => marketingProjects.meta(lang, id)
+  }])),
   // client projects: /es/restaurantes/proyectos/ilia/, /en/restaurants/projects/ilia/ ...
   ...Object.fromEntries(projects.ids().map((id) => [projectKey(id), {
     template: () => projectTemplate,
@@ -215,8 +238,11 @@ const PAGES = {
 const pageSubPath = (options, lang) => (options && options.page ? PAGES[options.page].subPath(lang) : "");
 // URL path of a page in a language: /<lang>/<subPath>, unless the page keeps a
 // historic root URL in that language (PAGES[key].urlPath)
+// languages a page is built in (PAGES[key].langs, default all)
+const pageLangs = (key) => (key && PAGES[key] && PAGES[key].langs) || SUPPORTED;
 const pagePathFor = (key, lang) => {
   const page = key ? PAGES[key] : null;
+  if (page && page.langs && !page.langs.includes(lang)) return pagePathFor(page.fallback, lang);
   const fixed = page && page.urlPath ? page.urlPath(lang) : null;
   return fixed || `/${lang}/${page ? page.subPath(lang) : ""}`;
 };
@@ -234,9 +260,9 @@ const fileVersion = (rel) =>
 const jsonForScript = (data) => JSON.stringify(data).replace(/</g, "\\u003c");
 
 // ---------------------------------------------------------------- SEO: metadata
-function alternateLinks(pathFor = (code) => `/${code}/`) {
-  const links = SUPPORTED.map((code) => `  <link rel="alternate" hreflang="${code}" href="${absolute(pathFor(code))}">`);
-  links.push(`  <link rel="alternate" hreflang="x-default" href="${absolute(pathFor(DEFAULT_LANG))}">`);
+function alternateLinks(pathFor = (code) => `/${code}/`, langs = SUPPORTED) {
+  const links = langs.map((code) => `  <link rel="alternate" hreflang="${code}" href="${absolute(pathFor(code))}">`);
+  links.push(`  <link rel="alternate" hreflang="x-default" href="${absolute(pathFor(langs.includes(DEFAULT_LANG) ? DEFAULT_LANG : langs[0]))}">`);
   return links;
 }
 
@@ -257,7 +283,7 @@ function socialMeta(lang, t, meta = t.meta, url = localeUrl(lang), page = null) 
     `  <meta property="og:image:height" content="${ogImageSize(page, lang).height}">`,
     `  <meta property="og:image:alt" content="${escapeHtml(ogAlt)}">`,
     `  <meta property="og:locale" content="${t.meta.ogLocale}">`,
-    ...SUPPORTED.filter((code) => code !== lang).map(
+    ...pageLangs(page).filter((code) => code !== lang).map(
       (code) => `  <meta property="og:locale:alternate" content="${translations[code].meta.ogLocale}">`
     ),
     `  <meta name="twitter:card" content="summary_large_image">`,
@@ -309,7 +335,7 @@ const crumbName = (key, lang) => {
   return String(PAGES[key].meta(lang).title).replace(/\s*[|·—–-]\s*3DNA\s*$/i, "").split(/\s+[|—]\s+/)[0].trim();
 };
 // parent page in the site hierarchy (listings sit under the catalogue, projects under restaurants)
-const parentPageOf = (key) => (propertySlugOf(key) ? "realEstate" : projectIdOf(key) ? "restaurants" : null);
+const parentPageOf = (key) => (propertySlugOf(key) ? "realEstate" : projectIdOf(key) ? "restaurants" : mprojectIdOf(key) ? "marketing" : null);
 function breadcrumbNode(lang, t, url, key) {
   const chain = [];
   for (let k = parentPageOf(key); k; k = parentPageOf(k)) chain.unshift(k);
@@ -394,8 +420,9 @@ function headTags(lang, options = {}) {
 
   const lines = [
     `  <meta name="description" content="${escapeHtml(meta.description)}">`,
+    ...(options.page && PAGES[options.page].noindex ? [`  <meta name="robots" content="noindex, follow">`] : []),
     `  <link rel="canonical" href="${url}">`,
-    ...alternateLinks(pathFor),
+    ...alternateLinks(pathFor, pageLangs(options.page)),
     ...socialMeta(lang, t, meta, url, options.page),
     structuredData(lang, t, meta, url, options.page),
     // the catalogue's first paint is its hero film poster (the largest element): fetch it first
@@ -484,6 +511,14 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "about.bodyHtml") return aboutPage.bodyHtml(lang);
     if (key === "marketingPage.url") return pagePathFor("marketing", lang);
     if (key === "marketing.bodyHtml") return marketingPage.bodyHtml(lang);
+    if (key.startsWith("mproject.")) {
+      const id = mprojectIdOf(options && options.page);
+      if (!id) throw new Error(`"${key}" used outside a marketing project page`);
+      if (key === "mproject.heroHtml") return marketingProjects.heroHtml(lang, id);
+      if (key === "mproject.bodyHtml") return marketingProjects.bodyHtml(lang, id);
+      if (key === "mproject.meta.title") return escapeHtml(marketingProjects.meta(lang, id).title);
+      if (key === "mproject.heroPreload") return marketingProjects.heroPreload(id);
+    }
     if (key === "designQuotes.html") return designQuotes.sectionHtml(lang);
     if (key === "fitnessPage.voicesHtml") return designQuotes.fitnessVoicesHtml(lang);
     if (key === "fitnessPage.voicesContentHtml") return designQuotes.fitnessContentVoicesHtml(lang);
@@ -552,7 +587,7 @@ const ASSET_VERSIONS = {
   "main.js": (template.match(/main\.js\?v=([\w.-]+)/) || [])[1]
 };
 function layoutPages() {
-  const generated = new Set(Object.keys(PAGES).flatMap((key) => SUPPORTED.map((lang) => pageFile(key, lang))));
+  const generated = new Set(Object.keys(PAGES).flatMap((key) => pageLangs(key).map((lang) => pageFile(key, lang))));
   return fs.readdirSync(root).filter((name) =>
     name.endsWith(".html") && name !== "index.html" && !name.startsWith("index.") && !generated.has(name) &&
     fs.readFileSync(path.join(root, name), "utf8").includes("<!-- 3dna:header -->"));
@@ -748,7 +783,7 @@ for (const lang of SUPPORTED) write(`${lang}/index.html`, render(lang));
 for (const lang of SUPPORTED) write(`assets/partials/${formPartialFile(lang)}`, render(lang, {}, formTemplate));
 write("index.html", render(DEFAULT_LANG, { isRoot: true }));
 for (const [key, page] of Object.entries(PAGES)) {
-  for (const lang of SUPPORTED) {
+  for (const lang of pageLangs(key)) {
     const html = render(lang, { page: key }, page.template())
       .replace(/(main\.(?:css|js))\?v=[\w.-]+/g, (m, file) => `${file}?v=${ASSET_VERSIONS[file]}`);
     write(pageFile(key, lang), html);
