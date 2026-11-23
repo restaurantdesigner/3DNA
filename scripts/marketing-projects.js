@@ -74,7 +74,12 @@ function createMarketingProjects(data, ui, { marketingSlug, whatsappNumber, emai
           </span>
         </a>
       </li>`;
-    }).join("\n");
+    });
+    // featured projects: full-screen chapters, edge to edge (outside the centred column);
+    // the others: the 3 / 2 / 1-column grid
+    const isFeature = (p) => !!(p.featured && p.feature);
+    const features = projects.map((p, i) => (isFeature(p) ? cards[i] : null)).filter(Boolean);
+    const grid = projects.map((p, i) => (isFeature(p) ? null : cards[i])).filter(Boolean);
     return `<section class="ab-sec mpg" id="projects" aria-labelledby="mpg-title">
   <div class="ab-wrap">
     <div class="mpg__head" data-reveal>
@@ -82,10 +87,15 @@ function createMarketingProjects(data, ui, { marketingSlug, whatsappNumber, emai
       <h2 class="ab-h2 mpg__title" id="mpg-title">${u.gallery.titleParts ? `${esc(u.gallery.titleParts[0])} <em>${esc(u.gallery.titleParts[1])}</em>` : esc(u.gallery.title)}</h2>
       <p class="ab-p ab-p--strong">${esc(u.gallery.subtitle)}</p>
     </div>
-    <ul class="mpg__grid">
-${cards}
-    </ul>
   </div>
+${features.length ? `  <ul class="mpg__features">
+${features.join("\n")}
+  </ul>` : ""}
+${grid.length ? `  <div class="ab-wrap">
+    <ul class="mpg__grid">
+${grid.join("\n")}
+    </ul>
+  </div>` : ""}
 </section>`;
   }
 

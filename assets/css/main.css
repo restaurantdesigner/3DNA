@@ -12531,3 +12531,19 @@ body.mobile-open .scroll-veil{ display: none; }
   .mpg__fbtn{ width: 100%; justify-content: center; }
   .mpg__label i{ width: 56px; margin-left: 12px; }
 }
+
+/* featured marketing project: a full-screen chapter, edge to edge (cancels the section's side padding) */
+.mpg__features{ margin: clamp(32px, 5vh, 56px) -6vw 0; padding: 0; list-style: none; display: grid; gap: 0; }
+.apage .mpg__features .mpg__feature{ min-height: calc(100vh - 68px); min-height: calc(100svh - 68px); border-radius: 0; }
+.mpg__features .mpg__fpanel{ padding-left: 6vw; }
+.mpg__features .mpg__concept{ top: 18px; right: 18px; bottom: auto; }
+.mpg__features + .ab-wrap .mpg__grid{ margin-top: clamp(40px, 6vh, 72px); }
+@media (max-width: 900px){
+  .apage .mpg__features .mpg__feature{ min-height: 0; }
+  .mpg__features .mpg__fpanel{ padding: 28px 6vw 36px; }
+}
+@media (max-width: 600px){
+  .mpg__features{ margin-left: -20px; margin-right: -20px; }
+  .mpg__features .mpg__fpanel{ padding: 26px 20px 34px; }
+}
+.mpg__features .mpg__fmedia img{ object-position: 62% 50%; }
