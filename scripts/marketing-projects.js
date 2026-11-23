@@ -115,7 +115,7 @@ ${grid.join("\n")}
     const p = byId(id), c = C(p, lang), u = U(lang), h = c.hero;
     return `  <section class="sector-hero ahero mpphero" aria-labelledby="mpp-title">
     <picture class="ahero__media">
-      <img src="${p.hero.small}" srcset="${p.hero.small} 960w, ${p.hero.src} 1920w" sizes="100vw" width="${p.hero.width}" height="${p.hero.height}" fetchpriority="high" decoding="async" alt="${esc(c.card.alt)}">
+      <img src="${p.hero.small}" srcset="${p.hero.small} ${p.hero.smallWidth || 960}w, ${p.hero.src} ${p.hero.width}w" sizes="100vw" width="${p.hero.width}" height="${p.hero.height}" fetchpriority="high" decoding="async" alt="${esc(c.hero.alt || c.card.alt)}">
     </picture>
     <div class="ahero__shade" aria-hidden="true"></div>
     ${p.hero.conceptual ? `<span class="mpp-concept mpp-concept--hero">${esc(u.conceptual)}</span>` : ""}
@@ -318,7 +318,7 @@ ${p.packages.map((k) => {
     galleryHtml,
     localNavHtml,
     heroHtml,
-    heroPreload: (id) => { const h = byId(id).hero; return `  <link rel="preload" as="image" fetchpriority="high" imagesrcset="${h.small} 960w, ${h.src} 1920w" imagesizes="100vw">`; },
+    heroPreload: (id) => { const h = byId(id).hero; return `  <link rel="preload" as="image" fetchpriority="high" imagesrcset="${h.small} ${h.smallWidth || 960}w, ${h.src} ${h.width}w" imagesizes="100vw">`; },
     bodyHtml,
   };
 }

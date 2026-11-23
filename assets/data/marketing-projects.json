@@ -30,7 +30,7 @@
         "image": { "src": "/images/marketing/projects/letreros-programables/card-storefront-792.webp", "width": 792, "height": 544, "conceptual": true },
         "logo": { "src": "/images/marketing/projects/letreros-programables/client-logo-light-440.webp", "width": 440, "height": 122 }
       },
-      "hero": { "src": "/images/marketing/projects/letreros-programables/hero-1920.webp", "small": "/images/marketing/projects/letreros-programables/hero-960.webp", "width": 1920, "height": 1080, "conceptual": true },
+      "hero": { "src": "/images/marketing/projects/letreros-programables/hero-facade-1672.webp", "small": "/images/marketing/projects/letreros-programables/hero-facade-960.webp", "width": 1672, "height": 941, "smallWidth": 960, "conceptual": true },
       "og": "/images/marketing/projects/letreros-programables/og.jpg",
       "visuals": {
         "families": {
@@ -69,7 +69,7 @@
             "title": "Letreros Programables — Propuesta de transformación digital | 3DNA",
             "description": "Propuesta de 3DNA para Letreros Programables: rediseño web, catálogo en español, inglés y alemán, SEO, Reels para Instagram y captación de clientes.",
             "ogTitle": "Letreros Programables · Propuesta de transformación digital",
-            "ogImageAlt": "Visual conceptual de 3DNA: letrero LED rojo, cruz LED verde y pantalla full color"
+            "ogImageAlt": "Visual conceptual: fachada nocturna de Letreros Programables con una gran pantalla LED"
           },
           "card": {
             "summary": "Nueva imagen digital, web modernizada, catálogo multilingüe y contenido audiovisual para un fabricante de letreros LED programables de Granada.",
@@ -83,7 +83,8 @@
             "lead": "Una nueva presencia digital para que cada negocio que busca un letrero LED encuentre, entienda y pida el suyo: web, catálogo, idiomas, vídeo y un camino claro hasta el presupuesto.",
             "note": "Documento de propuesta preparado por 3DNA. No es un proyecto realizado: los diseños y visuales de esta página son conceptuales.",
             "cta": "Ver la inversión",
-            "cta2": "Hablemos"
+            "cta2": "Hablemos",
+            "alt": "Visual conceptual: fachada nocturna de Letreros Programables con el logotipo iluminado y una gran pantalla LED de colores"
           },
           "company": {
             "label": "La empresa",
@@ -206,7 +207,7 @@
             "title": "Letreros Programables — Digital transformation proposal | 3DNA",
             "description": "3DNA's proposal for Letreros Programables: website redesign, catalogue in Spanish, English and German, SEO, Instagram Reels and lead generation.",
             "ogTitle": "Letreros Programables · Digital transformation proposal",
-            "ogImageAlt": "3DNA concept visual: red LED sign, green LED cross and full-colour screen"
+            "ogImageAlt": "Concept visual: the Letreros Programables façade at night with a large LED screen"
           },
           "card": {
             "summary": "A new digital image, a modernised website, a multilingual catalogue and video content for a programmable LED sign manufacturer in Granada.",
@@ -220,7 +221,8 @@
             "lead": "A new digital presence so every business looking for an LED sign can find, understand and order theirs: website, catalogue, languages, video and a clear path to a quote.",
             "note": "A proposal prepared by 3DNA. This is not a completed project: the designs and visuals on this page are concepts.",
             "cta": "See the investment",
-            "cta2": "Let's talk"
+            "cta2": "Let's talk",
+            "alt": "Concept visual: the Letreros Programables façade at night, with the illuminated logo and a large colourful LED screen"
           },
           "company": {
             "label": "The company",

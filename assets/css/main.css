@@ -12547,3 +12547,15 @@ body.mobile-open .scroll-veil{ display: none; }
   .mpg__features .mpg__fpanel{ padding: 26px 20px 34px; }
 }
 .mpg__features .mpg__fmedia img{ object-position: 62% 50%; }
+/* proposal hero: the facade photo keeps the building and LED wall on the right; the label sits under the header, clear of the WhatsApp button */
+.mpphero .ahero__media img{ object-position: 92% 50%; }
+.mpp-concept--hero{ top: calc(var(--topbar-h, 76px) + 16px); bottom: auto; }
+@media (max-width: 900px), (orientation: portrait) and (max-width: 1100px){ .mpphero .ahero__media img{ object-position: 80% 50%; } .mpp-concept--hero{ top: calc(62.5vw - 40px); } }
+/* proposal hero on phones: a dark band behind the bar, the photo starts under it (the logo never sits on the facade lettering) */
+@media (max-width: 900px), (orientation: portrait) and (max-width: 1100px){
+  .apage section.sector-hero.ahero.mpphero{ background: #06070d; }
+  .mpphero .ahero__media{ margin-top: 68px; }
+  .mpphero .ahero__shade{ display: none; }
+  .mpphero .ahero__copy{ background: var(--a-paper); }
+  .mpp-concept--hero{ top: calc(68px + 62.5vw - 40px); }
+}
