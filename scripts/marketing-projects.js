@@ -239,11 +239,12 @@ ${co.families.map((f) => `      <li class="mpp-fam" data-reveal>
     <ol class="mpp-reels">
 ${vd.reels.map((r, i) => {
       const file = (p.videos || [])[i];
+      const cover = typeof v.reels[i] === "string" ? { src: v.reels[i] } : v.reels[i];
       const media = file
-        ? `<video controls playsinline preload="none" poster="${v.reels[i]}" width="540" height="960"><source src="${file}" type="video/mp4"></video>`
-        : `<img src="${v.reels[i]}" width="540" height="960" loading="lazy" decoding="async" alt="">`;
+        ? `<video controls playsinline preload="none" poster="${cover.src}" width="540" height="960"><source src="${file}" type="video/mp4"></video>`
+        : `<img src="${cover.src}" width="540" height="960" loading="lazy" decoding="async" alt="">`;
       return `      <li class="mpp-reel" data-reveal>
-        <span class="mpp-reel__media">${media}${file ? "" : conceptTag(u)}</span>
+        <span class="mpp-reel__media">${media}${file || cover.labelled ? "" : conceptTag(u)}</span>
         <span class="mpp-reel__n">${nn(i)}</span>
         <h3 class="mpp-reel__title">${esc(r.title)}</h3>
         <p class="mpp-reel__text">${esc(r.text)}</p>

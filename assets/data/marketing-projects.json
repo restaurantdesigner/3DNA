@@ -4,6 +4,7 @@
     "Rendered by scripts/marketing-projects.js; interface text in assets/i18n/marketing-projects.json.",
     "Add a project: copy an entry, set published:true when it is ready (unpublished entries are never shown or built).",
     "featured:true shows the project as the wide card (dark panel + feature.image, feature.logo) above the grid.",
+    "visuals.reels: a path, or { src, labelled:true } when the cover already carries its own concept label.",
     "status: proposal | inProgress | completed. index:false keeps the page out of search engines (noindex) - use it for",
     "proposals addressed to a prospective client. langs: languages the presentation exists in; the other languages show",
     "the card and open the first available language. Every visual flagged conceptual is drawn by 3DNA",
@@ -49,9 +50,9 @@
           "de": { "src": "/images/marketing/projects/letreros-programables/home-mobile-de-780.webp", "width": 780 }
         },
         "reels": [
-          "/images/marketing/projects/letreros-programables/reel-1-540.webp",
-          "/images/marketing/projects/letreros-programables/reel-2-540.webp",
-          "/images/marketing/projects/letreros-programables/reel-3-540.webp",
+          { "src": "/images/marketing/projects/letreros-programables/reel-1-photo-720.webp", "labelled": true },
+          { "src": "/images/marketing/projects/letreros-programables/reel-2-photo-720.webp", "labelled": true },
+          { "src": "/images/marketing/projects/letreros-programables/reel-3-photo-720.webp", "labelled": true },
           "/images/marketing/projects/letreros-programables/reel-4-540.webp",
           "/images/marketing/projects/letreros-programables/reel-5-540.webp",
           "/images/marketing/projects/letreros-programables/reel-6-540.webp"
