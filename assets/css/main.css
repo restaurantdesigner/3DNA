@@ -12461,46 +12461,28 @@ section.fproj--full{ position: relative; display: flex !important; align-items: 
 }
 .apage h4{ text-transform: none; letter-spacing: normal; }
 
-/* ===== SCROLL VEIL: content softens as it slides up under the fixed header =====
-   Markup: templates/layout/header.html, right after <header class="topbar"> (same parent, so the
-   header state can drive it with ~). A fixed, click-through layer BELOW the header (z 1899 < 1900):
-   three stacked backdrop blurs with staggered gradient masks give a progressive blur (none at the
-   bottom edge, strongest behind the bar), and a tint gradient fades the content into the bar colour.
-   No JavaScript: it appears with the header's existing is-solid state and, where scroll-driven
-   animations are supported, fades in over the first 120px of scroll (so the hero at rest is untouched).
-   --veil-head: header height for the state; --veil-fade: the transition zone below the header. */
+/* ===== SCROLL VEIL: content softens only behind the transparent header bar =====
+   Markup: templates/layout/header.html, right after <header class="topbar">. A fixed, click-through
+   layer BELOW the bar (z 1899 < 1900) and exactly as tall as the bar: nothing below the header is
+   blurred. It works only while the bar is transparent over a video hero (the solid white bar already
+   covers the content), and fades in with the first 120px of scroll where scroll-driven animations
+   exist, so the hero at rest is untouched. No JavaScript. */
 .scroll-veil{
   --veil-head: 84px;
-  --veil-fade: 124px;
-  --veil-tint: rgba(10,10,12,.34);
   position: fixed; top: 0; left: 0; right: 0; z-index: 1899;
-  height: calc(var(--veil-head) + var(--veil-fade));
+  height: var(--veil-head);
   pointer-events: none;
 }
-/* the layers carry the visibility, never the wrapper: an ancestor with opacity < 1 would become the
-   backdrop root and the blur would see nothing behind it */
-.scroll-veil > i, .scroll-veil::after{ opacity: 0; transition: opacity .35s ease; }
-html.has-overlay-header .topbar.is-solid ~ .scroll-veil{ --veil-head: 68px; --veil-tint: rgba(255,255,255,.82); }
-html.has-overlay-header .topbar.is-solid ~ .scroll-veil > i, html.has-overlay-header .topbar.is-solid ~ .scroll-veil::after{ opacity: 1; }
-@media (max-width: 767px){ .scroll-veil{ --veil-head: 68px; --veil-fade: 104px; } }
-/* tint: header colour at the bar, transparent at the bottom edge */
-.scroll-veil::after{
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, var(--veil-tint) 0, var(--veil-tint) var(--veil-head), transparent 100%);
-  transition: background .35s ease;
-}
-/* progressive blur: each layer blurs more and reaches less far down */
+@media (max-width: 767px){ .scroll-veil{ --veil-head: 68px; } }
+/* the layers carry the visibility, never the wrapper (an ancestor with opacity < 1 would become the
+   backdrop root and the blur would see nothing behind it) */
+.scroll-veil > i, .scroll-veil::after{ opacity: 0; }
+.scroll-veil::after{ content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,12,.34), rgba(10,10,12,.12)); }
 .scroll-veil i{ position: absolute; inset: 0; display: block; }
-.scroll-veil i:nth-child(1){ backdrop-filter: blur(1.5px); -webkit-backdrop-filter: blur(1.5px);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(var(--veil-head) + var(--veil-fade) * .35), transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 0, #000 calc(var(--veil-head) + var(--veil-fade) * .35), transparent 100%); }
-.scroll-veil i:nth-child(2){ backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 var(--veil-head), transparent calc(var(--veil-head) + var(--veil-fade) * .7));
-          mask-image: linear-gradient(to bottom, #000 0, #000 var(--veil-head), transparent calc(var(--veil-head) + var(--veil-fade) * .7)); }
-.scroll-veil i:nth-child(3){ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 var(--veil-head), transparent calc(var(--veil-head) + var(--veil-fade) * .38));
-          mask-image: linear-gradient(to bottom, #000 0, #000 var(--veil-head), transparent calc(var(--veil-head) + var(--veil-fade) * .38)); }
-/* over a video hero (transparent bar): fade in with the first scroll, never at rest */
+.scroll-veil i:nth-child(1){ backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.scroll-veil i:nth-child(2){ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); }
+.scroll-veil i:nth-child(3){ display: none; }
 @supports (animation-timeline: scroll()){
   @media (prefers-reduced-motion: no-preference){
     html.has-overlay-header .topbar:not(.is-solid) ~ .scroll-veil > i, html.has-overlay-header .topbar:not(.is-solid) ~ .scroll-veil::after{
@@ -12509,9 +12491,8 @@ html.has-overlay-header .topbar.is-solid ~ .scroll-veil > i, html.has-overlay-he
   }
 }
 @keyframes scroll-veil-in{ from{ opacity: 0; } to{ opacity: 1; } }
-/* no backdrop-filter: the tint gradient alone (still a soft fade, no hard edge) */
+html.has-overlay-header .topbar.is-solid ~ .scroll-veil{ display: none; }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){ .scroll-veil i{ display: none; } }
-/* readers who ask for less transparency, print, and while the sidebar menu is open */
 @media (prefers-reduced-transparency: reduce){ .scroll-veil{ display: none; } }
 @media print{ .scroll-veil{ display: none; } }
 body.mobile-open .scroll-veil{ display: none; }
