@@ -9,3 +9,13 @@ prototipos/washroom-suite/plan-reference.png
 drafts/
 inmobiliaria-borrador/
 */real-estate-draft/
+
+# local backups and old copies of the home page: kept on disk, never published (GitHub Pages
+# serves every tracked file)
+backup-*/
+index.before-*.html
+index.recovered.html
+index.mojibake.bak.html
+index - Copy.txt
+index reserv.txt
+restore-point-*.txt

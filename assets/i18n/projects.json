@@ -4,14 +4,18 @@
     "section": {
       "eyebrow": "Proyectos en desarrollo",
       "label": "Proyectos de clientes en desarrollo",
-      "chapter": "{n} / En obra"
+      "chapter": "{n} / En obra",
+      "eyebrowAll": "Proyectos",
+      "labelAll": "Proyectos de diseño de 3DNA"
     },
     "category": {
       "restaurantInterior": "Diseño de interiores de restaurante",
-      "receptionRenovation": "Reforma de recepción y acceso"
+      "receptionRenovation": "Reforma de recepción y acceso",
+      "venueBranding": "Diseño de local y branding"
     },
     "status": {
-      "development": "En desarrollo"
+      "development": "En desarrollo",
+      "showcase": "Proyecto de muestra"
     },
     "cta": "Explorar proyecto",
     "back": "Restaurantes",
@@ -81,6 +85,12 @@
           "cardCover": "Recepción de Santa Locura Fitness: estado actual y propuesta",
           "statusLine": "Propuesta visual · Pendiente de medición y validación en obra"
         }
+      },
+      "bubble-tea": {
+        "text": {
+          "cardSummary": "Un local de 87 m² donde arquitectura comercial, branding y narrativa visual convierten un espacio compacto en una marca con identidad.",
+          "cardCover": "Interior del Bubble Tea Boutique: barra de bebidas, taburetes rojos y paredes con grafismo de color"
+        }
       }
     },
     "panoHint": "Arrastra para mirar alrededor · rueda o pellizca para ampliar",
@@ -93,14 +103,18 @@
     "section": {
       "eyebrow": "Projects in development",
       "label": "Client projects in development",
-      "chapter": "{n} / In progress"
+      "chapter": "{n} / In progress",
+      "eyebrowAll": "Projects",
+      "labelAll": "3DNA design projects"
     },
     "category": {
       "restaurantInterior": "Restaurant interior design",
-      "receptionRenovation": "Reception and entrance renovation"
+      "receptionRenovation": "Reception and entrance renovation",
+      "venueBranding": "Venue design and branding"
     },
     "status": {
-      "development": "In development"
+      "development": "In development",
+      "showcase": "Showcase project"
     },
     "cta": "Explore project",
     "back": "Restaurants",
@@ -170,27 +184,38 @@
           "cardCover": "Santa Locura Fitness reception: current state and proposal",
           "statusLine": "Visual proposal · Pending on-site measurement and validation"
         }
+      },
+      "bubble-tea": {
+        "text": {
+          "cardSummary": "An 87 m² venue where commercial architecture, branding and visual storytelling turn a compact space into a brand with its own identity.",
+          "cardCover": "Inside the Bubble Tea Boutique: drinks counter, red stools and walls with colourful graphics"
+        }
       }
     },
     "panoHint": "Drag to look around · scroll or pinch to zoom",
     "panoFull": "Full screen",
     "panoExit": "Exit full screen",
     "panoLoading": "Loading panorama",
-    "linkLangNote": "Proposal board in Spanish"
+    "linkLangNote": "Proposal board in Spanish",
+    "pageInSpanish": "Page in Spanish"
   },
   "ru": {
     "slug": "projects",
     "section": {
       "eyebrow": "Проекты в разработке",
       "label": "Проекты клиентов в разработке",
-      "chapter": "{n} / В работе"
+      "chapter": "{n} / В работе",
+      "eyebrowAll": "Проекты",
+      "labelAll": "Дизайн-проекты 3DNA"
     },
     "category": {
       "restaurantInterior": "Дизайн интерьера ресторана",
-      "receptionRenovation": "Реконструкция ресепшена и входа"
+      "receptionRenovation": "Реконструкция ресепшена и входа",
+      "venueBranding": "Дизайн заведения и брендинг"
     },
     "status": {
-      "development": "В разработке"
+      "development": "В разработке",
+      "showcase": "Демонстрационный проект"
     },
     "cta": "Смотреть проект",
     "back": "Рестораны",
@@ -260,27 +285,38 @@
           "cardCover": "Ресепшен Santa Locura Fitness: текущее состояние и предложение",
           "statusLine": "Визуальное предложение · Ожидает замеров и проверки на объекте"
         }
+      },
+      "bubble-tea": {
+        "text": {
+          "cardSummary": "Заведение площадью 87 м², где коммерческая архитектура, брендинг и визуальный сторителлинг превращают компактное пространство в бренд со своим характером.",
+          "cardCover": "Интерьер Bubble Tea Boutique: барная стойка с напитками, красные табуреты и стены с цветной графикой"
+        }
       }
     },
     "panoHint": "Перетащите, чтобы осмотреться · колесо или щипок — масштаб",
     "panoFull": "На весь экран",
     "panoExit": "Выйти из полноэкранного режима",
     "panoLoading": "Загрузка панорамы",
-    "linkLangNote": "Доска проекта на испанском"
+    "linkLangNote": "Доска проекта на испанском",
+    "pageInSpanish": "Страница на испанском"
   },
   "uk": {
     "slug": "projects",
     "section": {
       "eyebrow": "Проєкти в розробці",
       "label": "Проєкти клієнтів у розробці",
-      "chapter": "{n} / У роботі"
+      "chapter": "{n} / У роботі",
+      "eyebrowAll": "Проєкти",
+      "labelAll": "Дизайн-проєкти 3DNA"
     },
     "category": {
       "restaurantInterior": "Дизайн інтер'єру ресторану",
-      "receptionRenovation": "Реконструкція рецепції та входу"
+      "receptionRenovation": "Реконструкція рецепції та входу",
+      "venueBranding": "Дизайн закладу та брендинг"
     },
     "status": {
-      "development": "У розробці"
+      "development": "У розробці",
+      "showcase": "Демонстраційний проєкт"
     },
     "cta": "Переглянути проєкт",
     "back": "Ресторани",
@@ -350,12 +386,19 @@
           "cardCover": "Рецепція Santa Locura Fitness: поточний стан і пропозиція",
           "statusLine": "Візуальна пропозиція · Очікує замірів і перевірки на об’єкті"
         }
+      },
+      "bubble-tea": {
+        "text": {
+          "cardSummary": "Заклад площею 87 м², де комерційна архітектура, брендинг і візуальний сторітелінг перетворюють компактний простір на бренд із власним характером.",
+          "cardCover": "Інтер'єр Bubble Tea Boutique: барна стійка з напоями, червоні табурети та стіни з кольоровою графікою"
+        }
       }
     },
     "panoHint": "Перетягніть, щоб роззирнутися · коліщатко або щипок — масштаб",
     "panoFull": "На весь екран",
     "panoExit": "Вийти з повноекранного режиму",
     "panoLoading": "Завантаження панорами",
-    "linkLangNote": "Дошка проєкту іспанською"
+    "linkLangNote": "Дошка проєкту іспанською",
+    "pageInSpanish": "Сторінка іспанською"
   }
 }

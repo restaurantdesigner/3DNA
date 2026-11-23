@@ -1,463 +1,1168 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://3dna.es/en/about/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/about/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/nosotros/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/about/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/about/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/es/nosotros/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/about/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/nosotros/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/about/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/about/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/about/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/about/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/nosotros/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/about/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/about/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/about/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/about/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/nosotros/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/about/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/about/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/fitness/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/gimnasios-3d.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/fitness/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/fitness/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/gimnasios-3d.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/fitness/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/fitness/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/gimnasios-3d.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/fitness/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/gimnasios-3d.html</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/fitness/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/gimnasios-3d.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/fitness/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/es/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/real-estate/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/real-estate/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/real-estate/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/inmobiliaria/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/real-estate/la-verde-island-atico/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/real-estate/la-verde-island-atico/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/real-estate/la-verde-island-atico/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/inmobiliaria/la-verde-island-atico/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-atico/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/real-estate/sunway-residence-atico/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/real-estate/sunway-residence-atico/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/real-estate/sunway-residence-atico/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/inmobiliaria/sunway-residence-atico/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-atico/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/restaurants/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/es/restaurantes/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/restaurants/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/restaurants/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/en/restaurants/projects/ilia/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/proyectos/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/projects/ilia/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/es/restaurantes/proyectos/ilia/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/proyectos/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/projects/ilia/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/ru/restaurants/projects/ilia/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/proyectos/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/projects/ilia/"/>
-  </url>
-  <url>
-    <loc>https://3dna.es/uk/restaurants/projects/ilia/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/proyectos/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/projects/ilia/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/projects/ilia/"/>
+    <loc>https://3dna.es/aviso-legal.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <image:image><image:loc>https://3dna.es/images/og/og-es.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://3dna.es/clinicas-3d.html</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-23</lastmod>
+    <image:image><image:loc>https://3dna.es/images/og/og-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/healthcare-poster.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/sc7.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://3dna.es/ecosistemas-digitales.html</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-23</lastmod>
+    <image:image><image:loc>https://3dna.es/images/og/og-es.jpg</image:loc></image:image>
   </url>
   <url>
-    <loc>https://3dna.es/proyecto01-restaurante.html</loc>
-    <lastmod>2026-11-22</lastmod>
+    <loc>https://3dna.es/en/about/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/nosotros/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/about/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/about/"/>
+    <image:image><image:loc>https://3dna.es/images/about/og-andrei-yafimenka.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/about/andrei-yafimenka-1672.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/fitness/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/gimnasios-3d.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/fitness/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-fitness-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/hero-card-464.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/logo.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/hero-after.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/01-reception-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/02-cardio-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/03-strength-machines-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/04-free-weights-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/05-functional-training-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/06-mobility-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/07-group-studio-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/08-indoor-cycling-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/09-changing-rooms-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/10-recovery-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/hero-before.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/plan-2d.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/plan-3d-top.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/model-building.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/sala-multiusos/vista-arquitectonica.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/sala-multiusos/vista-interior.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/model-island.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/cierre/disenador-maqueta-1672.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo1.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo2.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo3.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo4.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo5.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo6.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo8.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo9.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo10.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo11.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo12.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo13.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo14.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo15.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo16.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo17.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo18.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo19.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo20.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo21.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo22.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo23.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo24.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/real-estate/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/inmobiliaria-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-2-dormitorios-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/bano-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/terraza-vista-mar-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-golf-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-3-dormitorios-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/bano-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/real-estate/la-verde-island-atico/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-atico-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-golf-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-2-dormitorios-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/2d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/2d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/bano-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-3-dormitorios-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/3d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/3d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-4-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/bano-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-aerea-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/real-estate/sunway-residence-atico/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-atico-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-comedor-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-3-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-cubierta-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/restaurants/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-restaurants-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/hero/hero-poster-desktop.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-card-poster-1600.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/bubble-tea/bubble-tea-card-720.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/final-planning.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/en/restaurants/projects/ilia/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/proyectos/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/projects/ilia/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-ilia.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-hero-poster-1920.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-pano-comedor-2048.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/es/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo1.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo2.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo3.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo4.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo5.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo6.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo8.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo9.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo10.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo11.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo12.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo13.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo14.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo15.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo16.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo17.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo18.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo19.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo20.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo21.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo22.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo23.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo24.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/es/nosotros/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/nosotros/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/about/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/about/"/>
+    <image:image><image:loc>https://3dna.es/images/about/og-andrei-yafimenka.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/about/andrei-yafimenka-1672.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/es/restaurantes/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-restaurants-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/hero/hero-poster-desktop.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-card-poster-1600.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/bubble-tea/bubble-tea-card-720.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/final-planning.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/es/restaurantes/proyectos/ilia/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/proyectos/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/projects/ilia/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-ilia.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-hero-poster-1920.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-pano-comedor-2048.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/gimnasios-3d.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/gimnasios-3d.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/fitness/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-fitness-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/hero-card-464.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/logo.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/hero-after.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/01-reception-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/02-cardio-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/03-strength-machines-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/04-free-weights-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/05-functional-training-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/06-mobility-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/07-group-studio-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/08-indoor-cycling-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/09-changing-rooms-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/10-recovery-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/hero-before.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/plan-2d.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/plan-3d-top.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/model-building.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/sala-multiusos/vista-arquitectonica.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/sala-multiusos/vista-interior.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/model-island.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/cierre/disenador-maqueta-1672.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/gimnasios-3d/proyectos/santa-locura/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <image:image><image:loc>https://3dna.es/images/og/og-santa-locura-v2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/hero-poster.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/logo.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/after.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/after-b.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/after-c.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/before.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/before-560.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/after-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/after-c-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/galeria-neon-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/galeria-torno-640.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/inmobiliaria/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/inmobiliaria-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-2-dormitorios-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/bano-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/terraza-vista-mar-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-golf-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-3-dormitorios-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/bano-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/inmobiliaria/la-verde-island-atico/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-atico-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-golf-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-2-dormitorios-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/2d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/2d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/bano-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-3-dormitorios-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/3d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/3d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-4-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/bano-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-aerea-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/inmobiliaria/sunway-residence-atico/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-atico-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-comedor-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-3-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-cubierta-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://3dna.es/oferta-publica.html</loc>
-    <lastmod>2026-11-22</lastmod>
-  </url>
-  <url>
-    <loc>https://3dna.es/aviso-legal.html</loc>
-    <lastmod>2026-11-22</lastmod>
-  </url>
-  <url>
-    <loc>https://3dna.es/politica-privacidad.html</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-23</lastmod>
+    <image:image><image:loc>https://3dna.es/images/og/og-es.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://3dna.es/politica-cookies.html</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-23</lastmod>
+    <image:image><image:loc>https://3dna.es/images/og/og-es.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/politica-privacidad.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <image:image><image:loc>https://3dna.es/images/og/og-es.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/proyecto01-restaurante.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <image:image><image:loc>https://3dna.es/images/og/og-es.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/about/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/nosotros/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/about/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/about/"/>
+    <image:image><image:loc>https://3dna.es/images/about/og-andrei-yafimenka.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/about/andrei-yafimenka-1672.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/fitness/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/gimnasios-3d.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/fitness/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-fitness-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/hero-card-464.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/logo.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/hero-after.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/01-reception-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/02-cardio-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/03-strength-machines-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/04-free-weights-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/05-functional-training-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/06-mobility-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/07-group-studio-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/08-indoor-cycling-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/09-changing-rooms-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/10-recovery-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/hero-before.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/plan-2d.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/plan-3d-top.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/model-building.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/sala-multiusos/vista-arquitectonica.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/sala-multiusos/vista-interior.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/model-island.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/cierre/disenador-maqueta-1672.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo1.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo2.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo3.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo4.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo5.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo6.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo8.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo9.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo10.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo11.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo12.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo13.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo14.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo15.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo16.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo17.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo18.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo19.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo20.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo21.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo22.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo23.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo24.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/real-estate/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/inmobiliaria-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-2-dormitorios-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/bano-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/terraza-vista-mar-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-golf-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-3-dormitorios-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/bano-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/real-estate/la-verde-island-atico/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-atico-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-golf-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-2-dormitorios-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/2d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/2d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/bano-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-3-dormitorios-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/3d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/3d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-4-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/bano-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-aerea-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/real-estate/sunway-residence-atico/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-atico-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-comedor-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-3-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-cubierta-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/restaurants/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-restaurants-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/hero/hero-poster-desktop.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-card-poster-1600.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/bubble-tea/bubble-tea-card-720.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/final-planning.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/ru/restaurants/projects/ilia/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/proyectos/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/projects/ilia/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-ilia.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-hero-poster-1920.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-pano-comedor-2048.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/about/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/nosotros/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/about/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/about/"/>
+    <image:image><image:loc>https://3dna.es/images/about/og-andrei-yafimenka.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/about/andrei-yafimenka-1672.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/fitness/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/gimnasios-3d.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/fitness/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/fitness/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-fitness-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/hero-card-464.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/projects/santa-locura/logo.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/hero-after.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/01-reception-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/02-cardio-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/03-strength-machines-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/04-free-weights-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/05-functional-training-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/06-mobility-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/07-group-studio-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/08-indoor-cycling-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/09-changing-rooms-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/club-interiors/10-recovery-960.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/hero-before.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/plan-2d.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/plan-3d-top.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/model-building.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/sala-multiusos/vista-arquitectonica.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/sala-multiusos/vista-interior.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/case-study/model-island.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/fitness/cierre/disenador-maqueta-1672.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo1.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo2.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo3.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo4.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo5.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo6.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo8.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo9.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo10.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo11.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo12.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo13.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo14.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo15.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo16.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo17.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo18.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo19.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo20.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo21.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo22.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo23.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/img/logos/logo24.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/real-estate/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/inmobiliaria-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-2-dormitorios-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/bano-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/terraza-vista-mar-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-golf-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-3-dormitorios-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/bano-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/real-estate/la-verde-island-atico/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/la-verde-island-atico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/la-verde-island-atico/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/la-verde-island-atico-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/atico-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-golf-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-tumbonas-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/vista-aerea-conjunto-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/piscina-infinita-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/exterior-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/fachada-jardin-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/golf-atardecer-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/3d-terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-2-dormitorios-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/2d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/2d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/bano-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-3-dormitorios-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/3d-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/3d-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-4-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/bano-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-piscina-aerea-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/real-estate/sunway-residence-atico/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/inmobiliaria/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/real-estate/sunway-residence-atico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/real-estate/sunway-residence-atico/"/>
+    <image:image><image:loc>https://3dna.es/images/og/real-estate/sunway-residence-atico-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-salon-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-comedor-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/atico-cocina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-2-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/dormitorio-3-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/terraza-cubierta-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-noche-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-calle-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-acceso-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-montana-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/vista-aerea-bloques-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/entorno-aereo-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-jardin-piscina-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/sunway-residence/exterior-fachada-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/real-estate/la-verde-island/2d-terraza-800.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/restaurants/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-restaurants-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/hero/hero-poster-desktop.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-card-poster-1600.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/bubble-tea/bubble-tea-card-720.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/final-planning.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/restaurants/projects/ilia/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/restaurantes/proyectos/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/restaurants/projects/ilia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/restaurants/projects/ilia/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-ilia.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-hero-poster-1920.webp</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/restaurants/projects/ilia/ilia-pano-comedor-2048.webp</image:loc></image:image>
   </url>
 </urlset>

@@ -102,6 +102,28 @@
       ]
     },
     {
+      "id": "bubble-tea",
+      "name": "Bubble Tea Boutique",
+      "status": "showcase",
+      "category": "venueBranding",
+      "link": "/proyecto01-restaurante.html",
+      "linkLang": "es",
+      "langNoteKey": "pageInSpanish",
+      "summaryKey": "cardSummary",
+      "cover": {
+        "base": "/images/restaurants/projects/bubble-tea/bubble-tea-card",
+        "widths": [
+          464,
+          720
+        ],
+        "width": 720,
+        "height": 1280,
+        "altKey": "cardCover",
+        "video": "/videos/restaurants/projects/bubble-tea/bubble-tea-card-540.mp4",
+        "portrait": true
+      }
+    },
+    {
       "id": "santa-locura",
       "name": "Santa Locura Fitness",
       "sector": "fitness",

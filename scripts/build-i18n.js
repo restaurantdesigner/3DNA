@@ -15,14 +15,19 @@
  *   /inmobiliaria/ + /<lang>/real-estate/   real estate catalogue (templates/real-estate.html) and one
  *                   page per listing, …/<slug>/ (templates/property.html, assets/data/properties.json)
  *   /index.html     entry point: English content + language redirect for visitors
- *   /sitemap.xml    every /<lang>/**\/index.html found + LEGACY_PAGES
+ *   /sitemap.xml    every published, self-canonical, indexable page (with hreflang alternates and
+ *                   its images); lastmod = last commit that really changed the page (git)
  *   /robots.txt
+ *   /llms.txt       plain-text map of the public pages (titles, descriptions, URLs) for AI search tools
+ *
+ * Check the result: npm run seo:audit (scripts/seo-audit.js)
  *
  * Run: npm run build:i18n
  */
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const { execSync } = require("child_process");
 const { SUPPORTED, DEFAULT_LANG } = require("../assets/js/i18n-detect.js");
 
 const SITE_URL = "https://3dna.es";
@@ -57,18 +62,8 @@ const ogImageSize = (page, lang) => {
 // Language switcher order (header): EN / ES / RU / UK
 const SWITCHER_ORDER = ["en", "es", "ru", "uk"];
 
-// Existing single-language pages that are public and linked from the site.
-// They have no translations yet, so they go into the sitemap without hreflang.
+// Single-language (Spanish) pages written by hand: their language when the page does not declare one.
 const DEFAULT_LANG_LEGACY = "es";
-const LEGACY_PAGES = [
-  "clinicas-3d.html",
-  "ecosistemas-digitales.html",
-  "proyecto01-restaurante.html",
-  "oferta-publica.html",
-  "aviso-legal.html",
-  "politica-privacidad.html",
-  "politica-cookies.html"
-];
 
 const root = path.join(__dirname, "..");
 const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8").replace(/^﻿/, "");
@@ -268,8 +263,10 @@ function socialMeta(lang, t, meta = t.meta, url = localeUrl(lang), page = null) 
 // Only confirmed public facts: the locality published in the footer (no street
 // address), the public e-mail. No phone, social profiles, ratings or Person until
 // they are published on the site.
-function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = null) {
-  const graph = [
+// The organization, its founder (named on the site's About page) and the website: the same
+// nodes (same @id) on every page, so search engines connect them into one entity.
+function siteNodes(lang, t) {
+  return [
     {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
@@ -278,7 +275,9 @@ function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = nu
       logo: { "@type": "ImageObject", url: absolute(LOGO_PATH), width: 1932, height: 295 },
       description: t.schema.organizationDescription,
       email: PUBLIC_EMAIL,
-      address: { "@type": "PostalAddress", addressLocality: "Salobreña", addressRegion: "Granada", addressCountry: "ES" }
+      address: { "@type": "PostalAddress", addressLocality: "Salobreña", addressRegion: "Granada", addressCountry: "ES" },
+      founder: { "@id": `${SITE_URL}/#founder` },
+      knowsLanguage: SUPPORTED
     },
     {
       "@type": "WebSite",
@@ -287,7 +286,32 @@ function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = nu
       name: SITE_NAME,
       inLanguage: SUPPORTED,
       publisher: { "@id": `${SITE_URL}/#organization` }
-    },
+    }
+  ];
+}
+// the founder as a reference node (the About page carries the full Person)
+const founderRef = (lang) => ({ "@type": "Person", "@id": `${SITE_URL}/#founder`, name: "Andrei Yafimenka", url: absolute(pagePathFor("about", lang)), worksFor: { "@id": `${SITE_URL}/#organization` } });
+// a page's name in breadcrumbs: its service name, else its title without the brand
+const crumbName = (key, lang) => {
+  const services = translations[lang].schema.services || {};
+  if (services[key]) return services[key];
+  // the title's first part: "Nosotros | Andrei Yafimenka — …" → "Nosotros"
+  return String(PAGES[key].meta(lang).title).replace(/\s*[|·—–-]\s*3DNA\s*$/i, "").split(/\s+[|—]\s+/)[0].trim();
+};
+// parent page in the site hierarchy (listings sit under the catalogue, projects under restaurants)
+const parentPageOf = (key) => (propertySlugOf(key) ? "realEstate" : projectIdOf(key) ? "restaurants" : null);
+function breadcrumbNode(lang, t, url, key) {
+  const chain = [];
+  for (let k = parentPageOf(key); k; k = parentPageOf(k)) chain.unshift(k);
+  const items = [{ name: t.schema.breadcrumbHome, item: absolute(`/${lang}/`) },
+    ...chain.map((k) => ({ name: crumbName(k, lang), item: absolute(pagePathFor(k, lang)) })),
+    { name: crumbName(key, lang), item: url }];
+  return { "@type": "BreadcrumbList", "@id": `${url}#breadcrumb`, itemListElement: items.map((x, i) => ({ "@type": "ListItem", position: i + 1, ...x })) };
+}
+
+function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = null) {
+  const graph = [
+    ...siteNodes(lang, t),
     {
       "@type": "WebPage",
       "@id": `${url}#webpage`,
@@ -314,6 +338,12 @@ function structuredData(lang, t, meta = t.meta, url = localeUrl(lang), page = nu
       worksFor: { "@id": `${SITE_URL}/#organization` },
       knowsLanguage: ["ru", "uk", "en", "es"]
     });
+  }
+  else graph.push(founderRef(lang));
+  // sub-pages that are not service pages: where they sit in the site
+  if (page && !(t.schema.services && t.schema.services[page])) {
+    graph[2].breadcrumb = { "@id": `${url}#breadcrumb` };
+    graph.push(breadcrumbNode(lang, t, url, page));
   }
   // service pages: what the page offers + where it sits in the site
   if (page && t.schema.services && t.schema.services[page]) {
@@ -358,6 +388,9 @@ function headTags(lang, options = {}) {
     ...alternateLinks(pathFor),
     ...socialMeta(lang, t, meta, url, options.page),
     structuredData(lang, t, meta, url, options.page),
+    // the catalogue's first paint is its hero film poster (the largest element): fetch it first
+    ...(options.page === "realEstate" && realEstateData.catalog && realEstateData.catalog.heroVideo
+      ? [`  <link rel="preload" as="image" href="${realEstateData.catalog.heroVideo.poster}" fetchpriority="high">`] : []),
     `  <script>window.I18N = ${jsonForScript(clientI18n)};</script>`
   ];
 
@@ -450,6 +483,10 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "restaurants.calcHtml") return businessCalcs.restaurantHtml(lang);
     if (key === "fitnessPage.calcHtml") return businessCalcs.fitnessHtml(lang);
     if (key === "footer.year") return String(new Date().getFullYear());
+    // footer service links: the home page's services section; in Spanish, web / funnels / applied AI
+    // go to their own (Spanish-only) page, so it is linked from every page of the site
+    const svc = key.match(/^footer\.servicesHrefs\.(\d)$/);
+    if (svc) return lang === "es" && svc[1] !== "0" ? "/ecosistemas-digitales.html" : `/${lang}/#servicios`;
     if (key === "footer.mailtoHref") {
       const f = translations[lang].footer;
       return escapeHtml(`mailto:${PUBLIC_EMAIL}?subject=${encodeURIComponent(f.emailSubject)}&body=${encodeURIComponent(f.emailBody)}`);
@@ -509,102 +546,154 @@ function layoutPages() {
     fs.readFileSync(path.join(root, name), "utf8").includes("<!-- 3dna:header -->"));
 }
 
+const WRITTEN = new Set();
 function write(relPath, content) {
+  WRITTEN.add(relPath.replace(/\\/g, "/"));
   const file = path.join(root, relPath);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, content);
   console.log(`wrote ${relPath}`);
 }
 
-// ---------------------------------------------------------------- sitemap + robots
-// Localized pages: every index.html under /<lang>/ (future /en/restaurants/ etc.
-// are picked up automatically). A page is listed with hreflang alternates for
-// the languages where the same sub-path exists.
-function localizedPaths() {
-  // a localized sub-page has a different slug per language (es: restaurantes/)
-  const pageKey = (lang, sub) => {
-    for (const [key, page] of Object.entries(PAGES)) if (page.subPath(lang) === sub) return key;
-    return sub;
-  };
-  const found = new Map(); // page key -> Map(lang -> subPath)
-  for (const lang of SUPPORTED) {
-    const walk = (dir, sub) => {
-      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-        if (entry.isDirectory()) walk(path.join(dir, entry.name), `${sub}${entry.name}/`);
-        else if (entry.name === "index.html" && !/<meta name="robots" content="noindex/.test(fs.readFileSync(path.join(dir, entry.name), "utf8"))) {
-          const key = pageKey(lang, sub);
-          if (!found.has(key)) found.set(key, new Map());
-          found.get(key).set(lang, sub);
-        }
-      }
-    };
-    const dir = path.join(root, lang);
-    if (fs.existsSync(dir)) walk(dir, "");
-  }
-  // pages that keep a historic root URL in some language
-  for (const [key, page] of Object.entries(PAGES)) {
-    if (!page.urlPath) continue;
-    for (const lang of SUPPORTED) {
-      const fixed = page.urlPath(lang);
-      if (!fixed || !fs.existsSync(path.join(root, fixed))) continue;
-      if (!found.has(key)) found.set(key, new Map());
-      found.get(key).set(lang, { url: fixed, file: fixed.replace(/^\//, "").replace(/\/$/, "/index.html") });
-    }
-  }
-  return found;
+// structured data for a hand-written page (legal pages, older service pages): read from its own head
+function legacyStructuredData(html, lang, parentKey = null) {
+  const t = translations[lang];
+  const pick = (re) => { const m = html.match(re); return m ? m[1].replace(/&amp;/g, "&").replace(/&quot;/g, '"').trim() : ""; };
+  const url = pick(/<link rel="canonical" href="([^"]+)"/i);
+  if (!url) return "";
+  const name = pick(/<title>([^<]+)<\/title>/i);
+  const description = pick(/<meta name="description" content="([^"]*)"/i);
+  const short = name.replace(/\s*[|·—–-]\s*3DNA\s*$/i, "").trim();
+  const graph = [...siteNodes(lang, t), founderRef(lang),
+    { "@type": "WebPage", "@id": `${url}#webpage`, url, name, description, inLanguage: lang,
+      isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, breadcrumb: { "@id": `${url}#breadcrumb` } },
+    { "@type": "BreadcrumbList", "@id": `${url}#breadcrumb`, itemListElement: [
+      { name: t.schema.breadcrumbHome, item: absolute(`/${lang}/`) },
+      ...(parentKey ? [{ name: crumbName(parentKey, lang), item: absolute(pagePathFor(parentKey, lang)) }] : []),
+      { name: short, item: url }].map((x, i) => ({ "@type": "ListItem", position: i + 1, ...x })) }];
+  return `  <script type="application/ld+json">${jsonForScript({ "@context": "https://schema.org", "@graph": graph })}</script>`;
 }
-const entryUrl = (lang, sub) => (typeof sub === "object" ? absolute(sub.url) : localeUrl(lang, sub));
-const entryFile = (lang, sub) => (typeof sub === "object" ? sub.file : `${lang}/${sub}index.html`);
 
-function sitemapXml() {
-  const lastmod = (rel) => fs.statSync(path.join(root, rel)).mtime.toISOString().slice(0, 10);
-  const urls = [];
-  for (const [, langs] of localizedPaths()) {
-    const alternates = [...langs].map(
-      ([code, sub]) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${entryUrl(code, sub)}"/>`
-    );
-    if (langs.has(DEFAULT_LANG)) {
-      alternates.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${entryUrl(DEFAULT_LANG, langs.get(DEFAULT_LANG))}"/>`);
-    }
-    for (const [lang, subPath] of langs) {
-      urls.push(
-        [
-          "  <url>",
-          `    <loc>${entryUrl(lang, subPath)}</loc>`,
-          `    <lastmod>${lastmod(entryFile(lang, subPath))}</lastmod>`,
-          ...alternates,
-          "  </url>"
-        ].join("\n")
-      );
-    }
+// ---------------------------------------------------------------- sitemap + robots
+// Published files: what git tracks plus what this build wrote (drafts and local copies never count)
+function publishedFiles() {
+  let tracked = [];
+  try { tracked = execSync("git ls-files -c", { cwd: root, encoding: "utf8", maxBuffer: 64e6 }).split("\n").filter(Boolean); } catch (e) { /* no git: built files only */ }
+  return new Set([...tracked, ...WRITTEN].filter((f) => fs.existsSync(path.join(root, f))));
+}
+// lastmod = date of the last commit that changed the page's content; a page edited since the last
+// commit gets today. Cache-busting query strings (?v=…) are ignored, so a version bump of a shared
+// stylesheet does not make every page look modified.
+const TODAY = new Date().toISOString().slice(0, 10);
+function contentLastmod(rel) {
+  const norm = (x) => x.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n").replace(/\?v=[\w.-]+/g, "");
+  const current = norm(fs.readFileSync(path.join(root, rel), "utf8"));
+  let log = [];
+  try { log = execSync(`git log -n 25 --format="%H %cs" -- "${rel}"`, { cwd: root, encoding: "utf8" }).split("\n").filter(Boolean); } catch (e) { return TODAY; }
+  let date = null;
+  for (const line of log) {
+    const [hash, day] = line.split(" ");
+    let old;
+    try { old = norm(execSync(`git show ${hash}:"${rel}"`, { cwd: root, encoding: "utf8", maxBuffer: 64e6, stdio: ["ignore", "pipe", "ignore"] })); } catch (e) { break; }
+    if (old !== current) break;
+    date = day;                 // unchanged in this commit: the content dates from it or earlier
   }
-  for (const page of LEGACY_PAGES) {
-    if (!fs.existsSync(path.join(root, page))) continue;
-    urls.push(["  <url>", `    <loc>${absolute(`/${page}`)}</loc>`, `    <lastmod>${lastmod(page)}</lastmod>`, "  </url>"].join("\n"));
+  return date || TODAY;
+}
+// content images of a page for the image sitemap: its preview image and the raster images it shows
+function pageImages(html) {
+  const out = new Set();
+  const og = html.match(/<meta property="og:image" content="([^"]+)"/);
+  if (og) out.add(og[1]);
+  for (const m of html.matchAll(/<img\b[^>]*\ssrc="([^"]+)"/g)) {
+    const src = m[1];
+    if (!/^\/(images|img)\//.test(src) || /\.svg(\?|$)/i.test(src) || /logo-3dna/.test(src)) continue;
+    out.add(absolute(src.replace(/\?.*$/, "")));
   }
+  return [...out].slice(0, 40);
+}
+const xmlEsc = (x) => String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+// every published page that is indexable and its own canonical, with the hreflang alternates it declares
+function sitemapEntries() {
+  const entries = [];
+  for (const rel of [...publishedFiles()].sort()) {
+    if (!rel.endsWith(".html") || /^(templates|scripts|assets|node_modules|backup-[^/]*|prototipos|drafts)\//.test(rel)) continue;
+    const html = fs.readFileSync(path.join(root, rel), "utf8");
+    if (/<meta name="robots" content="[^"]*noindex/i.test(html)) continue;
+    const canonical = (html.match(/<link rel="canonical" href="([^"]+)"/) || [])[1];
+    const url = absolute("/" + rel.replace(/(^|\/)index\.html$/, "$1"));
+    if (canonical !== url) continue;        // copies, the root entry page and pages without a canonical
+    const alternates = [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)].map((m) => [m[1], m[2]]);
+    const title = ((html.match(/<title>([^<]*)<\/title>/) || [])[1] || "").replace(/&amp;/g, "&").replace(/&quot;/g, '"');
+    const description = ((html.match(/<meta name="description" content="([^"]*)"/) || [])[1] || "").replace(/&amp;/g, "&").replace(/&quot;/g, '"');
+    const lang = (html.match(/<html[^>]*\blang="([a-z]{2})/i) || [])[1] || DEFAULT_LANG_LEGACY;
+    entries.push({ rel, url, alternates, title, description, lang, images: pageImages(html), lastmod: contentLastmod(rel) });
+  }
+  return entries;
+}
+
+function sitemapXml(entries) {
+  const urls = entries.map((e) => [
+    "  <url>",
+    `    <loc>${xmlEsc(e.url)}</loc>`,
+    `    <lastmod>${e.lastmod}</lastmod>`,
+    ...e.alternates.map(([code, href]) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${xmlEsc(href)}"/>`),
+    ...e.images.map((src) => `    <image:image><image:loc>${xmlEsc(src)}</image:loc></image:image>`),
+    "  </url>"
+  ].join("\n"));
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
     ...urls,
     "</urlset>",
     ""
   ].join("\n");
 }
 
+// llms.txt (llmstxt.org): a plain map of the public pages, generated from the same entries as the
+// sitemap so it can never drift from the site. It does not grant or deny anything: crawler access is
+// governed by robots.txt.
+function llmsTxt(entries) {
+  const byLang = (lang) => entries.filter((e) => e.lang === lang).map((e) => `- [${e.title}](${e.url})${e.description ? `: ${e.description}` : ""}`);
+  const names = { es: "Español", en: "English", ru: "Русский", uk: "Українська" };
+  return [
+    "# 3DNA",
+    "",
+    `> ${translations.en.schema.organizationDescription} Studio based in Salobreña (Granada, Spain), founded by Andrei Yafimenka. Contact: ${PUBLIC_EMAIL}.`,
+    "",
+    "Space planning, interior design and architectural 3D visualization for restaurants, bars and cafés, gyms and sports centres, clinics and other commercial spaces, with interactive 3D presentations and online business calculators. The site is published in Spanish, English, Russian and Ukrainian; each page lists its translations (hreflang).",
+    "",
+    ...["es", "en", "ru", "uk"].flatMap((lang) => { const list = byLang(lang); return list.length ? [`## ${names[lang]}`, "", ...list, ""] : []; }),
+    "## Optional",
+    "",
+    `- [Sitemap](${SITE_URL}/sitemap.xml): every public page with its translations and images`,
+    ""
+  ].join("\n");
+}
+
+// AI model training is a separate decision from search visibility. Search crawlers (Googlebot,
+// Bingbot, OAI-SearchBot, PerplexityBot, Applebot, DuckDuckBot...) always follow the public rules.
+// Set to true to refuse the crawlers and tokens used only to train AI models; search and AI search
+// answers are unaffected.
+const AI_TRAINING_OPT_OUT = false;
+const AI_TRAINING_AGENTS = ["GPTBot", "Google-Extended", "ClaudeBot", "CCBot", "Applebot-Extended", "Meta-ExternalAgent", "Bytespider"];
 const robotsTxt = () =>
   [
     "User-agent: *",
     "Allow: /",
     "",
-    "# Build sources and old copies of the home page (not public content)",
+    "# Build sources (not public content). Pages, styles, scripts, images and videos stay",
+    "# crawlable: search engines need them to render the pages.",
     "Disallow: /templates/",
     "Disallow: /scripts/",
-    "Disallow: /backup-20260414-233441/",
-    "Disallow: /index.before-clean-20260414.html",
-    "Disallow: /index.before-restore-20260414.html",
-    "Disallow: /index.mojibake.bak.html",
-    "Disallow: /index.recovered.html",
     "",
+    "# Search crawlers (Googlebot, Bingbot, OAI-SearchBot, PerplexityBot, Applebot, DuckDuckBot...)",
+    "# follow the rules above.",
+    ...(AI_TRAINING_OPT_OUT
+      ? ["", "# AI model training: not allowed (search and AI search answers are not affected)",
+         ...AI_TRAINING_AGENTS.flatMap((a) => [`User-agent: ${a}`, "Disallow: /", ""])]
+      : ["# AI model training crawlers (GPTBot, Google-Extended, ClaudeBot, CCBot...) are allowed too;",
+         "# this is set by AI_TRAINING_OPT_OUT in scripts/build-i18n.js.", ""]),
     `Sitemap: ${SITE_URL}/sitemap.xml`,
     ""
   ].join("\n");
@@ -662,6 +751,7 @@ for (const page of layoutPages()) {
   const pageLang = (html.match(/<html[^>]*\blang="([a-z]{2})/i) || [])[1];
   const lang = SUPPORTED.includes(pageLang) ? pageLang : DEFAULT_LANG_LEGACY;
   let out = applyLayout(html, lang);
+  if (!/application\/ld\+json/.test(out)) out = out.replace(/<\/head>/i, `${legacyStructuredData(out, lang)}\n</head>`);
   // same cache-busting versions as the home pages, so a page never pairs the
   // shared markup with an older cached main.js / main.css
   out = out.replace(/(main\.(?:css|js))\?v=[\w.-]+/g, (m, file) => `${file}?v=${ASSET_VERSIONS[file]}`);
@@ -815,8 +905,13 @@ ${board.bodyHtml(pagePathFor("fitness", data.lang) + "#proyectos")}
 </body>
 </html>
 `;
-  write(`${data.slug}/index.html`, "﻿" + applyLayout(html, data.lang));
+  // structured data: the board is a project page under the Fitness page
+  const boardHtml = applyLayout(html, data.lang).replace(/<\/head>/i, `${legacyStructuredData(html, data.lang, "fitness")}
+</head>`);
+  write(`${data.slug}/index.html`, "﻿" + boardHtml);
 }
 
-write("sitemap.xml", sitemapXml());
+const SITEMAP_ENTRIES = sitemapEntries();
+write("sitemap.xml", sitemapXml(SITEMAP_ENTRIES));
 write("robots.txt", robotsTxt());
+write("llms.txt", llmsTxt(SITEMAP_ENTRIES));

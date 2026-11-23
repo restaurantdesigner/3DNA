@@ -65,7 +65,8 @@ const PRIVATE_PATHS = [
   /^\/(server\.js|package(-lock)?\.json|render\.yaml)$/i,
   /^\/index\.(before-[^/]*|recovered|mojibake\.bak)\.html$/i,
   /\.(bak|log|md|py|sh|ps1|env)$/i,
-  /^\/(?!robots\.txt$)[^/]*\.txt$/i
+  // root .txt files are notes, except the public ones: robots.txt, llms.txt and the IndexNow key
+  /^\/(?!(robots|llms|[0-9a-f]{32})\.txt$)[^/]*\.txt$/i
 ];
 app.use((req, res, next) => {
   let pathname = req.path;
@@ -367,6 +368,9 @@ app.post('/api/lead', async (req, res) => {
     return res.status(500).json({ ok: false });
   }
 });
+
+// unknown paths: the site's 404 page (noindex), with a real 404 status
+app.use((req, res) => { res.status(404).sendFile(path.join(rootDir, '404.html')); });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {

@@ -1,0 +1,39 @@
+# Technical SEO checks (scripts/seo-audit.js).
+# - every push to main: audits the files that GitHub Pages will publish (local emulation, no network)
+# - every Monday and on demand: audits the live site https://3dna.es
+# A failing run means an error (broken link, page missing from the sitemap, broken hreflang,
+# invalid structured data, unexpected noindex...); warnings never fail the run.
+name: SEO audit
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repository:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/seo-audit.js
+
+  production:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/seo-audit.js --base https://3dna.es

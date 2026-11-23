@@ -1,0 +1,77 @@
+# 3DNA
+
+> Commercial interior design studio creating restaurants, fitness spaces, healthcare environments and workplaces. Studio based in Salobreña (Granada, Spain), founded by Andrei Yafimenka. Contact: andrei@3dna.es.
+
+Space planning, interior design and architectural 3D visualization for restaurants, bars and cafés, gyms and sports centres, clinics and other commercial spaces, with interactive 3D presentations and online business calculators. The site is published in Spanish, English, Russian and Ukrainian; each page lists its translations (hreflang).
+
+## Español
+
+- [Aviso Legal | 3DNA](https://3dna.es/aviso-legal.html): Aviso legal del sitio web de 3DNA: titular, objeto y condiciones de uso.
+- [Diseño de Clínicas y Visualización 3D | 3DNA](https://3dna.es/clinicas-3d.html): Diseño de interiores y visualización 3D para clínicas y centros sanitarios: espacios que transmiten seguridad, confianza y credibilidad antes de la obra.
+- [Ecosistemas Digitales: Web, IA y Contenido | 3DNA](https://3dna.es/ecosistemas-digitales.html): Ecosistemas digitales para negocios: web, automatización con IA, contenido y redes sociales conectados para atraer, convertir y fidelizar clientes.
+- [Diseño de Interiores Comerciales y Visualización 3D | 3DNA](https://3dna.es/es/): Diseño de interiores comerciales desde Granada para restaurantes, bares, cafeterías, gimnasios y clínicas, con visualización 3D y presentaciones interactivas.
+- [Nosotros | Andrei Yafimenka — Fundador de 3dna.es](https://3dna.es/es/nosotros/): Conoce a Andrei Yafimenka, fundador de 3dna.es. 25 años de experiencia en restauración, diseño comercial, ingeniería, marketing y tecnología.
+- [Diseño de Restaurantes, Bares y Cafeterías | 3DNA](https://3dna.es/es/restaurantes/): Diseño de interiores para restaurantes, bares y cafeterías: distribución, circulación, iluminación y visualización 3D para evitar errores costosos en obra.
+- [TVIT · Proyecto de diseño de restaurante en desarrollo | 3DNA](https://3dna.es/es/restaurantes/proyectos/ilia/): TVIT, restaurante en desarrollo diseñado por 3DNA: luz cálida, lámparas de fibra natural, mármol y madera. Vídeo del proyecto, diseño de aseos y modelo 3D interactivo.
+- [Diseño de Gimnasios y Centros Deportivos | 3DNA](https://3dna.es/gimnasios-3d.html): Diseño de gimnasios, centros deportivos y estudios boutique: distribución, zonificación, iluminación y modelos 3D interactivos para decidir antes de la obra.
+- [Santa Locura Fitness · Reforma de recepción y acceso | 3DNA](https://3dna.es/gimnasios-3d/proyectos/santa-locura/): Tres opciones de acceso en vídeo y 3D: puerta de vidrio, torno de altura completa o dos tornos trípode. Neón, focos de 18°, acabado grafito y zona de espera.
+- [Viviendas con vistas al mar · Inmobiliaria | 3DNA](https://3dna.es/inmobiliaria/): Apartamentos, áticos y villas en la Costa del Sol y la Costa Tropical: fotos, datos clave y precios. Pregunta por cualquier vivienda o pide una visita por WhatsApp.
+- [Apartamento de 2 dormitorios en La Verde Island · LVI-2D | 3DNA](https://3dna.es/inmobiliaria/la-verde-island-2-dormitorios/): Primera línea de golf en Doña Julia: dos dormitorios, dos baños, terraza, garaje y trastero. Doña Julia, entre Estepona y Sotogrande.
+- [Apartamento de 3 dormitorios en La Verde Island · LVI-3D | 3DNA](https://3dna.es/inmobiliaria/la-verde-island-3-dormitorios/): Tres dormitorios y dos baños en primera línea de golf, cocina con isla, terraza, garaje y trastero. Doña Julia, entre Estepona y Sotogrande.
+- [Ático con solárium en La Verde Island · LVI-PH | 3DNA](https://3dna.es/inmobiliaria/la-verde-island-atico/): Áticos de 2 o 3 dormitorios con terraza y solárium en cubierta, en primera línea de golf. Doña Julia, entre Estepona y Sotogrande.
+- [Apartamento de 2 dormitorios en Sunway Residence · SUN-2D | 3DNA](https://3dna.es/inmobiliaria/sunway-residence-2-dormitorios/): Dos dormitorios y dos baños, terraza, garaje y trastero en una urbanización cerrada con piscina. Estepona, Málaga.
+- [Apartamento de 3 dormitorios en Sunway Residence · SUN-3D | 3DNA](https://3dna.es/inmobiliaria/sunway-residence-3-dormitorios/): Tres dormitorios y dos baños, salón comedor abierto a la terraza, garaje y trastero. Estepona, Málaga.
+- [Ático de 3 dormitorios con solárium en Sunway Residence · SUN-PH | 3DNA](https://3dna.es/inmobiliaria/sunway-residence-atico/): Última planta con solárium, terraza panorámica, tres dormitorios, dos baños y dos plazas de garaje. Estepona, Málaga.
+- [Oferta Pública y Condiciones Generales | 3DNA](https://3dna.es/oferta-publica.html): Contrato de oferta pública y condiciones generales de uso del sistema digital de 3DNA.
+- [Política de Cookies | 3DNA](https://3dna.es/politica-cookies.html): Política de cookies de 3DNA: qué cookies usa el sitio, para qué sirven y cómo aceptarlas, rechazarlas o configurarlas.
+- [Política de Privacidad | 3DNA](https://3dna.es/politica-privacidad.html): Política de privacidad de 3DNA: cómo se tratan los datos personales, con qué finalidad y cómo ejercer tus derechos.
+- [Bubble Tea Boutique · Diseño de Local Comercial | 3DNA](https://3dna.es/proyecto01-restaurante.html): Bubble Tea Boutique: un local de 87 m² donde arquitectura comercial, branding y narrativa visual convierten un espacio compacto en una marca con identidad.
+
+## English
+
+- [About | Andrei Yafimenka — Founder of 3dna.es](https://3dna.es/en/about/): Meet Andrei Yafimenka, founder of 3dna.es: 25 years of experience in restaurants, commercial design, engineering, marketing and technology.
+- [Gym & Fitness Interior Design | 3DNA](https://3dna.es/en/fitness/): Interior design for gyms, boutique studios and wellness spaces: layout, circulation, lighting, materials and 3D visualization before construction.
+- [Commercial Interior Design Studio | 3DNA](https://3dna.es/en/): Commercial interior design for restaurants, bars, cafés, gyms and clinics: space planning, 3D visualization and interactive presentations before construction.
+- [Homes with Sea Views · Real Estate | 3DNA](https://3dna.es/en/real-estate/): Apartments, penthouses and villas on the Costa del Sol and Costa Tropical: photos, key facts and prices. Ask about any home or request a viewing on WhatsApp.
+- [2-bedroom apartment at La Verde Island · LVI-2D | 3DNA](https://3dna.es/en/real-estate/la-verde-island-2-dormitorios/): Frontline golf in Doña Julia: two bedrooms, two bathrooms, terrace, parking and storage. Doña Julia, between Estepona and Sotogrande.
+- [3-bedroom apartment at La Verde Island · LVI-3D | 3DNA](https://3dna.es/en/real-estate/la-verde-island-3-dormitorios/): Three bedrooms and two bathrooms on the golf frontline, kitchen with island, terrace, parking and storage. Doña Julia, between Estepona and Sotogrande.
+- [Penthouse with solarium at La Verde Island · LVI-PH | 3DNA](https://3dna.es/en/real-estate/la-verde-island-atico/): 2 or 3-bedroom penthouses with a terrace and rooftop solarium, on the golf frontline. Doña Julia, between Estepona and Sotogrande.
+- [2-bedroom apartment at Sunway Residence · SUN-2D | 3DNA](https://3dna.es/en/real-estate/sunway-residence-2-dormitorios/): Two bedrooms and two bathrooms, terrace, parking and storage in a gated community with a pool. Estepona, Málaga.
+- [3-bedroom apartment at Sunway Residence · SUN-3D | 3DNA](https://3dna.es/en/real-estate/sunway-residence-3-dormitorios/): Three bedrooms and two bathrooms, living-dining room opening onto the terrace, parking and storage. Estepona, Málaga.
+- [3-bedroom penthouse with solarium at Sunway Residence · SUN-PH | 3DNA](https://3dna.es/en/real-estate/sunway-residence-atico/): Top floor with solarium, panoramic terrace, three bedrooms, two bathrooms and two parking spaces. Estepona, Málaga.
+- [Restaurant Interior Design | Commercial Interiors | 3DNA](https://3dna.es/en/restaurants/): Restaurant interior design: layout, circulation, lighting, ergonomics and 3D visualization to avoid costly mistakes before construction.
+- [TVIT · Restaurant design project in development | 3DNA](https://3dna.es/en/restaurants/projects/ilia/): TVIT, a restaurant in development designed by 3DNA: warm light, natural-fibre lamps, marble and wood. Project video, washroom design and an interactive 3D model.
+
+## Русский
+
+- [О нас | Andrei Yafimenka — основатель 3dna.es](https://3dna.es/ru/about/): Знакомьтесь: Andrei Yafimenka, основатель 3dna.es. 25 лет опыта в ресторанном бизнесе, коммерческом дизайне, инженерии, маркетинге и технологиях.
+- [Дизайн фитнес-клубов и спортзалов | 3DNA](https://3dna.es/ru/fitness/): Дизайн интерьеров спортзалов, бутик-студий и wellness-пространств: планировка, потоки, свет, материалы и 3D-визуализация до начала работ.
+- [Дизайн коммерческих интерьеров | 3DNA](https://3dna.es/ru/): 3DNA проектирует коммерческие интерьеры для ресторанов, фитнес-пространств, медицинских учреждений и офисов, объединяя стратегию, планирование пространства и 3D-визуализацию.
+- [Дома с видом на море · Недвижимость | 3DNA](https://3dna.es/ru/real-estate/): Квартиры, пентхаусы и виллы на Коста-дель-Соль и Коста-Тропикаль: фото, основные данные и цены. Задайте вопрос о любом объекте или запишитесь на просмотр в WhatsApp.
+- [Квартира с 2 спальнями в La Verde Island · LVI-2D | 3DNA](https://3dna.es/ru/real-estate/la-verde-island-2-dormitorios/): Первая линия гольфа в Донья-Хулии: две спальни, два санузла, терраса, паркинг и кладовая. Донья-Хулия, между Эстепоной и Сотогранде.
+- [Квартира с 3 спальнями в La Verde Island · LVI-3D | 3DNA](https://3dna.es/ru/real-estate/la-verde-island-3-dormitorios/): Три спальни и два санузла на первой линии гольфа, кухня с островом, терраса, паркинг и кладовая. Донья-Хулия, между Эстепоной и Сотогранде.
+- [Пентхаус с солярием в La Verde Island · LVI-PH | 3DNA](https://3dna.es/ru/real-estate/la-verde-island-atico/): Пентхаусы с 2 или 3 спальнями, террасой и солярием на крыше, на первой линии гольфа. Донья-Хулия, между Эстепоной и Сотогранде.
+- [Квартира с 2 спальнями в Sunway Residence · SUN-2D | 3DNA](https://3dna.es/ru/real-estate/sunway-residence-2-dormitorios/): Две спальни и два санузла, терраса, паркинг и кладовая в закрытом комплексе с бассейном. Эстепона, Малага.
+- [Квартира с 3 спальнями в Sunway Residence · SUN-3D | 3DNA](https://3dna.es/ru/real-estate/sunway-residence-3-dormitorios/): Три спальни и два санузла, гостиная-столовая с выходом на террасу, паркинг и кладовая. Эстепона, Малага.
+- [Пентхаус с 3 спальнями и солярием в Sunway Residence · SUN-PH | 3DNA](https://3dna.es/ru/real-estate/sunway-residence-atico/): Верхний этаж: солярий, панорамная терраса, три спальни, два санузла и два машино-места. Эстепона, Малага.
+- [Дизайн интерьеров ресторанов | 3DNA](https://3dna.es/ru/restaurants/): Дизайн интерьеров ресторанов: планировка, потоки, освещение, эргономика и 3D-визуализация, чтобы избежать дорогих ошибок до начала работ.
+- [TVIT · Проект дизайна ресторана в разработке | 3DNA](https://3dna.es/ru/restaurants/projects/ilia/): TVIT — ресторан в разработке от 3DNA: тёплый свет, светильники из натуральных волокон, мрамор и дерево. Видео проекта, дизайн санузлов и интерактивная 3D-модель.
+
+## Українська
+
+- [Про нас | Andrei Yafimenka — засновник 3dna.es](https://3dna.es/uk/about/): Знайомтеся: Andrei Yafimenka, засновник 3dna.es. 25 років досвіду в ресторанному бізнесі, комерційному дизайні, інженерії, маркетингу й технологіях.
+- [Дизайн фітнес-клубів і спортзалів | 3DNA](https://3dna.es/uk/fitness/): Дизайн інтер’єрів спортзалів, бутик-студій і wellness-просторів: планування, потоки, світло, матеріали та 3D-візуалізація до початку робіт.
+- [Дизайн комерційних інтер'єрів | 3DNA](https://3dna.es/uk/): 3DNA проєктує комерційні інтер'єри для ресторанів, фітнес-просторів, медичних закладів та офісів, поєднуючи стратегію, планування простору та 3D-візуалізацію.
+- [Житло з видом на море · Нерухомість | 3DNA](https://3dna.es/uk/real-estate/): Квартири, пентхауси та вілли на Коста-дель-Соль і Коста-Тропікаль: фото, основні дані та ціни. Поставте запитання про будь-який об’єкт або запишіться на перегляд у WhatsApp.
+- [Квартира з 2 спальнями в La Verde Island · LVI-2D | 3DNA](https://3dna.es/uk/real-estate/la-verde-island-2-dormitorios/): Перша лінія гольфу в Донья-Хулії: дві спальні, два санвузли, тераса, паркінг і комора. Донья-Хулія, між Естепоною та Сотогранде.
+- [Квартира з 3 спальнями в La Verde Island · LVI-3D | 3DNA](https://3dna.es/uk/real-estate/la-verde-island-3-dormitorios/): Три спальні та два санвузли на першій лінії гольфу, кухня з островом, тераса, паркінг і комора. Донья-Хулія, між Естепоною та Сотогранде.
+- [Пентхаус із солярієм у La Verde Island · LVI-PH | 3DNA](https://3dna.es/uk/real-estate/la-verde-island-atico/): Пентхауси з 2 або 3 спальнями, терасою та солярієм на даху, на першій лінії гольфу. Донья-Хулія, між Естепоною та Сотогранде.
+- [Квартира з 2 спальнями в Sunway Residence · SUN-2D | 3DNA](https://3dna.es/uk/real-estate/sunway-residence-2-dormitorios/): Дві спальні та два санвузли, тераса, паркінг і комора в закритому комплексі з басейном. Естепона, Малага.
+- [Квартира з 3 спальнями в Sunway Residence · SUN-3D | 3DNA](https://3dna.es/uk/real-estate/sunway-residence-3-dormitorios/): Три спальні та два санвузли, вітальня-їдальня з виходом на терасу, паркінг і комора. Естепона, Малага.
+- [Пентхаус із 3 спальнями та солярієм у Sunway Residence · SUN-PH | 3DNA](https://3dna.es/uk/real-estate/sunway-residence-atico/): Верхній поверх: солярій, панорамна тераса, три спальні, два санвузли та два машиномісця. Естепона, Малага.
+- [Дизайн інтер’єрів ресторанів | 3DNA](https://3dna.es/uk/restaurants/): Дизайн інтер’єрів ресторанів: планування, потоки, освітлення, ергономіка та 3D-візуалізація, щоб уникнути дорогих помилок до початку робіт.
+- [TVIT · Проєкт дизайну ресторану в розробці | 3DNA](https://3dna.es/uk/restaurants/projects/ilia/): TVIT — ресторан у розробці від 3DNA: тепле світло, світильники з натуральних волокон, мармур і дерево. Відео проєкту, дизайн санвузлів та інтерактивна 3D-модель.
+
+## Optional
+
+- [Sitemap](https://3dna.es/sitemap.xml): every public page with its translations and images

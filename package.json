@@ -10,7 +10,11 @@
   "scripts": {
     "start": "node server.js",
     "build:i18n": "node scripts/build-i18n.js",
-    "build:og": "node scripts/build-og-images.js"
+    "build:og": "node scripts/build-og-images.js",
+    "seo:audit": "node scripts/seo-audit.js",
+    "seo:audit:prod": "node scripts/seo-audit.js --base https://3dna.es",
+    "postbuild:i18n": "node scripts/seo-audit.js --quiet --no-assets",
+    "indexnow": "node scripts/indexnow.js"
   },
   "dependencies": {
     "cors": "^2.8.6",

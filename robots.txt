@@ -1,13 +1,14 @@
 User-agent: *
 Allow: /
 
-# Build sources and old copies of the home page (not public content)
+# Build sources (not public content). Pages, styles, scripts, images and videos stay
+# crawlable: search engines need them to render the pages.
 Disallow: /templates/
 Disallow: /scripts/
-Disallow: /backup-20260414-233441/
-Disallow: /index.before-clean-20260414.html
-Disallow: /index.before-restore-20260414.html
-Disallow: /index.mojibake.bak.html
-Disallow: /index.recovered.html
+
+# Search crawlers (Googlebot, Bingbot, OAI-SearchBot, PerplexityBot, Applebot, DuckDuckBot...)
+# follow the rules above.
+# AI model training crawlers (GPTBot, Google-Extended, ClaudeBot, CCBot...) are allowed too;
+# this is set by AI_TRAINING_OPT_OUT in scripts/build-i18n.js.
 
 Sitemap: https://3dna.es/sitemap.xml

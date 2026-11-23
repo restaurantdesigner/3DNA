@@ -117,19 +117,21 @@ function createProjects(data, texts, { restaurantsSlug }) {
         `<span class="rproj__status">${escapeHtml(L.status[p.status])}</span></span>`,
       `              <span class="rproj__name">${escapeHtml(p.name)}</span>`,
       ...(p.summaryKey ? [`              <span class="rproj__summary">${escapeHtml(text(lang, p.id, p.summaryKey))}</span>`] : []),
-      ...(p.link && p.linkLang && p.linkLang !== lang && L.linkLangNote ? [`              <span class="rproj__langnote">${escapeHtml(L.linkLangNote)}</span>`] : []),
+      ...(p.link && p.linkLang && p.linkLang !== lang && (p.langNoteKey ? L[p.langNoteKey] : L.linkLangNote) ? [`              <span class="rproj__langnote">${escapeHtml(p.langNoteKey ? L[p.langNoteKey] : L.linkLangNote)}</span>`] : []),
       `            </span>`,
       `            <span class="rproj__cta">${escapeHtml(L.cta)} <span aria-hidden="true">&rarr;</span></span>`,
       `          </span>`,
       `        </a>`,
       `      </li>`
     ].join("\n"));
+    // the heading says "in development" only while every project listed is in development
+    const mixed = list.some((p) => p.status !== "development") && L.section.eyebrowAll;
     return [
-      `  <!-- Client projects in development (assets/data/projects.json, scripts/projects.js) -->`,
+      `  <!-- Client projects (assets/data/projects.json, scripts/projects.js) -->`,
       `  <section class="rproj" id="proyectos" aria-labelledby="rproj-title">`,
       `    <div class="rproj__inner">`,
-      `      <h2 class="rproj__eyebrow" id="rproj-title">${escapeHtml(L.section.eyebrow)}</h2>`,
-      `      <ul class="rproj__list" aria-label="${escapeHtml(L.section.label)}">`,
+      `      <h2 class="rproj__eyebrow" id="rproj-title">${escapeHtml(mixed ? L.section.eyebrowAll : L.section.eyebrow)}</h2>`,
+      `      <ul class="rproj__list" aria-label="${escapeHtml(mixed ? L.section.labelAll : L.section.label)}">`,
       ...cards,
       `      </ul>`,
       `    </div>`,

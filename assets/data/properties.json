@@ -1169,6 +1169,7 @@
         "offplan"
       ],
       "price": 543000,
+      "priceStatus": "indicative",
       "seaView": {
         "status": "unverified",
         "note": "Brochure (Sunway Residence 2026): no sea-view statement; images are renderings only. Needs photos taken from the property (inside or from its terrace/balcony).",
@@ -1380,6 +1381,7 @@
         "offplan"
       ],
       "price": 556000,
+      "priceStatus": "indicative",
       "seaView": {
         "status": "unverified",
         "note": "Brochure (Sunway Residence 2026): no sea-view statement; images are renderings only. Needs photos taken from the property (inside or from its terrace/balcony).",
@@ -1592,6 +1594,7 @@
         "offplan"
       ],
       "price": 569000,
+      "priceStatus": "indicative",
       "seaView": {
         "status": "unverified",
         "note": "Brochure (Sunway Residence 2026): no sea-view statement; images are renderings only. Needs photos taken from the property (inside or from its terrace/balcony).",
@@ -1812,6 +1815,7 @@
         "offplan"
       ],
       "price": 572000,
+      "priceStatus": "indicative",
       "seaView": {
         "status": "unverified",
         "note": "Brochure (La Verde Island, Eng): the development has golf and sea views, but 'views vary depending on the location of each apartment'; this listing is a home type, not a specific unit, and the images are renderings. Needs confirmation for a specific unit: a photo taken from inside it or from its terrace/balcony, or the developer's view plan.",
@@ -2033,6 +2037,7 @@
         "offplan"
       ],
       "price": 580000,
+      "priceStatus": "indicative",
       "seaView": {
         "status": "unverified",
         "note": "Brochure (La Verde Island, Eng): the development has golf and sea views, but 'views vary depending on the location of each apartment'; this listing is a home type, not a specific unit, and the images are renderings. Needs confirmation for a specific unit: a photo taken from inside it or from its terrace/balcony, or the developer's view plan.",
@@ -2258,6 +2263,7 @@
         "offplan"
       ],
       "price": 598000,
+      "priceStatus": "indicative",
       "seaView": {
         "status": "unverified",
         "note": "Brochure (La Verde Island, Eng): the development has golf and sea views, but 'views vary depending on the location of each apartment'; this listing is a home type, not a specific unit, and the images are renderings. Needs confirmation for a specific unit: a photo taken from inside it or from its terrace/balcony, or the developer's view plan.",
@@ -2282,6 +2288,7 @@
     },
     "location": "Localidad, provincia",
     "price": 250000,
+    "priceStatus": "indicative",
     "area": 95,
     "plot": null,
     "bedrooms": 2,

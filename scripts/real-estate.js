@@ -54,9 +54,20 @@ function createRealEstate(data, i18n, { whatsappNumber, absolute, sectionPath, h
   // the listing's own price; else its development's starting price ("Promoción desde …"); else nothing
   // (no price line at all until a real price is entered)
   const devFrom = (p) => { const d = p.development && developments.get(p.development); return d && present(d.priceFrom) ? d.priceFrom : null; };
-  const price = (p, lang) => (present(p.price) ? money(p.price, lang)
+  // priceStatus: "verified" = from the developer's or owner's current price list; anything else
+  // (default "indicative") = an example figure not yet confirmed. An unverified price is shown on the
+  // page only with its label, and never in what machines read as a fact: meta description, link
+  // preview cards, llms.txt or structured data.
+  const priceVerified = (p) => p.priceStatus === "verified";
+  const price = (p, lang) => (present(p.price)
+    ? (priceVerified(p) ? money(p.price, lang) : fill(T(lang).priceIndicative, { price: money(p.price, lang) }))
     : devFrom(p) != null ? fill(T(lang).priceFromDev, { price: money(devFrom(p), lang) })
     : null);
+  const summaryPrice = (p, lang) => (present(p.price) ? (priceVerified(p) ? money(p.price, lang) : null)
+    : devFrom(p) != null ? fill(T(lang).priceFromDev, { price: money(devFrom(p), lang) }) : null);
+  // beside a big price figure the note right under it carries the label
+  const headPrice = (p, lang) => (present(p.price) ? money(p.price, lang) : price(p, lang));
+  const indicativeNote = (p, lang, cls) => (present(p.price) && !priceVerified(p) ? `<p class="${cls}">${esc(T(lang).priceIndicativeNote)}</p>` : "");
   const sortPrice = (p) => (present(p.price) ? p.price : devFrom(p));
   // bedrooms: a number, or [min, max] when a type comes in two sizes
   const beds = (p) => (Array.isArray(p.bedrooms) ? p.bedrooms : present(p.bedrooms) ? [p.bedrooms, p.bedrooms] : null);
@@ -84,6 +95,7 @@ function createRealEstate(data, i18n, { whatsappNumber, absolute, sectionPath, h
     if (!CATEGORIES.includes(p.category)) throw new Error(`${where}: category must be one of ${CATEGORIES.join(", ")}`);
     if (p.status && !STATUSES.includes(p.status)) throw new Error(`${where}: status must be one of ${STATUSES.join(", ")}`);
     if (present(p.price) && typeof p.price !== "number") throw new Error(`${where}: price must be a number in euros (e.g. 250000)`);
+    if (p.priceStatus != null && !["verified", "indicative"].includes(p.priceStatus)) throw new Error(`${where}: priceStatus must be "verified" or "indicative"`);
     if (p.development && !developments.has(p.development)) throw new Error(`${where}: development "${p.development}" is not in "developments"`);
     if (!Array.isArray(p.images) || !p.images.length) throw new Error(`${where}: at least one image is required`);
     checkImages([...p.images, ...(p.floorPlans || [])], where);
@@ -423,8 +435,9 @@ ${devImages.length ? `<ul class="re-devgrid" aria-label="${esc(d.photos)}">${dev
     ${loc ? `<p class="re-card__loc re-card__loc--big">${icon("pin")}${esc(loc)}</p>` : ""}
   </div>
   <div class="re-dhead__side">
-    ${price(p, lang) ? `<p class="re-dhead__price">${esc(price(p, lang))}</p>` : ""}
+    ${price(p, lang) ? `<p class="re-dhead__price">${esc(headPrice(p, lang))}</p>` : ""}
     ${!present(p.price) && devFrom(p) != null ? `<p class="re-dhead__ref">${esc(t.priceFromNote)}</p>` : ""}
+    ${indicativeNote(p, lang, "re-dhead__ref")}
     <p class="re-dhead__ref">${esc(t.facts.ref)}: ${esc(p.ref)}</p>
   </div>
 </header>
@@ -438,7 +451,8 @@ ${bar.length ? `<ul class="re-bar re-wrap">${bar.map(([ic, f]) => `<li>${icon(ic
 ${blocks.join("\n")}
   </div>
   <aside class="re-ask" aria-labelledby="re-ask-t">
-    ${price(p, lang) ? `<p class="re-ask__price">${esc(price(p, lang))}</p>` : ""}
+    ${price(p, lang) ? `<p class="re-ask__price">${esc(headPrice(p, lang))}</p>` : ""}
+    ${indicativeNote(p, lang, "re-note")}
     <h2 class="re-ask__title" id="re-ask-t">${esc(t.ask.title)}</h2>
     <p class="re-ask__text">${esc(fill(t.ask.text, vars))}</p>
     <div class="re-actions re-actions--stack">
@@ -468,7 +482,7 @@ ${others.length ? `<section class="re-others" aria-labelledby="re-others-t">
   function detailMeta(lang, slug) {
     const p = bySlug(slug), t = T(lang);
     const title = tx(p.title, lang), loc = tx(p.location, lang);
-    const bits = [loc, price(p, lang)].filter(present).join(" · ");
+    const bits = [loc, summaryPrice(p, lang)].filter(present).join(" · ");
     const summary = tx(p.summary, lang) || [].concat(tx(p.description, lang) || [])[0] || t.intro;
     // a sea view is mentioned only when it is confirmed for this listing
     const sea = seaVerified(p) ? `${t.sea.badge}. ` : "";
@@ -498,7 +512,7 @@ ${others.length ? `<section class="re-others" aria-labelledby="re-others-t">
     }
     for (const p of list) if (!p.shareImage) for (const lang of langs) {
       jobs.push({ kind: "property", lang, out: cardPath(p.slug, lang), image: p.images[0].src, position: p.sharePosition || "50% 50%",
-        title: tx(p.title, lang), location: tx(p.location, lang), price: price(p, lang), badge: seaVerified(p) ? T(lang).sea.badge : "" });
+        title: tx(p.title, lang), location: tx(p.location, lang), price: summaryPrice(p, lang), badge: seaVerified(p) ? T(lang).sea.badge : "" });
     }
     return jobs;
   };
