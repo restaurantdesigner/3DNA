@@ -12592,3 +12592,7 @@ body.mobile-open .scroll-veil{ display: none; }
   .mpp-strip__dl dd{ font-size: 19px; overflow-wrap: anywhere; }
   .mpp-strip__services li{ font-size: 12px; padding: 6px 11px; }
 }
+/* proposal: finished phone mockup image (its own device frame) in the redesign section */
+.mpp-phonefig--shot{ max-width: 340px; margin: 0 auto; }
+.mpp-phoneshot{ display: block; width: 100%; height: auto; }
+@media (max-width: 900px){ .mpp-phonefig--shot{ max-width: min(78vw, 340px); } }

@@ -199,10 +199,16 @@ ${co.families.map((f) => `      <li class="mpp-fam" data-reveal>
       </figure>
     </div>
     <div class="mpp-webgrid">
-      <figure class="mpp-phonefig" data-reveal>
+      ${v.mobileShowcase
+        // a finished phone mockup (device frame included in the image): shown as is
+        ? `<figure class="mpp-phonefig mpp-phonefig--shot" data-reveal>
+        <img class="mpp-phoneshot" src="${v.mobileShowcase.small}" srcset="${v.mobileShowcase.small} 600w, ${v.mobileShowcase.src} ${v.mobileShowcase.width}w" sizes="(max-width: 900px) 78vw, 340px" width="${v.mobileShowcase.width}" height="${v.mobileShowcase.height}" loading="lazy" decoding="async" alt="${esc(w.proposed)} — ${esc(w.mobileNote)}">
+        <figcaption>${esc(w.mobileNote)}</figcaption>
+      </figure>`
+        : `<figure class="mpp-phonefig" data-reveal>
         <div class="mpp-phone"><div class="mpp-phone__screen" tabindex="0" aria-label="${esc(w.mobileNote)}"><img src="${v.mobile.es.src}" width="780" loading="lazy" decoding="async" alt="${esc(w.proposed)} — ${esc(w.mobileNote)}"></div></div>
         <figcaption>${esc(w.mobileNote)}</figcaption>
-      </figure>
+      </figure>`}
       <div data-reveal>
         <h3 class="mpp-h3">${esc(w.pointsTitle)}</h3>
         <ul class="mpp-points">${w.points.map((x) => `<li><b>${esc(x.k)}</b><span>${esc(x.t)}</span></li>`).join("")}</ul>

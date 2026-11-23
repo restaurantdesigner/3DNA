@@ -4,6 +4,7 @@
     "Rendered by scripts/marketing-projects.js; interface text in assets/i18n/marketing-projects.json.",
     "Add a project: copy an entry, set published:true when it is ready (unpublished entries are never shown or built).",
     "featured:true shows the project as the wide card (dark panel + feature.image, feature.logo) above the grid.",
+    "visuals.mobileShowcase: optional finished phone mockup (frame included) for the website redesign section.",
     "visuals.reels: a path, or { src, labelled:true } when the cover already carries its own concept label.",
     "status: proposal | inProgress | completed. index:false keeps the page out of search engines (noindex) - use it for",
     "proposals addressed to a prospective client. langs: languages the presentation exists in; the other languages show",
@@ -44,6 +45,7 @@
         },
         "current": { "src": "/images/marketing/projects/letreros-programables/current-desktop-1440.webp", "width": 1440, "height": 900, "captured": "2026-11-23" },
         "desktop": { "src": "/images/marketing/projects/letreros-programables/home-desktop-es-1440.webp", "width": 1440, "height": 3282 },
+        "mobileShowcase": { "src": "/images/marketing/projects/letreros-programables/phone-showcase-941.webp", "small": "/images/marketing/projects/letreros-programables/phone-showcase-600.webp", "width": 941, "height": 1672 },
         "mobile": {
           "es": { "src": "/images/marketing/projects/letreros-programables/home-mobile-es-780.webp", "width": 780 },
           "en": { "src": "/images/marketing/projects/letreros-programables/home-mobile-en-780.webp", "width": 780 },
