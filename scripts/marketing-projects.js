@@ -36,6 +36,27 @@ function createMarketingProjects(data, ui, { marketingSlug, whatsappNumber, emai
     const cards = projects.map((p) => {
       const c = C(p, lang);
       const note = langOf(p, lang) !== lang && u.gallery.langNote ? `<span class="mpg__lang">${esc(u.gallery.langNote)}</span>` : "";
+      // featured: the wide card across the grid (dark panel with badge, client logo, name, summary,
+      // button; the feature image on the right)
+      if (p.featured && p.feature) {
+        const im = p.feature.image, lg = p.feature.logo;
+        return `      <li class="mpg__item mpg__item--feature">
+        <a class="mpg__feature" href="${href(lang, p)}" data-track="marketing_project_clicked" data-track-location="${esc(p.id)}"${langOf(p, lang) !== lang ? ` hreflang="${langOf(p, lang)}"` : ""}>
+          <span class="mpg__fpanel">
+            <span class="mpg__fbadge">${esc(u.type[p.type])}</span>
+            ${lg ? `<img class="mpg__flogo" src="${lg.src}" width="${lg.width}" height="${lg.height}" loading="lazy" decoding="async" alt="">` : ""}
+            <h3 class="mpg__fname">${esc(p.client)}</h3>
+            <span class="mpg__fsummary">${esc(c.card.summary)}</span>
+            ${note}
+            <span class="mpg__fbtn">${esc(u.gallery.viewProposal)} <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </span>
+          <span class="mpg__fmedia">
+            <img src="${im.src}" width="${im.width}" height="${im.height}" loading="lazy" decoding="async" alt="${esc(c.card.featureAlt || c.card.alt)}">
+            ${im.conceptual ? `<span class="mpg__concept">${esc(u.conceptual)}</span>` : ""}
+          </span>
+        </a>
+      </li>`;
+      }
       return `      <li class="mpg__item">
         <a class="mpg__card" href="${href(lang, p)}" data-track="marketing_project_clicked" data-track-location="${esc(p.id)}"${langOf(p, lang) !== lang ? ` hreflang="${langOf(p, lang)}"` : ""}>
           <span class="mpg__media">
@@ -57,8 +78,8 @@ function createMarketingProjects(data, ui, { marketingSlug, whatsappNumber, emai
     return `<section class="ab-sec mpg" id="projects" aria-labelledby="mpg-title">
   <div class="ab-wrap">
     <div class="mpg__head" data-reveal>
-      <p class="ab-label"><span class="ab-num">${num}</span> ${esc(u.gallery.label)}</p>
-      <h2 class="ab-h2" id="mpg-title">${esc(u.gallery.title)}</h2>
+      <p class="ab-label mpg__label"><span class="ab-num">${num}</span> / ${esc(u.gallery.label)} <i aria-hidden="true"></i></p>
+      <h2 class="ab-h2 mpg__title" id="mpg-title">${u.gallery.titleParts ? `${esc(u.gallery.titleParts[0])} <em>${esc(u.gallery.titleParts[1])}</em>` : esc(u.gallery.title)}</h2>
       <p class="ab-p ab-p--strong">${esc(u.gallery.subtitle)}</p>
     </div>
     <ul class="mpg__grid">

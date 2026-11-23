@@ -3,6 +3,7 @@
     "Marketing projects: the portfolio grid on the digital marketing page and one presentation page per project.",
     "Rendered by scripts/marketing-projects.js; interface text in assets/i18n/marketing-projects.json.",
     "Add a project: copy an entry, set published:true when it is ready (unpublished entries are never shown or built).",
+    "featured:true shows the project as the wide card (dark panel + feature.image, feature.logo) above the grid.",
     "status: proposal | inProgress | completed. index:false keeps the page out of search engines (noindex) - use it for",
     "proposals addressed to a prospective client. langs: languages the presentation exists in; the other languages show",
     "the card and open the first available language. Every visual flagged conceptual is drawn by 3DNA",
@@ -14,6 +15,7 @@
       "id": "letreros-programables",
       "slug": "letreros-programables",
       "published": true,
+      "featured": true,
       "index": false,
       "status": "proposal",
       "client": "Letreros Programables",
@@ -24,6 +26,10 @@
       "langs": ["es", "en"],
       "services": ["strategy", "webRedesign", "ecommerce", "multilingual", "seo", "aiVideo", "reels", "leadGen"],
       "cover": { "src": "/images/marketing/projects/letreros-programables/cover-1600.webp", "small": "/images/marketing/projects/letreros-programables/cover-800.webp", "width": 1600, "height": 1200, "conceptual": true },
+      "feature": {
+        "image": { "src": "/images/marketing/projects/letreros-programables/card-storefront-792.webp", "width": 792, "height": 544, "conceptual": true },
+        "logo": { "src": "/images/marketing/projects/letreros-programables/client-logo-light-440.webp", "width": 440, "height": 122 }
+      },
       "hero": { "src": "/images/marketing/projects/letreros-programables/hero-1920.webp", "small": "/images/marketing/projects/letreros-programables/hero-960.webp", "width": 1920, "height": 1080, "conceptual": true },
       "og": "/images/marketing/projects/letreros-programables/og.jpg",
       "visuals": {
@@ -66,7 +72,8 @@
             "ogImageAlt": "Visual conceptual de 3DNA: letrero LED rojo, cruz LED verde y pantalla full color"
           },
           "card": {
-            "summary": "Nueva web, catálogo multilingüe, SEO y Reels para un fabricante de letreros LED programables de Granada.",
+            "summary": "Nueva imagen digital, web modernizada, catálogo multilingüe y contenido audiovisual para un fabricante de letreros LED programables de Granada.",
+            "featureAlt": "Visual conceptual: fachada de un comercio con un letrero LED programable de colores y el rótulo Letreros Programables",
             "alt": "Visual conceptual de 3DNA: letrero LED con el texto ABIERTO, cruz LED verde y pantalla LED full color"
           },
           "hero": {
@@ -202,7 +209,8 @@
             "ogImageAlt": "3DNA concept visual: red LED sign, green LED cross and full-colour screen"
           },
           "card": {
-            "summary": "A new website, multilingual catalogue, SEO and Reels for a programmable LED sign manufacturer in Granada.",
+            "summary": "A new digital image, a modernised website, a multilingual catalogue and video content for a programmable LED sign manufacturer in Granada.",
+            "featureAlt": "Concept visual: a shopfront with a colourful programmable LED sign and the Letreros Programables lettering",
             "alt": "3DNA concept visual: LED sign reading ABIERTO, green LED cross and full-colour LED screen"
           },
           "hero": {

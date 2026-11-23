@@ -1,6 +1,6 @@
 {
   "es": {
-    "gallery": { "label": "Proyectos", "title": "Proyectos de marketing", "subtitle": "Explora nuestros conceptos creativos, estrategias digitales y propuestas de transformación de negocio.", "view": "Ver proyecto", "services": "Servicios", "langNote": "" },
+    "gallery": { "label": "Proyectos", "title": "Proyectos de marketing", "titleParts": ["Proyectos de","Marketing"], "viewProposal": "Ver propuesta", "subtitle": "Explora nuestros conceptos creativos, estrategias digitales y propuestas de transformación de negocio.", "view": "Ver proyecto", "services": "Servicios", "langNote": "" },
     "localNav": { "label": "En esta página", "items": { "projects": "Proyectos", "goals": "Objetivos", "strategies": "Estrategias", "channels": "Canales", "method": "Método" } },
     "status": { "proposal": "Propuesta", "inProgress": "En desarrollo", "completed": "Proyecto realizado" },
     "type": { "digitalTransformation": "Propuesta de transformación digital" },
@@ -10,7 +10,7 @@
     "page": { "back": "Proyectos de marketing", "by": "Propuesta de 3DNA", "client": "Cliente", "industry": "Sector", "website": "Web", "status": "Estado", "date": "Fecha", "services": "Servicios" }
   },
   "en": {
-    "gallery": { "label": "Projects", "title": "Marketing Projects", "subtitle": "Explore our creative concepts, digital strategies and business transformation proposals.", "view": "View project", "services": "Services", "langNote": "" },
+    "gallery": { "label": "Projects", "title": "Marketing Projects", "titleParts": ["Marketing","Projects"], "viewProposal": "View proposal", "subtitle": "Explore our creative concepts, digital strategies and business transformation proposals.", "view": "View project", "services": "Services", "langNote": "" },
     "localNav": { "label": "On this page", "items": { "projects": "Projects", "goals": "Goals", "strategies": "Strategies", "channels": "Channels", "method": "Method" } },
     "status": { "proposal": "Proposal", "inProgress": "In progress", "completed": "Completed project" },
     "type": { "digitalTransformation": "Digital transformation proposal" },
@@ -20,7 +20,7 @@
     "page": { "back": "Marketing projects", "by": "Proposal by 3DNA", "client": "Client", "industry": "Industry", "website": "Website", "status": "Status", "date": "Date", "services": "Services" }
   },
   "ru": {
-    "gallery": { "label": "Проекты", "title": "Маркетинговые проекты", "subtitle": "Наши креативные концепции, цифровые стратегии и предложения по трансформации бизнеса.", "view": "Смотреть проект", "services": "Услуги", "langNote": "Презентация на английском и испанском" },
+    "gallery": { "label": "Проекты", "title": "Маркетинговые проекты", "titleParts": ["Маркетинговые","проекты"], "viewProposal": "Смотреть предложение", "subtitle": "Наши креативные концепции, цифровые стратегии и предложения по трансформации бизнеса.", "view": "Смотреть проект", "services": "Услуги", "langNote": "Презентация на английском и испанском" },
     "localNav": { "label": "На этой странице", "items": { "projects": "Проекты", "goals": "Цели", "strategies": "Стратегии", "channels": "Каналы", "method": "Метод" } },
     "status": { "proposal": "Предложение", "inProgress": "В работе", "completed": "Реализованный проект" },
     "type": { "digitalTransformation": "Предложение по цифровой трансформации" },
@@ -30,7 +30,7 @@
     "page": { "back": "Маркетинговые проекты", "by": "Предложение 3DNA", "client": "Клиент", "industry": "Отрасль", "website": "Сайт", "status": "Статус", "date": "Дата", "services": "Услуги" }
   },
   "uk": {
-    "gallery": { "label": "Проєкти", "title": "Маркетингові проєкти", "subtitle": "Наші креативні концепції, цифрові стратегії та пропозиції з трансформації бізнесу.", "view": "Переглянути проєкт", "services": "Послуги", "langNote": "Презентація англійською та іспанською" },
+    "gallery": { "label": "Проєкти", "title": "Маркетингові проєкти", "titleParts": ["Маркетингові","проєкти"], "viewProposal": "Переглянути пропозицію", "subtitle": "Наші креативні концепції, цифрові стратегії та пропозиції з трансформації бізнесу.", "view": "Переглянути проєкт", "services": "Послуги", "langNote": "Презентація англійською та іспанською" },
     "localNav": { "label": "На цій сторінці", "items": { "projects": "Проєкти", "goals": "Цілі", "strategies": "Стратегії", "channels": "Канали", "method": "Метод" } },
     "status": { "proposal": "Пропозиція", "inProgress": "У роботі", "completed": "Реалізований проєкт" },
     "type": { "digitalTransformation": "Пропозиція з цифрової трансформації" },

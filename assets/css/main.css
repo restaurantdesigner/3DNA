@@ -12496,3 +12496,38 @@ html.has-overlay-header .topbar.is-solid ~ .scroll-veil{ display: none; }
 @media (prefers-reduced-transparency: reduce){ .scroll-veil{ display: none; } }
 @media print{ .scroll-veil{ display: none; } }
 body.mobile-open .scroll-veil{ display: none; }
+
+/* ---- marketing projects: section heading and the featured (wide) project card ---- */
+.mpg__label{ display: flex; align-items: center; gap: 8px; }
+.mpg__label i{ display: inline-block; width: 92px; height: 1px; margin-left: 22px; background: currentColor; opacity: .7; }
+.apage .mpg__title{ font-size: clamp(40px, 4.4vw, 68px); line-height: 1.02; letter-spacing: -.01em; }
+.mpg__title em{ font-style: italic; }
+.mpg__item--feature{ grid-column: 1 / -1; }
+.apage .mpg__feature{ position: relative; display: grid; grid-template-columns: minmax(0, 47fr) minmax(0, 53fr); min-height: clamp(400px, 36vw, 570px);
+  border-radius: 24px; overflow: hidden; color: #fff; text-decoration: none; isolation: isolate;
+  background: radial-gradient(ellipse 60% 80% at 46% 40%, rgba(120,40,255,.22), transparent 70%), linear-gradient(115deg, #07101f 0%, #0b1530 55%, #120f33 100%); }
+.mpg__fpanel{ position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(32px, 5.2vw, 88px); }
+.mpg__fbadge{ display: inline-block; padding: 8px 18px; border-radius: 999px; background: #fff; color: #0b0d14; font-size: clamp(11px, .95vw, 14px); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.mpg__flogo{ display: block; width: clamp(200px, 26vw, 430px); height: auto; margin: clamp(18px, 2vw, 28px) 0 0 -6px; }
+.apage .mpg__fname{ margin: clamp(12px, 1.6vw, 22px) 0 0; font-family: "DM Serif Text", Georgia, serif; font-weight: 400; font-size: clamp(32px, 3.3vw, 54px); line-height: 1.04; color: #fff; }
+.mpg__fsummary{ display: block; max-width: 34em; margin-top: clamp(10px, 1.2vw, 16px); font-size: clamp(15px, 1.3vw, 21px); line-height: 1.5; color: rgba(255,255,255,.9); }
+.mpg__fbtn{ display: inline-flex; align-items: center; gap: 14px; margin-top: clamp(22px, 2.6vw, 40px); padding: 15px 26px; border-radius: 14px; background: #fff; color: #0b0d14; font-size: clamp(15px, 1.2vw, 19px); font-weight: 600; transition: transform .3s ease, box-shadow .3s ease; }
+.mpg__fbtn svg{ transition: transform .3s ease; }
+.mpg__feature:hover .mpg__fbtn{ box-shadow: 0 10px 30px -10px rgba(0,0,0,.6); }
+.mpg__feature:hover .mpg__fbtn svg{ transform: translateX(4px); }
+.mpg__fmedia{ position: relative; display: block; overflow: hidden; }
+.mpg__fmedia::before{ content: ""; position: absolute; inset: 0 auto 0 0; z-index: 1; width: 18%; background: linear-gradient(90deg, #0b1530, transparent); pointer-events: none; }
+.mpg__fmedia img{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; transition: transform 1s cubic-bezier(.2,.6,.2,1); }
+.mpg__feature:hover .mpg__fmedia img, .mpg__feature:focus-visible .mpg__fmedia img{ transform: scale(1.04); }
+.mpg__feature .mpg__lang{ color: rgba(255,255,255,.7); opacity: 1; }
+.mpg__feature:focus-visible{ outline: 2px solid var(--a-accent); outline-offset: 6px; }
+.mpg__feature .mpg__concept{ z-index: 2; }
+@media (max-width: 900px){
+  .apage .mpg__feature{ grid-template-columns: minmax(0, 1fr); min-height: 0; border-radius: 20px; }
+  .mpg__fmedia{ order: -1; aspect-ratio: 16 / 11; }
+  .mpg__fmedia::before{ inset: auto 0 0 0; width: auto; height: 26%; background: linear-gradient(0deg, #0b1530, transparent); }
+  .mpg__fpanel{ padding: 26px 22px 30px; }
+  .mpg__flogo{ width: min(72%, 300px); }
+  .mpg__fbtn{ width: 100%; justify-content: center; }
+  .mpg__label i{ width: 56px; margin-left: 12px; }
+}
