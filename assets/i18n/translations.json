@@ -1754,6 +1754,10 @@
         "fitness": {
           "label": "Gyms & sports centres",
           "href": "/en/fitness/"
+        },
+        "marketing": {
+          "label": "Digital marketing",
+          "href": "/en/digital-marketing/"
         }
       },
       "servicesItems": ["3D design", "Websites & Landing Pages", "Sales funnels", "Applied AI"],
@@ -1937,6 +1941,488 @@
       ],
       "cta": "Design a more efficient gym"
     },
+    "marketingPage": {
+      "slug": "digital-marketing",
+      "meta": {
+        "title": "Digital marketing: goals and strategies | 3DNA",
+        "description": "Every purpose of digital marketing — awareness, traffic, leads, sales, loyalty, reputation and local visibility — with the channels and metrics for each.",
+        "ogTitle": "Digital marketing strategies — 3DNA",
+        "ogImageAlt": "A venue presented as digital content on a phone and a laptop"
+      },
+      "hero": {
+        "label": "04 / Digital marketing",
+        "line1": "Digital marketing strategies",
+        "line2": "with a clear goal.",
+        "sub": "Every marketing action is there to achieve something specific. Here are all the purposes of digital marketing, the strategies and channels that achieve each one and how to measure them.",
+        "alt": "A venue presented as digital content on a phone and a laptop"
+      },
+      "intro": {
+        "label": "What digital marketing is for",
+        "lead": "The goal first. Then the channels.",
+        "paras": [
+          "Posting on social media, buying ads or redesigning the website is not a strategy. Those are tools. A strategy starts when you decide what has to change in the business: more people who know you, more bookings, more sales, customers who come back or a stronger reputation.",
+          "Each goal calls for different channels, content and metrics. A campaign that announces an opening is not measured like a lead-generation campaign or a loyalty programme. So we work the other way round: we define the goal, choose the channels that serve it and measure only what shows whether it has been achieved."
+        ]
+      },
+      "purposes": {
+        "label": "The goals",
+        "title": "All the purposes of digital marketing",
+        "lead": "A business rarely needs all of them at once. Choosing two or three and doing them well achieves more than spreading effort across every one.",
+        "channelsLabel": "Channels",
+        "kpiLabel": "How it is measured",
+        "strategiesLabel": "Strategies",
+        "items": [
+          {
+            "title": "Brand awareness",
+            "text": "Make sure your audience knows you exist and remembers you when they need what you offer.",
+            "channels": [
+              "Social media",
+              "Video",
+              "Display advertising",
+              "Press and partnerships"
+            ],
+            "kpi": "Reach, impressions and searches for your brand."
+          },
+          {
+            "title": "Positioning and differentiation",
+            "text": "Make the market associate you with something specific and set you apart from competitors.",
+            "channels": [
+              "Brand identity",
+              "Storytelling",
+              "Original content",
+              "Space design"
+            ],
+            "kpi": "Brand perception, mentions and the price customers accept."
+          },
+          {
+            "title": "Qualified traffic",
+            "text": "Bring people with real interest to your website, not empty visits.",
+            "channels": [
+              "SEO",
+              "Google Ads",
+              "Content marketing"
+            ],
+            "kpi": "Organic visits, engagement and pages per visit."
+          },
+          {
+            "title": "Local visibility",
+            "text": "Show up when someone nearby searches for what you offer.",
+            "channels": [
+              "Local SEO",
+              "Google Business Profile",
+              "Google Maps",
+              "Directories"
+            ],
+            "kpi": "Maps views, calls and direction requests."
+          },
+          {
+            "title": "Lead generation",
+            "text": "Turn visits into contacts: forms, bookings, calls or messages.",
+            "channels": [
+              "Landing pages",
+              "Forms",
+              "Lead magnets",
+              "Lead ads"
+            ],
+            "kpi": "Number of leads, cost per lead and conversion rate."
+          },
+          {
+            "title": "Sales and conversion",
+            "text": "Guide the customer all the way to the purchase, booking or signature.",
+            "channels": [
+              "Sales funnels",
+              "Retargeting",
+              "Email",
+              "Conversion optimisation"
+            ],
+            "kpi": "Sales, cost per acquisition and return on ad spend."
+          },
+          {
+            "title": "Higher average spend",
+            "text": "Help each customer buy more or better: bundles, extras and cross-offers.",
+            "channels": [
+              "Email",
+              "Website and digital menu",
+              "Automation"
+            ],
+            "kpi": "Average spend and revenue per customer."
+          },
+          {
+            "title": "Loyalty and repeat business",
+            "text": "Make customers who already bought come back and choose you again.",
+            "channels": [
+              "Email",
+              "Loyalty programmes",
+              "CRM",
+              "WhatsApp"
+            ],
+            "kpi": "Repeat rate and customer lifetime value."
+          },
+          {
+            "title": "Win back inactive customers",
+            "text": "Bring back people who stopped coming with a concrete reason to return.",
+            "channels": [
+              "Email",
+              "WhatsApp and SMS",
+              "Retargeting"
+            ],
+            "kpi": "Reactivated customers and recovered revenue."
+          },
+          {
+            "title": "Community and engagement",
+            "text": "Build a relationship with your audience beyond the sale.",
+            "channels": [
+              "Social media",
+              "Customer content",
+              "Events"
+            ],
+            "kpi": "Comments, shares and active followers."
+          },
+          {
+            "title": "Online reputation",
+            "text": "Look after what people say about you: reviews, ratings and mentions.",
+            "channels": [
+              "Google Business Profile",
+              "Review platforms",
+              "Replying to reviews",
+              "Social listening"
+            ],
+            "kpi": "Average rating, number of reviews and mentions."
+          },
+          {
+            "title": "Launches and openings",
+            "text": "Build anticipation before a venue opens or a service launches.",
+            "channels": [
+              "3D renders and videos",
+              "Waiting lists",
+              "Advertising",
+              "Local press"
+            ],
+            "kpi": "Pre-registrations, opening bookings and reach."
+          },
+          {
+            "title": "Educate and inform",
+            "text": "Explain what you offer and answer questions before the purchase.",
+            "channels": [
+              "Blog and guides",
+              "Video",
+              "FAQs",
+              "Newsletter"
+            ],
+            "kpi": "Reading time, downloads and qualified enquiries."
+          },
+          {
+            "title": "Understand the customer",
+            "text": "Data to decide with: who buys, why and through which channel.",
+            "channels": [
+              "Web analytics",
+              "Surveys",
+              "A/B tests",
+              "CRM"
+            ],
+            "kpi": "Segments, test results and the source of each sale."
+          },
+          {
+            "title": "Employer brand",
+            "text": "Attract and keep the people who will make the business work.",
+            "channels": [
+              "LinkedIn",
+              "Social media",
+              "Careers page"
+            ],
+            "kpi": "Applications received and candidate quality."
+          }
+        ]
+      },
+      "strategies": {
+        "label": "The strategies",
+        "title": "Digital marketing strategies",
+        "lead": "A strategy is how a goal is achieved: what is done, in what order and through which channels. These are the main ones and the goals each one serves.",
+        "actionsLabel": "Key actions",
+        "servesLabel": "Goals",
+        "items": [
+          {
+            "title": "Inbound marketing",
+            "text": "Attract customers with useful content instead of interrupting them with ads.",
+            "actions": [
+              "Content that answers customers' real questions",
+              "Downloadable resources in exchange for contact details",
+              "Automatic follow-up of every lead"
+            ],
+            "serves": [
+              2,
+              4,
+              12
+            ]
+          },
+          {
+            "title": "SEO and content",
+            "text": "Appear on Google when customers search for what you offer.",
+            "actions": [
+              "Research into what your customers search for",
+              "One clear page for each service and search",
+              "Articles and guides published regularly"
+            ],
+            "serves": [
+              2,
+              3,
+              12
+            ]
+          },
+          {
+            "title": "Performance advertising",
+            "text": "Paid campaigns measured by what they achieve: leads, bookings or sales.",
+            "actions": [
+              "Google Ads for people already searching",
+              "Social ads for a defined audience",
+              "Retargeting people who have shown interest"
+            ],
+            "serves": [
+              0,
+              4,
+              5,
+              8,
+              11
+            ]
+          },
+          {
+            "title": "Sales funnel",
+            "text": "A journey designed from the first contact to the purchase.",
+            "actions": [
+              "One message for each stage: discover, compare, decide",
+              "A landing page with a single action",
+              "Follow-up by email or WhatsApp"
+            ],
+            "serves": [
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "title": "Local marketing",
+            "text": "Be the visible choice for people searching nearby.",
+            "actions": [
+              "A complete, active Google Business Profile",
+              "Reviews requested and answered",
+              "Campaigns limited to your area"
+            ],
+            "serves": [
+              3,
+              10
+            ]
+          },
+          {
+            "title": "Social media and influencers",
+            "text": "Build a brand and a community where your audience spends its time.",
+            "actions": [
+              "A content calendar by format",
+              "Partnerships with local or industry creators",
+              "Quick replies to comments and messages"
+            ],
+            "serves": [
+              0,
+              9,
+              11,
+              14
+            ]
+          },
+          {
+            "title": "Email and automation",
+            "text": "Personal messages that go out on their own at the right moment.",
+            "actions": [
+              "A welcome sequence",
+              "Messages after a purchase or visit",
+              "Reminders that win back inactive customers"
+            ],
+            "serves": [
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "title": "Loyalty and CRM",
+            "text": "Know each customer and give them reasons to come back.",
+            "actions": [
+              "A segmented customer database",
+              "A loyalty or rewards programme",
+              "Offers based on purchase history"
+            ],
+            "serves": [
+              6,
+              7,
+              8,
+              13
+            ]
+          },
+          {
+            "title": "Launch and pre-opening",
+            "text": "Reach opening day with an audience and anticipation.",
+            "actions": [
+              "3D renders and videos before opening",
+              "A waiting list or early bookings",
+              "An opening event or campaign"
+            ],
+            "serves": [
+              0,
+              11
+            ]
+          },
+          {
+            "title": "Brand and storytelling",
+            "text": "A story and an identity that make your business recognisable.",
+            "actions": [
+              "A defined value proposition and tone",
+              "A consistent visual identity on every channel",
+              "Real stories about the team and the space"
+            ],
+            "serves": [
+              0,
+              1,
+              14
+            ]
+          },
+          {
+            "title": "Reputation management",
+            "text": "Protect and improve what people say about your business.",
+            "actions": [
+              "Ask for a review after every good experience",
+              "Reply to every review",
+              "Track mentions of the brand"
+            ],
+            "serves": [
+              1,
+              10
+            ]
+          },
+          {
+            "title": "Data and optimisation",
+            "text": "Decide with data and improve what already works.",
+            "actions": [
+              "Measurement of every channel and every sale",
+              "A/B tests of pages and ads",
+              "Regular reports that lead to decisions"
+            ],
+            "serves": [
+              5,
+              13
+            ]
+          }
+        ]
+      },
+      "channels": {
+        "label": "The channels",
+        "title": "The tools of a digital strategy",
+        "lead": "You don't need to be everywhere. Each channel is chosen for the goal it serves and for where your customer is.",
+        "items": [
+          {
+            "k": "SEO",
+            "t": "Organic visibility on Google for the searches your customers make."
+          },
+          {
+            "k": "Local SEO",
+            "t": "Google Business Profile, Maps and reviews for people searching nearby."
+          },
+          {
+            "k": "Search advertising",
+            "t": "Google ads for people already looking for what you offer."
+          },
+          {
+            "k": "Social media advertising",
+            "t": "Meta, TikTok or LinkedIn to reach a defined audience."
+          },
+          {
+            "k": "Social media",
+            "t": "Organic content that builds the brand and a community."
+          },
+          {
+            "k": "Content marketing",
+            "t": "Articles, guides and videos that attract people and answer questions."
+          },
+          {
+            "k": "Email and automation",
+            "t": "Messages that arrive at the right moment, without manual work."
+          },
+          {
+            "k": "WhatsApp and messaging",
+            "t": "Service and follow-up on the channel customers already use."
+          },
+          {
+            "k": "Websites, landing pages and funnels",
+            "t": "Pages designed to turn a visit into a customer."
+          },
+          {
+            "k": "Retargeting",
+            "t": "Reach again the people who have already shown interest."
+          },
+          {
+            "k": "Partnerships and influencers",
+            "t": "Reach new audiences through voices they already trust."
+          },
+          {
+            "k": "Visibility in AI assistants",
+            "t": "Clear, structured information so you appear in AI answers."
+          },
+          {
+            "k": "3D visual content",
+            "t": "Renders, videos and walkthroughs that show the space before it exists."
+          },
+          {
+            "k": "Analytics and measurement",
+            "t": "Data to know what works and where to invest."
+          }
+        ]
+      },
+      "space": {
+        "label": "The space as content",
+        "title": "Your venue communicates too",
+        "paras": [
+          "At 3DNA, space design and marketing start together. The renders, videos and 3D walkthroughs we create for a project exist before the venue opens, and they become material for the website, social media, ads and the opening campaign.",
+          "So when the business opens its doors, it already has an audience, content and a consistent image across every channel."
+        ],
+        "statement": [
+          "The project is designed once.",
+          "The content works every day."
+        ]
+      },
+      "process": {
+        "label": "How we work",
+        "title": "How we build a strategy",
+        "steps": [
+          {
+            "k": "Diagnosis",
+            "t": "We analyse the business, the customer, the competition and what already works."
+          },
+          {
+            "k": "Goals and metrics",
+            "t": "We choose the priority goals and how each one will be measured."
+          },
+          {
+            "k": "Channels and budget",
+            "t": "We select the channels that serve those goals and allocate the investment."
+          },
+          {
+            "k": "Content and launch",
+            "t": "We create the messages, visuals and pages, and launch the actions."
+          },
+          {
+            "k": "Measure and improve",
+            "t": "We review the data regularly and adjust whatever is not delivering."
+          }
+        ]
+      },
+      "closing": {
+        "label": "Next step",
+        "title": "Before choosing channels, choose the goal.",
+        "paras": [
+          "Tell us what you want to achieve with your business. We will propose the priority goals, the right channels and how we will measure the result."
+        ],
+        "ctaLead": "No commitment. We reply personally.",
+        "cta": "Plan my strategy",
+        "whatsapp": "Message us on WhatsApp"
+      }
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Restaurants", "slug": "restaurants",
@@ -1972,7 +2458,30 @@
           "services": ["Patient journey", "Space planning", "Lighting", "Materials", "3D visualization"]
         }
       },
-      { "id": "workplaces", "index": "04", "title": "Workplaces", "slug": "workplaces" }
+      {
+        "id": "marketing",
+        "index": "04",
+        "title": "Marketing",
+        "slug": "marketing",
+        "section": {
+          "heading": [
+            "Strategies",
+            "that bring in",
+            "customers."
+          ],
+          "headingText": "Strategies that bring in customers.",
+          "body": "Digital marketing strategies built around a clear goal: awareness, leads, sales, loyalty or reputation. We choose the channels, create the content and measure every result.",
+          "cta": "Explore digital marketing strategies",
+          "services": [
+            "SEO",
+            "Advertising",
+            "Social media",
+            "Email",
+            "Analytics"
+          ]
+        }
+      },
+      { "id": "workplaces", "index": "05", "title": "Workplaces", "slug": "workplaces" }
     ],
     "calcCommon": {
        "ui": {
@@ -3982,6 +4491,10 @@
         "fitness": {
           "label": "Gimnasios y centros deportivos",
           "href": "/gimnasios-3d.html"
+        },
+        "marketing": {
+          "label": "Marketing digital",
+          "href": "/es/marketing-digital/"
         }
       },
       "servicesItems": ["Diseño 3D", "Webs y Landing Pages", "Embudos de venta", "IA aplicada"],
@@ -4165,6 +4678,488 @@
       ],
       "cta": "Diseñar un gimnasio más eficiente"
     },
+    "marketingPage": {
+      "slug": "marketing-digital",
+      "meta": {
+        "title": "Marketing digital: objetivos y estrategias | 3DNA",
+        "description": "Todos los objetivos del marketing digital —notoriedad, tráfico, leads, ventas, fidelización, reputación y visibilidad local— con sus canales y métricas.",
+        "ogTitle": "Estrategias de marketing digital — 3DNA",
+        "ogImageAlt": "Un local presentado como contenido digital en un móvil y un portátil"
+      },
+      "hero": {
+        "label": "04 / Marketing digital",
+        "line1": "Estrategias de marketing digital",
+        "line2": "con un objetivo claro.",
+        "sub": "Cada acción de marketing sirve para algo concreto. Aquí están todos los objetivos del marketing digital, las estrategias y los canales para conseguir cada uno y cómo medirlos.",
+        "alt": "Un local presentado como contenido digital en un móvil y un portátil"
+      },
+      "intro": {
+        "label": "Para qué sirve el marketing digital",
+        "lead": "Primero el objetivo. Después los canales.",
+        "paras": [
+          "Publicar en redes, invertir en anuncios o rediseñar la web no es una estrategia. Son herramientas. La estrategia empieza cuando se decide qué tiene que cambiar en el negocio: más personas que te conocen, más reservas, más ventas, clientes que vuelven o una reputación más sólida.",
+          "Cada objetivo pide canales, contenidos y métricas distintos. Una campaña pensada para dar a conocer una apertura no se mide igual que una campaña de captación de leads o que un programa de fidelización. Por eso trabajamos al revés de lo habitual: definimos el objetivo, elegimos los canales que lo sirven y medimos solo lo que demuestra si se ha conseguido."
+        ]
+      },
+      "purposes": {
+        "label": "Los objetivos",
+        "title": "Todos los objetivos del marketing digital",
+        "lead": "Un negocio rara vez necesita todos a la vez. Elegir dos o tres y trabajarlos bien da más resultado que dispersarse en todos.",
+        "channelsLabel": "Canales",
+        "kpiLabel": "Cómo se mide",
+        "strategiesLabel": "Estrategias",
+        "items": [
+          {
+            "title": "Notoriedad de marca",
+            "text": "Que tu público sepa que existes y te recuerde cuando necesite lo que ofreces.",
+            "channels": [
+              "Redes sociales",
+              "Vídeo",
+              "Publicidad display",
+              "Prensa y colaboraciones"
+            ],
+            "kpi": "Alcance, impresiones y búsquedas de tu marca."
+          },
+          {
+            "title": "Posicionamiento y diferenciación",
+            "text": "Que el mercado te asocie a algo concreto y te distinga de la competencia.",
+            "channels": [
+              "Identidad de marca",
+              "Storytelling",
+              "Contenido propio",
+              "Diseño del espacio"
+            ],
+            "kpi": "Percepción de marca, menciones y precio que el cliente acepta."
+          },
+          {
+            "title": "Tráfico cualificado",
+            "text": "Llevar a tu web a personas con interés real, no visitas vacías.",
+            "channels": [
+              "SEO",
+              "Google Ads",
+              "Marketing de contenidos"
+            ],
+            "kpi": "Visitas orgánicas, interacción y páginas por visita."
+          },
+          {
+            "title": "Visibilidad local",
+            "text": "Aparecer cuando alguien busca lo que ofreces cerca de donde está.",
+            "channels": [
+              "SEO local",
+              "Perfil de Empresa de Google",
+              "Google Maps",
+              "Directorios"
+            ],
+            "kpi": "Apariciones en Maps, llamadas y solicitudes de ruta."
+          },
+          {
+            "title": "Captación de leads",
+            "text": "Convertir visitas en contactos: formularios, reservas, llamadas o mensajes.",
+            "channels": [
+              "Landing pages",
+              "Formularios",
+              "Lead magnets",
+              "Anuncios de captación"
+            ],
+            "kpi": "Número de leads, coste por lead y tasa de conversión."
+          },
+          {
+            "title": "Ventas y conversión",
+            "text": "Acompañar al cliente hasta la compra, la reserva o la firma.",
+            "channels": [
+              "Embudos de venta",
+              "Retargeting",
+              "Email",
+              "Optimización de la conversión"
+            ],
+            "kpi": "Ventas, coste por adquisición y retorno de la inversión publicitaria."
+          },
+          {
+            "title": "Aumentar el ticket medio",
+            "text": "Que cada cliente compre más o mejor: packs, extras y ofertas cruzadas.",
+            "channels": [
+              "Email",
+              "Web y carta digital",
+              "Automatización"
+            ],
+            "kpi": "Ticket medio e ingresos por cliente."
+          },
+          {
+            "title": "Fidelización y repetición",
+            "text": "Que quien ya te compró vuelva y te elija otra vez.",
+            "channels": [
+              "Email",
+              "Programas de fidelización",
+              "CRM",
+              "WhatsApp"
+            ],
+            "kpi": "Tasa de repetición y valor del cliente a lo largo del tiempo."
+          },
+          {
+            "title": "Reactivar clientes inactivos",
+            "text": "Recuperar a quien dejó de venir con un motivo concreto para volver.",
+            "channels": [
+              "Email",
+              "WhatsApp y SMS",
+              "Retargeting"
+            ],
+            "kpi": "Clientes reactivados e ingresos recuperados."
+          },
+          {
+            "title": "Comunidad e interacción",
+            "text": "Crear una relación con tu público más allá de la venta.",
+            "channels": [
+              "Redes sociales",
+              "Contenido de clientes",
+              "Eventos"
+            ],
+            "kpi": "Comentarios, contenido compartido y seguidores activos."
+          },
+          {
+            "title": "Reputación online",
+            "text": "Cuidar lo que se dice de ti: reseñas, opiniones y menciones.",
+            "channels": [
+              "Perfil de Empresa de Google",
+              "Plataformas de reseñas",
+              "Respuesta a reseñas",
+              "Escucha social"
+            ],
+            "kpi": "Valoración media, número de reseñas y menciones."
+          },
+          {
+            "title": "Lanzamientos y aperturas",
+            "text": "Generar expectativa antes de abrir un local o lanzar un servicio.",
+            "channels": [
+              "Renders y vídeos 3D",
+              "Listas de espera",
+              "Anuncios",
+              "Prensa local"
+            ],
+            "kpi": "Registros previos, reservas de apertura y alcance."
+          },
+          {
+            "title": "Educar e informar",
+            "text": "Explicar lo que ofreces y resolver dudas antes de la compra.",
+            "channels": [
+              "Blog y guías",
+              "Vídeo",
+              "Preguntas frecuentes",
+              "Newsletter"
+            ],
+            "kpi": "Tiempo de lectura, descargas y consultas cualificadas."
+          },
+          {
+            "title": "Conocer al cliente",
+            "text": "Datos para decidir: quién compra, por qué y desde qué canal.",
+            "channels": [
+              "Analítica web",
+              "Encuestas",
+              "Tests A/B",
+              "CRM"
+            ],
+            "kpi": "Segmentos, resultados de los tests y origen de cada venta."
+          },
+          {
+            "title": "Marca empleadora",
+            "text": "Atraer y retener a las personas que harán funcionar el negocio.",
+            "channels": [
+              "LinkedIn",
+              "Redes sociales",
+              "Página de empleo"
+            ],
+            "kpi": "Candidaturas recibidas y calidad de los candidatos."
+          }
+        ]
+      },
+      "strategies": {
+        "label": "Las estrategias",
+        "title": "Estrategias de marketing digital",
+        "lead": "Una estrategia es la forma de conseguir un objetivo: qué se hace, en qué orden y con qué canales. Estas son las principales y los objetivos a los que sirve cada una.",
+        "actionsLabel": "Acciones clave",
+        "servesLabel": "Objetivos",
+        "items": [
+          {
+            "title": "Inbound marketing",
+            "text": "Atraer clientes con contenido útil en lugar de interrumpirlos con publicidad.",
+            "actions": [
+              "Contenido que responde a las dudas reales del cliente",
+              "Recursos descargables a cambio del contacto",
+              "Seguimiento automático de cada lead"
+            ],
+            "serves": [
+              2,
+              4,
+              12
+            ]
+          },
+          {
+            "title": "SEO y contenidos",
+            "text": "Aparecer en Google cuando el cliente busca lo que ofreces.",
+            "actions": [
+              "Estudio de las búsquedas de tu cliente",
+              "Una página clara para cada servicio y búsqueda",
+              "Artículos y guías publicados con regularidad"
+            ],
+            "serves": [
+              2,
+              3,
+              12
+            ]
+          },
+          {
+            "title": "Publicidad de resultados",
+            "text": "Campañas de pago medidas por lo que consiguen: leads, reservas o ventas.",
+            "actions": [
+              "Google Ads para quien ya está buscando",
+              "Anuncios en redes para un público definido",
+              "Retargeting a quien ya mostró interés"
+            ],
+            "serves": [
+              0,
+              4,
+              5,
+              8,
+              11
+            ]
+          },
+          {
+            "title": "Embudo de ventas",
+            "text": "Un recorrido diseñado desde el primer contacto hasta la compra.",
+            "actions": [
+              "Un mensaje para cada fase: descubrir, comparar, decidir",
+              "Landing page con una sola acción",
+              "Seguimiento por email o WhatsApp"
+            ],
+            "serves": [
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "title": "Marketing local",
+            "text": "Ser la opción visible para quien busca cerca.",
+            "actions": [
+              "Perfil de Empresa de Google completo y activo",
+              "Reseñas pedidas y respondidas",
+              "Campañas limitadas a tu zona"
+            ],
+            "serves": [
+              3,
+              10
+            ]
+          },
+          {
+            "title": "Redes sociales e influencers",
+            "text": "Construir marca y comunidad donde tu público pasa el tiempo.",
+            "actions": [
+              "Calendario de contenidos por formatos",
+              "Colaboraciones con creadores locales o del sector",
+              "Respuesta rápida a comentarios y mensajes"
+            ],
+            "serves": [
+              0,
+              9,
+              11,
+              14
+            ]
+          },
+          {
+            "title": "Email y automatización",
+            "text": "Mensajes personales que llegan solos en el momento adecuado.",
+            "actions": [
+              "Secuencia de bienvenida",
+              "Mensajes después de la compra o la visita",
+              "Avisos para reactivar a clientes inactivos"
+            ],
+            "serves": [
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "title": "Fidelización y CRM",
+            "text": "Conocer a cada cliente y darle motivos para volver.",
+            "actions": [
+              "Base de clientes segmentada",
+              "Programa de fidelización o ventajas",
+              "Ofertas según el historial de compra"
+            ],
+            "serves": [
+              6,
+              7,
+              8,
+              13
+            ]
+          },
+          {
+            "title": "Lanzamiento y preapertura",
+            "text": "Llegar al día de apertura con público y expectación.",
+            "actions": [
+              "Renders y vídeos 3D antes de abrir",
+              "Lista de espera o reservas anticipadas",
+              "Evento o campaña de apertura"
+            ],
+            "serves": [
+              0,
+              11
+            ]
+          },
+          {
+            "title": "Marca y storytelling",
+            "text": "Un relato y una identidad que hacen reconocible tu negocio.",
+            "actions": [
+              "Propuesta de valor y tono definidos",
+              "Identidad visual coherente en todos los canales",
+              "Historias reales del equipo y del espacio"
+            ],
+            "serves": [
+              0,
+              1,
+              14
+            ]
+          },
+          {
+            "title": "Gestión de la reputación",
+            "text": "Proteger y mejorar lo que se dice de tu negocio.",
+            "actions": [
+              "Pedir reseña tras cada buena experiencia",
+              "Responder a todas las reseñas",
+              "Seguir las menciones de la marca"
+            ],
+            "serves": [
+              1,
+              10
+            ]
+          },
+          {
+            "title": "Datos y optimización",
+            "text": "Decidir con datos y mejorar lo que ya funciona.",
+            "actions": [
+              "Medición de cada canal y cada venta",
+              "Tests A/B de páginas y anuncios",
+              "Informes periódicos con decisiones"
+            ],
+            "serves": [
+              5,
+              13
+            ]
+          }
+        ]
+      },
+      "channels": {
+        "label": "Los canales",
+        "title": "Las herramientas de una estrategia digital",
+        "lead": "No hace falta estar en todos. Cada canal se elige por el objetivo al que sirve y por dónde está tu cliente.",
+        "items": [
+          {
+            "k": "SEO",
+            "t": "Posicionamiento orgánico en Google para las búsquedas que hace tu cliente."
+          },
+          {
+            "k": "SEO local",
+            "t": "Perfil de Empresa de Google, Maps y reseñas para quien busca cerca."
+          },
+          {
+            "k": "Publicidad en buscadores",
+            "t": "Anuncios en Google para quien ya está buscando lo que ofreces."
+          },
+          {
+            "k": "Publicidad en redes sociales",
+            "t": "Meta, TikTok o LinkedIn para llegar a un público definido."
+          },
+          {
+            "k": "Redes sociales",
+            "t": "Contenido orgánico que construye marca y comunidad."
+          },
+          {
+            "k": "Marketing de contenidos",
+            "t": "Artículos, guías y vídeos que atraen y responden dudas."
+          },
+          {
+            "k": "Email y automatización",
+            "t": "Mensajes que llegan en el momento adecuado, sin trabajo manual."
+          },
+          {
+            "k": "WhatsApp y mensajería",
+            "t": "Atención y seguimiento en el canal que el cliente ya usa."
+          },
+          {
+            "k": "Webs, landing pages y embudos",
+            "t": "Páginas pensadas para convertir una visita en cliente."
+          },
+          {
+            "k": "Retargeting",
+            "t": "Volver a impactar a quien ya mostró interés."
+          },
+          {
+            "k": "Colaboraciones e influencers",
+            "t": "Llegar a nuevas audiencias a través de voces en las que ya confían."
+          },
+          {
+            "k": "Visibilidad en asistentes de IA",
+            "t": "Información clara y estructurada para aparecer en las respuestas de la IA."
+          },
+          {
+            "k": "Contenido visual 3D",
+            "t": "Renders, vídeos y recorridos que muestran el espacio antes de que exista."
+          },
+          {
+            "k": "Analítica y medición",
+            "t": "Datos para saber qué funciona y dónde invertir."
+          }
+        ]
+      },
+      "space": {
+        "label": "El espacio como contenido",
+        "title": "Tu local también comunica",
+        "paras": [
+          "En 3DNA el diseño del espacio y el marketing empiezan juntos. Los renders, los vídeos y los recorridos 3D que creamos para un proyecto existen antes de que el local abra, y se convierten en material para la web, las redes, los anuncios y la campaña de apertura.",
+          "Así, cuando el negocio abre sus puertas, ya tiene público, contenido y una imagen coherente en todos los canales."
+        ],
+        "statement": [
+          "El proyecto se diseña una vez.",
+          "El contenido trabaja cada día."
+        ]
+      },
+      "process": {
+        "label": "Cómo trabajamos",
+        "title": "Cómo construimos una estrategia",
+        "steps": [
+          {
+            "k": "Diagnóstico",
+            "t": "Analizamos el negocio, el cliente, la competencia y lo que ya funciona."
+          },
+          {
+            "k": "Objetivos y métricas",
+            "t": "Elegimos los objetivos prioritarios y cómo se va a medir cada uno."
+          },
+          {
+            "k": "Canales y presupuesto",
+            "t": "Seleccionamos los canales que sirven a esos objetivos y repartimos la inversión."
+          },
+          {
+            "k": "Contenido y lanzamiento",
+            "t": "Creamos los mensajes, las piezas visuales y las páginas, y lanzamos las acciones."
+          },
+          {
+            "k": "Medición y mejora",
+            "t": "Revisamos los datos con regularidad y ajustamos lo que no da resultado."
+          }
+        ]
+      },
+      "closing": {
+        "label": "Siguiente paso",
+        "title": "Antes de elegir canales, elige el objetivo.",
+        "paras": [
+          "Cuéntanos qué quieres conseguir con tu negocio. Te proponemos los objetivos prioritarios, los canales adecuados y cómo vamos a medir el resultado."
+        ],
+        "ctaLead": "Sin compromiso. Respondemos personalmente.",
+        "cta": "Plantear mi estrategia",
+        "whatsapp": "Escribir por WhatsApp"
+      }
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Restaurantes", "slug": "restaurantes",
@@ -4200,7 +5195,30 @@
           "services": ["Recorrido del paciente", "Planificación del espacio", "Iluminación", "Materiales", "Visualización 3D"]
         }
       },
-      { "id": "workplaces", "index": "04", "title": "Oficinas", "slug": "oficinas" }
+      {
+        "id": "marketing",
+        "index": "04",
+        "title": "Marketing",
+        "slug": "marketing",
+        "section": {
+          "heading": [
+            "Estrategias",
+            "que atraen",
+            "clientes."
+          ],
+          "headingText": "Estrategias que atraen clientes.",
+          "body": "Estrategias de marketing digital con un objetivo claro: notoriedad, captación, ventas, fidelización o reputación. Elegimos los canales, creamos el contenido y medimos cada resultado.",
+          "cta": "Ver estrategias de marketing digital",
+          "services": [
+            "SEO",
+            "Publicidad",
+            "Redes sociales",
+            "Email",
+            "Analítica"
+          ]
+        }
+      },
+      { "id": "workplaces", "index": "05", "title": "Oficinas", "slug": "oficinas" }
     ],
     "calcCommon": {
        "ui": {
@@ -6210,6 +7228,10 @@
         "fitness": {
           "label": "Спортзалы и спортивные центры",
           "href": "/ru/fitness/"
+        },
+        "marketing": {
+          "label": "Цифровой маркетинг",
+          "href": "/ru/digital-marketing/"
         }
       },
       "servicesItems": ["3D-дизайн", "Сайты и лендинги", "Воронки продаж", "Прикладной ИИ"],
@@ -6393,6 +7415,488 @@
       ],
       "cta": "Создать более эффективный фитнес-клуб"
     },
+    "marketingPage": {
+      "slug": "digital-marketing",
+      "meta": {
+        "title": "Цифровой маркетинг: цели и стратегии | 3DNA",
+        "description": "Все цели цифрового маркетинга — узнаваемость, трафик, заявки, продажи, лояльность, репутация и локальная видимость — с каналами и метриками для каждой.",
+        "ogTitle": "Стратегии цифрового маркетинга — 3DNA",
+        "ogImageAlt": "Заведение, представленное как цифровой контент на телефоне и ноутбуке"
+      },
+      "hero": {
+        "label": "04 / Цифровой маркетинг",
+        "line1": "Стратегии цифрового маркетинга",
+        "line2": "с понятной целью.",
+        "sub": "Каждое маркетинговое действие нужно для конкретного результата. Здесь собраны все цели цифрового маркетинга, стратегии и каналы для достижения каждой из них и способы их измерить.",
+        "alt": "Заведение, представленное как цифровой контент на телефоне и ноутбуке"
+      },
+      "intro": {
+        "label": "Зачем нужен цифровой маркетинг",
+        "lead": "Сначала цель. Потом каналы.",
+        "paras": [
+          "Публикации в соцсетях, реклама или новый сайт — это ещё не стратегия. Это инструменты. Стратегия начинается, когда решено, что должно измениться в бизнесе: больше людей знают о вас, больше бронирований, больше продаж, клиенты возвращаются или репутация становится сильнее.",
+          "Каждой цели нужны свои каналы, контент и метрики. Кампанию, которая объявляет об открытии, измеряют не так, как кампанию по сбору заявок или программу лояльности. Поэтому мы работаем в обратном порядке: определяем цель, выбираем каналы, которые на неё работают, и измеряем только то, что показывает, достигнута ли она."
+        ]
+      },
+      "purposes": {
+        "label": "Цели",
+        "title": "Все цели цифрового маркетинга",
+        "lead": "Бизнесу редко нужны все цели сразу. Две-три выбранные и хорошо проработанные цели дают больше, чем распыление на все.",
+        "channelsLabel": "Каналы",
+        "kpiLabel": "Как измерять",
+        "strategiesLabel": "Стратегии",
+        "items": [
+          {
+            "title": "Узнаваемость бренда",
+            "text": "Чтобы ваша аудитория знала о вас и вспоминала, когда ей нужно то, что вы предлагаете.",
+            "channels": [
+              "Соцсети",
+              "Видео",
+              "Медийная реклама",
+              "Пресса и партнёрства"
+            ],
+            "kpi": "Охват, показы и поисковые запросы с названием бренда."
+          },
+          {
+            "title": "Позиционирование и отличие",
+            "text": "Чтобы рынок связывал вас с чем-то конкретным и отличал от конкурентов.",
+            "channels": [
+              "Фирменный стиль",
+              "Сторителлинг",
+              "Собственный контент",
+              "Дизайн пространства"
+            ],
+            "kpi": "Восприятие бренда, упоминания и цена, которую принимает клиент."
+          },
+          {
+            "title": "Целевой трафик",
+            "text": "Приводить на сайт людей с реальным интересом, а не пустые визиты.",
+            "channels": [
+              "SEO",
+              "Google Ads",
+              "Контент-маркетинг"
+            ],
+            "kpi": "Органические визиты, вовлечённость и глубина просмотра."
+          },
+          {
+            "title": "Локальная видимость",
+            "text": "Появляться, когда кто-то рядом ищет то, что вы предлагаете.",
+            "channels": [
+              "Локальное SEO",
+              "Профиль компании в Google",
+              "Google Карты",
+              "Каталоги"
+            ],
+            "kpi": "Показы на картах, звонки и запросы маршрута."
+          },
+          {
+            "title": "Привлечение заявок",
+            "text": "Превращать визиты в контакты: формы, бронирования, звонки или сообщения.",
+            "channels": [
+              "Посадочные страницы",
+              "Формы",
+              "Лид-магниты",
+              "Реклама с формой заявки"
+            ],
+            "kpi": "Количество заявок, стоимость заявки и конверсия."
+          },
+          {
+            "title": "Продажи и конверсия",
+            "text": "Довести клиента до покупки, бронирования или подписания договора.",
+            "channels": [
+              "Воронки продаж",
+              "Ретаргетинг",
+              "Email",
+              "Оптимизация конверсии"
+            ],
+            "kpi": "Продажи, стоимость привлечения клиента и окупаемость рекламы."
+          },
+          {
+            "title": "Рост среднего чека",
+            "text": "Чтобы каждый клиент покупал больше или лучше: наборы, дополнения и перекрёстные предложения.",
+            "channels": [
+              "Email",
+              "Сайт и цифровое меню",
+              "Автоматизация"
+            ],
+            "kpi": "Средний чек и выручка на клиента."
+          },
+          {
+            "title": "Лояльность и повторные покупки",
+            "text": "Чтобы те, кто уже купил, возвращались и снова выбирали вас.",
+            "channels": [
+              "Email",
+              "Программы лояльности",
+              "CRM",
+              "WhatsApp"
+            ],
+            "kpi": "Доля повторных покупок и ценность клиента за всё время."
+          },
+          {
+            "title": "Возврат неактивных клиентов",
+            "text": "Вернуть тех, кто перестал приходить, дав им конкретный повод вернуться.",
+            "channels": [
+              "Email",
+              "WhatsApp и SMS",
+              "Ретаргетинг"
+            ],
+            "kpi": "Возвращённые клиенты и восстановленная выручка."
+          },
+          {
+            "title": "Сообщество и вовлечённость",
+            "text": "Выстраивать отношения с аудиторией не только вокруг продажи.",
+            "channels": [
+              "Соцсети",
+              "Контент от клиентов",
+              "Мероприятия"
+            ],
+            "kpi": "Комментарии, репосты и активные подписчики."
+          },
+          {
+            "title": "Онлайн-репутация",
+            "text": "Следить за тем, что о вас говорят: отзывы, оценки и упоминания.",
+            "channels": [
+              "Профиль компании в Google",
+              "Платформы отзывов",
+              "Ответы на отзывы",
+              "Мониторинг соцсетей"
+            ],
+            "kpi": "Средняя оценка, количество отзывов и упоминания."
+          },
+          {
+            "title": "Запуски и открытия",
+            "text": "Создать ожидание до открытия заведения или запуска услуги.",
+            "channels": [
+              "3D-рендеры и видео",
+              "Листы ожидания",
+              "Реклама",
+              "Местная пресса"
+            ],
+            "kpi": "Предварительные регистрации, бронирования на открытие и охват."
+          },
+          {
+            "title": "Обучение и информирование",
+            "text": "Объяснить, что вы предлагаете, и ответить на вопросы до покупки.",
+            "channels": [
+              "Блог и гиды",
+              "Видео",
+              "Частые вопросы",
+              "Рассылка"
+            ],
+            "kpi": "Время чтения, загрузки и качественные обращения."
+          },
+          {
+            "title": "Понимание клиента",
+            "text": "Данные для решений: кто покупает, почему и через какой канал.",
+            "channels": [
+              "Веб-аналитика",
+              "Опросы",
+              "A/B-тесты",
+              "CRM"
+            ],
+            "kpi": "Сегменты, результаты тестов и источник каждой продажи."
+          },
+          {
+            "title": "Бренд работодателя",
+            "text": "Привлекать и удерживать людей, благодаря которым работает бизнес.",
+            "channels": [
+              "LinkedIn",
+              "Соцсети",
+              "Страница вакансий"
+            ],
+            "kpi": "Количество откликов и качество кандидатов."
+          }
+        ]
+      },
+      "strategies": {
+        "label": "Стратегии",
+        "title": "Стратегии цифрового маркетинга",
+        "lead": "Стратегия — это способ достичь цели: что делается, в каком порядке и через какие каналы. Вот основные стратегии и цели, которым служит каждая из них.",
+        "actionsLabel": "Ключевые действия",
+        "servesLabel": "Цели",
+        "items": [
+          {
+            "title": "Инбаунд-маркетинг",
+            "text": "Привлекать клиентов полезным контентом, а не прерывать их рекламой.",
+            "actions": [
+              "Контент, отвечающий на реальные вопросы клиентов",
+              "Полезные материалы в обмен на контакт",
+              "Автоматическое сопровождение каждой заявки"
+            ],
+            "serves": [
+              2,
+              4,
+              12
+            ]
+          },
+          {
+            "title": "SEO и контент",
+            "text": "Появляться в Google, когда клиент ищет то, что вы предлагаете.",
+            "actions": [
+              "Анализ запросов ваших клиентов",
+              "Отдельная понятная страница для каждой услуги и запроса",
+              "Регулярные статьи и гиды"
+            ],
+            "serves": [
+              2,
+              3,
+              12
+            ]
+          },
+          {
+            "title": "Реклама с оплатой за результат",
+            "text": "Платные кампании, которые оценивают по результату: заявки, бронирования или продажи.",
+            "actions": [
+              "Google Ads для тех, кто уже ищет",
+              "Реклама в соцсетях для выбранной аудитории",
+              "Ретаргетинг на тех, кто уже проявил интерес"
+            ],
+            "serves": [
+              0,
+              4,
+              5,
+              8,
+              11
+            ]
+          },
+          {
+            "title": "Воронка продаж",
+            "text": "Путь клиента, продуманный от первого контакта до покупки.",
+            "actions": [
+              "Своё сообщение для каждого этапа: узнать, сравнить, решить",
+              "Посадочная страница с одним действием",
+              "Сопровождение по email или в WhatsApp"
+            ],
+            "serves": [
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "title": "Локальный маркетинг",
+            "text": "Быть заметным выбором для тех, кто ищет рядом.",
+            "actions": [
+              "Полный и активный профиль компании в Google",
+              "Запрос отзывов и ответы на них",
+              "Кампании только для вашего района"
+            ],
+            "serves": [
+              3,
+              10
+            ]
+          },
+          {
+            "title": "Соцсети и инфлюенсеры",
+            "text": "Строить бренд и сообщество там, где проводит время ваша аудитория.",
+            "actions": [
+              "Контент-план по форматам",
+              "Сотрудничество с местными или отраслевыми авторами",
+              "Быстрые ответы на комментарии и сообщения"
+            ],
+            "serves": [
+              0,
+              9,
+              11,
+              14
+            ]
+          },
+          {
+            "title": "Email и автоматизация",
+            "text": "Персональные сообщения, которые сами приходят в нужный момент.",
+            "actions": [
+              "Приветственная цепочка писем",
+              "Сообщения после покупки или визита",
+              "Напоминания для неактивных клиентов"
+            ],
+            "serves": [
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "title": "Лояльность и CRM",
+            "text": "Знать каждого клиента и давать ему поводы вернуться.",
+            "actions": [
+              "Сегментированная база клиентов",
+              "Программа лояльности или привилегий",
+              "Предложения по истории покупок"
+            ],
+            "serves": [
+              6,
+              7,
+              8,
+              13
+            ]
+          },
+          {
+            "title": "Запуск и предоткрытие",
+            "text": "Прийти ко дню открытия с аудиторией и ожиданием.",
+            "actions": [
+              "3D-рендеры и видео до открытия",
+              "Лист ожидания или ранние бронирования",
+              "Мероприятие или кампания открытия"
+            ],
+            "serves": [
+              0,
+              11
+            ]
+          },
+          {
+            "title": "Бренд и сторителлинг",
+            "text": "История и образ, по которым ваш бизнес узнают.",
+            "actions": [
+              "Чёткое ценностное предложение и тон",
+              "Единый визуальный стиль во всех каналах",
+              "Реальные истории о команде и пространстве"
+            ],
+            "serves": [
+              0,
+              1,
+              14
+            ]
+          },
+          {
+            "title": "Управление репутацией",
+            "text": "Защищать и улучшать то, что говорят о вашем бизнесе.",
+            "actions": [
+              "Просьба об отзыве после каждого хорошего опыта",
+              "Ответ на каждый отзыв",
+              "Отслеживание упоминаний бренда"
+            ],
+            "serves": [
+              1,
+              10
+            ]
+          },
+          {
+            "title": "Данные и оптимизация",
+            "text": "Принимать решения по данным и улучшать то, что уже работает.",
+            "actions": [
+              "Измерение каждого канала и каждой продажи",
+              "A/B-тесты страниц и рекламы",
+              "Регулярные отчёты с решениями"
+            ],
+            "serves": [
+              5,
+              13
+            ]
+          }
+        ]
+      },
+      "channels": {
+        "label": "Каналы",
+        "title": "Инструменты цифровой стратегии",
+        "lead": "Не нужно присутствовать везде. Каждый канал выбирают по цели, которой он служит, и по тому, где находится ваш клиент.",
+        "items": [
+          {
+            "k": "SEO",
+            "t": "Органическая видимость в Google по запросам ваших клиентов."
+          },
+          {
+            "k": "Локальное SEO",
+            "t": "Профиль компании в Google, Карты и отзывы для тех, кто ищет рядом."
+          },
+          {
+            "k": "Поисковая реклама",
+            "t": "Реклама в Google для тех, кто уже ищет то, что вы предлагаете."
+          },
+          {
+            "k": "Реклама в соцсетях",
+            "t": "Meta, TikTok или LinkedIn, чтобы охватить нужную аудиторию."
+          },
+          {
+            "k": "Соцсети",
+            "t": "Органический контент, который строит бренд и сообщество."
+          },
+          {
+            "k": "Контент-маркетинг",
+            "t": "Статьи, гиды и видео, которые привлекают и отвечают на вопросы."
+          },
+          {
+            "k": "Email и автоматизация",
+            "t": "Сообщения, которые приходят в нужный момент без ручной работы."
+          },
+          {
+            "k": "WhatsApp и мессенджеры",
+            "t": "Общение и сопровождение в канале, которым клиент уже пользуется."
+          },
+          {
+            "k": "Сайты, посадочные страницы и воронки",
+            "t": "Страницы, созданные, чтобы превратить визит в клиента."
+          },
+          {
+            "k": "Ретаргетинг",
+            "t": "Повторный контакт с теми, кто уже проявил интерес."
+          },
+          {
+            "k": "Партнёрства и инфлюенсеры",
+            "t": "Выход на новую аудиторию через тех, кому она уже доверяет."
+          },
+          {
+            "k": "Видимость в ИИ-ассистентах",
+            "t": "Понятная структурированная информация, чтобы появляться в ответах ИИ."
+          },
+          {
+            "k": "Визуальный 3D-контент",
+            "t": "Рендеры, видео и 3D-туры, которые показывают пространство до его появления."
+          },
+          {
+            "k": "Аналитика и измерение",
+            "t": "Данные, чтобы понимать, что работает и куда вкладывать."
+          }
+        ]
+      },
+      "space": {
+        "label": "Пространство как контент",
+        "title": "Ваше заведение тоже говорит",
+        "paras": [
+          "В 3DNA дизайн пространства и маркетинг начинаются вместе. Рендеры, видео и 3D-туры, которые мы создаём для проекта, появляются ещё до открытия заведения и становятся материалом для сайта, соцсетей, рекламы и кампании открытия.",
+          "Поэтому, когда бизнес открывает двери, у него уже есть аудитория, контент и единый образ во всех каналах."
+        ],
+        "statement": [
+          "Проект создаётся один раз.",
+          "Контент работает каждый день."
+        ]
+      },
+      "process": {
+        "label": "Как мы работаем",
+        "title": "Как мы строим стратегию",
+        "steps": [
+          {
+            "k": "Диагностика",
+            "t": "Анализируем бизнес, клиента, конкурентов и то, что уже работает."
+          },
+          {
+            "k": "Цели и метрики",
+            "t": "Выбираем приоритетные цели и способ измерения каждой из них."
+          },
+          {
+            "k": "Каналы и бюджет",
+            "t": "Подбираем каналы под эти цели и распределяем вложения."
+          },
+          {
+            "k": "Контент и запуск",
+            "t": "Создаём сообщения, визуальные материалы и страницы и запускаем действия."
+          },
+          {
+            "k": "Измерение и улучшение",
+            "t": "Регулярно смотрим на данные и корректируем то, что не даёт результата."
+          }
+        ]
+      },
+      "closing": {
+        "label": "Следующий шаг",
+        "title": "Прежде чем выбирать каналы, выберите цель.",
+        "paras": [
+          "Расскажите, чего вы хотите добиться в своём бизнесе. Мы предложим приоритетные цели, подходящие каналы и то, как будем измерять результат."
+        ],
+        "ctaLead": "Без обязательств. Отвечаем лично.",
+        "cta": "Обсудить мою стратегию",
+        "whatsapp": "Написать в WhatsApp"
+      }
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Рестораны", "slug": "restaurants",
@@ -6428,7 +7932,30 @@
           "services": ["Маршрут пациента", "Планировка", "Освещение", "Материалы", "3D-визуализация"]
         }
       },
-      { "id": "workplaces", "index": "04", "title": "Офисы", "slug": "workplaces" }
+      {
+        "id": "marketing",
+        "index": "04",
+        "title": "Маркетинг",
+        "slug": "marketing",
+        "section": {
+          "heading": [
+            "Стратегии,",
+            "которые приводят",
+            "клиентов."
+          ],
+          "headingText": "Стратегии, которые приводят клиентов.",
+          "body": "Стратегии цифрового маркетинга с понятной целью: узнаваемость, заявки, продажи, лояльность или репутация. Мы выбираем каналы, создаём контент и измеряем каждый результат.",
+          "cta": "Стратегии цифрового маркетинга",
+          "services": [
+            "SEO",
+            "Реклама",
+            "Соцсети",
+            "Email",
+            "Аналитика"
+          ]
+        }
+      },
+      { "id": "workplaces", "index": "05", "title": "Офисы", "slug": "workplaces" }
     ],
     "calcCommon": {
        "ui": {
@@ -8438,6 +9965,10 @@
         "fitness": {
           "label": "Спортзали та спортивні центри",
           "href": "/uk/fitness/"
+        },
+        "marketing": {
+          "label": "Цифровий маркетинг",
+          "href": "/uk/digital-marketing/"
         }
       },
       "servicesItems": ["3D-дизайн", "Сайти та лендинги", "Воронки продажів", "Прикладний ШІ"],
@@ -8621,6 +10152,488 @@
       ],
       "cta": "Створити ефективніший фітнес-клуб"
     },
+    "marketingPage": {
+      "slug": "digital-marketing",
+      "meta": {
+        "title": "Цифровий маркетинг: цілі та стратегії | 3DNA",
+        "description": "Усі цілі цифрового маркетингу — впізнаваність, трафік, заявки, продажі, лояльність, репутація й локальна видимість — з каналами та метриками для кожної.",
+        "ogTitle": "Стратегії цифрового маркетингу — 3DNA",
+        "ogImageAlt": "Заклад, представлений як цифровий контент на телефоні та ноутбуці"
+      },
+      "hero": {
+        "label": "04 / Цифровий маркетинг",
+        "line1": "Стратегії цифрового маркетингу",
+        "line2": "з чіткою метою.",
+        "sub": "Кожна маркетингова дія потрібна для конкретного результату. Тут зібрано всі цілі цифрового маркетингу, стратегії й канали для досягнення кожної з них і способи їх виміряти.",
+        "alt": "Заклад, представлений як цифровий контент на телефоні та ноутбуці"
+      },
+      "intro": {
+        "label": "Навіщо потрібен цифровий маркетинг",
+        "lead": "Спочатку мета. Потім канали.",
+        "paras": [
+          "Публікації в соцмережах, реклама чи новий сайт — це ще не стратегія. Це інструменти. Стратегія починається, коли вирішено, що має змінитися в бізнесі: більше людей знають про вас, більше бронювань, більше продажів, клієнти повертаються або репутація стає сильнішою.",
+          "Кожна мета потребує своїх каналів, контенту й метрик. Кампанію, що оголошує про відкриття, вимірюють не так, як кампанію зі збору заявок чи програму лояльності. Тому ми працюємо у зворотному порядку: визначаємо мету, обираємо канали, що на неї працюють, і вимірюємо лише те, що показує, чи її досягнуто."
+        ]
+      },
+      "purposes": {
+        "label": "Цілі",
+        "title": "Усі цілі цифрового маркетингу",
+        "lead": "Бізнесу рідко потрібні всі цілі одразу. Дві-три обрані й добре опрацьовані цілі дають більше, ніж розпорошення на всі.",
+        "channelsLabel": "Канали",
+        "kpiLabel": "Як вимірювати",
+        "strategiesLabel": "Стратегії",
+        "items": [
+          {
+            "title": "Впізнаваність бренду",
+            "text": "Щоб ваша аудиторія знала про вас і згадувала, коли їй потрібне те, що ви пропонуєте.",
+            "channels": [
+              "Соцмережі",
+              "Відео",
+              "Медійна реклама",
+              "Преса й партнерства"
+            ],
+            "kpi": "Охоплення, покази й пошукові запити з назвою бренду."
+          },
+          {
+            "title": "Позиціонування й відмінність",
+            "text": "Щоб ринок пов'язував вас із чимось конкретним і відрізняв від конкурентів.",
+            "channels": [
+              "Фірмовий стиль",
+              "Сторітелінг",
+              "Власний контент",
+              "Дизайн простору"
+            ],
+            "kpi": "Сприйняття бренду, згадки й ціна, яку приймає клієнт."
+          },
+          {
+            "title": "Цільовий трафік",
+            "text": "Приводити на сайт людей зі справжнім інтересом, а не порожні візити.",
+            "channels": [
+              "SEO",
+              "Google Ads",
+              "Контент-маркетинг"
+            ],
+            "kpi": "Органічні візити, залученість і глибина перегляду."
+          },
+          {
+            "title": "Локальна видимість",
+            "text": "З'являтися, коли хтось поруч шукає те, що ви пропонуєте.",
+            "channels": [
+              "Локальне SEO",
+              "Профіль компанії в Google",
+              "Google Карти",
+              "Каталоги"
+            ],
+            "kpi": "Покази на картах, дзвінки й запити маршруту."
+          },
+          {
+            "title": "Залучення заявок",
+            "text": "Перетворювати візити на контакти: форми, бронювання, дзвінки чи повідомлення.",
+            "channels": [
+              "Цільові сторінки",
+              "Форми",
+              "Лід-магніти",
+              "Реклама з формою заявки"
+            ],
+            "kpi": "Кількість заявок, вартість заявки й конверсія."
+          },
+          {
+            "title": "Продажі й конверсія",
+            "text": "Довести клієнта до покупки, бронювання чи підписання договору.",
+            "channels": [
+              "Воронки продажів",
+              "Ретаргетинг",
+              "Email",
+              "Оптимізація конверсії"
+            ],
+            "kpi": "Продажі, вартість залучення клієнта й окупність реклами."
+          },
+          {
+            "title": "Зростання середнього чека",
+            "text": "Щоб кожен клієнт купував більше або краще: набори, доповнення й перехресні пропозиції.",
+            "channels": [
+              "Email",
+              "Сайт і цифрове меню",
+              "Автоматизація"
+            ],
+            "kpi": "Середній чек і виторг на клієнта."
+          },
+          {
+            "title": "Лояльність і повторні покупки",
+            "text": "Щоб ті, хто вже купив, поверталися й знову обирали вас.",
+            "channels": [
+              "Email",
+              "Програми лояльності",
+              "CRM",
+              "WhatsApp"
+            ],
+            "kpi": "Частка повторних покупок і цінність клієнта за весь час."
+          },
+          {
+            "title": "Повернення неактивних клієнтів",
+            "text": "Повернути тих, хто перестав приходити, давши їм конкретний привід повернутися.",
+            "channels": [
+              "Email",
+              "WhatsApp і SMS",
+              "Ретаргетинг"
+            ],
+            "kpi": "Повернені клієнти й відновлений виторг."
+          },
+          {
+            "title": "Спільнота й залученість",
+            "text": "Будувати стосунки з аудиторією не лише навколо продажу.",
+            "channels": [
+              "Соцмережі",
+              "Контент від клієнтів",
+              "Події"
+            ],
+            "kpi": "Коментарі, репости й активні підписники."
+          },
+          {
+            "title": "Онлайн-репутація",
+            "text": "Стежити за тим, що про вас кажуть: відгуки, оцінки й згадки.",
+            "channels": [
+              "Профіль компанії в Google",
+              "Платформи відгуків",
+              "Відповіді на відгуки",
+              "Моніторинг соцмереж"
+            ],
+            "kpi": "Середня оцінка, кількість відгуків і згадки."
+          },
+          {
+            "title": "Запуски й відкриття",
+            "text": "Створити очікування до відкриття закладу чи запуску послуги.",
+            "channels": [
+              "3D-рендери й відео",
+              "Списки очікування",
+              "Реклама",
+              "Місцева преса"
+            ],
+            "kpi": "Попередні реєстрації, бронювання на відкриття й охоплення."
+          },
+          {
+            "title": "Навчання й інформування",
+            "text": "Пояснити, що ви пропонуєте, і відповісти на запитання до покупки.",
+            "channels": [
+              "Блог і гіди",
+              "Відео",
+              "Часті запитання",
+              "Розсилка"
+            ],
+            "kpi": "Час читання, завантаження й якісні звернення."
+          },
+          {
+            "title": "Розуміння клієнта",
+            "text": "Дані для рішень: хто купує, чому й через який канал.",
+            "channels": [
+              "Вебаналітика",
+              "Опитування",
+              "A/B-тести",
+              "CRM"
+            ],
+            "kpi": "Сегменти, результати тестів і джерело кожного продажу."
+          },
+          {
+            "title": "Бренд роботодавця",
+            "text": "Залучати й утримувати людей, завдяки яким працює бізнес.",
+            "channels": [
+              "LinkedIn",
+              "Соцмережі",
+              "Сторінка вакансій"
+            ],
+            "kpi": "Кількість відгуків на вакансії та якість кандидатів."
+          }
+        ]
+      },
+      "strategies": {
+        "label": "Стратегії",
+        "title": "Стратегії цифрового маркетингу",
+        "lead": "Стратегія — це спосіб досягти мети: що робиться, у якому порядку й через які канали. Ось основні стратегії та цілі, яким служить кожна з них.",
+        "actionsLabel": "Ключові дії",
+        "servesLabel": "Цілі",
+        "items": [
+          {
+            "title": "Інбаунд-маркетинг",
+            "text": "Залучати клієнтів корисним контентом, а не переривати їх рекламою.",
+            "actions": [
+              "Контент, що відповідає на справжні запитання клієнтів",
+              "Корисні матеріали в обмін на контакт",
+              "Автоматичний супровід кожної заявки"
+            ],
+            "serves": [
+              2,
+              4,
+              12
+            ]
+          },
+          {
+            "title": "SEO і контент",
+            "text": "З'являтися в Google, коли клієнт шукає те, що ви пропонуєте.",
+            "actions": [
+              "Аналіз запитів ваших клієнтів",
+              "Окрема зрозуміла сторінка для кожної послуги й запиту",
+              "Регулярні статті й гіди"
+            ],
+            "serves": [
+              2,
+              3,
+              12
+            ]
+          },
+          {
+            "title": "Реклама з оплатою за результат",
+            "text": "Платні кампанії, які оцінюють за результатом: заявки, бронювання чи продажі.",
+            "actions": [
+              "Google Ads для тих, хто вже шукає",
+              "Реклама в соцмережах для обраної аудиторії",
+              "Ретаргетинг на тих, хто вже виявив інтерес"
+            ],
+            "serves": [
+              0,
+              4,
+              5,
+              8,
+              11
+            ]
+          },
+          {
+            "title": "Воронка продажів",
+            "text": "Шлях клієнта, продуманий від першого контакту до покупки.",
+            "actions": [
+              "Своє повідомлення для кожного етапу: дізнатися, порівняти, вирішити",
+              "Цільова сторінка з однією дією",
+              "Супровід через email або WhatsApp"
+            ],
+            "serves": [
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "title": "Локальний маркетинг",
+            "text": "Бути помітним вибором для тих, хто шукає поруч.",
+            "actions": [
+              "Повний і активний профіль компанії в Google",
+              "Запит відгуків і відповіді на них",
+              "Кампанії лише для вашого району"
+            ],
+            "serves": [
+              3,
+              10
+            ]
+          },
+          {
+            "title": "Соцмережі й інфлюенсери",
+            "text": "Будувати бренд і спільноту там, де проводить час ваша аудиторія.",
+            "actions": [
+              "Контент-план за форматами",
+              "Співпраця з місцевими або галузевими авторами",
+              "Швидкі відповіді на коментарі й повідомлення"
+            ],
+            "serves": [
+              0,
+              9,
+              11,
+              14
+            ]
+          },
+          {
+            "title": "Email і автоматизація",
+            "text": "Персональні повідомлення, що самі надходять у потрібний момент.",
+            "actions": [
+              "Вітальний ланцюжок листів",
+              "Повідомлення після покупки чи візиту",
+              "Нагадування для неактивних клієнтів"
+            ],
+            "serves": [
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "title": "Лояльність і CRM",
+            "text": "Знати кожного клієнта й давати йому приводи повернутися.",
+            "actions": [
+              "Сегментована база клієнтів",
+              "Програма лояльності або привілеїв",
+              "Пропозиції за історією покупок"
+            ],
+            "serves": [
+              6,
+              7,
+              8,
+              13
+            ]
+          },
+          {
+            "title": "Запуск і передвідкриття",
+            "text": "Прийти до дня відкриття з аудиторією та очікуванням.",
+            "actions": [
+              "3D-рендери й відео до відкриття",
+              "Список очікування або ранні бронювання",
+              "Подія чи кампанія відкриття"
+            ],
+            "serves": [
+              0,
+              11
+            ]
+          },
+          {
+            "title": "Бренд і сторітелінг",
+            "text": "Історія та образ, за якими ваш бізнес впізнають.",
+            "actions": [
+              "Чітка ціннісна пропозиція й тон",
+              "Єдиний візуальний стиль у всіх каналах",
+              "Справжні історії про команду й простір"
+            ],
+            "serves": [
+              0,
+              1,
+              14
+            ]
+          },
+          {
+            "title": "Управління репутацією",
+            "text": "Захищати й покращувати те, що кажуть про ваш бізнес.",
+            "actions": [
+              "Прохання про відгук після кожного доброго досвіду",
+              "Відповідь на кожен відгук",
+              "Відстеження згадок бренду"
+            ],
+            "serves": [
+              1,
+              10
+            ]
+          },
+          {
+            "title": "Дані й оптимізація",
+            "text": "Ухвалювати рішення за даними й покращувати те, що вже працює.",
+            "actions": [
+              "Вимірювання кожного каналу й кожного продажу",
+              "A/B-тести сторінок і реклами",
+              "Регулярні звіти з рішеннями"
+            ],
+            "serves": [
+              5,
+              13
+            ]
+          }
+        ]
+      },
+      "channels": {
+        "label": "Канали",
+        "title": "Інструменти цифрової стратегії",
+        "lead": "Не потрібно бути всюди. Кожен канал обирають за метою, якій він служить, і за тим, де перебуває ваш клієнт.",
+        "items": [
+          {
+            "k": "SEO",
+            "t": "Органічна видимість у Google за запитами ваших клієнтів."
+          },
+          {
+            "k": "Локальне SEO",
+            "t": "Профіль компанії в Google, Карти й відгуки для тих, хто шукає поруч."
+          },
+          {
+            "k": "Пошукова реклама",
+            "t": "Реклама в Google для тих, хто вже шукає те, що ви пропонуєте."
+          },
+          {
+            "k": "Реклама в соцмережах",
+            "t": "Meta, TikTok або LinkedIn, щоб охопити потрібну аудиторію."
+          },
+          {
+            "k": "Соцмережі",
+            "t": "Органічний контент, що будує бренд і спільноту."
+          },
+          {
+            "k": "Контент-маркетинг",
+            "t": "Статті, гіди й відео, що приваблюють і відповідають на запитання."
+          },
+          {
+            "k": "Email і автоматизація",
+            "t": "Повідомлення, що надходять у потрібний момент без ручної роботи."
+          },
+          {
+            "k": "WhatsApp і месенджери",
+            "t": "Спілкування й супровід у каналі, яким клієнт уже користується."
+          },
+          {
+            "k": "Сайти, цільові сторінки й воронки",
+            "t": "Сторінки, створені, щоб перетворити візит на клієнта."
+          },
+          {
+            "k": "Ретаргетинг",
+            "t": "Повторний контакт із тими, хто вже виявив інтерес."
+          },
+          {
+            "k": "Партнерства й інфлюенсери",
+            "t": "Вихід на нову аудиторію через тих, кому вона вже довіряє."
+          },
+          {
+            "k": "Видимість в ІІ-асистентах",
+            "t": "Зрозуміла структурована інформація, щоб з'являтися у відповідях ІІ."
+          },
+          {
+            "k": "Візуальний 3D-контент",
+            "t": "Рендери, відео й 3D-тури, що показують простір до його появи."
+          },
+          {
+            "k": "Аналітика й вимірювання",
+            "t": "Дані, щоб розуміти, що працює і куди вкладати."
+          }
+        ]
+      },
+      "space": {
+        "label": "Простір як контент",
+        "title": "Ваш заклад теж говорить",
+        "paras": [
+          "У 3DNA дизайн простору й маркетинг починаються разом. Рендери, відео й 3D-тури, які ми створюємо для проєкту, з'являються ще до відкриття закладу й стають матеріалом для сайту, соцмереж, реклами та кампанії відкриття.",
+          "Тож коли бізнес відчиняє двері, він уже має аудиторію, контент і єдиний образ у всіх каналах."
+        ],
+        "statement": [
+          "Проєкт створюється один раз.",
+          "Контент працює щодня."
+        ]
+      },
+      "process": {
+        "label": "Як ми працюємо",
+        "title": "Як ми будуємо стратегію",
+        "steps": [
+          {
+            "k": "Діагностика",
+            "t": "Аналізуємо бізнес, клієнта, конкурентів і те, що вже працює."
+          },
+          {
+            "k": "Цілі й метрики",
+            "t": "Обираємо пріоритетні цілі та спосіб вимірювання кожної з них."
+          },
+          {
+            "k": "Канали й бюджет",
+            "t": "Підбираємо канали під ці цілі й розподіляємо вкладення."
+          },
+          {
+            "k": "Контент і запуск",
+            "t": "Створюємо повідомлення, візуальні матеріали й сторінки та запускаємо дії."
+          },
+          {
+            "k": "Вимірювання й покращення",
+            "t": "Регулярно переглядаємо дані й коригуємо те, що не дає результату."
+          }
+        ]
+      },
+      "closing": {
+        "label": "Наступний крок",
+        "title": "Перш ніж обирати канали, оберіть мету.",
+        "paras": [
+          "Розкажіть, чого ви хочете досягти у своєму бізнесі. Ми запропонуємо пріоритетні цілі, відповідні канали й те, як вимірюватимемо результат."
+        ],
+        "ctaLead": "Без зобов'язань. Відповідаємо особисто.",
+        "cta": "Обговорити мою стратегію",
+        "whatsapp": "Написати у WhatsApp"
+      }
+    },
     "sectors": [
       {
         "id": "restaurants", "index": "01", "title": "Ресторани", "slug": "restaurants",
@@ -8656,7 +10669,30 @@
           "services": ["Маршрут пацієнта", "Планування", "Освітлення", "Матеріали", "3D-візуалізація"]
         }
       },
-      { "id": "workplaces", "index": "04", "title": "Офіси", "slug": "workplaces" }
+      {
+        "id": "marketing",
+        "index": "04",
+        "title": "Маркетинг",
+        "slug": "marketing",
+        "section": {
+          "heading": [
+            "Стратегії,",
+            "що приводять",
+            "клієнтів."
+          ],
+          "headingText": "Стратегії, що приводять клієнтів.",
+          "body": "Стратегії цифрового маркетингу з чіткою метою: впізнаваність, заявки, продажі, лояльність або репутація. Ми обираємо канали, створюємо контент і вимірюємо кожен результат.",
+          "cta": "Стратегії цифрового маркетингу",
+          "services": [
+            "SEO",
+            "Реклама",
+            "Соцмережі",
+            "Email",
+            "Аналітика"
+          ]
+        }
+      },
+      { "id": "workplaces", "index": "05", "title": "Офіси", "slug": "workplaces" }
     ],
     "calcCommon": {
        "ui": {

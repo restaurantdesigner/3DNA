@@ -29,6 +29,17 @@
     <image:image><image:loc>https://3dna.es/images/about/andrei-yafimenka-1672.webp</image:loc></image:image>
   </url>
   <url>
+    <loc>https://3dna.es/en/digital-marketing/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/marketing-digital/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/digital-marketing/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-marketing-en.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/marketing/marketing-devices.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://3dna.es/en/fitness/</loc>
     <lastmod>2026-11-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/fitness/"/>
@@ -329,6 +340,17 @@
     <image:image><image:loc>https://3dna.es/img/logos/logo24.webp</image:loc></image:image>
   </url>
   <url>
+    <loc>https://3dna.es/es/marketing-digital/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/marketing-digital/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/digital-marketing/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-marketing-es.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/marketing/marketing-devices.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://3dna.es/es/nosotros/</loc>
     <lastmod>2026-11-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/about/"/>
@@ -621,6 +643,17 @@
     <image:image><image:loc>https://3dna.es/images/about/andrei-yafimenka-1672.webp</image:loc></image:image>
   </url>
   <url>
+    <loc>https://3dna.es/ru/digital-marketing/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/marketing-digital/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/digital-marketing/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-marketing-ru.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/marketing/marketing-devices.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://3dna.es/ru/fitness/</loc>
     <lastmod>2026-11-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/fitness/"/>
@@ -897,6 +930,17 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/about/"/>
     <image:image><image:loc>https://3dna.es/images/about/og-andrei-yafimenka.jpg</image:loc></image:image>
     <image:image><image:loc>https://3dna.es/images/about/andrei-yafimenka-1672.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://3dna.es/uk/digital-marketing/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3dna.es/en/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://3dna.es/es/marketing-digital/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://3dna.es/ru/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://3dna.es/uk/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3dna.es/en/digital-marketing/"/>
+    <image:image><image:loc>https://3dna.es/images/og/og-marketing-uk.jpg</image:loc></image:image>
+    <image:image><image:loc>https://3dna.es/images/marketing/marketing-devices.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://3dna.es/uk/fitness/</loc>

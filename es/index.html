@@ -48,7 +48,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261122o">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261123a">
 </head>
 
 <body>
@@ -73,6 +73,7 @@
           <a href="/es/restaurantes/" data-track="nav_projects_clicked" data-track-location="restaurants"><span class="nav-dd-index">01</span>Restaurantes</a>
           <a href="/gimnasios-3d.html" data-track="nav_projects_clicked" data-track-location="fitness"><span class="nav-dd-index">02</span>Gimnasios</a>
           <a href="/es/#sector-healthcare" data-track="nav_projects_clicked" data-track-location="healthcare"><span class="nav-dd-index">03</span>Salud</a>
+          <a href="/es/marketing-digital/" data-track="nav_projects_clicked" data-track-location="marketing"><span class="nav-dd-index">04</span>Marketing</a>
         </div>
       </div>
       <a href="/inmobiliaria/" data-track="nav_real_estate_clicked" data-track-location="header">Inmobiliaria</a>
@@ -110,6 +111,7 @@
         <a href="/es/restaurantes/" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_restaurants">Restaurantes</a>
         <a href="/gimnasios-3d.html" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_fitness">Gimnasios</a>
         <a href="/es/#sector-healthcare" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_healthcare">Salud</a>
+        <a href="/es/marketing-digital/" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_marketing">Marketing</a>
       </div>
       <a href="/inmobiliaria/" class="m-link" data-track="nav_real_estate_clicked" data-track-location="menu">Inmobiliaria</a>
       <a href="/es/#process" class="m-link">Proceso</a>
@@ -135,7 +137,7 @@
 
   <!--
     Universal hero. The sector sections that follow (01 Restaurants, 02 Fitness,
-    03 Healthcare, 04 Workplaces) come from the "sectors" list in
+    03 Healthcare, 04 Marketing) come from the "sectors" list in
     assets/i18n/translations.json: each gets <section class="sector" id="sector-<id>">
     with an <h2>, a short statement, media and a "View projects" link to
     /<lang>/<slug>/ once those pages exist.
@@ -1353,6 +1355,50 @@
   </script>
 </section>
 
+<!-- ===== 04 MARKETING ===== same sector component as 01 Restaurants; placed after
+     the services / pricing section.
+     Media: the phone / laptop part of the project-content showreel (videos/marketing/).
+     Text: sectors[3] in assets/i18n/translations.json; the CTA opens the digital
+     marketing page (templates/marketing.html, scripts/marketing-page.js). -->
+<section class="sector sector--marketing" id="sector-marketing" data-sector="marketing"
+  data-track-view="marketing_section_viewed" aria-labelledby="sector-marketing-title"
+  style="--sector-poster: url('/images/marketing/marketing-poster.webp')">
+  <div class="sector__media" aria-hidden="true">
+    <video class="sector__video" muted loop playsinline preload="none" tabindex="-1"
+      width="854" height="480"
+      poster="/images/marketing/marketing-poster.webp"
+      data-src="/videos/marketing/marketing-showreel.mp4"></video>
+  </div>
+  <div class="sector__overlay" aria-hidden="true"></div>
+
+  <div class="sector__inner">
+    <div class="sector__content">
+      <p class="sector__label">
+        <span class="sector__index">04</span>
+        <span class="sector__slash" aria-hidden="true">/</span>
+        <span>Marketing</span>
+      </p>
+      <h2 class="sector__title" id="sector-marketing-title" aria-label="Estrategias que atraen clientes.">
+        <span class="sector__line" aria-hidden="true">Estrategias</span>
+        <span class="sector__line" aria-hidden="true">que atraen</span>
+        <span class="sector__line" aria-hidden="true"><em>clientes.</em></span>
+      </h2>
+      <p class="sector__text">Estrategias de marketing digital con un objetivo claro: notoriedad, captación, ventas, fidelización o reputación. Elegimos los canales, creamos el contenido y medimos cada resultado.</p>
+      <a class="sector__cta" href="/es/marketing-digital/"
+        data-track="view_projects_clicked" data-track-location="sector_marketing">
+        <span class="sector__cta-text">Ver estrategias de marketing digital</span><span class="sector__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" focusable="false"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <ul class="sector__services" aria-label="Servicios">
+        <li>SEO</li>
+        <li>Publicidad</li>
+        <li>Redes sociales</li>
+        <li>Email</li>
+        <li>Analítica</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 
 
 
@@ -1592,6 +1638,7 @@
           <ul>
             <li><a href="/es/restaurantes/">Restaurantes, bares y cafeterías</a></li>
             <li><a href="/gimnasios-3d.html">Gimnasios y centros deportivos</a></li>
+            <li><a href="/es/marketing-digital/">Marketing digital</a></li>
             <li><a href="/es/#servicios">Diseño 3D</a></li>
             <li><a href="/ecosistemas-digitales.html">Webs y Landing Pages</a></li>
             <li><a href="/ecosistemas-digitales.html">Embudos de venta</a></li>

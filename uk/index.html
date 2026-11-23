@@ -48,7 +48,7 @@
   <!-- Three.js is only fetched when the Fitness planner nears the viewport -->
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 
-  <link rel="stylesheet" href="/assets/css/main.css?v=20261122o">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261123a">
 </head>
 
 <body>
@@ -73,6 +73,7 @@
           <a href="/uk/restaurants/" data-track="nav_projects_clicked" data-track-location="restaurants"><span class="nav-dd-index">01</span>Ресторани</a>
           <a href="/uk/fitness/" data-track="nav_projects_clicked" data-track-location="fitness"><span class="nav-dd-index">02</span>Фітнес</a>
           <a href="/uk/#sector-healthcare" data-track="nav_projects_clicked" data-track-location="healthcare"><span class="nav-dd-index">03</span>Медицина</a>
+          <a href="/uk/digital-marketing/" data-track="nav_projects_clicked" data-track-location="marketing"><span class="nav-dd-index">04</span>Маркетинг</a>
         </div>
       </div>
       <a href="/uk/real-estate/" data-track="nav_real_estate_clicked" data-track-location="header">Нерухомість</a>
@@ -110,6 +111,7 @@
         <a href="/uk/restaurants/" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_restaurants">Ресторани</a>
         <a href="/uk/fitness/" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_fitness">Фітнес</a>
         <a href="/uk/#sector-healthcare" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_healthcare">Медицина</a>
+        <a href="/uk/digital-marketing/" class="m-sublink" data-track="nav_projects_clicked" data-track-location="menu_marketing">Маркетинг</a>
       </div>
       <a href="/uk/real-estate/" class="m-link" data-track="nav_real_estate_clicked" data-track-location="menu">Нерухомість</a>
       <a href="/uk/#process" class="m-link">Процес</a>
@@ -135,7 +137,7 @@
 
   <!--
     Universal hero. The sector sections that follow (01 Restaurants, 02 Fitness,
-    03 Healthcare, 04 Workplaces) come from the "sectors" list in
+    03 Healthcare, 04 Marketing) come from the "sectors" list in
     assets/i18n/translations.json: each gets <section class="sector" id="sector-<id>">
     with an <h2>, a short statement, media and a "View projects" link to
     /<lang>/<slug>/ once those pages exist.
@@ -1353,6 +1355,50 @@
   </script>
 </section>
 
+<!-- ===== 04 MARKETING ===== same sector component as 01 Restaurants; placed after
+     the services / pricing section.
+     Media: the phone / laptop part of the project-content showreel (videos/marketing/).
+     Text: sectors[3] in assets/i18n/translations.json; the CTA opens the digital
+     marketing page (templates/marketing.html, scripts/marketing-page.js). -->
+<section class="sector sector--marketing" id="sector-marketing" data-sector="marketing"
+  data-track-view="marketing_section_viewed" aria-labelledby="sector-marketing-title"
+  style="--sector-poster: url('/images/marketing/marketing-poster.webp')">
+  <div class="sector__media" aria-hidden="true">
+    <video class="sector__video" muted loop playsinline preload="none" tabindex="-1"
+      width="854" height="480"
+      poster="/images/marketing/marketing-poster.webp"
+      data-src="/videos/marketing/marketing-showreel.mp4"></video>
+  </div>
+  <div class="sector__overlay" aria-hidden="true"></div>
+
+  <div class="sector__inner">
+    <div class="sector__content">
+      <p class="sector__label">
+        <span class="sector__index">04</span>
+        <span class="sector__slash" aria-hidden="true">/</span>
+        <span>Маркетинг</span>
+      </p>
+      <h2 class="sector__title" id="sector-marketing-title" aria-label="Стратегії, що приводять клієнтів.">
+        <span class="sector__line" aria-hidden="true">Стратегії,</span>
+        <span class="sector__line" aria-hidden="true">що приводять</span>
+        <span class="sector__line" aria-hidden="true"><em>клієнтів.</em></span>
+      </h2>
+      <p class="sector__text">Стратегії цифрового маркетингу з чіткою метою: впізнаваність, заявки, продажі, лояльність або репутація. Ми обираємо канали, створюємо контент і вимірюємо кожен результат.</p>
+      <a class="sector__cta" href="/uk/digital-marketing/"
+        data-track="view_projects_clicked" data-track-location="sector_marketing">
+        <span class="sector__cta-text">Стратегії цифрового маркетингу</span><span class="sector__arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" focusable="false"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <ul class="sector__services" aria-label="Послуги">
+        <li>SEO</li>
+        <li>Реклама</li>
+        <li>Соцмережі</li>
+        <li>Email</li>
+        <li>Аналітика</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 
 
 
@@ -1592,6 +1638,7 @@
           <ul>
             <li><a href="/uk/restaurants/">Ресторани, бари й кав'ярні</a></li>
             <li><a href="/uk/fitness/">Спортзали та спортивні центри</a></li>
+            <li><a href="/uk/digital-marketing/">Цифровий маркетинг</a></li>
             <li><a href="/uk/#servicios">3D-дизайн</a></li>
             <li><a href="/uk/#servicios">Сайти та лендинги</a></li>
             <li><a href="/uk/#servicios">Воронки продажів</a></li>

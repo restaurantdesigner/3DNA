@@ -40,6 +40,7 @@ const OG_PAGE_IMAGES = {
   restaurants: (lang) => `/images/og/og-restaurants-${lang}.jpg`,
   fitness: (lang) => `/images/og/og-fitness-${lang}.jpg`,
   about: () => "/images/about/og-andrei-yafimenka.jpg",   // the approved photograph, cropped, no text
+  marketing: (lang) => `/images/og/og-marketing-${lang}.jpg`,
 };
 // client project pages: the project's own preview image
 const projectKey = (id) => `project-${id}`;
@@ -75,6 +76,7 @@ const layoutFooter = read("templates/layout/footer.html");
 const restaurantsTemplate = read("templates/restaurants.html");
 const fitnessTemplate = read("templates/fitness.html");
 const aboutTemplate = read("templates/about.html");
+const marketingTemplate = read("templates/marketing.html");
 const projectTemplate = read("templates/project.html");
 const realEstateTemplate = read("templates/real-estate.html");
 const propertyTemplate = read("templates/property.html");
@@ -110,6 +112,8 @@ const whatsappHref = (lang) => {
 };
 
 const aboutPage = require("./about-page.js").createAboutPage(translations, { whatsappHref: (lang) => whatsappHref(lang) });
+// sector 04: the purposes of digital marketing (/es/marketing-digital/, /en|ru|uk/digital-marketing/)
+const marketingPage = require("./marketing-page.js").createMarketingPage(translations, { whatsappHref: (lang) => whatsappHref(lang) });
 const restaurantsPage = require("./restaurants-page.js").createRestaurantsPage(
   restaurantStories, translations, { whatsappHref: (lang) => whatsappHref(lang) });
 // client projects: card section on the Restaurants page + one page per project
@@ -181,6 +185,12 @@ const PAGES = {
     template: () => aboutTemplate,
     subPath: (lang) => `${translations[lang].aboutPage.slug}/`,
     meta: (lang) => translations[lang].aboutPage.meta
+  },
+  // sector 04, digital marketing: /es/marketing-digital/, /en|ru|uk/digital-marketing/
+  marketing: {
+    template: () => marketingTemplate,
+    subPath: (lang) => `${translations[lang].marketingPage.slug}/`,
+    meta: (lang) => translations[lang].marketingPage.meta
   },
   realEstate: {
     template: () => realEstateTemplate,
@@ -472,6 +482,8 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "restaurantsPage.url") return pagePathFor("restaurants", lang);
     if (key === "aboutPage.url") return pagePathFor("about", lang);
     if (key === "about.bodyHtml") return aboutPage.bodyHtml(lang);
+    if (key === "marketingPage.url") return pagePathFor("marketing", lang);
+    if (key === "marketing.bodyHtml") return marketingPage.bodyHtml(lang);
     if (key === "designQuotes.html") return designQuotes.sectionHtml(lang);
     if (key === "fitnessPage.voicesHtml") return designQuotes.fitnessVoicesHtml(lang);
     if (key === "fitnessPage.voicesContentHtml") return designQuotes.fitnessContentVoicesHtml(lang);

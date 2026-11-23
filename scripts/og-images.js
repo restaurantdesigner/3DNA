@@ -8,7 +8,8 @@
  * transparent margin trimmed) and the page's headline in the site typography
  * (Inter + DM Serif Text italic for the last word, as on the pages).
  * Text comes from assets/i18n/translations.json, so the cards follow the copy.
- * Output: images/og/og-<lang>.jpg (home), og-restaurants-<lang>.jpg, og-fitness-<lang>.jpg.
+ * Output: images/og/og-<lang>.jpg (home), og-restaurants-<lang>.jpg, og-fitness-<lang>.jpg,
+ * og-marketing-<lang>.jpg.
  * The build (build-i18n.js, OG_IMAGES) points each page's og:image at its card.
  */
 const fs = require("fs");
@@ -61,6 +62,13 @@ const CARDS = {
     title: (l) => t[l].fitnessPage.hero.heading,
     line: () => "",
   },
+  marketing: {
+    file: (l) => `og-marketing-${l}.jpg`,
+    image: "images/marketing/marketing-devices.webp", position: "40% 50%",
+    eyebrow: (l) => t[l].sectors[3].title,
+    title: (l) => [t[l].marketingPage.hero.line1, t[l].marketingPage.hero.line2],
+    line: () => "",
+  },
 };
 
 const html = (card, l) => `<!doctype html><html lang="${l}"><head><meta charset="utf-8">
@@ -88,7 +96,8 @@ const html = (card, l) => `<!doctype html><html lang="${l}"><head><meta charset=
 
 const outDir = path.join(root, "images/og");
 fs.mkdirSync(outDir, { recursive: true });
-for (const [key, card] of Object.entries(CARDS)) {
+const only = process.argv.slice(2);   // optional: card keys to (re)make, e.g. marketing
+for (const [key, card] of Object.entries(CARDS).filter(([k]) => !only.length || only.includes(k))) {
   for (const l of LANGS) {
     const page = path.join(tmp, `${key}-${l}.html`);
     const png = path.join(tmp, `${key}-${l}.png`);

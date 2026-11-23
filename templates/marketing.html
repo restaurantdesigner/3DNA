@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Built by scripts/build-i18n.js from templates/marketing.html +
+       assets/i18n/translations.json (marketingPage.*) + scripts/marketing-page.js -->
+  <title>{{marketingPage.meta.title}}</title>
+{{head.i18n}}
+  <link rel="stylesheet" href="/assets/fonts/site.css?v=20261010a">
+  <!-- the hero still is the first paint -->
+  <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="/images/marketing/marketing-devices.webp">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261123a">
+</head>
+
+<body>
+<!-- 3dna:header -->
+{{layout.header}}
+<!-- /3dna:header -->
+
+<main id="main" tabindex="-1" class="apage mkpage">
+
+  <!-- 01 HERO: a still from the project-content showreel (the space shown as content on a
+       phone and a laptop). Same hero component as the About page. -->
+  <section class="sector-hero ahero mkhero" aria-labelledby="marketing-title">
+    <picture class="ahero__media">
+      <img src="/images/marketing/marketing-devices.webp" width="854" height="480" fetchpriority="high" decoding="async" alt="{{marketingPage.hero.alt}}">
+    </picture>
+    <div class="ahero__shade" aria-hidden="true"></div>
+    <div class="ahero__copy">
+      <p class="ahero__label">{{marketingPage.hero.label}}</p>
+      <h1 class="ahero__title" id="marketing-title"><span>{{marketingPage.hero.line1}}</span> <em>{{marketingPage.hero.line2}}</em></h1>
+      <p class="ahero__sub">{{marketingPage.hero.sub}}</p>
+    </div>
+  </section>
+
+{{marketing.bodyHtml}}
+
+</main>
+
+<!-- 3dna:footer -->
+{{layout.footer}}
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=20261010b"></script>
+
+<!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage.
+     main.js "AI CHAT (on demand)" shows the launcher and loads the assistant on click. -->
+<div id="deployment-db155617-f1fa-45ba-aa43-27eb97edb751"></div>
+</body>
+</html>
