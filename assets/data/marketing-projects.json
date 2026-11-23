@@ -63,7 +63,7 @@
       "videos": [],
       "packages": [
         { "id": "esencial", "price": 1500, "featured": false, "reels": 1 },
-        { "id": "profesional", "price": 3500, "featured": true, "reels": 3 },
+        { "id": "profesional", "price": 3500, "featured": true, "reels": 6 },
         { "id": "premium", "price": 4900, "featured": false, "reels": 6 }
       ],
       "content": {
@@ -183,8 +183,8 @@
             "choose": "Elegir este paquete",
             "packages": {
               "esencial": { "name": "Esencial", "summary": "Una renovación visible de lo que ya existe.", "includes": ["Renovación visual de la web actual: colores, tipografía, cabecera y pie", "Mejoras clave en la página de inicio: portada, categorías, bloque de confianza y llamadas a la acción", "1 Reel promocional", "Una ronda de revisión"] },
-              "profesional": { "name": "Profesional", "summary": "La web nueva, en tres idiomas, preparada para vender.", "includes": ["Rediseño visual completo sobre la plataforma de tienda actual", "Plantillas revisadas de categoría y ficha de producto", "Páginas clave en español, inglés y alemán", "SEO básico: títulos, descripciones, encabezados y datos de producto", "Integración de WhatsApp y botón de presupuesto", "3 Reels"] },
-              "premium": { "name": "Premium", "summary": "Todo el Profesional, con más contenido y más captación.", "includes": ["Todo lo incluido en Profesional", "Fichas de producto mejoradas: especificaciones, usos y preguntas frecuentes", "Visuales conceptuales adicionales de producto en contexto", "6 Reels", "Captación de leads mejorada: formulario de presupuesto y seguimiento"] }
+              "profesional": { "name": "Profesional", "summary": "La web nueva, en tres idiomas, preparada para vender.", "includes": ["Rediseño visual completo sobre la plataforma de tienda actual", "Plantillas revisadas de categoría y ficha de producto", "Páginas clave en español, inglés y alemán", "SEO básico: títulos, descripciones, encabezados y datos de producto", "Integración de WhatsApp y botón de presupuesto", "6 Reels"] },
+              "premium": { "name": "Premium", "summary": "Todo el Profesional, con más contenido y más captación.", "includes": ["Todo lo incluido en Profesional", "Fichas de producto mejoradas: especificaciones, usos y preguntas frecuentes", "Visuales conceptuales adicionales de producto en contexto", "Captación de leads mejorada: formulario de presupuesto y seguimiento", "Asistente con IA en la web: responde dudas sobre los productos a cualquier hora y lleva al presupuesto"] }
             },
             "excludesTitle": "No incluido en ningún paquete",
             "excludes": [
@@ -321,8 +321,8 @@
             "choose": "Choose this package",
             "packages": {
               "esencial": { "name": "Essential", "summary": "A visible refresh of what already exists.", "includes": ["Visual refresh of the current website: colours, typography, header and footer", "Key homepage improvements: hero, categories, trust block and calls to action", "1 promotional Reel", "One round of revisions"] },
-              "profesional": { "name": "Professional", "summary": "The new website, in three languages, ready to sell.", "includes": ["Complete visual redesign on the current shop platform", "Revised category and product page templates", "Key pages in Spanish, English and German", "Basic SEO: titles, descriptions, headings and product data", "WhatsApp integration and quote button", "3 Reels"] },
-              "premium": { "name": "Premium", "summary": "Everything in Professional, with more content and more leads.", "includes": ["Everything in Professional", "Enhanced product pages: specifications, uses and FAQs", "Additional concept visuals of products in context", "6 Reels", "Improved lead generation: quote form and follow-up"] }
+              "profesional": { "name": "Professional", "summary": "The new website, in three languages, ready to sell.", "includes": ["Complete visual redesign on the current shop platform", "Revised category and product page templates", "Key pages in Spanish, English and German", "Basic SEO: titles, descriptions, headings and product data", "WhatsApp integration and quote button", "6 Reels"] },
+              "premium": { "name": "Premium", "summary": "Everything in Professional, with more content and more leads.", "includes": ["Everything in Professional", "Enhanced product pages: specifications, uses and FAQs", "Additional concept visuals of products in context", "Improved lead generation: quote form and follow-up", "AI assistant on the website: answers product questions at any hour and leads to a quote"] }
             },
             "excludesTitle": "Not included in any package",
             "excludes": [
