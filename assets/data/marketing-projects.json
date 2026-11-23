@@ -53,9 +53,9 @@
           { "src": "/images/marketing/projects/letreros-programables/reel-1-photo-720.webp", "labelled": true },
           { "src": "/images/marketing/projects/letreros-programables/reel-2-photo-720.webp", "labelled": true },
           { "src": "/images/marketing/projects/letreros-programables/reel-3-photo-720.webp", "labelled": true },
-          "/images/marketing/projects/letreros-programables/reel-4-540.webp",
-          "/images/marketing/projects/letreros-programables/reel-5-540.webp",
-          "/images/marketing/projects/letreros-programables/reel-6-540.webp"
+          { "src": "/images/marketing/projects/letreros-programables/reel-4-photo-720.webp", "labelled": true },
+          { "src": "/images/marketing/projects/letreros-programables/reel-5-photo-720.webp", "labelled": true },
+          { "src": "/images/marketing/projects/letreros-programables/reel-6-photo-720.webp", "labelled": true }
         ]
       },
       "videos": [],
