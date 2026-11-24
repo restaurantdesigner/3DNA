@@ -12634,3 +12634,14 @@ header.topbar .nav-dd-panel a{ border-radius: 8px; }
 .mpp-reelspec ul{ display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .mpp-reelspec li{ padding: 7px 13px; border-radius: 999px; background: #f5f3ef; font-size: 14px; }
 .mpp-reelspec .mpp-small{ margin-top: 14px; }
+
+/* proposal 05: the example Reel, featured above the six concepts */
+.mpp-reelx{ display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); align-items: center; margin: clamp(36px, 5vh, 56px) 0 clamp(48px, 7vh, 80px); padding: clamp(24px, 3vw, 44px); border-radius: 24px; background: radial-gradient(ellipse at 20% 30%, #2a1458 0%, #0b1024 55%, #06070d 100%); color: #fff; }
+.mpp-reelx__phone{ padding: 10px; border-radius: 40px; background: #0d0e13; box-shadow: inset 0 0 0 1.5px #2c2e36, 0 30px 70px -30px rgba(120,80,255,.7); }
+.mpp-reelx__phone video{ display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 30px; background: #000; object-fit: cover; }
+.mpp-reelx__label{ margin: 0 0 12px; font-size: 11.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #ffd21a; }
+.apage .mpp-reelx__title{ margin: 0 0 14px; font-family: "DM Serif Text", Georgia, serif; font-weight: 400; font-size: clamp(30px, 3vw, 46px); line-height: 1.05; color: #fff; }
+.mpp-reelx__text{ margin: 0 0 26px; max-width: 32em; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.85); }
+.apage .mpp-reelx .mpp-btn--line{ border-color: rgba(255,255,255,.6); color: #fff; }
+.apage .mpp-reelx .mpp-btn--line:hover{ background: #fff; color: #0b0d14; }
+@media (max-width: 760px){ .mpp-reelx{ grid-template-columns: minmax(0, 1fr); } .mpp-reelx__phone{ max-width: 300px; margin: 0 auto; } }

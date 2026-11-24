@@ -334,3 +334,12 @@
 
 /* older site-wide rules centre text: the board is left-aligned throughout */
 .sboard__card, .sboard__card *, .sboard__group, .sboard__group *, .sboard__head * { text-align: left; }
+
+/* featured film (b.feature): one larger vertical video next to its text, before the option videos */
+.sboard__eyebrow { margin: 0 0 8px; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #c0392b; }
+.sboard__vgrid--feature { grid-template-columns: minmax(0, 1fr); }
+.sboard__vgrid--feature .sboard__vid { grid-template-columns: minmax(240px, 380px) minmax(0, 1fr); align-items: center; gap: clamp(22px, 4vw, 56px); }
+.sboard__vgrid--feature .sboard__vframe { border-radius: 14px; }
+.sboard__vgrid--feature .sboard__vid h3 { font-size: 24px !important; }
+.sboard__vgrid--feature .sboard__vid p { max-width: 34em; font-size: 16px; }
+@media (max-width: 760px) { .sboard__vgrid--feature .sboard__vid { grid-template-columns: minmax(0, 1fr); } }

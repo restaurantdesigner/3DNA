@@ -63,11 +63,8 @@ function createScopeBoard(b) {
 
   // ------------------------------------------------ the option videos: share and download
   const G = b.gallery || {};
-  const videosHtml = () => !(G.videos && G.videos.length) ? [] : [
-    `  <section class="sboard__videos" aria-labelledby="sboard-videos-title">`,
-    `    <h2 class="sboard__h2" id="sboard-videos-title">${escapeHtml(L.videosTitle)}</h2>`,
-    `    <div class="sboard__vgrid">`,
-    ...G.videos.map((v) => [
+  // one video card: player, title, text, share / download
+  const videoFig = (v) => [
       `      <figure class="sboard__vid" id="${v.id}">`,
       `        <div class="sboard__vframe" style="aspect-ratio:${v.width} / ${v.height}">`,
       `          <video controls playsinline webkit-playsinline preload="none" poster="${v.poster}" width="${v.width}" height="${v.height}" src="${v.src}" aria-label="${escapeHtml(v.title)}"></video>`,
@@ -85,7 +82,23 @@ function createScopeBoard(b) {
       `          </div>`,
       `        </figcaption>`,
       `      </figure>`
-    ].join("\n")),
+  ].join("\n");
+  const videosHtml = () => !(G.videos && G.videos.length) ? [] : [
+    `  <section class="sboard__videos" aria-labelledby="sboard-videos-title">`,
+    `    <h2 class="sboard__h2" id="sboard-videos-title">${escapeHtml(L.videosTitle)}</h2>`,
+    `    <div class="sboard__vgrid">`,
+    ...G.videos.map(videoFig),
+    `    </div>`,
+    `  </section>`
+  ];
+  // featured film (b.feature): one vertical video next to its explanation, before the option videos
+  const F = b.feature;
+  const featureHtml = () => !F ? [] : [
+    `  <section class="sboard__videos sboard__feature" aria-labelledby="sboard-feature-title">`,
+    `    <p class="sboard__eyebrow">${escapeHtml(F.eyebrow)}</p>`,
+    `    <h2 class="sboard__h2" id="sboard-feature-title">${escapeHtml(F.heading)}</h2>`,
+    `    <div class="sboard__vgrid sboard__vgrid--feature">`,
+    videoFig(F.video),
     `    </div>`,
     `  </section>`
   ];
@@ -173,6 +186,7 @@ function createScopeBoard(b) {
       `  <nav class="sboard__context" aria-label="Ubicación en el sitio">`,
       `    <a href="${backHref}"><span aria-hidden="true">&larr;</span> ${escapeHtml(L.back)}</a><span aria-current="page">${escapeHtml(L.board)}</span>`,
       `  </nav>`,
+      ...featureHtml(),
       ...videosHtml(),
       `  <header class="sboard__head" id="opciones">`,
       // with a hero the screen title is the logo; these two lines stay for the printed sheet

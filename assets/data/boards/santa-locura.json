@@ -582,5 +582,18 @@
     "label": "Vídeo del estado actual de la recepción de Santa Locura Fitness",
     "soundOn": "Activar sonido",
     "soundOff": "Silenciar"
+  },
+  "feature": {
+    "eyebrow": "Señalética LED programable",
+    "heading": "Una recepción que cambia de mensaje",
+    "video": {
+      "id": "video-senaletica-led",
+      "src": "/videos/fitness/projects/santa-locura/senaletica-led-720.mp4",
+      "poster": "/images/fitness/projects/santa-locura/senaletica-led-poster.webp",
+      "width": 720,
+      "height": 1280,
+      "title": "Letreros LED en la recepción",
+      "text": "Los letreros LED programables de la recepción cambian de mensaje en segundos: Black Friday, descuentos y ofertas especiales, sin cambiar la decoración."
+    }
   }
 }

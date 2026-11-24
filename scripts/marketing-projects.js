@@ -242,6 +242,15 @@ ${co.families.map((f) => `      <li class="mpp-fam" data-reveal>
       ${label("05", vd.label, "mpp-video-t", vd.title)}
       <p class="ab-p ab-p--strong">${esc(vd.lead)}</p>
     </div>
+    ${p.reelExample && vd.example ? `<figure class="mpp-reelx" id="reel-ejemplo" data-reveal>
+      <div class="mpp-reelx__phone"><video controls playsinline webkit-playsinline preload="metadata" poster="${p.reelExample.poster}" width="${p.reelExample.width}" height="${p.reelExample.height}" aria-label="${esc(vd.example.title)}"><source src="${p.reelExample.src}" type="video/mp4"></video></div>
+      <figcaption>
+        <p class="mpp-reelx__label">${esc(vd.example.label)}</p>
+        <h3 class="mpp-reelx__title">${esc(vd.example.title)}</h3>
+        <p class="mpp-reelx__text">${esc(vd.example.text)}</p>
+        ${p.reelExample.link ? `<a class="mpp-btn mpp-btn--line" href="${p.reelExample.link}">${esc(vd.example.link)} ${ARROW}</a>` : ""}
+      </figcaption>
+    </figure>` : ""}
     <ol class="mpp-reels">
 ${vd.reels.map((r, i) => {
       const file = (p.videos || [])[i];

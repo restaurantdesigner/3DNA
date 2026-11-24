@@ -169,6 +169,13 @@
         ]
       },
       "videos": [],
+      "reelExample": {
+        "src": "/videos/fitness/projects/santa-locura/senaletica-led-720.mp4",
+        "poster": "/images/fitness/projects/santa-locura/senaletica-led-poster.webp",
+        "width": 720,
+        "height": 1280,
+        "link": "/gimnasios-3d/proyectos/santa-locura/#video-senaletica-led"
+      },
       "preview": {
         "src": "/demos/letreros-programables/"
       },
@@ -367,7 +374,13 @@
                 "title": "La marca, en una pieza",
                 "text": "Presentación premium de Letreros Programables para el perfil y los anuncios."
               }
-            ]
+            ],
+            "example": {
+              "label": "Reel de ejemplo · Producido por 3DNA",
+              "title": "Letreros LED que cambian de mensaje",
+              "text": "Vídeo vertical que 3DNA ha producido para el proyecto de Santa Locura Fitness: los letreros LED programables de la recepción pasan de Black Friday a descuentos y ofertas especiales. Así es el tipo de pieza que proponemos para Letreros Programables.",
+              "link": "Ver el proyecto Santa Locura"
+            }
           },
           "funnel": {
             "label": "Estrategia de marketing y ventas",
@@ -667,7 +680,13 @@
                 "title": "The brand in one piece",
                 "text": "A premium presentation of Letreros Programables for the profile and for ads."
               }
-            ]
+            ],
+            "example": {
+              "label": "Example Reel · Produced by 3DNA",
+              "title": "LED signs that change their message",
+              "text": "A vertical video 3DNA produced for the Santa Locura Fitness project: the reception's programmable LED signs switch from Black Friday to discounts and special offers. This is the kind of piece we propose for Letreros Programables.",
+              "link": "View the Santa Locura project"
+            }
           },
           "funnel": {
             "label": "Marketing and sales strategy",
