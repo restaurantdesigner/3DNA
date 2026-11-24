@@ -12596,3 +12596,29 @@ body.mobile-open .scroll-veil{ display: none; }
 .mpp-phonefig--shot{ max-width: 340px; margin: 0 auto; }
 .mpp-phoneshot{ display: block; width: 100%; height: auto; }
 @media (max-width: 900px){ .mpp-phonefig--shot{ max-width: min(78vw, 340px); } }
+
+/* proposal 09: live website prototype frame (assets/js/mproject-preview.js) */
+.apage section.mpp-preview{ background: #06070d; color: #fff; }
+.mpp-preview .ab-label, .mpp-preview .ab-num{ color: rgba(255,255,255,.7); }
+.apage .mpp-preview .ab-h2{ color: #fff; font-size: clamp(38px, 4.4vw, 68px); }
+.mpp-preview .ab-p{ color: rgba(255,255,255,.88); }
+.mpp-preview .mpp-small{ color: rgba(255,255,255,.6); opacity: 1; }
+.pvw{ margin-top: clamp(36px, 5vh, 56px); }
+.pvw__bar{ display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 22px; margin-bottom: 22px; }
+.pvw__modes{ display: inline-flex; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.1); }
+.pvw__modes button{ min-width: 116px; height: 42px; padding: 0 20px; border: 0; border-radius: 999px; background: transparent; color: rgba(255,255,255,.8); font: 600 14px Inter, sans-serif; cursor: pointer; }
+.pvw__modes button[aria-pressed="true"]{ background: #fff; color: #0b0d14; }
+.apage .pvw__full{ font-size: 14px; font-weight: 600; color: #fff; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(255,255,255,.4); }
+.pvw__stage{ display: flex; justify-content: center; }
+.pvw__screen{ position: relative; }
+.pvw__screen--desktop{ overflow: hidden; border-radius: 14px; background: #fff; border: 1px solid rgba(255,255,255,.14); box-shadow: 0 40px 90px -40px rgba(80,90,255,.55); }
+.pvw__chrome{ display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; background: #1a1c26; color: rgba(255,255,255,.55); font-size: 11.5px; }
+.pvw__chrome i{ width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.25); }
+.pvw__chrome span{ margin-left: 10px; }
+.pvw__screen--mobile{ padding: 12px; border-radius: 48px; background: #0d0e13; box-shadow: inset 0 0 0 1.5px #2c2e36, 0 40px 90px -40px rgba(80,90,255,.55); }
+.pvw__screen--mobile .pvw__chrome{ display: none; }
+.pvw__screen--mobile .pvw__vp{ border-radius: 36px; }
+.pvw__vp{ position: relative; overflow: hidden; background: #05060c; }
+.pvw__vp iframe{ position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: #fff; }
+.pvw .mpp-small--center{ margin-top: 22px; }
+@media (max-width: 600px){ .pvw__modes button{ min-width: 0; } }

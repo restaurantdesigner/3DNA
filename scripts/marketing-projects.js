@@ -318,6 +318,38 @@ ${p.packages.map((k) => {
     </div>
   </div>
 </section>`);
+
+    // 09 · the interactive website prototype (same-origin page under /demos/, shown in a desktop or
+    // mobile viewport by assets/js/mproject-preview.js; full screen opens the same page)
+    if (p.preview && c.preview) {
+      const pv = c.preview, src = `${p.preview.src}#/${L}/`;
+      out.push(`<section class="ab-sec mpp-preview" id="experiencia-digital" aria-labelledby="mpp-preview-t">
+  <div class="ab-wrap">
+    <div class="ab-narrow" data-reveal>
+      ${label("09", pv.label, "mpp-preview-t", pv.title)}
+      <p class="ab-p ab-p--strong">${esc(pv.text)}</p>
+      <p class="mpp-small">${esc(pv.sub)}</p>
+    </div>
+    <div class="pvw" data-pvw>
+      <div class="pvw__bar">
+        <div class="pvw__modes" role="group" aria-label="${esc(pv.modes)}">
+          <button type="button" data-pvw-mode="desktop" aria-pressed="true">${esc(pv.desktop)}</button>
+          <button type="button" data-pvw-mode="mobile" aria-pressed="false">${esc(pv.mobile)}</button>
+        </div>
+        <a class="pvw__full" href="${src}">${esc(pv.full)} <span aria-hidden="true">&#8599;</span></a>
+      </div>
+      <div class="pvw__stage">
+        <div class="pvw__screen pvw__screen--desktop">
+          <div class="pvw__chrome" aria-hidden="true"><i></i><i></i><i></i><span>letrerosprogramables.com · ${esc(pv.concept)}</span></div>
+          <div class="pvw__vp"><iframe src="${src}" title="${esc(pv.frameTitle)}" loading="lazy"></iframe></div>
+        </div>
+      </div>
+      <p class="mpp-small mpp-small--center">${esc(pv.note)}</p>
+    </div>
+    <script src="/assets/js/mproject-preview.js" defer></script>
+  </div>
+</section>`);
+    }
     return out.join("\n\n");
   }
 

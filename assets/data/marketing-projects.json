@@ -61,10 +61,11 @@
         ]
       },
       "videos": [],
+      "preview": { "src": "/demos/letreros-programables/" },
       "packages": [
         { "id": "esencial", "price": 1500, "featured": false, "reels": 1 },
         { "id": "profesional", "price": 3500, "featured": true, "reels": 6 },
-        { "id": "premium", "price": 4900, "featured": false, "reels": 6 }
+        { "id": "premium", "price": 4900, "featured": false, "reels": 10 }
       ],
       "content": {
         "es": {
@@ -184,7 +185,7 @@
             "packages": {
               "esencial": { "name": "Esencial", "summary": "Una renovación visible de lo que ya existe.", "includes": ["Renovación visual de la web actual: colores, tipografía, cabecera y pie", "Mejoras clave en la página de inicio: portada, categorías, bloque de confianza y llamadas a la acción", "1 Reel promocional", "Una ronda de revisión"] },
               "profesional": { "name": "Profesional", "summary": "La web nueva, en tres idiomas, preparada para vender.", "includes": ["Rediseño visual completo sobre la plataforma de tienda actual", "Plantillas revisadas de categoría y ficha de producto", "Páginas clave en español, inglés y alemán", "SEO básico: títulos, descripciones, encabezados y datos de producto", "Integración de WhatsApp y botón de presupuesto", "6 Reels"] },
-              "premium": { "name": "Premium", "summary": "Todo el Profesional, con más contenido y más captación.", "includes": ["Todo lo incluido en Profesional", "Fichas de producto mejoradas: especificaciones, usos y preguntas frecuentes", "Visuales conceptuales adicionales de producto en contexto", "Captación de leads mejorada: formulario de presupuesto y seguimiento", "Asistente con IA en la web: responde dudas sobre los productos a cualquier hora y lleva al presupuesto"] }
+              "premium": { "name": "Premium", "summary": "Todo el Profesional, con más contenido y más captación.", "includes": ["Todo lo incluido en Profesional", "Fichas de producto mejoradas: especificaciones, usos y preguntas frecuentes", "Visuales conceptuales adicionales de producto en contexto", "10 Reels", "Captación de leads mejorada: formulario de presupuesto y seguimiento", "Asistente con IA en la web: responde dudas sobre los productos a cualquier hora y lleva al presupuesto"] }
             },
             "excludesTitle": "No incluido en ningún paquete",
             "excludes": [
@@ -203,6 +204,19 @@
             "whatsappText": "Hola, quiero hablar de la propuesta de transformación digital para Letreros Programables.",
             "form": "Enviar un mensaje",
             "email": "o escríbenos a"
+          },
+          "preview": {
+            "label": "Experiencia digital",
+            "title": "Así podría ser tu nueva web.",
+            "text": "Descubre una propuesta interactiva de la nueva experiencia digital de Letreros Programables. Explora el catálogo, descubre sus productos y visualiza cómo podría presentarse la empresa con un diseño actualizado.",
+            "sub": "Prototipo conceptual desarrollado por 3DNA.",
+            "modes": "Vista del prototipo",
+            "desktop": "Escritorio",
+            "mobile": "Móvil",
+            "full": "Abrir a pantalla completa",
+            "concept": "Concepto de diseño — 3DNA",
+            "frameTitle": "Prototipo interactivo de la nueva web de Letreros Programables (concepto de diseño de 3DNA)",
+            "note": "Concepto de diseño — 3DNA. Prototipo navegable: no procesa pedidos ni envía datos. Información de producto tomada de la web actual; imágenes conceptuales."
           }
         },
         "en": {
@@ -322,7 +336,7 @@
             "packages": {
               "esencial": { "name": "Essential", "summary": "A visible refresh of what already exists.", "includes": ["Visual refresh of the current website: colours, typography, header and footer", "Key homepage improvements: hero, categories, trust block and calls to action", "1 promotional Reel", "One round of revisions"] },
               "profesional": { "name": "Professional", "summary": "The new website, in three languages, ready to sell.", "includes": ["Complete visual redesign on the current shop platform", "Revised category and product page templates", "Key pages in Spanish, English and German", "Basic SEO: titles, descriptions, headings and product data", "WhatsApp integration and quote button", "6 Reels"] },
-              "premium": { "name": "Premium", "summary": "Everything in Professional, with more content and more leads.", "includes": ["Everything in Professional", "Enhanced product pages: specifications, uses and FAQs", "Additional concept visuals of products in context", "Improved lead generation: quote form and follow-up", "AI assistant on the website: answers product questions at any hour and leads to a quote"] }
+              "premium": { "name": "Premium", "summary": "Everything in Professional, with more content and more leads.", "includes": ["Everything in Professional", "Enhanced product pages: specifications, uses and FAQs", "Additional concept visuals of products in context", "10 Reels", "Improved lead generation: quote form and follow-up", "AI assistant on the website: answers product questions at any hour and leads to a quote"] }
             },
             "excludesTitle": "Not included in any package",
             "excludes": [
@@ -341,6 +355,19 @@
             "whatsappText": "Hello, I'd like to talk about the digital transformation proposal for Letreros Programables.",
             "form": "Send a message",
             "email": "or write to"
+          },
+          "preview": {
+            "label": "Digital experience",
+            "title": "This is what your new website could be.",
+            "text": "Explore an interactive proposal of Letreros Programables' new digital experience. Browse the catalogue, discover the products and see how the company could present itself with an updated design.",
+            "sub": "Concept prototype developed by 3DNA.",
+            "modes": "Prototype view",
+            "desktop": "Desktop",
+            "mobile": "Mobile",
+            "full": "Open full screen",
+            "concept": "Design concept — 3DNA",
+            "frameTitle": "Interactive prototype of the new Letreros Programables website (3DNA design concept)",
+            "note": "Design concept — 3DNA. Navigable prototype: it does not process orders or send data. Product information from the current website; concept images."
           }
         }
       }

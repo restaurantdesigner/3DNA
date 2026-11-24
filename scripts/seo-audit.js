@@ -32,7 +32,7 @@ const QUIET = flag("--quiet");
 const CHECK_ASSETS = !flag("--no-assets");
 
 // pages that are published on purpose but must not be indexed (they carry noindex or are blocked)
-const NOT_INDEXED = [/^\/404\.html$/, /^\/prototipos\//, /^\/assets\/partials\//, /\/(washroom-3d|aseos-3d)\/$/, /\/(calculator|calculadora)\/$/];
+const NOT_INDEXED = [/^\/404\.html$/, /^\/prototipos\//, /^\/demos\//, /^\/assets\/partials\//, /\/(washroom-3d|aseos-3d)\/$/, /\/(calculator|calculadora)\/$/];
 // marketing proposals addressed to a prospective client (assets/data/marketing-projects.json, index:false)
 {
   const mp = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/data/marketing-projects.json"), "utf8"));
