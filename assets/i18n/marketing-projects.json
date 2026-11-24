@@ -6,7 +6,7 @@
     "type": { "digitalTransformation": "Propuesta de transformación digital" },
     "industry": { "ledSignage": "Letreros LED" },
     "conceptual": "Visual conceptual 3DNA",
-    "services": { "strategy": "Estrategia de marketing", "webRedesign": "Rediseño web", "ecommerce": "Mejora del e-commerce", "multilingual": "Web multilingüe", "seo": "SEO", "aiVideo": "Producción de vídeo con IA", "reels": "Reels de Instagram", "leadGen": "Captación de leads" },
+    "services": { "strategy": "Estrategia de marketing", "webRedesign": "Web nueva", "ecommerce": "Tienda online en Shopify", "multilingual": "Web multilingüe", "seo": "SEO", "aiVideo": "Producción de vídeo con IA", "reels": "Reels de Instagram", "leadGen": "Captación de leads" },
     "page": { "back": "Proyectos de marketing", "by": "Propuesta de 3DNA", "client": "Cliente", "industry": "Sector", "website": "Web", "status": "Estado", "date": "Fecha", "services": "Servicios" }
   },
   "en": {
@@ -16,7 +16,7 @@
     "type": { "digitalTransformation": "Digital transformation proposal" },
     "industry": { "ledSignage": "LED signage" },
     "conceptual": "3DNA concept visual",
-    "services": { "strategy": "Marketing strategy", "webRedesign": "Website redesign", "ecommerce": "E-commerce improvement", "multilingual": "Multilingual website", "seo": "SEO", "aiVideo": "AI video production", "reels": "Instagram Reels", "leadGen": "Lead generation" },
+    "services": { "strategy": "Marketing strategy", "webRedesign": "New website", "ecommerce": "Shopify online store", "multilingual": "Multilingual website", "seo": "SEO", "aiVideo": "AI video production", "reels": "Instagram Reels", "leadGen": "Lead generation" },
     "page": { "back": "Marketing projects", "by": "Proposal by 3DNA", "client": "Client", "industry": "Industry", "website": "Website", "status": "Status", "date": "Date", "services": "Services" }
   },
   "ru": {
@@ -26,7 +26,7 @@
     "type": { "digitalTransformation": "Предложение по цифровой трансформации" },
     "industry": { "ledSignage": "LED-вывески" },
     "conceptual": "Концептуальный визуал 3DNA",
-    "services": { "strategy": "Маркетинговая стратегия", "webRedesign": "Редизайн сайта", "ecommerce": "Улучшение интернет-магазина", "multilingual": "Многоязычный сайт", "seo": "SEO", "aiVideo": "Видео с помощью ИИ", "reels": "Reels для Instagram", "leadGen": "Привлечение заявок" },
+    "services": { "strategy": "Маркетинговая стратегия", "webRedesign": "Новый сайт", "ecommerce": "Интернет-магазин на Shopify", "multilingual": "Многоязычный сайт", "seo": "SEO", "aiVideo": "Видео с помощью ИИ", "reels": "Reels для Instagram", "leadGen": "Привлечение заявок" },
     "page": { "back": "Маркетинговые проекты", "by": "Предложение 3DNA", "client": "Клиент", "industry": "Отрасль", "website": "Сайт", "status": "Статус", "date": "Дата", "services": "Услуги" }
   },
   "uk": {
@@ -36,7 +36,7 @@
     "type": { "digitalTransformation": "Пропозиція з цифрової трансформації" },
     "industry": { "ledSignage": "LED-вивіски" },
     "conceptual": "Концептуальний візуал 3DNA",
-    "services": { "strategy": "Маркетингова стратегія", "webRedesign": "Редизайн сайту", "ecommerce": "Покращення інтернет-магазину", "multilingual": "Багатомовний сайт", "seo": "SEO", "aiVideo": "Відео за допомогою ШІ", "reels": "Reels для Instagram", "leadGen": "Залучення заявок" },
+    "services": { "strategy": "Маркетингова стратегія", "webRedesign": "Новий сайт", "ecommerce": "Інтернет-магазин на Shopify", "multilingual": "Багатомовний сайт", "seo": "SEO", "aiVideo": "Відео за допомогою ШІ", "reels": "Reels для Instagram", "leadGen": "Залучення заявок" },
     "page": { "back": "Маркетингові проєкти", "by": "Пропозиція 3DNA", "client": "Клієнт", "industry": "Галузь", "website": "Сайт", "status": "Статус", "date": "Дата", "services": "Послуги" }
   }
 }

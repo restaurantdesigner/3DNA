@@ -87,7 +87,7 @@
   function footer(t, L) {
     return `<footer class="ftr">
   <div class="wrap ftr__in">
-    <div><img src="${D.img}client-logo-light-440.webp" width="440" height="122" alt="Letreros Programables" class="ftr__logo" loading="lazy"><p>${esc(t.foot.rights)}</p></div>
+    <div><img src="${D.img}client-logo-light-440.webp" width="440" height="122" alt="Letreros Programables" class="ftr__logo" loading="lazy"></div>
     <nav class="ftr__nav">${D.categories.map((c) => `<a href="${href(L, "c", c.id)}">${esc(t.cats[c.id][0])}</a>`).join("")}</nav>
     <div class="ftr__demo"><p><b>${esc(t.foot.concept)}</b></p><p>${esc(t.foot.demo)}</p><p><a href="${D.source}/" target="_blank" rel="noopener nofollow">${esc(t.foot.source)} ↗</a></p></div>
   </div>

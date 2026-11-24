@@ -25,58 +25,180 @@
       "type": "digitalTransformation",
       "website": "https://letrerosprogramables.com/",
       "date": "2026-11-23",
-      "langs": ["es", "en"],
-      "services": ["strategy", "webRedesign", "ecommerce", "multilingual", "seo", "aiVideo", "reels", "leadGen"],
-      "cover": { "src": "/images/marketing/projects/letreros-programables/cover-1600.webp", "small": "/images/marketing/projects/letreros-programables/cover-800.webp", "width": 1600, "height": 1200, "conceptual": true },
-      "feature": {
-        "image": { "src": "/images/marketing/projects/letreros-programables/card-storefront-792.webp", "width": 792, "height": 544, "conceptual": true },
-        "logo": { "src": "/images/marketing/projects/letreros-programables/client-logo-light-440.webp", "width": 440, "height": 122 }
+      "langs": [
+        "es",
+        "en"
+      ],
+      "services": [
+        "strategy",
+        "webRedesign",
+        "ecommerce",
+        "multilingual",
+        "seo",
+        "aiVideo",
+        "reels",
+        "leadGen"
+      ],
+      "cover": {
+        "src": "/images/marketing/projects/letreros-programables/cover-1600.webp",
+        "small": "/images/marketing/projects/letreros-programables/cover-800.webp",
+        "width": 1600,
+        "height": 1200,
+        "conceptual": true
       },
-      "hero": { "src": "/images/marketing/projects/letreros-programables/hero-facade-1672.webp", "small": "/images/marketing/projects/letreros-programables/hero-facade-960.webp", "width": 1672, "height": 941, "smallWidth": 960, "conceptual": true },
+      "feature": {
+        "image": {
+          "src": "/images/marketing/projects/letreros-programables/card-storefront-792.webp",
+          "width": 792,
+          "height": 544,
+          "conceptual": true
+        },
+        "logo": {
+          "src": "/images/marketing/projects/letreros-programables/client-logo-light-440.webp",
+          "width": 440,
+          "height": 122
+        }
+      },
+      "hero": {
+        "src": "/images/marketing/projects/letreros-programables/hero-facade-1672.webp",
+        "small": "/images/marketing/projects/letreros-programables/hero-facade-960.webp",
+        "width": 1672,
+        "height": 941,
+        "smallWidth": 960,
+        "conceptual": true
+      },
       "og": "/images/marketing/projects/letreros-programables/og.jpg",
       "visuals": {
         "families": {
-          "letreros": { "src": "/images/marketing/projects/letreros-programables/photo-letreros-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-letreros-800.webp", "width": 1448, "height": 1086 },
-          "banderolas": { "src": "/images/marketing/projects/letreros-programables/photo-banderolas-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-banderolas-800.webp", "width": 1448, "height": 1086 },
-          "pantallas": { "src": "/images/marketing/projects/letreros-programables/photo-pantallas-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-pantallas-800.webp", "width": 1448, "height": 1086 },
-          "rotulos": { "src": "/images/marketing/projects/letreros-programables/photo-rotulos-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-rotulos-800.webp", "width": 1448, "height": 1086 },
-          "cruces": { "src": "/images/marketing/projects/letreros-programables/photo-cruces-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-cruces-800.webp", "width": 1448, "height": 1086 },
-          "marcadores": { "src": "/images/marketing/projects/letreros-programables/photo-marcadores-1448.webp", "small": "/images/marketing/projects/letreros-programables/photo-marcadores-800.webp", "width": 1448, "height": 1086 }
+          "letreros": {
+            "src": "/images/marketing/projects/letreros-programables/photo-letreros-1448.webp",
+            "small": "/images/marketing/projects/letreros-programables/photo-letreros-800.webp",
+            "width": 1448,
+            "height": 1086
+          },
+          "banderolas": {
+            "src": "/images/marketing/projects/letreros-programables/photo-banderolas-1448.webp",
+            "small": "/images/marketing/projects/letreros-programables/photo-banderolas-800.webp",
+            "width": 1448,
+            "height": 1086
+          },
+          "pantallas": {
+            "src": "/images/marketing/projects/letreros-programables/photo-pantallas-1448.webp",
+            "small": "/images/marketing/projects/letreros-programables/photo-pantallas-800.webp",
+            "width": 1448,
+            "height": 1086
+          },
+          "rotulos": {
+            "src": "/images/marketing/projects/letreros-programables/photo-rotulos-1448.webp",
+            "small": "/images/marketing/projects/letreros-programables/photo-rotulos-800.webp",
+            "width": 1448,
+            "height": 1086
+          },
+          "cruces": {
+            "src": "/images/marketing/projects/letreros-programables/photo-cruces-1448.webp",
+            "small": "/images/marketing/projects/letreros-programables/photo-cruces-800.webp",
+            "width": 1448,
+            "height": 1086
+          },
+          "marcadores": {
+            "src": "/images/marketing/projects/letreros-programables/photo-marcadores-1448.webp",
+            "small": "/images/marketing/projects/letreros-programables/photo-marcadores-800.webp",
+            "width": 1448,
+            "height": 1086
+          }
         },
-        "current": { "src": "/images/marketing/projects/letreros-programables/current-desktop-1440.webp", "width": 1440, "height": 900, "captured": "2026-11-23" },
-        "desktop": { "src": "/images/marketing/projects/letreros-programables/home-desktop-es-1440.webp", "width": 1440, "height": 3282 },
-        "mobileShowcase": { "src": "/images/marketing/projects/letreros-programables/phone-showcase-941.webp", "small": "/images/marketing/projects/letreros-programables/phone-showcase-600.webp", "width": 941, "height": 1672 },
+        "current": {
+          "src": "/images/marketing/projects/letreros-programables/current-desktop-1440.webp",
+          "width": 1440,
+          "height": 900,
+          "captured": "2026-11-23"
+        },
+        "desktop": {
+          "src": "/images/marketing/projects/letreros-programables/home-desktop-es-1440.webp",
+          "width": 1440,
+          "height": 3282
+        },
+        "mobileShowcase": {
+          "src": "/images/marketing/projects/letreros-programables/phone-showcase-941.webp",
+          "small": "/images/marketing/projects/letreros-programables/phone-showcase-600.webp",
+          "width": 941,
+          "height": 1672
+        },
         "mobile": {
-          "es": { "src": "/images/marketing/projects/letreros-programables/home-mobile-es-780.webp", "width": 780 },
-          "en": { "src": "/images/marketing/projects/letreros-programables/home-mobile-en-780.webp", "width": 780 },
-          "de": { "src": "/images/marketing/projects/letreros-programables/home-mobile-de-780.webp", "width": 780 }
+          "es": {
+            "src": "/images/marketing/projects/letreros-programables/home-mobile-es-780.webp",
+            "width": 780
+          },
+          "en": {
+            "src": "/images/marketing/projects/letreros-programables/home-mobile-en-780.webp",
+            "width": 780
+          },
+          "de": {
+            "src": "/images/marketing/projects/letreros-programables/home-mobile-de-780.webp",
+            "width": 780
+          }
         },
         "reels": [
-          { "src": "/images/marketing/projects/letreros-programables/reel-1-photo-720.webp", "labelled": true },
-          { "src": "/images/marketing/projects/letreros-programables/reel-2-photo-720.webp", "labelled": true },
-          { "src": "/images/marketing/projects/letreros-programables/reel-3-photo-720.webp", "labelled": true },
-          { "src": "/images/marketing/projects/letreros-programables/reel-4-photo-720.webp", "labelled": true },
-          { "src": "/images/marketing/projects/letreros-programables/reel-5-photo-720.webp", "labelled": true },
-          { "src": "/images/marketing/projects/letreros-programables/reel-6-photo-720.webp", "labelled": true }
+          {
+            "src": "/images/marketing/projects/letreros-programables/reel-1-photo-720.webp",
+            "labelled": true
+          },
+          {
+            "src": "/images/marketing/projects/letreros-programables/reel-2-photo-720.webp",
+            "labelled": true
+          },
+          {
+            "src": "/images/marketing/projects/letreros-programables/reel-3-photo-720.webp",
+            "labelled": true
+          },
+          {
+            "src": "/images/marketing/projects/letreros-programables/reel-4-photo-720.webp",
+            "labelled": true
+          },
+          {
+            "src": "/images/marketing/projects/letreros-programables/reel-5-photo-720.webp",
+            "labelled": true
+          },
+          {
+            "src": "/images/marketing/projects/letreros-programables/reel-6-photo-720.webp",
+            "labelled": true
+          }
         ]
       },
       "videos": [],
-      "preview": { "src": "/demos/letreros-programables/" },
+      "preview": {
+        "src": "/demos/letreros-programables/"
+      },
       "packages": [
-        { "id": "esencial", "price": 1500, "featured": false, "reels": 1 },
-        { "id": "profesional", "price": 3500, "featured": true, "reels": 6 },
-        { "id": "premium", "price": 4900, "featured": false, "reels": 10 }
+        {
+          "id": "esencial",
+          "price": 1900,
+          "featured": false,
+          "reels": 3
+        },
+        {
+          "id": "business",
+          "price": 3500,
+          "featured": true,
+          "reels": 6
+        },
+        {
+          "id": "premium",
+          "price": 4900,
+          "featured": false,
+          "reels": 12
+        }
       ],
       "content": {
         "es": {
           "meta": {
             "title": "Letreros Programables — Propuesta de transformación digital | 3DNA",
-            "description": "Propuesta de 3DNA para Letreros Programables: rediseño web, catálogo en español, inglés y alemán, SEO, Reels para Instagram y captación de clientes.",
+            "description": "Propuesta de 3DNA para Letreros Programables: nueva tienda online en Shopify, catálogo en español, inglés y alemán, SEO, Reels para Instagram y captación de clientes.",
             "ogTitle": "Letreros Programables · Propuesta de transformación digital",
             "ogImageAlt": "Visual conceptual: fachada nocturna de Letreros Programables con una gran pantalla LED"
           },
           "card": {
-            "summary": "Nueva imagen digital, web modernizada, catálogo multilingüe y contenido audiovisual para un fabricante de letreros LED programables de Granada.",
+            "summary": "Nueva imagen digital, tienda online nueva en Shopify, catálogo multilingüe y contenido audiovisual para un fabricante de letreros LED programables de Granada.",
             "featureAlt": "Visual conceptual: fachada de un comercio con un letrero LED programable de colores y el rótulo Letreros Programables",
             "alt": "Visual conceptual de 3DNA: letrero LED con el texto ABIERTO, cruz LED verde y pantalla LED full color"
           },
@@ -95,19 +217,55 @@
             "title": "Fabricación nacional, catálogo para cada negocio",
             "lead": "Letreros Programables fabrica y distribuye letreros LED programables y rótulos luminosos para negocios. La fabricación está en Granada y la distribución llega a toda España y al resto de Europa.",
             "facts": [
-              { "k": "6", "t": "familias de producto" },
-              { "k": "P4–P10", "t": "pantallas de interior y exterior" },
-              { "k": "USB · WiFi", "t": "programación desde ordenador o móvil" },
-              { "k": "Online", "t": "tienda con tarjeta, PayPal y transferencia" }
+              {
+                "k": "6",
+                "t": "familias de producto"
+              },
+              {
+                "k": "P4–P10",
+                "t": "pantallas de interior y exterior"
+              },
+              {
+                "k": "USB · WiFi",
+                "t": "programación desde ordenador o móvil"
+              },
+              {
+                "k": "Online",
+                "t": "tienda con tarjeta, PayPal y transferencia"
+              }
             ],
             "familiesTitle": "Familias de producto",
             "families": [
-              { "id": "letreros", "name": "Letreros LED programables", "text": "Monocolor (rojo, verde, blanco, azul y ámbar) y RGB, de una o dos caras, en varios tamaños." },
-              { "id": "banderolas", "name": "Banderolas LED programables", "text": "Monocolor, RGB y full color de exterior (P5, P6 y P10), de una o doble cara." },
-              { "id": "pantallas", "name": "Pantallas LED full color", "text": "Interior P4 y P5; exterior P5, P6 y P10. Por ejemplo, 64 × 64 cm en P5." },
-              { "id": "rotulos", "name": "Rótulos luminosos para negocios", "text": "Parkings, farmacias y clínicas, bares, hoteles, tiendas, gasolineras, autoescuelas, estancos y más." },
-              { "id": "cruces", "name": "Cruces LED programables", "text": "Monocolor, RGB y full color para farmacias, veterinarias y clínicas, de 64 × 64 a 96 × 96 cm." },
-              { "id": "marcadores", "name": "Marcadores deportivos", "text": "Marcadores LED para instalaciones deportivas." }
+              {
+                "id": "letreros",
+                "name": "Letreros LED programables",
+                "text": "Monocolor (rojo, verde, blanco, azul y ámbar) y RGB, de una o dos caras, en varios tamaños."
+              },
+              {
+                "id": "banderolas",
+                "name": "Banderolas LED programables",
+                "text": "Monocolor, RGB y full color de exterior (P5, P6 y P10), de una o doble cara."
+              },
+              {
+                "id": "pantallas",
+                "name": "Pantallas LED full color",
+                "text": "Interior P4 y P5; exterior P5, P6 y P10. Por ejemplo, 64 × 64 cm en P5."
+              },
+              {
+                "id": "rotulos",
+                "name": "Rótulos luminosos para negocios",
+                "text": "Parkings, farmacias y clínicas, bares, hoteles, tiendas, gasolineras, autoescuelas, estancos y más."
+              },
+              {
+                "id": "cruces",
+                "name": "Cruces LED programables",
+                "text": "Monocolor, RGB y full color para farmacias, veterinarias y clínicas, de 64 × 64 a 96 × 96 cm."
+              },
+              {
+                "id": "marcadores",
+                "name": "Marcadores deportivos",
+                "text": "Marcadores LED para instalaciones deportivas."
+              }
             ],
             "visualNote": "Visuales conceptuales de 3DNA basados en el catálogo publicado; no son fotografías de instalaciones reales.",
             "oppTitle": "Dónde vemos la oportunidad",
@@ -122,7 +280,7 @@
           "web": {
             "label": "Rediseño web",
             "title": "De catálogo a escaparate que vende",
-            "lead": "Una web que presenta el producto encendido, en su contexto y con la información que el cliente necesita para decidir, sobre la plataforma de tienda actual.",
+            "lead": "Una web nueva e independiente, construida en Shopify, que presenta el producto encendido, en su contexto y con la información que el cliente necesita para decidir. No es una modificación de la tienda PrestaShop actual.",
             "current": "Web actual",
             "currentNote": "Captura de letrerosprogramables.com, 23/11/2026",
             "proposed": "Propuesta 3DNA",
@@ -130,12 +288,30 @@
             "mobileNote": "Diseño conceptual · móvil",
             "pointsTitle": "Qué cambia",
             "points": [
-              { "k": "Navegación clara", "t": "Cinco entradas: Productos, Sectores, Cómo funciona, Empresa y Contacto." },
-              { "k": "Catálogo por familia y por sector", "t": "El cliente entra por su producto o por su negocio: farmacia, bar, hotel, tienda, parking…" },
-              { "k": "Especificaciones a la vista", "t": "Tamaño, pitch, número de caras y programación en cada tarjeta, sin abrir la ficha." },
-              { "k": "Conversión", "t": "Botón de presupuesto y WhatsApp siempre visibles, también en cada producto." },
-              { "k": "Confianza", "t": "Fabricación en Granada, envío gratuito, formas de pago y ayuda con la configuración, en primer plano." },
-              { "k": "Pensada para el móvil", "t": "El diseño parte del móvil, que es donde llegan las visitas desde Instagram y Facebook." }
+              {
+                "k": "Navegación clara",
+                "t": "Cinco entradas: Productos, Sectores, Cómo funciona, Empresa y Contacto."
+              },
+              {
+                "k": "Catálogo por familia y por sector",
+                "t": "El cliente entra por su producto o por su negocio: farmacia, bar, hotel, tienda, parking…"
+              },
+              {
+                "k": "Especificaciones a la vista",
+                "t": "Tamaño, pitch, número de caras y programación en cada tarjeta, sin abrir la ficha."
+              },
+              {
+                "k": "Conversión",
+                "t": "Botón de presupuesto y WhatsApp siempre visibles, también en cada producto."
+              },
+              {
+                "k": "Confianza",
+                "t": "Fabricación en Granada, envío gratuito, formas de pago y ayuda con la configuración, en primer plano."
+              },
+              {
+                "k": "Pensada para el móvil",
+                "t": "El diseño parte del móvil, que es donde llegan las visitas desde Instagram y Facebook."
+              }
             ]
           },
           "languages": {
@@ -143,24 +319,51 @@
             "title": "Español, inglés y alemán",
             "lead": "La empresa ya distribuye en Europa. Presentar el catálogo en los idiomas de esos mercados abre búsquedas que hoy no llegan a la web.",
             "points": [
-              { "k": "Presentación internacional", "t": "Un distribuidor o un negocio en Alemania, Austria o Suiza entiende el producto y pide presupuesto en su idioma." },
-              { "k": "SEO multilingüe", "t": "Cada idioma con sus propias URL, títulos y descripciones, y la relación entre idiomas marcada para Google." },
-              { "k": "Alcance acordado", "t": "Se traducen las páginas clave: inicio, categorías principales y contacto. El resto del catálogo puede ampliarse por fases." }
+              {
+                "k": "Presentación internacional",
+                "t": "Un distribuidor o un negocio en Alemania, Austria o Suiza entiende el producto y pide presupuesto en su idioma."
+              },
+              {
+                "k": "SEO multilingüe",
+                "t": "Cada idioma con sus propias URL, títulos y descripciones, y la relación entre idiomas marcada para Google."
+              },
+              {
+                "k": "Alcance acordado",
+                "t": "Premium incluye el contenido acordado en inglés y alemán. Esencial y Business se entregan en español; más idiomas o más contenido pueden añadirse por fases."
+              }
             ],
             "mockNote": "Diseño conceptual · la misma página en los tres idiomas"
           },
           "video": {
             "label": "Vídeo marketing",
-            "title": "Seis Reels para Instagram",
-            "lead": "Un letrero LED se entiende en movimiento. Proponemos una serie de Reels cortos que muestran el producto encendido, cambiando de mensaje y funcionando en negocios reales.",
+            "title": "Reels para Instagram",
+            "lead": "Un letrero LED se entiende en movimiento. Estos son seis conceptos de partida para Reels cortos que muestran el producto encendido, cambiando de mensaje y funcionando en negocios reales. Esencial incluye 3 Reels, Business 6 y Premium 12 en total.",
             "note": "Portadas conceptuales. Los vídeos se producen con grabaciones del producto e imágenes generadas con IA, siempre revisadas antes de publicar; no hay vídeos terminados todavía.",
             "reels": [
-              { "title": "De local apagado a escaparate que vende", "text": "Antes y después de una tienda de barrio al instalar un letrero LED." },
-              { "title": "Cruces LED para farmacias", "text": "La cruz programable de día y de noche, con hora, fecha y temperatura." },
-              { "title": "Cambia la oferta en segundos", "text": "El mismo panel mostrando promociones distintas a lo largo del día." },
-              { "title": "Un letrero para cada negocio", "text": "Restaurantes, hoteles y tiendas: el producto adaptado a cada sector." },
-              { "title": "Programarlo es así de fácil", "text": "Del móvil o el ordenador al letrero, paso a paso, con un producto compatible con WiFi." },
-              { "title": "La marca, en una pieza", "text": "Presentación premium de Letreros Programables para el perfil y los anuncios." }
+              {
+                "title": "De local apagado a escaparate que vende",
+                "text": "Antes y después de una tienda de barrio al instalar un letrero LED."
+              },
+              {
+                "title": "Cruces LED para farmacias",
+                "text": "La cruz programable de día y de noche, con hora, fecha y temperatura."
+              },
+              {
+                "title": "Cambia la oferta en segundos",
+                "text": "El mismo panel mostrando promociones distintas a lo largo del día."
+              },
+              {
+                "title": "Un letrero para cada negocio",
+                "text": "Restaurantes, hoteles y tiendas: el producto adaptado a cada sector."
+              },
+              {
+                "title": "Programarlo es así de fácil",
+                "text": "Del móvil o el ordenador al letrero, paso a paso, con un producto compatible con WiFi."
+              },
+              {
+                "title": "La marca, en una pieza",
+                "text": "Presentación premium de Letreros Programables para el perfil y los anuncios."
+              }
             ]
           },
           "funnel": {
@@ -168,31 +371,99 @@
             "title": "Del primer vídeo al cliente",
             "lead": "Cada pieza tiene un papel: las redes y Google atraen, la web convence y el presupuesto por WhatsApp cierra.",
             "steps": [
-              { "k": "Instagram · Facebook · Google", "t": "Reels, publicaciones y búsquedas llevan a la web." },
-              { "k": "Web rediseñada", "t": "El producto encendido, en su contexto y en tres idiomas." },
-              { "k": "Productos y tienda", "t": "Familias, sectores y fichas con especificaciones claras." },
-              { "k": "WhatsApp · Presupuesto", "t": "Un contacto directo desde cada producto." },
-              { "k": "Cliente", "t": "Pedido online o presupuesto aceptado." }
+              {
+                "k": "Instagram · Facebook · Google",
+                "t": "Reels, publicaciones y búsquedas llevan a la web."
+              },
+              {
+                "k": "Web rediseñada",
+                "t": "El producto encendido y en su contexto, en una tienda nueva."
+              },
+              {
+                "k": "Productos y tienda",
+                "t": "Familias, sectores y fichas con especificaciones claras."
+              },
+              {
+                "k": "WhatsApp · Presupuesto",
+                "t": "Un contacto directo desde cada producto."
+              },
+              {
+                "k": "Cliente",
+                "t": "Pedido online o presupuesto aceptado."
+              }
             ]
           },
           "pricing": {
             "label": "Inversión",
             "title": "Tres formas de empezar",
-            "lead": "Paquetes cerrados sobre la plataforma de tienda actual. Precios sin IVA.",
+            "lead": "Proyectos nuevos e independientes de la tienda PrestaShop actual: Esencial es una web catálogo nueva; Business y Premium, una tienda online nueva en Shopify. Todos incluyen Reels promocionales. Precios sin IVA.",
             "vat": "+ IVA",
             "featured": "Recomendado",
             "choose": "Elegir este paquete",
+            "reelsLabel": "Reels",
+            "reelsTotal": "en total",
             "packages": {
-              "esencial": { "name": "Esencial", "summary": "Una renovación visible de lo que ya existe.", "includes": ["Renovación visual de la web actual: colores, tipografía, cabecera y pie", "Mejoras clave en la página de inicio: portada, categorías, bloque de confianza y llamadas a la acción", "1 Reel promocional", "Una ronda de revisión"] },
-              "profesional": { "name": "Profesional", "summary": "La web nueva, en tres idiomas, preparada para vender.", "includes": ["Rediseño visual completo sobre la plataforma de tienda actual", "Plantillas revisadas de categoría y ficha de producto", "Páginas clave en español, inglés y alemán", "SEO básico: títulos, descripciones, encabezados y datos de producto", "Integración de WhatsApp y botón de presupuesto", "6 Reels"] },
-              "premium": { "name": "Premium", "summary": "Todo el Profesional, con más contenido y más captación.", "includes": ["Todo lo incluido en Profesional", "Fichas de producto mejoradas: especificaciones, usos y preguntas frecuentes", "Visuales conceptuales adicionales de producto en contexto", "10 Reels", "Captación de leads mejorada: formulario de presupuesto y seguimiento", "Asistente con IA en la web: responde dudas sobre los productos a cualquier hora y lleva al presupuesto"] }
+              "esencial": {
+                "name": "Esencial",
+                "summary": "Web nueva y catálogo, con presupuesto por WhatsApp.",
+                "includes": [
+                  "Web nueva responsive con catálogo de productos",
+                  "Hasta 30 productos",
+                  "En español",
+                  "Solicitudes de presupuesto por WhatsApp",
+                  "SEO básico",
+                  "3 Reels promocionales",
+                  "Sin carrito ni pago online propios"
+                ]
+              },
+              "business": {
+                "name": "Business",
+                "summary": "Una tienda online nueva en Shopify, lista para vender.",
+                "includes": [
+                  "Tienda online nueva en Shopify",
+                  "Hasta 30 productos",
+                  "Opciones de producto configurables dentro del alcance técnico acordado",
+                  "Carrito y Shopify Checkout",
+                  "Configuración de Shopify Payments, si la empresa cumple los requisitos",
+                  "Administración estándar de Shopify",
+                  "En español",
+                  "SEO básico",
+                  "Integración de WhatsApp",
+                  "Formación para el propietario",
+                  "6 Reels promocionales"
+                ]
+              },
+              "premium": {
+                "name": "Premium",
+                "summary": "Todo Business, en tres idiomas y con más contenido.",
+                "includes": [
+                  "Todo lo incluido en Business",
+                  "Contenido acordado en inglés y alemán",
+                  "Presentación de producto mejorada",
+                  "Visualizaciones de producto adicionales aprobadas",
+                  "SEO ampliado y contenido de marketing",
+                  "12 Reels promocionales en total"
+                ]
+              }
             },
+            "reelSpecTitle": "Cada Reel",
+            "reelSpecs": [
+              "Formato vertical 9:16",
+              "Unos 15 segundos",
+              "Producción con apoyo de IA cuando sea adecuado",
+              "Concepto centrado en el producto",
+              "Edición y postproducción profesional",
+              "Una ronda razonable de revisión"
+            ],
+            "reelNote": "Los Reels son contenido de marketing: no garantizan interacción, clientes ni ventas.",
             "excludesTitle": "No incluido en ningún paquete",
             "excludes": [
-              "Migración a otra plataforma de tienda o desarrollo a medida",
-              "Traducción de todo el catálogo: solo las páginas clave acordadas",
+              "Modificar o migrar la tienda PrestaShop actual, sus pedidos, clientes o cuentas",
+              "Más de 30 productos o desarrollo a medida fuera del alcance acordado",
+              "Traducciones fuera del contenido acordado (Esencial y Business: solo español)",
+              "Suscripción de Shopify, apps de pago, comisiones de pago y dominio",
               "Fotografía o grabación en instalaciones de clientes",
-              "Inversión en publicidad, licencias, hosting y dominio",
+              "Inversión en publicidad",
               "Cambios fuera del alcance descrito, que se presupuestan aparte"
             ]
           },
@@ -222,12 +493,12 @@
         "en": {
           "meta": {
             "title": "Letreros Programables — Digital transformation proposal | 3DNA",
-            "description": "3DNA's proposal for Letreros Programables: website redesign, catalogue in Spanish, English and German, SEO, Instagram Reels and lead generation.",
+            "description": "3DNA's proposal for Letreros Programables: a new Shopify online store, catalogue in Spanish, English and German, SEO, Instagram Reels and lead generation.",
             "ogTitle": "Letreros Programables · Digital transformation proposal",
             "ogImageAlt": "Concept visual: the Letreros Programables façade at night with a large LED screen"
           },
           "card": {
-            "summary": "A new digital image, a modernised website, a multilingual catalogue and video content for a programmable LED sign manufacturer in Granada.",
+            "summary": "A new digital image, a new Shopify online store, a multilingual catalogue and video content for a programmable LED sign manufacturer in Granada.",
             "featureAlt": "Concept visual: a shopfront with a colourful programmable LED sign and the Letreros Programables lettering",
             "alt": "3DNA concept visual: LED sign reading ABIERTO, green LED cross and full-colour LED screen"
           },
@@ -246,19 +517,55 @@
             "title": "Made in Spain, a catalogue for every business",
             "lead": "Letreros Programables manufactures and distributes programmable LED signs and illuminated signs for businesses. Manufacturing is in Granada and distribution reaches all of Spain and the rest of Europe.",
             "facts": [
-              { "k": "6", "t": "product families" },
-              { "k": "P4–P10", "t": "indoor and outdoor screens" },
-              { "k": "USB · WiFi", "t": "programming from a computer or phone" },
-              { "k": "Online", "t": "shop with card, PayPal and bank transfer" }
+              {
+                "k": "6",
+                "t": "product families"
+              },
+              {
+                "k": "P4–P10",
+                "t": "indoor and outdoor screens"
+              },
+              {
+                "k": "USB · WiFi",
+                "t": "programming from a computer or phone"
+              },
+              {
+                "k": "Online",
+                "t": "shop with card, PayPal and bank transfer"
+              }
             ],
             "familiesTitle": "Product families",
             "families": [
-              { "id": "letreros", "name": "Programmable LED signs", "text": "Single colour (red, green, white, blue and amber) and RGB, single or double-sided, in several sizes." },
-              { "id": "banderolas", "name": "Programmable LED projecting signs", "text": "Single colour, RGB and outdoor full colour (P5, P6 and P10), single or double-sided." },
-              { "id": "pantallas", "name": "Full-colour LED screens", "text": "Indoor P4 and P5; outdoor P5, P6 and P10. For example, 64 × 64 cm in P5." },
-              { "id": "rotulos", "name": "Illuminated signs for businesses", "text": "Car parks, pharmacies and clinics, bars, hotels, shops, petrol stations, driving schools, tobacconists and more." },
-              { "id": "cruces", "name": "Programmable LED crosses", "text": "Single colour, RGB and full colour for pharmacies, vets and clinics, from 64 × 64 to 96 × 96 cm." },
-              { "id": "marcadores", "name": "Sports scoreboards", "text": "LED scoreboards for sports facilities." }
+              {
+                "id": "letreros",
+                "name": "Programmable LED signs",
+                "text": "Single colour (red, green, white, blue and amber) and RGB, single or double-sided, in several sizes."
+              },
+              {
+                "id": "banderolas",
+                "name": "Programmable LED projecting signs",
+                "text": "Single colour, RGB and outdoor full colour (P5, P6 and P10), single or double-sided."
+              },
+              {
+                "id": "pantallas",
+                "name": "Full-colour LED screens",
+                "text": "Indoor P4 and P5; outdoor P5, P6 and P10. For example, 64 × 64 cm in P5."
+              },
+              {
+                "id": "rotulos",
+                "name": "Illuminated signs for businesses",
+                "text": "Car parks, pharmacies and clinics, bars, hotels, shops, petrol stations, driving schools, tobacconists and more."
+              },
+              {
+                "id": "cruces",
+                "name": "Programmable LED crosses",
+                "text": "Single colour, RGB and full colour for pharmacies, vets and clinics, from 64 × 64 to 96 × 96 cm."
+              },
+              {
+                "id": "marcadores",
+                "name": "Sports scoreboards",
+                "text": "LED scoreboards for sports facilities."
+              }
             ],
             "visualNote": "3DNA concept visuals based on the published catalogue; they are not photographs of real installations.",
             "oppTitle": "Where we see the opportunity",
@@ -273,7 +580,7 @@
           "web": {
             "label": "Website redesign",
             "title": "From catalogue to a shop window that sells",
-            "lead": "A website that shows the product switched on, in context and with the information customers need to decide, on the current shop platform.",
+            "lead": "A new, independent website built on Shopify that shows the product switched on, in context and with the information customers need to decide. It is not a modification of the current PrestaShop shop.",
             "current": "Current website",
             "currentNote": "Screenshot of letrerosprogramables.com, 23/11/2026",
             "proposed": "3DNA proposal",
@@ -281,12 +588,30 @@
             "mobileNote": "Concept design · mobile",
             "pointsTitle": "What changes",
             "points": [
-              { "k": "Clear navigation", "t": "Five entries: Products, Industries, How it works, Company and Contact." },
-              { "k": "Catalogue by family and industry", "t": "Customers start from their product or their business: pharmacy, bar, hotel, shop, car park…" },
-              { "k": "Specifications in view", "t": "Size, pitch, faces and programming on every card, without opening the product page." },
-              { "k": "Conversion", "t": "Quote and WhatsApp buttons always visible, on every product too." },
-              { "k": "Trust", "t": "Manufacturing in Granada, free shipping, payment methods and setup help, up front." },
-              { "k": "Mobile first", "t": "The design starts from the phone, where visits from Instagram and Facebook arrive." }
+              {
+                "k": "Clear navigation",
+                "t": "Five entries: Products, Industries, How it works, Company and Contact."
+              },
+              {
+                "k": "Catalogue by family and industry",
+                "t": "Customers start from their product or their business: pharmacy, bar, hotel, shop, car park…"
+              },
+              {
+                "k": "Specifications in view",
+                "t": "Size, pitch, faces and programming on every card, without opening the product page."
+              },
+              {
+                "k": "Conversion",
+                "t": "Quote and WhatsApp buttons always visible, on every product too."
+              },
+              {
+                "k": "Trust",
+                "t": "Manufacturing in Granada, free shipping, payment methods and setup help, up front."
+              },
+              {
+                "k": "Mobile first",
+                "t": "The design starts from the phone, where visits from Instagram and Facebook arrive."
+              }
             ]
           },
           "languages": {
@@ -294,24 +619,51 @@
             "title": "Spanish, English and German",
             "lead": "The company already distributes in Europe. Presenting the catalogue in the languages of those markets opens up searches that don't reach the website today.",
             "points": [
-              { "k": "International presentation", "t": "A distributor or a business in Germany, Austria or Switzerland understands the product and asks for a quote in its own language." },
-              { "k": "Multilingual SEO", "t": "Each language with its own URLs, titles and descriptions, and the language versions linked for Google." },
-              { "k": "Agreed scope", "t": "The key pages are translated: home, main categories and contact. The rest of the catalogue can follow in phases." }
+              {
+                "k": "International presentation",
+                "t": "A distributor or a business in Germany, Austria or Switzerland understands the product and asks for a quote in its own language."
+              },
+              {
+                "k": "Multilingual SEO",
+                "t": "Each language with its own URLs, titles and descriptions, and the language versions linked for Google."
+              },
+              {
+                "k": "Agreed scope",
+                "t": "Premium includes the agreed content in English and German. Essential and Business are delivered in Spanish; more languages or content can be added in phases."
+              }
             ],
             "mockNote": "Concept design · the same page in the three languages"
           },
           "video": {
             "label": "Video marketing",
-            "title": "Six Instagram Reels",
-            "lead": "An LED sign makes sense in motion. We propose a series of short Reels showing the product switched on, changing its message and working in real businesses.",
+            "title": "Instagram Reels",
+            "lead": "An LED sign makes sense in motion. These are six starting concepts for short Reels showing the product switched on, changing its message and working in real businesses. Essential includes 3 Reels, Business 6 and Premium 12 in total.",
             "note": "Concept covers. The videos are produced with footage of the product and AI-generated imagery, always reviewed before publishing; no finished videos exist yet.",
             "reels": [
-              { "title": "From a dark shopfront to a window that sells", "text": "Before and after for a neighbourhood shop that installs an LED sign." },
-              { "title": "LED crosses for pharmacies", "text": "The programmable cross by day and by night, with time, date and temperature." },
-              { "title": "Change the offer in seconds", "text": "The same panel showing different promotions through the day." },
-              { "title": "A sign for every business", "text": "Restaurants, hotels and shops: the product adapted to each industry." },
-              { "title": "Programming it is this easy", "text": "From phone or computer to the sign, step by step, with a WiFi-compatible product." },
-              { "title": "The brand in one piece", "text": "A premium presentation of Letreros Programables for the profile and for ads." }
+              {
+                "title": "From a dark shopfront to a window that sells",
+                "text": "Before and after for a neighbourhood shop that installs an LED sign."
+              },
+              {
+                "title": "LED crosses for pharmacies",
+                "text": "The programmable cross by day and by night, with time, date and temperature."
+              },
+              {
+                "title": "Change the offer in seconds",
+                "text": "The same panel showing different promotions through the day."
+              },
+              {
+                "title": "A sign for every business",
+                "text": "Restaurants, hotels and shops: the product adapted to each industry."
+              },
+              {
+                "title": "Programming it is this easy",
+                "text": "From phone or computer to the sign, step by step, with a WiFi-compatible product."
+              },
+              {
+                "title": "The brand in one piece",
+                "text": "A premium presentation of Letreros Programables for the profile and for ads."
+              }
             ]
           },
           "funnel": {
@@ -319,31 +671,99 @@
             "title": "From the first video to the customer",
             "lead": "Each piece has a role: social media and Google attract, the website convinces and the WhatsApp quote closes.",
             "steps": [
-              { "k": "Instagram · Facebook · Google", "t": "Reels, posts and searches bring people to the website." },
-              { "k": "Redesigned website", "t": "The product switched on, in context and in three languages." },
-              { "k": "Products and shop", "t": "Families, industries and product pages with clear specifications." },
-              { "k": "WhatsApp · Quote", "t": "Direct contact from every product." },
-              { "k": "Customer", "t": "An online order or an accepted quote." }
+              {
+                "k": "Instagram · Facebook · Google",
+                "t": "Reels, posts and searches bring people to the website."
+              },
+              {
+                "k": "Redesigned website",
+                "t": "The product switched on and in context, in a new store."
+              },
+              {
+                "k": "Products and shop",
+                "t": "Families, industries and product pages with clear specifications."
+              },
+              {
+                "k": "WhatsApp · Quote",
+                "t": "Direct contact from every product."
+              },
+              {
+                "k": "Customer",
+                "t": "An online order or an accepted quote."
+              }
             ]
           },
           "pricing": {
             "label": "Investment",
             "title": "Three ways to start",
-            "lead": "Fixed-scope packages on the current shop platform. Prices exclude VAT.",
+            "lead": "New projects, independent of the current PrestaShop shop: Essential is a new catalogue website; Business and Premium are a new Shopify online store. All of them include promotional Reels. Prices exclude VAT.",
             "vat": "+ VAT",
             "featured": "Recommended",
             "choose": "Choose this package",
+            "reelsLabel": "Reels",
+            "reelsTotal": "in total",
             "packages": {
-              "esencial": { "name": "Essential", "summary": "A visible refresh of what already exists.", "includes": ["Visual refresh of the current website: colours, typography, header and footer", "Key homepage improvements: hero, categories, trust block and calls to action", "1 promotional Reel", "One round of revisions"] },
-              "profesional": { "name": "Professional", "summary": "The new website, in three languages, ready to sell.", "includes": ["Complete visual redesign on the current shop platform", "Revised category and product page templates", "Key pages in Spanish, English and German", "Basic SEO: titles, descriptions, headings and product data", "WhatsApp integration and quote button", "6 Reels"] },
-              "premium": { "name": "Premium", "summary": "Everything in Professional, with more content and more leads.", "includes": ["Everything in Professional", "Enhanced product pages: specifications, uses and FAQs", "Additional concept visuals of products in context", "10 Reels", "Improved lead generation: quote form and follow-up", "AI assistant on the website: answers product questions at any hour and leads to a quote"] }
+              "esencial": {
+                "name": "Essential",
+                "summary": "A new website and catalogue, with quotes by WhatsApp.",
+                "includes": [
+                  "New responsive website and product catalogue",
+                  "Up to 30 products",
+                  "In Spanish",
+                  "Quote requests by WhatsApp",
+                  "Basic SEO",
+                  "3 promotional Reels",
+                  "No independent cart or online checkout"
+                ]
+              },
+              "business": {
+                "name": "Business",
+                "summary": "A new Shopify online store, ready to sell.",
+                "includes": [
+                  "New Shopify online store",
+                  "Up to 30 products",
+                  "Configurable product options within the agreed technical scope",
+                  "Shopping cart and Shopify Checkout",
+                  "Shopify Payments setup, where the business is eligible",
+                  "Standard Shopify administration",
+                  "In Spanish",
+                  "Basic SEO",
+                  "WhatsApp integration",
+                  "Owner training",
+                  "6 promotional Reels"
+                ]
+              },
+              "premium": {
+                "name": "Premium",
+                "summary": "Everything in Business, in three languages and with more content.",
+                "includes": [
+                  "Everything in Business",
+                  "Agreed content in English and German",
+                  "Enhanced product presentation",
+                  "Additional approved product visualisations",
+                  "Expanded SEO and marketing content",
+                  "12 promotional Reels in total"
+                ]
+              }
             },
+            "reelSpecTitle": "Each Reel",
+            "reelSpecs": [
+              "Vertical 9:16 format",
+              "About 15 seconds",
+              "AI-assisted production where appropriate",
+              "Product-focused concept",
+              "Professional editing and post-production",
+              "One reasonable round of revisions"
+            ],
+            "reelNote": "Reels are marketing content: they do not guarantee engagement, customers or sales.",
             "excludesTitle": "Not included in any package",
             "excludes": [
-              "Migration to another shop platform or custom development",
-              "Translation of the whole catalogue: only the agreed key pages",
-              "Photography or filming at customers' premises",
-              "Advertising spend, licences, hosting and domain",
+              "Changing or migrating the current PrestaShop shop, its orders, customers or accounts",
+              "More than 30 products or custom development beyond the agreed scope",
+              "Translations beyond the agreed content (Essential and Business: Spanish only)",
+              "Shopify subscription, paid apps, payment fees and domain",
+              "Photography or filming at customers’ premises",
+              "Advertising spend",
               "Changes outside the described scope, which are quoted separately"
             ]
           },

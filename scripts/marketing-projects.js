@@ -290,11 +290,17 @@ ${p.packages.map((k) => {
         <h3 class="mpp-pack__name">${esc(pk.name)}</h3>
         <p class="mpp-pack__price"><span>${esc(eur(k.price, L))}</span> <small>${esc(pr.vat)}</small></p>
         <p class="mpp-pack__sum">${esc(pk.summary)}</p>
+        ${k.reels ? `<p class="mpp-pack__reels"><b>${k.reels}</b> <span>${esc(pr.reelsLabel || "Reels")}</span>${k.id === p.packages[p.packages.length - 1].id && pr.reelsTotal ? ` <small>${esc(pr.reelsTotal)}</small>` : ""}</p>` : ""}
         <ul class="mpp-pack__list">${pk.includes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
         <a class="mpp-btn${k.featured ? " mpp-btn--dark" : " mpp-btn--line"}" href="${esc(wa)}" target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="mproject_${esc(p.id)}_${k.id}">${esc(pr.choose)} ${ARROW}</a>
       </li>`;
     }).join("\n")}
     </ul>
+    ${pr.reelSpecs ? `<div class="mpp-reelspec" data-reveal>
+      <h3 class="mpp-h3">${esc(pr.reelSpecTitle)}</h3>
+      <ul>${pr.reelSpecs.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      ${pr.reelNote ? `<p class="mpp-small">${esc(pr.reelNote)}</p>` : ""}
+    </div>` : ""}
     <div class="mpp-excl" data-reveal>
       <h3 class="mpp-h3">${esc(pr.excludesTitle)}</h3>
       <ul>${pr.excludes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
