@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<!-- Link-preview card (Open Graph, 1200 × 630) for the Letreros Programables proposal.
+     Rendered by scripts/marketing-visuals/render.js:  letreros-og.html?lang=es|en -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Inter:wght@400;500;600;700;800&display=block">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #05060c; }
+  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% 45%; }
+  .shade { position: absolute; inset: 0; background:
+      linear-gradient(90deg, rgba(5,6,14,.94) 0%, rgba(5,6,14,.82) 34%, rgba(5,6,14,.25) 62%, rgba(5,6,14,0) 80%),
+      linear-gradient(0deg, rgba(5,6,14,.55) 0%, rgba(5,6,14,0) 40%); }
+  .copy { position: absolute; left: 64px; top: 56px; bottom: 56px; width: 600px; display: flex; flex-direction: column; color: #fff; font-family: Inter, sans-serif; }
+  .logo { width: 250px; height: auto; display: block; }
+  .eyebrow { margin: auto 0 16px; font-size: 15px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: #ffd21a; }
+  h1 { margin: 0; font-family: "DM Serif Text", Georgia, serif; font-weight: 400; font-size: 60px; line-height: 1.02; letter-spacing: -.01em; }
+  h1 em { font-style: italic; }
+  .line { margin: 22px 0 0; font-size: 20px; line-height: 1.45; color: rgba(255,255,255,.86); }
+  .url { position: absolute; right: 56px; bottom: 50px; font: 600 16px Inter, sans-serif; letter-spacing: .14em; color: rgba(255,255,255,.85); }
+</style>
+</head>
+<body>
+<img class="bg" src="../../images/marketing/projects/letreros-programables/hero-facade-1672.webp" alt="">
+<div class="shade"></div>
+<div class="copy">
+  <img class="logo" src="../../images/marketing/projects/letreros-programables/client-logo-light-440.webp" alt="">
+  <p class="eyebrow" id="e"></p>
+  <h1 id="t"></h1>
+  <p class="line" id="l"></p>
+</div>
+<div class="url">3DNA.ES</div>
+<script>
+(async () => {
+  const lang = new URLSearchParams(location.search).get("lang") || "es";
+  const T = {
+    es: { e: "Propuesta de 3DNA", t: "Propuesta de <em>transformación digital</em>", l: "Nueva tienda online en Shopify, catálogo en tres idiomas y Reels para Instagram." },
+    en: { e: "Proposal by 3DNA", t: "Digital <em>transformation proposal</em>", l: "A new Shopify online store, a catalogue in three languages and Instagram Reels." }
+  }[lang];
+  document.documentElement.lang = lang;
+  document.getElementById("e").textContent = T.e;
+  document.getElementById("t").innerHTML = T.t;
+  document.getElementById("l").textContent = T.l;
+  await document.fonts.ready;
+  await Promise.all([...document.images].map((i) => i.decode().catch(() => null)));
+  document.title = "ready";
+})();
+</script>
+</body>
+</html>

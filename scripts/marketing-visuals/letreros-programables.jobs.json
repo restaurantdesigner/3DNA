@@ -6,6 +6,8 @@
     { "name": "home-mobile-es", "src": "letreros-home.html?lang=es&device=mobile", "width": 390, "height": 844, "scale": 2, "fullPage": true, "sizes": [780] },
     { "name": "home-mobile-en", "src": "letreros-home.html?lang=en&device=mobile", "width": 390, "height": 844, "scale": 2, "fullPage": true, "sizes": [780] },
     { "name": "home-mobile-de", "src": "letreros-home.html?lang=de&device=mobile", "width": 390, "height": 844, "scale": 2, "fullPage": true, "sizes": [780] },
-    { "name": "current-desktop", "src": "https://letrerosprogramables.com/", "width": 1440, "height": 900, "sizes": [1440] }
+    { "name": "current-desktop", "src": "https://letrerosprogramables.com/", "width": 1440, "height": 900, "sizes": [1440] },
+    { "name": "og-es", "src": "letreros-og.html?lang=es", "width": 1200, "height": 630, "sizes": [1200], "format": "jpg" },
+    { "name": "og-en", "src": "letreros-og.html?lang=en", "width": 1200, "height": 630, "sizes": [1200], "format": "jpg" }
   ]
 }

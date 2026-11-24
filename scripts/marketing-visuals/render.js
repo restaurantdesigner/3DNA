@@ -9,7 +9,7 @@
  *     "jobs": [ { "name": "cover", "src": "letreros-programables.html?v=cover", "width": 1600, "height": 1200,
  *                 "scale": 1, "fullPage": false, "sizes": [1600, 800], "quality": 82 } ] }
  * fullPage pages report their height in document.title ("h:<px>") and are captured whole.
- * Output: <out>/<name>-<size>.webp for each size (width in px).
+ * Output: <out>/<name>-<size>.webp for each size (width in px); .jpg when the job has "format": "jpg".
  */
 const fs = require("fs");
 const os = require("os");
@@ -42,9 +42,11 @@ for (const job of spec.jobs.filter((j) => !only.length || only.includes(j.name))
   const png = path.join(tmp, `${job.name}.png`);
   edge([`--window-size=${job.width},${height}`, `--force-device-scale-factor=${scale}`, `--screenshot=${png}`, urlOf(job.src)]);
   for (const size of job.sizes || [job.width * scale]) {
-    const file = path.join(outDir, `${job.name}-${size}.webp`);
+    // format "jpg" for link-preview cards (messengers want JPEG/PNG), WebP otherwise
+    const jpg = job.format === "jpg";
+    const file = path.join(outDir, `${job.name}-${size}.${jpg ? "jpg" : "webp"}`);
     execFileSync("ffmpeg", ["-v", "error", "-y", "-i", png, "-vf", `crop=${job.width * scale}:${height * scale}:0:0,scale=${size}:-2:flags=lanczos`,
-      "-c:v", "libwebp", "-quality", String(job.quality || 82), file]);
+      ...(jpg ? ["-q:v", "3"] : ["-c:v", "libwebp", "-quality", String(job.quality || 82)]), file]);
     console.log(path.relative(root, file).replace(/\\/g, "/"), `${size}w`);
   }
 }

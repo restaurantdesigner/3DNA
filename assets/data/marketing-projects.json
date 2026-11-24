@@ -67,7 +67,10 @@
         "smallWidth": 960,
         "conceptual": true
       },
-      "og": "/images/marketing/projects/letreros-programables/og.jpg",
+      "og": {
+        "es": "/images/marketing/projects/letreros-programables/og-es-1200.jpg",
+        "en": "/images/marketing/projects/letreros-programables/og-en-1200.jpg"
+      },
       "visuals": {
         "families": {
           "letreros": {
@@ -195,7 +198,7 @@
             "title": "Letreros Programables — Propuesta de transformación digital | 3DNA",
             "description": "Propuesta de 3DNA para Letreros Programables: nueva tienda online en Shopify, catálogo en español, inglés y alemán, SEO, Reels para Instagram y captación de clientes.",
             "ogTitle": "Letreros Programables · Propuesta de transformación digital",
-            "ogImageAlt": "Visual conceptual: fachada nocturna de Letreros Programables con una gran pantalla LED"
+            "ogImageAlt": "Propuesta de 3DNA para Letreros Programables: fachada nocturna con el logotipo iluminado y una gran pantalla LED"
           },
           "card": {
             "summary": "Nueva imagen digital, tienda online nueva en Shopify, catálogo multilingüe y contenido audiovisual para un fabricante de letreros LED programables de Granada.",
@@ -495,7 +498,7 @@
             "title": "Letreros Programables — Digital transformation proposal | 3DNA",
             "description": "3DNA's proposal for Letreros Programables: a new Shopify online store, catalogue in Spanish, English and German, SEO, Instagram Reels and lead generation.",
             "ogTitle": "Letreros Programables · Digital transformation proposal",
-            "ogImageAlt": "Concept visual: the Letreros Programables façade at night with a large LED screen"
+            "ogImageAlt": "3DNA proposal for Letreros Programables: night façade with the illuminated logo and a large LED screen"
           },
           "card": {
             "summary": "A new digital image, a new Shopify online store, a multilingual catalogue and video content for a programmable LED sign manufacturer in Granada.",

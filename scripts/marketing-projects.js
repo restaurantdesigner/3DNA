@@ -365,7 +365,8 @@ ${p.packages.map((k) => {
     indexable: (id) => byId(id).index !== false,
     subPath,
     meta: (lang, id) => C(byId(id), lang).meta,
-    ogImage: (id) => byId(id).og,
+    // link-preview card: one path, or one per language { es, en }
+    ogImage: (id, lang) => { const o = byId(id).og; return typeof o === "string" ? o : (o[langOf(byId(id), lang)] || o.en || Object.values(o)[0]); },
     galleryHtml,
     localNavHtml,
     heroHtml,

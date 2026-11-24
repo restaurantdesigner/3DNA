@@ -56,7 +56,7 @@ const realEstateOg = (page, lang) => (propertySlugOf(page) || page === "realEsta
 const mprojectKey = (id) => `mproject-${id}`;
 const mprojectIdOf = (page) => (page && page.startsWith("mproject-") ? page.slice("mproject-".length) : null);
 const ogImagePath = (page, lang) => realEstateOg(page, lang) ? realEstateOg(page, lang).path
-  : mprojectIdOf(page) ? marketingProjects.ogImage(mprojectIdOf(page))
+  : mprojectIdOf(page) ? marketingProjects.ogImage(mprojectIdOf(page), lang)
   : projectIdOf(page) ? projects.ogImage(projectIdOf(page)) : (page && OG_PAGE_IMAGES[page] ? OG_PAGE_IMAGES[page](lang) : OG_IMAGE.path(lang));
 const ogImageSize = (page, lang) => {
   if (!realEstateOg(page, lang)) return { width: OG_IMAGE.width, height: OG_IMAGE.height, type: "image/jpeg" };
