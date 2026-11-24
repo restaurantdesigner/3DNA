@@ -84,10 +84,21 @@
 </div>`;
   }
 
+  const SOCIAL_ICONS = {
+    instagram: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg>',
+    tiktok: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.3 1.6 3.7 3.9 3.9v2.6c-1.4.1-2.6-.3-3.9-1.1v5.3c0 6.7-7.3 8.8-10.2 4-1.9-3.1-.7-8.5 5.4-8.7v2.8c-.5.1-1 .2-1.4.3-1.4.5-2.2 1.4-2 3 .4 3 6 3.9 5.5-2V3h2.7z"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.6 2.6 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.6 2.6 0 0 0 1.8 1.8c1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>'
+  };
   function footer(t, L) {
     return `<footer class="ftr">
   <div class="wrap ftr__in">
-    <div><img src="${D.img}client-logo-light-440.webp" width="440" height="122" alt="Letreros Programables" class="ftr__logo" loading="lazy"></div>
+    <div><img src="${D.img}client-logo-light-440.webp" width="440" height="122" alt="Letreros Programables" class="ftr__logo" loading="lazy">
+      <p class="ftr__k">${esc(t.foot.social)}</p>
+      <ul class="social">${(D.social || []).map((n) => n.url
+        ? `<li><a href="${n.url}" target="_blank" rel="noopener nofollow" aria-label="${esc(n.name)}" title="${esc(n.name)}">${SOCIAL_ICONS[n.id]}</a></li>`
+        : `<li><span class="social--proposed" role="img" aria-label="${esc(n.name)} — ${esc(t.foot.proposedShort)}" title="${esc(n.name)} — ${esc(t.foot.proposedShort)}">${SOCIAL_ICONS[n.id]}</span></li>`).join("")}</ul>
+      <p class="ftr__note">${esc(t.foot.proposed)}</p></div>
     <nav class="ftr__nav">${D.categories.map((c) => `<a href="${href(L, "c", c.id)}">${esc(t.cats[c.id][0])}</a>`).join("")}</nav>
     <div class="ftr__demo"><p><b>${esc(t.foot.concept)}</b></p><p>${esc(t.foot.demo)}</p><p><a href="${D.source}/" target="_blank" rel="noopener nofollow">${esc(t.foot.source)} ↗</a></p></div>
   </div>

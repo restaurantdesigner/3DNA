@@ -10,6 +10,13 @@
 window.LP = {
   img: "/images/marketing/projects/letreros-programables/",
   source: "https://letrerosprogramables.com",
+  // social profiles: url = live profile linked from the current website; null = proposed (Reels strategy)
+  social: [
+    { id: "instagram", name: "Instagram", url: null },
+    { id: "facebook", name: "Facebook", url: "https://www.facebook.com/letrerosledprogramables" },
+    { id: "tiktok", name: "TikTok", url: null },
+    { id: "youtube", name: "YouTube", url: "https://www.youtube.com/@rondaluziluminacionledpara1178" }
+  ],
 
   categories: [
     { id: "letreros", img: "photo-letreros", subs: ["mono", "rgb"] },
