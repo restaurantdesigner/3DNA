@@ -54,6 +54,8 @@ export default {
     // east internal road through the tanker loading bay, connector to the east perimeter road
     { x: 148, z: -25.5, w: 10, d: 91, lines: false }, { x: 157.5, z: -36, w: 9, d: 8, lines: false }
   ],
+  // painted boundary lines around the process areas
+  zoneLines: ["milling", "cooking", "fermentation", "distillation", "dehydration"],
   // zebra crossings where the main walkway meets roads
   crossings: [{ x: -146, z: 9, w: 8, d: 2.4, along: "x" }, { x: 148, z: 9, w: 10, d: 2.4, along: "x" }],
 
@@ -165,6 +167,7 @@ export default {
     ...[-24, -14, -4, 6, 16].map((z, i) => E(`tree-e${i}`, "tree", "tree", [157.5, z], { s: 0.8, seed: i + 60 }, { decor: true, area: "admin" })),
     ...[[-100.5, -70.5, "stop"], [142, -66, "stop"], [154, -41, "stop"], [140, -58, "info"], [-108, -58, "info"]].map(([x, z, kind], i) => E(`sign-${i}`, "sign", "sign", [x, z], { kind }, { decor: true, area: "admin" })),
     E("muster", "muster", "muster", [-130, 20], { s: 7 }, { area: "admin" }),
+    ...[["orange", "white"], ["yellow", "white"], ["orange", "yellow"], ["yellow", "yellow"], ["orange", "white"], ["yellow", "white"], ["orange", "white"]].map(([vest, hat], i) => E(`worker-${i + 1}`, "worker", "worker", [0, 9], { vest, hat }, { decor: true, area: "admin" })),
     E("grain-truck-1", "graintruck", "grainTruck", [-120, -75], {}, { n: 1, area: "grain" }),
     E("grain-truck-2", "graintruck", "grainTruck", [60, -75], {}, { n: 2, area: "grain" }),
     ...[[-84, -68, "paintBlue"], [-34, 42, "paintGreen"], [104, 18, "paintBlue"], [54, 40, "paintGreen"]].map(([x, z, color], i) => E(`skip-${i}`, "skip", "skip", [x, z], { color }, { decor: true, area: "utilities" }))
@@ -185,6 +188,10 @@ export default {
 
   // road tankers: a closed loop on the site roads, stopping under the loading canopy (index stopAt)
   vehicles: [
+    // workers walking the walkways (closed loops; they pause at the stop point as if checking equipment)
+    { ids: ["worker-1", "worker-2", "worker-3"], path: [[-39, 8.4], [-39, -57.4], [43.4, -57.4], [43.4, 8.4]], stopAt: 2, stop: 5, speed: 1.4 },
+    { ids: ["worker-4", "worker-5"], path: [[-110, 9.4], [60, 9.4], [150, 9.4], [60, 8.6], [-110, 8.6]], stopAt: 2, stop: 4, speed: 1.3 },
+    { ids: ["worker-6", "worker-7"], path: [[-97.4, 8.6], [-97.4, -37.4], [-96.6, -37.4], [-96.6, 8.6]], stopAt: 1, stop: 6, speed: 1.2 },
     { ids: ["truck-1", "truck-2"], path: [[-146, 58], [0, 58], [160, 58], [166, 50], [166, 0], [166, -28], [160, -36], [149.5, -36], [149.5, -50], [149.5, -64], [146, -76], [130, -77], [0, -77], [-140, -77], [-146, -70], [-146, 0], [-146, 50]], stopAt: 7, stop: 7, speed: 10 },
     { ids: ["grain-truck-1", "grain-truck-2"], path: [[-60, -73], [0, -73], [100, -73], [144, -72], [146, -66], [140, -62], [60, -62], [0, -62], [-60, -62], [-98, -62], [-104, -66], [-110, -73], [-122, -73]], stopAt: 12, stop: 8, speed: 9 }
   ],

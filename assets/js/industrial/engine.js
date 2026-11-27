@@ -17,7 +17,7 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { createRenderer, setupLighting, mergeGeometries } from "/assets/js/shared-3d/archviz.js?v=ind1";
-import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind6";
+import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind7";
 
 export const tr = (v, lang) => (v && typeof v === "object" && !Array.isArray(v) ? (v[lang] || v.en || v.es || "") : v);
 // display name of an equipment item: its kind's catalogue name + number
@@ -161,6 +161,12 @@ export async function createTwin(container, F, opts = {}) {
       else groundB.add(M.white, new THREE.PlaneGeometry(c.w, 0.5), groundB.T(c.x, 0.2, c.z + o, 0, -Math.PI / 2));
     }
   }
+  // painted boundary lines around the process areas (factory.zoneLines: area ids)
+  for (const id of F.zoneLines || []) {
+    const a = (F.areas || []).find((x) => x.id === id); if (!a) continue;
+    const [x0, x1] = a.x, [z0, z1] = a.z, cx = (x0 + x1) / 2, cz = (z0 + z1) / 2;
+    for (const [w, d, x, z] of [[x1 - x0, 0.16, cx, z0], [x1 - x0, 0.16, cx, z1], [0.16, z1 - z0, x0, cz], [0.16, z1 - z0, x1, cz]]) groundB.add(M.yellow, new THREE.PlaneGeometry(w, d), groundB.T(x, 0.19, z, 0, -Math.PI / 2));
+  }
   // lawns around the offices (factory.lawns: [x, z, w, d])
   for (const [x, z, w, d] of F.lawns || []) groundB.add(M.lawn, new THREE.PlaneGeometry(w, d), groundB.T(x, 0.06, z, 0, -Math.PI / 2));
   const ground = groundB.group("ground");
@@ -168,6 +174,7 @@ export async function createTwin(container, F, opts = {}) {
   scene.add(ground);
 
   // ---------------------------------------------------------------- equipment
+  const movers = [];                 // spinning parts (fans, agitators, clarifier bridge)
   const items = new Map();          // id -> { item, group, info, meshes, worldPorts }
   const pickables = [];
   for (const it of F.equipment) {
@@ -181,6 +188,7 @@ export async function createTwin(container, F, opts = {}) {
     const worldPorts = {};
     for (const [k, p] of Object.entries(info.ports || {})) worldPorts[k] = new THREE.Vector3(...p).applyMatrix4(group.matrixWorld);
     items.set(it.id, { item: it, group, info, meshes });
+    for (const m of group.userData.movers || []) movers.push(m);
     items.get(it.id).worldPorts = worldPorts;
   }
 
@@ -677,6 +685,7 @@ export async function createTwin(container, F, opts = {}) {
         placeVehicle(vh);
       }
       ptime += dt;
+      for (const m of movers) m.mesh.rotation.y += dt * m.speed;
       for (const [, p] of particles) if (p.im.visible) {
         let n = 0;
         for (const sl of p.slots) {

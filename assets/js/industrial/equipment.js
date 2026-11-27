@@ -261,6 +261,27 @@ const G = {
     ringRail(b, r * 0.55, top, 0, 0);
     b.cyl(M.steel, 0.45, 0.6, r * 0.3, top + 0.3, 0, 16); b.cyl(M.steel, 0.3, 0.9, -r * 0.25, top + 0.45, r * 0.2, 12);
     nozzles(b, r, y0 + 1, 3, 0.4, 0.7, 0.2);
+    {
+      const P = (a, rr, y) => [Math.cos(a) * rr, y, Math.sin(a) * rr];
+      // manway: neck + bolted cover
+      const am = Math.PI * 0.62;
+      b.rod(M.steel, Math.min(0.38, r * 0.16), P(am, r - 0.05, y0 + 1.1), P(am, r + 0.35, y0 + 1.1), 16);
+      b.rod(M.darkSteel, Math.min(0.48, r * 0.2), P(am, r + 0.33, y0 + 1.1), P(am, r + 0.42, y0 + 1.1), 16);
+      // level gauge: vertical sight tube with brackets and a float marker
+      const ag = Math.PI * 0.18, gy0 = y0 + 0.5, gy1 = y0 + h - 0.4;
+      b.rod(M.steel, 0.05, P(ag, r + 0.32, gy0), P(ag, r + 0.32, gy1), 8);
+      for (const y of [gy0 + 0.1, gy1 - 0.1]) b.rod(M.steel, 0.04, P(ag, r, y), P(ag, r + 0.32, y), 6);
+      b.add(M.cabRed, new THREE.BoxGeometry(0.16, 0.22, 0.16), b.T(...P(ag, r + 0.32, gy0 + (gy1 - gy0) * 0.62)));
+      // bottom drain with a valve
+      const ad = Math.PI * 1.15;
+      b.rod(M.steel, 0.09, P(ad, r, y0 + 0.25), P(ad, r + 0.7, y0 + 0.25), 8);
+      b.add(M.cabRed, new THREE.TorusGeometry(0.16, 0.03, 6, 16), b.T(...P(ad, r + 0.45, y0 + 0.5)));
+      b.rod(M.steel, 0.03, P(ad, r + 0.45, y0 + 0.25), P(ad, r + 0.45, y0 + 0.5), 6);
+      // gooseneck roof vent
+      const vx = -r * 0.25, vz = -r * 0.3, vtop = y0 + h + (roof === "cone" ? r * 0.05 : roof === "dome" ? r * 0.12 : 0.15);
+      b.rod(M.steel, 0.12, [vx, vtop, vz], [vx, vtop + 0.7, vz], 10);
+      b.rod(M.steel, 0.12, [vx, vtop + 0.7, vz], [vx + 0.35, vtop + 0.55, vz], 10);
+    }
     if (lad) { const a = -Math.PI / 4; ladder(b, Math.cos(a) * (r + 0.35), Math.sin(a) * (r + 0.35), base, top, a); }
     return { height: top + 1, radius: r, ports: { in: [0, top, 0], out: [r + 0.7, y0 + 1, 0] } };
   },
@@ -276,6 +297,10 @@ const G = {
     b.cone(M.silo, r + 0.25, r * 0.55, 0, y0 + h + r * 0.27, 0, 64);
     b.cyl(M.steel, 0.9, 1.2, 0, y0 + h + r * 0.55 + 0.6, 0, 20);
     ladder(b, r + 0.35, 0, 0.6, y0 + h, 0);
+    // aeration fan and transition duct at the base, discharge chute
+    b.box(M.paintGrey, 1.2, 1.0, 1.0, -r - 0.9, 1.1, 0); b.cyl(M.darkSteel, 0.45, 0.25, -r - 1.55, 1.1, 0, 16);
+    b.box(M.paintGrey, 0.9, 0.6, 0.6, -r - 0.2, 1.1, 0);
+    b.rod(M.steel, 0.28, [0, y0 > 1 ? 0.9 : 0.8, -r * 0.4], [0, 0.5, -r - 1.2], 10);
     ringRail(b, r * 0.95, y0 + h, 0, 0);
     return { height: y0 + h + r * 0.55 + 1.2, radius: r, ports: { in: [0, y0 + h + r * .55 + 1.2, 0], out: [r, 1.5, 0] } };
   },
@@ -293,6 +318,14 @@ const G = {
       nozzles(b, r, y - 1.2, 2, y * 0.7, 0.5, 0.14);
     }
     ladder(b, r + 0.35, 0, 0, 3 + h, 0, true);
+    // lifting davit and reflux line
+    const ct = 3 + h + r * 0.6;
+    b.rod(M.yellow, 0.07, [0, ct, -(r + 0.2)], [0, ct + 2.4, -(r + 0.2)], 8);
+    b.rod(M.yellow, 0.06, [0, ct + 2.4, -(r + 0.2)], [0, ct + 2.4, -(r + 1.6)], 8);
+    b.rod(M.steel, 0.02, [0, ct + 2.4, -(r + 1.6)], [0, ct + 1.6, -(r + 1.6)], 4);
+    b.rod(M.steel, 0.12, [0, ct - 1.2, r + 0.55], [0, 3.5, r + 0.55], 10);
+    b.rod(M.steel, 0.12, [0, ct - 1.2, r], [0, ct - 1.2, r + 0.55], 10);
+    for (let y = 6; y < ct - 2; y += 4.5) b.rod(M.steel, 0.04, [0, y, r], [0, y, r + 0.55], 4);
     b.rod(M.steel, 0.2, [0, 3 + h + r * .6, 0], [0, 3 + h + r * .6 + 1.4, 0], 12);
     b.rod(M.steel, 0.2, [0, 3 + h + r * .6 + 1.4, 0], [-(r + 2), 3 + h + r * .6 + 1.4, 0], 12);
     b.rod(M.steel, 0.2, [-(r + 2), 3 + h + r * .6 + 1.4, 0], [-(r + 2), 2, 0], 12);
@@ -328,6 +361,9 @@ const G = {
     b.add(M[color], new THREE.CylinderGeometry(0.38, 0.38, 0.3, 20), b.T(0.45, 0.55, 0, 0, Math.PI / 2, 0));
     b.cyl(M.steel, 0.12, 0.6, 0.45, 1.0, 0, 12);
     b.rod(M.steel, 0.12, [0.6, 0.55, 0], [1.1, 0.55, 0], 12);
+    b.box(M.yellow, 0.32, 0.5, 0.5, 0.05, 0.55, 0);
+    for (let x = -0.85; x <= 0.05; x += 0.12) b.add(M.darkSteel, new THREE.TorusGeometry(0.33, 0.02, 4, 18), b.T(x - 0.05, 0.55, 0, Math.PI / 2));
+    b.add(M.cabRed, new THREE.TorusGeometry(0.14, 0.025, 6, 16), b.T(0.45, 1.25, 0, 0, Math.PI / 2));
     return { height: 1.3, radius: 1.1, ports: { in: [1.1, 0.55, 0], out: [0.45, 1.3, 0] } };
   },
   // industrial building: panel walls, ribbon windows, roller doors, low-pitch roof, roof units
@@ -347,6 +383,10 @@ const G = {
       for (let x = -w * .43; x <= w * .43; x += 2.5) { b.box(M.darkSteel, 0.1, 1.05, 0.08, x, wy, d / 2 + 0.04); b.box(M.darkSteel, 0.1, 1.05, 0.08, x, wy, -d / 2 - 0.04); }
     }
     for (let i = 0; i < doors; i++) { const x = -w / 2 + (w / (doors + 1)) * (i + 1); b.box(M.paintGrey, 4.2, Math.min(5, h * .55), 0.12, x, 0.4 + Math.min(5, h * .55) / 2, d / 2 + 0.06); for (let y = 0.6; y < Math.min(5, h * .55); y += 0.35) b.box(M.darkSteel, 4.1, 0.04, 0.14, x, 0.4 + y, d / 2 + 0.07); }
+    // downpipes at the corners, lights over the doors, louvre panels on the gable walls
+    for (const [x, z] of [[-w / 2 + 0.25, d / 2 + 0.12], [w / 2 - 0.25, d / 2 + 0.12], [-w / 2 + 0.25, -d / 2 - 0.12], [w / 2 - 0.25, -d / 2 - 0.12]]) b.cyl(M.darkSteel, 0.08, h, x, 0.4 + h / 2, z, 8);
+    for (let i = 0; i < doors; i++) { const x = -w / 2 + (w / (doors + 1)) * (i + 1), dh = Math.min(5, h * .55); b.box(M.windowLit, 0.6, 0.18, 0.3, x, 0.4 + dh + 0.6, d / 2 + 0.2); }
+    for (const sx of [-1, 1]) { b.box(M.grille, 0.06, Math.min(2.4, h * 0.3), Math.min(3, d * 0.35), sx * (w / 2 + 0.03), 0.4 + h * 0.62, -d * 0.15); }
     // roof units / fans
     for (let i = 0; i < Math.max(1, Math.round(w / 12)); i++) { const x = -w / 2 + 5 + i * 10; b.box(M.paintGrey, 2.4, 1.2, 1.8, x, 0.4 + h + 1, -d * 0.2); b.cyl(M.darkSteel, 0.6, 0.3, x, 0.4 + h + 1.75, -d * 0.2, 16); }
     return { height: h + 2, radius: Math.max(w, d) / 2, ports: { in: [-w / 2, 2, 0], out: [w / 2, 2, 0] } };
@@ -361,6 +401,7 @@ const G = {
       for (let y = 2; y < h; y += 0.5) b.box(M.darkSteel, cw - 1.2, 0.08, 0.2, x, 1.2 + y, d / 2 + 0.05);
       b.cyl(M.paintBlue, cw * .38, 2.6, x, 1.2 + h + 1.3, 0, 40, cw * .42, true);
       b.torus(M.steel, cw * .42, 0.06, x, 1.2 + h + 2.6, 0);
+      b.spinner(M.fan, rotor(cw * 0.34), x, 1.2 + h + 1.2, 0, { speed: 5 + i, tag: "fan" });
     }
     rectRail(b, w, d, 1.2 + h);
     ladder(b, w / 2 + 0.3, d * .3, 1.2, 1.2 + h, 0);
@@ -656,6 +697,7 @@ const G = {
   // fire hydrant
   hydrant(b, {} = {}) {
     const M = b.M;
+    for (const a of [0.4, 2.5, 4.6]) { const x = Math.cos(a) * 0.9, z = Math.sin(a) * 0.9; b.cyl(M.yellow, 0.09, 1.0, x, 0.5, z, 10); b.cyl(M.darkSteel, 0.095, 0.12, x, 0.75, z, 10); }
     b.cyl(M.fireRed, 0.16, 0.9, 0, 0.45, 0, 10); b.cyl(M.fireRed, 0.2, 0.12, 0, 0.92, 0, 10); b.rod(M.fireRed, 0.07, [-0.25, 0.6, 0], [0.25, 0.6, 0], 8);
     return { height: 1, radius: 0.3, ports: { in: [0, 0.4, 0] } };
   },
@@ -734,6 +776,18 @@ const G = {
     b.add(mat, new THREE.PlaneGeometry(w, h), b.T(0, 0.6 + (h + 0.3) / 2, 0.26));
     b.add(mat, new THREE.PlaneGeometry(w, h), b.T(0, 0.6 + (h + 0.3) / 2, -0.26, Math.PI));
     return { height: h + 1, radius: w / 2, ports: {} };
+  },
+  worker(b, { vest = "orange", hat = "white" } = {}) {
+    const M = b.M;
+    const vestMat = vest === "yellow" ? M.yellow : M.orange, hatMat = hat === "yellow" ? M.yellow : M.white;
+    for (const z of [-0.11, 0.11]) b.box(M.darkSteel, 0.16, 0.85, 0.16, 0, 0.43, z);           // legs
+    b.box(vestMat, 0.3, 0.62, 0.46, 0, 1.16, 0);                                               // hi-vis vest
+    b.box(M.white, 0.31, 0.05, 0.47, 0, 1.08, 0); b.box(M.white, 0.31, 0.05, 0.47, 0, 1.26, 0); // reflective stripes
+    for (const z of [-0.29, 0.29]) b.box(vestMat, 0.13, 0.55, 0.12, 0, 1.15, z);              // arms
+    b.add(M.cabinet, new THREE.SphereGeometry(0.12, 12, 8), b.T(0, 1.6, 0));                  // head
+    b.add(hatMat, new THREE.SphereGeometry(0.14, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2), b.T(0, 1.64, 0));
+    b.add(hatMat, new THREE.CylinderGeometry(0.17, 0.17, 0.02, 14), b.T(-0.02, 1.64, 0));     // hat brim
+    return { height: 1.8, radius: 0.3, ports: {} };
   },
   // bucket-elevator tower with head house
   elevator(b, { h = 34 } = {}) {
