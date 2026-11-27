@@ -106,7 +106,6 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) 
       <button type="button" class="tw-price-btn" data-pricing aria-haspopup="dialog"><span class="tw-price-btn__l">${esc(t.pricing.button)}</span><span class="tw-price-btn__s">${esc(t.pricing.buttonShort)}</span></button>
       <button type="button" class="tw__icon" data-home title="${esc(t.homeView)}" aria-label="${esc(t.homeView)}"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
       <button type="button" class="tw__icon" data-fullscreen aria-pressed="false" title="${esc(t.fullscreen)}" aria-label="${esc(t.fullscreen)}"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-      <a class="tw__back" href="/${lang}/">${esc(t.home3dna)}</a>
     </div>
   </header>
   <div class="tw__body">
