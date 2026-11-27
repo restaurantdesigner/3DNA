@@ -80,7 +80,7 @@ if (root) {
       const b = svg.getBoundingClientRect(), x = ((ev.clientX - b.left) / b.width) * CH.W;
       const i = Math.max(0, Math.min(sc.n, Math.round(((x - CH.L) / (CH.W - CH.L - CH.R)) * sc.n)));
       const X = sc.X(i), Y = sc.Y(c[i]);
-      hov.hidden = false;
+      hov.removeAttribute("hidden");
       hov.querySelector(".hov__l").setAttribute("x1", X); hov.querySelector(".hov__l").setAttribute("x2", X);
       const d = hov.querySelector(".hov__d"); d.setAttribute("cx", X); d.setAttribute("cy", Y); d.setAttribute("class", "hov__d" + (c[i] < 0 ? " neg" : ""));
       const tx = Math.min(Math.max(X, CH.L + 56), CH.W - CH.R - 56), ty = Math.max(Y, 46);
@@ -89,10 +89,14 @@ if (root) {
       hov.querySelector(".hov__v").textContent = M(c[i]);
       svg.classList.add("is-hover");
     };
-    const hide = () => { hov.hidden = true; svg.classList.remove("is-hover"); };
+    const hide = () => { hov.setAttribute("hidden", ""); svg.classList.remove("is-hover"); };
     svg.addEventListener("pointermove", show);
     svg.addEventListener("pointerdown", show);
-    svg.addEventListener("pointerleave", hide);
+    // mouse: hide when the pointer leaves; touch: the read-out stays until the next tap elsewhere
+    svg.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") hide(); });
+    hideChart = (e) => { if (!svg.contains(e.target)) hide(); };
   }
+  let hideChart = () => {};
+  document.addEventListener("pointerdown", (e) => hideChart(e));
   render();
 }
