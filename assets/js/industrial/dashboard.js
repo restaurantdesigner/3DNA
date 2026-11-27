@@ -153,7 +153,10 @@ export async function mountDashboard(root, F, ui, lang) {
       <button type="button" class="tw-nets__energy" data-energy aria-pressed="false">${esc(t.networks.energy)}</button>
       <p class="tw-nets__note">${esc(t.networks.note)}</p>
     </div>`;
-  netBox.querySelector(".tw-nets__head").addEventListener("click", (e) => { const h = e.currentTarget, open = h.getAttribute("aria-expanded") !== "true"; h.setAttribute("aria-expanded", String(open)); netBox.querySelector(".tw-nets__body").hidden = !open; });
+  const setNetsOpen = (open) => { const h = netBox.querySelector(".tw-nets__head"); h.setAttribute("aria-expanded", String(open)); netBox.querySelector(".tw-nets__body").hidden = !open; root.classList.toggle("nets-open", open); };
+  netBox.querySelector(".tw-nets__head").addEventListener("click", (e) => setNetsOpen(e.currentTarget.getAttribute("aria-expanded") !== "true"));
+  // phones: a tap on the 3D view folds the layers panel so the highlighted network can be seen
+  stage.addEventListener("pointerdown", (e) => { if (mobile() && root.classList.contains("nets-open") && !e.target.closest(".tw-nets")) setNetsOpen(false); });
   const syncLayers = () => {
     const on = new Set(twin.activeNetworks);
     netBox.querySelectorAll("[data-net]").forEach((c) => { c.checked = on.has(c.dataset.net); });
@@ -177,7 +180,7 @@ export async function mountDashboard(root, F, ui, lang) {
   stopBtn.addEventListener("click", () => { twin.energyFlow(false); syncLayers(); });
   twin.on("energy", (ev) => {
     stopBtn.hidden = !ev; root.classList.toggle("is-energy", !!ev);
-    if (ev && ev.step === 0) { const h = netBox.querySelector(".tw-nets__head"); h.setAttribute("aria-expanded", "false"); netBox.querySelector(".tw-nets__body").hidden = true; }
+    if (ev && ev.step === 0) setNetsOpen(false);
     syncLayers();
   });
 
