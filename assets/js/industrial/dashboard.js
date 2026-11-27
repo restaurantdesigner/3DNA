@@ -117,7 +117,8 @@ export async function mountDashboard(root, F, ui, lang) {
     return `<details class="tw-group"${a.step <= 8 ? " open" : ""}><summary><i style="background:${hex(a.color)}"></i><span>${a.step}. ${esc(tr(a.name, lang))}</span><em>${rows.length}</em></summary>
       <ul>${rows.map((e) => `<li><button type="button" data-eq="${e.id}">${esc(nameOf(F, e, lang))}</button></li>`).join("")}</ul></details>`;
   }).join("");
-  list.addEventListener("click", (ev) => { const b = ev.target.closest("[data-eq]"); if (b) twin.select(b.dataset.eq); });
+  const closeSheets = () => { if (!mobile()) return; root.classList.remove("left-open", "right-open"); labelToggles(); };
+  list.addEventListener("click", (ev) => { const b = ev.target.closest("[data-eq]"); if (b) { closeSheets(); twin.select(b.dataset.eq); } });
   $("[data-search]").addEventListener("input", (ev) => {
     const q = ev.target.value.trim().toLowerCase();
     list.querySelectorAll("[data-eq]").forEach((b) => { b.parentElement.hidden = q && !b.textContent.toLowerCase().includes(q); });
@@ -188,6 +189,18 @@ export async function mountDashboard(root, F, ui, lang) {
   const detail = $("[data-detail]");
   const tagOf = (k) => k ? `<em class="tw-tag tw-tag--${k}">${esc(t.tags[k])}</em>` : "";
   const linkRow = (l, me) => { const other = l.from === me ? l.to : l.from; const o = F.equipment.find((e) => e.id === other); return `<li><button type="button" data-link="${l.id}"><i style="background:${hex(l.color)}"></i>${l.from === me ? "→" : "←"} ${esc(o ? nameOf(F, o, lang) : other)}<small>${esc(l.name)}</small></button></li>`; };
+  const selCard = document.createElement("div"); selCard.className = "tw-selcard"; selCard.hidden = true; stage.appendChild(selCard);
+  selCard.addEventListener("click", (e) => {
+    if (e.target.closest("[data-sel-close]")) { twin.select(null, false); return; }
+    if (e.target.closest("[data-sel-open]")) { root.classList.add("right-open"); root.classList.remove("left-open"); labelToggles(); if (rightTabs) openTab(rightTabs, "detail"); }
+  });
+  const showSelCard = (it) => {
+    if (!it || !mobile()) { selCard.hidden = true; return; }
+    const a = F.areas.find((x) => x.id === it.area) || {};
+    selCard.innerHTML = `<span class="tw-selcard__dot" style="background:${hex(a.color || 0x888888)}"></span><span class="tw-selcard__t"><small>${esc(tr(a.name, lang))}</small><b>${esc(nameOf(F, it, lang))}</b></span><button type="button" class="tw-selcard__go" data-sel-open>${esc(t.details || "Details")}</button><button type="button" class="tw-selcard__x" data-sel-close aria-label="${esc(t.close)}">×</button>`;
+    selCard.hidden = false;
+  };
+  twin.on("select", showSelCard);
   function showDetail(it) {
     list.querySelectorAll("[data-eq]").forEach((b) => b.classList.toggle("is-on", !!it && b.dataset.eq === it.id));
     if (!it) { detail.innerHTML = `<p class="tw-empty">${esc(t.detailEmpty)}</p>`; return; }

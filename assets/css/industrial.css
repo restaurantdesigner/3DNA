@@ -483,3 +483,38 @@ html.tw-modal-open{ overflow: hidden; }
 .tw-mix__l{ display: grid; gap: 3px; margin: 6px 0 0; font-size: 11.5px; color: #c9cdd3; }
 .tw-mix__l em{ display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 2px; }
 .tw-mix__l em.e{ background: #22d3ee; } .tw-mix__l em.c{ background: #b7793b; }
+
+/* phones (real devices): one-row KPI strip that scrolls sideways, networks button below it,
+   opaque bottom sheets, content clear of the browser toolbar / home indicator */
+@media (max-width: 900px){
+  .tw__strip{ top: 56px; left: 10px; right: 10px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; pointer-events: auto; }
+  .tw__strip::-webkit-scrollbar{ display: none; }
+  .tw__strip div{ flex: none; padding: 5px 9px; }
+  .tw__strip span{ font-size: 9.5px; }
+  .tw__strip b{ font-size: 12.5px; }
+  .tw-nets{ top: 112px; }
+  .tw.nets-open .tw-nets{ top: 56px; }
+  .tw__panel{ background: #111215; }
+  .tw__panel .tw__pane{ padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+}
+
+/* phones: shorter sheets (the model stays visible above) and a selection card */
+.tw-selcard{ display: none; }
+@media (max-width: 900px){
+  .tw__panel{ height: 52%; }
+  .tw-selcard:not([hidden]){ position: absolute; left: 10px; right: 10px; bottom: calc(14px + env(safe-area-inset-bottom)); z-index: 5; display: flex; align-items: center; gap: 10px; padding: 10px 10px 10px 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 16px; background: rgba(17,18,21,.96); box-shadow: 0 12px 30px rgba(0,0,0,.5); }
+  .tw-selcard__dot{ width: 10px; height: 10px; flex: none; border-radius: 50%; }
+  .tw-selcard__t{ flex: 1; min-width: 0; }
+  .tw-selcard__t small{ display: block; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #8b9098; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tw-selcard__t b{ display: block; font-size: 15px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tw .tw-selcard__go{ flex: none; height: 36px; padding: 0 14px; border: 0; border-radius: 10px; background: #fff; color: #0b0c0e; font: 600 13px "Inter", system-ui, sans-serif; }
+  .tw .tw-selcard__x{ flex: none; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; background: #1d1f24; color: #fff; font: 400 22px/1 "Inter", system-ui, sans-serif; }
+  body.twpage:has(.tw-selcard:not([hidden])) .wa-float{ display: none; }
+}
+
+/* phones: the dashboard is a full-screen app — no page scrolling behind it, scrolling stays inside the panels */
+@media (max-width: 900px){
+  html:has(body.twpage), body.twpage{ height: 100%; overflow: hidden; overscroll-behavior: none; }
+  body.twpage .site-footer{ display: none; }
+  .tw__pane, .tw-nets, .tw__strip{ overscroll-behavior: contain; }
+}

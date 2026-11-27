@@ -345,7 +345,8 @@
         "mix": "Revenue mix",
         "ethanol": "Ethanol",
         "coproducts": "Co-products (WDG)"
-      }
+      },
+      "details": "Details"
     }
   }
 }
