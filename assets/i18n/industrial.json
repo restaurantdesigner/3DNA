@@ -1,0 +1,214 @@
+{
+  "en": {
+    "slug": "industrial",
+    "nav": "Industrial",
+    "meta": {
+      "title": "3DNA Industrial · Digital twins of industrial plants | 3DNA",
+      "description": "Interactive 3D digital twins of industrial plants: production process visualisation, equipment exploration and investment and operating-cost simulation.",
+      "ogTitle": "3DNA Industrial · Explore industry before you build it",
+      "ogImageAlt": "3D digital twin of an ethanol production plant, developed by 3DNA"
+    },
+    "hero": {
+      "label": "3DNA Industrial · Digital Twin",
+      "title": [
+        "Explore industry",
+        "before you build it."
+      ],
+      "sub": "Interactive 3D industrial environments, production process visualization and investment intelligence.",
+      "cta": "Explore Interactive Factory",
+      "cta2": "Request a Digital Twin",
+      "hint": "Interactive 3D model · drag to rotate",
+      "loading": "Loading the 3D model…"
+    },
+    "service": {
+      "label": "Industrial digital twins",
+      "title": "A plant you can walk through before it exists",
+      "lead": "3DNA Digital Twin is our technology for presenting industrial plants in interactive 3D: the complete layout, every piece of equipment, the process flow and the economic model in a single tool that runs in the browser.",
+      "items": [
+        [
+          "Navigable 3D model",
+          "The complete plant generated in 3D: silos, tanks, columns, pipes, platforms and buildings, explorable from any viewpoint."
+        ],
+        [
+          "Visualised process",
+          "Every process stream appears in its pipe and colour, from raw material to finished product."
+        ],
+        [
+          "Explorable equipment",
+          "Select any piece of equipment to see its function, its area and its connections to the rest of the plant."
+        ],
+        [
+          "Investment intelligence",
+          "A CAPEX and OPEX model connected to the plant, to test scenarios of capacity, prices and costs."
+        ]
+      ]
+    },
+    "process": {
+      "label": "Process visualisation",
+      "title": "From grain to product, step by step",
+      "lead": "In the ethanol plant demonstration, the process runs through nine areas. Each one lights up, shows its streams and explains what happens in it.",
+      "steps": [
+        "Grain receiving and storage",
+        "Milling",
+        "Liquefaction",
+        "Fermentation",
+        "Distillation",
+        "Dehydration",
+        "Storage and dispatch",
+        "Co-products: DDGS and CO₂",
+        "Utilities: steam, water and power"
+      ]
+    },
+    "equipment": {
+      "label": "Equipment exploration",
+      "title": "Every piece of equipment, with its function and connections",
+      "lead": "Select a fermenter, a column or a tank and the digital twin highlights it, brings the camera closer and shows its role in the process, its specifications and the equipment it connects to."
+    },
+    "finance": {
+      "label": "Investment and costs",
+      "title": "Investment scenarios in real time",
+      "lead": "The digital twin's calculator links the plant to its economics: capacity, yield, raw-material and product prices, energy and unit investment. Every change updates CAPEX, OPEX, EBITDA, margin and payback.",
+      "note": "The technical and financial values in the demonstration are illustrative. In a real project they are calibrated with the client's and its engineering firm's data."
+    },
+    "audiences": {
+      "label": "Who it is for",
+      "title": "One tool for every party in the project",
+      "items": [
+        [
+          "Industrial investors",
+          "Understand the plant, the process and the project's economics before committing the investment, and compare scenarios visually."
+        ],
+        [
+          "Equipment manufacturers",
+          "Present your machinery inside a complete plant, in context and with its connections, for trade fairs, offers and sales training."
+        ],
+        [
+          "Engineering companies",
+          "Communicate the layout and the process to clients and financiers with an interactive model, clearer than drawings and static presentations."
+        ]
+      ]
+    },
+    "showcase": {
+      "label": "Demonstration project",
+      "title": "Ethanol Production Plant",
+      "text": "A complete dry-grind plant generated in 3D: grain receiving, milling, liquefaction, fermentation, distillation, dehydration, storage, co-products and utilities. With an animated process, an equipment catalogue and an investment calculator.",
+      "tag": "Demonstration · illustrative values",
+      "cta": "Open the interactive plant",
+      "facts": [
+        [
+          "9",
+          "process areas"
+        ],
+        [
+          "60",
+          "pieces of equipment generated in 3D"
+        ],
+        [
+          "7",
+          "process streams"
+        ]
+      ]
+    },
+    "cta": {
+      "label": "Next step",
+      "title": "Request a digital twin of your plant",
+      "text": "Tell us which plant, line or equipment you want to present. We will propose the scope of the digital twin, the data needed and the schedule.",
+      "button": "Request a Digital Twin",
+      "whatsapp": "Message us on WhatsApp",
+      "whatsappText": "Hello, I'm interested in a 3DNA industrial digital twin."
+    },
+    "twin": {
+      "back": "3DNA Industrial",
+      "home3dna": "Back to 3DNA",
+      "badge": "Demonstration · illustrative values",
+      "views": {
+        "realistic": "Realistic",
+        "process": "Process",
+        "xray": "X-ray"
+      },
+      "viewsLabel": "View mode",
+      "homeView": "Overview",
+      "fullscreen": "Full screen",
+      "panels": {
+        "left": "Plant",
+        "right": "Analysis"
+      },
+      "tabs": {
+        "equipment": "Equipment",
+        "process": "Process",
+        "detail": "Item",
+        "invest": "Investment",
+        "prod": "Production"
+      },
+      "search": "Search equipment…",
+      "streams": "Process streams",
+      "streamsHint": "Click a stream to follow it through the plant.",
+      "detailEmpty": "Select a piece of equipment in the plant or in the list to see its function, data and connections.",
+      "connections": "Connections",
+      "illustrative": "Illustrative demonstration data.",
+      "groups": {
+        "plant": "Plant",
+        "market": "Market",
+        "invest": "Investment and fixed costs"
+      },
+      "reset": "Reset values",
+      "kpi": {
+        "capex": "CAPEX",
+        "revenue": "Annual revenue",
+        "opex": "Annual OPEX",
+        "ebitda": "EBITDA",
+        "margin": "EBITDA margin",
+        "payback": "Simple payback",
+        "costPerL": "Cost per litre"
+      },
+      "capexTitle": "CAPEX by area",
+      "opexTitle": "OPEX by item",
+      "opex": {
+        "feed": "Grain",
+        "energy": "Energy",
+        "chem": "Enzymes and chemicals",
+        "fixed": "Fixed costs"
+      },
+      "prodTitle": "Production",
+      "monthlyTitle": "Monthly ethanol production (m³)",
+      "prod": {
+        "ethanol": "Ethanol",
+        "grain": "Grain processed",
+        "ddgs": "DDGS",
+        "co2": "Fermentation CO₂"
+      },
+      "strip": {
+        "capacity": "Capacity",
+        "ethanol": "Ethanol",
+        "grain": "Grain",
+        "capex": "CAPEX",
+        "payback": "Payback"
+      },
+      "years": "years",
+      "noPayback": "no payback",
+      "dayShort": "day",
+      "yearShort": "year",
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      "financeNote": "Simplified model with illustrative values: not a feasibility study.",
+      "loading": "Generating the plant in 3D…",
+      "webglError": "Your browser cannot display the 3D model (WebGL unavailable).",
+      "metaTitle": "Ethanol Production Plant · Digital twin | 3DNA Industrial",
+      "metaDescription": "Interactive 3DNA Digital Twin demonstration: an ethanol plant in 3D with an animated process, explorable equipment and a CAPEX and OPEX calculator with illustrative values.",
+      "ogTitle": "Ethanol plant in 3D · 3DNA Digital Twin",
+      "ogImageAlt": "3D digital twin of an ethanol production plant"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Built by scripts/build-i18n.js from templates/industrial.html + assets/i18n/industrial.json
+       + scripts/industrial-page.js. 3D: assets/js/industrial/ (loaded only here and on the plant pages). -->
+  <title>{{industrial.meta.title}}</title>
+{{head.i18n}}
+  <link rel="stylesheet" href="/assets/fonts/site.css?v=20261010a">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261124d">
+  <link rel="stylesheet" href="/assets/css/industrial.css?v={{industrial.cssVersion}}">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+
+<body>
+<!-- 3dna:header -->
+{{layout.header}}
+<!-- /3dna:header -->
+
+<main id="main" tabindex="-1" class="apage indpage">
+
+{{industrial.heroHtml}}
+
+{{industrial.bodyHtml}}
+
+</main>
+
+<!-- 3dna:footer -->
+{{layout.footer}}
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=20261010b"></script>
+<!-- hero: the plant in 3D, turning slowly (same engine and factory as the dashboard) -->
+<script type="module" src="/assets/js/industrial/showcase.js?v={{industrial.jsVersion}}"></script>
+
+<!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage. -->
+<div id="deployment-db155617-f1fa-45ba-aa43-27eb97edb751"></div>
+</body>
+</html>

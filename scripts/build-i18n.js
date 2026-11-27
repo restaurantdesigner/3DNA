@@ -41,6 +41,8 @@ const OG_PAGE_IMAGES = {
   fitness: (lang) => `/images/og/og-fitness-${lang}.jpg`,
   about: () => "/images/about/og-andrei-yafimenka.jpg",   // the approved photograph, cropped, no text
   marketing: (lang) => `/images/og/og-marketing-${lang}.jpg`,
+  industrial: (lang) => "/images/industrial/og-industrial-en.jpg",
+  "industrial-ethanol": (lang) => "/images/industrial/og-industrial-en.jpg",
 };
 // client project pages: the project's own preview image
 const projectKey = (id) => `project-${id}`;
@@ -82,6 +84,12 @@ const fitnessTemplate = read("templates/fitness.html");
 const aboutTemplate = read("templates/about.html");
 const marketingTemplate = read("templates/marketing.html");
 const marketingProjectTemplate = read("templates/marketing-project.html");
+const industrialTemplate = read("templates/industrial.html");
+const industrialPlantTemplate = read("templates/industrial-plant.html");
+// 3DNA Industrial division (ES / EN): landing + plant dashboards (assets/i18n/industrial.json)
+const industrialI18n = JSON.parse(read("assets/i18n/industrial.json"));
+const INDUSTRIAL_LANGS = ["en"]; // English only; other languages link to the English pages
+const INDUSTRIAL_PLANTS = { ethanol: { en: "ethanol" } };
 const projectTemplate = read("templates/project.html");
 const realEstateTemplate = read("templates/real-estate.html");
 const propertyTemplate = read("templates/property.html");
@@ -122,6 +130,11 @@ const aboutPage = require("./about-page.js").createAboutPage(translations, { wha
 const marketingProjects = require("./marketing-projects.js").createMarketingProjects(
   JSON.parse(read("assets/data/marketing-projects.json")), JSON.parse(read("assets/i18n/marketing-projects.json")),
   { marketingSlug: (lang) => translations[lang].marketingPage.slug, whatsappNumber: (lang) => translations[lang].contact.whatsappNumber, email: PUBLIC_EMAIL });
+const industrialPage = require("./industrial-page.js").createIndustrialPage(industrialI18n, {
+  whatsappNumber: (lang) => translations[lang].contact.whatsappNumber,
+  landingPath: (lang) => pagePathFor("industrial", lang),
+  plantPath: (lang) => pagePathFor("industrial-ethanol", lang)
+});
 const marketingPage = require("./marketing-page.js").createMarketingPage(translations, {
   whatsappHref: (lang) => whatsappHref(lang),
   projectsHtml: (lang, num) => marketingProjects.galleryHtml(lang, num),
@@ -218,6 +231,22 @@ const PAGES = {
     urlPath: (lang) => (lang === "es" ? `${realEstateSectionPath(lang)}${slug}/` : null),
     meta: (lang) => realEstate.detailMeta(lang, slug)
   }])),
+  // 3DNA Industrial: /en/industrial/ only (Spanish, Russian and Ukrainian visitors get the English page)
+  industrial: {
+    template: () => industrialTemplate,
+    subPath: () => "industrial/",
+    langs: INDUSTRIAL_LANGS,
+    fallbackLang: "en",
+    meta: (lang) => industrialPage.meta(lang)
+  },
+  // plant dashboards: /en/industrial/ethanol/
+  ...Object.fromEntries(Object.entries(INDUSTRIAL_PLANTS).map(([id, slugs]) => [`industrial-${id}`, {
+    template: () => industrialPlantTemplate,
+    subPath: (lang) => `industrial/${slugs[lang] || slugs.en}/`,
+    langs: INDUSTRIAL_LANGS,
+    fallbackLang: "en",
+    meta: (lang) => industrialPage.twinMeta(lang)
+  }])),
   // marketing projects: /es/marketing-digital/<slug>/, /en/digital-marketing/<slug>/ ... only in the project's
   // languages (langs); the switcher sends the others to the digital marketing page (fallback)
   ...Object.fromEntries(marketingProjects.list().map((id) => [mprojectKey(id), {
@@ -242,7 +271,7 @@ const pageSubPath = (options, lang) => (options && options.page ? PAGES[options.
 const pageLangs = (key) => (key && PAGES[key] && PAGES[key].langs) || SUPPORTED;
 const pagePathFor = (key, lang) => {
   const page = key ? PAGES[key] : null;
-  if (page && page.langs && !page.langs.includes(lang)) return pagePathFor(page.fallback, lang);
+  if (page && page.langs && !page.langs.includes(lang)) return page.fallbackLang ? pagePathFor(key, page.fallbackLang) : pagePathFor(page.fallback, lang);
   const fixed = page && page.urlPath ? page.urlPath(lang) : null;
   return fixed || `/${lang}/${page ? page.subPath(lang) : ""}`;
 };
@@ -335,7 +364,7 @@ const crumbName = (key, lang) => {
   return String(PAGES[key].meta(lang).title).replace(/\s*[|·—–-]\s*3DNA\s*$/i, "").split(/\s+[|—]\s+/)[0].trim();
 };
 // parent page in the site hierarchy (listings sit under the catalogue, projects under restaurants)
-const parentPageOf = (key) => (propertySlugOf(key) ? "realEstate" : projectIdOf(key) ? "restaurants" : mprojectIdOf(key) ? "marketing" : null);
+const parentPageOf = (key) => (propertySlugOf(key) ? "realEstate" : projectIdOf(key) ? "restaurants" : mprojectIdOf(key) ? "marketing" : key && key.startsWith("industrial-") ? "industrial" : null);
 function breadcrumbNode(lang, t, url, key) {
   const chain = [];
   for (let k = parentPageOf(key); k; k = parentPageOf(k)) chain.unshift(k);
@@ -511,6 +540,18 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "about.bodyHtml") return aboutPage.bodyHtml(lang);
     if (key === "marketingPage.url") return pagePathFor("marketing", lang);
     if (key === "marketing.bodyHtml") return marketingPage.bodyHtml(lang);
+    if (key === "industrialPage.url") return pagePathFor("industrial", lang);
+    if (key === "industrialPage.nav") return escapeHtml(industrialPage.nav(INDUSTRIAL_LANGS.includes(lang) ? lang : "en"));
+    if (key === "industrial.cssVersion") return fileVersion("assets/css/industrial.css");
+    if (key === "industrial.jsVersion") return ["engine", "equipment", "dashboard", "showcase", "factories/ethanol"].map((m) => fileVersion(`assets/js/industrial/${m}.js`)).join("").slice(0, 10);
+    if (key === "industrial.meta.title") return escapeHtml(industrialPage.meta(lang).title);
+    if (key === "industrial.heroHtml") return industrialPage.heroHtml(lang);
+    if (key === "industrial.bodyHtml") return industrialPage.bodyHtml(lang);
+    if (key === "twin.meta.title") return escapeHtml(industrialPage.twinMeta(lang).title);
+    if (key === "twin.html") {
+      const id = (options && options.page || "").replace(/^industrial-/, "");
+      return industrialPage.plantHtml(lang, id, industrialI18n[lang].twin.metaTitle.split(" · ")[0]);
+    }
     if (key.startsWith("mproject.")) {
       const id = mprojectIdOf(options && options.page);
       if (!id) throw new Error(`"${key}" used outside a marketing project page`);
