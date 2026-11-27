@@ -5,5 +5,6 @@ DM Serif Text   SIL Open Font License 1.1   LICENSE-DMSerifText.txt
 Staatliches     SIL Open Font License 1.1   LICENSE-Staatliches.txt
 Lato            SIL Open Font License 1.1   LICENSE-Lato.txt
 Ultra           Apache License 2.0          LICENSE-Ultra.txt
+Plus Jakarta Sans SIL Open Font License 1.1 LICENSE-PlusJakartaSans.txt
 
 The font files are unmodified. Licence texts: https://github.com/google/fonts (ofl/, apache/).
