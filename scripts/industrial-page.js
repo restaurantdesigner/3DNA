@@ -28,6 +28,65 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) 
   </section>`;
   }
 
+  // Base Case figures computed at build time by the same model the dashboard uses (never hardcoded)
+  let FIN = null;
+  const fin = () => {
+    if (FIN) return FIN;
+    const { execFileSync } = require("child_process");
+    FIN = JSON.parse(execFileSync(process.execPath, ["--no-warnings", require("path").join(__dirname, "industrial-finance.mjs")], { encoding: "utf8" }));
+    return FIN;
+  };
+  function twinBand(lang, s) {
+    const o = s.overview, r = fin(), k = o.kpis;
+    const M = (x) => "C$" + (x / 1e6).toFixed(1) + " M", P = (x) => (x * 100).toFixed(1) + " %";
+    const kp = [["capex", M(r.capex)], ["revenue", M(r.revenue)], ["opex", M(r.opex)], ["ebitda", M(r.ebitda), 1], ["margin", P(r.margin), 1], ["costPerL", "C$" + r.costPerL.toFixed(2) + "/L"], ["revEth", M(r.revEth)], ["revDg", M(r.revDg)], ["ebitdaToCapex", P(r.ebitdaToCapex), 1]];
+    // chart: cumulative position per year (−capex + EBITDA·y)
+    const W = 430, H = 250, L = 56, Rr = 16, T = 18, B = 30, c = r.cumulative, n = c.length - 1;
+    const lo = Math.min(0, ...c), hi = Math.max(0, ...c), step = 10e6;
+    const y0 = Math.floor(lo / step) * step, y1 = Math.ceil(hi / step) * step;
+    const X = (i) => L + ((W - L - Rr) * i) / n, Y = (v) => T + ((H - T - B) * (y1 - v)) / (y1 - y0);
+    let g = "";
+    for (let v = y0; v <= y1 + 1; v += step) g += `<line x1="${L}" x2="${W - Rr}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" class="${v === 0 ? "z" : ""}"/><text x="${L - 8}" y="${(Y(v) + 4).toFixed(1)}" text-anchor="end">${v < 0 ? "−" : ""}C${Math.abs(v / 1e6)} M</text>`;
+    for (let i = 0; i <= n; i++) g += `<text x="${X(i).toFixed(1)}" y="${H - 8}" text-anchor="middle">${i}</text>`;
+    const pts = c.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`);
+    const area = `M${X(0).toFixed(1)},${Y(0).toFixed(1)} L${pts.join(" L")} L${X(n).toFixed(1)},${Y(0).toFixed(1)} Z`;
+    const pb = r.payback, pbX = pb && pb <= n ? X(pb) : null;
+    const dots = c.map((v, i) => `<circle cx="${X(i).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="3.2" class="${v < 0 ? "neg" : ""}"/>`).join("");
+    const chart = `<svg class="ind-twin__chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.chartTitle)} (${esc(o.chartYears)}): ${esc(o.initial)} −${M(r.capex)}, ${esc(o.payback)} ${pb ? pb.toFixed(1) : "—"} ${esc(o.years)}, ${esc(o.cumulative)} ${M(r.cumEbitda)}">
+      <defs><linearGradient id="indTwinG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#22c55e" stop-opacity=".55"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/></linearGradient><clipPath id="indTwinPos"><rect x="0" y="0" width="${W}" height="${Y(0).toFixed(1)}"/></clipPath></defs>
+      <g class="ax">${g}</g>
+      <path d="${area}" fill="url(#indTwinG)" clip-path="url(#indTwinPos)"/>
+      <polyline points="${pts.join(" ")}" class="ln"/>${dots}
+      ${pbX ? `<circle cx="${pbX.toFixed(1)}" cy="${Y(0).toFixed(1)}" r="6" class="pb"/><g class="tag" transform="translate(${pbX.toFixed(1)},${(Y(0) - 22).toFixed(1)})"><rect x="-44" y="-30" width="88" height="34" rx="6"/><text y="-17" text-anchor="middle">${esc(o.payback)}</text><text y="-2" text-anchor="middle" class="b">${pb.toFixed(1)} ${esc(o.years)}</text></g>` : ""}
+      <g class="tag neg" transform="translate(${(X(0) + 66).toFixed(1)},${(Y(c[0]) - 10).toFixed(1)})"><rect x="-58" y="-30" width="116" height="34" rx="6"/><text y="-17" text-anchor="middle">${esc(o.initial)}</text><text y="-2" text-anchor="middle" class="b">${M(r.capex)}</text></g>
+      <g class="tag" transform="translate(${(X(n) - 62).toFixed(1)},${(Y(c[n]) + 2).toFixed(1)})"><rect x="-60" y="-30" width="120" height="34" rx="6"/><text y="-17" text-anchor="middle">${esc(o.cumulative)}</text><text y="-2" text-anchor="middle" class="b">${M(r.cumEbitda)}</text></g>
+    </svg>`;
+    const ring = pb ? Math.max(0, Math.min(1, 1 - pb / n)) : 0, C2 = 2 * Math.PI * 70;
+    return `<section class="ind-twin" aria-label="${esc(o.title)}">
+  <img class="ind-twin__bg" src="/images/industrial/twin-backdrop-1920.webp" srcset="/images/industrial/twin-backdrop-960.webp 960w, /images/industrial/twin-backdrop-1920.webp 1920w" sizes="100vw" width="1920" height="1080" alt="${esc(o.backdropAlt)}" loading="lazy" decoding="async">
+  <div class="ind-twin__shade" aria-hidden="true"></div>
+  <div class="ind-twin__in">
+    <ol class="ind-twin__cards">${s.items.map(([a, b], i) => `<li data-reveal><span class="ind-twin__n">0${i + 1}</span><h3>${esc(a)}</h3><p>${esc(b)}</p></li>`).join("")}</ol>
+    <div class="ind-twin__gap" aria-hidden="true"></div>
+    <div class="ind-twin__fin" data-reveal>
+      <div class="ind-twin__panel">
+        <p class="ind-twin__h"><b>${esc(o.scenario)}</b> · ${esc(o.title)}</p>
+        <dl class="ind-twin__kpis">${kp.map(([id, val, good]) => `<div><dt>${esc(k[id])}</dt><dd${good ? ' class="is-good"' : ""}>${val}</dd></div>`).join("")}</dl>
+      </div>
+      <div class="ind-twin__panel">
+        <p class="ind-twin__h"><b>${esc(o.chartTitle)}</b> (${esc(o.chartYears)})</p>
+        ${chart}
+      </div>
+      <div class="ind-twin__panel ind-twin__pay">
+        <div class="ind-twin__ring"><svg viewBox="0 0 160 160" aria-hidden="true"><circle cx="80" cy="80" r="70" class="bg"/><circle cx="80" cy="80" r="70" class="fg" stroke-dasharray="${(C2 * Math.max(0.08, ring)).toFixed(1)} ${C2.toFixed(1)}"/></svg><p><small>${esc(o.payback)}</small><b>${pb ? Math.round(pb) : "—"}</b><small>${esc(o.years)}</small></p></div>
+        <dl class="ind-twin__side"><div><dt>${esc(o.profit)}</dt><dd class="is-good">${M(r.ebitda)}</dd></div><div><dt>${esc(o.operatingMargin)}</dt><dd class="is-good">${P(r.margin)}</dd></div><div><dt>${esc(o.cum10)}</dt><dd class="is-good">${M(r.cumEbitda)}</dd></div></dl>
+      </div>
+    </div>
+    <p class="ind-twin__foot"><span>${esc(o.note)}</span><a class="ind-btn ind-btn--light" href="${plantPath(lang)}" data-track="industrial_factory_clicked" data-track-location="investment_overview">${esc(o.cta)} ${ARROW}</a></p>
+  </div>
+</section>`;
+  }
+
   function bodyHtml(lang) {
     const t = T(lang), out = [];
     const head = (n, label, title, id) => `<p class="ab-label"><span class="ab-num">${n}</span> ${esc(label)}</p>\n      <h2 class="ab-h2" id="${id}">${esc(title)}</h2>`;
@@ -35,9 +94,9 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) 
     out.push(`<section class="ab-sec ind-service" aria-labelledby="ind-service-t">
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal>${head("02", s.label, s.title, "ind-service-t")}<p class="ab-p ab-p--strong">${esc(s.lead)}</p></div>
-    <ol class="ind-cards">${s.items.map(([a, b], i) => `<li data-reveal><span class="ind-cards__n">0${i + 1}</span><h3>${esc(a)}</h3><p>${esc(b)}</p></li>`).join("")}</ol>
   </div>
-</section>`);
+</section>
+${twinBand(lang, s)}`);
     const p = t.process;
     out.push(`<section class="ab-sec ind-process" aria-labelledby="ind-process-t">
   <div class="ab-wrap ab-grid">

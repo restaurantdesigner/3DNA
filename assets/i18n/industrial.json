@@ -26,22 +26,50 @@
       "lead": "3DNA Digital Twin is our technology for presenting industrial plants in interactive 3D: the complete layout, every piece of equipment, the process flow and the economic model in a single tool that runs in the browser.",
       "items": [
         [
-          "Navigable 3D model",
-          "The complete plant generated in 3D: silos, tanks, columns, pipes, platforms and buildings, explorable from any viewpoint."
+          "Complete 3D model",
+          "A fully interactive ethanol facility with its equipment, process flow and financial data."
         ],
         [
-          "Visualized process and networks",
-          "Every process stream, electrical feeder, steam, water and air line appears as a selectable engineering layer, from source to destination."
+          "Process and production",
+          "Grain intake, conversion, distillation and co-product processing, with adjustable operating parameters."
         ],
         [
-          "Explorable equipment",
-          "Select any piece of equipment to see its function, its area and its connections to the rest of the plant."
+          "Economic and financial simulation",
+          "Real-time investment analysis, profitability and scenario modelling based on key market drivers."
         ],
         [
           "Investment intelligence",
-          "A CAPEX and OPEX model connected to the plant, to test scenarios of capacity, prices and costs."
+          "A clear, data-driven view of returns, margin, payback and long-term value for investors and project developers."
         ]
-      ]
+      ],
+      "overview": {
+        "scenario": "Base case",
+        "title": "Investment overview",
+        "kpis": {
+          "capex": "Capital investment",
+          "revenue": "Annual revenue",
+          "opex": "Operating cost",
+          "ebitda": "Annual EBITDA",
+          "margin": "EBITDA margin",
+          "costPerL": "Operating cost per litre",
+          "revEth": "Ethanol revenue",
+          "revDg": "Co-product revenue",
+          "ebitdaToCapex": "EBITDA / investment"
+        },
+        "chartTitle": "Cumulative returns",
+        "chartYears": "10 years",
+        "year": "Year",
+        "initial": "Initial investment",
+        "payback": "Payback",
+        "years": "years",
+        "cumulative": "Cumulative EBITDA",
+        "profit": "Annual profit (EBITDA)",
+        "operatingMargin": "Operating margin",
+        "cum10": "10-year cumulative EBITDA",
+        "note": "Illustrative investment scenario computed by the case-study model — not results of a real facility.",
+        "cta": "Open the investment dashboard",
+        "backdropAlt": "3D render of the Canadian ethanol production facility case study"
+      }
     },
     "process": {
       "label": "Process visualisation",

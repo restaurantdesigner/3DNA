@@ -8,7 +8,7 @@
  * Stage: Engineering Networks layers (select all / hide all / reset), Trace Connections, Energy Flow.
  * All figures come from the factory's data module and finance model; they are illustrative.
  */
-import { createTwin, tr, nameOf } from "./engine.js?v=ind10";
+import { createTwin, tr, nameOf } from "./engine.js?v=ind12";
 
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const hex = (n) => "#" + n.toString(16).padStart(6, "0");

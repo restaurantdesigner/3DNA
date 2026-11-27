@@ -212,8 +212,11 @@ function signMaterial(title, sub) {
   x.fillStyle = "#d52b1e"; x.save(); x.translate(128, 150); x.scale(2.6, 2.6);
   x.beginPath(); const P = [[0,-16],[3,-10],[6,-12],[5,-5],[11,-9],[10,-6],[14,-6],[12,-2],[14,0],[6,4],[7,7],[1,6],[1,13],[-1,13],[-1,6],[-7,7],[-6,4],[-14,0],[-12,-2],[-14,-6],[-10,-6],[-11,-9],[-5,-5],[-6,-12],[-3,-10]];
   P.forEach(([px, py], i) => (i ? x.lineTo(px, py) : x.moveTo(px, py))); x.closePath(); x.fill(); x.restore();
-  x.fillStyle = "#ffffff"; x.font = "700 92px Inter, Arial, sans-serif"; x.textBaseline = "alphabetic"; x.fillText(title, 260, 130);
-  x.fillStyle = "#9fd8b8"; x.font = "600 44px Inter, Arial, sans-serif"; x.fillText(sub, 262, 196);
+  // text is shrunk to fit the space right of the roundel (long names were clipped at the edge)
+  const fit = (s, weight, size, max) => { x.font = `${weight} ${size}px Inter, Arial, sans-serif`; const w = x.measureText(s).width; if (w > max) x.font = `${weight} ${Math.floor((size * max) / w)}px Inter, Arial, sans-serif`; };
+  x.textBaseline = "alphabetic";
+  x.fillStyle = "#ffffff"; fit(title, 700, 92, 724); x.fillText(title, 260, 130);
+  x.fillStyle = "#9fd8b8"; fit(sub, 600, 44, 724); x.fillText(sub, 262, 196);
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
   const m = new THREE.MeshStandardMaterial({ map: t, emissiveMap: t, emissive: 0xffffff, emissiveIntensity: 0.55, roughness: 0.5, metalness: 0.1 });
   signCache.set(key, m);

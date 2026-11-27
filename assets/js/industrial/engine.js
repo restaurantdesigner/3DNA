@@ -17,7 +17,7 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { createRenderer, setupLighting, mergeGeometries } from "/assets/js/shared-3d/archviz.js?v=ind1";
-import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind9";
+import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind10";
 
 export const tr = (v, lang) => (v && typeof v === "object" && !Array.isArray(v) ? (v[lang] || v.en || v.es || "") : v);
 // display name of an equipment item: its kind's catalogue name + number
@@ -147,9 +147,11 @@ export async function createTwin(container, F, opts = {}) {
     for (let i = 1; i < p.pts.length; i++) {
       const [ax, az] = p.pts[i - 1], [bx, bz] = p.pts[i], L = Math.hypot(bx - ax, bz - az), ang = Math.atan2(bz - az, bx - ax);
       const cx = (ax + bx) / 2, cz = (az + bz) / 2;
-      groundB.add(M.walkway, new THREE.PlaneGeometry(L + w, w), groundB.T(cx, 0.12, cz, -ang, -Math.PI / 2));
-      for (const e of [-1, 1]) { const ox = -Math.sin(ang) * e * (w / 2 - 0.08), oz = Math.cos(ang) * e * (w / 2 - 0.08); groundB.add(M.yellow, new THREE.PlaneGeometry(L + w, 0.12), groundB.T(cx + ox, 0.18, cz + oz, -ang, -Math.PI / 2)); }
-      for (let s = 1.2; s < L - 0.6; s += 2.4) { const t = s / L; groundB.add(M.white, new THREE.PlaneGeometry(0.9, 0.18), groundB.T(ax + (bx - ax) * t, 0.18, az + (bz - az) * t, -ang + Math.PI / 2, -Math.PI / 2)); }
+      // flat strips: lay the plane down first (X), then turn it along the walkway (Y)
+      const flat = (gw, gd, x, y, z, a) => { const g = new THREE.PlaneGeometry(gw, gd); g.rotateX(-Math.PI / 2); g.rotateY(-a); g.translate(x, y, z); return g; };
+      groundB.add(M.walkway, flat(L + w, w, cx, 0.12, cz, ang));
+      for (const e of [-1, 1]) { const ox = -Math.sin(ang) * e * (w / 2 - 0.08), oz = Math.cos(ang) * e * (w / 2 - 0.08); groundB.add(M.yellow, flat(L + w, 0.12, cx + ox, 0.18, cz + oz, ang)); }
+      for (let s = 1.2; s < L - 0.6; s += 2.4) { const t = s / L; groundB.add(M.white, flat(0.9, 0.18, ax + (bx - ax) * t, 0.18, az + (bz - az) * t, ang - Math.PI / 2)); }
     }
   }
   // paved surfaces (factory.paving): interlocking pavers or jointed concrete slab panels
