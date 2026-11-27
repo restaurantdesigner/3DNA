@@ -691,9 +691,10 @@ export async function createTwin(container, F, opts = {}) {
     else if (!on && energy) { energy = null; caption.hidden = true; controls.autoRotate = energyPrev.rot; setNetworks(energyPrev.nets); emit("energy", null); }
   }
   controls.addEventListener("start", () => { if (energy) energy.sway = false; });   // the visitor takes the camera
-  renderer.setAnimationLoop(() => {
-    const dt = Math.min(clock.getDelta(), 0.05);
-    if (!visible || document.hidden) return;
+  let fixedDt = null;                                   // set by renderFrame(): deterministic frame stepping (video capture)
+  const loopFn = () => {
+    const dt = fixedDt ?? Math.min(clock.getDelta(), 0.05);
+    if (fixedDt === null && (!visible || document.hidden)) return;
     let moving = controls.update();
     if (tween) {
       const k = Math.min(1, (performance.now() - tween.t0) / tween.ms), e = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
@@ -753,13 +754,17 @@ export async function createTwin(container, F, opts = {}) {
       const w = container.clientWidth, h = container.clientHeight;
       for (const l of areaLabels) { v3.copy(l.pos).project(camera); const off = v3.z > 1; l.el.style.transform = `translate(-50%, -50%) translate(${(v3.x * .5 + .5) * w}px, ${(-v3.y * .5 + .5) * h}px)`; l.el.style.visibility = off ? "hidden" : "visible"; }
     }
-  });
+  };
+  renderer.setAnimationLoop(loopFn);
 
   const api = {
     scene, camera, controls, renderer, items,
     select, focus, setView, highlightStream,
     links, networks: NET, validation,
     setNetworks, setTrace, selectLink, energyFlow,
+    // video capture: stop the real-time loop and render exactly one frame of dt seconds
+    stopLoop: () => renderer.setAnimationLoop(null),
+    renderFrame: (dt) => { fixedDt = dt; needs = true; loopFn(); fixedDt = null; },
     get activeNetworks() { return [...activeNets]; },
     get trace() { return traceOn; },
     get energy() { return !!energy; },
