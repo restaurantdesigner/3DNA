@@ -411,3 +411,15 @@ html.tw-modal-open{ overflow: hidden; }
   .tw .tw__sheetx:active{ background: #fff; color: #0b0c0e; }
   .tw__panel .tw__tabs{ padding-top: 18px; padding-right: 54px; }
 }
+
+/* view modes: thermal legend, header with six views */
+.twin__legend{ position: absolute; right: 14px; bottom: 14px; z-index: 4; width: 230px; padding: 10px 12px; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; background: rgba(10,12,18,.88); color: #d7dade; font: 600 11px "Inter", system-ui, sans-serif; }
+.twin__legend i{ display: block; height: 8px; margin: 8px 0 4px; border-radius: 4px; background: linear-gradient(90deg, hsl(238,90%,50%), hsl(180,90%,50%), hsl(120,90%,50%), hsl(60,90%,50%), hsl(0,90%,50%)); }
+.twin__legend b{ display: flex; justify-content: space-between; font-weight: 500; color: #9aa0a7; }
+.twin__legend em{ font-style: normal; }
+.tw__views{ max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.tw__views::-webkit-scrollbar{ display: none; }
+.tw__views button{ flex: none; padding: 0 11px; }
+@media (max-width: 1500px) and (min-width: 901px){ .tw__title .tw__badge{ display: none; } .tw__views button{ padding: 0 9px; font-size: 12.5px; } }
+@media (max-width: 1280px) and (min-width: 901px){ .tw__brand span{ display: none; } }
+@media (max-width: 900px){ .twin__legend{ right: 10px; bottom: 60px; width: 200px; } .tw__views{ max-width: calc(100vw - 24px); } }

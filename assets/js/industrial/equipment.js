@@ -403,8 +403,6 @@ const G = {
       for (const y of tiers) b.box(M.paintGrey, 0.3, 0.42, w + 0.5, x, y - 0.21, 0);
       // knee braces under the lowest beam
       for (const e of [-1, 1]) b.rod(M.paintGrey, 0.07, [x, tiers[0] - 1.4, e * (w / 2)], [x, tiers[0] - 0.4, e * (w / 2 - 1.0)], 6);
-      // pipe shoes on the process and utility tiers
-      if (i < n) for (const y of tiers.slice(0, -1)) for (let z = -w / 2 + 0.8; z < w / 2 - 0.5; z += 0.7) b.box(M.darkSteel, 0.16, 0.12, 0.22, x, y + 0.06, z);
     }
     for (const z of [-w / 2, w / 2]) for (const y of tiers) b.box(M.paintGrey, len, 0.26, 0.2, 0, y - 0.13, z);
     // longitudinal X-bracing every third bay on both frames

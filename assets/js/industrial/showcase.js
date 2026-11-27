@@ -7,7 +7,7 @@ const el = document.querySelector("[data-ind-hero]");
 if (el) {
   const start = async () => {
     try {
-      const v = "?v=ind3";
+      const v = "?v=ind4";
       const [{ createTwin }, factory] = await Promise.all([import("./engine.js" + v), import("./factories/ethanol.js" + v)]);
       const twin = await createTwin(el, factory.default, { lang: el.dataset.lang || "es", mode: "showcase" });
       if (matchMedia("(prefers-reduced-motion: reduce)").matches) twin.controls.autoRotate = false;

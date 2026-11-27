@@ -21,7 +21,7 @@
 import { PROJECT, VERIFIED, BENCHMARKS, ASSUMPTIONS as A, SOURCES, CAPEX_SPLIT, RESEARCHED } from "./ethanol-canada.data.js?v=ca1";
 
 const E = (id, kind, type, pos, params = {}, extra = {}) => ({ id, kind, type, pos, params, ...extra });
-const RACK = { x: [-110, 140], z: 0, w: 10, tiers: [6, 8.2, 10.4] };
+const RACK = { x: [-110, 140], z: 0, w: 10, tiers: [6, 8.2, 10.4], bay: 7 };
 
 // ---------------------------------------------------------------- engineering networks (conceptual)
 const NETWORKS = {

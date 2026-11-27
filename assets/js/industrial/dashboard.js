@@ -8,7 +8,7 @@
  * Stage: Engineering Networks layers (select all / hide all / reset), Trace Connections, Energy Flow.
  * All figures come from the factory's data module and finance model; they are illustrative.
  */
-import { createTwin, tr, nameOf } from "./engine.js?v=ind3";
+import { createTwin, tr, nameOf } from "./engine.js?v=ind4";
 
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const hex = (n) => "#" + n.toString(16).padStart(6, "0");
@@ -31,7 +31,7 @@ export async function mountDashboard(root, F, ui, lang) {
   // ---------------------------------------------------------------- engine
   const loading = $("[data-loading]");
   let twin;
-  try { twin = await createTwin(stage, F, { lang, mode: "dashboard" }); }
+  try { twin = await createTwin(stage, F, { lang, mode: "dashboard", thermalLabel: t.thermalLegend }); }
   catch (e) { console.error(e); loading.textContent = t.webglError; return; }
   loading.hidden = true;
   const NET = twin.networks;

@@ -134,7 +134,10 @@
       "views": {
         "realistic": "Realistic",
         "process": "Process",
-        "xray": "X-ray"
+        "xray": "X-ray",
+        "thermal": "Thermal",
+        "blueprint": "Blueprint",
+        "night": "Night"
       },
       "viewsLabel": "View mode",
       "homeView": "Overview",
@@ -312,7 +315,8 @@
         "conceptual": "Conceptual connection, illustrative route — not verified infrastructure.",
         "processNote": "Process step from public descriptions; the pipe route is conceptual."
       },
-      "close": "Close"
+      "close": "Close",
+      "thermalLegend": "Operating temperature (illustrative)"
     }
   }
 }

@@ -17,7 +17,7 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { createRenderer, setupLighting, mergeGeometries } from "/assets/js/shared-3d/archviz.js?v=ind1";
-import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind3";
+import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind4";
 
 export const tr = (v, lang) => (v && typeof v === "object" && !Array.isArray(v) ? (v[lang] || v.en || v.es || "") : v);
 // display name of an equipment item: its kind's catalogue name + number
@@ -40,9 +40,19 @@ function route(a, b, lane, direct) {
 }
 function pathLength(pts) { let l = 0; for (let i = 1; i < pts.length; i++) l += pts[i].distanceTo(pts[i - 1]); return l; }
 function tubeAlong(pts, r) {
-  const path = new THREE.CurvePath();
-  for (let i = 1; i < pts.length; i++) path.add(new THREE.LineCurve3(pts[i - 1], pts[i]));
-  return new THREE.TubeGeometry(path, Math.max(8, pts.length * 6), r, 10, false);
+  // straight runs trimmed at each corner + a curved elbow (bend radius ≈ 2.5 r) between them
+  const n = pts.length, geos = [], bend = new Array(n).fill(0), dir = [];
+  for (let i = 1; i < n; i++) dir.push(pts[i].clone().sub(pts[i - 1]));
+  for (let i = 1; i < n - 1; i++) bend[i] = Math.max(0, Math.min(r * 2.5, dir[i - 1].length() / 2 - 0.01, dir[i].length() / 2 - 0.01));
+  for (let i = 0; i < n - 1; i++) {
+    const d = dir[i].clone().normalize(), a = pts[i].clone().addScaledVector(d, bend[i]), b = pts[i + 1].clone().addScaledVector(d, -bend[i + 1]);
+    if (a.distanceTo(b) > 0.01) geos.push(new THREE.TubeGeometry(new THREE.LineCurve3(a, b), 1, r, 12, false));
+  }
+  for (let i = 1; i < n - 1; i++) if (bend[i] > 0.02) {
+    const din = dir[i - 1].clone().normalize(), dout = dir[i].clone().normalize();
+    geos.push(new THREE.TubeGeometry(new THREE.QuadraticBezierCurve3(pts[i].clone().addScaledVector(din, -bend[i]), pts[i].clone(), pts[i].clone().addScaledVector(dout, bend[i])), 6, r, 12, false));
+  }
+  return geos.length === 1 ? geos[0] : mergeGeometries(geos);
 }
 function flowTexture(color) {
   const c = document.createElement("canvas"); c.width = 128; c.height = 8;
@@ -186,6 +196,7 @@ export async function createTwin(container, F, opts = {}) {
   const inside = (x, z, pad = 0.4) => solid.find((r) => x > r.box.min.x - pad && x < r.box.max.x + pad && z > r.box.min.z - pad && z < r.box.max.z + pad);
   const onRack = (x, z) => x > RK.x[0] - 0.5 && x < RK.x[1] + 0.5 && Math.abs(z - RK.z) < RK.w / 2 + 0.3;
   const attachCount = new Map();
+  const postAt = new Set();
   function attach(rec, port, toward, y) {
     if (port && rec.worldPorts[port]) return rec.worldPorts[port].clone();
     const k = attachCount.get(rec.item.id) || 0; attachCount.set(rec.item.id, k + 1);
@@ -242,16 +253,17 @@ export async function createTwin(container, F, opts = {}) {
     const laneY = style === "tray" || style === "cable" ? tierY + 0.12 : tierY + r + 0.14;
     const pA = A.group.position, pB = B.group.position;
     const useRack = !def.direct && RK.x[1] > RK.x[0];
-    let a, b, pts;
+    let a, b, pts, lzUsed = null;
     if (useRack) {
       a = attach(A, def.fromPort, new THREE.Vector3(pA.x, 0, RK.z), ay);
       b = attach(B, def.toPort, new THREE.Vector3(pB.x, 0, RK.z), ay);
-      const lz = lane(net.tier || 0, style, Math.min(a.x, b.x), Math.max(a.x, b.x));
-      pts = [a, new THREE.Vector3(a.x, laneY, a.z), new THREE.Vector3(a.x, laneY, lz), new THREE.Vector3(b.x, laneY, lz), new THREE.Vector3(b.x, laneY, b.z), b];
+      const lz = lane(net.tier || 0, style, Math.min(a.x, b.x), Math.max(a.x, b.x)); lzUsed = lz;
+      const yc = laneY + (style === "tray" || style === "cable" ? 0.8 : 1.15);      // crossing level between tiers
+      pts = [a, new THREE.Vector3(a.x, yc, a.z), new THREE.Vector3(a.x, yc, lz), new THREE.Vector3(a.x, laneY, lz), new THREE.Vector3(b.x, laneY, lz), new THREE.Vector3(b.x, yc, lz), new THREE.Vector3(b.x, yc, b.z), b];
       // expansion loop on long steam runs along the rack
       if (style === "insulated" && Math.abs(b.x - a.x) > 50) {
         const xm = (a.x + b.x) / 2, sgn = Math.sign(b.x - a.x);
-        pts.splice(3, 0, new THREE.Vector3(xm - 2.5 * sgn, laneY, lz), new THREE.Vector3(xm - 2.5 * sgn, laneY + 1.6, lz), new THREE.Vector3(xm + 2.5 * sgn, laneY + 1.6, lz), new THREE.Vector3(xm + 2.5 * sgn, laneY, lz));
+        pts.splice(4, 0, new THREE.Vector3(xm - 2.5 * sgn, laneY, lz), new THREE.Vector3(xm - 2.5 * sgn, laneY + 1.0, lz), new THREE.Vector3(xm + 2.5 * sgn, laneY + 1.0, lz), new THREE.Vector3(xm + 2.5 * sgn, laneY, lz));
       }
     } else {
       a = attach(A, def.fromPort, pB, ay); b = attach(B, def.toPort, pA, ay);
@@ -285,18 +297,26 @@ export async function createTwin(container, F, opts = {}) {
       fitB.box(M.cabinet, 0.45, 0.45, 0.25, a.x, a.y, a.z); fitB.box(M.cabinet, 0.45, 0.45, 0.25, b.x, b.y, b.z);   // junction boxes
     } else {
       for (const p of [pts[0], pts[pts.length - 1]]) fitB.cyl(M.steel, r * 1.8, 0.16, p.x, p.y, p.z, 14);            // flanged nozzles
-      for (let i = 1; i < pts.length - 1; i++) fitB.add(style === "insulated" ? M.insulation : M.steel, new THREE.SphereGeometry(r * 1.12, 12, 8), fitB.T(pts[i].x, pts[i].y, pts[i].z));   // elbows
       if (pts.length > 2) { const p = pts[0].clone().lerp(pts[1], 0.5); fitB.box(M.darkSteel, r * 3, r * 3, r * 3, p.x, p.y, p.z); fitB.cyl(M.cabRed, r * 1.6, 0.08, p.x + r * 2.2, p.y, p.z, 12); }   // isolation valve
       if (style === "insulated") for (let i = 1; i < pts.length; i++) { const p = pts[i - 1], q = pts[i], n = Math.floor(p.distanceTo(q) / 3); for (let k = 1; k < n; k++) { const m = p.clone().lerp(q, k / n), d = q.clone().sub(p).normalize(); fitB.add(M.steel, new THREE.CylinderGeometry(r * 1.08, r * 1.08, 0.12, 14), new THREE.Matrix4().compose(m, new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), d), new THREE.Vector3(1, 1, 1))); } }   // jacket bands
     }
-    // supports: posts every 6 m under horizontal runs off the rack (not inside equipment or on roads)
+    // pipe shoes under the run along the rack, one per bay
+    if (useRack && style !== "tray" && style !== "cable") {
+      const nb = Math.round((RK.x[1] - RK.x[0]) / (RK.bay || 7)), bw = (RK.x[1] - RK.x[0]) / nb, sh = laneY - r - tierY;
+      const x0 = Math.min(a.x, b.x), x1 = Math.max(a.x, b.x);
+      for (let k = 0; k <= nb; k++) { const bx = RK.x[0] + k * bw; if (bx > x0 + 0.5 && bx < x1 - 0.5 && sh > 0.02) supportB.box(M.darkSteel, 0.16, sh, 0.34, bx, tierY + sh / 2, lzUsed); }
+    }
+    // supports: posts every 6 m under horizontal runs off the rack (not near the rack, inside equipment, on roads or next to another post)
     for (let i = 1; i < pts.length; i++) {
       const p = pts[i - 1], q = pts[i];
       if (Math.abs(p.y - q.y) > 0.01 || p.y < 2.2) continue;
       const L = p.distanceTo(q);
       for (let t = 3; t < L - 1; t += 6) {
         const m = p.clone().lerp(q, t / L);
-        if (onRack(m.x, m.z) || onRoad(m.x, m.z) || inside(m.x, m.z, 0.6)) continue;
+        const nearRack = m.x > RK.x[0] - 2 && m.x < RK.x[1] + 2 && Math.abs(m.z - RK.z) < RK.w / 2 + 2.5;
+        const key = Math.round(m.x / 2.5) + ":" + Math.round(m.z / 2.5);
+        if (nearRack || onRoad(m.x, m.z) || inside(m.x, m.z, 0.6) || postAt.has(key)) continue;
+        postAt.add(key);
         const top = m.y - r - 0.12;
         supportB.box(M.paintGrey, 0.22, top, 0.22, m.x, top / 2, m.z);
         supportB.box(M.paintGrey, 0.9, 0.16, 0.18, m.x, top + 0.08, m.z);
@@ -396,6 +416,56 @@ export async function createTwin(container, F, opts = {}) {
   const activeNets = new Set();
   let traceOn = false, traceSet = new Set(), selectedLink = null;
   const baseMat = (mesh) => mesh.userData.base || (mesh.userData.base = mesh.material);
+  // "realistic" and "night" share the physical materials (and the engineering layers); thermal / blueprint recolour everything
+  const REAL = () => view === "realistic" || view === "night";
+  // thermal view: illustrative operating temperatures per kind of equipment and per network (°C)
+  const TEMP = { boiler: 180, stack: 160, cooker: 150, sieve: 120, beercol: 100, structure: 90, liq: 85, rectifier: 80, centrifuge: 70, tstank: 65, slurry: 60, wdg: 50, condenser: 45, compressor: 45, substation: 45, mill: 35, egen: 35, fermenter: 33, yeast: 32, beerwell: 32, scrubber: 30, prodcooler: 30, receiver: 30, mcc: 30, cooling: 28, cwpump: 25, wwpump: 25, cyclone: 25, aeration: 22, admin: 21, lab: 21, gate: 20, clarifier: 20, day: 18, tank: 15, ro: 15, firepump: 15, wtank: 12, denaturant: 12, bin: 8, receiving: 8, elevator: 8, well: 8, firetank: 8 };
+  const LINK_TEMP = (l) => l.net === "steam" ? (l.kind === "return" ? 95 : 180) : l.net === "cooling" ? (l.kind === "return" ? 34 : 22) : l.net === "water" ? 12 : l.net === "air" ? 30 : l.net === "waste" ? 25 : l.net === "fire" ? 8 : l.net === "process" ? ({ mash: 70, beer: 33, ethanol: 30, stillage: 85, thin: 70, co2: 30, denat: 10 }[l.stream] ?? 30) : null;
+  const heat = (t) => new THREE.Color().setHSL(Math.max(0, Math.min(1, 1 - t / 160)) * 0.66, 0.9, 0.5);
+  const thermalCache = new Map();
+  const thermalMat = (t) => { const k = Math.round(t / 4) * 4; if (!thermalCache.has(k)) { const c = heat(k); thermalCache.set(k, new THREE.MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 0.45, roughness: 0.65, metalness: 0 })); } return thermalCache.get(k); };
+  const thermalCold = new THREE.MeshStandardMaterial({ color: 0x1a2233, roughness: 0.9 });
+  const thermalGround = new THREE.MeshStandardMaterial({ color: 0x0c1220, roughness: 1 });
+  // blueprint view: navy fills, light outlines (edges built on first use)
+  const bpFill = new THREE.MeshBasicMaterial({ color: 0x0f2f5c });
+  const bpGround = new THREE.MeshBasicMaterial({ color: 0x0b2447 });
+  const bpLine = new THREE.LineBasicMaterial({ color: 0xcfe6ff, transparent: true, opacity: 0.8 });
+  const bpPipe = new THREE.MeshBasicMaterial({ color: 0xe6f2ff });
+  let edgesBuilt = false;
+  function buildEdges() {
+    if (edgesBuilt) return; edgesBuilt = true;
+    for (const rec of items.values()) for (const m of rec.meshes) {
+      if (!m.geometry || (rec.item.decor && rec.item.kind !== "tree")) continue;
+      const e = new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry, 28), bpLine);
+      e.raycast = () => {}; e.visible = false; m.add(e); (rec.edges = rec.edges || []).push(e);
+    }
+  }
+  // backgrounds and lighting per view
+  const bgTex = (draw) => { const c = document.createElement("canvas"); c.width = c.height = 1024; draw(c.getContext("2d")); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; };
+  const BG = {
+    blueprint: bgTex((x) => {
+      x.fillStyle = "#0a2246"; x.fillRect(0, 0, 1024, 1024);
+      for (const [step, a] of [[32, 0.12], [128, 0.24]]) { x.strokeStyle = "rgba(160,200,255," + a + ")"; x.lineWidth = 1; for (let i = 0; i <= 1024; i += step) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i, 1024); x.stroke(); x.beginPath(); x.moveTo(0, i); x.lineTo(1024, i); x.stroke(); } }
+    }),
+    thermal: bgTex((x) => { const g = x.createRadialGradient(512, 480, 40, 512, 512, 720); g.addColorStop(0, "#141a2b"); g.addColorStop(1, "#05070c"); x.fillStyle = g; x.fillRect(0, 0, 1024, 1024); }),
+    night: bgTex((x) => { const g = x.createLinearGradient(0, 0, 0, 1024); g.addColorStop(0, "#02030a"); g.addColorStop(1, "#0a0f1f"); x.fillStyle = g; x.fillRect(0, 0, 1024, 1024); for (let i = 0; i < 260; i++) { x.fillStyle = "rgba(255,255,255," + (Math.random() * 0.6).toFixed(2) + ")"; x.fillRect(Math.random() * 1024, Math.random() * 560, 1.4, 1.4); } })
+  };
+  let defaultBg, env0;
+  const lights = []; scene.traverse((o) => { if (o.isLight) lights.push([o, o.intensity]); });
+  const exposure0 = renderer.toneMappingExposure;
+  const legend = document.createElement("div"); legend.className = "twin__legend"; legend.hidden = true;
+  legend.innerHTML = "<span>" + (opts.thermalLabel || "Operating temperature (illustrative)") + "</span><i></i><b><em>0 °C</em><em>40</em><em>80</em><em>120</em><em>160+ °C</em></b>";
+  container.appendChild(legend);
+  function applyAtmosphere() {
+    if (defaultBg === undefined) defaultBg = scene.background;
+    scene.background = BG[view] || defaultBg;
+    const night = view === "night";
+    if (env0 === undefined) env0 = scene.environment;
+    scene.environment = night ? null : env0;                                // no studio reflections after dark
+    for (const [l, i] of lights) l.intensity = night ? i * (l.isHemisphereLight ? 0.85 : 0.3) : i;
+    renderer.toneMappingExposure = night ? exposure0 * 0.95 : exposure0;
+    legend.hidden = view !== "thermal";
+  }
   const anyActive = () => activeNets.size > 0 || traceSet.size > 0 || !!selectedLink;
   const linkActive = (l) => (selectedLink === l) || (traceSet.size ? traceSet.has(l.id) : activeNets.has(l.net) && (!streamFocus || l.net !== "process" || l.stream === streamFocus));
   function applyView() {
@@ -407,6 +477,8 @@ export async function createTwin(container, F, opts = {}) {
         let mat = base;
         if (view === "process") mat = ghost;
         else if (view === "xray") mat = xray;
+        else if (view === "thermal") mat = TEMP[rec.item.kind] != null ? thermalMat(TEMP[rec.item.kind]) : rec.item.kind === "rack" ? thermalCold : thermalCold;
+        else if (view === "blueprint") mat = bpFill;
         else if (act && !connected.has(id) && id !== selected) mat = rec.item.kind === "rack" ? dimEquip : dimEquip;
         else if (act && connected.has(id) && base.emissive) { if (!connectedCache.has(base.uuid)) { const h = base.clone(); h.emissive = new THREE.Color(0xffffff); h.emissiveIntensity = 0.08; connectedCache.set(base.uuid, h); } mat = connectedCache.get(base.uuid); }
         if (id === selected) {
@@ -415,24 +487,29 @@ export async function createTwin(container, F, opts = {}) {
           mat = highlightCache.get(key);
         }
         m.material = mat;
-        m.castShadow = view === "realistic" && !act && base !== M.glass && base !== M.grating;
+        m.castShadow = REAL() && !act && base !== M.glass && base !== M.grating;
       }
+      if (rec.edges) for (const e of rec.edges) e.visible = view === "blueprint";
     }
+    ground.traverse((o) => { if (o.isMesh) { o.userData.base = o.userData.base || o.material; o.material = view === "blueprint" ? bpGround : view === "thermal" ? thermalGround : o.userData.base; } });
     for (const l of links) {
       const on = linkActive(l);
-      if (view !== "realistic") { l.mesh.material = l.net === "process" || view === "xray" ? glowMat(l.color) : dimLink; l.mesh.visible = !(streamFocus && l.net === "process" && l.stream !== streamFocus); }
+      if (view === "thermal") { const tt = LINK_TEMP(l); l.mesh.material = tt == null ? dimLink : thermalMat(tt); l.mesh.visible = true; }
+      else if (view === "blueprint") { l.mesh.material = bpPipe; l.mesh.visible = true; }
+      else if (!REAL()) { l.mesh.material = l.net === "process" || view === "xray" ? glowMat(l.color) : dimLink; l.mesh.visible = !(streamFocus && l.net === "process" && l.stream !== streamFocus); }
       else { l.mesh.material = act ? (on ? glowMat(l.color) : dimLink) : l.paint; l.mesh.visible = l.visible; }
       if (l.label) l.label.classList.toggle("is-sel", selectedLink === l);
     }
-    const dimStatic = act || view !== "realistic";
+    const dimStatic = act || !REAL();
     supports.visible = fittings.visible = trays.visible = true;
-    for (const g of [supports, fittings, trays]) g.traverse((o) => { if (o.isMesh) { o.userData.base = o.userData.base || o.material; o.material = dimStatic ? dimLink : o.userData.base; } });
-    for (const [id, p] of particles) p.im.visible = view === "realistic" && links.some((l) => l.net === id && linkActive(l));
+    for (const g of [supports, fittings, trays]) g.traverse((o) => { if (o.isMesh) { o.userData.base = o.userData.base || o.material; o.material = view === "blueprint" ? bpFill : view === "thermal" ? thermalCold : dimStatic ? dimLink : o.userData.base; } });
+    for (const [id, p] of particles) p.im.visible = REAL() && links.some((l) => l.net === id && linkActive(l));
+    applyAtmosphere();
     areaGroup.visible = view === "process";
     labelLayer.classList.toggle("is-on", view === "process");
     needs = true;
   }
-  function setView(v) { view = v; applyView(); }
+  function setView(v) { view = v; if (v === "blueprint") buildEdges(); applyView(); }
   function highlightStream(s) { streamFocus = s; if (s) activeNets.add("process"); applyView(); }
   function setNetworks(list) { activeNets.clear(); for (const n of list) if (NET[n]) activeNets.add(n); selectedLink = null; applyView(); }
   function traceFor(id) { traceSet = new Set(id ? links.filter((l) => l.from === id || l.to === id).map((l) => l.id) : []); }
@@ -485,7 +562,7 @@ export async function createTwin(container, F, opts = {}) {
     ray.setFromCamera(ndc, camera);
     const hit = ray.intersectObjects(pickables, false)[0];
     // a network segment wins when it is in front of the equipment and its network is shown
-    if (!showcase && view === "realistic") {
+    if (!showcase && REAL()) {
       ray.params.Line = { threshold: 0.5 };
       const lh = ray.intersectObjects(links.filter((l) => l.mesh.visible && (!anyActive() || linkActive(l))).map((l) => l.mesh), false)[0];
       if (lh && (!hit || lh.distance < hit.distance + (anyActive() ? 30 : 0))) return { link: lh.object.userData.link };
@@ -610,11 +687,11 @@ export async function createTwin(container, F, opts = {}) {
     if (energy && performance.now() - energy.since > 6500) { energy.step = (energy.step + 1) % ENERGY.length; showEnergy(); }   // 6.5 s per step (wall clock)
     // level of detail: small fittings only near the camera
     fittings.visible = camera.position.distanceTo(controls.target) < span * 0.9;
-    const animated = view !== "realistic" || (showcase && controls.autoRotate) || !!energy || (motion && (vehicles.length || anyActive()));
+    const animated = !REAL() || (showcase && controls.autoRotate) || !!energy || (motion && (vehicles.length || anyActive()));
     if (!(needs || moving || animated)) return;
     needs = false;
     if (composer) composer.render(); else renderer.render(scene, camera);
-    if (showPipeLabels() && anyActive() && view === "realistic") {
+    if (showPipeLabels() && anyActive() && REAL()) {
       const w = container.clientWidth, h = container.clientHeight, placed = [];
       const order = links.filter((l) => l.label).map((l) => ({ l, d: (l === selectedLink ? -1e9 : 0) + l.labelPos.distanceToSquared(camera.position) })).sort((a, b) => a.d - b.d);
       for (const { l } of order) {
@@ -626,7 +703,7 @@ export async function createTwin(container, F, opts = {}) {
         if (!hit) { l.label.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`; placed.push({ x, y, w: lw }); }
       }
     }
-    pipeLayer.classList.toggle("is-on", showPipeLabels() && anyActive() && view === "realistic");
+    pipeLayer.classList.toggle("is-on", showPipeLabels() && anyActive() && REAL());
     if (view === "process") {
       const w = container.clientWidth, h = container.clientHeight;
       for (const l of areaLabels) { v3.copy(l.pos).project(camera); const off = v3.z > 1; l.el.style.transform = `translate(-50%, -50%) translate(${(v3.x * .5 + .5) * w}px, ${(-v3.y * .5 + .5) * h}px)`; l.el.style.visibility = off ? "hidden" : "visible"; }

@@ -98,6 +98,9 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) 
       <button type="button" data-view="realistic" aria-pressed="true">${esc(t.views.realistic)}</button>
       <button type="button" data-view="process" aria-pressed="false">${esc(t.views.process)}</button>
       <button type="button" data-view="xray" aria-pressed="false">${esc(t.views.xray)}</button>
+      <button type="button" data-view="thermal" aria-pressed="false">${esc(t.views.thermal)}</button>
+      <button type="button" data-view="blueprint" aria-pressed="false">${esc(t.views.blueprint)}</button>
+      <button type="button" data-view="night" aria-pressed="false">${esc(t.views.night)}</button>
     </div>
     <div class="tw__tools">
       <button type="button" class="tw-price-btn" data-pricing aria-haspopup="dialog"><span class="tw-price-btn__l">${esc(t.pricing.button)}</span><span class="tw-price-btn__s">${esc(t.pricing.buttonShort)}</span></button>
