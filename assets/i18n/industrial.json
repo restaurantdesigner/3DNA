@@ -100,7 +100,13 @@
         "Wastewater treatment",
         "Electrical and fire protection",
         "Administration and control"
-      ]
+      ],
+      "video": {
+        "title": "Fly-through of the facility",
+        "meta": "48 s · no sound",
+        "caption": "A camera flight through the case-study plant, area by area: administration, grain receiving, fermentation, distillation, storage and utilities. Rendered from the 3DNA digital twin; figures quoted in the film are public figures.",
+        "label": "Play the fly-through of the Canadian ethanol production facility (48 seconds)"
+      }
     },
     "equipment": {
       "label": "Equipment exploration",

@@ -77,6 +77,14 @@ ${twinBand(lang, s)}`);
     <div class="ab-side ab-sticky" data-reveal>${head("03", p.label, p.title, "ind-process-t")}<p class="ab-p">${esc(p.lead)}</p></div>
     <ol class="ab-list" data-reveal>${p.steps.map((x, i) => `<li><span class="ab-list__n">${String(i + 1).padStart(2, "0")}</span><span>${esc(x)}</span></li>`).join("")}</ol>
   </div>
+  <figure class="ab-wrap ind-film" data-reveal>
+    <div class="ind-film__frame">
+      <video class="ind-film__v" controls playsinline preload="none" poster="/images/industrial/flythrough-tour-poster.webp" width="1280" height="720" aria-label="${esc(p.video.label)}">
+        <source src="/images/industrial/flythrough-tour-720.mp4" type="video/mp4">
+      </video>
+    </div>
+    <figcaption class="ind-film__cap"><b>${esc(p.video.title)}</b> <span>${esc(p.video.meta)}</span><br>${esc(p.video.caption)}</figcaption>
+  </figure>
 </section>`);
     const e = t.equipment, f = t.finance;
     out.push(`<section class="ab-sec ind-duo" aria-labelledby="ind-equipment-t">

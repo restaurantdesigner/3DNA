@@ -656,7 +656,10 @@ export async function createTwin(container, F, opts = {}) {
     const w = container.clientWidth, h = container.clientHeight;
     if (!w || !h) return;
     renderer.setSize(w, h, false); if (composer) { composer.setPixelRatio(renderer.getPixelRatio()); composer.setSize(w, h); } camera.aspect = w / h; camera.updateProjectionMatrix(); needs = true;
-    if (!framed) { frameHome(); camera.position.copy(home.pos); controls.target.copy(home.target); framed = true; }
+    // re-frame while the camera still sits at the overview: phones settle their layout (toolbars, sheets)
+    // after the first resize, and a frame computed for that first size leaves the plant small and off-centre
+    const atHome = !framed || (camera.position.distanceTo(home.pos) < 0.5 && controls.target.distanceTo(home.target) < 0.5);
+    if (atHome) { frameHome(); camera.position.copy(home.pos); controls.target.copy(home.target); framed = true; }
   }
   let framed = false;
   const ro = new ResizeObserver(resize); ro.observe(container); resize();
