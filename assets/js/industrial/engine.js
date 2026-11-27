@@ -17,7 +17,7 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { createRenderer, setupLighting, mergeGeometries } from "/assets/js/shared-3d/archviz.js?v=ind1";
-import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind5";
+import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind6";
 
 export const tr = (v, lang) => (v && typeof v === "object" && !Array.isArray(v) ? (v[lang] || v.en || v.es || "") : v);
 // display name of an equipment item: its kind's catalogue name + number
@@ -111,7 +111,7 @@ export async function createTwin(container, F, opts = {}) {
   const home = { pos: new THREE.Vector3(), target: center.clone().add(new THREE.Vector3(0, 6, 0)) };
   const frameHome = () => {
     const v = THREE.MathUtils.degToRad(camera.fov) / 2, hfov = Math.atan(Math.tan(v) * camera.aspect);
-    const dist = Math.max((span * 0.5) / Math.tan(hfov), (span * 0.34) / Math.tan(v)) * (opts.frame || (showcase ? 0.78 : 0.72));
+    const dist = Math.max((span * 0.5) / Math.tan(hfov), (span * 0.34) / Math.tan(v)) * (opts.frame || (showcase ? 0.78 : 0.72)) * (camera.aspect < 1 ? 1.32 : 1);
     home.pos.copy(home.target).add(homeDir.clone().multiplyScalar(dist));
   };
   frameHome(); camera.position.copy(home.pos);

@@ -436,3 +436,4 @@ html.tw-modal-open{ overflow: hidden; }
 }
 @media (max-width: 900px){ .tw .tw__back{ display: none; } }
 @media (min-width: 901px){ .tw__views{ flex: none; overflow: visible; } .tw__title{ flex: 1 1 auto; min-width: 0; } .tw__title h1{ min-width: 0; } }
+@media (max-width: 900px){ body.twpage:has(.tw.left-open) .wa-float, body.twpage:has(.tw.right-open) .wa-float{ display: none; } }

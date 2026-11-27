@@ -196,6 +196,29 @@ function nozzles(b, r, y, n, a0 = 0, len = 0.6, rr = 0.18) {
   for (let i = 0; i < n; i++) { const t = a0 + (i / n) * Math.PI * 2; b.rod(b.M.steel, rr, [Math.cos(t) * r, y, Math.sin(t) * r], [Math.cos(t) * (r + len), y, Math.sin(t) * (r + len)], 12); b.rod(b.M.steel, rr * 1.5, [Math.cos(t) * (r + len - 0.05), y, Math.sin(t) * (r + len - 0.05)], [Math.cos(t) * (r + len + 0.05), y, Math.sin(t) * (r + len + 0.05)], 12); }
 }
 
+// facility sign texture: green roundel with a fuel drop and a maple leaf, name and sub-line (cached per text)
+const signCache = new Map();
+function signMaterial(title, sub) {
+  const key = title + "|" + sub;
+  if (signCache.has(key)) return signCache.get(key);
+  const c = document.createElement("canvas"); c.width = 1024; c.height = 256; const x = c.getContext("2d");
+  x.fillStyle = "#0d1512"; x.fillRect(0, 0, 1024, 256);
+  x.fillStyle = "#1f7a4d"; x.beginPath(); x.arc(128, 128, 96, 0, Math.PI * 2); x.fill();
+  x.strokeStyle = "#e8f5ee"; x.lineWidth = 6; x.beginPath(); x.arc(128, 128, 96, 0, Math.PI * 2); x.stroke();
+  // fuel drop
+  x.fillStyle = "#ffffff"; x.beginPath(); x.moveTo(128, 50); x.bezierCurveTo(170, 108, 186, 132, 186, 154); x.arc(128, 154, 58, 0, Math.PI); x.bezierCurveTo(70, 132, 86, 108, 128, 50); x.fill();
+  // maple leaf inside the drop
+  x.fillStyle = "#d52b1e"; x.save(); x.translate(128, 150); x.scale(2.6, 2.6);
+  x.beginPath(); const P = [[0,-16],[3,-10],[6,-12],[5,-5],[11,-9],[10,-6],[14,-6],[12,-2],[14,0],[6,4],[7,7],[1,6],[1,13],[-1,13],[-1,6],[-7,7],[-6,4],[-14,0],[-12,-2],[-14,-6],[-10,-6],[-11,-9],[-5,-5],[-6,-12],[-3,-10]];
+  P.forEach(([px, py], i) => (i ? x.lineTo(px, py) : x.moveTo(px, py))); x.closePath(); x.fill(); x.restore();
+  x.fillStyle = "#ffffff"; x.font = "700 92px Inter, Arial, sans-serif"; x.textBaseline = "alphabetic"; x.fillText(title, 260, 130);
+  x.fillStyle = "#9fd8b8"; x.font = "600 44px Inter, Arial, sans-serif"; x.fillText(sub, 262, 196);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  const m = new THREE.MeshStandardMaterial({ map: t, emissiveMap: t, emissive: 0xffffff, emissiveIntensity: 0.55, roughness: 0.5, metalness: 0.1 });
+  signCache.set(key, m);
+  return m;
+}
+
 // a parked car (≈ 4.5 × 1.8 m), facing angle a
 function car(b, x, z, a, paint) {
   const M = b.M, T = (dx, dy, dz) => { const c = Math.cos(a), s = Math.sin(a); return [x + dx * c + dz * s, dy, z - dx * s + dz * c]; };
@@ -497,7 +520,7 @@ const G = {
     return { height: h + 1, radius: w / 2, ports: { in: [w / 2, 1.2, 0], out: [-w / 2, 1.2, 0] } };
   },
   // office / laboratory: storeys of glazing between white slabs, entrance canopy, parapet and roof plant
-  office(b, { w = 26, d = 14, floors = 3, fh = 3.6 } = {}) {
+  office(b, { w = 26, d = 14, floors = 3, fh = 3.6, sign = null } = {}) {
     const M = b.M, h = floors * fh;
     b.box(M.concrete, w + 2, 0.3, d + 2, 0, 0.15, 0);
     for (let i = 0; i < floors; i++) {
@@ -512,6 +535,12 @@ const G = {
     b.box(M.paintGrey, w * .25, 1.4, d * .35, w * .2, 0.3 + h + 1.7, 0); b.box(M.paintGrey, w * .12, 1, d * .25, -w * .25, 0.3 + h + 1.5, -d * .15);
     b.box(M.officeWall, 6, 0.4, 3, 0, 3.4, d / 2 + 1.5); b.box(M.darkSteel, 0.2, 3.2, 0.2, -2.8, 1.8, d / 2 + 2.8); b.box(M.darkSteel, 0.2, 3.2, 0.2, 2.8, 1.8, d / 2 + 2.8);
     b.box(M.windowLit, 3, 2.6, 0.1, 0, 1.6, d / 2 + 0.02);
+    if (sign) {
+      const sw = Math.min(w * 0.72, 18), sh = sw / 4;
+      b.box(M.darkSteel, sw + 0.3, sh + 0.3, 0.2, 0, 0.3 + h + 0.4 + sh / 2, d / 2 + 0.12);
+      b.add(signMaterial(sign.title, sign.sub), new THREE.PlaneGeometry(sw, sh), b.T(0, 0.3 + h + 0.4 + sh / 2, d / 2 + 0.23));
+      for (const xx of [-sw / 3, sw / 3]) b.box(M.galv, 0.12, 0.8, 0.12, xx, 0.3 + h + 0.6, d / 2 - 0.1);
+    }
     return { height: h + 2.5, radius: Math.max(w, d) / 2, ports: { in: [-w / 2, 2, 0], out: [w / 2, 2, 0] } };
   },
   // site entrance: guard house with a barrier arm across the lane (local +x)
@@ -695,6 +724,16 @@ const G = {
     b.box(M.paintGreen, 1.2, 0.9, 0.06, s / 2 - 0.5, 2.6, -s / 2 + 0.5);
     b.box(M.white, 0.5, 0.5, 0.07, s / 2 - 0.5, 2.6, -s / 2 + 0.5);
     return { height: 3.1, radius: s / 2, ports: {} };
+  },
+  // entrance monument sign: stone base with the facility sign on both faces
+  monument(b, { w = 6, title = "", sub = "" } = {}) {
+    const M = b.M, h = w / 4;
+    b.box(M.concrete, w + 0.8, 0.6, 1.2, 0, 0.3, 0);
+    b.box(M.darkSteel, w + 0.3, h + 0.3, 0.5, 0, 0.6 + (h + 0.3) / 2, 0);
+    const mat = signMaterial(title, sub);
+    b.add(mat, new THREE.PlaneGeometry(w, h), b.T(0, 0.6 + (h + 0.3) / 2, 0.26));
+    b.add(mat, new THREE.PlaneGeometry(w, h), b.T(0, 0.6 + (h + 0.3) / 2, -0.26, Math.PI));
+    return { height: h + 1, radius: w / 2, ports: {} };
   },
   // bucket-elevator tower with head house
   elevator(b, { h = 34 } = {}) {

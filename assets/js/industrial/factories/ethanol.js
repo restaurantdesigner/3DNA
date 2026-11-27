@@ -148,7 +148,8 @@ export default {
     // hydrants on the fire main (conceptual)
     ...[["hyd-grain", -102, -30], ["hyd-ferm", -42, -9], ["hyd-dist", 24, -10], ["hyd-tank", 98, -18], ["hyd-util", -32, 13], ["hyd-co", 56, 14]].map(([id, x, z]) => E(id, "hydrant", "hydrant", [x, z], {}, { area: "electrical" })),
     // 12 · administration and control
-    E("admin", "admin", "office", [-118, 41], { w: 26, d: 13, floors: 3 }, { area: "admin" }),
+    E("admin", "admin", "office", [-118, 41], { w: 26, d: 13, floors: 3, sign: { title: "CANADIAN ETHANOL", sub: "PRODUCTION FACILITY · LANIGAN, SK" } }, { area: "admin" }),
+    E("monument", "monument", "monument", [-119, 52], { w: 6, ...{ title: "CANADIAN ETHANOL", sub: "PRODUCTION FACILITY · LANIGAN, SK" } }, { area: "admin" }),
     E("lab", "lab", "office", [-95, 45], { w: 13, d: 9, floors: 2 }, { area: "admin" }),
     E("gate", "gate", "gatehouse", [-136, 50], {}, { area: "admin", rot: Math.PI / 2 }),
     E("parking", "parking", "parking", [-122, -7], { w: 30, d: 18, cars: 16 }, { area: "admin" }),
@@ -330,6 +331,7 @@ export default {
     gate: { name: "Gatehouse", fn: "Staff, visitor and truck control.", specs: [] },
     parking: { name: "Staff car park", fn: "Parking for staff and visitors.", specs: [] },
     graintruck: { name: "Grain truck", fn: "Delivers feed wheat to the receiving pit (≈ 110 t/day: public figure).", specs: [] },
+    monument: { name: "Entrance sign", fn: "Facility name sign at the site entrance (conceptual branding for the demonstration).", specs: [] },
     muster: { name: "Emergency assembly point", fn: "Muster point for staff and visitors during an evacuation.", specs: [["Status", "Conceptual", "c"]] },
     rack: { name: "Pipe rack", fn: "Three-tier steel structure: process lines, utility lines and cable trays.", specs: [["Length", "≈ 250 m", "c"], ["Tiers", "Process · utilities · cable trays", "c"]] }
   },
