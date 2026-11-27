@@ -58,6 +58,14 @@ export async function mountDashboard(root, F, ui, lang) {
     setTimeout(() => twin.resize(), 320);
   }));
   labelToggles();
+  // phones: the panels are bottom sheets; each gets a visible close button (×)
+  root.querySelectorAll(".tw__panel").forEach((p) => {
+    const side = p.classList.contains("tw__left") ? "left" : "right";
+    const x = document.createElement("button"); x.type = "button"; x.className = "tw__sheetx";
+    x.setAttribute("aria-label", `${t.close}: ${side === "left" ? t.panels.left : t.panels.right}`); x.innerHTML = "&times;";
+    x.addEventListener("click", () => { root.classList.remove(`${side}-open`); labelToggles(); setTimeout(() => twin && twin.resize(), 320); });
+    p.prepend(x);
+  });
   root.querySelectorAll("[data-tabs]").forEach((box) => box.querySelectorAll("[data-tab]").forEach((b) => b.addEventListener("click", () => openTab(box, b.dataset.tab))));
   function openTab(box, id) {
     box.querySelectorAll("[data-tab]").forEach((x) => x.setAttribute("aria-selected", String(x.dataset.tab === id)));

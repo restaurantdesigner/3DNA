@@ -311,7 +311,8 @@
         "length": "Route length",
         "conceptual": "Conceptual connection, illustrative route — not verified infrastructure.",
         "processNote": "Process step from public descriptions; the pipe route is conceptual."
-      }
+      },
+      "close": "Close"
     }
   }
 }

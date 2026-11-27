@@ -402,3 +402,12 @@ html.tw-modal-open{ overflow: hidden; }
 .tw .tw-energy-stop{ position: absolute; left: 50%; top: 62px; z-index: 5; transform: translateX(-50%); height: 32px; padding: 0 16px; border: 1px solid rgba(250,204,21,.55); border-radius: 999px; background: rgba(14,15,18,.92); color: #facc15; font: 700 12px "Inter", system-ui, sans-serif; letter-spacing: .04em; cursor: pointer; }
 .tw .tw-energy-stop:hover{ background: #facc15; color: #0b0c0e; }
 @media (max-width: 900px){ .tw .tw-energy-stop{ top: auto; bottom: 14px; } .twin__caption{ top: 108px; } }
+
+/* mobile bottom sheets: grab handle + close button */
+.tw__sheetx{ display: none; }
+@media (max-width: 900px){
+  .tw__panel::before{ content: ""; position: absolute; left: 50%; top: 7px; width: 40px; height: 4px; margin-left: -20px; border-radius: 2px; background: rgba(255,255,255,.22); z-index: 2; }
+  .tw .tw__sheetx{ position: absolute; top: 10px; right: 10px; z-index: 3; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; background: #1d1f24; color: #fff; font: 400 24px/1 "Inter", system-ui, sans-serif; cursor: pointer; }
+  .tw .tw__sheetx:active{ background: #fff; color: #0b0c0e; }
+  .tw__panel .tw__tabs{ padding-top: 18px; padding-right: 54px; }
+}
