@@ -42,7 +42,7 @@ const OG_PAGE_IMAGES = {
   about: () => "/images/about/og-andrei-yafimenka.jpg",   // the approved photograph, cropped, no text
   marketing: (lang) => `/images/og/og-marketing-${lang}.jpg`,
   industrial: (lang) => "/images/industrial/og-industrial-en.jpg",
-  "industrial-ethanol": (lang) => "/images/industrial/og-industrial-en.jpg",
+  "industrial-ethanol": (lang) => "/images/industrial/og-industrial-plant-en.jpg",
 };
 // client project pages: the project's own preview image
 const projectKey = (id) => `project-${id}`;

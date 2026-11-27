@@ -4,9 +4,9 @@
     "nav": "Industrial",
     "meta": {
       "title": "3DNA Industrial · Digital twins of industrial plants | 3DNA",
-      "description": "Interactive 3D digital twins of industrial plants: production process visualisation, equipment exploration and investment and operating-cost simulation.",
+      "description": "Interactive 3D digital twins of industrial facilities: process visualization, engineering networks and investment intelligence. Case study: Canadian ethanol.",
       "ogTitle": "3DNA Industrial · Explore industry before you build it",
-      "ogImageAlt": "3D digital twin of an ethanol production plant, developed by 3DNA"
+      "ogImageAlt": "3D digital twin of a Canadian ethanol production facility, developed by 3DNA Industrial"
     },
     "hero": {
       "label": "3DNA Industrial · Digital Twin",
@@ -30,8 +30,8 @@
           "The complete plant generated in 3D: silos, tanks, columns, pipes, platforms and buildings, explorable from any viewpoint."
         ],
         [
-          "Visualised process",
-          "Every process stream appears in its pipe and colour, from raw material to finished product."
+          "Visualized process and networks",
+          "Every process stream, electrical feeder, steam, water and air line appears as a selectable engineering layer, from source to destination."
         ],
         [
           "Explorable equipment",
@@ -46,17 +46,20 @@
     "process": {
       "label": "Process visualisation",
       "title": "From grain to product, step by step",
-      "lead": "In the ethanol plant demonstration, the process runs through nine areas. Each one lights up, shows its streams and explains what happens in it.",
+      "lead": "In the Canadian ethanol case study, the process runs through twelve areas, from wheat receiving to 99.5 % ethanol, wet distillers grain for the adjacent feedlot and the utilities that support them.",
       "steps": [
         "Grain receiving and storage",
         "Milling",
-        "Liquefaction",
+        "Cooking and liquefaction",
         "Fermentation",
         "Distillation",
-        "Dehydration",
+        "Dehydration (molecular sieve)",
         "Storage and dispatch",
-        "Co-products: DDGS and CO₂",
-        "Utilities: steam, water and power"
+        "Co-products: WDG and thin stillage",
+        "Utilities: steam, water and air",
+        "Wastewater treatment",
+        "Electrical and fire protection",
+        "Administration and control"
       ]
     },
     "equipment": {
@@ -67,7 +70,7 @@
     "finance": {
       "label": "Investment and costs",
       "title": "Investment scenarios in real time",
-      "lead": "The digital twin's calculator links the plant to its economics: capacity, yield, raw-material and product prices, energy and unit investment. Every change updates CAPEX, OPEX, EBITDA, margin and payback.",
+      "lead": "The calculator links the facility to its economics in Canadian dollars: production, yield, wheat, ethanol and distillers-grain prices, natural gas, electricity, personnel and unit investment. Every change updates CAPEX, OPEX, EBITDA, margin, cost per litre and payback.",
       "note": "The technical and financial values in the demonstration are illustrative. In a real project they are calibrated with the client's and its engineering firm's data."
     },
     "audiences": {
@@ -89,25 +92,32 @@
       ]
     },
     "showcase": {
-      "label": "Demonstration project",
-      "title": "Ethanol Production Plant",
-      "text": "A complete dry-grind plant generated in 3D: grain receiving, milling, liquefaction, fermentation, distillation, dehydration, storage, co-products and utilities. With an animated process, an equipment catalogue and an investment calculator.",
-      "tag": "Demonstration · illustrative values",
-      "cta": "Open the interactive plant",
+      "label": "Case study",
+      "location": "Lanigan, Saskatchewan · Canada",
+      "title": "Canadian Ethanol Production Facility",
+      "text": "Explore a Canadian grain-based ethanol production facility through an interactive 3D environment combining industrial process visualization, equipment intelligence and financial modelling.",
+      "tag": "Independent demonstration",
+      "cta": "Open the interactive facility",
+      "imageAlt": "Presentation render of the 3D ethanol production facility on a dark background",
       "facts": [
         [
+          "14 M L",
+          "ethanol per year (public figure)"
+        ],
+        [
+          "4 × 283,000 L",
+          "fermenters (public figure)"
+        ],
+        [
+          "C$29.4 M",
+          "illustrative capital investment"
+        ],
+        [
           "9",
-          "process areas"
-        ],
-        [
-          "60",
-          "pieces of equipment generated in 3D"
-        ],
-        [
-          "7",
-          "process streams"
+          "engineering networks"
         ]
-      ]
+      ],
+      "disclosure": "Inspired by publicly available information about Canadian ethanol manufacturing. The 3D layout and financial scenarios are illustrative. No affiliation with the reference facility is implied."
     },
     "cta": {
       "label": "Next step",
@@ -120,7 +130,7 @@
     "twin": {
       "back": "3DNA Industrial",
       "home3dna": "Back to 3DNA",
-      "badge": "Demonstration · illustrative values",
+      "badge": "Independent demonstration",
       "views": {
         "realistic": "Realistic",
         "process": "Process",
@@ -130,7 +140,7 @@
       "homeView": "Overview",
       "fullscreen": "Full screen",
       "panels": {
-        "left": "Plant",
+        "left": "Project",
         "right": "Analysis"
       },
       "tabs": {
@@ -138,28 +148,33 @@
         "process": "Process",
         "detail": "Item",
         "invest": "Investment",
-        "prod": "Production"
+        "prod": "Production",
+        "project": "Project",
+        "sources": "Sources"
       },
       "search": "Search equipment…",
       "streams": "Process streams",
       "streamsHint": "Click a stream to follow it through the plant.",
-      "detailEmpty": "Select a piece of equipment in the plant or in the list to see its function, data and connections.",
-      "connections": "Connections",
-      "illustrative": "Illustrative demonstration data.",
+      "detailEmpty": "Select a piece of equipment or a network connection to see its function, data and connections.",
+      "connections": "Connected networks",
+      "illustrative": "Specifications marked Verified come from public sources; everything else is conceptual or an assumption.",
       "groups": {
         "plant": "Plant",
-        "market": "Market",
-        "invest": "Investment and fixed costs"
+        "market": "Market (2025 benchmarks)",
+        "invest": "Investment and personnel"
       },
       "reset": "Reset values",
       "kpi": {
-        "capex": "CAPEX",
+        "capex": "Capital investment",
         "revenue": "Annual revenue",
-        "opex": "Annual OPEX",
+        "ethanolRev": "Ethanol",
+        "dgRev": "WDG",
+        "opex": "Annual operating cost",
         "ebitda": "EBITDA",
         "margin": "EBITDA margin",
         "payback": "Simple payback",
-        "costPerL": "Cost per litre"
+        "costPerL": "Production cost per litre",
+        "netCost": "Net of co-product credit"
       },
       "capexTitle": "CAPEX by area",
       "opexTitle": "OPEX by item",
@@ -170,19 +185,22 @@
         "fixed": "Fixed costs"
       },
       "prodTitle": "Production",
-      "monthlyTitle": "Monthly ethanol production (m³)",
+      "monthlyTitle": "Monthly ethanol production (planned shutdown in July)",
       "prod": {
         "ethanol": "Ethanol",
-        "grain": "Grain processed",
-        "ddgs": "DDGS",
-        "co2": "Fermentation CO₂"
+        "grain": "Feed wheat",
+        "wdg": "Wet distillers grain",
+        "co2": "Fermentation CO₂",
+        "water": "Water",
+        "gas": "Natural gas",
+        "power": "Electricity"
       },
       "strip": {
-        "capacity": "Capacity",
+        "capacity": "Production",
         "ethanol": "Ethanol",
-        "grain": "Grain",
+        "grain": "Wheat",
         "capex": "CAPEX",
-        "payback": "Payback"
+        "margin": "EBITDA margin"
       },
       "years": "years",
       "noPayback": "no payback",
@@ -202,13 +220,97 @@
         "November",
         "December"
       ],
-      "financeNote": "Simplified model with illustrative values: not a feasibility study.",
+      "financeNote": "Illustrative CAD scenarios built from dated public benchmarks and 3DNA assumptions — not the reference facility's financial data and not a feasibility study.",
       "loading": "Generating the plant in 3D…",
       "webglError": "Your browser cannot display the 3D model (WebGL unavailable).",
-      "metaTitle": "Ethanol Production Plant · Digital twin | 3DNA Industrial",
-      "metaDescription": "Interactive 3DNA Digital Twin demonstration: an ethanol plant in 3D with an animated process, explorable equipment and a CAPEX and OPEX calculator with illustrative values.",
-      "ogTitle": "Ethanol plant in 3D · 3DNA Digital Twin",
-      "ogImageAlt": "3D digital twin of an ethanol production plant"
+      "metaTitle": "Canadian Ethanol Production Facility · Digital twin | 3DNA Industrial",
+      "metaDescription": "Interactive 3D digital twin of a Canadian grain-based ethanol facility in Lanigan, Saskatchewan: process, engineering networks and a CAD investment model.",
+      "ogTitle": "Canadian Ethanol Production Facility · 3DNA Digital Twin",
+      "ogImageAlt": "3D digital twin of a Canadian ethanol production facility",
+      "pricing": {
+        "button": "Project Pricing — from €2,500",
+        "buttonShort": "Pricing",
+        "title": "Pricing & Packages",
+        "intro": "Choose the scope that fits your project. Every digital twin is built for your plant and your process.",
+        "recommended": "Recommended",
+        "cta": "Request a Proposal",
+        "close": "Close",
+        "disclaimer": "Estimated development costs. Final pricing depends on project complexity and requirements. VAT excluded.",
+        "whatsapp": "Hello 3DNA, I would like to request a proposal for an industrial digital twin. Selected package: {name} ({range}).",
+        "packages": [
+          {
+            "id": "essential",
+            "name": "Essential",
+            "range": "€2,500–€5,000",
+            "text": "Interactive 3D facility, equipment exploration and basic process visualization."
+          },
+          {
+            "id": "professional",
+            "name": "Professional",
+            "range": "€5,000–€10,000",
+            "text": "Detailed industrial digital twin, animated processes, equipment costs and financial analytics.",
+            "recommended": true
+          },
+          {
+            "id": "enterprise",
+            "name": "Enterprise",
+            "range": "€10,000–€25,000+",
+            "text": "Complete industrial platform, advanced simulations, custom functionality and data integration."
+          }
+        ]
+      },
+      "hidePanel": "Hide",
+      "flow": "Live flow",
+      "location": "Lanigan, SK",
+      "scenarios": "Scenarios",
+      "project": {
+        "country": "Country",
+        "province": "Province",
+        "location": "Location",
+        "industry": "Industry",
+        "technology": "Technology",
+        "status": "Project status",
+        "developer": "Developed by",
+        "reference": "Reference facility",
+        "keyFacts": "Public figures used in the model",
+        "openSources": "Data sources & assumptions →",
+        "researched": "Research and reference date:"
+      },
+      "sources": {
+        "intro": "Every figure in this digital twin is tagged by origin. Verified facts are public statements about the reference facility; benchmarks are dated public market data; assumptions are 3DNA estimates.",
+        "verified": "Verified public information",
+        "benchmarks": "Dated public benchmarks",
+        "assumptions": "Illustrative assumptions",
+        "networks": "Engineering networks",
+        "list": "Sources",
+        "accessed": "accessed"
+      },
+      "tags": {
+        "v": "Verified",
+        "b": "Benchmark",
+        "a": "Assumption",
+        "c": "Conceptual"
+      },
+      "networks": {
+        "title": "Engineering Networks",
+        "all": "Select all",
+        "none": "Hide all",
+        "reset": "Reset",
+        "trace": "Trace connections of the selected equipment",
+        "energy": "Energy Flow",
+        "note": "Conceptual networks for presentation — not verified infrastructure of the reference facility."
+      },
+      "link": {
+        "from": "From",
+        "to": "To",
+        "direction": "Flow",
+        "forward": "Source → destination",
+        "supply": "Supply",
+        "ret": "Return",
+        "length": "Route length",
+        "conceptual": "Conceptual connection, illustrative route — not verified infrastructure.",
+        "processNote": "Process step from public descriptions; the pipe route is conceptual."
+      }
     }
   }
 }

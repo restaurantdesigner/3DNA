@@ -12,8 +12,12 @@
  */
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { createRenderer, setupLighting } from "/assets/js/shared-3d/archviz.js?v=ind1";
-import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind1";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+import { createRenderer, setupLighting, mergeGeometries } from "/assets/js/shared-3d/archviz.js?v=ind1";
+import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind3";
 
 export const tr = (v, lang) => (v && typeof v === "object" && !Array.isArray(v) ? (v[lang] || v.en || v.es || "") : v);
 // display name of an equipment item: its kind's catalogue name + number
@@ -51,6 +55,17 @@ function flowTexture(color) {
   return t;
 }
 
+function pulseTexture(color) {
+  const c = document.createElement("canvas"); c.width = 128; c.height = 8;
+  const x = c.getContext("2d"), col = new THREE.Color(color);
+  const rgb = `${Math.round(col.r * 255)},${Math.round(col.g * 255)},${Math.round(col.b * 255)}`;
+  const g = x.createLinearGradient(0, 0, 128, 0);
+  g.addColorStop(0, `rgba(${rgb},0)`); g.addColorStop(0.6, `rgba(${rgb},0.25)`); g.addColorStop(0.9, `rgba(${rgb},1)`); g.addColorStop(1, `rgba(${rgb},0)`);
+  x.fillStyle = g; x.fillRect(0, 0, 128, 8);
+  const t = new THREE.CanvasTexture(c); t.wrapS = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
 // ------------------------------------------------------------------ sky
 function skyTexture(top, horizon, ground) {
   const c = document.createElement("canvas"); c.width = 4; c.height = 512;
@@ -64,28 +79,29 @@ function skyTexture(top, horizon, ground) {
 export async function createTwin(container, F, opts = {}) {
   const lang = opts.lang || "es";
   const showcase = opts.mode === "showcase";
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lowPower = opts.lowPower ?? (matchMedia("(max-width: 760px)").matches || (navigator.hardwareConcurrency || 8) <= 4);
-  const listeners = { select: [], hover: [], ready: [] };
+  const listeners = { select: [], hover: [], ready: [], link: [], trace: [], energy: [] };
   const emit = (k, v) => listeners[k].forEach((f) => f(v));
 
   // ---------------------------------------------------------------- renderer / scene / camera
-  const renderer = createRenderer({ lowPower, exposure: 0.92, className: "twin__canvas" });
+  const renderer = createRenderer({ lowPower, exposure: 0.86, className: "twin__canvas" });
+  renderer.setClearColor(0x000000, 0);
   container.appendChild(renderer.domElement);
   const scene = new THREE.Scene();
   const S = F.site;
   const center = new THREE.Vector3((S.x[0] + S.x[1]) / 2, 0, (S.z[0] + S.z[1]) / 2);
   const span = Math.max(S.x[1] - S.x[0], S.z[1] - S.z[0]);
-  // dusk: deep blue sky, warm low sun with long shadows, cool fill
-  scene.background = skyTexture("#070d22", "#c98a6a", "#1a1e28");
-  scene.fog = new THREE.Fog(0x2a3048, span * 1.2, span * 3.6);
-  setupLighting(renderer, scene, { center, span, hemi: [0x9fb4e8, 0x1c1a17, 0.62], key: 0xffc996, keyIntensity: 2.6, keyFrom: [-0.85, 0.62, 0.55], fill: [0x6d8cff, 0.55] });
-  const camera = new THREE.PerspectiveCamera(36, 1, 1, span * 8);
+  // studio: transparent background (the page draws the black backdrop), neutral key light, cool fill, rim
+  setupLighting(renderer, scene, { center, span, hemi: [0xe6ecf5, 0x15161a, 0.55], key: 0xfff4e8, keyIntensity: 2.4, keyFrom: [-0.7, 0.9, 0.4], fill: [0x8fb2ff, 0.5] });
+  const rim = new THREE.DirectionalLight(0xffffff, 0.7); rim.position.set(center.x + span, span * 0.6, center.z + span * 0.9); scene.add(rim);
+  const camera = new THREE.PerspectiveCamera(36, 1, 4, span * 6);
   // overview: the whole site framed for the canvas' aspect ratio
   const homeDir = new THREE.Vector3(0.62, 0.52, 0.6).normalize();
   const home = { pos: new THREE.Vector3(), target: center.clone().add(new THREE.Vector3(0, 6, 0)) };
   const frameHome = () => {
     const v = THREE.MathUtils.degToRad(camera.fov) / 2, hfov = Math.atan(Math.tan(v) * camera.aspect);
-    const dist = Math.max((span * 0.5) / Math.tan(hfov), (span * 0.34) / Math.tan(v)) * (showcase ? 0.78 : 0.86);
+    const dist = Math.max((span * 0.5) / Math.tan(hfov), (span * 0.34) / Math.tan(v)) * (opts.frame || (showcase ? 0.78 : 0.72));
     home.pos.copy(home.target).add(homeDir.clone().multiplyScalar(dist));
   };
   frameHome(); camera.position.copy(home.pos);
@@ -102,18 +118,32 @@ export async function createTwin(container, F, opts = {}) {
   tex.grating.repeat.set(14, 14);
   const M = createMaterials(tex);
   const groundB = createBuilder(M);
-  groundB.add(M.grass, new THREE.PlaneGeometry(span * 8, span * 8), groundB.T(center.x, -0.02, center.z, 0, -Math.PI / 2));
+  { const W = S.x[1] - S.x[0] + 16, D = S.z[1] - S.z[0] + 16, H = 3;      // platform: its top sits 0.3 m below the site slab
+    groundB.box(M.slabEdge, W, H, D, center.x, -H / 2 - 0.3, center.z); }
   groundB.add(M.concrete, new THREE.PlaneGeometry(S.x[1] - S.x[0], S.z[1] - S.z[0]), groundB.T(center.x, 0, center.z, 0, -Math.PI / 2));
-  for (const r of F.roads || []) groundB.add(M.asphalt, new THREE.PlaneGeometry(r.w, r.d), groundB.T(r.x, 0.02, r.z, 0, -Math.PI / 2));
+  for (const r of F.roads || []) groundB.add(M.asphalt, new THREE.PlaneGeometry(r.w, r.d), groundB.T(r.x, 0.08, r.z, 0, -Math.PI / 2));
   for (const r of F.roads || []) if (r.lines !== false) {
     const along = r.w > r.d, len = along ? r.w : r.d;
-    for (let s = -len / 2 + 2; s < len / 2 - 2; s += 6) groundB.add(M.white, new THREE.PlaneGeometry(along ? 3 : 0.2, along ? 0.2 : 3), groundB.T(r.x + (along ? s : 0), 0.04, r.z + (along ? 0 : s), 0, -Math.PI / 2));
+    for (let s = -len / 2 + 2; s < len / 2 - 2; s += 6) groundB.add(M.white, new THREE.PlaneGeometry(along ? 3 : 0.2, along ? 0.2 : 3), groundB.T(r.x + (along ? s : 0), 0.16, r.z + (along ? 0 : s), 0, -Math.PI / 2));
   }
   if (F.fence) {
     const [x0, x1] = F.fence.x, [z0, z1] = F.fence.z, step = 4;
-    const edge = (ax, az, bx, bz) => { const L = Math.hypot(bx - ax, bz - az), n = Math.round(L / step); for (let i = 0; i <= n; i++) { const t = i / n; groundB.box(M.darkSteel, 0.12, 2.4, 0.12, ax + (bx - ax) * t, 1.2, az + (bz - az) * t); } for (const y of [0.4, 1.4, 2.3]) groundB.rod(M.darkSteel, 0.03, [ax, y, az], [bx, y, bz], 4); };
+    const edge = (ax, az, bx, bz) => { const L = Math.hypot(bx - ax, bz - az), n = Math.round(L / step); for (let i = 0; i <= n; i++) { const t = i / n, x = ax + (bx - ax) * t, z = az + (bz - az) * t; groundB.box(M.steel, 0.12, 2.4, 0.12, x, 1.2, z); if (i % 4 === 2) { groundB.box(M.steel, 0.16, 3.4, 0.16, x, 1.7, z); groundB.add(M.lampHead, new THREE.SphereGeometry(0.5, 12, 8), groundB.T(x, 3.5, z)); } } for (const y of [0.4, 1.4, 2.3]) groundB.rod(M.steel, 0.03, [ax, y, az], [bx, y, bz], 4); };
     edge(x0, z0, x1, z0); edge(x1, z0, x1, z1); edge(x1, z1, x0, z1); edge(x0, z1, x0, z0);
   }
+  // pedestrian walkways: green painted strips with yellow edges (factory.paths)
+  for (const p of F.paths || []) {
+    const w = p.w || 1.8;
+    for (let i = 1; i < p.pts.length; i++) {
+      const [ax, az] = p.pts[i - 1], [bx, bz] = p.pts[i], L = Math.hypot(bx - ax, bz - az), ang = Math.atan2(bz - az, bx - ax);
+      const cx = (ax + bx) / 2, cz = (az + bz) / 2;
+      groundB.add(M.walkway, new THREE.PlaneGeometry(L + w, w), groundB.T(cx, 0.12, cz, -ang, -Math.PI / 2));
+      for (const e of [-1, 1]) { const ox = -Math.sin(ang) * e * (w / 2 - 0.08), oz = Math.cos(ang) * e * (w / 2 - 0.08); groundB.add(M.yellow, new THREE.PlaneGeometry(L + w, 0.12), groundB.T(cx + ox, 0.18, cz + oz, -ang, -Math.PI / 2)); }
+      for (let s = 1.2; s < L - 0.6; s += 2.4) { const t = s / L; groundB.add(M.white, new THREE.PlaneGeometry(0.9, 0.18), groundB.T(ax + (bx - ax) * t, 0.18, az + (bz - az) * t, -ang + Math.PI / 2, -Math.PI / 2)); }
+    }
+  }
+  // lawns around the offices (factory.lawns: [x, z, w, d])
+  for (const [x, z, w, d] of F.lawns || []) groundB.add(M.lawn, new THREE.PlaneGeometry(w, d), groundB.T(x, 0.06, z, 0, -Math.PI / 2));
   const ground = groundB.group("ground");
   ground.traverse((o) => { if (o.isMesh) { o.castShadow = false; o.receiveShadow = true; } });
   scene.add(ground);
@@ -128,38 +158,187 @@ export async function createTwin(container, F, opts = {}) {
     group.userData.id = it.id;
     scene.add(group);
     group.updateMatrixWorld(true);
-    const meshes = []; group.traverse((o) => { if (o.isMesh) { o.userData.id = it.id; meshes.push(o); pickables.push(o); } });
+    const meshes = []; group.traverse((o) => { if (o.isMesh) { o.userData.id = it.id; meshes.push(o); if (!it.decor) pickables.push(o); } });
     const worldPorts = {};
     for (const [k, p] of Object.entries(info.ports || {})) worldPorts[k] = new THREE.Vector3(...p).applyMatrix4(group.matrixWorld);
     items.set(it.id, { item: it, group, info, meshes });
     items.get(it.id).worldPorts = worldPorts;
   }
 
-  // ---------------------------------------------------------------- process connections (pipes)
-  const streams = F.streams;
-  const pipes = [];
-  const pipeGroup = new THREE.Group(); scene.add(pipeGroup);
-  for (const c of F.connections) {
-    const A = items.get(c.from), B = items.get(c.to);
-    if (!A || !B) { console.warn("connection skipped", c); continue; }
-    const a = (A.worldPorts[c.fromPort || "out"] || A.group.position).clone();
-    const b = (B.worldPorts[c.toPort || "in"] || B.group.position).clone();
-    const st = streams[c.stream];
-    const pts = route(a, b, st.lane, c.direct);
+  // ---------------------------------------------------------------- engineering connection graph
+  // Every network connection (production process + engineering networks) is one "link":
+  //   { id, net, from, to, name, color, route, dir, desc, kind, visible, animated }
+  // Lines start and end at attachment points on the equipment (ports, or a point on the item's side facing
+  // the route), run in an allocated lane of the pipe rack (process / utilities / cable-tray tier) and get
+  // supports wherever they leave the rack. Orphan references are reported and skipped.
+  const NET = F.networks || { process: { name: "Production Process", color: 0xf59e0b, style: "pipe", tier: 0, r: 0.22 } };
+  const RK = F.rack || { x: [-1e9, -1e9], z: 0, w: 8, tiers: [8, 10.4, 12.6] };
+  const streams = F.streams || {};
+  const validation = { links: 0, orphans: [], crossings: [] };
+  const linkDefs = [
+    ...(F.connections || []).map((c, i) => ({ id: c.id || `pr-${i + 1}`, net: "process", from: c.from, to: c.to, name: tr((streams[c.stream] || {}).name, lang) || "Process line", stream: c.stream, color: (streams[c.stream] || {}).color, fromPort: c.fromPort, toPort: c.toPort, direct: c.direct, desc: (NET.process || {}).desc })),
+    ...(F.links || [])
+  ];
+  // bounding boxes of the items (for attachment points, supports and validation)
+  for (const rec of items.values()) rec.box = new THREE.Box3().setFromObject(rec.group);
+  const solid = [...items.values()].filter((r) => !r.item.decor && !["rack", "truck", "parking", "bund", "conveyor", "structure"].includes(r.item.kind));
+  const onRoad = (x, z) => (F.roads || []).some((r) => Math.abs(x - r.x) < r.w / 2 + 0.5 && Math.abs(z - r.z) < r.d / 2 + 0.5);
+  const inside = (x, z, pad = 0.4) => solid.find((r) => x > r.box.min.x - pad && x < r.box.max.x + pad && z > r.box.min.z - pad && z < r.box.max.z + pad);
+  const onRack = (x, z) => x > RK.x[0] - 0.5 && x < RK.x[1] + 0.5 && Math.abs(z - RK.z) < RK.w / 2 + 0.3;
+  const attachCount = new Map();
+  function attach(rec, port, toward, y) {
+    if (port && rec.worldPorts[port]) return rec.worldPorts[port].clone();
+    const k = attachCount.get(rec.item.id) || 0; attachCount.set(rec.item.id, k + 1);
+    const b = rec.box, cx = (b.min.x + b.max.x) / 2, cz = (b.min.z + b.max.z) / 2;
+    const off = ((k % 5) - 2) * 0.7;
+    const dz = toward.z - cz, dx = toward.x - cx;
+    if (Math.abs(dz) >= Math.abs(dx) * 0.6) {
+      const x = THREE.MathUtils.clamp(cx + off, b.min.x + 0.3, b.max.x - 0.3);
+      return new THREE.Vector3(x, Math.min(y, Math.max(0.8, b.max.y * 0.45)), dz < 0 ? b.min.z - 0.35 : b.max.z + 0.35);
+    }
+    const z = THREE.MathUtils.clamp(cz + off, b.min.z + 0.3, b.max.z - 0.3);
+    return new THREE.Vector3(dx < 0 ? b.min.x - 0.35 : b.max.x + 0.35, Math.min(y, Math.max(0.8, b.max.y * 0.45)), z);
+  }
+  // lane allocation on the rack: slots across the width per tier, intervals along x
+  const slotsFor = (tier, style) => style === "tray" ? [-3.2, -1.6].flatMap((z) => [z - 0.16, z, z + 0.16]) : style === "cable" ? [1.6, 3.2].flatMap((z) => [z - 0.16, z, z + 0.16]) : Array.from({ length: 13 }, (_, i) => -4.2 + i * 0.7);
+  const used = new Map();
+  function lane(tier, style, x0, x1) {
+    const slots = slotsFor(tier, style);
+    for (let si = 0; si < slots.length; si++) {
+      const key = tier + ":" + style.replace("insulated", "pipe") + ":" + si, list = used.get(key) || [];
+      if (!list.some(([a, b]) => x0 < b + 1.2 && x1 > a - 1.2)) { list.push([x0, x1]); used.set(key, list); return RK.z + slots[si]; }
+    }
+    return RK.z + slots[Math.floor(Math.random() * slots.length)];
+  }
+  const links = [];
+  const netGroup = new THREE.Group(); scene.add(netGroup);
+  const PAINT = {
+    process: new THREE.MeshStandardMaterial({ color: 0xc9ced4, metalness: 0.9, roughness: 0.22 }),
+    steam: M.insulation,
+    cooling: new THREE.MeshStandardMaterial({ color: 0x1f4f8f, metalness: 0.4, roughness: 0.4 }),
+    coolingReturn: new THREE.MeshStandardMaterial({ color: 0x4f86c6, metalness: 0.4, roughness: 0.4 }),
+    water: new THREE.MeshStandardMaterial({ color: 0x2f6b4f, metalness: 0.35, roughness: 0.45 }),
+    air: new THREE.MeshStandardMaterial({ color: 0x8fb4d9, metalness: 0.4, roughness: 0.4 }),
+    waste: new THREE.MeshStandardMaterial({ color: 0x5b4630, metalness: 0.2, roughness: 0.6 }),
+    fire: M.fireRed,
+    power: new THREE.MeshStandardMaterial({ color: 0x1b1d21, roughness: 0.7 }),
+    control: new THREE.MeshStandardMaterial({ color: 0x3b2a52, roughness: 0.6 })
+  };
+  const glowCache = new Map();
+  const glowMat = (color) => { if (!glowCache.has(color)) glowCache.set(color, new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.9, metalness: 0.3, roughness: 0.35 })); return glowCache.get(color); };
+  const dimLink = new THREE.MeshStandardMaterial({ color: 0x2a2d33, transparent: true, opacity: 0.35, depthWrite: false, roughness: 0.9 });
+  const supportB = createBuilder(M), fitB = createBuilder(M), trayB = createBuilder(M);
+  const segBox = (bld, mat, a, b, w, h) => {                       // a flat box (tray) from a to b
+    const d = b.clone().sub(a), L = d.length(); if (L < 0.05) return;
+    const m = new THREE.Matrix4().compose(a.clone().add(b).multiplyScalar(0.5), new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(1, 0, 0), d.normalize()), new THREE.Vector3(1, 1, 1));
+    bld.add(mat, new THREE.BoxGeometry(L + w * 0.5, h, w), m);
+  };
+  for (const def of linkDefs) {
+    const A = items.get(def.from), B = items.get(def.to), net = NET[def.net];
+    if (!A || !B || !net) { validation.orphans.push(def.id); continue; }
+    const style = net.style || "pipe", r = style === "tray" ? 0.08 : style === "cable" ? 0.05 : (net.r || 0.22) * (def.kind === "return" ? 0.9 : 1);
+    const ay = style === "tray" || style === "cable" ? 1.2 : 1.8;
+    const tierY = RK.tiers[net.tier || 0];
+    const laneY = style === "tray" || style === "cable" ? tierY + 0.12 : tierY + r + 0.14;
+    const pA = A.group.position, pB = B.group.position;
+    const useRack = !def.direct && RK.x[1] > RK.x[0];
+    let a, b, pts;
+    if (useRack) {
+      a = attach(A, def.fromPort, new THREE.Vector3(pA.x, 0, RK.z), ay);
+      b = attach(B, def.toPort, new THREE.Vector3(pB.x, 0, RK.z), ay);
+      const lz = lane(net.tier || 0, style, Math.min(a.x, b.x), Math.max(a.x, b.x));
+      pts = [a, new THREE.Vector3(a.x, laneY, a.z), new THREE.Vector3(a.x, laneY, lz), new THREE.Vector3(b.x, laneY, lz), new THREE.Vector3(b.x, laneY, b.z), b];
+      // expansion loop on long steam runs along the rack
+      if (style === "insulated" && Math.abs(b.x - a.x) > 50) {
+        const xm = (a.x + b.x) / 2, sgn = Math.sign(b.x - a.x);
+        pts.splice(3, 0, new THREE.Vector3(xm - 2.5 * sgn, laneY, lz), new THREE.Vector3(xm - 2.5 * sgn, laneY + 1.6, lz), new THREE.Vector3(xm + 2.5 * sgn, laneY + 1.6, lz), new THREE.Vector3(xm + 2.5 * sgn, laneY, lz));
+      }
+    } else {
+      a = attach(A, def.fromPort, pB, ay); b = attach(B, def.toPort, pA, ay);
+      // clear any equipment under the two horizontal runs
+      let y = Math.max(a.y, b.y) + 1.2;
+      for (const [x0, z0, x1, z1] of [[a.x, a.z, b.x, a.z], [b.x, a.z, b.x, b.z]]) {
+        const L = Math.hypot(x1 - x0, z1 - z0);
+        for (let t = 0; t <= L; t += 0.8) { const x = x0 + ((x1 - x0) * t) / (L || 1), z = z0 + ((z1 - z0) * t) / (L || 1); for (const rr of solid) if (rr.item.id !== def.from && rr.item.id !== def.to && x > rr.box.min.x && x < rr.box.max.x && z > rr.box.min.z && z < rr.box.max.z) y = Math.max(y, rr.box.max.y + 1.0); }
+      }
+      pts = [a, new THREE.Vector3(a.x, y, a.z), new THREE.Vector3(b.x, y, a.z), new THREE.Vector3(b.x, y, b.z), b];
+    }
+    pts = pts.filter((p, i) => i === 0 || p.distanceTo(pts[i - 1]) > 0.05);
     const len = pathLength(pts);
-    const geo = tubeAlong(pts, st.r || 0.28);
-    const real = new THREE.MeshStandardMaterial({ color: st.pipe || 0xb9c0c8, metalness: 0.65, roughness: 0.35 });
-    const ft = flowTexture(st.color); ft.repeat.set(Math.max(1, len / 7), 1);
-    const flow = new THREE.MeshBasicMaterial({ map: ft, color: 0xffffff, toneMapped: false });
-    const mesh = new THREE.Mesh(geo, real);
-    mesh.castShadow = true; mesh.userData = { stream: c.stream, from: c.from, to: c.to };
-    pipeGroup.add(mesh);
-    // flanges + a valve near the source
-    const fb = createBuilder(M);
-    for (const p of [pts[0], pts[pts.length - 1]]) fb.cyl(M.steel, (st.r || 0.28) * 1.8, 0.15, p.x, p.y, p.z, 14);
-    if (pts.length > 2 && !c.direct) { const p = pts[1].clone().lerp(pts[0], 0.35); fb.cyl(M.cabRed, 0.18, 0.5, p.x + 0.45, p.y, p.z, 12); fb.box(M.darkSteel, 0.5, 0.5, 0.5, p.x, p.y, p.z); }
-    const fl = fb.group("flanges"); pipeGroup.add(fl);
-    pipes.push({ c, mesh, real, flow, tex: ft, len, pts });
+    const color = def.color ?? (def.kind === "return" ? new THREE.Color(net.color).lerp(new THREE.Color(0xffffff), 0.35).getHex() : net.color);
+    const paint = def.net === "cooling" && def.kind === "return" ? PAINT.coolingReturn : (PAINT[def.net] || PAINT.process);
+    const mesh = new THREE.Mesh(tubeAlong(pts, r), paint);
+    mesh.castShadow = style !== "cable";
+    const link = { ...def, color, style, pts, len, mesh, paint, visible: true, animated: true, dir: def.dir || "forward", label: null, cum: [] };
+    let acc = 0; link.cum = pts.map((p, i) => (acc += i ? p.distanceTo(pts[i - 1]) : 0));
+    mesh.userData = { link };
+    netGroup.add(mesh);
+    // trays and cable ladders where the cables leave the rack tray tier
+    if (style === "tray" || style === "cable") {
+      const w = style === "tray" ? 0.5 : 0.3;
+      for (let i = 1; i < pts.length; i++) {
+        const p = pts[i - 1], q = pts[i], alongRack = useRack && Math.abs(p.y - laneY) < 0.01 && Math.abs(q.y - laneY) < 0.01 && Math.abs(p.z - q.z) < 0.01 && onRack(p.x, p.z) && onRack(q.x, q.z);
+        if (alongRack) continue;
+        const o = new THREE.Vector3(0, -r - 0.04, 0);
+        segBox(trayB, M.galv, p.clone().add(o), q.clone().add(o), w, 0.08);
+      }
+      fitB.box(M.cabinet, 0.45, 0.45, 0.25, a.x, a.y, a.z); fitB.box(M.cabinet, 0.45, 0.45, 0.25, b.x, b.y, b.z);   // junction boxes
+    } else {
+      for (const p of [pts[0], pts[pts.length - 1]]) fitB.cyl(M.steel, r * 1.8, 0.16, p.x, p.y, p.z, 14);            // flanged nozzles
+      for (let i = 1; i < pts.length - 1; i++) fitB.add(style === "insulated" ? M.insulation : M.steel, new THREE.SphereGeometry(r * 1.12, 12, 8), fitB.T(pts[i].x, pts[i].y, pts[i].z));   // elbows
+      if (pts.length > 2) { const p = pts[0].clone().lerp(pts[1], 0.5); fitB.box(M.darkSteel, r * 3, r * 3, r * 3, p.x, p.y, p.z); fitB.cyl(M.cabRed, r * 1.6, 0.08, p.x + r * 2.2, p.y, p.z, 12); }   // isolation valve
+      if (style === "insulated") for (let i = 1; i < pts.length; i++) { const p = pts[i - 1], q = pts[i], n = Math.floor(p.distanceTo(q) / 3); for (let k = 1; k < n; k++) { const m = p.clone().lerp(q, k / n), d = q.clone().sub(p).normalize(); fitB.add(M.steel, new THREE.CylinderGeometry(r * 1.08, r * 1.08, 0.12, 14), new THREE.Matrix4().compose(m, new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), d), new THREE.Vector3(1, 1, 1))); } }   // jacket bands
+    }
+    // supports: posts every 6 m under horizontal runs off the rack (not inside equipment or on roads)
+    for (let i = 1; i < pts.length; i++) {
+      const p = pts[i - 1], q = pts[i];
+      if (Math.abs(p.y - q.y) > 0.01 || p.y < 2.2) continue;
+      const L = p.distanceTo(q);
+      for (let t = 3; t < L - 1; t += 6) {
+        const m = p.clone().lerp(q, t / L);
+        if (onRack(m.x, m.z) || onRoad(m.x, m.z) || inside(m.x, m.z, 0.6)) continue;
+        const top = m.y - r - 0.12;
+        supportB.box(M.paintGrey, 0.22, top, 0.22, m.x, top / 2, m.z);
+        supportB.box(M.paintGrey, 0.9, 0.16, 0.18, m.x, top + 0.08, m.z);
+        supportB.box(M.concrete, 0.5, 0.25, 0.5, m.x, 0.12, m.z);
+      }
+    }
+    // label position: middle of the longest run
+    let best = 1, bl = 0; for (let i = 1; i < pts.length; i++) { const d = pts[i].distanceTo(pts[i - 1]); if (d > bl) { bl = d; best = i; } }
+    link.labelPos = pts[best].clone().lerp(pts[best - 1], 0.5); link.labelPos.y += r + 0.7;
+    // validation: runs crossing equipment (ignoring the first and last 1.5 m)
+    for (let i = 1; i < pts.length; i++) {
+      const p = pts[i - 1], q = pts[i], L = p.distanceTo(q);
+      for (let t = 1.5; t < L - 1.5; t += 1) { const m = p.clone().lerp(q, t / L); const hit = solid.find((rr) => rr.item.id !== def.from && rr.item.id !== def.to && rr.box.containsPoint(m)); if (hit) { validation.crossings.push(`${def.id} × ${hit.item.id}`); break; } }
+    }
+    links.push(link);
+  }
+  validation.links = links.length;
+  const supports = supportB.group("supports"), fittings = fitB.group("fittings"), trays = trayB.group("trays");
+  netGroup.add(supports, fittings, trays);
+  if (validation.orphans.length) console.warn("[twin] orphan connections skipped:", validation.orphans);
+  console.info(`[twin] ${links.length} connections · ${validation.orphans.length} orphans · ${validation.crossings.length} crossings`, validation.crossings.slice(0, 12));
+  // directional particles per network (instanced), animated only while the network is active
+  const particles = new Map();
+  const sphere = new THREE.SphereGeometry(1, 8, 6);
+  for (const id of Object.keys(NET)) {
+    const own = links.filter((l) => l.net === id); if (!own.length) continue;
+    const slots = []; for (const l of own) { const n = Math.max(2, Math.round(l.len / 5)); for (let k = 0; k < n; k++) slots.push({ l, o: (k / n) * l.len }); }
+    const im = new THREE.InstancedMesh(sphere, new THREE.MeshBasicMaterial({ color: NET[id].color, toneMapped: false }), slots.length);
+    im.visible = false; im.frustumCulled = false; im.raycast = () => {};
+    scene.add(im); particles.set(id, { im, slots, size: NET[id].style === "tray" || NET[id].style === "cable" ? 0.2 : 0.34 });
+  }
+  const pointAt = (l, d, out) => { let i = 1; while (i < l.cum.length - 1 && l.cum[i] < d) i++; const a = l.pts[i - 1], b = l.pts[i], seg = l.cum[i] - l.cum[i - 1] || 1; return out.copy(a).lerp(b, (d - l.cum[i - 1]) / seg); };
+
+  // contact shadows: soft dark discs under equipment (one merged mesh)
+  {
+    const c = document.createElement("canvas"); c.width = c.height = 128; const x = c.getContext("2d");
+    const g = x.createRadialGradient(64, 64, 8, 64, 64, 64); g.addColorStop(0, "rgba(0,0,0,0.55)"); g.addColorStop(0.6, "rgba(0,0,0,0.25)"); g.addColorStop(1, "rgba(0,0,0,0)");
+    x.fillStyle = g; x.fillRect(0, 0, 128, 128);
+    const t = new THREE.CanvasTexture(c);
+    const geos = [];
+    for (const rec of solid) { const sz = rec.box.getSize(new THREE.Vector3()); if (Math.max(sz.x, sz.z) > 30) continue; const p = new THREE.PlaneGeometry(sz.x * 1.5 + 1.5, sz.z * 1.5 + 1.5); p.rotateX(-Math.PI / 2); p.translate((rec.box.min.x + rec.box.max.x) / 2, 0.2, (rec.box.min.z + rec.box.max.z) / 2); geos.push(p); }
+    if (geos.length) { const merged = mergeGeometries(geos); const cs = new THREE.Mesh(merged, new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false })); cs.renderOrder = 1; cs.raycast = () => {}; scene.add(cs); }
   }
 
   // ---------------------------------------------------------------- area markers (process view)
@@ -170,9 +349,9 @@ export async function createTwin(container, F, opts = {}) {
     const [x0, x1] = ar.x, [z0, z1] = ar.z;
     const mat = new THREE.MeshBasicMaterial({ color: ar.color, transparent: true, opacity: 0.16, depthWrite: false });
     const pl = new THREE.Mesh(new THREE.PlaneGeometry(x1 - x0, z1 - z0), mat);
-    pl.rotation.x = -Math.PI / 2; pl.position.set((x0 + x1) / 2, 0.08, (z0 + z1) / 2);
+    pl.rotation.x = -Math.PI / 2; pl.position.set((x0 + x1) / 2, 0.26, (z0 + z1) / 2);
     const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(x1 - x0, z1 - z0)), new THREE.LineBasicMaterial({ color: ar.color }));
-    edge.rotation.x = -Math.PI / 2; edge.position.copy(pl.position).setY(0.1);
+    edge.rotation.x = -Math.PI / 2; edge.position.copy(pl.position).setY(0.3);
     areaGroup.add(pl, edge);
     const el = document.createElement("button"); el.type = "button"; el.className = "twin__area"; el.style.setProperty("--c", "#" + new THREE.Color(ar.color).getHexString());
     el.innerHTML = `<b>${ar.step ? String(ar.step).padStart(2, "0") : ""}</b>${tr(ar.name, lang)}`;
@@ -181,42 +360,88 @@ export async function createTwin(container, F, opts = {}) {
     areaLabels.push({ el, pos: new THREE.Vector3((x0 + x1) / 2, ar.labelY || 26, (z0 + z1) / 2) });
   }
   const tip = document.createElement("div"); tip.className = "twin__tip"; tip.hidden = true; container.appendChild(tip);
+  const pipeLayer = document.createElement("div"); pipeLayer.className = "twin__pipes"; container.appendChild(pipeLayer);
+  if (!showcase) for (const l of links) {
+    const el = document.createElement("button"); el.type = "button";
+    el.className = "twin__pipe"; el.style.setProperty("--c", "#" + new THREE.Color(l.color).getHexString());
+    el.textContent = l.name; el.addEventListener("click", () => selectLink(l.id));
+    pipeLayer.appendChild(el); l.label = el;
+  }
+  const showPipeLabels = () => !showcase && pipeLabelsOn;
+  const caption = document.createElement("div"); caption.className = "twin__caption"; caption.hidden = true; container.appendChild(caption);
 
-  // ---------------------------------------------------------------- views
+  // ---------------------------------------------------------------- vehicles
+  const vehicles = [];
+  for (const v of F.vehicles || []) {
+    const P = v.path.map(([x, z]) => new THREE.Vector3(x, 0, z));
+    const curve = new THREE.CatmullRomCurve3(P, true, "centripetal", 0.2);
+    const L = curve.getLength();
+    let stopU = 0, best = Infinity;
+    for (let i = 0; i <= 600; i++) { const d = curve.getPointAt(i / 600).distanceTo(P[v.stopAt]); if (d < best) { best = d; stopU = i / 600; } }
+    (v.ids || []).forEach((id, n) => { const rec = items.get(id); if (rec) vehicles.push({ rec, curve, L, stopU, stop: v.stop || 6, speed: v.speed || 9, u: (stopU + 0.02 + n / v.ids.length) % 1, wait: 0 }); });
+  }
+  const placeVehicle = (vh) => {
+    const p = vh.curve.getPointAt(vh.u), t = vh.curve.getTangentAt(vh.u);
+    vh.rec.group.position.set(p.x, 0, p.z);
+    vh.rec.group.rotation.y = Math.atan2(t.z, -t.x);                 // the cab (local -x) leads
+  };
+  vehicles.forEach(placeVehicle);
+
+  // ---------------------------------------------------------------- views and engineering layers
   const ghost = new THREE.MeshStandardMaterial({ color: 0xaec2e6, transparent: true, opacity: 0.24, depthWrite: false, metalness: 0, roughness: 1 });
   const xray = new THREE.MeshBasicMaterial({ color: 0x7fd6ff, wireframe: true, transparent: true, opacity: 0.22, depthWrite: false });
-  const highlightCache = new Map();
-  let view = "realistic", selected = null, streamFocus = null, needs = true;
+  const dimEquip = new THREE.MeshStandardMaterial({ color: 0x3a3e46, transparent: true, opacity: 0.32, depthWrite: false, metalness: 0.2, roughness: 0.8 });
+  const highlightCache = new Map(), connectedCache = new Map();
+  let view = "realistic", selected = null, streamFocus = null, needs = true, pipeLabelsOn = true;
+  const activeNets = new Set();
+  let traceOn = false, traceSet = new Set(), selectedLink = null;
   const baseMat = (mesh) => mesh.userData.base || (mesh.userData.base = mesh.material);
+  const anyActive = () => activeNets.size > 0 || traceSet.size > 0 || !!selectedLink;
+  const linkActive = (l) => (selectedLink === l) || (traceSet.size ? traceSet.has(l.id) : activeNets.has(l.net) && (!streamFocus || l.net !== "process" || l.stream === streamFocus));
   function applyView() {
+    const act = anyActive(), connected = new Set();
+    if (act) for (const l of links) if (linkActive(l)) { connected.add(l.from); connected.add(l.to); }
     for (const [id, rec] of items) {
       for (const m of rec.meshes) {
         const base = baseMat(m);
         let mat = base;
         if (view === "process") mat = ghost;
-        if (view === "xray") mat = xray;
+        else if (view === "xray") mat = xray;
+        else if (act && !connected.has(id) && id !== selected) mat = rec.item.kind === "rack" ? dimEquip : dimEquip;
+        else if (act && connected.has(id) && base.emissive) { if (!connectedCache.has(base.uuid)) { const h = base.clone(); h.emissive = new THREE.Color(0xffffff); h.emissiveIntensity = 0.08; connectedCache.set(base.uuid, h); } mat = connectedCache.get(base.uuid); }
         if (id === selected) {
           const key = mat.uuid;
           if (!highlightCache.has(key)) { const h = mat.clone(); if (h.emissive) { h.emissive = new THREE.Color(0x2f8cff); h.emissiveIntensity = view === "realistic" ? 0.45 : 1; } else h.color = new THREE.Color(0x52b4ff); h.opacity = Math.max(h.opacity || 1, 0.85); highlightCache.set(key, h); }
           mat = highlightCache.get(key);
         }
         m.material = mat;
-        m.castShadow = view === "realistic" && base !== M.glass && base !== M.grating;
+        m.castShadow = view === "realistic" && !act && base !== M.glass && base !== M.grating;
       }
     }
-    for (const p of pipes) {
-      const on = view !== "realistic";
-      p.mesh.material = on ? p.flow : p.real;
-      const dim = streamFocus && p.c.stream !== streamFocus;
-      p.mesh.visible = !(dim && on);
+    for (const l of links) {
+      const on = linkActive(l);
+      if (view !== "realistic") { l.mesh.material = l.net === "process" || view === "xray" ? glowMat(l.color) : dimLink; l.mesh.visible = !(streamFocus && l.net === "process" && l.stream !== streamFocus); }
+      else { l.mesh.material = act ? (on ? glowMat(l.color) : dimLink) : l.paint; l.mesh.visible = l.visible; }
+      if (l.label) l.label.classList.toggle("is-sel", selectedLink === l);
     }
-    ground.visible = true;
+    const dimStatic = act || view !== "realistic";
+    supports.visible = fittings.visible = trays.visible = true;
+    for (const g of [supports, fittings, trays]) g.traverse((o) => { if (o.isMesh) { o.userData.base = o.userData.base || o.material; o.material = dimStatic ? dimLink : o.userData.base; } });
+    for (const [id, p] of particles) p.im.visible = view === "realistic" && links.some((l) => l.net === id && linkActive(l));
     areaGroup.visible = view === "process";
     labelLayer.classList.toggle("is-on", view === "process");
     needs = true;
   }
   function setView(v) { view = v; applyView(); }
-  function highlightStream(s) { streamFocus = s; applyView(); }
+  function highlightStream(s) { streamFocus = s; if (s) activeNets.add("process"); applyView(); }
+  function setNetworks(list) { activeNets.clear(); for (const n of list) if (NET[n]) activeNets.add(n); selectedLink = null; applyView(); }
+  function traceFor(id) { traceSet = new Set(id ? links.filter((l) => l.from === id || l.to === id).map((l) => l.id) : []); }
+  function setTrace(on) { traceOn = !!on; traceFor(traceOn ? selected : null); applyView(); emit("trace", traceOn ? links.filter((l) => traceSet.has(l.id)) : []); }
+  function selectLink(id) {
+    selectedLink = links.find((l) => l.id === id) || null;
+    applyView();
+    emit("link", selectedLink);
+  }
 
   // ---------------------------------------------------------------- camera moves
   let tween = null;
@@ -244,6 +469,8 @@ export async function createTwin(container, F, opts = {}) {
   }
   function select(id, fly = true) {
     selected = id && items.has(id) ? id : null;
+    selectedLink = null;
+    if (traceOn) { traceFor(selected); emit("trace", links.filter((l) => traceSet.has(l.id))); }
     applyView();
     if (selected && fly) focus(selected);
     emit("select", selected ? items.get(selected).item : null);
@@ -257,22 +484,32 @@ export async function createTwin(container, F, opts = {}) {
     ndc.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
     ray.setFromCamera(ndc, camera);
     const hit = ray.intersectObjects(pickables, false)[0];
+    // a network segment wins when it is in front of the equipment and its network is shown
+    if (!showcase && view === "realistic") {
+      ray.params.Line = { threshold: 0.5 };
+      const lh = ray.intersectObjects(links.filter((l) => l.mesh.visible && (!anyActive() || linkActive(l))).map((l) => l.mesh), false)[0];
+      if (lh && (!hit || lh.distance < hit.distance + (anyActive() ? 30 : 0))) return { link: lh.object.userData.link };
+    }
     return hit ? hit.object.userData.id : null;
   }
   const cv = renderer.domElement;
   cv.addEventListener("pointerdown", (e) => { down = [e.clientX, e.clientY]; if (showcase) controls.autoRotate = false; });
   cv.addEventListener("pointerup", (e) => {
     if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6 || showcase) return;
-    const id = pick(e); select(id);
+    const id = pick(e);
+    if (id && typeof id === "object") { selectLink(id.link.id); return; }
+    select(id);
   });
   cv.addEventListener("pointermove", (e) => {
     if (showcase || e.pointerType !== "mouse") return;
     const now = performance.now(); if (now - lastHover < 60) return; lastHover = now;
-    const id = pick(e);
-    if (id !== hoverId) { hoverId = id; cv.style.cursor = id ? "pointer" : ""; emit("hover", id ? items.get(id).item : null); }
-    if (id) {
-      const it = items.get(id).item, r = container.getBoundingClientRect();
-      tip.hidden = false; tip.textContent = nameOf(F, it, lang);
+    const hit = pick(e), id = hit && typeof hit === "object" ? null : hit;
+    const label = hit && typeof hit === "object" ? `${hit.link.name} · ${tr(NET[hit.link.net].name, lang)}` : id ? nameOf(F, items.get(id).item, lang) : "";
+    if (id !== hoverId) { hoverId = id; emit("hover", id ? items.get(id).item : null); }
+    cv.style.cursor = hit ? "pointer" : "";
+    if (hit) {
+      const r = container.getBoundingClientRect();
+      tip.hidden = false; tip.textContent = label;
       tip.style.transform = `translate(${e.clientX - r.left + 14}px, ${e.clientY - r.top + 14}px)`;
     } else tip.hidden = true;
   });
@@ -280,17 +517,50 @@ export async function createTwin(container, F, opts = {}) {
   controls.addEventListener("change", () => { needs = true; });
 
   // ---------------------------------------------------------------- size, loop, visibility
+  const useBloom = !lowPower && !showcase;
+  let composer = null;
+  if (useBloom) {
+    const c = document.createElement("canvas"); c.width = 1024; c.height = 1024; const x = c.getContext("2d");
+    const g = x.createRadialGradient(512, 470, 40, 512, 512, 720); g.addColorStop(0, "#24262b"); g.addColorStop(0.55, "#0e0f12"); g.addColorStop(1, "#060708");
+    x.fillStyle = g; x.fillRect(0, 0, 1024, 1024);
+    x.fillStyle = "rgba(255,255,255,.05)"; for (let i = 8; i < 1024; i += 22) for (let j = 8; j < 1024; j += 22) x.fillRect(i, j, 1.6, 1.6);
+    const bg = new THREE.CanvasTexture(c); bg.colorSpace = THREE.SRGBColorSpace; scene.background = bg;
+    composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    composer.addPass(new UnrealBloomPass(new THREE.Vector2(512, 512), 0.42, 0.4, 0.93));
+    composer.addPass(new OutputPass());
+  }
   function resize() {
     const w = container.clientWidth, h = container.clientHeight;
     if (!w || !h) return;
-    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); needs = true;
+    renderer.setSize(w, h, false); if (composer) { composer.setPixelRatio(renderer.getPixelRatio()); composer.setSize(w, h); } camera.aspect = w / h; camera.updateProjectionMatrix(); needs = true;
     if (!framed) { frameHome(); camera.position.copy(home.pos); controls.target.copy(home.target); framed = true; }
   }
   let framed = false;
   const ro = new ResizeObserver(resize); ro.observe(container); resize();
   let visible = true;
   const io = new IntersectionObserver((e) => { visible = e[e.length - 1].isIntersecting; }, { threshold: 0.01 }); io.observe(container);
-  const clock = new THREE.Clock(), v3 = new THREE.Vector3();
+  const clock = new THREE.Clock(), v3 = new THREE.Vector3(), mtx = new THREE.Matrix4();
+  let ptime = 0;
+  // cinematic "Energy Flow": the energy networks one after another, slow orbit, caption
+  const ENERGY = [
+    { nets: ["power"], text: "Electrical power · substation → motor control centre → motors and panels" },
+    { nets: ["steam"], text: "Steam & thermal energy · boiler house → jet cooker and distillation, condensate back" },
+    { nets: ["cooling"], text: "Cooling water · cooling tower → fermenters and condensers, warm return" },
+    { nets: ["water", "waste"], text: "Water · wells → reverse osmosis → process; wastewater → treatment" },
+    { nets: ["process"], text: "Production process · wheat → mash → beer → 99.5 % ethanol → tankers and feedlot" }
+  ];
+  let energy = null, energyPrev = null;
+  function showEnergy() {
+    const st = ENERGY[energy.step]; energy.t = energy.step * 6.5;
+    activeNets.clear(); st.nets.forEach((n) => activeNets.add(n)); selectedLink = null; applyView();
+    caption.hidden = false; caption.innerHTML = `<b>${energy.step + 1} / ${ENERGY.length}</b> ${st.text}`;
+    emit("energy", { step: energy.step, nets: st.nets });
+  }
+  function energyFlow(on) {
+    if (on && !energy) { energyPrev = { nets: [...activeNets], rot: controls.autoRotate }; energy = { step: 0, t: 0 }; controls.autoRotate = !reducedMotion; controls.autoRotateSpeed = 0.5; showEnergy(); }
+    else if (!on && energy) { energy = null; caption.hidden = true; controls.autoRotate = energyPrev.rot; setNetworks(energyPrev.nets); emit("energy", null); }
+  }
   renderer.setAnimationLoop(() => {
     const dt = Math.min(clock.getDelta(), 0.05);
     if (!visible || document.hidden) return;
@@ -300,11 +570,51 @@ export async function createTwin(container, F, opts = {}) {
       camera.position.lerpVectors(tween.p0, tween.p1, e); controls.target.lerpVectors(tween.t0v, tween.t1, e);
       if (k >= 1) tween = null; moving = true;
     }
-    const animated = view !== "realistic" || (showcase && controls.autoRotate);
-    if (view !== "realistic") for (const p of pipes) p.tex.offset.x -= dt * 0.6 * (8 / p.len) * p.tex.repeat.x;
+    const motion = !reducedMotion;
+    if (motion) {
+      for (const vh of vehicles) {
+        // keep a gap behind the truck ahead
+        const ahead = vehicles.filter((o) => o !== vh && o.curve === vh.curve).map((o) => ((o.u - vh.u + 1) % 1) * vh.L);
+        const blocked = ahead.some((d) => d > 0 && d < 22);
+        if (vh.wait > 0) vh.wait -= dt;
+        else if (!blocked) { const before = vh.u; vh.u = (vh.u + (dt * vh.speed) / vh.L) % 1; if (before < vh.stopU && (vh.u >= vh.stopU || vh.u < before)) { vh.u = vh.stopU; vh.wait = vh.stop; } }
+        placeVehicle(vh);
+      }
+      ptime += dt;
+      for (const [, p] of particles) if (p.im.visible) {
+        let n = 0;
+        for (const sl of p.slots) {
+          const on = linkActive(sl.l);
+          const d = on ? (sl.o + ptime * 6) % sl.l.len : 0;
+          pointAt(sl.l, d, v3); mtx.makeScale(on ? p.size : 0, on ? p.size : 0, on ? p.size : 0).setPosition(v3);
+          p.im.setMatrixAt(n++, mtx);
+        }
+        p.im.instanceMatrix.needsUpdate = true;
+      }
+      if (energy) {
+        energy.t += dt;
+        if (energy.t > energy.step * 6.5) { energy.step++; if (energy.step >= ENERGY.length) energy.step = 0; showEnergy(); }
+      }
+    }
+    // level of detail: small fittings only near the camera
+    fittings.visible = camera.position.distanceTo(controls.target) < span * 0.9;
+    const animated = view !== "realistic" || (showcase && controls.autoRotate) || (motion && (vehicles.length || anyActive()));
     if (!(needs || moving || animated)) return;
     needs = false;
-    renderer.render(scene, camera);
+    if (composer) composer.render(); else renderer.render(scene, camera);
+    if (showPipeLabels() && anyActive() && view === "realistic") {
+      const w = container.clientWidth, h = container.clientHeight, placed = [];
+      const order = links.filter((l) => l.label).map((l) => ({ l, d: (l === selectedLink ? -1e9 : 0) + l.labelPos.distanceToSquared(camera.position) })).sort((a, b) => a.d - b.d);
+      for (const { l } of order) {
+        v3.copy(l.labelPos).project(camera);
+        const x = (v3.x * .5 + .5) * w, y = (-v3.y * .5 + .5) * h;
+        const lw = l.label.offsetWidth || 60;
+        const hit = !linkActive(l) || v3.z > 1 || x < 0 || x > w || y < 0 || y > h || placed.some((q) => Math.abs(q.x - x) < (q.w + lw) / 2 + 6 && Math.abs(q.y - y) < 22);
+        l.label.style.visibility = hit ? "hidden" : "visible";
+        if (!hit) { l.label.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`; placed.push({ x, y, w: lw }); }
+      }
+    }
+    pipeLayer.classList.toggle("is-on", showPipeLabels() && anyActive() && view === "realistic");
     if (view === "process") {
       const w = container.clientWidth, h = container.clientHeight;
       for (const l of areaLabels) { v3.copy(l.pos).project(camera); const off = v3.z > 1; l.el.style.transform = `translate(-50%, -50%) translate(${(v3.x * .5 + .5) * w}px, ${(-v3.y * .5 + .5) * h}px)`; l.el.style.visibility = off ? "hidden" : "visible"; }
@@ -314,6 +624,14 @@ export async function createTwin(container, F, opts = {}) {
   const api = {
     scene, camera, controls, renderer, items,
     select, focus, setView, highlightStream,
+    links, networks: NET, validation,
+    setNetworks, setTrace, selectLink, energyFlow,
+    get activeNetworks() { return [...activeNets]; },
+    get trace() { return traceOn; },
+    get energy() { return !!energy; },
+    setFlow: () => {},
+    setPipeLabels: (on) => { pipeLabelsOn = !!on; needs = true; },
+    setAutoRotate: (on) => { controls.autoRotate = !!on; },
     home: () => { select(null, false); frameHome(); flyTo(home.pos.clone(), home.target.clone()); },
     get view() { return view; },
     on: (k, f) => { listeners[k].push(f); return api; },

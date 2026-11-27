@@ -8,6 +8,7 @@
 const esc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const jsonForScript = (d) => JSON.stringify(d).replace(/</g, "\\u003c");
 
+const FLAG = "<svg class=\"tw-flag\" viewBox=\"0 0 24 12\" width=\"22\" height=\"11\" role=\"img\" aria-label=\"Canada\"><rect width=\"24\" height=\"12\" fill=\"#fff\"/><rect width=\"6\" height=\"12\" fill=\"#d52b1e\"/><rect x=\"18\" width=\"6\" height=\"12\" fill=\"#d52b1e\"/><path d=\"M12 2.2l.75 1.45 .9-.4-.35 2.1 1.15-1.05.25.75 1.2-.2-.45 1.35.55.3-2.2 1.75.25.85-1.85-.25V10h-.5V8.85l-1.85.25.25-.85-2.2-1.75.55-.3-.45-1.35 1.2.2.25-.75 1.15 1.05-.35-2.1.9.4z\" fill=\"#d52b1e\"/></svg>";
 function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) {
   const T = (lang) => i18n[lang] || i18n.en;
   const ARROW = '<span aria-hidden="true">&rarr;</span>';
@@ -48,7 +49,7 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) 
     out.push(`<section class="ab-sec ind-duo" aria-labelledby="ind-equipment-t">
   <div class="ab-wrap ind-duo__grid">
     <div data-reveal>${head("04", e.label, e.title, "ind-equipment-t")}<p class="ab-p">${esc(e.lead)}</p></div>
-    <div data-reveal>${head("05", f.label, f.title, "ind-finance-t")}<p class="ab-p">${esc(f.lead)}</p><p class="ind-note">${esc(f.note)}</p></div>
+    <div data-reveal>${head("05", f.label, f.title, "ind-finance-t")}<p class="ab-p">${esc(f.lead)}</p></div>
   </div>
 </section>`);
     const a = t.audiences;
@@ -59,19 +60,19 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) 
   </div>
 </section>`);
     const sh = t.showcase;
-    out.push(`<section class="ab-sec ind-show" id="demo" aria-labelledby="ind-show-t">
-  <div class="ab-wrap">
-    <p class="ab-label" data-reveal><span class="ab-num">07</span> ${esc(sh.label)}</p>
-    <a class="ind-show__card" href="${plantPath(lang)}" data-track="industrial_factory_clicked" data-track-location="showcase" data-reveal>
-      <span class="ind-show__media" data-ind-poster aria-hidden="true"><img src="/images/industrial/plant-ethanol-1600.webp" srcset="/images/industrial/plant-ethanol-800.webp 800w, /images/industrial/plant-ethanol-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 55vw" width="1600" height="1000" alt="" loading="lazy" decoding="async"></span>
-      <span class="ind-show__body">
-        <span class="ind-show__tag">${esc(sh.tag)}</span>
-        <h2 class="ind-show__title" id="ind-show-t">${esc(sh.title)}</h2>
-        <span class="ind-show__text">${esc(sh.text)}</span>
-        <span class="ind-show__facts">${sh.facts.map(([n, l]) => `<span><b>${esc(n)}</b>${esc(l)}</span>`).join("")}</span>
-        <span class="ind-btn ind-btn--light">${esc(sh.cta)} ${ARROW}</span>
-      </span>
-    </a>
+    out.push(`<section class="ind-showfs" id="demo" aria-labelledby="ind-show-t">
+  <img class="ind-showfs__img" src="/images/industrial/case-render-1672.webp" srcset="/images/industrial/case-render-900.webp 900w, /images/industrial/case-render-1672.webp 1672w" sizes="100vw" width="1672" height="941" alt="${esc(sh.imageAlt)}" loading="lazy" decoding="async">
+  <div class="ind-showfs__shade" aria-hidden="true"></div>
+  <div class="ind-showfs__in">
+    <p class="ind-showfs__label" data-reveal><span class="ab-num">07</span> ${esc(sh.label)}</p>
+    <div class="ind-showfs__copy" data-reveal>
+      <p class="ind-showfs__loc">${FLAG}<span>${esc(sh.location)}</span></p>
+      <h2 class="ind-showfs__title" id="ind-show-t">${esc(sh.title)}</h2>
+      <p class="ind-showfs__text">${esc(sh.text)}</p>
+      <ul class="ind-showfs__facts">${sh.facts.map(([n, l]) => `<li><b>${esc(n)}</b><span>${esc(l)}</span></li>`).join("")}</ul>
+      <p class="ind-showfs__ctas"><a class="ind-btn ind-btn--light" href="${plantPath(lang)}" data-track="industrial_factory_clicked" data-track-location="showcase">${esc(sh.cta)} ${ARROW}</a><span class="ind-showfs__tag">${esc(sh.tag)}</span></p>
+      <p class="ind-showfs__disc">${esc(sh.disclosure)}</p>
+    </div>
   </div>
 </section>`);
     const c = t.cta;
@@ -92,13 +93,14 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) 
     return `<div class="tw left-open right-open" data-twin data-factory="${factoryId}" data-lang="${lang}">
   <header class="tw__top">
     <a class="tw__brand" href="${landingPath(lang)}"><b>3DNA</b> Industrial <span>Digital Twin</span></a>
-    <div class="tw__title"><h1>${esc(nameText)}</h1><span class="tw__badge">${esc(t.badge)}</span></div>
+    <div class="tw__title"><h1>${esc(nameText)}</h1><span class="tw__loc">${FLAG}${esc(t.location)}</span><span class="tw__badge">${esc(t.badge)}</span></div>
     <div class="tw__views" role="group" aria-label="${esc(t.viewsLabel)}">
       <button type="button" data-view="realistic" aria-pressed="true">${esc(t.views.realistic)}</button>
       <button type="button" data-view="process" aria-pressed="false">${esc(t.views.process)}</button>
       <button type="button" data-view="xray" aria-pressed="false">${esc(t.views.xray)}</button>
     </div>
     <div class="tw__tools">
+      <button type="button" class="tw-price-btn" data-pricing aria-haspopup="dialog"><span class="tw-price-btn__l">${esc(t.pricing.button)}</span><span class="tw-price-btn__s">${esc(t.pricing.buttonShort)}</span></button>
       <button type="button" class="tw__icon" data-home title="${esc(t.homeView)}" aria-label="${esc(t.homeView)}"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
       <button type="button" class="tw__icon" data-fullscreen aria-pressed="false" title="${esc(t.fullscreen)}" aria-label="${esc(t.fullscreen)}"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
       <a class="tw__back" href="/${lang}/">${esc(t.home3dna)}</a>
@@ -107,25 +109,44 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) 
   <div class="tw__body">
     <aside class="tw__panel tw__left" aria-label="${esc(t.panels.left)}">
       <div data-tabs>
-        <div class="tw__tabs" role="tablist"><button type="button" role="tab" data-tab="equipment" aria-selected="true">${esc(t.tabs.equipment)}</button><button type="button" role="tab" data-tab="process" aria-selected="false">${esc(t.tabs.process)}</button></div>
-        <div class="tw__pane" data-pane="equipment"><input type="search" class="tw-search" data-search placeholder="${esc(t.search)}" aria-label="${esc(t.search)}"><div data-equipment></div></div>
+        <div class="tw__tabs" role="tablist"><button type="button" role="tab" data-tab="project" aria-selected="true">${esc(t.tabs.project)}</button><button type="button" role="tab" data-tab="equipment" aria-selected="false">${esc(t.tabs.equipment)}</button><button type="button" role="tab" data-tab="process" aria-selected="false">${esc(t.tabs.process)}</button></div>
+        <div class="tw__pane tw-proj" data-pane="project" data-project></div>
+        <div class="tw__pane" data-pane="equipment" hidden><input type="search" class="tw-search" data-search placeholder="${esc(t.search)}" aria-label="${esc(t.search)}"><div data-equipment></div></div>
         <div class="tw__pane" data-pane="process" hidden><ol class="tw-steps" data-steps></ol><p class="tw-k">${esc(t.streams)}</p><p class="tw-hint">${esc(t.streamsHint)}</p><div class="tw-streams" data-streams></div></div>
       </div>
     </aside>
     <button type="button" class="tw__toggle tw__toggle--left" data-toggle="left" aria-label="${esc(t.panels.left)}"><span>${esc(t.panels.left)}</span></button>
     <div class="tw__stage" data-stage>
       <p class="tw__loading" data-loading>${esc(t.loading)}</p>
+      <div class="tw-nets" data-networks></div>
       <div class="tw__strip" data-strip></div>
     </div>
     <button type="button" class="tw__toggle tw__toggle--right" data-toggle="right" aria-label="${esc(t.panels.right)}"><span>${esc(t.panels.right)}</span></button>
     <aside class="tw__panel tw__right" aria-label="${esc(t.panels.right)}">
       <div data-tabs>
-        <div class="tw__tabs" role="tablist"><button type="button" role="tab" data-tab="detail" aria-selected="true">${esc(t.tabs.detail)}</button><button type="button" role="tab" data-tab="invest" aria-selected="false">${esc(t.tabs.invest)}</button><button type="button" role="tab" data-tab="prod" aria-selected="false">${esc(t.tabs.prod)}</button></div>
+        <div class="tw__tabs" role="tablist"><button type="button" role="tab" data-tab="detail" aria-selected="true">${esc(t.tabs.detail)}</button><button type="button" role="tab" data-tab="invest" aria-selected="false">${esc(t.tabs.invest)}</button><button type="button" role="tab" data-tab="prod" aria-selected="false">${esc(t.tabs.prod)}</button><button type="button" role="tab" data-tab="sources" aria-selected="false">${esc(t.tabs.sources)}</button></div>
         <div class="tw__pane" data-pane="detail"><div data-detail></div></div>
         <div class="tw__pane" data-pane="invest" hidden><div class="tw-kpis" data-kpis></div><div class="tw-inputs" data-inputs></div><p class="tw-k">${esc(t.capexTitle)}</p><ul class="tw-bars" data-capex></ul><p class="tw-k">${esc(t.opexTitle)}</p><div class="tw-opex" data-opex></div><p class="tw-note">${esc(t.financeNote)}</p></div>
         <div class="tw__pane" data-pane="prod" hidden><div class="tw-kpis" data-prod></div><p class="tw-k">${esc(t.monthlyTitle)}</p><ul class="tw-months" data-monthly></ul><p class="tw-note">${esc(t.financeNote)}</p></div>
+        <div class="tw__pane" data-pane="sources" hidden><div data-sources></div></div>
       </div>
     </aside>
+  </div>
+  <div class="tw-modal" data-pricing-modal data-wa="${esc(whatsappNumber(lang))}" hidden>
+    <div class="tw-modal__backdrop" data-pricing-close></div>
+    <div class="tw-modal__box" role="dialog" aria-modal="true" aria-labelledby="tw-pricing-t">
+      <button type="button" class="tw-modal__x" data-pricing-close aria-label="${esc(t.pricing.close)}">×</button>
+      <h2 class="tw-modal__t" id="tw-pricing-t">${esc(t.pricing.title)}</h2>
+      <p class="tw-modal__intro">${esc(t.pricing.intro)}</p>
+      <div class="tw-pkgs" role="radiogroup" aria-labelledby="tw-pricing-t">
+        ${t.pricing.packages.map((k) => `<label class="tw-pkg${k.recommended ? " is-rec is-on" : ""}"><input type="radio" name="tw-package" value="${k.id}"${k.recommended ? " checked" : ""} data-name="${esc(k.name)}" data-range="${esc(k.range)}">
+          <span class="tw-pkg__top"><span class="tw-pkg__name">${esc(k.name)}</span>${k.recommended ? `<span class="tw-pkg__rec">${esc(t.pricing.recommended)}</span>` : ""}<span class="tw-pkg__check" aria-hidden="true"></span></span>
+          <span class="tw-pkg__range">${esc(k.range)}</span>
+          <span class="tw-pkg__text">${esc(k.text)}</span></label>`).join("")}
+      </div>
+      <a class="tw-modal__cta" data-pricing-cta href="https://wa.me/${esc(whatsappNumber(lang))}" target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="industrial_pricing">${esc(t.pricing.cta)}</a>
+      <p class="tw-modal__note">${esc(t.pricing.disclaimer)}</p>
+    </div>
   </div>
   <script type="application/json" data-twin-ui>${jsonForScript(t)}</script>
 </div>`;
