@@ -34,7 +34,7 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/main.css?v=20261124d">
-  <link rel="stylesheet" href="/assets/css/industrial.css?v=0c5df50b">
+  <link rel="stylesheet" href="/assets/css/industrial.css?v=402ea9a5">
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 
@@ -145,31 +145,34 @@
   </div>
 </section>
 <section class="ind-twin" aria-label="Investment overview">
-  <img class="ind-twin__bg" src="/images/industrial/twin-backdrop-1920.webp" srcset="/images/industrial/twin-backdrop-960.webp 960w, /images/industrial/twin-backdrop-1920.webp 1920w" sizes="100vw" width="1920" height="1080" alt="3D render of the Canadian ethanol production facility case study" loading="lazy" decoding="async">
+  <img class="ind-twin__bg" data-twin-poster src="/images/industrial/twin-backdrop-1920.webp" srcset="/images/industrial/twin-backdrop-960.webp 960w, /images/industrial/twin-backdrop-1920.webp 1920w" sizes="100vw" width="1920" height="1080" alt="3D render of the Canadian ethanol production facility case study" loading="lazy" decoding="async">
   <div class="ind-twin__shade" aria-hidden="true"></div>
   <div class="ind-twin__in">
     <ol class="ind-twin__cards"><li data-reveal><span class="ind-twin__n">01</span><h3>Complete 3D model</h3><p>A fully interactive ethanol facility with its equipment, process flow and financial data.</p></li><li data-reveal><span class="ind-twin__n">02</span><h3>Process and production</h3><p>Grain intake, conversion, distillation and co-product processing, with adjustable operating parameters.</p></li><li data-reveal><span class="ind-twin__n">03</span><h3>Economic and financial simulation</h3><p>Real-time investment analysis, profitability and scenario modelling based on key market drivers.</p></li><li data-reveal><span class="ind-twin__n">04</span><h3>Investment intelligence</h3><p>A clear, data-driven view of returns, margin, payback and long-term value for investors and project developers.</p></li></ol>
     <div class="ind-twin__gap" aria-hidden="true"></div>
-    <div class="ind-twin__fin" data-reveal>
-      <div class="ind-twin__panel">
-        <p class="ind-twin__h"><b>Base case</b> · Investment overview</p>
-        <dl class="ind-twin__kpis"><div><dt>Capital investment</dt><dd>C$26.3 M</dd></div><div><dt>Annual revenue</dt><dd>C$16.0 M</dd></div><div><dt>Operating cost</dt><dd>C$11.6 M</dd></div><div><dt>Annual EBITDA</dt><dd class="is-good">C$4.4 M</dd></div><div><dt>EBITDA margin</dt><dd class="is-good">27.5 %</dd></div><div><dt>Operating cost per litre</dt><dd>C$0.83/L</dd></div><div><dt>Ethanol revenue</dt><dd>C$11.9 M</dd></div><div><dt>Co-product revenue</dt><dd>C$4.1 M</dd></div><div><dt>EBITDA / investment</dt><dd class="is-good">16.7 %</dd></div></dl>
-      </div>
-      <div class="ind-twin__panel">
-        <p class="ind-twin__h"><b>Cumulative returns</b> (10 years)</p>
-        <svg class="ind-twin__chart" viewBox="0 0 360 240" role="img" aria-label="Cumulative returns (10 years): Initial investment −C$26.3 M, Payback 6.0 years, Cumulative EBITDA C$44.0 M">
+    <div class="ind-twin__wrap" data-ind-fin data-reveal>
+      <script type="application/json" data-fin-i18n>{"title":"Investment overview","kpis":{"capex":"Capital investment","revenue":"Annual revenue","opex":"Operating cost","ebitda":"Annual EBITDA","margin":"EBITDA margin","costPerL":"Operating cost per litre","revEth":"Ethanol revenue","revDg":"Co-product revenue","ebitdaToCapex":"EBITDA / investment"},"chartTitle":"Cumulative returns","chartYears":"10 years","year":"Year","initial":"Initial investment","payback":"Payback","years":"years","cumulative":"Cumulative EBITDA","profit":"Annual profit (EBITDA)","operatingMargin":"Operating margin","cum10":"10-year cumulative EBITDA","note":"Illustrative investment scenario computed by the case-study model — not results of a real facility.","cta":"Open the investment dashboard","backdropAlt":"3D render of the Canadian ethanol production facility case study","scenarioLabel":"Investment scenario","scenarios":{"conservative":"Conservative growth","base":"Base case","optimized":"Optimized performance"},"sliders":{"ethanolPrice":"Ethanol price","wheatPrice":"Feed wheat price"},"adjusted":"adjusted","reset":"Reset","noPayback":"no payback within 10 years"}</script>
+      <div class="ind-twin__ctl" data-fin-ctl hidden></div>
+      <div class="ind-twin__fin">
+        <div class="ind-twin__panel">
+          <p class="ind-twin__h"><b data-fin-name>Base case</b> · Investment overview</p>
+          <dl class="ind-twin__kpis" data-fin-kpis><div><dt>Capital investment</dt><dd>C$26.3 M</dd></div><div><dt>Annual revenue</dt><dd>C$16.0 M</dd></div><div><dt>Operating cost</dt><dd>C$11.6 M</dd></div><div><dt>Annual EBITDA</dt><dd class="is-good">C$4.4 M</dd></div><div><dt>EBITDA margin</dt><dd class="is-good">27.5 %</dd></div><div><dt>Operating cost per litre</dt><dd>C$0.83/L</dd></div><div><dt>Ethanol revenue</dt><dd>C$11.9 M</dd></div><div><dt>Co-product revenue</dt><dd>C$4.1 M</dd></div><div><dt>EBITDA / investment</dt><dd class="is-good">16.7 %</dd></div></dl>
+        </div>
+        <div class="ind-twin__panel">
+          <p class="ind-twin__h"><b>Cumulative returns</b> (10 years)</p>
+          <div data-fin-chart><svg class="ind-twin__chart" viewBox="0 0 360 240" role="img" aria-label="Cumulative returns (10 years): Initial investment −C$26.3 M, Payback 6.0 years, Cumulative EBITDA C$44.0 M">
       <defs><linearGradient id="indTwinG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#22c55e" stop-opacity=".55"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/></linearGradient><clipPath id="indTwinPos"><rect x="0" y="0" width="360" height="94.8"/></clipPath></defs>
-      <g class="ax"><line x1="54" x2="344" y1="210.0" y2="210.0" class=""/><text x="46" y="214.0" text-anchor="end">−C30 M</text><line x1="54" x2="344" y1="171.6" y2="171.6" class=""/><text x="46" y="175.6" text-anchor="end">−C20 M</text><line x1="54" x2="344" y1="133.2" y2="133.2" class=""/><text x="46" y="137.2" text-anchor="end">−C10 M</text><line x1="54" x2="344" y1="94.8" y2="94.8" class="z"/><text x="46" y="98.8" text-anchor="end">C0 M</text><line x1="54" x2="344" y1="56.4" y2="56.4" class=""/><text x="46" y="60.4" text-anchor="end">C10 M</text><line x1="54" x2="344" y1="18.0" y2="18.0" class=""/><text x="46" y="22.0" text-anchor="end">C20 M</text><text x="54.0" y="232" text-anchor="middle">0</text><text x="83.0" y="232" text-anchor="middle">1</text><text x="112.0" y="232" text-anchor="middle">2</text><text x="141.0" y="232" text-anchor="middle">3</text><text x="170.0" y="232" text-anchor="middle">4</text><text x="199.0" y="232" text-anchor="middle">5</text><text x="228.0" y="232" text-anchor="middle">6</text><text x="257.0" y="232" text-anchor="middle">7</text><text x="286.0" y="232" text-anchor="middle">8</text><text x="315.0" y="232" text-anchor="middle">9</text><text x="344.0" y="232" text-anchor="middle">10</text></g>
+      <g class="ax"><line x1="54" x2="344" y1="210.0" y2="210.0" class=""/><text x="46" y="214.0" text-anchor="end">−C$30 M</text><line x1="54" x2="344" y1="171.6" y2="171.6" class=""/><text x="46" y="175.6" text-anchor="end">−C$20 M</text><line x1="54" x2="344" y1="133.2" y2="133.2" class=""/><text x="46" y="137.2" text-anchor="end">−C$10 M</text><line x1="54" x2="344" y1="94.8" y2="94.8" class="z"/><text x="46" y="98.8" text-anchor="end">C$0 M</text><line x1="54" x2="344" y1="56.4" y2="56.4" class=""/><text x="46" y="60.4" text-anchor="end">C$10 M</text><line x1="54" x2="344" y1="18.0" y2="18.0" class=""/><text x="46" y="22.0" text-anchor="end">C$20 M</text><text x="54.0" y="232" text-anchor="middle">0</text><text x="83.0" y="232" text-anchor="middle">1</text><text x="112.0" y="232" text-anchor="middle">2</text><text x="141.0" y="232" text-anchor="middle">3</text><text x="170.0" y="232" text-anchor="middle">4</text><text x="199.0" y="232" text-anchor="middle">5</text><text x="228.0" y="232" text-anchor="middle">6</text><text x="257.0" y="232" text-anchor="middle">7</text><text x="286.0" y="232" text-anchor="middle">8</text><text x="315.0" y="232" text-anchor="middle">9</text><text x="344.0" y="232" text-anchor="middle">10</text></g>
       <path d="M54.0,94.8 L54.0,195.9 L83.0,179.0 L112.0,162.1 L141.0,145.2 L170.0,128.3 L199.0,111.4 L228.0,94.6 L257.0,77.7 L286.0,60.8 L315.0,43.9 L344.0,27.0 L344.0,94.8 Z" fill="url(#indTwinG)" clip-path="url(#indTwinPos)"/>
       <polyline points="54.0,195.9 83.0,179.0 112.0,162.1 141.0,145.2 170.0,128.3 199.0,111.4 228.0,94.6 257.0,77.7 286.0,60.8 315.0,43.9 344.0,27.0" class="ln"/><circle cx="54.0" cy="195.9" r="3.2" class="neg"/><circle cx="83.0" cy="179.0" r="3.2" class="neg"/><circle cx="112.0" cy="162.1" r="3.2" class="neg"/><circle cx="141.0" cy="145.2" r="3.2" class="neg"/><circle cx="170.0" cy="128.3" r="3.2" class="neg"/><circle cx="199.0" cy="111.4" r="3.2" class="neg"/><circle cx="228.0" cy="94.6" r="3.2" class=""/><circle cx="257.0" cy="77.7" r="3.2" class=""/><circle cx="286.0" cy="60.8" r="3.2" class=""/><circle cx="315.0" cy="43.9" r="3.2" class=""/><circle cx="344.0" cy="27.0" r="3.2" class=""/>
-      <circle cx="227.6" cy="94.8" r="6" class="pb"/><g class="tag" transform="translate(227.6,72.8)"><rect x="-44" y="-30" width="88" height="34" rx="6"/><text y="-17" text-anchor="middle">Payback</text><text y="-2" text-anchor="middle" class="b">6.0 years</text></g>
+      <circle cx="227.6" cy="94.8" r="6" class="pb"/><g class="tag" transform="translate(227.6,138.8)"><rect x="-44" y="-30" width="88" height="34" rx="6"/><text y="-17" text-anchor="middle">Payback</text><text y="-2" text-anchor="middle" class="b">6.0 years</text></g>
       <g class="tag neg" transform="translate(120.0,185.9)"><rect x="-58" y="-30" width="116" height="34" rx="6"/><text y="-17" text-anchor="middle">Initial investment</text><text y="-2" text-anchor="middle" class="b">C$26.3 M</text></g>
-      <g class="tag" transform="translate(282.0,29.0)"><rect x="-60" y="-30" width="120" height="34" rx="6"/><text y="-17" text-anchor="middle">Cumulative EBITDA</text><text y="-2" text-anchor="middle" class="b">C$44.0 M</text></g>
-    </svg>
-      </div>
-      <div class="ind-twin__panel ind-twin__pay">
-        <div class="ind-twin__ring"><svg viewBox="0 0 160 160" aria-hidden="true"><circle cx="80" cy="80" r="70" class="bg"/><circle cx="80" cy="80" r="70" class="fg" stroke-dasharray="176.6 439.8"/></svg><p><small>Payback</small><b>6</b><small>years</small></p></div>
-        <dl class="ind-twin__side"><div><dt>Annual profit (EBITDA)</dt><dd class="is-good">C$4.4 M</dd></div><div><dt>Operating margin</dt><dd class="is-good">27.5 %</dd></div><div><dt>10-year cumulative EBITDA</dt><dd class="is-good">C$44.0 M</dd></div></dl>
+      <g class="tag" transform="translate(282.0,34.0)"><rect x="-60" y="-30" width="120" height="34" rx="6"/><text y="-17" text-anchor="middle">Cumulative EBITDA</text><text y="-2" text-anchor="middle" class="b">C$44.0 M</text></g>
+      <g class="hov" hidden><line class="hov__l" y1="18" y2="210"/><circle class="hov__d" r="5.5"/><g class="hov__t"><rect x="-56" y="-38" width="112" height="32" rx="6"/><text class="hov__y" y="-25" text-anchor="middle"></text><text class="hov__v b" y="-11" text-anchor="middle"></text></g></g>
+    </svg></div>
+        </div>
+        <div class="ind-twin__panel ind-twin__pay" data-fin-pay><div class="ind-twin__ring"><svg viewBox="0 0 160 160" aria-hidden="true"><circle cx="80" cy="80" r="70" class="bg"/><circle cx="80" cy="80" r="70" class="fg" stroke-dasharray="176.6 439.8"/></svg><p><small>Payback</small><b>6.0</b><small>years</small></p></div>
+        <dl class="ind-twin__side"><div><dt>Annual profit (EBITDA)</dt><dd class="is-good">C$4.4 M</dd></div><div><dt>Operating margin</dt><dd class="is-good">27.5 %</dd></div><div><dt>10-year cumulative EBITDA</dt><dd class="is-good">C$44.0 M</dd></div></dl></div>
       </div>
     </div>
     <p class="ind-twin__foot"><span>Illustrative investment scenario computed by the case-study model — not results of a real facility.</span><a class="ind-btn ind-btn--light" href="/en/industrial/ethanol/" data-track="industrial_factory_clicked" data-track-location="investment_overview">Open the investment dashboard <span aria-hidden="true">&rarr;</span></a></p>
@@ -210,8 +213,8 @@
       <p class="ind-showfs__loc"><svg class="tw-flag" viewBox="0 0 24 12" width="22" height="11" role="img" aria-label="Canada"><rect width="24" height="12" fill="#fff"/><rect width="6" height="12" fill="#d52b1e"/><rect x="18" width="6" height="12" fill="#d52b1e"/><path d="M12 2.2l.75 1.45 .9-.4-.35 2.1 1.15-1.05.25.75 1.2-.2-.45 1.35.55.3-2.2 1.75.25.85-1.85-.25V10h-.5V8.85l-1.85.25.25-.85-2.2-1.75.55-.3-.45-1.35 1.2.2.25-.75 1.15 1.05-.35-2.1.9.4z" fill="#d52b1e"/></svg><span>Lanigan, Saskatchewan · Canada</span></p>
       <h2 class="ind-showfs__title" id="ind-show-t">Canadian Ethanol Production Facility</h2>
       <p class="ind-showfs__text">Explore a Canadian grain-based ethanol production facility through an interactive 3D environment combining industrial process visualization, equipment intelligence and financial modelling.</p>
-      <ul class="ind-showfs__facts"><li><b>14 M L</b><span>ethanol per year (public figure)</span></li><li><b>4 × 283,000 L</b><span>fermenters (public figure)</span></li><li><b>C$29.4 M</b><span>illustrative capital investment</span></li><li><b>9</b><span>engineering networks</span></li></ul>
-      <p class="ind-showfs__ctas"><a class="ind-btn ind-btn--light" href="/en/industrial/ethanol/" data-track="industrial_factory_clicked" data-track-location="showcase">Open the interactive facility <span aria-hidden="true">&rarr;</span></a><span class="ind-showfs__tag">Independent demonstration</span></p>
+      <ul class="ind-showfs__facts"><li><b>14 M L</b><span>ethanol per year (public figure)</span></li><li><b>4 × 283,000 L</b><span>fermenters (public figure)</span></li><li><b>C$26.3 M</b><span>illustrative capital investment</span></li><li><b>9</b><span>engineering networks</span></li></ul>
+      <p class="ind-showfs__ctas"><a class="ind-btn ind-btn--light" href="/en/industrial/ethanol/" data-track="industrial_factory_clicked" data-track-location="showcase">Open the interactive facility <span aria-hidden="true">&rarr;</span></a></p>
       <p class="ind-showfs__disc">Inspired by publicly available information about Canadian ethanol manufacturing. The 3D layout and financial scenarios are illustrative. No affiliation with the reference facility is implied.</p>
     </div>
   </div>
@@ -403,6 +406,7 @@
 <script src="/assets/js/main.js?v=20261122a"></script>
 <!-- hero: the plant in 3D, turning slowly (same engine and factory as the dashboard) -->
 <script type="module" src="/assets/js/industrial/showcase.js?v=f4af0474c5"></script>
+<script type="module" src="/assets/js/industrial/overview.js?v=f4af0474c5"></script>
 
 <!-- 3DNA AI assistant (ishare.ai / Pickaxe): the same deployment as the homepage. -->
 <div id="deployment-db155617-f1fa-45ba-aa43-27eb97edb751"></div>

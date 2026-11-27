@@ -43,7 +43,6 @@
         ]
       ],
       "overview": {
-        "scenario": "Base case",
         "title": "Investment overview",
         "kpis": {
           "capex": "Capital investment",
@@ -68,7 +67,20 @@
         "cum10": "10-year cumulative EBITDA",
         "note": "Illustrative investment scenario computed by the case-study model — not results of a real facility.",
         "cta": "Open the investment dashboard",
-        "backdropAlt": "3D render of the Canadian ethanol production facility case study"
+        "backdropAlt": "3D render of the Canadian ethanol production facility case study",
+        "scenarioLabel": "Investment scenario",
+        "scenarios": {
+          "conservative": "Conservative growth",
+          "base": "Base case",
+          "optimized": "Optimized performance"
+        },
+        "sliders": {
+          "ethanolPrice": "Ethanol price",
+          "wheatPrice": "Feed wheat price"
+        },
+        "adjusted": "adjusted",
+        "reset": "Reset",
+        "noPayback": "no payback within 10 years"
       }
     },
     "process": {
@@ -137,7 +149,7 @@
           "fermenters (public figure)"
         ],
         [
-          "C$29.4 M",
+          "{capex}",
           "illustrative capital investment"
         ],
         [
