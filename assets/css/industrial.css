@@ -591,3 +591,8 @@ html.tw-modal-open{ overflow: hidden; }
   .ind-twin__foot .ind-btn{ width: 100%; justify-content: center; }
 }
 @media (max-width: 900px){ .ind-hero__hint{ display: none; } }
+@media (max-width: 760px){
+  .ind-twin__kpis div:last-child:nth-child(odd){ grid-column: 1 / -1; }
+}
+/* phones: hero buttons sit above the floating WhatsApp button */
+@media (max-width: 600px){ .ind-hero__copy{ bottom: calc(150px + env(safe-area-inset-bottom)); } }

@@ -41,7 +41,7 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) 
     const M = (x) => "C$" + (x / 1e6).toFixed(1) + " M", P = (x) => (x * 100).toFixed(1) + " %";
     const kp = [["capex", M(r.capex)], ["revenue", M(r.revenue)], ["opex", M(r.opex)], ["ebitda", M(r.ebitda), 1], ["margin", P(r.margin), 1], ["costPerL", "C$" + r.costPerL.toFixed(2) + "/L"], ["revEth", M(r.revEth)], ["revDg", M(r.revDg)], ["ebitdaToCapex", P(r.ebitdaToCapex), 1]];
     // chart: cumulative position per year (−capex + EBITDA·y)
-    const W = 430, H = 250, L = 56, Rr = 16, T = 18, B = 30, c = r.cumulative, n = c.length - 1;
+    const W = 360, H = 240, L = 54, Rr = 16, T = 18, B = 30, c = r.cumulative, n = c.length - 1;
     const lo = Math.min(0, ...c), hi = Math.max(0, ...c), step = 10e6;
     const y0 = Math.floor(lo / step) * step, y1 = Math.ceil(hi / step) * step;
     const X = (i) => L + ((W - L - Rr) * i) / n, Y = (v) => T + ((H - T - B) * (y1 - v)) / (y1 - y0);
