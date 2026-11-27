@@ -552,15 +552,25 @@ export async function createTwin(container, F, opts = {}) {
   ];
   let energy = null, energyPrev = null;
   function showEnergy() {
-    const st = ENERGY[energy.step]; energy.t = energy.step * 6.5;
+    const st = ENERGY[energy.step]; energy.since = performance.now();
     activeNets.clear(); st.nets.forEach((n) => activeNets.add(n)); selectedLink = null; applyView();
     caption.hidden = false; caption.innerHTML = `<b>${energy.step + 1} / ${ENERGY.length}</b> ${st.text}`;
     emit("energy", { step: energy.step, nets: st.nets });
   }
   function energyFlow(on) {
-    if (on && !energy) { energyPrev = { nets: [...activeNets], rot: controls.autoRotate }; energy = { step: 0, t: 0 }; controls.autoRotate = !reducedMotion; controls.autoRotateSpeed = 0.5; showEnergy(); }
+    if (on && !energy) {
+      energyPrev = { nets: [...activeNets], rot: controls.autoRotate };
+      if (traceOn) { traceOn = false; traceSet = new Set(); }
+      selected = null; emit("select", null);
+      frameHome();                                                          // the whole facility in view
+      const offset = home.pos.clone().sub(home.target).multiplyScalar(1.25);
+      flyTo(home.target.clone().add(offset), home.target.clone(), 1400);
+      energy = { step: 0, since: 0, sway: !reducedMotion, offset, t0: performance.now() + 1400 };
+      controls.autoRotate = false; showEnergy();
+    }
     else if (!on && energy) { energy = null; caption.hidden = true; controls.autoRotate = energyPrev.rot; setNetworks(energyPrev.nets); emit("energy", null); }
   }
+  controls.addEventListener("start", () => { if (energy) energy.sway = false; });   // the visitor takes the camera
   renderer.setAnimationLoop(() => {
     const dt = Math.min(clock.getDelta(), 0.05);
     if (!visible || document.hidden) return;
@@ -591,14 +601,16 @@ export async function createTwin(container, F, opts = {}) {
         }
         p.im.instanceMatrix.needsUpdate = true;
       }
-      if (energy) {
-        energy.t += dt;
-        if (energy.t > energy.step * 6.5) { energy.step++; if (energy.step >= ENERGY.length) energy.step = 0; showEnergy(); }
-      }
     }
+    // gentle camera sway around the overview (instead of a full orbit, which loses the ends of the long site)
+    if (energy && energy.sway && !tween && performance.now() > energy.t0) {
+      const a = Math.sin(((performance.now() - energy.t0) / 1000) * 0.3) * 0.35;
+      camera.position.copy(controls.target).add(energy.offset.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), a)); moving = true;
+    }
+    if (energy && performance.now() - energy.since > 6500) { energy.step = (energy.step + 1) % ENERGY.length; showEnergy(); }   // 6.5 s per step (wall clock)
     // level of detail: small fittings only near the camera
     fittings.visible = camera.position.distanceTo(controls.target) < span * 0.9;
-    const animated = view !== "realistic" || (showcase && controls.autoRotate) || (motion && (vehicles.length || anyActive()));
+    const animated = view !== "realistic" || (showcase && controls.autoRotate) || !!energy || (motion && (vehicles.length || anyActive()));
     if (!(needs || moving || animated)) return;
     needs = false;
     if (composer) composer.render(); else renderer.render(scene, camera);

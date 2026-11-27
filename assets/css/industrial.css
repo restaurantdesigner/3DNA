@@ -398,3 +398,7 @@ html.tw-modal-open{ overflow: hidden; }
 }
 @media (max-width: 900px){ .tw, .tw__body, .tw__stage{ overflow: clip; } .ind-hero__loading{ display: none; } }
 .tw:not(.tw-anim) .tw__panel, .tw:not(.tw-anim) .tw__body{ transition: none !important; }
+
+.tw .tw-energy-stop{ position: absolute; left: 50%; top: 62px; z-index: 5; transform: translateX(-50%); height: 32px; padding: 0 16px; border: 1px solid rgba(250,204,21,.55); border-radius: 999px; background: rgba(14,15,18,.92); color: #facc15; font: 700 12px "Inter", system-ui, sans-serif; letter-spacing: .04em; cursor: pointer; }
+.tw .tw-energy-stop:hover{ background: #facc15; color: #0b0c0e; }
+@media (max-width: 900px){ .tw .tw-energy-stop{ top: auto; bottom: 14px; } .twin__caption{ top: 108px; } }

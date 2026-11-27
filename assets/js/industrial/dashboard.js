@@ -150,6 +150,8 @@ export async function mountDashboard(root, F, ui, lang) {
     const on = new Set(twin.activeNetworks);
     netBox.querySelectorAll("[data-net]").forEach((c) => { c.checked = on.has(c.dataset.net); });
     netBox.querySelector("[data-energy]").setAttribute("aria-pressed", String(twin.energy));
+    netBox.querySelector("[data-trace]").checked = twin.trace;
+    netBox.querySelector("[data-energy]").textContent = twin.energy ? t.networks.energyStop : t.networks.energy;
     root.classList.toggle("is-networks", on.size > 0);
   };
   const stopEnergy = () => { if (twin.energy) twin.energyFlow(false); };
@@ -161,7 +163,15 @@ export async function mountDashboard(root, F, ui, lang) {
   netBox.querySelector("[data-net-none]").addEventListener("click", () => { stopEnergy(); twin.setNetworks([]); syncLayers(); });
   netBox.querySelector("[data-net-reset]").addEventListener("click", () => { stopEnergy(); twin.setNetworks([]); twin.setTrace(false); netBox.querySelector("[data-trace]").checked = false; twin.highlightStream(null); legend.querySelectorAll("[data-stream]").forEach((x) => x.setAttribute("aria-pressed", "false")); twin.home(); syncLayers(); });
   netBox.querySelector("[data-energy]").addEventListener("click", () => { twin.energyFlow(!twin.energy); syncLayers(); });
-  twin.on("energy", syncLayers);
+  // during Energy Flow: the layers panel folds away, a Stop button sits under the caption
+  const stopBtn = document.createElement("button"); stopBtn.type = "button"; stopBtn.className = "tw-energy-stop"; stopBtn.hidden = true;
+  stopBtn.textContent = t.networks.energyStop; stage.appendChild(stopBtn);
+  stopBtn.addEventListener("click", () => { twin.energyFlow(false); syncLayers(); });
+  twin.on("energy", (ev) => {
+    stopBtn.hidden = !ev; root.classList.toggle("is-energy", !!ev);
+    if (ev && ev.step === 0) { const h = netBox.querySelector(".tw-nets__head"); h.setAttribute("aria-expanded", "false"); netBox.querySelector(".tw-nets__body").hidden = true; }
+    syncLayers();
+  });
 
   // ---------------------------------------------------------------- selected equipment / connection
   const detail = $("[data-detail]");

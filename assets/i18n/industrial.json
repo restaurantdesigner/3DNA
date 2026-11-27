@@ -298,7 +298,8 @@
         "reset": "Reset",
         "trace": "Trace connections of the selected equipment",
         "energy": "Energy Flow",
-        "note": "Conceptual networks for presentation — not verified infrastructure of the reference facility."
+        "note": "Conceptual networks for presentation — not verified infrastructure of the reference facility.",
+        "energyStop": "Stop Energy Flow"
       },
       "link": {
         "from": "From",
