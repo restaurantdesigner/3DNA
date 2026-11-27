@@ -666,6 +666,36 @@ const G = {
     b.box(M.paintGrey, 0.1, 2.4, 0.1, -1.6, 1.2, 0.9); b.box(M.paintGreen, 1.6, 0.8, 0.06, -1.6, 2.2, 0.9);
     return { height: 2.6, radius: 2, ports: { in: [-1.5, 1.2, 0], out: [1.5, 1.2, 0] } };
   },
+  // grain truck: cab + tipping trailer with a grain load (cab at local -x, like the road tanker)
+  grainTruck(b, {} = {}) {
+    const M = b.M;
+    b.box(M.paintBlue, 2.5, 2.8, 2.4, -6, 1.9, 0);
+    b.box(M.glass, 0.1, 1.1, 2.1, -7.26, 2.6, 0);
+    b.box(M.darkSteel, 13, 0.5, 2.2, 0, 0.9, 0);
+    b.box(M.paintGrey, 9.4, 2.1, 2.5, 1.4, 2.2, 0);
+    b.box(M.grain, 9.1, 0.3, 2.2, 1.4, 3.25, 0);
+    for (const x of [-6.2, -2.4, 3.2, 4.6, 6]) for (const z of [-1.05, 1.05]) b.add(M.rubber, new THREE.CylinderGeometry(0.55, 0.55, 0.45, 18), b.T(x, 0.55, z, 0, Math.PI / 2));
+    return { height: 3.6, radius: 7, ports: {} };
+  },
+  // traffic sign on a post (stop, or a direction / speed panel)
+  sign(b, { kind = "stop" } = {}) {
+    const M = b.M;
+    b.cyl(M.galv, 0.05, 2.6, 0, 1.3, 0, 8);
+    if (kind === "stop") b.add(M.cabRed, new THREE.CylinderGeometry(0.42, 0.42, 0.05, 8), b.T(0, 2.7, 0, Math.PI / 8, Math.PI / 2));
+    else b.add(M.paintBlue, new THREE.BoxGeometry(0.8, 0.8, 0.05), b.T(0, 2.7, 0));
+    return { height: 3.2, radius: 0.5, ports: {} };
+  },
+  // emergency assembly point: green painted square with white border and a sign
+  muster(b, { s = 7 } = {}) {
+    const M = b.M;
+    b.add(M.walkway, new THREE.PlaneGeometry(s, s), b.T(0, 0.14, 0, 0, -Math.PI / 2));
+    for (const [w, d, x, z] of [[s, 0.25, 0, -s / 2], [s, 0.25, 0, s / 2], [0.25, s, -s / 2, 0], [0.25, s, s / 2, 0]]) b.add(M.white, new THREE.PlaneGeometry(w, d), b.T(x, 0.2, z, 0, -Math.PI / 2));
+    b.add(M.white, new THREE.RingGeometry(1.2, 1.5, 32), b.T(0, 0.2, 0, 0, -Math.PI / 2));
+    b.cyl(M.galv, 0.06, 2.8, s / 2 - 0.5, 1.4, -s / 2 + 0.5, 8);
+    b.box(M.paintGreen, 1.2, 0.9, 0.06, s / 2 - 0.5, 2.6, -s / 2 + 0.5);
+    b.box(M.white, 0.5, 0.5, 0.07, s / 2 - 0.5, 2.6, -s / 2 + 0.5);
+    return { height: 3.1, radius: s / 2, ports: {} };
+  },
   // bucket-elevator tower with head house
   elevator(b, { h = 34 } = {}) {
     const M = b.M;

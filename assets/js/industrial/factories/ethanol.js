@@ -46,10 +46,16 @@ export default {
   fence: { x: [-152, 172], z: [-82, 66] },
   rack: RACK,
   roads: [
+    // perimeter loop
     { x: 10, z: 58, w: 324, d: 9 }, { x: 10, z: -75, w: 324, d: 8 },
     { x: -146, z: -8, w: 8, d: 142, lines: false }, { x: 166, z: -8, w: 8, d: 142, lines: false },
-    { x: 148, z: -8, w: 10, d: 56, lines: false }
+    // north service road behind the process (grain receiving ↔ tank farm) and its spur to the perimeter
+    { x: 18, z: -62, w: 244, d: 6 }, { x: -104, z: -67.5, w: 6, d: 7, lines: false },
+    // east internal road through the tanker loading bay, connector to the east perimeter road
+    { x: 148, z: -25.5, w: 10, d: 91, lines: false }, { x: 157.5, z: -36, w: 9, d: 8, lines: false }
   ],
+  // zebra crossings where the main walkway meets roads
+  crossings: [{ x: -146, z: 9, w: 8, d: 2.4, along: "x" }, { x: 148, z: 9, w: 10, d: 2.4, along: "x" }],
 
   areas: [
     { id: "grain", step: 1, color: 0xf2c14e, x: [-142, -86], z: [-72, -36], name: "Grain receiving and storage", desc: "Trucks deliver feed wheat; it is screened and elevated into three storage bins (public description)." },
@@ -81,7 +87,7 @@ export default {
     E("cooker", "cooker", "vessel", [-58, -14], { r: 0.6, h: 3, legs: 1, mat: "insulation" }, { area: "cooking" }),
     E("liq-1", "liq", "tank", [-48, -23], { r: 2.2, h: 5.5, roof: "dome" }, { n: 1, area: "cooking" }),
     E("liq-2", "liq", "tank", [-48, -34], { r: 2.2, h: 5.5, roof: "dome" }, { n: 2, area: "cooking" }),
-    E("cooler", "cooler", "exchanger", [-41, -41], { r: 0.6, len: 5 }, { area: "cooking" }),
+    E("cooler", "cooler", "exchanger", [-44, -41], { r: 0.6, len: 5 }, { area: "cooking" }),
     // 4 · fermentation (4 × 283,000 L: public figures)
     ...[[-32, -38], [-20, -38], [-32, -22], [-20, -22]].map((p, i) => E(`ferm-${i + 1}`, "fermenter", "tank", p, { r: 3.6, h: 7, roof: "dome", legs: 1.6, agitator: true }, { n: i + 1, area: "fermentation" })),
     E("yeast", "yeast", "vessel", [-8, -40], { r: 1.4, h: 4, legs: 1.2 }, { area: "fermentation" }),
@@ -153,21 +159,34 @@ export default {
     ...[-140, -140, -140, -104, -104, -104].map((x, i) => E(`tree-p${i}`, "tree", "tree", [x, [-14, -6, 2][i % 3]], { s: 0.9, seed: i + 3 }, { decor: true, area: "admin" })),
     ...[-132, -112].map((x, i) => E(`tree-l${i}`, "tree", "tree", [x, 30.5], { s: 0.8, seed: i + 9 }, { decor: true, area: "admin" })),
     ...[-120, -80, -40, 0, 40, 80, 120].map((x, i) => E(`lamp-${i}`, "lamp", "lamp", [x, 11.6], { h: 8 }, { decor: true, area: "admin", rot: Math.PI / 2 })),
-    ...[[-104, -68, "paintBlue"], [-34, 42, "paintGreen"], [104, 18, "paintBlue"], [54, 40, "paintGreen"]].map(([x, z, color], i) => E(`skip-${i}`, "skip", "skip", [x, z], { color }, { decor: true, area: "utilities" }))
+    ...Array.from({ length: 17 }, (_, i) => -80 + i * 13.5).map((x, i) => E(`tree-s${i}`, "tree", "tree", [x, 51.3], { s: 0.85, seed: i + 20 }, { decor: true, area: "admin" })),
+    ...Array.from({ length: 15 }, (_, i) => -92 + i * 16).map((x, i) => E(`tree-n${i}`, "tree", "tree", [x, -68], { s: 0.8, seed: i + 40 }, { decor: true, area: "admin" })),
+    ...[-24, -14, -4, 6, 16].map((z, i) => E(`tree-e${i}`, "tree", "tree", [157.5, z], { s: 0.8, seed: i + 60 }, { decor: true, area: "admin" })),
+    ...[[-100.5, -70.5, "stop"], [142, -66, "stop"], [154, -41, "stop"], [140, -58, "info"], [-108, -58, "info"]].map(([x, z, kind], i) => E(`sign-${i}`, "sign", "sign", [x, z], { kind }, { decor: true, area: "admin" })),
+    E("muster", "muster", "muster", [-130, 20], { s: 7 }, { area: "admin" }),
+    E("grain-truck-1", "graintruck", "grainTruck", [-120, -75], {}, { n: 1, area: "grain" }),
+    E("grain-truck-2", "graintruck", "grainTruck", [60, -75], {}, { n: 2, area: "grain" }),
+    ...[[-84, -68, "paintBlue"], [-34, 42, "paintGreen"], [104, 18, "paintBlue"], [54, 40, "paintGreen"]].map(([x, z, color], i) => E(`skip-${i}`, "skip", "skip", [x, z], { color }, { decor: true, area: "utilities" }))
   ],
 
   // pedestrian walkways (painted, 1.8 m)
   paths: [
-    { pts: [[-118, 34], [-118, 9], [-140, 9]] },
-    { pts: [[-118, 9], [150, 9]] },
-    { pts: [[-103, 45], [-103, 9]] },
-    { pts: [[-40, 9], [-40, -6]] }, { pts: [[24, 9], [24, -6]] }, { pts: [[60, 9], [60, -6]] },
-    { pts: [[-30, 9], [-30, 22]] }, { pts: [[48, 9], [48, 22]] }
+    { pts: [[-118, 34], [-118, 9], [-142, 9]] },
+    { pts: [[-118, 9], [156, 9]] },                                    // main walkway along the pipe rack
+    { pts: [[-103, 45], [-103, 9]] },                                  // laboratory
+    { pts: [[-97, 9], [-97, -38]] },                                   // grain and milling
+    { pts: [[-39, 9], [-39, -58], [44, -58], [44, 9]] },               // process loop: fermentation, distillation, dehydration
+    { pts: [[24, 9], [24, -6]] }, { pts: [[60, 9], [60, -6]] },
+    { pts: [[-30, 9], [-30, 22]] }, { pts: [[48, 9], [48, 22]] }, { pts: [[-126, 9], [-126, 16]] }
   ],
-  lawns: [[-118, 51, 34, 4], [-122, 30.5, 22, 4]],
+  // green zones [x, z, w, d]: office lawns, south and north verges with tree rows, west and east verges
+  lawns: [[-118, 51, 34, 4], [-122, 30.5, 22, 4], [32, 51.25, 236, 3.5], [21, -68, 242, 5], [-140, -10, 3, 108], [157.5, -5, 7, 50]],
 
   // road tankers: a closed loop on the site roads, stopping under the loading canopy (index stopAt)
-  vehicles: [{ ids: ["truck-1", "truck-2"], path: [[-146, 58], [0, 58], [160, 58], [166, 50], [166, 0], [166, -26], [158, -36], [148, -36], [140, -36], [138, -48], [146, -62], [150, -75], [0, -75], [-140, -75], [-146, -68], [-146, 0], [-146, 50]], stopAt: 7, stop: 7, speed: 10 }],
+  vehicles: [
+    { ids: ["truck-1", "truck-2"], path: [[-146, 58], [0, 58], [160, 58], [166, 50], [166, 0], [166, -28], [160, -36], [149.5, -36], [149.5, -50], [149.5, -64], [146, -76], [130, -77], [0, -77], [-140, -77], [-146, -70], [-146, 0], [-146, 50]], stopAt: 7, stop: 7, speed: 10 },
+    { ids: ["grain-truck-1", "grain-truck-2"], path: [[-60, -73], [0, -73], [100, -73], [144, -72], [146, -66], [140, -62], [60, -62], [0, -62], [-60, -62], [-98, -62], [-104, -66], [-110, -73], [-122, -73]], stopAt: 12, stop: 8, speed: 9 }
+  ],
 
   // ---------------------------------------------------------------- production process (network "process")
   streams: {
@@ -310,6 +329,8 @@ export default {
     lab: { name: "Quality laboratory", fn: "Tests the grain, beer, ethanol and co-products.", specs: [] },
     gate: { name: "Gatehouse", fn: "Staff, visitor and truck control.", specs: [] },
     parking: { name: "Staff car park", fn: "Parking for staff and visitors.", specs: [] },
+    graintruck: { name: "Grain truck", fn: "Delivers feed wheat to the receiving pit (≈ 110 t/day: public figure).", specs: [] },
+    muster: { name: "Emergency assembly point", fn: "Muster point for staff and visitors during an evacuation.", specs: [["Status", "Conceptual", "c"]] },
     rack: { name: "Pipe rack", fn: "Three-tier steel structure: process lines, utility lines and cable trays.", specs: [["Length", "≈ 250 m", "c"], ["Tiers", "Process · utilities · cable trays", "c"]] }
   },
 

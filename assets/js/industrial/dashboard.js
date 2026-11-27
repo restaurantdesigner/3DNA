@@ -8,7 +8,7 @@
  * Stage: Engineering Networks layers (select all / hide all / reset), Trace Connections, Energy Flow.
  * All figures come from the factory's data module and finance model; they are illustrative.
  */
-import { createTwin, tr, nameOf } from "./engine.js?v=ind4";
+import { createTwin, tr, nameOf } from "./engine.js?v=ind5";
 
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const hex = (n) => "#" + n.toString(16).padStart(6, "0");
@@ -110,7 +110,7 @@ export async function mountDashboard(root, F, ui, lang) {
 
   // ---------------------------------------------------------------- equipment list
   const list = $("[data-equipment]");
-  const visibleItems = F.equipment.filter((e) => !e.decor && !["bund", "truck", "conveyor"].includes(e.kind));
+  const visibleItems = F.equipment.filter((e) => !e.decor && !["bund", "truck", "graintruck", "conveyor"].includes(e.kind));
   list.innerHTML = F.areas.map((a) => {
     const rows = visibleItems.filter((e) => e.area === a.id);
     if (!rows.length) return "";

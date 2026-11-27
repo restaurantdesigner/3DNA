@@ -17,7 +17,7 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { createRenderer, setupLighting, mergeGeometries } from "/assets/js/shared-3d/archviz.js?v=ind1";
-import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind4";
+import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind5";
 
 export const tr = (v, lang) => (v && typeof v === "object" && !Array.isArray(v) ? (v[lang] || v.en || v.es || "") : v);
 // display name of an equipment item: its kind's catalogue name + number
@@ -150,6 +150,15 @@ export async function createTwin(container, F, opts = {}) {
       groundB.add(M.walkway, new THREE.PlaneGeometry(L + w, w), groundB.T(cx, 0.12, cz, -ang, -Math.PI / 2));
       for (const e of [-1, 1]) { const ox = -Math.sin(ang) * e * (w / 2 - 0.08), oz = Math.cos(ang) * e * (w / 2 - 0.08); groundB.add(M.yellow, new THREE.PlaneGeometry(L + w, 0.12), groundB.T(cx + ox, 0.18, cz + oz, -ang, -Math.PI / 2)); }
       for (let s = 1.2; s < L - 0.6; s += 2.4) { const t = s / L; groundB.add(M.white, new THREE.PlaneGeometry(0.9, 0.18), groundB.T(ax + (bx - ax) * t, 0.18, az + (bz - az) * t, -ang + Math.PI / 2, -Math.PI / 2)); }
+    }
+  }
+  // zebra crossings where walkways meet roads (factory.crossings: { x, z, w, d, along: "x" | "z" })
+  for (const c of F.crossings || []) {
+    const n = Math.floor((c.along === "x" ? c.w : c.d) / 1.0);
+    for (let i = 0; i < n; i++) {
+      const o = -((c.along === "x" ? c.w : c.d) / 2) + 0.5 + i * 1.0;
+      if (c.along === "x") groundB.add(M.white, new THREE.PlaneGeometry(0.5, c.d), groundB.T(c.x + o, 0.2, c.z, 0, -Math.PI / 2));
+      else groundB.add(M.white, new THREE.PlaneGeometry(c.w, 0.5), groundB.T(c.x, 0.2, c.z + o, 0, -Math.PI / 2));
     }
   }
   // lawns around the offices (factory.lawns: [x, z, w, d])
