@@ -423,3 +423,15 @@ html.tw-modal-open{ overflow: hidden; }
 @media (max-width: 1500px) and (min-width: 901px){ .tw__title .tw__badge{ display: none; } .tw__views button{ padding: 0 9px; font-size: 12.5px; } }
 @media (max-width: 1280px) and (min-width: 901px){ .tw__brand span{ display: none; } }
 @media (max-width: 900px){ .twin__legend{ right: 10px; bottom: 60px; width: 200px; } .tw__views{ max-width: calc(100vw - 24px); } }
+
+/* phones: all six view modes visible (3 × 2 grid), header kept inside the screen */
+@media (max-width: 900px){
+  .tw__views{ display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); width: 100%; max-width: 100%; overflow: visible; }
+  .tw__views button{ min-width: 0; padding: 0 4px; font-size: 12px; }
+  .tw__top{ box-sizing: border-box; width: 100%; }
+}
+@media (max-width: 560px){
+  .tw__views{ grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; border-radius: 14px; }
+  .tw__views button{ height: 34px; border-radius: 10px; }
+}
+@media (max-width: 900px){ .tw .tw__back{ display: none; } }
