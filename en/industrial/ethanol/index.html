@@ -286,7 +286,7 @@
 <script type="module">
   const root = document.querySelector("[data-twin]");
   const ui = JSON.parse(root.querySelector("[data-twin-ui]").textContent);
-  const v = "?v=ca2eef8882";
+  const v = "?v=06c5c00982";
   const [{ mountDashboard }, factory] = await Promise.all([
     import("/assets/js/industrial/dashboard.js" + v),
     import(`/assets/js/industrial/factories/${root.dataset.factory}.js` + v)

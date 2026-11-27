@@ -368,6 +368,7 @@ export async function createTwin(container, F, opts = {}) {
   const pointAt = (l, d, out) => { let i = 1; while (i < l.cum.length - 1 && l.cum[i] < d) i++; const a = l.pts[i - 1], b = l.pts[i], seg = l.cum[i] - l.cum[i - 1] || 1; return out.copy(a).lerp(b, (d - l.cum[i - 1]) / seg); };
 
   // contact shadows: soft dark discs under equipment (one merged mesh)
+  let contactShadows = null;
   {
     const c = document.createElement("canvas"); c.width = c.height = 128; const x = c.getContext("2d");
     const g = x.createRadialGradient(64, 64, 8, 64, 64, 64); g.addColorStop(0, "rgba(0,0,0,0.55)"); g.addColorStop(0.6, "rgba(0,0,0,0.25)"); g.addColorStop(1, "rgba(0,0,0,0)");
@@ -375,7 +376,7 @@ export async function createTwin(container, F, opts = {}) {
     const t = new THREE.CanvasTexture(c);
     const geos = [];
     for (const rec of solid) { const sz = rec.box.getSize(new THREE.Vector3()); if (Math.max(sz.x, sz.z) > 30) continue; const p = new THREE.PlaneGeometry(sz.x * 1.5 + 1.5, sz.z * 1.5 + 1.5); p.rotateX(-Math.PI / 2); p.translate((rec.box.min.x + rec.box.max.x) / 2, 0.2, (rec.box.min.z + rec.box.max.z) / 2); geos.push(p); }
-    if (geos.length) { const merged = mergeGeometries(geos); const cs = new THREE.Mesh(merged, new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false })); cs.renderOrder = 1; cs.raycast = () => {}; scene.add(cs); }
+    if (geos.length) { const merged = mergeGeometries(geos); const cs = new THREE.Mesh(merged, new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false })); cs.renderOrder = 1; cs.raycast = () => {}; scene.add(cs); contactShadows = cs; }
   }
 
   // ---------------------------------------------------------------- area markers (process view)
@@ -522,6 +523,7 @@ export async function createTwin(container, F, opts = {}) {
     for (const g of [supports, fittings, trays]) g.traverse((o) => { if (o.isMesh) { o.userData.base = o.userData.base || o.material; o.material = view === "blueprint" ? bpFill : view === "thermal" ? thermalCold : dimStatic ? dimLink : o.userData.base; } });
     for (const [id, p] of particles) p.im.visible = REAL() && links.some((l) => l.net === id && linkActive(l));
     applyAtmosphere();
+    if (contactShadows) contactShadows.visible = REAL() && !act;
     areaGroup.visible = view === "process";
     labelLayer.classList.toggle("is-on", view === "process");
     needs = true;
@@ -716,7 +718,8 @@ export async function createTwin(container, F, opts = {}) {
         v3.copy(l.labelPos).project(camera);
         const x = (v3.x * .5 + .5) * w, y = (-v3.y * .5 + .5) * h;
         const lw = l.label.offsetWidth || 60;
-        const hit = !linkActive(l) || v3.z > 1 || x < 0 || x > w || y < 0 || y > h || placed.some((q) => Math.abs(q.x - x) < (q.w + lw) / 2 + 6 && Math.abs(q.y - y) < 22);
+        const near = l.labelPos.distanceTo(camera.position) < 95 && placed.length < 5;
+        const hit = !linkActive(l) || !(l === selectedLink || near) || v3.z > 1 || x < 0 || x > w || y < 0 || y > h || placed.some((q) => Math.abs(q.x - x) < (q.w + lw) / 2 + 6 && Math.abs(q.y - y) < 22);
         l.label.style.visibility = hit ? "hidden" : "visible";
         if (!hit) { l.label.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`; placed.push({ x, y, w: lw }); }
       }
