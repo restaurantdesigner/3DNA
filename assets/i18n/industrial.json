@@ -162,9 +162,9 @@
       "connections": "Connected networks",
       "illustrative": "Specifications marked Verified come from public sources; everything else is conceptual or an assumption.",
       "groups": {
-        "plant": "Plant",
-        "market": "Market (2025 benchmarks)",
-        "invest": "Investment and personnel"
+        "plant": "Production and efficiency",
+        "market": "Raw material and selling prices",
+        "invest": "Investment and operating costs"
       },
       "reset": "Reset values",
       "kpi": {
@@ -316,7 +316,36 @@
         "processNote": "Process step from public descriptions; the pipe route is conceptual."
       },
       "close": "Close",
-      "thermalLegend": "Operating temperature (illustrative)"
+      "thermalLegend": "Operating temperature (illustrative)",
+      "inv": {
+        "drivers": "Scenario drivers",
+        "ebitda": "Annual EBITDA",
+        "perYear": "per year of operation",
+        "margin": "EBITDA margin",
+        "payback": "Simple payback",
+        "ratio": "EBITDA / investment",
+        "ratioSub": "annual return on capital",
+        "capex": "Capital investment",
+        "revenue": "Annual revenue",
+        "opex": "Annual operating costs",
+        "profitPerL": "Operating profit per litre",
+        "breakEvenPrice": "Break-even ethanol price",
+        "vs": "selling at",
+        "cum": "10-year cumulative EBITDA",
+        "cumSub": "before tax, financing and reinvestment",
+        "net": "Net position after 10 years",
+        "netSub": "cumulative EBITDA minus investment",
+        "costPerL": "Production cost per litre",
+        "chartTitle": "10-year investment performance",
+        "chartHint": "Hover or tap a year to read the cumulative position.",
+        "initial": "Initial investment",
+        "year": "Year",
+        "cumPos": "cumulative position",
+        "breakEven": "Break-even",
+        "mix": "Revenue mix",
+        "ethanol": "Ethanol",
+        "coproducts": "Co-products (WDG)"
+      }
     }
   }
 }

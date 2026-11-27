@@ -17,7 +17,7 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { createRenderer, setupLighting, mergeGeometries } from "/assets/js/shared-3d/archviz.js?v=ind1";
-import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind7";
+import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind9";
 
 export const tr = (v, lang) => (v && typeof v === "object" && !Array.isArray(v) ? (v[lang] || v.en || v.es || "") : v);
 // display name of an equipment item: its kind's catalogue name + number
@@ -150,6 +150,30 @@ export async function createTwin(container, F, opts = {}) {
       groundB.add(M.walkway, new THREE.PlaneGeometry(L + w, w), groundB.T(cx, 0.12, cz, -ang, -Math.PI / 2));
       for (const e of [-1, 1]) { const ox = -Math.sin(ang) * e * (w / 2 - 0.08), oz = Math.cos(ang) * e * (w / 2 - 0.08); groundB.add(M.yellow, new THREE.PlaneGeometry(L + w, 0.12), groundB.T(cx + ox, 0.18, cz + oz, -ang, -Math.PI / 2)); }
       for (let s = 1.2; s < L - 0.6; s += 2.4) { const t = s / L; groundB.add(M.white, new THREE.PlaneGeometry(0.9, 0.18), groundB.T(ax + (bx - ax) * t, 0.18, az + (bz - az) * t, -ang + Math.PI / 2, -Math.PI / 2)); }
+    }
+  }
+  // paved surfaces (factory.paving): interlocking pavers or jointed concrete slab panels
+  if (F.paving && F.paving.length) {
+    const tile = (draw, size) => { const c = document.createElement("canvas"); c.width = c.height = size; draw(c.getContext("2d"), size); const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy()); return t; };
+    const paverTex = tile((x, n) => {
+      x.fillStyle = "#6d7076"; x.fillRect(0, 0, n, n);
+      const bw = n / 4, bh = n / 8;
+      for (let r = 0; r < 8; r++) for (let k = -1; k < 5; k++) {
+        const ox = (r % 2) * bw / 2, l = 0.38 + Math.random() * 0.12;
+        x.fillStyle = "rgb(" + Math.round(l * 255) + "," + Math.round(l * 258) + "," + Math.round(l * 265) + ")";
+        x.fillRect(k * bw + ox + 1.5, r * bh + 1.5, bw - 3, bh - 3);
+      }
+    }, 256);
+    const slabTex = tile((x, n) => {
+      x.fillStyle = "#7c8086"; x.fillRect(0, 0, n, n);
+      for (let i = 0; i < 2200; i++) { x.fillStyle = "rgba(" + (Math.random() < 0.5 ? "0,0,0" : "255,255,255") + "," + (Math.random() * 0.06).toFixed(3) + ")"; x.fillRect(Math.random() * n, Math.random() * n, 2, 2); }
+      x.fillStyle = "rgba(20,22,26,.55)"; x.fillRect(0, 0, n, 3); x.fillRect(0, 0, 3, n);
+    }, 256);
+    for (const p of F.paving) {
+      const t = (p.kind === "slab" ? slabTex : paverTex).clone(); t.needsUpdate = true;
+      t.repeat.set(p.w / (p.kind === "slab" ? 6 : 2.4), p.d / (p.kind === "slab" ? 6 : 2.4));
+      const m = new THREE.MeshStandardMaterial({ map: t, roughness: p.kind === "slab" ? 0.55 : 0.85, metalness: p.kind === "slab" ? 0.15 : 0 });
+      groundB.add(m, new THREE.PlaneGeometry(p.w, p.d), groundB.T(p.x, 0.05, p.z, 0, -Math.PI / 2));
     }
   }
   // zebra crossings where walkways meet roads (factory.crossings: { x, z, w, d, along: "x" | "z" })
@@ -375,7 +399,7 @@ export async function createTwin(container, F, opts = {}) {
     x.fillStyle = g; x.fillRect(0, 0, 128, 128);
     const t = new THREE.CanvasTexture(c);
     const geos = [];
-    for (const rec of solid) { const sz = rec.box.getSize(new THREE.Vector3()); if (Math.max(sz.x, sz.z) > 30) continue; const p = new THREE.PlaneGeometry(sz.x * 1.5 + 1.5, sz.z * 1.5 + 1.5); p.rotateX(-Math.PI / 2); p.translate((rec.box.min.x + rec.box.max.x) / 2, 0.2, (rec.box.min.z + rec.box.max.z) / 2); geos.push(p); }
+    for (const rec of solid) { const sz = rec.box.getSize(new THREE.Vector3()); if (Math.max(sz.x, sz.z) > 30 || ["substation", "parking", "muster", "aeration", "clarifier", "wdg"].includes(rec.item.kind)) continue; const p = new THREE.PlaneGeometry(sz.x * 1.5 + 1.5, sz.z * 1.5 + 1.5); p.rotateX(-Math.PI / 2); p.translate((rec.box.min.x + rec.box.max.x) / 2, 0.24, (rec.box.min.z + rec.box.max.z) / 2); geos.push(p); }
     if (geos.length) { const merged = mergeGeometries(geos); const cs = new THREE.Mesh(merged, new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false })); cs.renderOrder = 1; cs.raycast = () => {}; scene.add(cs); contactShadows = cs; }
   }
 

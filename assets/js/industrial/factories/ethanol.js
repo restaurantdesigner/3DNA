@@ -18,7 +18,7 @@
  *                                                 tag: "v" verified public figure · "a" assumption · "c" conceptual
  *   finance ..................................... CAD financial model (defaults from the data module)
  */
-import { PROJECT, VERIFIED, BENCHMARKS, ASSUMPTIONS as A, SOURCES, CAPEX_SPLIT, RESEARCHED } from "./ethanol-canada.data.js?v=ca1";
+import { PROJECT, VERIFIED, BENCHMARKS, ASSUMPTIONS as A, SOURCES, CAPEX_SPLIT, RESEARCHED } from "./ethanol-canada.data.js?v=ca2";
 
 const E = (id, kind, type, pos, params = {}, extra = {}) => ({ id, kind, type, pos, params, ...extra });
 const RACK = { x: [-110, 140], z: 0, w: 10, tiers: [6, 8.2, 10.4], bay: 7 };
@@ -53,6 +53,11 @@ export default {
     { x: 18, z: -62, w: 244, d: 6 }, { x: -104, z: -67.5, w: 6, d: 7, lines: false },
     // east internal road through the tanker loading bay, connector to the east perimeter road
     { x: 148, z: -25.5, w: 10, d: 91, lines: false }, { x: 157.5, z: -36, w: 9, d: 8, lines: false }
+  ],
+  // paved surfaces: pavers on the office forecourt, jointed concrete slab under the process areas
+  paving: [
+    { kind: "pavers", x: -118, z: 15.5, w: 36, d: 24 },
+    { kind: "slab", x: -22, z: -33, w: 128, d: 54 }
   ],
   // painted boundary lines around the process areas
   zoneLines: ["milling", "cooking", "fermentation", "distillation", "dehydration"],
@@ -346,21 +351,23 @@ export default {
   // ---------------------------------------------------------------- financial model (CAD, illustrative)
   finance: {
     currency: { code: "CAD", symbol: "C$", locale: "en-CA" },
+    note: "Illustrative investment scenario — not verified historical financial results of the reference facility.",
     presets: [
-      { id: "base", name: "Base case (2025 benchmarks)", v: {} },
-      { id: "favourable", name: "Favourable market", v: { ethanolPrice: 0.82, wheatPrice: 225, dgValue: 360 } },
-      { id: "stressed", name: "Stressed market", v: { ethanolPrice: 0.62, wheatPrice: 300, gasPrice: 6.5 } }
+      { id: "conservative", name: "Conservative Growth", v: { ethanolPrice: 0.8, wheatPrice: 225, dgValue: 330, yield: 370, gasPrice: 5.5 } },
+      { id: "base", name: "Base Case", v: {} },
+      { id: "optimized", name: "Optimized Performance", v: { ethanolPrice: 0.88, wheatPrice: 200, dgValue: 360, yield: 385, staff: 15 } }
     ],
+    years: 10,
     inputs: [
       { id: "capacity", group: "plant", min: 5, max: 40, step: 0.5, def: A.capacity.v, unit: "M L/year", label: "Ethanol production" },
       { id: "days", group: "plant", min: 300, max: 360, step: 5, def: A.days.v, unit: "days", label: "Operating days" },
-      { id: "yield", group: "plant", min: 330, max: 400, step: 1, def: A.yield.v, unit: "L/t", label: "Ethanol yield" },
-      { id: "wheatPrice", group: "market", min: 180, max: 380, step: 5, def: A.wheatPrice.v, unit: "C$/t", label: "Feed wheat price" },
+      { id: "yield", group: "plant", min: 330, max: 400, step: 1, def: A.yield.v, unit: "L/t", label: "Production efficiency (ethanol yield)" },
+      { id: "wheatPrice", group: "market", min: 160, max: 380, step: 1, def: A.wheatPrice.v, unit: "C$/t", label: "Feed wheat price" },
       { id: "ethanolPrice", group: "market", min: 0.5, max: 1.1, step: 0.01, def: A.ethanolPrice.v, unit: "C$/L", label: "Ethanol price" },
-      { id: "dgValue", group: "market", min: 200, max: 420, step: 10, def: A.dgValue.v, unit: "C$/t DM", label: "Distillers grain value" },
+      { id: "dgValue", group: "market", min: 200, max: 420, step: 1, def: A.dgValue.v, unit: "C$/t DM", label: "Distillers grain value" },
       { id: "gasPrice", group: "market", min: 3, max: 10, step: 0.25, def: A.gasPrice.v, unit: "C$/GJ", label: "Natural gas price" },
       { id: "powerPrice", group: "market", min: 0.05, max: 0.15, step: 0.005, def: A.powerPrice.v, unit: "C$/kWh", label: "Electricity price" },
-      { id: "capexPerL", group: "invest", min: 1.2, max: 3.5, step: 0.05, def: A.capexPerL.v, unit: "C$/L", label: "Unit investment" },
+      { id: "capexPerL", group: "invest", min: 1.2, max: 3.5, step: 0.01, def: A.capexPerL.v, unit: "C$/L", label: "Unit investment" },
       { id: "staff", group: "invest", min: 8, max: 30, step: 1, def: A.staff.v, unit: "FTE", label: "Plant personnel" }
     ],
     capexSplit: CAPEX_SPLIT,
@@ -381,8 +388,15 @@ export default {
       ];
       const opex = opexSplit.reduce((s, [, x]) => s + x, 0), ebitda = revenue - opex;
       const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], stop = 365 - v.days, perDay = Lt / v.days;
+      // investor indicators: break-even ethanol price, operating profit per litre, 10-year cumulative position
+      const years = 10, cumulative = Array.from({ length: years + 1 }, (_, y) => -capex + ebitda * y);
       return {
         revenue, revEth, revDg, opex, opexSplit, ebitda, capex,
+        ebitdaToCapex: capex ? ebitda / capex : 0,
+        breakEvenEthanol: (opex - revDg) / Lt,
+        profitPerL: ebitda / Lt,
+        cumulative, cumEbitda: ebitda * years, netAfter: -capex + ebitda * years,
+        breakEvenYear: ebitda > 0 ? capex / ebitda : null,
         margin: revenue ? ebitda / revenue : 0,
         payback: ebitda > 0 ? capex / ebitda : null,
         costPerL: opex / Lt, netCostPerL: (opex - revDg) / Lt,

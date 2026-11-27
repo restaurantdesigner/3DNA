@@ -65,6 +65,7 @@ export function createMaterials(tex) {
     carBlack: std({ color: 0x15171b, metalness: 0.6, roughness: 0.3 }),
     carWhite: std({ color: 0xf0f2f4, metalness: 0.4, roughness: 0.3 }),
     galv: std({ color: 0x9da4ac, metalness: 0.85, roughness: 0.38 }),
+    gravel: std({ color: 0x8a8d91, roughness: 1, map: tex.concrete }),
     transformer: std({ color: 0x6f7c74, metalness: 0.5, roughness: 0.45 }),
     porcelain: std({ color: 0x8a5a3c, roughness: 0.35 }),
     fireRed: std({ color: 0xc4231b, metalness: 0.3, roughness: 0.4 }),
@@ -628,27 +629,55 @@ const G = {
   },
   // outdoor substation: fenced gravel yard, power transformers with radiators and bushings, gantry, switchgear kiosk
   substation(b, { w = 22, d = 16, units = 2 } = {}) {
-    const M = b.M;
-    b.box(M.concrete, w, 0.2, d, 0, 0.1, 0);
+    // outdoor switchyard: gravel yard, incoming-line gantry, busbar portal with three-phase conductors, per bay a
+    // circuit breaker and a disconnector on steel supports, power transformers with radiators and HV bushings,
+    // cable trench to the switchgear kiosk, floodlights and danger signs on the fence
+    const M = b.M, gz = d / 2 - 2.2, bz = 2.2, tz = -2.6, phases = [-0.9, 0, 0.9];
+    b.box(M.slabEdge, w, 0.12, d, 0, 0.06, 0);                                            // kerb
+    b.add(M.gravel, new THREE.PlaneGeometry(w - 0.4, d - 0.4), b.T(0, 0.2, 0, 0, -Math.PI / 2));
     for (const [x0, z0, x1, z1] of [[-w / 2, -d / 2, w / 2, -d / 2], [w / 2, -d / 2, w / 2, d / 2], [w / 2, d / 2, -w / 2, d / 2], [-w / 2, d / 2, -w / 2, -d / 2]]) {
       const L = Math.hypot(x1 - x0, z1 - z0), k = Math.round(L / 2.5);
       for (let i = 0; i <= k; i++) b.box(M.galv, 0.08, 2.4, 0.08, x0 + ((x1 - x0) * i) / k, 1.3, z0 + ((z1 - z0) * i) / k);
       for (const y of [0.5, 1.5, 2.4]) b.rod(M.galv, 0.025, [x0, y, z0], [x1, y, z1], 4);
     }
+    for (const x of [-w / 4, w / 4]) { b.box(M.yellow, 0.55, 0.45, 0.03, x, 1.6, d / 2 + 0.06); b.box(M.darkSteel, 0.08, 0.2, 0.035, x, 1.6, d / 2 + 0.07); }   // danger signs
+    // incoming line gantry with strain insulators
+    for (const x of [-w / 2 + 2, w / 2 - 2]) { b.box(M.galv, 0.35, 9, 0.35, x, 4.5, gz); b.rod(M.galv, 0.06, [x, 0.3, gz - 1.2], [x, 6, gz], 6); }
+    b.box(M.galv, w - 3.6, 0.4, 0.4, 0, 8.8, gz);
+    // busbar portal (two columns + beam) and the three phase busbars along the yard
+    for (const x of [-w / 2 + 2, w / 2 - 2]) b.box(M.galv, 0.3, 6.4, 0.3, x, 3.2, bz);
+    b.box(M.galv, w - 3.6, 0.3, 0.3, 0, 6.3, bz);
+    for (const p of phases) b.rod(M.steel, 0.05, [-w / 2 + 2, 5.6, bz + p], [w / 2 - 2, 5.6, bz + p], 6);
+    for (let x = -w / 2 + 4; x < w / 2 - 3; x += 4) for (const p of phases) b.cyl(M.porcelain, 0.08, 0.7, x, 5.95, bz + p, 8);
+    // incoming conductors: gantry → busbars
+    for (const p of phases) b.rod(M.steel, 0.03, [-w / 2 + 4, 8.2, gz + p * 0.6], [-w / 2 + 4, 5.6, bz + p], 4);
     for (let i = 0; i < units; i++) {
       const x = -w / 2 + (w / (units + 1)) * (i + 1);
-      b.box(M.concrete, 4.2, 0.5, 3.6, x, 0.45, -1);
-      b.box(M.transformer, 3, 2.6, 2.2, x, 2, -1);                                       // tank
-      for (let k = -1.2; k <= 1.21; k += 0.3) { b.box(M.transformer, 0.06, 2, 0.9, x + k, 1.9, -2.6); b.box(M.transformer, 0.06, 2, 0.9, x + k, 1.9, 0.6); }   // radiators
-      b.cyl(M.transformer, 0.45, 1.4, x + 1.0, 3.9, -1.6, 14);                           // conservator
-      for (const k of [-0.8, 0, 0.8]) { b.cyl(M.porcelain, 0.12, 1.3, x + k, 3.95, -0.6, 10); b.cyl(M.galv, 0.18, 0.08, x + k, 4.6, -0.6, 10); }
+      // circuit breaker and disconnector per phase, on steel supports
+      for (const p of phases) {
+        const zc = (bz + tz) / 2 + 0.6;
+        b.box(M.galv, 0.22, 2.6, 0.22, x + p, 1.4, zc); b.cyl(M.porcelain, 0.16, 1.4, x + p, 3.4, zc, 10); b.box(M.paintGrey, 0.4, 0.5, 0.4, x + p, 2.5, zc);
+        b.box(M.galv, 0.18, 3.6, 0.18, x + p, 1.9, bz - 1.0); b.add(M.porcelain, new THREE.CylinderGeometry(0.07, 0.07, 1.0, 8), b.T(x + p, 3.9, bz - 1.0, 0, 0, Math.PI / 2));
+        // drop conductors: busbar → disconnector → breaker → transformer bushing
+        b.rod(M.steel, 0.03, [x + p, 5.6, bz + p], [x + p, 4.0, bz - 1.0], 4);
+        b.rod(M.steel, 0.03, [x + p, 4.0, bz - 1.0], [x + p, 4.1, zc], 4);
+        b.rod(M.steel, 0.03, [x + p, 4.1, zc], [x + p * 0.9, 4.7, tz + 0.4], 4);
+      }
+      // power transformer
+      b.box(M.concrete, 4.2, 0.5, 3.6, x, 0.4, tz);
+      b.box(M.transformer, 3, 2.6, 2.2, x, 1.95, tz);
+      for (let k = -1.2; k <= 1.21; k += 0.3) { b.box(M.transformer, 0.06, 2, 0.9, x + k, 1.85, tz - 1.6); b.box(M.transformer, 0.06, 2, 0.9, x + k, 1.85, tz + 1.6); }
+      b.cyl(M.transformer, 0.45, 1.4, x + 1.0, 3.85, tz - 0.6, 14);
+      for (const p of phases) { b.cyl(M.porcelain, 0.12, 1.3, x + p * 0.9, 3.9, tz + 0.4, 10); b.cyl(M.galv, 0.18, 0.08, x + p * 0.9, 4.6, tz + 0.4, 10); }
+      // LV cable trench to the switchgear kiosk
+      b.box(M.darkSteel, 0.9, 0.08, Math.abs(tz - (-d / 2 + 2.6)) + 1, x, 0.27, (tz + (-d / 2 + 2.6)) / 2);
     }
-    // incoming line gantry
-    for (const x of [-w / 2 + 2, w / 2 - 2]) b.box(M.galv, 0.3, 9, 0.3, x, 4.5, d / 2 - 2.5);
-    b.box(M.galv, w - 3.6, 0.35, 0.35, 0, 8.8, d / 2 - 2.5);
-    for (let x = -w / 2 + 4; x < w / 2 - 3; x += 3) b.cyl(M.porcelain, 0.1, 1, x, 8.1, d / 2 - 2.5, 8);
+    b.box(M.darkSteel, w * 0.6, 0.08, 0.9, w / 4 - 1, 0.27, -d / 2 + 2.6);
     b.box(M.wallDark, 5, 3, 3.4, w / 2 - 3.6, 1.7, -d / 2 + 2.6);                       // switchgear kiosk
-    return { height: 9.2, radius: Math.max(w, d) / 2, ports: { out: [w / 2 - 1, 1.2, -d / 2 + 2.6], in: [-w / 2 + 2, 8.8, d / 2 - 2.5] } };
+    b.box(M.windowLit, 0.5, 0.15, 0.25, w / 2 - 3.6, 3.0, -d / 2 + 0.85);
+    // floodlights at the corners
+    for (const [x, z] of [[-w / 2 + 0.6, -d / 2 + 0.6], [w / 2 - 0.6, d / 2 - 0.6]]) { b.cyl(M.galv, 0.08, 7, x, 3.5, z, 8); b.box(M.lampHead, 0.6, 0.25, 0.4, x, 7.05, z); }
+    return { height: 9.2, radius: Math.max(w, d) / 2, ports: { out: [w / 2 - 1, 1.2, -d / 2 + 2.6], in: [-w / 2 + 2, 8.8, gz] } };
   },
   // emergency diesel generator: acoustic container, exhaust stack, day tank
   egen(b, { w = 8, d = 3, h = 3.2 } = {}) {

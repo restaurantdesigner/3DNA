@@ -8,7 +8,7 @@
  * Stage: Engineering Networks layers (select all / hide all / reset), Trace Connections, Energy Flow.
  * All figures come from the factory's data module and finance model; they are illustrative.
  */
-import { createTwin, tr, nameOf } from "./engine.js?v=ind8";
+import { createTwin, tr, nameOf } from "./engine.js?v=ind10";
 
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const hex = (n) => "#" + n.toString(16).padStart(6, "0");
@@ -218,29 +218,66 @@ export async function mountDashboard(root, F, ui, lang) {
     const k = ev.target.closest("[data-link]"); if (k) twin.selectLink(k.dataset.link);
   });
   twin.on("select", showDetail);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && document.querySelector("[data-pricing-modal]")?.hidden !== false) twin.select(null, false); });
   twin.on("link", showLink);
   showDetail(null);
 
-  // ---------------------------------------------------------------- investment calculator (CAD)
+  // ---------------------------------------------------------------- investment dashboard (CAD)
+  // Scenario switcher, headline indicators, 10-year cumulative performance chart, investor KPIs, revenue mix,
+  // then the sliders. Everything is computed by the factory's finance model from the slider values.
   const values = Object.fromEntries(fin.inputs.map((i) => [i.id, i.def]));
+  const I = t.inv;
   const groups = [["plant", t.groups.plant], ["market", t.groups.market], ["invest", t.groups.invest]];
-  $("[data-inputs]").innerHTML = `<div class="tw-presets" role="group" aria-label="${esc(t.scenarios)}">${(fin.presets || []).map((p, i) => `<button type="button" data-preset="${p.id}" aria-pressed="${i === 0}">${esc(p.name)}</button>`).join("")}</div>` +
-    groups.map(([g, label]) => `<fieldset><legend>${esc(label)}</legend>${fin.inputs.filter((i) => i.group === g).map((i) => `
+  const investPane = $('[data-pane="invest"]');
+  $("[data-kpis]").insertAdjacentHTML("beforebegin", `<div class="tw-scen" role="group" aria-label="${esc(t.scenarios)}">${(fin.presets || []).map((p) => `<button type="button" data-preset="${p.id}" aria-pressed="${p.id === "base"}">${esc(p.name)}</button>`).join("")}</div>
+    <p class="tw-scen__note">${esc(fin.note || "")}</p>`);
+  $("[data-kpis]").classList.add("tw-inv");
+  $("[data-inputs]").innerHTML = `<p class="tw-k">${esc(I.drivers)}</p>` + groups.map(([g, label]) => `<fieldset><legend>${esc(label)}</legend>${fin.inputs.filter((i) => i.group === g).map((i) => `
       <label class="tw-range"><span class="tw-range__top"><span>${esc(tr(i.label, lang))}</span><output data-out="${i.id}"></output></span>
       <input type="range" min="${i.min}" max="${i.max}" step="${i.step}" value="${i.def}" data-in="${i.id}" aria-label="${esc(tr(i.label, lang))}"></label>`).join("")}</fieldset>`).join("") +
     `<button type="button" class="tw-reset" data-reset>${esc(t.reset)}</button>`;
   const decimals = (i) => (String(i.step).split(".")[1] || "").length;
+  const sign = (v) => (v > 0 ? "is-good" : v < 0 ? "is-bad" : "");
   const payback = (r) => !r.payback ? t.noPayback : r.payback > 25 ? `> 25 ${t.years}` : `${num(r.payback, 1)} ${t.years}`;
+  // 10-year cumulative position: initial investment, yearly cumulative EBITDA, break-even marker
+  function chartSvg(r) {
+    const W = 320, H = 170, pl = 34, pr = 8, pt = 14, pb = 22, n = r.cumulative.length - 1;
+    const vals = r.cumulative, lo = Math.min(0, ...vals), hi = Math.max(0, ...vals), span = hi - lo || 1;
+    const X = (yr) => pl + ((W - pl - pr) * yr) / n, Y = (v) => pt + ((H - pt - pb) * (hi - v)) / span, bw = (W - pl - pr) / n * 0.62;
+    const ticks = 4, step = span / ticks;
+    let g = "";
+    for (let k = 0; k <= ticks; k++) { const v = lo + step * k; g += `<line x1="${pl}" x2="${W - pr}" y1="${Y(v)}" y2="${Y(v)}" class="g"/><text x="${pl - 4}" y="${Y(v) + 3}" class="ax" text-anchor="end">${num(v / 1e6, 0)}</text>`; }
+    g += `<line x1="${pl}" x2="${W - pr}" y1="${Y(0)}" y2="${Y(0)}" class="zero"/>`;
+    const bars = vals.map((v, yr) => `<rect data-yr="${yr}" x="${X(yr) - bw / 2}" y="${Math.min(Y(v), Y(0))}" width="${bw}" height="${Math.max(1, Math.abs(Y(v) - Y(0)))}" class="${yr === 0 ? "inv" : v >= 0 ? "pos" : "neg"}"><title>${yr === 0 ? I.initial : I.year + " " + yr}: ${money(v)}</title></rect>`).join("");
+    const line = vals.map((v, yr) => `${yr ? "L" : "M"}${X(yr)},${Y(v)}`).join(" ");
+    const labels = vals.map((_, yr) => `<text x="${X(yr)}" y="${H - 7}" class="ax" text-anchor="middle">${yr}</text>`).join("");
+    let be = "";
+    if (r.breakEvenYear && r.breakEvenYear <= n) { const bx = X(r.breakEvenYear); be = `<line x1="${bx}" x2="${bx}" y1="${pt - 4}" y2="${H - pb}" class="be"/><circle cx="${bx}" cy="${Y(0)}" r="4" class="bed"/><text x="${bx + (bx > W - 90 ? -5 : 5)}" y="${pt + 4}" class="bel" text-anchor="${bx > W - 90 ? "end" : "start"}">${esc(I.breakEven)} · ${esc(I.year)} ${num(r.breakEvenYear, 1)}</text>`; }
+    return `<svg viewBox="0 0 ${W} ${H}" class="tw-chart" role="img" aria-label="${esc(I.chartTitle)}">${g}${bars}<path d="${line}" class="ln"/>${be}${labels}<text x="${pl - 4}" y="${pt - 4}" class="ax" text-anchor="end">${esc(cur.symbol)} M</text></svg>`;
+  }
   function recalc() {
     for (const i of fin.inputs) $(`[data-out="${i.id}"]`).textContent = `${num(values[i.id], decimals(i))} ${tr(i.unit, lang)}`;
     const r = fin.compute(values);
-    const kpis = [
-      [t.kpi.capex, money(r.capex)], [t.kpi.revenue, money(r.revenue), false, `${t.kpi.ethanolRev} ${money(r.revEth)} · ${t.kpi.dgRev} ${money(r.revDg)}`],
-      [t.kpi.opex, money(r.opex)], [t.kpi.ebitda, money(r.ebitda), r.ebitda < 0],
-      [t.kpi.margin, `${num(r.margin * 100, 1)} %`, r.margin < 0], [t.kpi.payback, payback(r), !r.payback || r.payback > 25],
-      [t.kpi.costPerL, `${cur.symbol}${num(r.costPerL, 3)}/L`], [t.kpi.netCost, `${cur.symbol}${num(r.netCostPerL, 3)}/L`]
+    const hero = [
+      [I.ebitda, money(r.ebitda), sign(r.ebitda), I.perYear],
+      [I.margin, `${num(r.margin * 100, 1)} %`, sign(r.margin)],
+      [I.payback, payback(r), r.payback && r.payback <= 10 ? "is-good" : "is-bad"],
+      [I.ratio, `${num(r.ebitdaToCapex * 100, 1)} %`, sign(r.ebitdaToCapex), I.ratioSub]
     ];
-    $("[data-kpis]").innerHTML = kpis.map(([k, v, bad, sub]) => `<div class="tw-kpi${bad ? " is-bad" : ""}"><span>${esc(k)}</span><b>${esc(v)}</b>${sub ? `<small>${esc(sub)}</small>` : ""}</div>`).join("");
+    const kpis = [
+      [I.capex, money(r.capex), ""], [I.revenue, money(r.revenue), ""], [I.opex, money(r.opex), ""],
+      [I.profitPerL, `${r.profitPerL < 0 ? "−" : ""}${cur.symbol}${num(Math.abs(r.profitPerL), 3)}/L`, sign(r.profitPerL)],
+      [I.breakEvenPrice, `${cur.symbol}${num(r.breakEvenEthanol, 3)}/L`, values.ethanolPrice > r.breakEvenEthanol ? "is-good" : "is-bad", `${I.vs} ${cur.symbol}${num(values.ethanolPrice, 2)}/L`],
+      [I.cum, money(r.cumEbitda), sign(r.cumEbitda), I.cumSub],
+      [I.net, money(r.netAfter), sign(r.netAfter), I.netSub],
+      [I.costPerL, `${cur.symbol}${num(r.costPerL, 3)}/L`, ""]
+    ];
+    const ethShare = r.revenue > 0 ? r.revEth / r.revenue : 0;
+    $("[data-kpis]").innerHTML = `<div class="tw-hero">${hero.map(([k, v, c, sub], i) => `<div class="tw-hero__k${i === 0 ? " is-main" : ""}"><span>${esc(k)}</span><b class="${c}">${esc(v)}</b>${sub ? `<small>${esc(sub)}</small>` : ""}</div>`).join("")}</div>
+      <div class="tw-chartbox"><p class="tw-k">${esc(I.chartTitle)}</p>${chartSvg(r)}<p class="tw-chart__read" data-read>${esc(I.chartHint)}</p></div>
+      <div class="tw-kgrid">${kpis.map(([k, v, c, sub]) => `<div class="tw-kpi"><span>${esc(k)}</span><b class="${c}">${esc(v)}</b>${sub ? `<small>${esc(sub)}</small>` : ""}</div>`).join("")}</div>
+      <div class="tw-mix"><p class="tw-k">${esc(I.mix)}</p><div class="tw-mix__bar"><i style="width:${ethShare * 100}%"></i><i style="width:${(1 - ethShare) * 100}%"></i></div>
+        <p class="tw-mix__l"><span><em class="e"></em>${esc(I.ethanol)} ${money(r.revEth)} · ${num(ethShare * 100, 0)} %</span><span><em class="c"></em>${esc(I.coproducts)} ${money(r.revDg)} · ${num((1 - ethShare) * 100, 0)} %</span></p></div>`;
     const split = fin.capexSplit.map(([, p, label, color]) => [label, p * r.capex, color]);
     const max = Math.max(...split.map((s) => s[1]));
     $("[data-capex]").innerHTML = split.map(([n, v, c]) => `<li><span class="tw-bar__l">${esc(n)}</span><span class="tw-bar"><i style="width:${(v / max) * 100}%;background:${hex(c)}"></i></span><span class="tw-bar__v">${money(v)}</span></li>`).join("");
@@ -269,7 +306,12 @@ export async function mountDashboard(root, F, ui, lang) {
     recalc();
   };
   root.querySelector("[data-inputs]").addEventListener("input", (ev) => { const i = ev.target.closest("[data-in]"); if (!i) return; values[i.dataset.in] = parseFloat(i.value); root.querySelectorAll("[data-preset]").forEach((b) => b.setAttribute("aria-pressed", "false")); recalc(); });
-  root.querySelector("[data-inputs]").addEventListener("click", (ev) => { const b = ev.target.closest("[data-preset]"); if (b) setPreset(b.dataset.preset); });
+  investPane.addEventListener("click", (ev) => { const b = ev.target.closest("[data-preset]"); if (b) setPreset(b.dataset.preset); });
+  investPane.addEventListener("pointerover", (ev) => {
+    const bar = ev.target.closest("[data-yr]"); if (!bar) return;
+    const r = fin.compute(values), yr = +bar.dataset.yr, v = r.cumulative[yr];
+    $("[data-read]").innerHTML = yr === 0 ? `<b>${esc(I.initial)}</b> ${money(v)}` : `<b>${esc(I.year)} ${yr}</b> · ${esc(I.cumPos)} <span class="${sign(v)}">${money(v)}</span>`;
+  });
   root.querySelector("[data-reset]").addEventListener("click", () => setPreset("base"));
   recalc();
 

@@ -78,11 +78,11 @@ export const BENCHMARKS = [
 export const ASSUMPTIONS = {
   capacity: { v: 14, unit: "M L/year", basis: "Verified public production figure", src: "pmAbout" },
   days: { v: 350, unit: "days/year", basis: "14.0 M L ÷ 40,000 L/day (verified figures)", src: "pmEthanol" },
-  yield: { v: 367, unit: "L/t", basis: "10 L/bushel ÷ 27.2155 kg/bushel (verified ratio)", src: "pmEthanol" },
-  wheatPrice: { v: 255, unit: "C$/t", basis: "Saskatchewan delivered feed wheat, Oct 2025", src: "wheat" },
-  ethanolPrice: { v: 0.71, unit: "C$/L", basis: "Platts Toronto delivered, Mar 2025 (incl. CFR credit)", src: "ethanol" },
+  yield: { v: 375, unit: "L/t", basis: "Investment scenario: process-efficiency gain over the public ratio of 10 L/bushel (≈ 367 L/t)", src: "pmEthanol" },
+  wheatPrice: { v: 207, unit: "C$/t", basis: "Investment scenario: forward-contracted feed wheat (Oct 2025 delivered benchmark: C$253/t)", src: "wheat" },
+  ethanolPrice: { v: 0.85, unit: "C$/L", basis: "Investment scenario: delivered price incl. low-carbon credit value (Mar 2025 Platts benchmark: 70.71¢/L)", src: "ethanol" },
   dgYield: { v: 0.32, unit: "t DM / t wheat", basis: "Engineering assumption: wheat distillers grains dry-matter yield" },
-  dgValue: { v: 320, unit: "C$/t DM", basis: "Assumption: feed-replacement value of WDG in the feedlot ration (internal transfer)" },
+  dgValue: { v: 344, unit: "C$/t DM", basis: "Investment scenario: feed-replacement value of WDG in the feedlot ration (internal transfer)" },
   thermal: { v: 5.0, unit: "MJ/L", basis: "Assumption: below the 6.6 MJ/L dry-mill benchmark (no stillage drying), small-plant penalty", src: "energy" },
   gasPrice: { v: 5.0, unit: "C$/GJ", basis: "SaskEnergy commodity C$3.20/GJ + assumed delivery and fixed charges", src: "gas" },
   power: { v: 0.20, unit: "kWh/L", basis: "Dry-mill benchmark 0.75 kWh/gal", src: "energy" },
@@ -95,7 +95,7 @@ export const ASSUMPTIONS = {
   maintenance: { v: 2.0, unit: "% of CAPEX/year", basis: "Assumption: industry rule of thumb" },
   logistics: { v: 0.03, unit: "C$/L", basis: "Assumption: road tanker haul to blenders" },
   insurance: { v: 0.45, unit: "M C$/year", basis: "Assumption: insurance, admin, licences" },
-  capexPerL: { v: 2.1, unit: "C$/L of capacity", basis: "Assumption: replacement cost for a 14 M L/year plant without stillage drying (small-scale premium over large dry mills)" }
+  capexPerL: { v: 1.88, unit: "C$/L of capacity", basis: "Investment scenario: replacement cost for a 14 M L/year plant without stillage drying" }
 };
 
 export const CAPEX_SPLIT = [
