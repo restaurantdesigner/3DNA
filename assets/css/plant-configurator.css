@@ -29,7 +29,7 @@ body.pcpage{ background: #fbfbfc; }
 .pc-zl b{ grid-row: span 2; display: grid; place-items: center; min-width: 28px; height: 28px; padding: 0 6px; border-radius: 8px; background: var(--c); color: #fff; font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .pc-zl span{ font-size: 12px; font-weight: 700; color: #12161d; }
 .pc-zl small{ font-size: 10.5px; color: #6b7280; }
-.pc-pl{ position: absolute; left: 0; top: 0; padding: 6px 12px; border-radius: 999px; background: #0b0f16; color: #fff; font-size: 13px; font-weight: 700; white-space: nowrap; margin-left: -60px; }
+.pc-pl{ position: absolute; left: 0; top: 0; padding: 6px 12px; border-radius: 999px; background: #0b0f16; color: #fff; font-size: 13px; font-weight: 700; white-space: nowrap; }
 .pc__summary{ position: absolute; left: clamp(12px, 2vw, 24px); bottom: 14px; z-index: 2; display: grid; gap: 8px; pointer-events: none; }
 .pc-sum{ display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; }
 .pc-sum > div{ display: flex; align-items: baseline; gap: 6px; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,.96); box-shadow: 0 6px 18px rgba(15,23,42,.08); }
@@ -96,3 +96,5 @@ body.pcpage{ background: #fbfbfc; }
 .pc-about p{ margin: 0 0 14px; font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif; font-size: 16px; line-height: 1.65; color: #2b313b; }
 .pc-about__links{ display: flex; flex-wrap: wrap; gap: 18px; }
 .pc-about__links a{ color: #0b0f16; font-weight: 600; }
+.pc-zl.is-compact{ padding: 3px; column-gap: 0; }
+.pc-zl.is-compact span{ display: none; }

@@ -322,7 +322,19 @@ export function mountPlantConfigurator(root) {
       const m = L.plant ? null : zoneMeshes.get(`${L.z ? plants.find((p) => p.zones.includes(L.z))?.prefix : ""}:${L.z?.id}`);
       v3.copy(L.pos); if (m) { v3.x = m.position.x; v3.z = m.position.z - m.scale.z / 2; }
       v3.y = L.plant ? 0 : 2; v3.project(camera);
-      L.el.style.transform = `translate(-50%, -100%) translate(${(v3.x * 0.5 + 0.5) * w}px, ${(-v3.y * 0.5 + 0.5) * h}px)`;
+      let px = (v3.x * 0.5 + 0.5) * w, py = (-v3.y * 0.5 + 0.5) * h;
+      if (L.plant) { const lw = L.el.offsetWidth || 120; px = Math.min(Math.max(px, lw / 2 + 8), w - lw / 2 - 8); }
+      L.px = px; L.py = py;
+      L.el.style.transform = `translate(-50%, -100%) translate(${px}px, ${py}px)`;
+    }
+    // labels that would overlap an earlier one collapse to the count badge (the zone colour still identifies them)
+    const placed = [];
+    for (const L of labelEls) {
+      if (L.plant) continue;
+      L.el.classList.remove("is-compact");
+      const lw = L.el.offsetWidth, lh = L.el.offsetHeight || 30, box = [L.px - lw / 2, L.py - lh, L.px + lw / 2, L.py];
+      const hit = placed.some((b) => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1]);
+      if (hit) { L.el.classList.add("is-compact"); const cw = 34; placed.push([L.px - cw / 2, L.py - lh, L.px + cw / 2, L.py]); } else placed.push(box);
     }
     requestAnimationFrame(tick);
   }
