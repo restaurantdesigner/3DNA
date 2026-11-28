@@ -715,3 +715,90 @@ body.twpage.tw-light{ background: #eef0f3; }
 .tw__strip{ z-index: 2; }
 .tw--light .tw__loc{ color: #3f4753; border-color: rgba(15,23,42,.14); }
 .tw.tw--light .tw-price-btn, .tw.tw--light .tw-price-btn:hover{ background: #0b0c0e; border-color: #0b0c0e; color: #fff; }
+
+/* ============ Configuration tab: Plant Configuration Calculator ============ */
+.tw__right .tw__tabs{ overflow-x: auto; scrollbar-width: none; }
+.tw__right .tw__tabs::-webkit-scrollbar{ display: none; }
+.tw__right .tw__tabs button{ flex: 1 0 auto; padding: 0 8px; white-space: nowrap; }
+@media (min-width: 901px){
+  .tw.right-open.cfg-wide .tw__body{ grid-template-columns: 0 minmax(0, 1fr) 560px; }
+  .tw.left-open.right-open.cfg-wide .tw__body{ grid-template-columns: 300px minmax(0, 1fr) 560px; }
+  .tw.right-open.cfg-wide .tw__toggle--right{ right: 574px; }
+}
+@media (min-width: 901px) and (max-width: 1320px){
+  .tw.right-open.cfg-wide .tw__body{ grid-template-columns: 0 minmax(0, 1fr) 520px; }
+  .tw.left-open.right-open.cfg-wide .tw__body{ grid-template-columns: 300px minmax(0, 1fr) 520px; }
+  .tw.right-open.cfg-wide .tw__toggle--right{ right: 534px; }
+}
+.tw-cfg{ display: grid; gap: 10px; }
+.tw-cfg .tw-k{ margin-top: 8px; }
+.tw-cfg__intro{ margin: 0; font-size: 13px; line-height: 1.55; color: #b9bec6; }
+.tw-cfg__intro b{ color: #facc15; font-weight: 600; }
+.tw-cfg__status{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tw-cfg__card{ padding: 10px 12px; border: 1px solid var(--tw-line); border-radius: 12px; background: #141518; min-width: 0; }
+.tw-cfg__card span, .tw-cfg__card small{ display: block; font-size: 11.5px; color: var(--tw-muted); }
+.tw-cfg__card b{ display: block; margin: 3px 0; font-size: 16px; font-weight: 700; color: #fff; }
+.tw-cfg__card small{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tw .tw-cfg .is-warn, .tw .tw-cfg__card b.is-warn{ color: #fbbf24; }
+.tw-cfg__acts{ display: flex; flex-wrap: wrap; gap: 6px; }
+.tw .tw-cfg__acts button, .tw .tw-cfg__unit button, .tw .tw-cfg__cmp th button{ height: 34px; padding: 0 12px; border: 1px solid rgba(255,255,255,.16); border-radius: 9px; background: #16171b; color: #e5e7eb; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+.tw .tw-cfg__acts button:hover{ border-color: #fff; color: #fff; }
+.tw .tw-cfg__acts .tw-cfg__apply{ background: #fff; border-color: #fff; color: #0b0c0e; }
+.tw .tw-cfg__acts .tw-cfg__apply.is-due{ background: #22c55e; border-color: #22c55e; color: #04130a; box-shadow: 0 0 0 3px rgba(34,197,94,.25); }
+.tw-cfg__unit{ display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--tw-muted); }
+.tw .tw-cfg__unit button{ height: 28px; padding: 0 10px; }
+.tw .tw-cfg__unit button[aria-pressed="true"]{ background: #fff; color: #0b0c0e; border-color: #fff; }
+.tw-cfg__sel{ display: grid; gap: 5px; margin: 0 0 12px; font-size: 12.5px; color: #cfd3d8; }
+.tw-cfg__sel select{ height: 36px; padding: 0 10px; border: 1px solid var(--tw-line); border-radius: 9px; background: #16171b; color: #fff; font: inherit; }
+.tw-cfg__flows{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tw-cfg__flows .tw-kpi b{ font-size: 14px; }
+.tw-cfg__scroll{ overflow-x: auto; border: 1px solid var(--tw-line); border-radius: 12px; }
+.tw-cfg__t{ width: 100%; border-collapse: collapse; font-size: 12px; }
+.tw-cfg__t th{ padding: 8px; text-align: left; font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--tw-muted); background: #141518; white-space: nowrap; }
+.tw-cfg__t td{ padding: 7px 8px; border-top: 1px solid var(--tw-line); color: #e5e7eb; vertical-align: top; white-space: nowrap; }
+.tw-cfg__t td:first-child{ white-space: normal; min-width: 150px; }
+.tw-cfg__t td b{ display: block; font-weight: 600; color: #fff; }
+.tw-cfg__t td small{ display: block; margin-top: 2px; font-size: 10.5px; color: var(--tw-muted); white-space: normal; }
+.tw-cfg__t tr.is-bott td{ background: rgba(250,204,21,.07); }
+.tw-cfg__t tr.is-sum td{ font-weight: 700; color: #fff; }
+.tw-cfg__b{ display: inline-block; margin-left: 4px; padding: 1px 6px; border-radius: 6px; background: rgba(250,204,21,.16); color: #facc15; font-size: 10px; font-style: normal; font-weight: 700; text-transform: uppercase; }
+.tw-cfg__u{ display: block; width: 70px; height: 5px; margin-bottom: 3px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; }
+.tw-cfg__u i{ display: block; height: 100%; background: #22c55e; }
+.tw-cfg__u.is-warn i{ background: #f59e0b; }
+.tw-cfg__u.is-bad i{ background: #ef4444; }
+.tw-cfg__capex{ display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.tw-cfg__capex li{ display: grid; grid-template-columns: 160px minmax(0, 1fr) 80px; align-items: center; gap: 8px; font-size: 12px; color: #cfd3d8; }
+.tw-cfg__capex li b{ text-align: right; color: #fff; }
+.tw-cfg__capex .tw-bar i{ background: #3b82f6; }
+.tw-cfg__capex li.is-sum{ padding-top: 6px; border-top: 1px solid var(--tw-line); font-weight: 700; color: #fff; }
+.tw-cfg__small{ margin: 0; font-size: 11.5px; line-height: 1.5; color: var(--tw-muted); }
+.tw-cfg__warn{ margin: 0 0 8px; padding: 10px 12px 10px 28px; border: 1px solid rgba(250,204,21,.3); border-radius: 10px; background: rgba(250,204,21,.06); color: #fde68a; font-size: 12px; line-height: 1.5; }
+.tw-cfg__flags{ display: grid; gap: 4px; max-height: 220px; overflow-y: auto; margin: 6px 0 0; padding: 0; list-style: none; }
+.tw .tw-cfg__flags button{ width: 100%; padding: 6px 10px; border: 1px solid rgba(239,68,68,.25); border-radius: 8px; background: rgba(239,68,68,.06); color: #fca5a5; font-size: 11.5px; text-align: left; cursor: pointer; }
+.tw-cfg__ok{ margin: 0; padding: 10px 12px; border: 1px solid rgba(34,197,94,.3); border-radius: 10px; background: rgba(34,197,94,.06); color: #86efac; font-size: 12px; }
+.tw-cfg__cmp td, .tw-cfg__cmp th{ text-align: right; }
+.tw-cfg__cmp td:first-child, .tw-cfg__cmp th:first-child{ text-align: left; min-width: 110px; }
+.tw .tw-cfg__cmp th button{ height: 22px; margin-left: 4px; padding: 0 6px; font-size: 10.5px; }
+.tw-cfg__lib summary{ cursor: pointer; padding: 10px 0; font-size: 12.5px; font-weight: 600; color: #fff; }
+.tw-cfg__libt input{ width: 86px; height: 28px; padding: 0 6px; border: 1px solid var(--tw-line); border-radius: 7px; background: #0e0f12; color: #fff; font: 12px "Inter", system-ui, sans-serif; }
+.tw-cfg__libt td:last-child{ white-space: normal; min-width: 180px; }
+.tw-cfg__linked{ margin: 0 0 10px; padding: 8px 10px; border-radius: 10px; background: rgba(34,197,94,.08); color: #86efac; font-size: 12px; }
+@media (max-width: 900px){
+  .tw-cfg__status, .tw-cfg__flows{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tw-cfg__capex li{ grid-template-columns: 120px minmax(0, 1fr) 70px; }
+}
+/* light mode */
+.tw--light .tw-cfg__intro{ color: #3f4753; }
+.tw--light .tw-cfg__intro b{ color: #b45309; }
+.tw--light .tw-cfg__card, .tw--light .tw-cfg__t th{ background: #f6f7f9; }
+.tw--light .tw-cfg__card b, .tw--light .tw-cfg__t td b, .tw--light .tw-cfg__t tr.is-sum td, .tw--light .tw-cfg__capex li b, .tw--light .tw-cfg__capex li.is-sum, .tw--light .tw-cfg__lib summary{ color: #141821; }
+.tw--light .tw-cfg__t td, .tw--light .tw-cfg__capex li, .tw--light .tw-cfg__sel{ color: #2b313b; }
+.tw.tw--light .tw-cfg__acts button, .tw.tw--light .tw-cfg__unit button, .tw.tw--light .tw-cfg__cmp th button, .tw--light .tw-cfg__sel select, .tw--light .tw-cfg__libt input{ background: #fff; color: #141821; border-color: rgba(15,23,42,.18); }
+.tw.tw--light .tw-cfg__acts .tw-cfg__apply, .tw.tw--light .tw-cfg__unit button[aria-pressed="true"]{ background: #0b0c0e; color: #fff; border-color: #0b0c0e; }
+.tw.tw--light .tw-cfg__acts .tw-cfg__apply.is-due{ background: #16a34a; border-color: #16a34a; color: #fff; }
+.tw--light .tw-cfg__warn{ color: #92400e; }
+.tw--light .tw-cfg__ok, .tw--light .tw-cfg__linked{ color: #15803d; }
+.tw.tw--light .tw-cfg__flags button{ color: #b91c1c; }
+.tw--light .tw-cfg .is-warn, .tw--light .tw-cfg__card b.is-warn{ color: #b45309; }
+.tw--light .tw-cfg__u{ background: rgba(15,23,42,.08); }
+@media (max-width: 900px){ .tw__right .tw__tabs::after{ content: ""; flex: 0 0 44px; } .tw__right .tw__tabs button{ padding: 0 7px; } }

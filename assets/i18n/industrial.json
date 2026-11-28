@@ -199,7 +199,8 @@
         "invest": "Investment",
         "prod": "Production",
         "project": "Project",
-        "sources": "Sources"
+        "sources": "Sources",
+        "config": "Configuration"
       },
       "search": "Search equipment…",
       "streams": "Process streams",

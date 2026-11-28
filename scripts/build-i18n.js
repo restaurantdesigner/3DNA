@@ -543,7 +543,7 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "industrialPage.url") return pagePathFor("industrial", lang);
     if (key === "industrialPage.nav") return escapeHtml(industrialPage.nav(INDUSTRIAL_LANGS.includes(lang) ? lang : "en"));
     if (key === "industrial.cssVersion") return fileVersion("assets/css/industrial.css");
-    if (key === "industrial.jsVersion") return ["engine", "equipment", "dashboard", "showcase", "overview", "overview-view", "factories/ethanol"].map((m) => fileVersion(`assets/js/industrial/${m}.js`)).join("").slice(0, 10);
+    if (key === "industrial.jsVersion") return ["engine", "equipment", "dashboard", "showcase", "overview", "overview-view", "configurator", "factories/ethanol", "factories/ethanol-config"].map((m) => fileVersion(`assets/js/industrial/${m}.js`)).join("").slice(0, 10);
     if (key === "industrial.meta.title") return escapeHtml(industrialPage.meta(lang).title);
     if (key === "industrial.heroHtml") return industrialPage.heroHtml(lang);
     if (key === "industrial.bodyHtml") return industrialPage.bodyHtml(lang);
