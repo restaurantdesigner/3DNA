@@ -8,7 +8,7 @@
  * Stage: Engineering Networks layers (select all / hide all / reset), Trace Connections, Energy Flow.
  * All figures come from the factory's data module and finance model; they are illustrative.
  */
-import { createTwin, tr, nameOf } from "./engine.js?v=ind13";
+import { createTwin, tr, nameOf } from "./engine.js?v=ind15";
 
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const hex = (n) => "#" + n.toString(16).padStart(6, "0");
@@ -43,6 +43,19 @@ export async function mountDashboard(root, F, ui, lang) {
     root.classList.toggle("is-process", b.dataset.view === "process");
   }));
   $("[data-home]").addEventListener("click", () => twin.home());
+  // light / dark theme (remembered in this browser; dark by default)
+  const themeBtn = $("[data-theme-toggle]");
+  const applyTheme = (th) => {
+    const light = th === "light";
+    root.classList.toggle("tw--light", light); document.body.classList.toggle("tw-light", light);
+    twin.setTheme(th);
+    if (themeBtn) { themeBtn.setAttribute("aria-pressed", String(light)); const l = light ? t.themeDark : t.themeLight; themeBtn.title = l; themeBtn.setAttribute("aria-label", l); }
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", light ? "#eef0f3" : "#070809");
+  };
+  let savedTheme = "dark"; try { savedTheme = localStorage.getItem("tw-theme") || "dark"; } catch {}
+  if (new URLSearchParams(location.search).get("theme") === "light") savedTheme = "light";
+  applyTheme(savedTheme);
+  themeBtn?.addEventListener("click", () => { const th = root.classList.contains("tw--light") ? "dark" : "light"; applyTheme(th); try { localStorage.setItem("tw-theme", th); } catch {} });
   const fsBtn = $("[data-fullscreen]");
   fsBtn.addEventListener("click", () => { if (document.fullscreenElement) document.exitFullscreen(); else root.requestFullscreen?.().catch(() => {}); });
   document.addEventListener("fullscreenchange", () => { fsBtn.setAttribute("aria-pressed", String(!!document.fullscreenElement)); setTimeout(() => twin.resize(), 60); });

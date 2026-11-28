@@ -239,7 +239,16 @@ const G = {
   tank(b, { r = 6, h = 12, roof = "cone", mat = "stainless", ladder: lad = true, legs = 0, base = 0.4, label = "", band = "", agitator = false } = {}) {
     const M = b.M, body = M[mat] || M.white;
     b.cyl(M.concrete, r + 0.4, base, 0, base / 2, 0, 40);
-    if (legs) { for (let i = 0; i < 4; i++) { const t = i * Math.PI / 2 + Math.PI / 4; b.rod(M.paintGrey, 0.18, [Math.cos(t) * r * .8, base, Math.sin(t) * r * .8], [Math.cos(t) * r * .8, base + legs, Math.sin(t) * r * .8], 8); } b.cone(body, r, r * .7, 0, base + legs + r * .35, 0, 40, true); }
+    if (legs) {
+      const yc = base + legs + r * .7, lr = r + 0.1;                       // cylinder bottom; legs just outside the shell
+      for (let i = 0; i < 4; i++) {
+        const t = i * Math.PI / 2 + Math.PI / 4, cx = Math.cos(t), sz = Math.sin(t);
+        b.rod(M.paintGrey, 0.18, [cx * lr, base, sz * lr], [cx * lr, yc + 1.2, sz * lr], 8);
+        b.box(M.darkSteel, 0.7, 0.08, 0.7, cx * lr, base + 0.04, sz * lr);                           // foot plate
+        b.box(M.paintGrey, 0.5, 1.0, 0.12, cx * (r + 0.02), yc + 0.7, sz * (r + 0.02));              // weld pad on the shell
+      }
+      b.cone(body, r, r * .7, 0, base + legs + r * .35, 0, 40, true);
+    }
     const y0 = base + legs + (legs ? r * .7 : 0);
     b.cyl(body, r, h, 0, y0 + h / 2, 0, 48);
     for (let y = y0 + 2.4; y < y0 + h - 0.5; y += 2.4) b.torus(M.steel, r + 0.02, 0.04, 0, y, 0);
@@ -338,7 +347,7 @@ const G = {
   // small vertical process vessel on legs (yeast propagation, sieve bed, evaporator body)
   vessel(b, { r = 1.5, h = 8, mat = "steel", legs = 1.6 } = {}) {
     const M = b.M;
-    for (let i = 0; i < 4; i++) { const t = i * Math.PI / 2 + Math.PI / 4; b.rod(M.paintGrey, 0.12, [Math.cos(t) * r * .85, 0, Math.sin(t) * r * .85], [Math.cos(t) * r * .85, legs + r * .3, Math.sin(t) * r * .85], 8); }
+    for (let i = 0; i < 4; i++) { const t = i * Math.PI / 2 + Math.PI / 4, lr = r + 0.07; b.rod(M.paintGrey, 0.12, [Math.cos(t) * lr, 0, Math.sin(t) * lr], [Math.cos(t) * lr, legs + r * .5 + 0.8, Math.sin(t) * lr], 8); b.box(M.darkSteel, 0.4, 0.06, 0.4, Math.cos(t) * lr, 0.03, Math.sin(t) * lr); }
 
     b.cone(M[mat], r, r * .5, 0, legs + r * .25, 0, 32, true);
     b.cyl(M[mat], r, h, 0, legs + r * .5 + h / 2, 0, 40);

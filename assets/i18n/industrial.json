@@ -392,7 +392,9 @@
         "ethanol": "Ethanol",
         "coproducts": "Co-products (WDG)"
       },
-      "details": "Details"
+      "details": "Details",
+      "themeLight": "Light mode",
+      "themeDark": "Dark mode"
     }
   }
 }

@@ -17,7 +17,7 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { createRenderer, setupLighting, mergeGeometries } from "/assets/js/shared-3d/archviz.js?v=ind1";
-import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind10";
+import { createMaterials, createTextures, buildEquipment, createBuilder } from "./equipment.js?v=ind11";
 
 export const tr = (v, lang) => (v && typeof v === "object" && !Array.isArray(v) ? (v[lang] || v.en || v.es || "") : v);
 // display name of an equipment item: its kind's catalogue name + number
@@ -494,6 +494,13 @@ export async function createTwin(container, F, opts = {}) {
     thermal: bgTex((x) => { const g = x.createRadialGradient(512, 480, 40, 512, 512, 720); g.addColorStop(0, "#141a2b"); g.addColorStop(1, "#05070c"); x.fillStyle = g; x.fillRect(0, 0, 1024, 1024); }),
     night: bgTex((x) => { const g = x.createLinearGradient(0, 0, 0, 1024); g.addColorStop(0, "#02030a"); g.addColorStop(1, "#0a0f1f"); x.fillStyle = g; x.fillRect(0, 0, 1024, 1024); for (let i = 0; i < 260; i++) { x.fillStyle = "rgba(255,255,255," + (Math.random() * 0.6).toFixed(2) + ")"; x.fillRect(Math.random() * 1024, Math.random() * 560, 1.4, 1.4); } })
   };
+  // light theme: bright studio backdrop (soft radial gradient, faint dot grid); the dark theme keeps defaultBg
+  const LIGHT_BG = bgTex((x) => {
+    const g = x.createRadialGradient(512, 470, 40, 512, 512, 760); g.addColorStop(0, "#f7f8fa"); g.addColorStop(0.6, "#e7eaee"); g.addColorStop(1, "#d5dae1");
+    x.fillStyle = g; x.fillRect(0, 0, 1024, 1024);
+    x.fillStyle = "rgba(20,30,50,.07)"; for (let i = 8; i < 1024; i += 22) for (let j = 8; j < 1024; j += 22) x.fillRect(i, j, 1.6, 1.6);
+  });
+  let theme = opts.theme === "light" ? "light" : "dark", bloom = null;
   let defaultBg, env0;
   const lights = []; scene.traverse((o) => { if (o.isLight) lights.push([o, o.intensity]); });
   const exposure0 = renderer.toneMappingExposure;
@@ -502,7 +509,9 @@ export async function createTwin(container, F, opts = {}) {
   container.appendChild(legend);
   function applyAtmosphere() {
     if (defaultBg === undefined) defaultBg = scene.background;
-    scene.background = BG[view] || defaultBg;
+    scene.background = BG[view] || (theme === "light" ? LIGHT_BG : defaultBg);
+    // bloom would haze a bright backdrop: keep only a hint of it in the light theme
+    if (bloom) { const lt = theme === "light" && !BG[view]; bloom.strength = lt ? 0.12 : 0.42; bloom.threshold = lt ? 0.99 : 0.93; }
     const night = view === "night";
     if (env0 === undefined) env0 = scene.environment;
     scene.environment = night ? null : env0;                                // no studio reflections after dark
@@ -649,7 +658,8 @@ export async function createTwin(container, F, opts = {}) {
     const bg = new THREE.CanvasTexture(c); bg.colorSpace = THREE.SRGBColorSpace; scene.background = bg;
     composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
-    composer.addPass(new UnrealBloomPass(new THREE.Vector2(512, 512), 0.42, 0.4, 0.93));
+    bloom = new UnrealBloomPass(new THREE.Vector2(512, 512), 0.42, 0.4, 0.93);
+    composer.addPass(bloom);
     composer.addPass(new OutputPass());
   }
   function resize() {
@@ -765,6 +775,8 @@ export async function createTwin(container, F, opts = {}) {
   const api = {
     scene, camera, controls, renderer, items,
     select, focus, setView, highlightStream,
+    setTheme(t) { theme = t === "light" ? "light" : "dark"; container.classList.toggle("is-light", theme === "light"); applyAtmosphere(); needs = true; },
+    get theme() { return theme; },
     links, networks: NET, validation,
     setNetworks, setTrace, selectLink, energyFlow,
     // video capture: stop the real-time loop and render exactly one frame of dt seconds

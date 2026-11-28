@@ -662,3 +662,56 @@ html.tw-modal-open{ overflow: hidden; }
 @media (max-width: 760px){ .ind-film__frame{ border-radius: 12px; } }
 .indpage .ab-p--strong{ font-weight: 400; }
 .indpage .ab-p{ line-height: 1.65; }
+
+/* ============ dashboard: light theme (toggle in the top bar; dark stays the default) ============ */
+.tw__moon{ display: none; }
+.tw--light .tw__sun{ display: none; }
+.tw--light .tw__moon{ display: block; }
+body.twpage.tw-light{ background: #eef0f3; }
+.tw.tw--light{ --tw-bg: #eef0f3; --tw-panel: rgba(255,255,255,.97); --tw-line: rgba(15,23,42,.1); --tw-text: #141821; --tw-muted: #5d6673; --tw-accent: #0b0c0e; color-scheme: light; }
+.tw--light .tw__top{ background: #ffffff; }
+.tw--light .tw__brand, .tw--light .tw__icon, .tw--light .tw__lang, .tw--light .tw-price-btn, .tw--light .tw-price-btn:hover{ color: #141821; }
+.tw--light .tw__icon, .tw--light .tw__lang{ background: #fff; border-color: rgba(15,23,42,.14); }
+.tw--light .tw-price-btn{ background: #fff; border-color: rgba(15,23,42,.18); }
+.tw--light .tw__icon[aria-pressed="true"]{ border-color: #141821; color: #141821; }
+.tw--light .tw__views, .tw--light .tw-scen{ background: #e6e9ee; }
+.tw--light .tw__views button[aria-pressed="true"], .tw--light .tw-presets button[aria-pressed="true"]{ background: #0b0c0e; color: #fff; }
+.tw--light .tw__stage{ background: radial-gradient(ellipse 60% 55% at 50% 45%, #f8f9fb, #dde1e7 75%); }
+.tw--light .tw__panel{ background: #ffffff; }
+.tw--light .tw__toggle{ background: #fff; color: #141821; border-color: rgba(15,23,42,.14); }
+.tw--light .tw__toggle:hover{ color: #000; }
+.tw--light .tw__tabs button[aria-selected="true"]{ color: #0b0c0e; }
+.tw--light .tw__strip div, .tw--light .tw-nets, .tw--light .twin__legend, .tw--light .twin__caption{ background: rgba(255,255,255,.94); border-color: rgba(15,23,42,.1); color: #141821; box-shadow: 0 6px 18px rgba(15,23,42,.08); }
+.tw--light .tw__strip b, .tw--light .tw-nets__head, .tw--light .twin__caption{ color: #141821; }
+.tw--light .tw-search{ background: #f3f5f8; color: #141821; }
+.tw--light .tw-group li button:hover, .tw--light .tw-links button:hover, .tw--light .tw-steps button:hover, .tw--light .tw-steps button.is-on, .tw--light .tw-nets__btns button:hover{ background: rgba(15,23,42,.05); color: #0b0c0e; }
+.tw--light .tw-group li button.is-on, .tw--light .tw-streams button[aria-pressed="true"]{ color: #0b0c0e; border-color: #0b0c0e; background: rgba(15,23,42,.05); }
+.tw--light .tw-kpi, .tw--light .tw-hero__k, .tw--light .tw-chartbox, .tw--light .tw-proj__grid{ background: #f6f7f9 !important; }
+.tw--light .tw-bar{ background: rgba(15,23,42,.08); }
+.tw--light .tw-range output, .tw--light .tw .tw-proj__title, .tw--light .tw-proj__grid dd, .tw--light .tw-facts b, .tw--light .tw-src b, .tw--light .tw-flow dd, .tw--light .tw-hero__k b, .tw--light .tw-chart__read b, .tw--light .tw-status, .tw--light .tw-proj__grid a{ color: #141821; }
+.tw.tw--light .tw-proj__title, .tw.tw--light .tw-status, .tw.tw--light .tw-proj__grid a{ color: #141821; text-decoration-color: rgba(15,23,42,.3); }
+.tw--light .tw-hero__k b.is-good, .tw--light .is-good{ color: #15803d; }
+.tw--light .is-bad{ color: #dc2626; }
+.tw--light .tw-hero__k.is-main{ background: linear-gradient(135deg, rgba(34,197,94,.14), rgba(34,197,94,.03)) !important; }
+.tw--light .tw-nets__list input, .tw--light .tw-nets__trace input{ color: #141821; }
+.tw--light .tw-selcard:not([hidden]){ background: rgba(255,255,255,.97); border-color: rgba(15,23,42,.12); box-shadow: 0 12px 30px rgba(15,23,42,.18); }
+.tw--light .tw-selcard__t b{ color: #141821; }
+.tw.tw--light .tw-selcard__go{ background: #0b0c0e; color: #fff; }
+.tw.tw--light .tw-selcard__x, .tw.tw--light .tw__sheetx{ background: #f1f3f6; color: #141821; border-color: rgba(15,23,42,.14); }
+.tw--light .twin__tip, .tw--light .twin__area{ color: #141821; }
+.tw--light .twin__tip{ background: rgba(255,255,255,.96); border-color: rgba(15,23,42,.12); }
+.tw--light .tw-proj__intro{ color: #3f4753; }
+.tw--light .tw-disclosure{ color: #5d6673; }
+.tw--light .tw-tag--v{ color: #15803d; background: rgba(22,163,74,.1); border-color: rgba(22,163,74,.3); }
+.tw--light .tw-scen button, .tw--light .tw-presets button{ color: #4b5563; }
+.tw--light .tw-scen__note, .tw--light .tw-note{ color: #b45309; }
+.tw--light .tw-chart__read, .tw--light .tw-bar__l{ color: #4b5563; }
+.tw--light .tw-chart .ax{ fill: #5d6673; }
+.tw--light .tw-chart .ln{ stroke: #1f2937; }
+.tw--light .tw-chart .bed{ fill: #d97706; }
+.tw--light .tw-chart .bel{ fill: #b45309; }
+.tw--light .twin__area{ background: rgba(255,255,255,.95); border-color: rgba(15,23,42,.14); box-shadow: 0 4px 12px rgba(15,23,42,.12); }
+.tw--light .twin__pipe{ background: rgba(255,255,255,.95); color: #141821; }
+.tw__strip{ z-index: 2; }
+.tw--light .tw__loc{ color: #3f4753; border-color: rgba(15,23,42,.14); }
+.tw.tw--light .tw-price-btn, .tw.tw--light .tw-price-btn:hover{ background: #0b0c0e; border-color: #0b0c0e; color: #fff; }

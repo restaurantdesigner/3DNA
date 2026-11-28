@@ -24,7 +24,7 @@ if (el) {
   };
   const start3d = async () => {
     try {
-      const v = "?v=ind13";
+      const v = "?v=ind15";
       const [{ createTwin }, factory] = await Promise.all([import("./engine.js" + v), import("./factories/ethanol.js" + v)]);
       const twin = await createTwin(el, factory.default, { lang: el.dataset.lang || "es", mode: "showcase" });
       if (still) twin.controls.autoRotate = false;
