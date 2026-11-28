@@ -107,7 +107,7 @@ export async function mountBuilder(root, ui) {
         ${kpi("Estimated site footprint", `${num(s.siteArea / 1e4, 1)} ha`, "", "", null, `${num(s.siteW)} × ${num(s.siteD)} m`)}${kpi("Estimated building area", `${num(s.buildingArea)} m²`)}
       </div>
       <p class="fb-k">Potential capacity constraints</p>
-      <ul class="fb-list">${tight.map((x, i) => `<li><b>${esc(x.category)}</b> · ${esc(x.name)} <span>${num(x.maxL / 1e6, 1)} M L/yr max${i === 0 ? ' <em class="fb-chip">bottleneck</em>' : ""}</span></li>`).join("")}</ul>
+      <ul class="fb-list">${tight.map((x, i) => `<li><p><b>${esc(x.category)}</b><small>${esc(x.name)}</small></p><span>${num(x.maxL / 1e6, 1)} M L/yr max${i === 0 ? ' <em class="fb-chip">bottleneck</em>' : ""}</span></li>`).join("")}</ul>
       <p class="fb-k">Checks</p><ul class="fb-checks">${warn.map((w) => `<li class="is-${w.level}">${esc(w.msg)}</li>`).join("")}</ul>
       <p class="fb-k">Generation log</p><ol class="fb-log">${state.timings.map(([n, ms]) => `<li><span>${esc(n)}</span><b>${num(ms)} ms</b></li>`).join("")}</ol>
       <p class="fb-disc">${esc(DISCLOSURE)}</p>`;

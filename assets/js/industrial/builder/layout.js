@@ -14,7 +14,7 @@
 import ref from "../factories/ethanol.js?v=ind16";
 import { DEPARTMENTS } from "./model.js?v=fb1";
 
-const CLR = 4, DEPT_GAP = 12, RACK_W = 10, RACK_CLEAR = 9, ROAD = 8;
+const SECOND_ROW = new Set(); const CLR = 4, DEPT_GAP = 12, RACK_W = 10, RACK_CLEAR = 9, ROAD = 8;
 
 export function generateFactory(cfg) {
   const S = cfg.S, prod = cfg.product, inp = cfg.input;
@@ -51,10 +51,10 @@ export function generateFactory(cfg) {
   { const s = st("dist"), k = Math.sqrt(s.unitCap / 20);
     ids(s).forEach((id, i) => {
       blockOf("distillation", 18, 16, [
-        { ...E(id, "beercol", "column", { r: 0.95 * k, h: 18, step: 6 }, { n: i + 1 }), dx: -4, dz: 4 },
-        { ...E(`${id}-R`, "rectifier", "column", { r: 0.8 * k, h: 20, step: 6 }, { n: i + 1 }), dx: 2, dz: 4 },
-        { ...E(`${id}-S`, "structure", "structure", { w: 12, d: 6, levels: 3, lh: 5 }), dx: 0, dz: -3.5 },
-        { ...E(`${id}-C`, "condenser", "exchanger", { r: 0.7, len: 5 }), dx: 0, dz: -8 }
+        { ...E(id, "beercol", "column", { r: 0.95 * k, h: 18, step: 6 }, { n: i + 1 }), dx: -4, dz: -4 },
+        { ...E(`${id}-R`, "rectifier", "column", { r: 0.8 * k, h: 20, step: 6 }, { n: i + 1 }), dx: 2, dz: -4 },
+        { ...E(`${id}-S`, "structure", "structure", { w: 12, d: 6, levels: 3, lh: 5 }), dx: 0, dz: 3.5 },
+        { ...E(`${id}-C`, "condenser", "exchanger", { r: 0.7, len: 5 }), dx: 6.5, dz: 7.5 }
       ]);
       invRow(id, s, `Distillation train ${i + 1} — beer column`, "distillation", s.unitCap, s.unit, s.unitCost * 0.45, s.install, id, { standby: i >= s.n });
       invRow(`${id}-R`, s, `Distillation train ${i + 1} — rectifier`, "distillation", s.unitCap, s.unit, s.unitCost * 0.35, s.install, `${id}-R`);
@@ -122,7 +122,9 @@ export function generateFactory(cfg) {
     const sgn = side === "n" ? -1 : 1, z0 = sgn * (RACK_W / 2 + RACK_CLEAR);
     let order = list[0].order;
     for (const b of list) {
-      if (x > 0 && (x + b.w + CLR > W || b.order !== order)) { z += rowD; x = 0; rowD = 0; }
+      // one row per department, facing the pipe rack: nothing stands between an item and the rack, so the
+      // conceptual pipe routes (item → rack lane) never pass through other equipment; bigger plants grow longer
+      if (x > 0 && SECOND_ROW.has(b.parts[0].kind)) { /* low items may share a second row */ }
       order = b.order;
       const cx = x0 + x + (b.w + CLR) / 2, cz = z0 + sgn * (z + (b.d + CLR) / 2);
       for (const p of b.parts) { const { dx, dz, ...e } = p; e.pos = [cx + dx, cz + sgn * -dz]; e.area = dept; items.push(e); placed[e.id] = e; }
@@ -198,7 +200,7 @@ export function generateFactory(cfg) {
   const afterDist = has("POL-01") ? "POL-01" : null;
   if (afterDist) rectifiers.forEach((r) => C(r, "POL-01", "ethanol"));
   const dhyUnits = [...new Set(Object.keys(placed).filter((id) => /^DHY-\d{2}-[A-D]$/.test(id)).map((id) => id.slice(0, 6)))];
-  if (dhyUnits.length) { dhyUnits.forEach((u, i) => { (afterDist ? [afterDist] : rectifiers).forEach((r, j) => { if (j % dhyUnits.length === i || afterDist) C(r, `${u}-A`, "ethanol"); }); C(`${u}-C`, "PCL-01", "ethanol"); }); }
+  if (dhyUnits.length) { dhyUnits.forEach((u, i) => { (afterDist ? [afterDist] : rectifiers).forEach((r, j) => { if (j % dhyUnits.length === i || afterDist) C(r, `${u}-C`, "ethanol"); }); C(`${u}-D`, "PCL-01", "ethanol"); }); }
   else (afterDist ? [afterDist] : rectifiers).forEach((r) => C(r, "PCL-01", "ethanol"));
   C("PCL-01", "DAY-01", "ethanol"); C("DAY-01", "DAY-02", "ethanol", { direct: true });
   tanksL.forEach((t) => C("DAY-02", t, "ethanol"));

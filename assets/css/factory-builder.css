@@ -214,3 +214,18 @@ body.fbpage{ background: #070809; }
   .fb-bars li{ grid-template-columns: 96px minmax(0, 1fr) 70px; }
 }
 .fb__stage, .fb__hero, .fb__prog, .fb__side, .fb__detail{ text-align: left; }
+/* phones: one-row header; with a sheet open the 3D view shrinks above it so the plant stays in sight */
+@media (max-width: 900px){
+  .fb__top{ column-gap: 8px; row-gap: 6px; }
+  .fb__brand{ font-size: 13px; }
+  .fb__ctas{ min-width: 0; }
+  .fb .fb__ctas .fb-btn--main{ min-height: 30px; padding: 0 9px; font-size: 11.5px; white-space: nowrap; }
+  .fb.side-open .fb__body, .fb.detail-open .fb__body{ grid-template-rows: minmax(0, 44fr) minmax(0, 56fr); }
+  .fb.side-open .fb__hero, .fb.detail-open .fb__hero, .fb.side-open .fb__strip, .fb.detail-open .fb__strip{ display: none; }
+  .fb__side, .fb__detail{ height: 56%; }
+}
+@media (max-width: 380px){ .fb__brand b{ display: none; } }
+.fb-list li p{ margin: 0; min-width: 0; }
+.fb-list li p b{ display: block; color: #fff; font-weight: 600; }
+.fb-list li p small{ display: block; margin-top: 2px; font-size: 11.5px; color: var(--fb-muted); }
+.fb-list li > span{ text-align: right; }
