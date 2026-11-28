@@ -98,3 +98,6 @@ body.pcpage{ background: #fbfbfc; }
 .pc-about__links a{ color: #0b0f16; font-weight: 600; }
 .pc-zl.is-compact{ padding: 3px; column-gap: 0; }
 .pc-zl.is-compact span{ display: none; }
+.pc .pc-share{ display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 14px; border: 1px solid rgba(15,23,42,.16); border-radius: 10px; background: #fff; font-size: 13px; font-weight: 600; cursor: pointer; }
+.pc .pc-share svg{ width: 15px; height: 15px; }
+@media (max-width: 900px){ .pc .pc-share{ height: 30px; padding: 0 9px; font-size: 12px; } .pc .pc-share span{ display: none; } }

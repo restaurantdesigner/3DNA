@@ -230,3 +230,5 @@ body.fbpage{ background: #070809; }
 .fb-list li p small{ display: block; margin-top: 2px; font-size: 11.5px; color: var(--fb-muted); }
 .fb-list li > span{ text-align: right; }
 .fb .fb-btn--wide{ width: 100%; min-height: 44px; margin-top: 14px; }
+.fb .fb-share svg{ width: 16px; height: 16px; }
+@media (max-width: 900px){ .fb .fb-share{ min-height: 30px; padding: 0 10px; font-size: 12px; } }

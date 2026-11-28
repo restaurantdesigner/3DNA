@@ -750,3 +750,16 @@ body.twpage.tw-light{ background: #eef0f3; }
   .ind-hero__sub{ margin-top: 14px; }
 }
 @media (max-width: 600px){ .ind-hero__build .ind-btn{ font-size: 13px; white-space: nowrap; } .ind-hero__build .ind-btn span[aria-hidden]{ display: none; } }
+
+.ind-tool__acts{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+.ind-tool__acts .ind-btn{ margin-top: 0; }
+.ind-tool .shr-btn{ min-height: 52px; padding: 0 20px; color: #0b1020; }
+/* fly-through film: small round share icon on the frame */
+.ind-film__frame{ position: relative; }
+.ind-film__share{ position: absolute; top: 14px; right: 14px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; background: rgba(8,10,14,.62); color: #fff; cursor: pointer; backdrop-filter: blur(6px); transition: background .2s, transform .2s; }
+.ind-film__share:hover{ background: #22c55e; color: #04130a; transform: scale(1.06); }
+.ind-film__share svg{ width: 19px; height: 19px; }
+/* case study: share next to the main button (dark section) */
+.ind-showfs__ctas .ind-showfs__share{ min-height: 52px; color: #fff; border-color: rgba(255,255,255,.35); }
+.ind-showfs__ctas .ind-showfs__share:hover{ border-color: #fff; }
+@media (max-width: 600px){ .ind-showfs__ctas{ gap: 10px; } .ind-showfs__ctas .ind-btn, .ind-showfs__ctas .ind-showfs__share{ width: 100%; justify-content: center; } }

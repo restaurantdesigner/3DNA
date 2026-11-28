@@ -12,6 +12,11 @@ const FLAG = "<svg class=\"tw-flag\" viewBox=\"0 0 24 12\" width=\"22\" height=\
 function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath, builderPath, configuratorPath }) {
   const T = (lang) => i18n[lang] || i18n.en;
   const ARROW = '<span aria-hidden="true">&rarr;</span>';
+  const SHARE_ICON = "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>";
+  // quick-share button: native share sheet on phones (with the tool's share card), share panel elsewhere
+  const shareAny = ({ title, text, url, img, cls = "shr-btn", label, track, icon }) => `<button type="button" class="${cls}" data-share data-share-title="${esc(title)}" data-share-text="${esc(text)}" data-share-url="${url}" data-share-img="${img}" data-track="industrial_share_clicked" data-track-location="${track}" aria-label="${esc(label)}">${SHARE_ICON}${icon ? "" : `<span>${esc(label)}</span>`}</button>`;
+  const shareBtn = (lang, id, cls = "shr-btn", label) => { const k = T(lang).tools, x = k.items.find((i) => i.id === id); const url = { twin: plantPath(lang), builder: builderPath && builderPath(lang), configurator: configuratorPath && configuratorPath(lang) }[id];
+    return `<button type="button" class="${cls}" data-share data-share-title="${esc(x.share.title)}" data-share-text="${esc(x.share.text)}" data-share-url="${url}" data-share-img="/images/industrial/share-${id}.jpg" data-track="industrial_share_clicked" data-track-location="${id}">${SHARE_ICON}<span>${esc(label || k.shareLabel)}</span></button>`; };
 
   function heroHtml(lang) {
     const t = T(lang), h = t.hero;
@@ -75,7 +80,7 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath, bu
       <h3 class="ind-tool__t"><a href="${href[x.id]}">${esc(x.name)}</a></h3>
       <p class="ind-tool__h">${esc(k.whatIs)}</p><p class="ind-tool__p">${esc(x.is)}</p>
       <p class="ind-tool__h">${esc(k.shows)}</p><ul class="ind-tool__l">${x.shows.map((y) => `<li>${esc(y)}</li>`).join("")}</ul>
-      <a class="ind-btn ind-btn--dark" href="${href[x.id]}" data-track="industrial_tool_clicked" data-track-location="${x.id}_cta">${esc(x.cta)} ${ARROW}</a>
+      <div class="ind-tool__acts"><a class="ind-btn ind-btn--dark" href="${href[x.id]}" data-track="industrial_tool_clicked" data-track-location="${x.id}_cta">${esc(x.cta)} ${ARROW}</a>${shareBtn(lang, x.id)}</div>
     </li>`).join("")}</ul>
     <p class="ind-tools__note">${esc(k.note)}</p>
   </div>
@@ -98,8 +103,8 @@ ${twinBand(lang, s)}`);
     <div class="ab-side ab-sticky" data-reveal>${head("03", p.label, p.title, "ind-process-t")}<p class="ab-p">${esc(p.lead)}</p></div>
     <ol class="ab-list" data-reveal>${p.steps.map((x, i) => `<li><span class="ab-list__n">${String(i + 1).padStart(2, "0")}</span><span>${esc(x)}</span></li>`).join("")}</ol>
   </div>
-  <figure class="ab-wrap ind-film" data-reveal>
-    <div class="ind-film__frame">
+  <figure class="ab-wrap ind-film" id="film" data-reveal>
+    <div class="ind-film__frame">${shareAny({ title: p.video.share.title, text: p.video.share.text, url: `${landingPath(lang)}#film`, img: "/images/industrial/share-film.jpg", cls: "ind-film__share", label: p.video.share.label, track: "film", icon: true })}
       <video class="ind-film__v" controls playsinline preload="none" poster="/images/industrial/flythrough-tour-poster.webp" width="1280" height="720" aria-label="${esc(p.video.label)}">
         <source src="/images/industrial/flythrough-tour-720.mp4" type="video/mp4">
       </video>
@@ -132,7 +137,7 @@ ${twinBand(lang, s)}`);
       <h2 class="ind-showfs__title" id="ind-show-t">${esc(sh.title)}</h2>
       <p class="ind-showfs__text">${esc(sh.text)}</p>
       <ul class="ind-showfs__facts">${sh.facts.map(([n, l]) => `<li><b>${esc(n === "{capex}" ? fin(t.service.overview).capex : n)}</b><span>${esc(l)}</span></li>`).join("")}</ul>
-      <p class="ind-showfs__ctas"><a class="ind-btn ind-btn--light" href="${plantPath(lang)}" data-track="industrial_factory_clicked" data-track-location="showcase">${esc(sh.cta)} ${ARROW}</a></p>
+      <p class="ind-showfs__ctas"><a class="ind-btn ind-btn--light" href="${plantPath(lang)}" data-track="industrial_factory_clicked" data-track-location="showcase">${esc(sh.cta)} ${ARROW}</a>${shareBtn(lang, "twin", "shr-btn ind-showfs__share")}</p>
       <p class="ind-showfs__disc">${esc(sh.disclosure)}</p>
     </div>
   </div>
@@ -224,7 +229,7 @@ ${twinBand(lang, s)}`);
   <header class="fb__top">
     <a class="fb__brand" href="${landingPath(lang)}" title="${esc(b.back)}"><b>3DNA</b> FactoryBuilder</a>
     <nav class="fb__nav" data-nav aria-label="FactoryBuilder"></nav>
-    <div class="fb__ctas"><button type="button" class="fb-btn fb-btn--ghost" data-cta-twin>${esc(b.ctaTwin)}</button></div>
+    <div class="fb__ctas">${shareBtn(lang, "builder", "fb-btn fb-share")}<button type="button" class="fb-btn fb-btn--ghost" data-cta-twin>${esc(b.ctaTwin)}</button></div>
   </header>
   <div class="fb__body">
     <aside class="fb__side" data-side aria-label="FactoryBuilder panel"><button type="button" class="fb-x fb__sidex" data-side-close aria-label="Close panel">×</button><div data-panel></div></aside>
@@ -253,7 +258,7 @@ ${twinBand(lang, s)}`);
   <header class="pc__head">
     <p class="pc__brand"><a href="${landingPath(lang)}"><b>3DNA</b> Industrial</a><span>${esc(c.brand)}</span></p>
     <h1 class="pc__q">${esc(c.question)}</h1>
-    <div class="pc__tools"><button type="button" data-pc-compare aria-pressed="false">Compare</button><button type="button" data-pc-fit>Fit view</button></div>
+    <div class="pc__tools">${shareBtn(lang, "configurator", "pc-share")}<button type="button" data-pc-compare aria-pressed="false">Compare</button><button type="button" data-pc-fit>Fit view</button></div>
     <div class="pc__ctl">
       <div class="pc__row"><span class="pc__tagab">A</span><label class="pc__val"><span data-pc-value></span><small>per year</small></label><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider aria-label="Annual ethanol production (plant A)"><div class="pc__presets" data-pc-presets></div></div>
       <div class="pc__row pc__row--b" data-pc-row-b><span class="pc__tagab">B</span><label class="pc__val"><span data-pc-value-b></span><small>per year</small></label><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider-b aria-label="Annual ethanol production (plant B)"><div class="pc__presets" data-pc-presets-b></div></div>

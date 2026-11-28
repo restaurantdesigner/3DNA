@@ -107,7 +107,12 @@
         "title": "Fly-through of the facility",
         "meta": "48 s · no sound",
         "caption": "A camera flight through the case-study plant, area by area: administration, grain receiving, fermentation, distillation, storage and utilities. Rendered from the 3DNA digital twin; figures quoted in the film are public figures.",
-        "label": "Play the fly-through of the Canadian ethanol production facility (48 seconds)"
+        "label": "Play the fly-through of the Canadian ethanol production facility (48 seconds)",
+        "share": {
+          "title": "Fly-through · 3DNA Industrial",
+          "text": "Watch a 48-second camera flight through a conceptual Canadian ethanol production facility, area by area — rendered from the 3DNA digital twin.",
+          "label": "Share this video"
+        }
       }
     },
     "equipment": {
@@ -449,7 +454,11 @@
             "The production process and nine engineering networks — power, steam, cooling, water, air, wastewater, control and fire",
             "An investment dashboard: CAPEX, EBITDA, margin, payback and scenarios",
             "Realistic, X-ray, thermal, blueprint and night views"
-          ]
+          ],
+          "share": {
+            "title": "Interactive Factory · 3DNA Industrial",
+            "text": "Explore a Canadian ethanol production facility in interactive 3D — equipment, process flows, engineering networks and an investment dashboard, right in your browser."
+          }
         },
         {
           "id": "builder",
@@ -463,7 +472,11 @@
             "A generated 3D layout with pipe rack, roads and engineering connections",
             "Capacity analysis: configured capacity, bottleneck, footprint and checks",
             "Indicative CAPEX, OPEX, EBITDA and payback; three scenarios side by side; CSV equipment list"
-          ]
+          ],
+          "share": {
+            "title": "3DNA FactoryBuilder",
+            "text": "Set a production target and watch a complete ethanol factory get generated in 3D — equipment, layout and indicative investment."
+          }
         },
         {
           "id": "configurator",
@@ -477,9 +490,14 @@
             "Each unit as a separate object, added or removed as you move the slider",
             "The number of units above every production zone",
             "Two capacities side by side in compare mode"
-          ]
+          ],
+          "share": {
+            "title": "3DNA Plant Configurator",
+            "text": "How big is an ethanol plant? Move one slider from 5 to 100 million litres a year and see the silos, fermenters and tanks multiply."
+          }
         }
-      ]
+      ],
+      "shareLabel": "Share"
     }
   }
 }

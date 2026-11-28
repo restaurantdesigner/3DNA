@@ -43,8 +43,8 @@ const OG_PAGE_IMAGES = {
   marketing: (lang) => `/images/og/og-marketing-${lang}.jpg`,
   industrial: (lang) => "/images/industrial/og-industrial-en.jpg",
   "industrial-ethanol": (lang) => "/images/industrial/og-industrial-plant-en.jpg",
-  "industrial-builder": (lang) => "/images/industrial/og-industrial-plant-en.jpg",
-  "industrial-configurator": (lang) => "/images/industrial/og-industrial-plant-en.jpg",
+  "industrial-builder": (lang) => "/images/industrial/share-builder.jpg",
+  "industrial-configurator": (lang) => "/images/industrial/share-configurator.jpg",
 };
 // client project pages: the project's own preview image
 const projectKey = (id) => `project-${id}`;
@@ -573,6 +573,8 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "builder.meta.title") return escapeHtml(industrialPage.builderMeta(lang).title);
     if (key === "builder.html") return industrialPage.builderHtml(lang);
     if (key === "builder.jsVersion") return ["engine", "equipment", "builder/app", "builder/model", "builder/layout", "factories/ethanol", "factories/ethanol-canada.data"].map((m) => fileVersion(`assets/js/industrial/${m}.js`)).join("").slice(0, 10);
+    if (key === "share.cssVersion") return fileVersion("assets/css/share.css");
+    if (key === "share.jsVersion") return fileVersion("assets/js/industrial/share.js");
     if (key === "configurator.meta.title") return escapeHtml(industrialPage.configuratorMeta(lang).title);
     if (key === "configurator.html") return industrialPage.configuratorHtml(lang);
     if (key === "configurator.jsVersion") return ["configurator/app", "builder/model", "factories/ethanol-canada.data"].map((m) => fileVersion(`assets/js/industrial/${m}.js`)).join("").slice(0, 10);
