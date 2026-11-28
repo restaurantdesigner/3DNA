@@ -156,6 +156,7 @@ export async function mountBuilder(root, ui) {
       </details>
       <p class="fb-note">The FactoryBuilder CAPEX is a fuller build-up (buildings, site works, pipe rack and auxiliary equipment) than the C$26.3 M replacement-cost scenario of the ethanol case study, so the two differ.</p>
       <div class="fb-dev"><p class="fb-k">3DNA digital twin development — not factory construction cost</p><ul>${(ui.pricing.packages || []).map((p) => `<li><b>${esc(p.name)}</b><span>${esc(p.range)}</span><small>${esc(p.text)}</small></li>`).join("")}</ul><button type="button" class="fb-btn" data-pricing>Request a Professional Digital Twin</button></div>
+      <button type="button" class="fb-btn fb-btn--main fb-btn--wide" data-cta-main data-track="factory_builder_lead">Turn This Concept Into Your Project</button>
       <p class="fb-disc">${esc(DISCLOSURE)}</p>`;
   }
   function pCompare() {
@@ -324,8 +325,7 @@ export async function mountBuilder(root, ui) {
       `Indicative CAPEX: ${money(iv.capex)} (conceptual estimate).`, pkg ? `Digital twin package: ${pkg}.` : ""].filter(Boolean).join("\n");
   };
   const waUrl = (pkg) => `https://wa.me/${wa}?text=${encodeURIComponent(leadText(pkg))}`;
-  $("[data-cta-main]").addEventListener("click", () => window.open(waUrl(), "_blank", "noopener"));
-  $("[data-cta-twin]").addEventListener("click", openPricing);
+  root.addEventListener("click", (e) => { if (e.target.closest("[data-cta-main]")) window.open(waUrl(), "_blank", "noopener"); else if (e.target.closest("[data-cta-twin]")) openPricing(); });
   const pm = $("[data-pricing-modal]");
   function openPricing() {
     pm.querySelector("[data-pkgs]").innerHTML = (ui.pricing.packages || []).map((p, i) => `<label class="fb-pkg"><input type="radio" name="fb-pkg" value="${esc(p.name)} (${esc(p.range)})"${p.recommended ? " checked" : !i && !(ui.pricing.packages || []).some((x) => x.recommended) ? " checked" : ""}><b>${esc(p.name)}</b><span>${esc(p.range)}</span><small>${esc(p.text)}</small></label>`).join("");

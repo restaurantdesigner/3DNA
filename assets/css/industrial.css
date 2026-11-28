@@ -721,3 +721,4 @@ body.twpage.tw-light{ background: #eef0f3; }
 .ind-hero__build .ind-btn--build{ pointer-events: auto; background: #22c55e; border-color: #22c55e; color: #04130a; }
 .ind-hero__build .ind-btn--build:hover{ background: #4ade80; border-color: #4ade80; color: #04130a; }
 @media (max-width: 600px){ .ind-hero__build .ind-btn{ width: 100%; justify-content: center; } }
+.ind-hero__build{ display: flex; flex-wrap: wrap; gap: 12px; }

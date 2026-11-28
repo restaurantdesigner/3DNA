@@ -9,7 +9,7 @@ const esc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</
 const jsonForScript = (d) => JSON.stringify(d).replace(/</g, "\\u003c");
 
 const FLAG = "<svg class=\"tw-flag\" viewBox=\"0 0 24 12\" width=\"22\" height=\"11\" role=\"img\" aria-label=\"Canada\"><rect width=\"24\" height=\"12\" fill=\"#fff\"/><rect width=\"6\" height=\"12\" fill=\"#d52b1e\"/><rect x=\"18\" width=\"6\" height=\"12\" fill=\"#d52b1e\"/><path d=\"M12 2.2l.75 1.45 .9-.4-.35 2.1 1.15-1.05.25.75 1.2-.2-.45 1.35.55.3-2.2 1.75.25.85-1.85-.25V10h-.5V8.85l-1.85.25.25-.85-2.2-1.75.55-.3-.45-1.35 1.2.2.25-.75 1.15 1.05-.35-2.1.9.4z\" fill=\"#d52b1e\"/></svg>";
-function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath, builderPath }) {
+function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath, builderPath, configuratorPath }) {
   const T = (lang) => i18n[lang] || i18n.en;
   const ARROW = '<span aria-hidden="true">&rarr;</span>';
 
@@ -23,7 +23,7 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath, bu
       <h1 class="ind-hero__title" id="ind-title"><span>${esc(h.title[0])}</span> <em>${esc(h.title[1])}</em></h1>
       <p class="ind-hero__sub">${esc(h.sub)}</p>
       <p class="ind-hero__ctas"><a class="ind-btn ind-btn--light" href="${plantPath(lang)}" data-track="industrial_factory_clicked" data-track-location="hero">${esc(h.cta)} ${ARROW}</a><button type="button" class="ind-btn ind-btn--ghost open-panel" data-track="start_project_clicked" data-track-location="industrial_hero">${esc(h.cta2)}</button></p>
-      ${builderPath ? `<p class="ind-hero__build"><a class="ind-btn ind-btn--build" href="${builderPath(lang)}" data-track="factory_builder_clicked" data-track-location="hero">${esc(h.cta3)} ${ARROW}</a></p>` : ""}
+      ${builderPath ? `<p class="ind-hero__build"><a class="ind-btn ind-btn--build" href="${builderPath(lang)}" data-track="factory_builder_clicked" data-track-location="hero">${esc(h.cta3)} ${ARROW}</a>${configuratorPath ? `<a class="ind-btn ind-btn--ghost" href="${configuratorPath(lang)}" data-track="plant_configurator_clicked" data-track-location="hero">${esc(h.cta4)}</a>` : ""}</p>` : ""}
       <p class="ind-hero__hint">${esc(h.hint)}</p>
     </div>
   </section>`;
@@ -204,7 +204,7 @@ ${twinBand(lang, s)}`);
   <header class="fb__top">
     <a class="fb__brand" href="${landingPath(lang)}" title="${esc(b.back)}"><b>3DNA</b> FactoryBuilder</a>
     <nav class="fb__nav" data-nav aria-label="FactoryBuilder"></nav>
-    <div class="fb__ctas"><button type="button" class="fb-btn fb-btn--ghost" data-cta-twin>${esc(b.ctaTwin)}</button><button type="button" class="fb-btn fb-btn--main" data-cta-main data-track="factory_builder_lead">${esc(b.ctaMain)}</button></div>
+    <div class="fb__ctas"><button type="button" class="fb-btn fb-btn--ghost" data-cta-twin>${esc(b.ctaTwin)}</button></div>
   </header>
   <div class="fb__body">
     <aside class="fb__side" data-side aria-label="FactoryBuilder panel"><button type="button" class="fb-x fb__sidex" data-side-close aria-label="Close panel">×</button><div data-panel></div></aside>
@@ -226,7 +226,30 @@ ${twinBand(lang, s)}`);
   <script type="application/json" data-fb-ui>${jsonForScript({ pricing: p })}</script>
 </div>`;
   }
-  return { heroHtml, bodyHtml, plantHtml, builderHtml, builderMeta: (lang) => ({ title: T(lang).builder.metaTitle, description: T(lang).builder.metaDescription, ogTitle: T(lang).builder.ogTitle, ogImageAlt: T(lang).builder.ogImageAlt }), meta: (lang) => T(lang).meta, twinMeta: (lang) => ({ title: T(lang).twin.metaTitle, description: T(lang).twin.metaDescription, ogTitle: T(lang).twin.ogTitle, ogImageAlt: T(lang).twin.ogImageAlt }), nav: (lang) => T(lang).nav };
+  // 3DNA Plant Configurator (/en/industrial/plant-configurator/): simplified scale view; the module draws the plant
+  function configuratorHtml(lang) {
+    const c = T(lang).configurator;
+    return `<div class="pc" data-pc>
+  <header class="pc__head">
+    <p class="pc__brand"><a href="${landingPath(lang)}"><b>3DNA</b> Industrial</a><span>${esc(c.brand)}</span></p>
+    <h1 class="pc__q">${esc(c.question)}</h1>
+    <div class="pc__tools"><button type="button" data-pc-compare aria-pressed="false">Compare</button><button type="button" data-pc-fit>Fit view</button></div>
+    <div class="pc__ctl">
+      <div class="pc__row"><span class="pc__tagab">A</span><label class="pc__val"><span data-pc-value></span><small>per year</small></label><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider aria-label="Annual ethanol production (plant A)"><div class="pc__presets" data-pc-presets></div></div>
+      <div class="pc__row pc__row--b" data-pc-row-b><span class="pc__tagab">B</span><label class="pc__val"><span data-pc-value-b></span><small>per year</small></label><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider-b aria-label="Annual ethanol production (plant B)"><div class="pc__presets" data-pc-presets-b></div></div>
+    </div>
+  </header>
+  <section class="pc__stage" data-pc-stage aria-label="Configured plant in 3D">
+    <div class="pc__labels" data-pc-labels></div>
+    <p class="pc__hint">Drag to rotate · scroll or pinch to zoom · click equipment for details</p>
+    <div class="pc__summary" data-pc-summary></div>
+    <p class="pc__disc"><b>Conceptual engineering estimate.</b> <span data-pc-disc></span></p>
+    <aside class="pc__info" data-pc-info aria-live="polite"></aside>
+    <noscript><p>The Plant Configurator needs JavaScript and WebGL.</p></noscript>
+  </section>
+</div>`;
+  }
+  return { heroHtml, bodyHtml, plantHtml, builderHtml, configuratorHtml, configuratorMeta: (lang) => ({ title: T(lang).configurator.metaTitle, description: T(lang).configurator.metaDescription, ogTitle: T(lang).configurator.ogTitle, ogImageAlt: T(lang).configurator.ogImageAlt }), builderMeta: (lang) => ({ title: T(lang).builder.metaTitle, description: T(lang).builder.metaDescription, ogTitle: T(lang).builder.ogTitle, ogImageAlt: T(lang).builder.ogImageAlt }), meta: (lang) => T(lang).meta, twinMeta: (lang) => ({ title: T(lang).twin.metaTitle, description: T(lang).twin.metaDescription, ogTitle: T(lang).twin.ogTitle, ogImageAlt: T(lang).twin.ogImageAlt }), nav: (lang) => T(lang).nav };
 }
 
 module.exports = { createIndustrialPage };

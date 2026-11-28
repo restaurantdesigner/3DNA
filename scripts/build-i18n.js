@@ -44,6 +44,7 @@ const OG_PAGE_IMAGES = {
   industrial: (lang) => "/images/industrial/og-industrial-en.jpg",
   "industrial-ethanol": (lang) => "/images/industrial/og-industrial-plant-en.jpg",
   "industrial-builder": (lang) => "/images/industrial/og-industrial-plant-en.jpg",
+  "industrial-configurator": (lang) => "/images/industrial/og-industrial-plant-en.jpg",
 };
 // client project pages: the project's own preview image
 const projectKey = (id) => `project-${id}`;
@@ -88,6 +89,7 @@ const marketingProjectTemplate = read("templates/marketing-project.html");
 const industrialTemplate = read("templates/industrial.html");
 const industrialPlantTemplate = read("templates/industrial-plant.html");
 const industrialBuilderTemplate = read("templates/industrial-builder.html");
+const industrialConfiguratorTemplate = read("templates/industrial-configurator.html");
 // 3DNA Industrial division (ES / EN): landing + plant dashboards (assets/i18n/industrial.json)
 const industrialI18n = JSON.parse(read("assets/i18n/industrial.json"));
 const INDUSTRIAL_LANGS = ["en"]; // English only; other languages link to the English pages
@@ -136,7 +138,8 @@ const industrialPage = require("./industrial-page.js").createIndustrialPage(indu
   whatsappNumber: (lang) => translations[lang].contact.whatsappNumber,
   landingPath: (lang) => pagePathFor("industrial", lang),
   plantPath: (lang) => pagePathFor("industrial-ethanol", lang),
-  builderPath: (lang) => pagePathFor("industrial-builder", lang)
+  builderPath: (lang) => pagePathFor("industrial-builder", lang),
+  configuratorPath: (lang) => pagePathFor("industrial-configurator", lang)
 });
 const marketingPage = require("./marketing-page.js").createMarketingPage(translations, {
   whatsappHref: (lang) => whatsappHref(lang),
@@ -257,6 +260,14 @@ const PAGES = {
     langs: INDUSTRIAL_LANGS,
     fallbackLang: "en",
     meta: (lang) => industrialPage.builderMeta(lang)
+  },
+  // 3DNA Plant Configurator: /en/industrial/plant-configurator/
+  "industrial-configurator": {
+    template: () => industrialConfiguratorTemplate,
+    subPath: () => "industrial/plant-configurator/",
+    langs: INDUSTRIAL_LANGS,
+    fallbackLang: "en",
+    meta: (lang) => industrialPage.configuratorMeta(lang)
   },
   // marketing projects: /es/marketing-digital/<slug>/, /en/digital-marketing/<slug>/ ... only in the project's
   // languages (langs); the switcher sends the others to the digital marketing page (fallback)
@@ -562,6 +573,10 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "builder.meta.title") return escapeHtml(industrialPage.builderMeta(lang).title);
     if (key === "builder.html") return industrialPage.builderHtml(lang);
     if (key === "builder.jsVersion") return ["engine", "equipment", "builder/app", "builder/model", "builder/layout", "factories/ethanol", "factories/ethanol-canada.data"].map((m) => fileVersion(`assets/js/industrial/${m}.js`)).join("").slice(0, 10);
+    if (key === "configurator.meta.title") return escapeHtml(industrialPage.configuratorMeta(lang).title);
+    if (key === "configurator.html") return industrialPage.configuratorHtml(lang);
+    if (key === "configurator.jsVersion") return ["configurator/app", "builder/model", "factories/ethanol-canada.data"].map((m) => fileVersion(`assets/js/industrial/${m}.js`)).join("").slice(0, 10);
+    if (key === "configurator.cssVersion") return fileVersion("assets/css/plant-configurator.css");
     if (key === "builder.cssVersion") return fileVersion("assets/css/factory-builder.css");
     if (key === "twin.html") {
       const id = (options && options.page || "").replace(/^industrial-/, "");

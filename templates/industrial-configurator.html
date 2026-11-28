@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <!-- Built by scripts/build-i18n.js from templates/industrial-configurator.html + assets/i18n/industrial.json
+       (configurator.*) + scripts/industrial-page.js. App: assets/js/industrial/configurator/app.js; quantities
+       from the configuration engine assets/js/industrial/builder/model.js -->
+  <title>{{configurator.meta.title}}</title>
+{{head.i18n}}
+  <link rel="stylesheet" href="/assets/fonts/site.css?v=20261010a">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261124d">
+  <link rel="stylesheet" href="/assets/css/plant-configurator.css?v={{configurator.cssVersion}}">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+
+<body class="pcpage">
+<main id="main" tabindex="-1">
+{{configurator.html}}
+</main>
+
+<!-- 3dna:footer -->
+{{layout.footer}}
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=20261010b"></script>
+<script type="module">
+  const root = document.querySelector("[data-pc]");
+  const { mountPlantConfigurator } = await import("/assets/js/industrial/configurator/app.js?v={{configurator.jsVersion}}");
+  window.__pc = mountPlantConfigurator(root);
+</script>
+</body>
+</html>

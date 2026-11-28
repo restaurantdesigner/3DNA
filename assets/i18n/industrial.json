@@ -19,7 +19,8 @@
       "cta2": "Request a Digital Twin",
       "hint": "Interactive 3D model · drag to rotate",
       "loading": "Loading the 3D model…",
-      "cta3": "Build Your Own Factory"
+      "cta3": "Build Your Own Factory",
+      "cta4": "Plant Configurator"
     },
     "service": {
       "label": "Industrial digital twins",
@@ -410,6 +411,14 @@
       "ctaTwin": "Request a Professional Digital Twin",
       "back": "3DNA Industrial",
       "noscript": "FactoryBuilder needs JavaScript and WebGL to generate the 3D factory."
+    },
+    "configurator": {
+      "metaTitle": "3DNA Plant Configurator · Ethanol plant scale | 3DNA",
+      "metaDescription": "Choose an annual ethanol output and see the plant grow: silos, fermenters, columns and tanks as separate 3D units. Conceptual estimate.",
+      "ogTitle": "3DNA Plant Configurator · See how an ethanol plant grows with capacity",
+      "ogImageAlt": "Minimalist isometric 3D ethanol plant configured by capacity",
+      "brand": "Plant Configurator",
+      "question": "How many litres of ethanol would you like to produce annually?"
     }
   }
 }
