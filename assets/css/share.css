@@ -17,3 +17,7 @@ html.shr-open{ overflow: hidden; }
 .shr__copy{ display: flex; gap: 8px; margin-top: 10px; }
 .shr__copy input{ flex: 1; min-width: 0; height: 42px; padding: 0 12px; border: 1px solid rgba(15,23,42,.14); border-radius: 12px; background: #f6f7f9; color: #4b5563; font: 13px "Inter", system-ui, sans-serif; }
 .shr__copy button{ flex: none; height: 42px; padding: 0 16px; border: 0; border-radius: 12px; background: #0b0f16; color: #fff; font: 600 14px "Inter", system-ui, sans-serif; cursor: pointer; }
+/* icon-only share button (three connected dots), no outline */
+.shr-btn{ width: 44px; min-height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; }
+.shr-btn svg{ width: 22px; height: 22px; }
+.shr-btn:hover{ background: rgba(15,23,42,.06); }

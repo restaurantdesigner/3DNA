@@ -232,3 +232,6 @@ body.fbpage{ background: #070809; }
 .fb .fb-btn--wide{ width: 100%; min-height: 44px; margin-top: 14px; }
 .fb .fb-share svg{ width: 16px; height: 16px; }
 @media (max-width: 900px){ .fb .fb-share{ min-height: 30px; padding: 0 10px; font-size: 12px; } }
+.fb .fb-share{ width: 36px; min-height: 36px; padding: 0; border: 0; border-radius: 50%; background: transparent; }
+.fb .fb-share:hover{ background: rgba(255,255,255,.1); }
+.fb .fb-share svg{ width: 18px; height: 18px; }

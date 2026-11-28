@@ -145,3 +145,7 @@ body.pcpage{ background: #fbfbfc; }
 .pc__val{ min-width: 230px; }
 .pc .pc__presets button{ white-space: nowrap; }
 @media (max-width: 900px){ .pc__val, .pc.is-compare .pc__val{ min-width: 0; } .pc__q{ margin-top: 8px; padding-right: 0; } .pc__row, .pc.is-compare .pc__row{ grid-template-columns: auto minmax(0, 1fr); } }
+.pc .pc-share{ width: 38px; padding: 0; justify-content: center; border: 0; background: transparent; }
+.pc .pc-share:hover{ background: rgba(15,23,42,.06); }
+.pc .pc-share svg{ width: 18px; height: 18px; }
+@media (max-width: 900px){ .pc .pc-share{ width: 30px; } }

@@ -769,3 +769,14 @@ body.twpage.tw-light{ background: #eef0f3; }
 .ind-tool__vid{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity .5s ease, transform .6s ease; }
 .ind-tool__img.has-video .ind-tool__vid{ opacity: 1; }
 .ind-tool__img:hover .ind-tool__vid{ transform: scale(1.04); }
+.ind-tool .shr-btn{ width: 52px; min-height: 52px; padding: 0; }
+.ind-showfs__ctas .ind-showfs__share{ width: 52px; border: 0; }
+.ind-showfs__ctas .ind-showfs__share:hover{ background: rgba(255,255,255,.12); }
+@media (max-width: 600px){ .ind-showfs__ctas .ind-showfs__share{ width: 52px; } }
+.ind-film__share{ border: 0; background: rgba(8,10,14,.5); }
+/* Energy Flow: intro film over the 3D view */
+.tw-intro{ position: absolute; inset: 0; z-index: 9; display: grid; place-items: center; background: #05070d; transition: opacity .4s ease; }
+.tw-intro.is-out{ opacity: 0; }
+.tw-intro video{ width: 100%; height: 100%; object-fit: contain; background: #05070d; }
+.tw .tw-intro__skip{ position: absolute; right: 16px; bottom: 16px; height: 40px; padding: 0 16px; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; background: rgba(8,10,14,.7); color: #fff; font: 600 13px "Inter", system-ui, sans-serif; cursor: pointer; }
+.tw .tw-intro__skip:hover{ background: #fff; color: #0b0c0e; }

@@ -187,7 +187,22 @@ export async function mountDashboard(root, F, ui, lang) {
   netBox.querySelector("[data-net-all]").addEventListener("click", () => { stopEnergy(); twin.setNetworks(Object.keys(NET)); syncLayers(); });
   netBox.querySelector("[data-net-none]").addEventListener("click", () => { stopEnergy(); twin.setNetworks([]); syncLayers(); });
   netBox.querySelector("[data-net-reset]").addEventListener("click", () => { stopEnergy(); twin.setNetworks([]); twin.setTrace(false); netBox.querySelector("[data-trace]").checked = false; twin.highlightStream(null); legend.querySelectorAll("[data-stream]").forEach((x) => x.setAttribute("aria-pressed", "false")); twin.home(); syncLayers(); });
-  netBox.querySelector("[data-energy]").addEventListener("click", () => { twin.energyFlow(!twin.energy); syncLayers(); });
+  // Energy Flow opens with a short rendered film (once per visit, skippable), then the live presentation starts
+  const startEnergy = () => { twin.energyFlow(true); syncLayers(); };
+  function energyIntro() {
+    let seen = false; try { seen = sessionStorage.getItem("tw-energy-intro") === "1"; } catch {}
+    if (seen || matchMedia("(prefers-reduced-motion: reduce)").matches) { startEnergy(); return; }
+    try { sessionStorage.setItem("tw-energy-intro", "1"); } catch {}
+    const box = document.createElement("div"); box.className = "tw-intro";
+    box.innerHTML = `<video muted playsinline autoplay preload="auto" poster="/images/industrial/energy-intro-poster.webp" src="/images/industrial/energy-intro-720.mp4" aria-label="Energy flows: introduction film"></video><button type="button" class="tw-intro__skip">Skip intro →</button>`;
+    stage.appendChild(box);
+    const v = box.querySelector("video");
+    const done = () => { if (!box.isConnected) return; box.classList.add("is-out"); setTimeout(() => box.remove(), 400); startEnergy(); };
+    v.addEventListener("ended", done); v.addEventListener("error", done);
+    box.querySelector(".tw-intro__skip").addEventListener("click", done);
+    v.play().catch(() => {});
+  }
+  netBox.querySelector("[data-energy]").addEventListener("click", () => { if (twin.energy) { twin.energyFlow(false); syncLayers(); } else energyIntro(); });
   // during Energy Flow: the layers panel folds away, a Stop button sits under the caption
   const stopBtn = document.createElement("button"); stopBtn.type = "button"; stopBtn.className = "tw-energy-stop"; stopBtn.hidden = true;
   stopBtn.textContent = t.networks.energyStop; stage.appendChild(stopBtn);
