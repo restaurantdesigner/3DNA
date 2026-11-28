@@ -1,3 +1,11 @@
+// tool cards: short muted loops play while the card is on screen (still picture with reduced motion)
+{
+  const vids = document.querySelectorAll("[data-tool-video]");
+  if (vids.length && "IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const io = new IntersectionObserver((es) => { for (const e of es) { const v = e.target; if (e.isIntersecting) { if (!v.src) { v.src = v.dataset.toolVideo; v.closest(".ind-tool__img")?.classList.add("has-video"); } v.play().catch(() => {}); } else v.pause(); } }, { rootMargin: "150px" });
+    vids.forEach((v) => io.observe(v));
+  }
+}
 /*
  * 3DNA Industrial landing — interactive investment overview ([data-ind-fin]).
  * The page ships the Base Case pre-rendered (works without JavaScript). Here the visitor can switch the

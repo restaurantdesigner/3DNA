@@ -75,7 +75,7 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath, bu
   <div class="ab-wrap">
     <div class="ab-narrow" data-reveal><p class="ab-label">${esc(k.label)}</p><h2 class="ab-h2" id="ind-tools-t">${esc(k.title)}</h2><p class="ab-p">${esc(k.lead)}</p></div>
     <ul class="ind-tools__grid">${k.items.filter((x) => href[x.id]).map((x) => `<li class="ind-tool" data-reveal>
-      <a class="ind-tool__img" href="${href[x.id]}" data-track="industrial_tool_clicked" data-track-location="${x.id}" tabindex="-1" aria-hidden="true"><img src="/images/industrial/tool-${x.id}-960.webp" width="960" height="540" alt="${esc(x.alt)}" loading="lazy" decoding="async"></a>
+      <a class="ind-tool__img" href="${href[x.id]}" data-track="industrial_tool_clicked" data-track-location="${x.id}" tabindex="-1" aria-hidden="true"><video class="ind-tool__vid" muted loop playsinline preload="none" poster="/images/industrial/tool-${x.id}-960.webp" data-tool-video="/images/industrial/tool-${x.id}.mp4" width="960" height="540" aria-label="${esc(x.alt)}"></video><img src="/images/industrial/tool-${x.id}-960.webp" width="960" height="540" alt="${esc(x.alt)}" loading="lazy" decoding="async"></a>
       <p class="ind-tool__k">${esc(x.kicker)}</p>
       <h3 class="ind-tool__t"><a href="${href[x.id]}">${esc(x.name)}</a></h3>
       <p class="ind-tool__h">${esc(k.whatIs)}</p><p class="ind-tool__p">${esc(x.is)}</p>
@@ -260,15 +260,15 @@ ${twinBand(lang, s)}`);
     <h1 class="pc__q">${esc(c.question)}</h1>
     <div class="pc__tools">${shareBtn(lang, "configurator", "pc-share")}<button type="button" data-pc-compare aria-pressed="false">Compare</button><button type="button" data-pc-fit>Fit view</button></div>
     <div class="pc__ctl">
-      <div class="pc__row"><span class="pc__tagab">A</span><label class="pc__val"><span data-pc-value></span><small>per year</small></label><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider aria-label="Annual ethanol production (plant A)"><div class="pc__presets" data-pc-presets></div></div>
-      <div class="pc__row pc__row--b" data-pc-row-b><span class="pc__tagab">B</span><label class="pc__val"><span data-pc-value-b></span><small>per year</small></label><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider-b aria-label="Annual ethanol production (plant B)"><div class="pc__presets" data-pc-presets-b></div></div>
+      <div class="pc__row"><span class="pc__tagab">A</span><label class="pc__val"><span data-pc-value></span><small>per year</small></label><div class="pc__track"><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider aria-label="Annual ethanol production (plant A)"><div class="pc__presets" data-pc-presets></div></div></div>
+      <div class="pc__row pc__row--b" data-pc-row-b><span class="pc__tagab">B</span><label class="pc__val"><span data-pc-value-b></span><small>per year</small></label><div class="pc__track"><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider-b aria-label="Annual ethanol production (plant B)"><div class="pc__presets" data-pc-presets-b></div></div></div>
     </div>
   </header>
   <section class="pc__stage" data-pc-stage aria-label="Configured plant in 3D">
     <div class="pc__labels" data-pc-labels></div>
     <p class="pc__hint">Drag to rotate · scroll or pinch to zoom · click equipment for details</p>
     <div class="pc__summary" data-pc-summary></div>
-    <p class="pc__disc"><b>Conceptual engineering estimate.</b> <span data-pc-disc></span></p>
+    <p class="pc__disc">Conceptual engineering estimate · quantities from the 3DNA FactoryBuilder engine<span data-pc-disc hidden></span></p>
     <aside class="pc__info" data-pc-info aria-live="polite"></aside>
     <noscript><p>The Plant Configurator needs JavaScript and WebGL.</p></noscript>
   </section>

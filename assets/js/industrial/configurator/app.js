@@ -27,6 +27,7 @@ const ZONES = [
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const num = (v, d = 0) => (v == null || !isFinite(v) ? "—" : v.toLocaleString("en-CA", { minimumFractionDigits: d, maximumFractionDigits: d }));
 const ease = (k) => 1 - Math.pow(1 - k, 3);
+const backOut = (k) => { const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
 
 // ---------------------------------------------------------------- simplified equipment (metres, physical scale)
 const MAT = {
@@ -225,7 +226,7 @@ export function mountPlantConfigurator(root) {
     // projected footprint of the plant bounds in the isometric view
     const ext = (fit.w * 0.8 + fit.d * 0.62), full = Math.max(ext / aspect, (fit.w * 0.35 + fit.d * 0.55)) * 1.05;
     if (!REF.h) { const r = planPlant(12.5, "R"), rw = r.bounds.x1 - r.bounds.x0 + 40, rd = r.bounds.z1 - r.bounds.z0 + 40; REF.ext = rw * 0.8 + rd * 0.62; REF.h = Math.max(REF.ext / aspect, rw * 0.35 + rd * 0.55) * 1.05; }
-    const viewH = Math.min(full, REF.h * Math.pow(Math.max(0.2, ext / REF.ext), 0.35)) * (aspect < 1 ? 0.62 : 1);
+    const viewH = Math.min(full, REF.h * Math.pow(Math.max(0.2, ext / REF.ext), 0.12)) * (aspect < 1 ? 0.62 : 1);
     const to = { zoom: 1, top: viewH / 2, target: new THREE.Vector3(fit.cx, 0, fit.cz) };
     camFrom = { t0: now(), from: { top: camera.top, target: controls.target.clone() }, to, dur: animate && !reduce ? 700 : 0 };
   }
@@ -233,7 +234,7 @@ export function mountPlantConfigurator(root) {
 
   function summary() {
     const rows = plants.map((p) => { const c = p.cfg; return { p, L: c.flows.Ly, day: c.flows.dayL, grain: c.flows.grainTd, units: p.units, W: p.bounds.x1 - p.bounds.x0, D: p.bounds.z1 - p.bounds.z0, ferm: c.S.ferm.units, silos: c.S.silos.units, tanks: c.S.store.units, bott: c.bottleneck.category }; });
-    $("[data-pc-summary]").innerHTML = rows.map((r) => `<div class="pc-sum">${plants.length > 1 ? `<p class="pc-sum__h">${r.p.prefix}</p>` : ""}<div><b data-pc-units="${r.p.prefix}">${num(r.units)}</b><span>equipment units</span></div><div><b>${r.ferm}</b><span>fermenters</span></div><div><b>${r.silos}</b><span>silos</span></div><div><b>${r.tanks}</b><span>product tanks</span></div></div>`).join("");
+    $("[data-pc-summary]").innerHTML = rows.map((r) => `<div class="pc-sum">${plants.length > 1 ? `<p class="pc-sum__h">${r.p.prefix}</p>` : ""}<div><b data-pc-units="${r.p.prefix}">${num(r.units)}</b><span>equipment units</span><small>${r.silos} silos · ${r.ferm} fermenters · ${r.tanks} tanks</small></div></div>`).join("");
   }
 
   // ---------------------------------------------------------------- inputs
@@ -242,9 +243,10 @@ export function mountPlantConfigurator(root) {
   const fromPos = (p) => { const v = Math.exp(Math.log(RANGE[0]) + (p / 1000) * (Math.log(RANGE[1]) - Math.log(RANGE[0]))); return v < 20 ? Math.round(v * 2) / 2 : Math.round(v); };
   const presetHtml = (which) => PRESETS.map((v) => `<button type="button" data-pc-preset="${v}" data-pc-which="${which}">${v === 12.5 ? "12.5" : v} M</button>`).join("");
   $("[data-pc-presets]").innerHTML = presetHtml("A"); $("[data-pc-presets-b]").innerHTML = presetHtml("B");
+  root.querySelectorAll("[data-pc-preset]").forEach((b) => { b.style.left = `${toPos(+b.dataset.pcPreset) / 10}%`; });
   const showVals = () => {
     out.textContent = `${num(A, A % 1 ? 1 : 0)} million litres`; outB.textContent = `${num(B, B % 1 ? 1 : 0)} million litres`;
-    slider.value = toPos(A); sliderB.value = toPos(B);
+    slider.value = toPos(A); sliderB.value = toPos(B); slider.style.setProperty("--p", `${toPos(A) / 10}%`); sliderB.style.setProperty("--p", `${toPos(B) / 10}%`);
     root.querySelectorAll("[data-pc-preset]").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.pcPreset === (b.dataset.pcWhich === "B" ? B : A))));
     slider.setAttribute("aria-valuetext", out.textContent); sliderB.setAttribute("aria-valuetext", outB.textContent);
   };
@@ -261,7 +263,7 @@ export function mountPlantConfigurator(root) {
 
   // ---------------------------------------------------------------- picking
   const ray = new THREE.Raycaster(), ptr = new THREE.Vector2(); let selected = null, down = null;
-  renderer.domElement.addEventListener("pointerdown", (e) => { down = [e.clientX, e.clientY]; });
+  renderer.domElement.addEventListener("pointerdown", (e) => { down = [e.clientX, e.clientY]; root.classList.add("pc-touched"); });
   renderer.domElement.addEventListener("pointerup", (e) => {
     if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6) return;
     const r = renderer.domElement.getBoundingClientRect(); ptr.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
@@ -297,10 +299,12 @@ export function mountPlantConfigurator(root) {
   function tick() {
     const t = now();
     for (const [key, o] of live) {
-      const k = Math.max(0, Math.min(1, (t - o.t0) / (reduce ? 1 : 520)));
-      const s = o.dir > 0 ? ease(k) : 1 - ease(k);
-      o.group.scale.set(Math.max(0.001, s), Math.max(0.001, o.dir > 0 ? ease(Math.min(1, k * 1.15)) : s), Math.max(0.001, s));
+      const k = Math.max(0, Math.min(1, (t - o.t0) / (reduce ? 1 : (o.dir > 0 ? 700 : 420))));
+      const s = o.dir > 0 ? Math.min(1, ease(Math.min(1, k * 1.6))) : 1 - ease(k);
+      o.group.scale.set(Math.max(0.001, s), Math.max(0.001, s), Math.max(0.001, s));
       if (o.to) { const m = Math.min(1, (t - (o.tMove || 0)) / (reduce ? 1 : 600)); o.group.position.lerpVectors(o.from, o.to, ease(m)); }
+      // appear: drop from above with a small bounce · disappear: sink into the ground
+      o.group.position.y = o.dir > 0 ? (reduce ? 0 : 22 * (1 - backOut(k))) : -3 * ease(k);
       if (o.dir < 0 && k >= 1) { scene.remove(o.group); o.group.traverse((m) => { if (m.isMesh) { m.geometry.dispose(); const i = pickables.indexOf(m); if (i >= 0) pickables.splice(i, 1); } }); live.delete(key); if (selected === key) hideInfo(); }
     }
     for (const [key, m] of zoneMeshes) {

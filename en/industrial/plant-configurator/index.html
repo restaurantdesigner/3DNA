@@ -35,7 +35,7 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/main.css?v=20261124d">
-  <link rel="stylesheet" href="/assets/css/plant-configurator.css?v=95abb72d">
+  <link rel="stylesheet" href="/assets/css/plant-configurator.css?v=8b156468">
   <link rel="stylesheet" href="/assets/css/share.css?v=6ed9ab6a">
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
@@ -48,15 +48,15 @@
     <h1 class="pc__q">How many litres of ethanol would you like to produce annually?</h1>
     <div class="pc__tools"><button type="button" class="pc-share" data-share data-share-title="3DNA Plant Configurator" data-share-text="How big is an ethanol plant? Move one slider from 5 to 100 million litres a year and see the silos, fermenters and tanks multiply." data-share-url="/en/industrial/plant-configurator/" data-share-img="/images/industrial/share-configurator.jpg" data-track="industrial_share_clicked" data-track-location="configurator"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Share</span></button><button type="button" data-pc-compare aria-pressed="false">Compare</button><button type="button" data-pc-fit>Fit view</button></div>
     <div class="pc__ctl">
-      <div class="pc__row"><span class="pc__tagab">A</span><label class="pc__val"><span data-pc-value></span><small>per year</small></label><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider aria-label="Annual ethanol production (plant A)"><div class="pc__presets" data-pc-presets></div></div>
-      <div class="pc__row pc__row--b" data-pc-row-b><span class="pc__tagab">B</span><label class="pc__val"><span data-pc-value-b></span><small>per year</small></label><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider-b aria-label="Annual ethanol production (plant B)"><div class="pc__presets" data-pc-presets-b></div></div>
+      <div class="pc__row"><span class="pc__tagab">A</span><label class="pc__val"><span data-pc-value></span><small>per year</small></label><div class="pc__track"><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider aria-label="Annual ethanol production (plant A)"><div class="pc__presets" data-pc-presets></div></div></div>
+      <div class="pc__row pc__row--b" data-pc-row-b><span class="pc__tagab">B</span><label class="pc__val"><span data-pc-value-b></span><small>per year</small></label><div class="pc__track"><input class="pc__slider" type="range" min="0" max="1000" step="1" data-pc-slider-b aria-label="Annual ethanol production (plant B)"><div class="pc__presets" data-pc-presets-b></div></div></div>
     </div>
   </header>
   <section class="pc__stage" data-pc-stage aria-label="Configured plant in 3D">
     <div class="pc__labels" data-pc-labels></div>
     <p class="pc__hint">Drag to rotate · scroll or pinch to zoom · click equipment for details</p>
     <div class="pc__summary" data-pc-summary></div>
-    <p class="pc__disc"><b>Conceptual engineering estimate.</b> <span data-pc-disc></span></p>
+    <p class="pc__disc">Conceptual engineering estimate · quantities from the 3DNA FactoryBuilder engine<span data-pc-disc hidden></span></p>
     <aside class="pc__info" data-pc-info aria-live="polite"></aside>
     <noscript><p>The Plant Configurator needs JavaScript and WebGL.</p></noscript>
   </section>
@@ -239,7 +239,7 @@
 <script src="/assets/js/main.js?v=20261122a"></script>
 <script type="module">
   const root = document.querySelector("[data-pc]");
-  const { mountPlantConfigurator } = await import("/assets/js/industrial/configurator/app.js?v=7462b55e73");
+  const { mountPlantConfigurator } = await import("/assets/js/industrial/configurator/app.js?v=ae6bd8de73");
   window.__pc = mountPlantConfigurator(root);
 </script>
 <script type="module" src="/assets/js/industrial/share.js?v=1715f891"></script>
