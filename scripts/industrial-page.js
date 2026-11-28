@@ -9,7 +9,7 @@ const esc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</
 const jsonForScript = (d) => JSON.stringify(d).replace(/</g, "\\u003c");
 
 const FLAG = "<svg class=\"tw-flag\" viewBox=\"0 0 24 12\" width=\"22\" height=\"11\" role=\"img\" aria-label=\"Canada\"><rect width=\"24\" height=\"12\" fill=\"#fff\"/><rect width=\"6\" height=\"12\" fill=\"#d52b1e\"/><rect x=\"18\" width=\"6\" height=\"12\" fill=\"#d52b1e\"/><path d=\"M12 2.2l.75 1.45 .9-.4-.35 2.1 1.15-1.05.25.75 1.2-.2-.45 1.35.55.3-2.2 1.75.25.85-1.85-.25V10h-.5V8.85l-1.85.25.25-.85-2.2-1.75.55-.3-.45-1.35 1.2.2.25-.75 1.15 1.05-.35-2.1.9.4z\" fill=\"#d52b1e\"/></svg>";
-function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) {
+function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath, builderPath }) {
   const T = (lang) => i18n[lang] || i18n.en;
   const ARROW = '<span aria-hidden="true">&rarr;</span>';
 
@@ -23,6 +23,7 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath }) 
       <h1 class="ind-hero__title" id="ind-title"><span>${esc(h.title[0])}</span> <em>${esc(h.title[1])}</em></h1>
       <p class="ind-hero__sub">${esc(h.sub)}</p>
       <p class="ind-hero__ctas"><a class="ind-btn ind-btn--light" href="${plantPath(lang)}" data-track="industrial_factory_clicked" data-track-location="hero">${esc(h.cta)} ${ARROW}</a><button type="button" class="ind-btn ind-btn--ghost open-panel" data-track="start_project_clicked" data-track-location="industrial_hero">${esc(h.cta2)}</button></p>
+      ${builderPath ? `<p class="ind-hero__build"><a class="ind-btn ind-btn--build" href="${builderPath(lang)}" data-track="factory_builder_clicked" data-track-location="hero">${esc(h.cta3)} ${ARROW}</a></p>` : ""}
       <p class="ind-hero__hint">${esc(h.hint)}</p>
     </div>
   </section>`;
@@ -168,12 +169,11 @@ ${twinBand(lang, s)}`);
     <button type="button" class="tw__toggle tw__toggle--right" data-toggle="right" aria-label="${esc(t.panels.right)}"><span>${esc(t.panels.right)}</span></button>
     <aside class="tw__panel tw__right" aria-label="${esc(t.panels.right)}">
       <div data-tabs>
-        <div class="tw__tabs" role="tablist"><button type="button" role="tab" data-tab="detail" aria-selected="true">${esc(t.tabs.detail)}</button><button type="button" role="tab" data-tab="invest" aria-selected="false">${esc(t.tabs.invest)}</button><button type="button" role="tab" data-tab="prod" aria-selected="false">${esc(t.tabs.prod)}</button><button type="button" role="tab" data-tab="sources" aria-selected="false">${esc(t.tabs.sources)}</button><button type="button" role="tab" data-tab="config" aria-selected="false">${esc(t.tabs.config)}</button></div>
+        <div class="tw__tabs" role="tablist"><button type="button" role="tab" data-tab="detail" aria-selected="true">${esc(t.tabs.detail)}</button><button type="button" role="tab" data-tab="invest" aria-selected="false">${esc(t.tabs.invest)}</button><button type="button" role="tab" data-tab="prod" aria-selected="false">${esc(t.tabs.prod)}</button><button type="button" role="tab" data-tab="sources" aria-selected="false">${esc(t.tabs.sources)}</button></div>
         <div class="tw__pane" data-pane="detail"><div data-detail></div></div>
         <div class="tw__pane" data-pane="invest" hidden><div class="tw-kpis" data-kpis></div><div class="tw-inputs" data-inputs></div><p class="tw-k">${esc(t.capexTitle)}</p><ul class="tw-bars" data-capex></ul><p class="tw-k">${esc(t.opexTitle)}</p><div class="tw-opex" data-opex></div><p class="tw-note">${esc(t.financeNote)}</p></div>
         <div class="tw__pane" data-pane="prod" hidden><div class="tw-kpis" data-prod></div><p class="tw-k">${esc(t.monthlyTitle)}</p><ul class="tw-months" data-monthly></ul><p class="tw-note">${esc(t.financeNote)}</p></div>
         <div class="tw__pane" data-pane="sources" hidden><div data-sources></div></div>
-        <div class="tw__pane" data-pane="config" hidden></div>
       </div>
     </aside>
   </div>
@@ -197,7 +197,36 @@ ${twinBand(lang, s)}`);
 </div>`;
   }
 
-  return { heroHtml, bodyHtml, plantHtml, meta: (lang) => T(lang).meta, twinMeta: (lang) => ({ title: T(lang).twin.metaTitle, description: T(lang).twin.metaDescription, ogTitle: T(lang).twin.ogTitle, ogImageAlt: T(lang).twin.ogImageAlt }), nav: (lang) => T(lang).nav };
+  // 3DNA FactoryBuilder (/en/industrial/factory-builder/): app shell; the module builds everything else in the browser
+  function builderHtml(lang) {
+    const b = T(lang).builder, p = T(lang).twin.pricing;
+    return `<div class="fb side-open" data-fb data-wa="${esc(whatsappNumber(lang))}">
+  <header class="fb__top">
+    <a class="fb__brand" href="${landingPath(lang)}" title="${esc(b.back)}"><b>3DNA</b> FactoryBuilder</a>
+    <nav class="fb__nav" data-nav aria-label="FactoryBuilder"></nav>
+    <div class="fb__ctas"><button type="button" class="fb-btn fb-btn--ghost" data-cta-twin>${esc(b.ctaTwin)}</button><button type="button" class="fb-btn fb-btn--main" data-cta-main data-track="factory_builder_lead">${esc(b.ctaMain)}</button></div>
+  </header>
+  <div class="fb__body">
+    <aside class="fb__side" data-side aria-label="FactoryBuilder panel"><button type="button" class="fb-x fb__sidex" data-side-close aria-label="Close panel">×</button><div data-panel></div></aside>
+    <section class="fb__stage" aria-label="Generated factory in 3D">
+      <div class="fb__canvas" data-canvas></div>
+      <div class="fb__hero" data-hero><p class="fb__tag">${esc(b.tagline)}</p><h1>${esc(b.name)}</h1><p class="fb__head">${esc(b.headline)}</p><p class="fb__sub">${esc(b.sub)}</p></div>
+      <button type="button" class="fb__toggle" data-side-toggle aria-label="Show or hide the panel"><span></span></button>
+      <div class="fb__strip" data-strip></div>
+      <div class="fb__prog" data-progress hidden aria-live="polite"></div>
+      <noscript><p class="fb__noscript">${esc(b.noscript)}</p></noscript>
+    </section>
+    <aside class="fb__detail" data-detail aria-label="Equipment details"></aside>
+  </div>
+  <div class="fb-modal" data-pricing-modal hidden><div class="fb-modal__bg" data-pricing-close></div><div class="fb-modal__box" role="dialog" aria-modal="true" aria-labelledby="fb-pricing-t">
+    <button type="button" class="fb-x" data-pricing-close aria-label="${esc(p.close)}">×</button>
+    <h2 id="fb-pricing-t">${esc(b.ctaTwin)}</h2><p>${esc(p.intro)} These are 3DNA digital twin development prices — not factory construction costs.</p>
+    <div class="fb-pkgs" data-pkgs></div><p class="fb-small">${esc(p.disclaimer)}</p>
+    <button type="button" class="fb-btn fb-btn--main" data-pricing-send>${esc(p.cta)} · WhatsApp</button></div></div>
+  <script type="application/json" data-fb-ui>${jsonForScript({ pricing: p })}</script>
+</div>`;
+  }
+  return { heroHtml, bodyHtml, plantHtml, builderHtml, builderMeta: (lang) => ({ title: T(lang).builder.metaTitle, description: T(lang).builder.metaDescription, ogTitle: T(lang).builder.ogTitle, ogImageAlt: T(lang).builder.ogImageAlt }), meta: (lang) => T(lang).meta, twinMeta: (lang) => ({ title: T(lang).twin.metaTitle, description: T(lang).twin.metaDescription, ogTitle: T(lang).twin.ogTitle, ogImageAlt: T(lang).twin.ogImageAlt }), nav: (lang) => T(lang).nav };
 }
 
 module.exports = { createIndustrialPage };

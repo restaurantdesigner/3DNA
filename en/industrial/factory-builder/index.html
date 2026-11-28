@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <!-- Built by scripts/build-i18n.js from templates/industrial-builder.html + assets/i18n/industrial.json
+       (builder.*) + scripts/industrial-page.js. App: assets/js/industrial/builder/ (model, layout, app) on the
+       existing 3D engine assets/js/industrial/engine.js -->
+  <title>3DNA FactoryBuilder · Ethanol factory generator | 3DNA</title>
+  <meta name="description" content="Set a production capacity, generate a conceptual ethanol plant in 3D and explore its equipment, networks and indicative investment.">
+  <link rel="canonical" href="https://3dna.es/en/industrial/factory-builder/">
+  <link rel="alternate" hreflang="en" href="https://3dna.es/en/industrial/factory-builder/">
+  <link rel="alternate" hreflang="x-default" href="https://3dna.es/en/industrial/factory-builder/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="3DNA">
+  <meta property="og:title" content="3DNA FactoryBuilder · From production targets to an industrial reality">
+  <meta property="og:description" content="Set a production capacity, generate a conceptual ethanol plant in 3D and explore its equipment, networks and indicative investment.">
+  <meta property="og:url" content="https://3dna.es/en/industrial/factory-builder/">
+  <meta property="og:image" content="https://3dna.es/images/industrial/og-industrial-plant-en.jpg">
+  <meta property="og:image:secure_url" content="https://3dna.es/images/industrial/og-industrial-plant-en.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Conceptual ethanol facility generated in 3D by 3DNA FactoryBuilder">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="3DNA FactoryBuilder · From production targets to an industrial reality">
+  <meta name="twitter:description" content="Set a production capacity, generate a conceptual ethanol plant in 3D and explore its equipment, networks and indicative investment.">
+  <meta name="twitter:image" content="https://3dna.es/images/industrial/og-industrial-plant-en.jpg">
+  <meta name="twitter:image:alt" content="Conceptual ethanol facility generated in 3D by 3DNA FactoryBuilder">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://3dna.es/#organization","name":"3DNA","url":"https://3dna.es/","logo":{"@type":"ImageObject","url":"https://3dna.es/img/logo-3dna.png","width":1932,"height":295},"description":"Commercial interior design studio creating restaurants, fitness spaces, healthcare environments and workplaces.","email":"andrei@3dna.es","address":{"@type":"PostalAddress","addressLocality":"Salobreña","addressRegion":"Granada","addressCountry":"ES"},"founder":{"@id":"https://3dna.es/#founder"},"knowsLanguage":["en","es","ru","uk"]},{"@type":"WebSite","@id":"https://3dna.es/#website","url":"https://3dna.es/","name":"3DNA","inLanguage":["en","es","ru","uk"],"publisher":{"@id":"https://3dna.es/#organization"}},{"@type":"WebPage","@id":"https://3dna.es/en/industrial/factory-builder/#webpage","url":"https://3dna.es/en/industrial/factory-builder/","name":"3DNA FactoryBuilder · Ethanol factory generator | 3DNA","description":"Set a production capacity, generate a conceptual ethanol plant in 3D and explore its equipment, networks and indicative investment.","inLanguage":"en","isPartOf":{"@id":"https://3dna.es/#website"},"about":{"@id":"https://3dna.es/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://3dna.es/images/industrial/og-industrial-plant-en.jpg"},"breadcrumb":{"@id":"https://3dna.es/en/industrial/factory-builder/#breadcrumb"}},{"@type":"Person","@id":"https://3dna.es/#founder","name":"Andrei Yafimenka","url":"https://3dna.es/en/about/","worksFor":{"@id":"https://3dna.es/#organization"}},{"@type":"BreadcrumbList","@id":"https://3dna.es/en/industrial/factory-builder/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://3dna.es/en/"},{"@type":"ListItem","position":2,"name":"Industrial digital twins and 3D plant visualisation","item":"https://3dna.es/en/industrial/"},{"@type":"ListItem","position":3,"name":"3DNA FactoryBuilder · Ethanol factory generator","item":"https://3dna.es/en/industrial/factory-builder/"}]}]}</script>
+  <script>window.I18N = {"lang":"en","languages":["en","es","ru","uk"],"whatsappHref":"https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20commercial%20interior%20design%20project."};</script>
+  <script src="/assets/js/i18n-detect.js?v=51ee2bed" defer></script>
+  <link rel="stylesheet" href="/assets/fonts/site.css?v=20261010a">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261124d">
+  <link rel="stylesheet" href="/assets/css/industrial.css?v=bf5baef5">
+  <link rel="stylesheet" href="/assets/css/factory-builder.css?v=8eb72341">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+
+<body class="fbpage">
+<main id="main" tabindex="-1">
+<div class="fb side-open" data-fb data-wa="34722878642">
+  <header class="fb__top">
+    <a class="fb__brand" href="/en/industrial/" title="3DNA Industrial"><b>3DNA</b> FactoryBuilder</a>
+    <nav class="fb__nav" data-nav aria-label="FactoryBuilder"></nav>
+    <div class="fb__ctas"><button type="button" class="fb-btn fb-btn--ghost" data-cta-twin>Request a Professional Digital Twin</button><button type="button" class="fb-btn fb-btn--main" data-cta-main data-track="factory_builder_lead">Turn This Concept Into Your Project</button></div>
+  </header>
+  <div class="fb__body">
+    <aside class="fb__side" data-side aria-label="FactoryBuilder panel"><button type="button" class="fb-x fb__sidex" data-side-close aria-label="Close panel">×</button><div data-panel></div></aside>
+    <section class="fb__stage" aria-label="Generated factory in 3D">
+      <div class="fb__canvas" data-canvas></div>
+      <div class="fb__hero" data-hero><p class="fb__tag">Parametric Industrial Factory Generator &amp; Investment Simulator</p><h1>3DNA FactoryBuilder</h1><p class="fb__head">From production targets to an industrial reality.</p><p class="fb__sub">Define your production capacity. Generate your facility. Explore your investment.</p></div>
+      <button type="button" class="fb__toggle" data-side-toggle aria-label="Show or hide the panel"><span></span></button>
+      <div class="fb__strip" data-strip></div>
+      <div class="fb__prog" data-progress hidden aria-live="polite"></div>
+      <noscript><p class="fb__noscript">FactoryBuilder needs JavaScript and WebGL to generate the 3D factory.</p></noscript>
+    </section>
+    <aside class="fb__detail" data-detail aria-label="Equipment details"></aside>
+  </div>
+  <div class="fb-modal" data-pricing-modal hidden><div class="fb-modal__bg" data-pricing-close></div><div class="fb-modal__box" role="dialog" aria-modal="true" aria-labelledby="fb-pricing-t">
+    <button type="button" class="fb-x" data-pricing-close aria-label="Close">×</button>
+    <h2 id="fb-pricing-t">Request a Professional Digital Twin</h2><p>Choose the scope that fits your project. Every digital twin is built for your plant and your process. These are 3DNA digital twin development prices — not factory construction costs.</p>
+    <div class="fb-pkgs" data-pkgs></div><p class="fb-small">Estimated development costs. Final pricing depends on project complexity and requirements. VAT excluded.</p>
+    <button type="button" class="fb-btn fb-btn--main" data-pricing-send>Request a Proposal · WhatsApp</button></div></div>
+  <script type="application/json" data-fb-ui>{"pricing":{"button":"Project Pricing — from €2,500","buttonShort":"Pricing","title":"Pricing & Packages","intro":"Choose the scope that fits your project. Every digital twin is built for your plant and your process.","recommended":"Recommended","cta":"Request a Proposal","close":"Close","disclaimer":"Estimated development costs. Final pricing depends on project complexity and requirements. VAT excluded.","whatsapp":"Hello 3DNA, I would like to request a proposal for an industrial digital twin. Selected package: {name} ({range}).","packages":[{"id":"essential","name":"Essential","range":"€2,500–€5,000","text":"Interactive 3D facility, equipment exploration and basic process visualization."},{"id":"professional","name":"Professional","range":"€5,000–€10,000","text":"Detailed industrial digital twin, animated processes, equipment costs and financial analytics.","recommended":true},{"id":"enterprise","name":"Enterprise","range":"€10,000–€25,000+","text":"Complete industrial platform, advanced simulations, custom functionality and data integration."}]}}</script>
+</div>
+</main>
+
+<!-- 3dna:footer -->
+  <!-- ===== SHARED FOOTER (templates/layout/footer.html) =====
+       The only footer on the site, plus the shared "Start a project" panel.
+       Written into every page by scripts/build-i18n.js between the
+       3dna:footer markers; edit it here, never in a page. -->
+<footer class="site-footer" id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="/en/#hero" aria-label="3DNA home">
+          <img src="/img/logo-3dna.webp" alt="3DNA" class="footer-logo" width="960" height="147" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-tagline">Visual Marketing &amp; Immersive 3D Experiences</p>
+      </div>
+
+      <div class="footer-cols">
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Services</h2>
+          <ul>
+            <li><a href="/en/restaurants/">Restaurants, bars &amp; cafés</a></li>
+            <li><a href="/en/fitness/">Gyms &amp; sports centres</a></li>
+            <li><a href="/en/digital-marketing/">Digital marketing</a></li>
+            <li><a href="/en/#servicios">3D design</a></li>
+            <li><a href="/en/#servicios">Websites &amp; Landing Pages</a></li>
+            <li><a href="/en/#servicios">Sales funnels</a></li>
+            <li><a href="/en/#servicios">Applied AI</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Legal</h2>
+          <ul>
+            <li><a href="/oferta-publica.html">Public Offer</a></li>
+            <li><a href="/politica-cookies.html">Cookie Policy</a></li>
+            <li><a href="/aviso-legal.html">Legal Notice</a></li>
+            <li><a href="/politica-privacidad.html">Privacy Policy</a></li>
+            <li><button type="button" class="footer-cookie-link" data-cookie-settings>Cookie settings</button></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-col__title">Contact</h2>
+          <ul>
+            <li><a href="mailto:andrei@3dna.es?subject=Enquiry%20from%203dna.es&amp;body=Hello%2C%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20services.">Email: andrei@3dna.es</a></li>
+            <li><a href="https://wa.me/34722878642?text=Hello%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20commercial%20interior%20design%20project." target="_blank" rel="noopener noreferrer" data-track="whatsapp_clicked" data-track-location="footer">WhatsApp</a></li>
+            <li><span>Salobreña, Granada (Spain)</span></li>
+            <li><a href="/en/">3dna.es</a></li>
+            <li class="footer-cta-row"><button type="button" class="open-panel footer-cta-btn" data-track="start_project_clicked" data-track-location="footer">Request a proposal</button></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 3DNA · All rights reserved</span>
+      <span>Design &amp; Development: 3DNA Studio</span>
+    </div>
+  </div>
+</footer>
+
+<!-- "Start a project" side panel (localized partial, loaded on demand) -->
+<div id="panel-backdrop"></div>
+<div id="form-panel-root"></div>
+<script>
+(function () {
+  const mount = document.getElementById('form-panel-root');
+  if (!mount) return;
+  fetch('/assets/partials/form-panel.en.html?v=20261011a', { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error('Failed to load form panel partial.');
+      return response.text();
+    })
+    .then((html) => {
+      mount.innerHTML = html;
+      window.__formPanelLoaded = true;
+      document.dispatchEvent(new Event('form-panel:ready'));
+    })
+    .catch((error) => { console.error(error); });
+})();
+</script>
+
+<!-- Cookie consent (shared; behaviour in assets/js/main.js "COOKIE CONSENT").
+     Hidden until main.js finds no stored choice. Only Google Analytics is
+     optional on this site; it loads only after Analytics consent. -->
+<aside class="cconsent" id="cookie-consent" aria-label="Cookie notice" hidden>
+  <svg class="cconsent__mark" viewBox="0 0 64 64" width="56" height="56" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="ccg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9dcc6" stop-opacity=".95"/><stop offset="1" stop-color="#b9a88f" stop-opacity=".55"/></linearGradient>
+      <linearGradient id="ccg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset="1" stop-color="#d9d2c7" stop-opacity=".35"/></linearGradient>
+    </defs>
+    <circle cx="26" cy="30" r="17" fill="url(#ccg1)"/>
+    <path d="M38 12l14 5.5v10c0 9-5.8 15.8-14 19-8.2-3.2-14-10-14-19v-10z" fill="url(#ccg2)" stroke="rgba(22,21,19,.22)" stroke-width="1"/>
+    <path d="M32.5 28.5l4 4 7.5-8" fill="none" stroke="#161513" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="16" cy="48" r="5" fill="#161513" fill-opacity=".08"/>
+  </svg>
+  <div class="cconsent__copy">
+    <h2 class="cconsent__title">Your privacy, your choice.</h2>
+    <p class="cconsent__text">We use essential cookies to make the website work and, with your permission, additional cookies to understand how the site is used and improve the experience.</p>
+    <p class="cconsent__links"><a href="/politica-cookies.html">Cookie Policy</a><span aria-hidden="true">·</span><a href="/politica-privacidad.html">Privacy Policy</a></p>
+  </div>
+  <div class="cconsent__actions">
+    <button type="button" class="cconsent__btn cconsent__btn--primary" data-consent="accept">Accept all</button>
+    <button type="button" class="cconsent__btn" data-consent="reject">Reject optional</button>
+    <button type="button" class="cconsent__btn cconsent__btn--text" data-consent="choose" aria-haspopup="dialog" aria-controls="cookie-prefs">Choose cookies</button>
+  </div>
+</aside>
+<script>
+/* Cookie banner bootstrap (plain ES5, runs as soon as the banner is parsed).
+   Shows the banner to visitors without a saved choice even if assets/js/main.js
+   cannot run on their browser (older mobile Safari, in-app browsers, a script
+   error); main.js takes over when it loads (window.__cookieConsentReady).
+   Keep KEY / VERSION in sync with "4. COOKIE CONSENT" in main.js. */
+(function () {
+  var KEY = '3dna_cookie_consent', VERSION = 1;
+  var banner = document.getElementById('cookie-consent');
+  if (!banner) return;
+  var decided = false;
+  try {
+    var c = JSON.parse(localStorage.getItem(KEY) || 'null');
+    decided = !!(c && c.version === VERSION) || !!localStorage.getItem('cookiesDecision');
+  } catch (e) { decided = false; }
+  if (decided) return;
+  banner.hidden = false;
+  banner.className += ' is-visible';
+  // Fallback only if main.js never wired the buttons: Accept / Reject still save a choice.
+  window.addEventListener('load', function () {
+    if (window.__cookieConsentReady) return;
+    banner.addEventListener('click', function (e) {
+      var t = e.target;
+      while (t && t !== banner && !(t.getAttribute && t.getAttribute('data-consent'))) t = t.parentNode;
+      var action = t && t.getAttribute ? t.getAttribute('data-consent') : null;
+      if (action !== 'accept' && action !== 'reject') return;
+      var payload = { version: VERSION, essential: true, analytics: action === 'accept', marketing: false, timestamp: new Date().toISOString(), source: 'fallback-' + action };
+      try { localStorage.setItem(KEY, JSON.stringify(payload)); } catch (err) {}
+      document.cookie = KEY + '=' + encodeURIComponent(JSON.stringify(payload)) + '; path=/; max-age=31536000; SameSite=Lax';
+      banner.hidden = true;
+    });
+  });
+})();
+</script>
+
+<div class="cprefs" id="cookie-prefs" role="dialog" aria-modal="true" aria-labelledby="cookie-prefs-title" hidden>
+  <div class="cprefs__backdrop" data-consent="close"></div>
+  <div class="cprefs__panel">
+    <button type="button" class="cprefs__close" data-consent="close" aria-label="Close">&times;</button>
+    <h2 class="cprefs__title" id="cookie-prefs-title">Cookie preferences</h2>
+    <p class="cprefs__intro">Choose which optional cookies you allow. You can change this at any time from “Cookie settings” in the footer.</p>
+    <div class="cprefs__row">
+      <div class="cprefs__label">
+        <h3 class="cprefs__name">Essential</h3>
+        <p class="cprefs__desc">Required for the website to work, for example to remember your language and this choice.</p>
+      </div>
+      <span class="cprefs__always">Always active</span>
+    </div>
+    <div class="cprefs__row">
+      <div class="cprefs__label">
+        <h3 class="cprefs__name" id="cookie-analytics-label">Analytics</h3>
+        <p class="cprefs__desc" id="cookie-analytics-desc">Help us understand how the website is used (Google Analytics).</p>
+      </div>
+      <button type="button" class="cprefs__switch" role="switch" aria-checked="false" data-consent-toggle="analytics"
+        aria-labelledby="cookie-analytics-label" aria-describedby="cookie-analytics-desc"><span class="cprefs__knob" aria-hidden="true"></span></button>
+    </div>
+    <div class="cprefs__actions">
+      <button type="button" class="cconsent__btn" data-consent="save">Save preferences</button>
+      <button type="button" class="cconsent__btn cconsent__btn--primary" data-consent="accept">Accept all</button>
+    </div>
+  </div>
+</div>
+<!-- /3dna:footer -->
+<script src="/assets/js/main.js?v=20261122a"></script>
+<script type="module">
+  const root = document.querySelector("[data-fb]");
+  const ui = JSON.parse(root.querySelector("[data-fb-ui]").textContent);
+  const { mountBuilder } = await import("/assets/js/industrial/builder/app.js?v=2298a21b6e");
+  window.__fb = await mountBuilder(root, ui);
+</script>
+</body>
+</html>

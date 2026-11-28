@@ -18,7 +18,8 @@
       "cta": "Explore Interactive Factory",
       "cta2": "Request a Digital Twin",
       "hint": "Interactive 3D model · drag to rotate",
-      "loading": "Loading the 3D model…"
+      "loading": "Loading the 3D model…",
+      "cta3": "Build Your Own Factory"
     },
     "service": {
       "label": "Industrial digital twins",
@@ -199,8 +200,7 @@
         "invest": "Investment",
         "prod": "Production",
         "project": "Project",
-        "sources": "Sources",
-        "config": "Configuration"
+        "sources": "Sources"
       },
       "search": "Search equipment…",
       "streams": "Process streams",
@@ -396,6 +396,20 @@
       "details": "Details",
       "themeLight": "Light mode",
       "themeDark": "Dark mode"
+    },
+    "builder": {
+      "metaTitle": "3DNA FactoryBuilder · Ethanol factory generator | 3DNA",
+      "metaDescription": "Set a production capacity, generate a conceptual ethanol plant in 3D and explore its equipment, networks and indicative investment.",
+      "ogTitle": "3DNA FactoryBuilder · From production targets to an industrial reality",
+      "ogImageAlt": "Conceptual ethanol facility generated in 3D by 3DNA FactoryBuilder",
+      "name": "3DNA FactoryBuilder",
+      "tagline": "Parametric Industrial Factory Generator & Investment Simulator",
+      "headline": "From production targets to an industrial reality.",
+      "sub": "Define your production capacity. Generate your facility. Explore your investment.",
+      "ctaMain": "Turn This Concept Into Your Project",
+      "ctaTwin": "Request a Professional Digital Twin",
+      "back": "3DNA Industrial",
+      "noscript": "FactoryBuilder needs JavaScript and WebGL to generate the 3D factory."
     }
   }
 }

@@ -43,6 +43,7 @@ const OG_PAGE_IMAGES = {
   marketing: (lang) => `/images/og/og-marketing-${lang}.jpg`,
   industrial: (lang) => "/images/industrial/og-industrial-en.jpg",
   "industrial-ethanol": (lang) => "/images/industrial/og-industrial-plant-en.jpg",
+  "industrial-builder": (lang) => "/images/industrial/og-industrial-plant-en.jpg",
 };
 // client project pages: the project's own preview image
 const projectKey = (id) => `project-${id}`;
@@ -86,6 +87,7 @@ const marketingTemplate = read("templates/marketing.html");
 const marketingProjectTemplate = read("templates/marketing-project.html");
 const industrialTemplate = read("templates/industrial.html");
 const industrialPlantTemplate = read("templates/industrial-plant.html");
+const industrialBuilderTemplate = read("templates/industrial-builder.html");
 // 3DNA Industrial division (ES / EN): landing + plant dashboards (assets/i18n/industrial.json)
 const industrialI18n = JSON.parse(read("assets/i18n/industrial.json"));
 const INDUSTRIAL_LANGS = ["en"]; // English only; other languages link to the English pages
@@ -133,7 +135,8 @@ const marketingProjects = require("./marketing-projects.js").createMarketingProj
 const industrialPage = require("./industrial-page.js").createIndustrialPage(industrialI18n, {
   whatsappNumber: (lang) => translations[lang].contact.whatsappNumber,
   landingPath: (lang) => pagePathFor("industrial", lang),
-  plantPath: (lang) => pagePathFor("industrial-ethanol", lang)
+  plantPath: (lang) => pagePathFor("industrial-ethanol", lang),
+  builderPath: (lang) => pagePathFor("industrial-builder", lang)
 });
 const marketingPage = require("./marketing-page.js").createMarketingPage(translations, {
   whatsappHref: (lang) => whatsappHref(lang),
@@ -247,6 +250,14 @@ const PAGES = {
     fallbackLang: "en",
     meta: (lang) => industrialPage.twinMeta(lang)
   }])),
+  // 3DNA FactoryBuilder: /en/industrial/factory-builder/
+  "industrial-builder": {
+    template: () => industrialBuilderTemplate,
+    subPath: () => "industrial/factory-builder/",
+    langs: INDUSTRIAL_LANGS,
+    fallbackLang: "en",
+    meta: (lang) => industrialPage.builderMeta(lang)
+  },
   // marketing projects: /es/marketing-digital/<slug>/, /en/digital-marketing/<slug>/ ... only in the project's
   // languages (langs); the switcher sends the others to the digital marketing page (fallback)
   ...Object.fromEntries(marketingProjects.list().map((id) => [mprojectKey(id), {
@@ -543,11 +554,15 @@ function render(lang, options = { isRoot: false }, tpl = template) {
     if (key === "industrialPage.url") return pagePathFor("industrial", lang);
     if (key === "industrialPage.nav") return escapeHtml(industrialPage.nav(INDUSTRIAL_LANGS.includes(lang) ? lang : "en"));
     if (key === "industrial.cssVersion") return fileVersion("assets/css/industrial.css");
-    if (key === "industrial.jsVersion") return ["engine", "equipment", "dashboard", "showcase", "overview", "overview-view", "configurator", "factories/ethanol", "factories/ethanol-config"].map((m) => fileVersion(`assets/js/industrial/${m}.js`)).join("").slice(0, 10);
+    if (key === "industrial.jsVersion") return ["engine", "equipment", "dashboard", "showcase", "overview", "overview-view", "factories/ethanol"].map((m) => fileVersion(`assets/js/industrial/${m}.js`)).join("").slice(0, 10);
     if (key === "industrial.meta.title") return escapeHtml(industrialPage.meta(lang).title);
     if (key === "industrial.heroHtml") return industrialPage.heroHtml(lang);
     if (key === "industrial.bodyHtml") return industrialPage.bodyHtml(lang);
     if (key === "twin.meta.title") return escapeHtml(industrialPage.twinMeta(lang).title);
+    if (key === "builder.meta.title") return escapeHtml(industrialPage.builderMeta(lang).title);
+    if (key === "builder.html") return industrialPage.builderHtml(lang);
+    if (key === "builder.jsVersion") return ["engine", "equipment", "builder/app", "builder/model", "builder/layout", "factories/ethanol", "factories/ethanol-canada.data"].map((m) => fileVersion(`assets/js/industrial/${m}.js`)).join("").slice(0, 10);
+    if (key === "builder.cssVersion") return fileVersion("assets/css/factory-builder.css");
     if (key === "twin.html") {
       const id = (options && options.page || "").replace(/^industrial-/, "");
       return industrialPage.plantHtml(lang, id, industrialI18n[lang].twin.metaTitle.split(" · ")[0]);

@@ -9,7 +9,6 @@
  * All figures come from the factory's data module and finance model; they are illustrative.
  */
 import { createTwin, tr, nameOf } from "./engine.js?v=ind16";
-import { readConfig, configure, linkFinance, mountConfigurator, stageForKind } from "./configurator.js?v=cfg2";
 
 const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const hex = (n) => "#" + n.toString(16).padStart(6, "0");
@@ -17,9 +16,6 @@ const FLAG = `<svg class="tw-flag" viewBox="0 0 24 12" width="22" height="11" ro
 const PIN = `<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" fill="currentColor"/></svg>`;
 
 export async function mountDashboard(root, F, ui, lang) {
-  // plant configuration (?cfg=…): the whole twin is generated from the configured factory; the Investment tab follows it
-  const baseF = F, cfg = readConfig(), C0 = configure(F, cfg);
-  if (cfg.active) F = { ...C0.F, finance: linkFinance(F.finance, C0.R) };
   const t = ui, fin = F.finance, cur = fin.currency || { symbol: "€", locale: "en-GB" };
   const num = (v, d = 0) => v == null || !isFinite(v) ? "—" : v.toLocaleString(cur.locale || "en-CA", { minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: "always" });
   const money = (v, d = 1) => `${v < 0 ? "−" : ""}${cur.symbol}${num(Math.abs(v) / 1e6, d)} M`;
@@ -87,8 +83,6 @@ export async function mountDashboard(root, F, ui, lang) {
   function openTab(box, id) {
     box.querySelectorAll("[data-tab]").forEach((x) => x.setAttribute("aria-selected", String(x.dataset.tab === id)));
     box.querySelectorAll("[data-pane]").forEach((p) => { p.hidden = p.dataset.pane !== id; });
-    { const row = box.querySelector(".tw__tabs"), btn = box.querySelector(`[data-tab="${id}"]`); if (row && btn && row.scrollWidth > row.clientWidth) row.scrollLeft = Math.max(0, btn.offsetLeft - row.offsetLeft - (row.clientWidth - 54 - btn.offsetWidth) / 2); }
-    if (box.closest(".tw__right")) { const w = id === "config"; if (root.classList.contains("cfg-wide") !== w) { root.classList.toggle("cfg-wide", w); setTimeout(() => twin && twin.resize(), 320); } }
   }
   const rightTabs = root.querySelector(".tw__right [data-tabs]");
   const showRight = (tab) => { if (rightTabs) openTab(rightTabs, tab); if (!root.classList.contains("right-open") && !mobile()) { root.classList.add("right-open"); labelToggles(); setTimeout(() => twin.resize(), 320); } };
@@ -230,17 +224,9 @@ export async function mountDashboard(root, F, ui, lang) {
       <h3 class="tw-detail__name">${esc(nameOf(F, it, lang))}</h3>
       <p class="tw-detail__fn">${esc(tr(c.fn, lang))}</p>
       ${c.specs && c.specs.length ? `<table class="tw-specs"><tbody>${c.specs.map(([k, v, g]) => `<tr><th>${esc(tr(k, lang))}</th><td>${esc(tr(v, lang))} ${tagOf(g)}</td></tr>`).join("")}</tbody></table>` : ""}
-      ${cfgBlock(it)}
       ${byNet.length ? `<p class="tw-detail__k">${esc(t.connections)}</p>${byNet.map(([k, ls]) => `<p class="tw-netname"><i style="background:${hex(NET[k].color)}"></i>${esc(NET[k].name)}</p><ul class="tw-links">${ls.map((l) => linkRow(l, it.id)).join("")}</ul>`).join("")}` : ""}
       <p class="tw-note">${esc(t.illustrative)}</p>`;
     showRight("detail");
-  }
-  function cfgBlock(it) {
-    const s = stageForKind(C0.R, it.kind); if (!s) return "";
-    const fmtU = (v) => `${num(v, v < 10 ? 1 : 0)} ${esc(s.capUnit)}`;
-    const rows = [["Stage", esc(s.stage)], ["Equipment unit", esc(s.unit)], ["Design capacity per unit", fmtU(s.cap)], ["Units", `${s.n} operating${s.standby ? ` + ${s.standby} standby` : ""}`], ["Required", s.type === "batch" ? `${num(s.req)} m³` : fmtU(s.req)], ["Utilization", isFinite(s.util) ? `${num(s.util * 100, 0)} %` : "—"],
-      ["Purchase price per unit", money(s.cost, 2)], ["Installed cost per unit", money(s.cost * 1.733 * 1.1664, 2)]];
-    return `<p class="tw-detail__k">Configuration ${cfg.active ? "(configured plant)" : "(reference plant)"}</p><table class="tw-specs"><tbody>${rows.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${v}</td></tr>`).join("")}</tbody></table><p class="tw-note">Conceptual sizing from the equipment library — illustrative assumptions, not manufacturer data. <button type="button" class="tw-linkbtn" data-open-config>Open Configuration →</button></p>`;
   }
   function showLink(l) {
     if (!l) { return; }
@@ -254,7 +240,6 @@ export async function mountDashboard(root, F, ui, lang) {
     showRight("detail");
   }
   detail.addEventListener("click", (ev) => {
-    if (ev.target.closest("[data-open-config]")) { showRight("config"); return; }
     const b = ev.target.closest("[data-eq]"); if (b) { twin.select(b.dataset.eq); return; }
     const k = ev.target.closest("[data-link]"); if (k) twin.selectLink(k.dataset.link);
   });
@@ -271,7 +256,7 @@ export async function mountDashboard(root, F, ui, lang) {
   const groups = [["plant", t.groups.plant], ["market", t.groups.market], ["invest", t.groups.invest]];
   const investPane = $('[data-pane="invest"]');
   $("[data-kpis]").insertAdjacentHTML("beforebegin", `<div class="tw-scen" role="group" aria-label="${esc(t.scenarios)}">${(fin.presets || []).map((p) => `<button type="button" data-preset="${p.id}" aria-pressed="${p.id === "base"}">${esc(p.name)}</button>`).join("")}</div>
-    <p class="tw-scen__note">${esc(fin.note || "")}</p>${fin.linked ? `<p class="tw-cfg__linked">Linked to the plant configuration: ${num(C0.R.produced, 1)} M L/year, CAPEX ${money(C0.R.capex)} from the equipment schedule. <button type="button" class="tw-linkbtn" data-open-config>Configuration →</button></p>` : ""}`);
+    <p class="tw-scen__note">${esc(fin.note || "")}</p>`);
   $("[data-kpis]").classList.add("tw-inv");
   $("[data-inputs]").innerHTML = `<p class="tw-k">${esc(I.drivers)}</p>` + groups.map(([g, label]) => `<fieldset><legend>${esc(label)}</legend>${fin.inputs.filter((i) => i.group === g).map((i) => `
       <label class="tw-range"><span class="tw-range__top"><span>${esc(tr(i.label, lang))}</span><output data-out="${i.id}"></output></span>
@@ -355,14 +340,6 @@ export async function mountDashboard(root, F, ui, lang) {
   });
   root.querySelector("[data-reset]").addEventListener("click", () => setPreset("base"));
   recalc();
-  investPane.addEventListener("click", (ev) => { if (ev.target.closest("[data-open-config]")) showRight("config"); });
-
-  // ---------------------------------------------------------------- plant configuration calculator
-  const cfgPane = $('[data-pane="config"]');
-  if (cfgPane) {
-    mountConfigurator({ pane: cfgPane, F: baseF, cfg, applied: cfg.active, twin, money, num, root });
-    if (location.hash === "#configuration") { showRight("config"); if (mobile()) { root.classList.add("right-open"); labelToggles(); } }
-  }
 
   // ---------------------------------------------------------------- pricing & packages (modal → WhatsApp with the chosen package)
   const pm = $("[data-pricing-modal]"), pBtn = $("[data-pricing]"), cta = $("[data-pricing-cta]");
