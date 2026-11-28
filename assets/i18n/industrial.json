@@ -418,7 +418,68 @@
       "ogTitle": "3DNA Plant Configurator · See how an ethanol plant grows with capacity",
       "ogImageAlt": "Minimalist isometric 3D ethanol plant configured by capacity",
       "brand": "Plant Configurator",
-      "question": "How many litres of ethanol would you like to produce annually?"
+      "question": "How many litres of ethanol would you like to produce annually?",
+      "about": {
+        "title": "What the Plant Configurator shows",
+        "text": [
+          "Choose an annual ethanol output and the plant is rebuilt in front of you. Each grain silo, fermenter, distillation column, molecular-sieve unit, storage tank and utility unit appears as a separate object, at one consistent physical scale, grouped in production zones that follow the process: grain storage, milling, mash preparation, fermentation, distillation, dehydration, co-products, ethanol storage and utilities.",
+          "The quantities come from the 3DNA FactoryBuilder configuration engine, which converts the annual target into hourly and daily flows and sizes every production stage. Click any unit to see its capacity, the required quantity and its utilization, or switch on Compare to place two capacities side by side.",
+          "Generated configurations are conceptual engineering estimates for visualization — they require independent professional engineering validation."
+        ],
+        "links": "More tools: the detailed Interactive Factory and FactoryBuilder."
+      }
+    },
+    "tools": {
+      "label": "Interactive tools",
+      "title": "Three ways to explore an industrial plant",
+      "lead": "From a detailed digital twin of a real-scale facility to a one-slider view of production scale — each tool runs in the browser, no installation needed.",
+      "whatIs": "What it is",
+      "shows": "What it shows",
+      "note": "All configurations, layouts and figures are conceptual and illustrative — not certified engineering.",
+      "items": [
+        {
+          "id": "twin",
+          "name": "Interactive Factory",
+          "kicker": "Detailed digital twin",
+          "alt": "3D digital twin of the Canadian ethanol production facility",
+          "cta": "Explore the factory",
+          "is": "A detailed, interactive 3D digital twin of a 14 million-litre-per-year Canadian ethanol production facility, inspired by public information.",
+          "shows": [
+            "Every piece of equipment with its own data sheet",
+            "The production process and nine engineering networks — power, steam, cooling, water, air, wastewater, control and fire",
+            "An investment dashboard: CAPEX, EBITDA, margin, payback and scenarios",
+            "Realistic, X-ray, thermal, blueprint and night views"
+          ]
+        },
+        {
+          "id": "builder",
+          "name": "FactoryBuilder",
+          "kicker": "Parametric factory generator",
+          "alt": "Conceptual ethanol factory generated in 3D by FactoryBuilder",
+          "cta": "Build your own factory",
+          "is": "A parametric generator: enter a production target and the tool designs a complete conceptual ethanol plant in 3D, with its equipment, layout and investment.",
+          "shows": [
+            "Equipment sized and counted for every production stage, with standby units",
+            "A generated 3D layout with pipe rack, roads and engineering connections",
+            "Capacity analysis: configured capacity, bottleneck, footprint and checks",
+            "Indicative CAPEX, OPEX, EBITDA and payback; three scenarios side by side; CSV equipment list"
+          ]
+        },
+        {
+          "id": "configurator",
+          "name": "Plant Configurator",
+          "kicker": "Production scale at a glance",
+          "alt": "Minimalist isometric 3D view of an ethanol plant configured for 50 million litres per year",
+          "cta": "Open the configurator",
+          "is": "The simplest way to understand production scale: one question, one slider and one clean 3D workspace — no engineering knowledge needed.",
+          "shows": [
+            "How many silos, fermenters, columns and tanks a plant needs, from 5 to 100 million litres per year",
+            "Each unit as a separate object, added or removed as you move the slider",
+            "The number of units above every production zone",
+            "Two capacities side by side in compare mode"
+          ]
+        }
+      ]
     }
   }
 }

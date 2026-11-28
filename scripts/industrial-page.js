@@ -62,8 +62,28 @@ function createIndustrialPage(i18n, { whatsappNumber, plantPath, landingPath, bu
 </section>`;
   }
 
+  // landing: the three interactive tools, each with a screenshot, what it is and what it shows
+  function toolsHtml(lang) {
+    const k = T(lang).tools;
+    const href = { twin: plantPath(lang), builder: builderPath ? builderPath(lang) : "", configurator: configuratorPath ? configuratorPath(lang) : "" };
+    return `<section class="ab-sec ind-tools" id="tools" aria-labelledby="ind-tools-t">
+  <div class="ab-wrap">
+    <div class="ab-narrow" data-reveal><p class="ab-label">${esc(k.label)}</p><h2 class="ab-h2" id="ind-tools-t">${esc(k.title)}</h2><p class="ab-p">${esc(k.lead)}</p></div>
+    <ul class="ind-tools__grid">${k.items.filter((x) => href[x.id]).map((x) => `<li class="ind-tool" data-reveal>
+      <a class="ind-tool__img" href="${href[x.id]}" data-track="industrial_tool_clicked" data-track-location="${x.id}" tabindex="-1" aria-hidden="true"><img src="/images/industrial/tool-${x.id}-960.webp" width="960" height="540" alt="${esc(x.alt)}" loading="lazy" decoding="async"></a>
+      <p class="ind-tool__k">${esc(x.kicker)}</p>
+      <h3 class="ind-tool__t"><a href="${href[x.id]}">${esc(x.name)}</a></h3>
+      <p class="ind-tool__h">${esc(k.whatIs)}</p><p class="ind-tool__p">${esc(x.is)}</p>
+      <p class="ind-tool__h">${esc(k.shows)}</p><ul class="ind-tool__l">${x.shows.map((y) => `<li>${esc(y)}</li>`).join("")}</ul>
+      <a class="ind-btn ind-btn--dark" href="${href[x.id]}" data-track="industrial_tool_clicked" data-track-location="${x.id}_cta">${esc(x.cta)} ${ARROW}</a>
+    </li>`).join("")}</ul>
+    <p class="ind-tools__note">${esc(k.note)}</p>
+  </div>
+</section>`;
+  }
+
   function bodyHtml(lang) {
-    const t = T(lang), out = [];
+    const t = T(lang), out = [toolsHtml(lang)];
     const head = (n, label, title, id) => `<p class="ab-label"><span class="ab-num">${n}</span> ${esc(label)}</p>\n      <h2 class="ab-h2" id="${id}">${esc(title)}</h2>`;
     const s = t.service;
     out.push(`<section class="ab-sec ind-service" aria-labelledby="ind-service-t">
@@ -247,7 +267,8 @@ ${twinBand(lang, s)}`);
     <aside class="pc__info" data-pc-info aria-live="polite"></aside>
     <noscript><p>The Plant Configurator needs JavaScript and WebGL.</p></noscript>
   </section>
-</div>`;
+</div>
+<section class="pc-about" aria-labelledby="pc-about-t"><div class="pc-about__in"><h2 id="pc-about-t">${esc(c.about.title)}</h2>${c.about.text.map((p) => `<p>${esc(p)}</p>`).join("")}<p class="pc-about__links"><a href="${plantPath(lang)}">${esc(T(lang).tools.items[0].name)} →</a> <a href="${builderPath(lang)}">${esc(T(lang).tools.items[1].name)} →</a></p></div></section>`;
   }
   return { heroHtml, bodyHtml, plantHtml, builderHtml, configuratorHtml, configuratorMeta: (lang) => ({ title: T(lang).configurator.metaTitle, description: T(lang).configurator.metaDescription, ogTitle: T(lang).configurator.ogTitle, ogImageAlt: T(lang).configurator.ogImageAlt }), builderMeta: (lang) => ({ title: T(lang).builder.metaTitle, description: T(lang).builder.metaDescription, ogTitle: T(lang).builder.ogTitle, ogImageAlt: T(lang).builder.ogImageAlt }), meta: (lang) => T(lang).meta, twinMeta: (lang) => ({ title: T(lang).twin.metaTitle, description: T(lang).twin.metaDescription, ogTitle: T(lang).twin.ogTitle, ogImageAlt: T(lang).twin.ogImageAlt }), nav: (lang) => T(lang).nav };
 }

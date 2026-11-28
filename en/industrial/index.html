@@ -34,7 +34,7 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/main.css?v=20261124d">
-  <link rel="stylesheet" href="/assets/css/industrial.css?v=4cf2d62b">
+  <link rel="stylesheet" href="/assets/css/industrial.css?v=1d388e46">
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 
@@ -138,6 +138,35 @@
       <p class="ind-hero__hint">Interactive 3D model · drag to rotate</p>
     </div>
   </section>
+
+<section class="ab-sec ind-tools" id="tools" aria-labelledby="ind-tools-t">
+  <div class="ab-wrap">
+    <div class="ab-narrow" data-reveal><p class="ab-label">Interactive tools</p><h2 class="ab-h2" id="ind-tools-t">Three ways to explore an industrial plant</h2><p class="ab-p">From a detailed digital twin of a real-scale facility to a one-slider view of production scale — each tool runs in the browser, no installation needed.</p></div>
+    <ul class="ind-tools__grid"><li class="ind-tool" data-reveal>
+      <a class="ind-tool__img" href="/en/industrial/ethanol/" data-track="industrial_tool_clicked" data-track-location="twin" tabindex="-1" aria-hidden="true"><img src="/images/industrial/tool-twin-960.webp" width="960" height="540" alt="3D digital twin of the Canadian ethanol production facility" loading="lazy" decoding="async"></a>
+      <p class="ind-tool__k">Detailed digital twin</p>
+      <h3 class="ind-tool__t"><a href="/en/industrial/ethanol/">Interactive Factory</a></h3>
+      <p class="ind-tool__h">What it is</p><p class="ind-tool__p">A detailed, interactive 3D digital twin of a 14 million-litre-per-year Canadian ethanol production facility, inspired by public information.</p>
+      <p class="ind-tool__h">What it shows</p><ul class="ind-tool__l"><li>Every piece of equipment with its own data sheet</li><li>The production process and nine engineering networks — power, steam, cooling, water, air, wastewater, control and fire</li><li>An investment dashboard: CAPEX, EBITDA, margin, payback and scenarios</li><li>Realistic, X-ray, thermal, blueprint and night views</li></ul>
+      <a class="ind-btn ind-btn--dark" href="/en/industrial/ethanol/" data-track="industrial_tool_clicked" data-track-location="twin_cta">Explore the factory <span aria-hidden="true">&rarr;</span></a>
+    </li><li class="ind-tool" data-reveal>
+      <a class="ind-tool__img" href="/en/industrial/factory-builder/" data-track="industrial_tool_clicked" data-track-location="builder" tabindex="-1" aria-hidden="true"><img src="/images/industrial/tool-builder-960.webp" width="960" height="540" alt="Conceptual ethanol factory generated in 3D by FactoryBuilder" loading="lazy" decoding="async"></a>
+      <p class="ind-tool__k">Parametric factory generator</p>
+      <h3 class="ind-tool__t"><a href="/en/industrial/factory-builder/">FactoryBuilder</a></h3>
+      <p class="ind-tool__h">What it is</p><p class="ind-tool__p">A parametric generator: enter a production target and the tool designs a complete conceptual ethanol plant in 3D, with its equipment, layout and investment.</p>
+      <p class="ind-tool__h">What it shows</p><ul class="ind-tool__l"><li>Equipment sized and counted for every production stage, with standby units</li><li>A generated 3D layout with pipe rack, roads and engineering connections</li><li>Capacity analysis: configured capacity, bottleneck, footprint and checks</li><li>Indicative CAPEX, OPEX, EBITDA and payback; three scenarios side by side; CSV equipment list</li></ul>
+      <a class="ind-btn ind-btn--dark" href="/en/industrial/factory-builder/" data-track="industrial_tool_clicked" data-track-location="builder_cta">Build your own factory <span aria-hidden="true">&rarr;</span></a>
+    </li><li class="ind-tool" data-reveal>
+      <a class="ind-tool__img" href="/en/industrial/plant-configurator/" data-track="industrial_tool_clicked" data-track-location="configurator" tabindex="-1" aria-hidden="true"><img src="/images/industrial/tool-configurator-960.webp" width="960" height="540" alt="Minimalist isometric 3D view of an ethanol plant configured for 50 million litres per year" loading="lazy" decoding="async"></a>
+      <p class="ind-tool__k">Production scale at a glance</p>
+      <h3 class="ind-tool__t"><a href="/en/industrial/plant-configurator/">Plant Configurator</a></h3>
+      <p class="ind-tool__h">What it is</p><p class="ind-tool__p">The simplest way to understand production scale: one question, one slider and one clean 3D workspace — no engineering knowledge needed.</p>
+      <p class="ind-tool__h">What it shows</p><ul class="ind-tool__l"><li>How many silos, fermenters, columns and tanks a plant needs, from 5 to 100 million litres per year</li><li>Each unit as a separate object, added or removed as you move the slider</li><li>The number of units above every production zone</li><li>Two capacities side by side in compare mode</li></ul>
+      <a class="ind-btn ind-btn--dark" href="/en/industrial/plant-configurator/" data-track="industrial_tool_clicked" data-track-location="configurator_cta">Open the configurator <span aria-hidden="true">&rarr;</span></a>
+    </li></ul>
+    <p class="ind-tools__note">All configurations, layouts and figures are conceptual and illustrative — not certified engineering.</p>
+  </div>
+</section>
 
 <section class="ab-sec ind-service" aria-labelledby="ind-service-t">
   <div class="ab-wrap">
